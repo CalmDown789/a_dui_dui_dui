@@ -1,0 +1,46 @@
+{
+  "name": "layer_smoke_v1",
+  "padding": "valid",
+  "input": {
+    "file": "input_hwc_i8.bin",
+    "dtype": "int8",
+    "layout": "HWC",
+    "shape": [
+      4,
+      5,
+      2
+    ]
+  },
+  "weights": {
+    "file": "weights_oihw_i8.bin",
+    "dtype": "int8",
+    "layout": "OIHW",
+    "shape": [
+      3,
+      2,
+      3,
+      3
+    ]
+  },
+  "bias": {
+    "file": "bias_i32_le.bin",
+    "dtype": "int32_le",
+    "shape": [
+      3
+    ]
+  },
+  "expected": {
+    "file": "expected_hwc_i32_le.bin",
+    "dtype": "int32_le",
+    "layout": "HWC",
+    "shape": [
+      2,
+      3,
+      3
+    ]
+  },
+  "stream_order": {
+    "input": "row,column,input_channel",
+    "output": "row,column,output_channel"
+  }
+}
