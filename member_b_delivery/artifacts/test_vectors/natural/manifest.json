@@ -1,0 +1,82 @@
+{
+  "layout": "HWC_row_major",
+  "files": {
+    "input_y_u8.bin": {
+      "shape": [
+        360,
+        640,
+        1
+      ],
+      "dtype": "uint8",
+      "bytes": 230400,
+      "crc32": "2f90cf9f",
+      "sha256": "52da37b9928dfdf70fdce7de623b3afa7e552836f7bf8df9a32a8a4d713cc818"
+    },
+    "input_model_int8.bin": {
+      "shape": [
+        360,
+        640,
+        1
+      ],
+      "dtype": "int8",
+      "bytes": 230400,
+      "crc32": "aba0080b",
+      "sha256": "a71f90a3551a02adc183783a656a0d82c20ac75b7bce2c12c145b47354257deb"
+    },
+    "conv1_out_hwc_int8.bin": {
+      "shape": [
+        360,
+        640,
+        8
+      ],
+      "dtype": "int8",
+      "bytes": 1843200,
+      "crc32": "79d85725",
+      "sha256": "f25a55942f2ed388c620bf92447f4a55390758af477d6d63b3336c77b4700281"
+    },
+    "conv2_out_hwc_int8.bin": {
+      "shape": [
+        360,
+        640,
+        16
+      ],
+      "dtype": "int8",
+      "bytes": 3686400,
+      "crc32": "f51e46c3",
+      "sha256": "545bc10dd48c4db533c5f2d73f6ac20f53c2c1c68711b7ea46cf591a431088ff"
+    },
+    "conv3_out_hwc_int8.bin": {
+      "shape": [
+        360,
+        640,
+        4
+      ],
+      "dtype": "int8",
+      "bytes": 921600,
+      "crc32": "50901262",
+      "sha256": "d43fbab0a40068ba5746252ada723a8f25996c03351d5290836baf19e3b6c1f3"
+    },
+    "output_model_int8.bin": {
+      "shape": [
+        720,
+        1280,
+        1
+      ],
+      "dtype": "int8",
+      "bytes": 921600,
+      "crc32": "ec0faaa4",
+      "sha256": "4124587eb75ba1761e87366b713e3d9373e9c4242b033b261065767d788552ca"
+    },
+    "output_y_u8.bin": {
+      "shape": [
+        720,
+        1280,
+        1
+      ],
+      "dtype": "uint8",
+      "bytes": 921600,
+      "crc32": "206d88a3",
+      "sha256": "513be4b3f15877027a4d60f101e21c22f270b10dcde589947b10c9697d0af24d"
+    }
+  }
+}

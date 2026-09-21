@@ -1,0 +1,82 @@
+{
+  "name": "TinySR-1x8x16x4-PS2",
+  "input": {
+    "shape_nchw": [
+      1,
+      1,
+      360,
+      640
+    ],
+    "color": "Y",
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "layers": [
+    {
+      "name": "conv1",
+      "type": "conv2d",
+      "in_channels": 1,
+      "out_channels": 8,
+      "kernel": 3,
+      "stride": 1,
+      "padding": 1
+    },
+    {
+      "name": "prelu1",
+      "type": "prelu",
+      "parameters": 1
+    },
+    {
+      "name": "conv2",
+      "type": "conv2d",
+      "in_channels": 8,
+      "out_channels": 16,
+      "kernel": 3,
+      "stride": 1,
+      "padding": 1
+    },
+    {
+      "name": "prelu2",
+      "type": "prelu",
+      "parameters": 1
+    },
+    {
+      "name": "conv3",
+      "type": "conv2d",
+      "in_channels": 16,
+      "out_channels": 4,
+      "kernel": 3,
+      "stride": 1,
+      "padding": 1
+    },
+    {
+      "name": "pixel_shuffle",
+      "type": "pixel_shuffle",
+      "scale": 2
+    }
+  ],
+  "output": {
+    "shape_nchw": [
+      1,
+      1,
+      720,
+      1280
+    ],
+    "color": "Y",
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "weight_layout": "OIHW",
+  "feature_dump_layout": "HWC_row_major",
+  "convolution_semantics": "cross_correlation_zero_padding",
+  "pixel_shuffle_channel_mapping": {
+    "0": "top_left",
+    "1": "top_right",
+    "2": "bottom_left",
+    "3": "bottom_right"
+  }
+}

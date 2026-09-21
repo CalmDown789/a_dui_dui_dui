@@ -12,6 +12,8 @@
 - 编写 PYNQ Python 驱动；
 - 支持成员 A 板上集成并整理汇报材料。
 
+成员 B 的模型、训练、INT8 量化、纯 NumPy 黄金模型、逐层测试向量和画质评估已提交到 [`member_b_delivery/`](member_b_delivery/README.md)。成员 C 可直接读取其中的 `artifacts/quant/quant_params.json` 和 `artifacts/test_vectors/` 完成逐层位精确联调。
+
 本机已确认安装 Vitis 2025.2，`vitis-run.bat` 支持 HLS、C 仿真、综合和实现流程。
 
 ## 当前可交付基线
@@ -31,6 +33,14 @@
 
 ```powershell
 .\scripts\run_quick_regression.ps1
+```
+
+验证成员 B 已交付的权重、量化包和三组全尺寸测试向量：
+
+```powershell
+Set-Location .\member_b_delivery
+python self_test.py
+python verify_delivery.py --delivery .
 ```
 
 重新运行末层 HLS C 仿真、综合并导出预览 IP：

@@ -23,16 +23,18 @@
 6. AXI4-Lite 地址由谁分配、何时提供？
 7. 若 H6 前 overlay 未跑通，是否按任务书切换到 Jupyter 或 C 仿真降级演示？
 
-## 请成员 B 确认
+## 成员 B 已确认
 
-1. 三层卷积采用零填充保持 640×360，还是采用 valid 卷积缩小尺寸？任务书目标输出要求更适合 same padding，但由成员 B 确认模型定义。
-2. INT8 是对称量化且零点为 0，还是非对称量化？
-3. 权重采用逐张量还是逐输出通道量化？激活采用逐张量还是逐层量化？
-4. 每层 requantize 的舍入规则是什么：四舍五入、向零截断或其他规则？
-5. 溢出采用饱和到 INT8，还是直接截断？
-6. PReLU 斜率的数据格式、位宽和逐通道方式是什么？
-7. 权重排列是否统一为 `[out_channel][in_channel][kernel_row][kernel_col]`？
-8. 测试向量何时可以提供？至少需要一张缩小尺寸输入、三层中间结果和最终输出。
+1. 三层卷积均采用一圈零填充、stride 1 的 PyTorch 交叉相关语义，保持 640×360；末端 Pixel Shuffle 输出 1280×720。
+2. 外部输入输出为 `uint8 Y`。输入原始字节在模型中按 `int8`、`zero_point=-128`、`scale=1/255` 解释；隐藏激活为逐层对称 `int8`，`zero_point=0`；末层输出重新映射到 `uint8 Y`。
+3. 权重采用按输出通道对称 INT8 量化；每个输出通道有独立 scale 和 Q31 requant 乘数。隐藏激活采用逐层 scale。
+4. requantize 使用最近舍入，恰好一半时远离零；Q31 乘法在 `int64` 中完成后右移 31 位。
+5. 所有 INT8 输出采用饱和到 `[-128, 127]`，不允许回绕。
+6. 前两层 PReLU 各使用一个标量斜率，保存为 Q1.15，在 INT32 累加结果上、requantize 之前应用。
+7. 权重排列为 `[out_channel][in_channel][kernel_row][kernel_col]`（OIHW）；特征和测试向量为 HWC 行优先；Pixel Shuffle 通道 0、1、2、3 分别映射到左上、右上、左下、右下。
+8. 完整量化参数和三组 640×360 测试向量已经位于 `member_b_delivery/artifacts/quant/` 与 `member_b_delivery/artifacts/test_vectors/`。每组包含输入、三层中间结果、最终输出、CRC32 和 SHA-256。
+
+权威机器可读规格为 `member_b_delivery/artifacts/quant/quant_params.json`；人工说明见 `member_b_delivery/docs/接口与量化约定.md`。
 
 ## 成员 C 待确认后执行
 
