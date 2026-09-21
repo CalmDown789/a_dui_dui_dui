@@ -11,6 +11,7 @@ of freezing member B's model decisions.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from collections.abc import Sequence
 from typing import Literal
 
 import numpy as np
@@ -121,6 +122,72 @@ def requantize_int8(values: np.ndarray, config: RequantConfig) -> np.ndarray:
         raise OverflowError("requantized value is outside INT8 without saturation")
 
     return shifted.astype(np.int8)
+
+
+def postprocess_channels_int8(
+    values: np.ndarray,
+    requant_configs: Sequence[RequantConfig],
+    *,
+    prelu_configs: Sequence[RequantConfig] | None = None,
+    prelu_before_requant: bool = True,
+) -> np.ndarray:
+    """Mirror the configurable HLS INT32-to-INT8 channel postprocess."""
+
+    source = np.asarray(values, dtype=np.int64)
+    if source.ndim < 1:
+        raise ValueError("values must have a channel dimension")
+    channels = source.shape[-1]
+    if len(requant_configs) != channels:
+        raise ValueError("requant config count must match the channel count")
+    if prelu_configs is not None and len(prelu_configs) != channels:
+        raise ValueError("PReLU config count must match the channel count")
+    if prelu_configs is not None and any(
+        config.zero_point != 0 for config in prelu_configs
+    ):
+        raise ValueError("HLS PReLU scale has no zero-point term")
+
+    result = np.empty(source.shape, dtype=np.int8)
+    for channel in range(channels):
+        channel_values = source[..., channel]
+        requant = requant_configs[channel]
+        prelu = None if prelu_configs is None else prelu_configs[channel]
+
+        if prelu is not None and prelu_before_requant:
+            scaled_negative = _round_shift(
+                channel_values * prelu.multiplier,
+                prelu.shift,
+                prelu.rounding,
+            )
+            channel_values = np.where(
+                channel_values < 0, scaled_negative, channel_values
+            )
+
+        channel_values = _round_shift(
+            channel_values * requant.multiplier,
+            requant.shift,
+            requant.rounding,
+        )
+        channel_values = channel_values + requant.zero_point
+
+        if prelu is not None and not prelu_before_requant:
+            scaled_negative = _round_shift(
+                channel_values * prelu.multiplier,
+                prelu.shift,
+                prelu.rounding,
+            )
+            channel_values = np.where(
+                channel_values < 0, scaled_negative, channel_values
+            )
+
+        if requant.saturate:
+            channel_values = np.clip(channel_values, -128, 127)
+        elif np.any((channel_values < -128) | (channel_values > 127)):
+            raise OverflowError(
+                f"channel {channel} is outside INT8 without saturation"
+            )
+        result[..., channel] = channel_values.astype(np.int8)
+
+    return result
 
 
 def prelu_int8(
