@@ -16,5 +16,8 @@ create_clock -period 10 -name default
 
 csim_design
 csynth_design
+export_design -format ip_catalog \
+    -output [file join $script_dir stage3_pipeline_preview.zip] \
+    -vendor pld10h.local -library hls -version 0.1
 
 exit

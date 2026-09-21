@@ -52,3 +52,5 @@ HLS 已将内部结构识别为三个独立 dataflow 进程：
 ```
 
 权威日志和报告位于 `results/hls_stage3/`。
+
+同目录的 `stage3_pipeline_preview.zip` 是供成员 A 提前检查端口、加入 Vivado IP Repository 和搭建占位 Block Design 的预览 IP。其流 sideband、参数装载和边界处理尚未冻结，不作为最终板上版本。

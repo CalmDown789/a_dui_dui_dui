@@ -39,8 +39,10 @@ if ($LASTEXITCODE -ne 0) {
 New-Item -ItemType Directory -Force -Path $resultDir | Out-Null
 $csimLog = Join-Path $WorkRoot 'work\solution1\csim\report\stage3_pipeline_top_csim.log'
 $synthReport = Join-Path $WorkRoot 'work\solution1\syn\report\stage3_pipeline_top_csynth.rpt'
+$previewIp = Join-Path $WorkRoot 'stage3_pipeline_preview.zip'
 
 Copy-Item -LiteralPath $csimLog -Destination $resultDir -Force
 Copy-Item -LiteralPath $synthReport -Destination $resultDir -Force
+Copy-Item -LiteralPath $previewIp -Destination $resultDir -Force
 
 Write-Host "HLS stage3 reports copied to $resultDir"
