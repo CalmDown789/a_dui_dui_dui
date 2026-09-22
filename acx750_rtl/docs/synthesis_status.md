@@ -45,3 +45,12 @@ place-and-route may still require one more pipeline stage.
 None of these tables is an ACX750 resource or timing sign-off. They are saved
 as reproducible fallback evidence until member C supplies target device support,
 clock/reset constraints, and the board reference project.
+
+## Postprocess synthesis attempt
+
+Member B added a reproducible OOC script for the Q1.15/Q31 postprocess, with
+separate hidden-INT16 and final-uint8 configurations. On 2026-09-22 Vivado
+failed during program startup with `Failed to install all user apps` before it
+read any RTL. No LUT/FF/DSP/timing number was produced, so this is recorded as
+a tool-startup blocker rather than a synthesis result. The script remains for
+rerun after the Vivado environment or member C's target setup is available.

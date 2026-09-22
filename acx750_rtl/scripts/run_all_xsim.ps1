@@ -4,11 +4,16 @@ $ErrorActionPreference='Stop'
 $regressions=@(
     'run_backend_xsim.ps1',
     'run_backend_random_xsim.ps1',
+    'run_accumulator_saturation_xsim.ps1',
     'run_conv1x1_xsim.ps1',
     'run_window3x3_bram_xsim.ps1',
     'run_window5x5_bram_xsim.ps1',
     'run_dot25_xsim.ps1',
-    'run_conv5x5_xsim.ps1'
+    'run_conv5x5_xsim.ps1',
+    'run_conv5x5_u8s8_xsim.ps1',
+    'run_prelu_requantize_xsim.ps1',
+    'run_parameter_rom_xsim.ps1',
+    'run_pixel_shuffle_map_xsim.ps1'
 )
 
 foreach($regression in $regressions){

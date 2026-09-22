@@ -68,9 +68,50 @@ includes continuous samples, an idle cycle, negative products, and the signed
 INT8 `-128 * -128` edge. These are primitive-level checks; padding and full
 network scheduling are intentionally absent.
 
+## 2026-09-22 first-layer unsigned activation path
+
+The confirmed model input is uint8 with zero point 0, so a dedicated
+`uint8 x signed-INT8` 5x5 backend was added instead of reinterpreting input
+bytes as signed activations. XSim covered `128` and `255`, both weight signs,
+the `-128` weight edge, continuous samples, an idle cycle, and bias addition.
+
+Observed terminal marker:
+
+```text
+ACX750_CONV5X5_U8S8_BACKEND_TEST_PASS results=3
+ACX750_ALL_XSIM_REGRESSIONS_PASS
+```
+
+This validates first-layer primitive arithmetic only. It does not yet validate
+zero padding, exported real weights, PReLU, or requantization.
+
 ## Synthesis boundary
 
 See `synthesis_status.md`. In brief, direct XC7A200T synthesis is blocked
 because this Vivado installation has no matching part data. Same-generation
 XC7Z020 fallback synthesis verified DSP48E1 and BRAM inference, but cannot be
 used as ACX750 timing closure evidence.
+
+## 2026-09-22 member A delivery and real-tensor bit-exact checks
+
+An independent NumPy audit verified all 163 manifest entries, 14 parameter
+format groups, and four complete integer reference cases. RTL tests then used
+member A's actual random-case activations and parameters across all five
+arithmetic layers. Observed markers:
+
+```text
+ACX750_MEMBER_A_POSTPROCESS_BIT_EXACT_PASS i16=96 u8=8
+ACX750_MAPPING0_MEMBER_A_BIT_EXACT_PASS groups=40 contributions=320
+ACX750_FEATURE_SUBPIXEL_MEMBER_A_BIT_EXACT_PASS feature=80 subpixel=20
+ACX750_CONV1X1_MEMBER_A_BIT_EXACT_PASS shrink=40 expand=80
+ACX750_ALL_XSIM_REGRESSIONS_PASS
+```
+
+The accumulator now keeps a widened internal sum and saturates only at the
+final INT32 boundary, matching member A's reference instead of wrapping at
+each channel contribution. A dedicated test proves the distinction between
+final-only and premature intermediate saturation.
+
+These results validate representative arithmetic and postprocess paths. They
+do not yet validate full-frame line-buffer scheduling, parameter-loading
+control, target-device timing, or 30 fps.
