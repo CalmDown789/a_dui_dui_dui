@@ -41,6 +41,8 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 python scripts\verify_integer_delivery.py
 ```
 
+审核模型质量证据时，可直接下载 `artifacts/member_a_weights_and_logs.zip`，其中集中提供 FP32 checkpoint、模型契约、50轮训练日志、Set5逐图指标、汇总指标及量化参数。
+
 训练数据保存到 `.data/` 且不会提交。任务书原件保存在 `docs/source/`，接口约定、算力核算和成员 A 报告位于 `docs/`。
 
 本次固定种子训练的 Set5 平均结果为：双三次 32.6398 dB、FP32 34.1202 dB、量化 34.0190 dB；量化损失 0.1012 dB，因此未触发 QAT。完整逐图 PSNR/SSIM 见 `artifacts/evaluation/set5_metrics.csv`。
