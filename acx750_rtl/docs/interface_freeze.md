@@ -11,6 +11,12 @@ Status: open. This file records blockers; it does not decide them.
   and final-layer channel-count contradictions.
 - Per-layer padding, activation, bias, quantization, rounding, saturation, and
   PReLU rules.
+- Resolve whether intermediate activations presented to multipliers are INT8
+  or INT16. The conservative width audit shows that INT16 x INT8, 25 taps, 32
+  channels can require 33 signed accumulator bits before bias.
+- Exact bias numerical range/scale and the point at which requantization occurs;
+  saying both "bias INT32" and "accumulator INT32" does not by itself prevent
+  overflow.
 - Weight layout, kernel orientation, byte order, and authoritative vectors.
 - Verified conversion of the stride-2 9x9 transposed convolution into four
   phase convolutions, including crop, padding, kernel sizes, and phase order.
@@ -18,6 +24,9 @@ Status: open. This file records blockers; it does not decide them.
 ## Member C board contract
 
 - ACX750 revision, target part, Vivado version, reference project, and XDC.
+- Install or provide Vivado device data that recognizes
+  `xc7a200tfbg484-2`; the current 2025.2 installation returns `No parts
+  matched` for that exact part.
 - Clock, reset, top-level transport, backpressure, frame markers, and data
   width.
 - Input/output storage, DDR or streaming responsibility, weight loading, ILA

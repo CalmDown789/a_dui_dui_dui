@@ -2,8 +2,14 @@
 
 module conv3x3_backend_random_tb;
 
+    // Compile-time regression settings, not deployed-network constants.
+`ifdef TB_CHANNELS_ONE
+    localparam integer CHANNELS = 1;
+    localparam integer EXPECTED_GROUPS = 64;
+`else
     localparam integer CHANNELS = 3;
     localparam integer EXPECTED_GROUPS = 96;
+`endif
 
     reg clk;
     reg rst;

@@ -15,6 +15,12 @@ and C.
   channels with bias sampled at the first contribution of each group.
 - `rtl/compute/conv3x3_backend.v`: connects the two arithmetic blocks and
   pipelines bias metadata with the dot-product result.
+- `rtl/compute/conv1x1_backend.v`: one-product-per-cycle channel accumulator
+  for shrink/expand layers.
+- `rtl/compute/dot25_pipeline.v` and `conv5x5_backend.v`: parameterized signed
+  5x5 arithmetic path using 25 conservative one-multiply-per-DSP stages.
+- `rtl/window/window3x3_bram.v` and `window5x5_bram.v`: rotating row-bank
+  windows that infer three and five BRAMs respectively at 960x16-bit settings.
 - `tb/conv3x3_backend_tb.v`: self-checking signed arithmetic smoke test with
   two input channels and two consecutive output groups.
 - `scripts/generate_backend_vectors.py` and
@@ -45,3 +51,22 @@ From `F:\FPGA预选\10h冲刺` in PowerShell:
 The random script uses a fixed seed and creates vectors in an ASCII temporary
 directory. Its 8-bit activation/weight widths and three-channel grouping are
 verification settings, not a model-format decision.
+
+Additional regressions:
+
+```powershell
+.\acx750_rtl\scripts\run_conv1x1_xsim.ps1
+.\acx750_rtl\scripts\run_window3x3_bram_xsim.ps1
+.\acx750_rtl\scripts\run_window5x5_bram_xsim.ps1
+.\acx750_rtl\scripts\run_conv5x5_xsim.ps1
+```
+
+Run the complete simulation set with:
+
+```powershell
+.\acx750_rtl\scripts\run_all_xsim.ps1
+```
+
+The installed Vivado currently lacks `xc7a200tfbg484-2` device data. Reports
+under `results/fallback_xc7z020_*` are same-generation DSP48E1 structural
+checks only, not ACX750 timing or utilization sign-off.

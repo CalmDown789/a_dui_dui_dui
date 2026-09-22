@@ -1,0 +1,30 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Tue Sep 22 12:59:19 2026
+| Host         : OMENMAX running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/24889/AppData/Local/Temp/acx750_compute_synth_20260922_125843/reports/compute_baseline_utilization.rpt
+| Design       : conv3x3_backend
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
+|       Instance      |     Module    | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++---------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
+| conv3x3_backend     |         (top) |        766 |        733 |       0 |   33 | 470 |      0 |      0 |          0 |
+|   (conv3x3_backend) |         (top) |         32 |          0 |       0 |   32 |  96 |      0 |      0 |          0 |
+|   u_dot9            | dot9_pipeline |        703 |        702 |       0 |    1 | 341 |      0 |      0 |          0 |
++---------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+

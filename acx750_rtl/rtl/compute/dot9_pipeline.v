@@ -28,7 +28,7 @@ module dot9_pipeline #(
     input  wire signed [WGT_W-1:0] k21,
     input  wire signed [WGT_W-1:0] k22,
 
-    output reg signed [ACT_W+WGT_W+3:0] dot9,
+    (* use_dsp = "no" *) output reg signed [ACT_W+WGT_W+3:0] dot9,
     output reg                            dot9_valid
 );
 
@@ -38,18 +38,28 @@ module dot9_pipeline #(
     localparam integer S3_W   = PROD_W + 3;
     localparam integer DOT_W  = PROD_W + 4;
 
-    reg signed [PROD_W-1:0] p0, p1, p2, p3, p4, p5, p6, p7, p8;
+    // Conservative mapping baseline: one signed multiply per DSP48E1.
+    // This does not assume or implement dual-INT8 packing.
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p0;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p1;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p2;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p3;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p4;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p5;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p6;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p7;
+    (* use_dsp = "yes" *) reg signed [PROD_W-1:0] p8;
     reg valid_s0;
 
-    reg signed [S1_W-1:0] s1_0, s1_1, s1_2, s1_3;
+    (* use_dsp = "no" *) reg signed [S1_W-1:0] s1_0, s1_1, s1_2, s1_3;
     reg signed [PROD_W-1:0] p8_d1;
     reg valid_s1;
 
-    reg signed [S2_W-1:0] s2_0, s2_1;
+    (* use_dsp = "no" *) reg signed [S2_W-1:0] s2_0, s2_1;
     reg signed [PROD_W-1:0] p8_d2;
     reg valid_s2;
 
-    reg signed [S3_W-1:0] s3;
+    (* use_dsp = "no" *) reg signed [S3_W-1:0] s3;
     reg signed [PROD_W-1:0] p8_d3;
     reg valid_s3;
 
