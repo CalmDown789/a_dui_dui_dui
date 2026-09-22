@@ -35,6 +35,12 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 .\.venv\Scripts\python.exe scripts\verify_delivery.py
 ```
 
+只交接整数实现时，可直接下载 `artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数、整数黄金参考和四组逐层向量；解压后运行：
+
+```powershell
+python scripts\verify_integer_delivery.py
+```
+
 训练数据保存到 `.data/` 且不会提交。任务书原件保存在 `docs/source/`，接口约定、算力核算和成员 A 报告位于 `docs/`。
 
 本次固定种子训练的 Set5 平均结果为：双三次 32.6398 dB、FP32 34.1202 dB、量化 34.0190 dB；量化损失 0.1012 dB，因此未触发 QAT。完整逐图 PSNR/SSIM 见 `artifacts/evaluation/set5_metrics.csv`。
