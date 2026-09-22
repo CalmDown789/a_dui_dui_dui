@@ -4,6 +4,9 @@ Status: open. This file records blockers; it does not decide them.
 
 ## Member A model contract
 
+- The newly supplied `d16/s8/m1/c16` PixelShuffle description is a candidate,
+  not yet a frozen replacement for the task-book topology; the team is still
+  reconciling the two sources.
 - Exact layer sequence and tensor shapes, including the task-book expansion
   and final-layer channel-count contradictions.
 - Per-layer padding, activation, bias, quantization, rounding, saturation, and
