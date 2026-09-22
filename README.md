@@ -31,9 +31,11 @@ rtl/      c_config.vh    参数单一真源（逐条标注 v3.2.2 出处）
           readback_ctrl.v UART 静态回读控制
           b_core_if.v    ★ C-B v0.2 冻结端口的唯一落点（stub / 真实 B 切换）
           b_core_stub.v  ★★★ SIMULATION STUB ONLY ★★★（2×2 最近邻，不是 FSRCNN）
-tb/       tb_stripe_buffer.v 条带缓冲模块级定向测试 T1~T6（已 PASS）
-          tb_ready_valid.v  小规模全链路 + A~K 背压/边界场景（已 PASS）
-          tb_c_top.v        全尺寸 1920×1080/STRIPE_H=64 边界测试 + c_top 冒烟（已 PASS）
+          c_protocol_assertions.v  协议断言层 A1~A6（ifdef C_SIM，不进综合）
+tb/       tb_stripe_buffer.v     条带缓冲模块级定向测试 T1~T6（已 PASS）
+          tb_backpressure_rand.v 随机化背压压力测试，3 种子 + 断言层（已 PASS）
+          tb_ready_valid.v       小规模定向全链路 A~K 场景（已 PASS）
+          tb_c_top.v             全尺寸 1920×1080/STRIPE_H=64 边界测试 + c_top 冒烟（已 PASS）
 constr/   c_top.xdc             引脚/时钟/复位约束（复用已上板实测基线；UART 引脚待确认）
 scripts/  run_sim.tcl           一键跑全部 TB（每个 TB 独立工作目录，无波形 dump）
           synth_check.tcl       **仅综合**取证（不实现/不布局布线/不生成位流）

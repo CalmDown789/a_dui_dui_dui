@@ -25,9 +25,9 @@
 | 9 | UART 回读骨架 | ✅ | `uart_tx.v`（8N1 参数化，默认 921600）+ `readback_ctrl.v`（有条带回读，有界流水不丢字节） |
 | 10 | 参数集中管理 | ✅ | `c_config.vh`（单一真源，逐条标注出处） |
 | 11 | B interface stub | ✅ | `b_core_if.v`（冻结端口唯一落点）+ `b_core_stub.v`（**SIMULATION STUB ONLY**） |
-| 12 | testbench | ✅ | `tb/tb_stripe_buffer.v`（模块级 T1~T6）、`tb/tb_ready_valid.v`（小规模 A~K）、`tb/tb_c_top.v`（全尺寸边界 + c_top 冒烟）——**三者全 PASS** |
+| 12 | testbench | ✅ | `tb/tb_stripe_buffer.v`（模块级 T1~T6）、`tb/tb_ready_valid.v`（小规模定向 A~K）、`tb/tb_c_top.v`（全尺寸边界 + c_top 冒烟）、`tb/tb_backpressure_rand.v`（**随机化背压压力测试，3 种子**）——**四者全 PASS** |
 | 13 | 基本自检 | ✅ | TB 内 scoreboard：逐字节比对 + 边界复算 + UART 解码复算 |
-| 14 | 必要的 assertion | 🟡 **部分** | ✅ TB 内逐拍断言（stall 保持 / 计数 / 边界）＋ RTL 内 `proto_err`/`overflow_err` 黏滞标志；⬜ 未写 SVA `assert property` |
+| 14 | 必要的 assertion | ✅ | **独立断言层** `rtl/c_protocol_assertions.v`（A1~A6，`ifdef C_SIM` 排除综合），已接入 `tb_backpressure_rand` 并 0 违例 |
 | 15 | Vivado 工程兼容代码 | ✅ | `constr/c_top.xdc`（复用已上板实测基线）、`scripts/run_sim.tcl`、`scripts/synth_check.tcl`、`rtl/c_synth_top.v`（综合专用顶层） |
 | 16 | C 侧开发说明 | ✅ | 本文件 + 各文件头注释（含 TODO 与依据条款） |
 
@@ -35,11 +35,12 @@
 
 ```
 工具   : Vivado 2022.2  xvlog / xelab / xsim / synth_design（E:\Xilinx\Vivado\2022.2\bin）
-RTL    : 14 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if / c_top / c_synth_top）
-仿真   : 3 个 testbench 全部 PASS
-           tb_stripe_buffer : RESULT: PASS  (T1~T6, 0 error)
-           tb_ready_valid   : RESULT: PASS  (all A~K scenarios, 0 error)
-           tb_c_top         : RESULT: PASS  (Part A 全尺寸边界 + Part B c_top 冒烟)
+RTL    : 15 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if / c_top / c_synth_top）
+仿真   : 4 个 testbench 全部 PASS
+           tb_stripe_buffer     : RESULT: PASS  (T1~T6, 0 error)
+           tb_backpressure_rand : RESULT: PASS  (随机化背压压力测试, 0 error, 断言 A1~A6 零违例)
+           tb_ready_valid       : RESULT: PASS  (all A~K scenarios, 0 error)
+           tb_c_top             : RESULT: PASS  (Part A 全尺寸边界 + Part B c_top 冒烟)
 综合   : synthesis only —— 0 ERROR / 0 CRITICAL WARNING
            RAMB36 = 192 / 365 (52.60%)   RAMB18 = 0   DSP48E1 = 0
            LUT 3723   FF 8190   WNS(synthesis, 200MHz) = -0.153 ns（3/20911 失败端点，
@@ -87,6 +88,38 @@ RTL    : 14 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if / c_to
 | B | `c_top` 板级冒烟（`USE_MMCM=0`，`busy` 于 47 拍后拉起，无 X 传播） | PASS | — |
 
 > 仿真总时长 21,965,800 ns ≈ 2.1966 M 拍（全尺寸单帧），**未生成任何波形文件**。
+
+### tb_backpressure_rand 实测汇总（**随机化**背压压力测试，OUT 16×12 / STRIPE_H=5 ⇒ 3 条带）
+
+设计意图：`tb_ready_valid` 是**定向**激励（好定位），本 TB 是**随机化**激励（好找边界外的漏网 bug）。
+激励：B 侧 `out_valid` 随机出现 5~20 拍空档且严格 hold-until-accept；读侧 `rd_req` 随机出现 3~18 拍停顿；
+LFSR 三个不同种子各跑一帧。
+
+| 种子 | 输出像素 | 回读字节 | stripe_last | frame_last | **最长背压** | 断言违例 |
+|---|---|---|---|---|---|---|
+| #0 (lfsr=670f) | 192 / 192 | 192 / 192 | 3 / 3 | 1 / 1 | **143 拍** | 0 |
+| #1 (lfsr=01c6) | 192 / 192 | 192 / 192 | 3 / 3 | 1 / 1 | **165 拍** | 0 |
+| #2 (lfsr=9c7b) | 192 / 192 | 192 / 192 | 3 / 3 | 1 / 1 | **143 拍** | 0 |
+
+判据全部满足：**逐字节一致、边界位置一致、`proto_err=0`、`overflow_err=0`**、断言层零违例。
+
+### 断言层 `c_protocol_assertions.v`（A1~A6）
+
+| 编号 | 对应条款 | 内容 |
+|---|---|---|
+| A1 | §五.8(4)-2 | `out_valid=1 && out_ready=0` 期间 `out_data`/`stripe_last`/`frame_last` 保持稳定，且 **`out_valid` 不得中途撤销** |
+| A2 | §五.8(4)-5 | `frame_last = 1 ⇒ stripe_last = 1`（同拍） |
+| A3 | §五.10-2 | 放行写时缓冲**确实可写**（`wr_push ⇒ wr_ready`） |
+| A4 | §五.10-4 | 读请求只允许在回读进行中发出（含合理的 1 拍残留豁免） |
+| A5 | §五.8(4)-2 | 背压期间**输出坐标不得推进** |
+| A6 | §五.8(4)-6 | 复位后 `out_ready` 必须为 0（C 侧不得抢先接受） |
+
+实现方式：普通 Verilog 监控模块（不依赖 SystemVerilog/SVA，任何仿真器可用），
+整段包在 `` `ifdef C_SIM `` 内，**不会进入综合路径**。
+
+> ⚠️ **设计 A6 时的教训**：第一版 A6 断言的是 `out_valid`/`stripe_last`/`frame_last` 复位后为 0，
+> 但这三个是 **B 侧驱动**的信号（在 TB 里由激励源给出）——**等于在检查测试台自己**，因而误报。
+> 已改为只断言 C 侧义务（`out_ready`）。**断言必须落在被测方的义务上**，否则会产生假违例。
 
 ---
 
@@ -187,15 +220,18 @@ RTL    : 14 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if / c_to
 
 ## 7. 下一步（按优先级）
 
-1. **补 `tb_stripe_buffer.v`**（模块级：写入/读出/ping-pong 切换/满时反压/不覆盖的定向用例）。
-2. **补 `tb_c_top.v`**（全尺寸 960×540 → 1920×1080、STRIPE_H=64：只验控制/边界——17 条带、末条 56 行；
-   严格 timeout、**不 dump 波形**、不落盘）。
-3. **补 `scripts/run_sim.tcl` / `scripts/synth_check.tcl` / `constr/c_top.xdc`**（XDC 可直接复用
-   `bench/onboard_dual_int8/constr/top_onboard.xdc` 的引脚与 CFGBVS/CONFIG_VOLTAGE）。
-4. **一次 `synth_design`（仅综合，不做 implementation / 不生成 bitstream）**，产出 `report_utilization`
-   以回填 §8.3 C11。注意：综合时须让 ROM 带非零初值（`ROM_INIT_MODE=1` 或真实 `.mem`），
-   否则全零 ROM 可能被优化掉导致 BRAM 数偏低。
-5. 真实 B RTL 到位后：按 `b_core_if.v` 的 `C_USE_B_REAL` 切换，并补 C18 的 N 相关用例。
+1. ✅ 已补 `tb_stripe_buffer.v`、`tb_c_top.v`、`tb_backpressure_rand.v` 与断言层 `c_protocol_assertions.v`。
+2. ✅ 已补 `scripts/run_sim.tcl` / `scripts/synth_check.tcl` / `constr/c_top.xdc`。
+3. ✅ 已完成一次 `synth_design`（仅综合，未 implementation、未生成 bitstream），
+   报告入库 `report/`（见 §9）。
+4. **真实 B RTL 到位后**：按 `b_core_if.v` 的 `C_USE_B_REAL` 切换；此后重跑
+   `scripts/run_sim.tcl` 与 `scripts/synth_check.tcl`，
+   并按 B-ARCH-10 的七项参数补 C18 的「最大连续 back-pressure 周期 N」用例
+   （本工程现用「可无限期背压」的下限模型，N 相关用例待 B 回填）。
+5. 补 A 侧真实 960×540 `.mem` 后，把 `c_synth_top` 的 `ROM_INIT_FILE` 指向它并重跑综合，
+   复核 BRAM 与 `report_utilization`。
+6. 若需上板：确认 CH9102 的 `uart_tx` 管脚（`constr/c_top.xdc` 中 TODO），
+   再做 implementation + bitstream（**本轮明确未做**）。
 
 ---
 

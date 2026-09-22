@@ -42,11 +42,11 @@ set rtl_files [list \
     "$rtl_dir/c_core.v"        \
     "$rtl_dir/c_top.v"         \
     "$rtl_dir/c_synth_top.v"   \
+    "$rtl_dir/c_protocol_assertions.v" \
 ]
 
-# 每个 TB 需要的额外 RTL（全量编译最简单可靠，不按需裁剪）
-set all_tbs [list tb_stripe_buffer tb_ready_valid tb_c_top]
-# 默认跑全部三个 TB。
+# 默认跑全部 TB（全量编译 RTL，最简单可靠，不按需裁剪）
+set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top]
 # 可选：只跑指定 TB —— vivado -mode batch -source run_sim.tcl -tclargs tb_c_top
 #   （Vivado 批处理下若未用 -tclargs，$argv 可能是 Tcl 自身参数，
 #     故只在其首元素形如 "tb_*" 时才据此裁剪。）
@@ -92,9 +92,10 @@ foreach tb $all_tbs {
         set fh [open "$work/xsim.log" r]; set c [read $fh]; close $fh
         if {[string match "*RESULT: PASS*" $c]} { set pass 1 }
         if {[regexp {RESULT: (\w+)} $c -> r]} { puts "  -> RESULT: $r" }
-        if {[regexp -all {\[FAIL\]} $c] > 0} {
-            puts "  -> [regexp -all {\[FAIL\]} $c] 条 [FAIL]"
-        }
+        # ⚠️ 方括号必须转义：Tcl 会在双引号串内做命令替换，
+        #    裸写 [FAIL] 会去执行名为 FAIL 的命令 → invalid command name "FAIL"
+        set nfail [regexp -all {\[FAIL\]} $c]
+        if {$nfail > 0} { puts "  -> $nfail 条 FAIL" }
     }
 
     if {$pass} {
