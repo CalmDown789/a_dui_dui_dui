@@ -72,6 +72,9 @@ module pingpong_buffer #(
     reg  [ADDR_W-1:0] rd_ptr_q;             // 回读指针（bank 内线性地址）
     reg  [ADDR_W-1:0] rd_len_q;
     reg               rd_v_q, rd_first_q, rd_last_q;
+    // ★ 回读释放握手（**单一驱动**：见下方说明）
+    reg               rd_done_q;        // 1 拍脉冲：本条带回读完毕
+    reg               rd_done_bank_q;   // 被释放的 bank
 
     //=========================================================================
     // 1. 两个条带 bank 实例
@@ -129,7 +132,13 @@ module pingpong_buffer #(
     assign wr_ready_nxt = ~will_block;
 
     //=========================================================================
-    // 3. 写侧 / 交换 主控
+    // 3. 写侧 / 交换 主控 —— **bank_full_q / bank_len_q / wr_* 的唯一驱动块**
+    //    ⚠️ 第一版把 `bank_full_q[rd_bank_q] <= 0` 写在下方读侧的 always 块里，
+    //       造成同一寄存器被两个 always 块驱动 →
+    //       CRITICAL WARNING [Synth 8-6859] multi-driven net
+    //       （仿真因"后写胜出"侥幸通过，综合结果不确定）。
+    //       本版改为：读侧只产生 `rd_done_q` / `rd_done_bank_q` 释放脉冲，
+    //       由本块统一施加，**保证每个 reg 只有一个驱动 source**。
     //=========================================================================
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -144,6 +153,11 @@ module pingpong_buffer #(
         end else begin
             if (wr_push & ~wr_ready) begin
                 overflow_err <= 1'b1;      // 协议违例：写侧被反压却仍在写
+            end
+
+            // ---- 回读完成 → 释放该 bank（本块唯一施加点） ----
+            if (rd_done_q) begin
+                bank_full_q[rd_done_bank_q] <= 1'b0;
             end
 
             if (wr_push) begin
@@ -171,25 +185,32 @@ module pingpong_buffer #(
     end
 
     //=========================================================================
-    // 4. 读侧（UART 回读）：一次只回读一个 bank，读完释放
+    // 4. 读侧（UART 回读）：一次只回读一个 bank
+    //    ★ 本块**不直接修改 bank_full_q**，只产生释放脉冲 rd_done_q /
+    //      rd_done_bank_q，由上方写侧块统一施加（避免多驱动，见其注释）。
     //=========================================================================
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            rd_busy_q  <= 1'b0;
-            rd_bank_q  <= 1'b0;
-            rd_ptr_q   <= {ADDR_W{1'b0}};
-            rd_len_q   <= {ADDR_W{1'b0}};
-            rd_v_q     <= 1'b0;
-            rd_first_q <= 1'b0;
-            rd_last_q  <= 1'b0;
+            rd_busy_q      <= 1'b0;
+            rd_bank_q      <= 1'b0;
+            rd_ptr_q       <= {ADDR_W{1'b0}};
+            rd_len_q       <= {ADDR_W{1'b0}};
+            rd_v_q         <= 1'b0;
+            rd_first_q     <= 1'b0;
+            rd_last_q      <= 1'b0;
+            rd_done_q      <= 1'b0;
+            rd_done_bank_q <= 1'b0;
         end else begin
             // 脉冲类信号与 rd_data（比 rd_en 晚 1 拍）对齐
             rd_v_q     <= (rd_req & rd_busy_q);
             rd_first_q <= (rd_req & rd_busy_q & (rd_ptr_q == {ADDR_W{1'b0}}));
             rd_last_q  <= (rd_req & rd_busy_q & (rd_ptr_q == (rd_len_q - 1'b1)));
+            rd_done_q  <= 1'b0;   // 单拍脉冲
 
-            if (!rd_busy_q) begin
+            if (!rd_busy_q && !rd_done_q) begin
                 // 启动一次回读：优先选「非写 bank」，保证写侧能立即换到空闲 bank
+                //   `!rd_done_q` 是必需的：bank_full 由写侧块在**下一拍**才清除，
+                //   若不在释放脉冲期间抑制，会立刻把刚读完的 bank 再读一遍（重复数据）。
                 if (bank_full_q[0] | bank_full_q[1]) begin
                     if (bank_full_q[other]) begin
                         rd_bank_q <= other;
@@ -204,8 +225,9 @@ module pingpong_buffer #(
             end else if (rd_req) begin
                 rd_ptr_q <= rd_ptr_q + 1'b1;
                 if (rd_ptr_q == (rd_len_q - 1'b1)) begin
-                    rd_busy_q              <= 1'b0;    // 本条带回读完毕
-                    bank_full_q[rd_bank_q] <= 1'b0;    // 释放该 bank
+                    rd_busy_q      <= 1'b0;                 // 本条带回读完毕
+                    rd_done_q      <= 1'b1;                 // ★ 释放脉冲（交给写侧块施加）
+                    rd_done_bank_q <= rd_bank_q;
                 end
             end
         end

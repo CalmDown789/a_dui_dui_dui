@@ -50,22 +50,39 @@ module input_rom #(
 
     //-------------------------------------------------------------------------
     // 初始化
+    //
+    // ★ 关键（第一版踩过）：**绝不要用无界 for 循环写整片 ROM 的初值**。
+    //   综合器对 initial 块内的循环有 **65536 次迭代上限**，超限时整块
+    //   initial 被**忽略**（实测 WARNING [Synth 8-6896]），于是
+    //   ① 综合出来的 ROM 无初值；② BRAM 统计不可信（实测只报了 16 块 RAMB36，
+    //   而 524288×8 实际需要约 114 块）。
+    //
+    //   正确做法（本版）：
+    //     · 综合 / 上板：`INIT_MODE=0, INIT_EN=1` → `$readmemh(INIT_FILE, mem)`，
+    //       Vivado 原生支持用 $readmemh 初始化 BRAM（不受循环上限影响）；
+    //     · 仿真：`INIT_MODE=1` → 公式 pattern，**且整段包在 `ifdef C_SIM 内**，
+    //       保证永远不会进入综合路径。
     //-------------------------------------------------------------------------
     integer i;
+
+`ifdef C_SIM
+    // ============ SIM ONLY：确定性 pattern 初值 ============
+    //   pattern(addr) = (addr*7 + (addr>>8) + 13) & 0xFF
+    //   供 TB 独立复算期望值；**仅供仿真**（综合时不编译本段）。
     initial begin
-        for (i = 0; i < MEM_DEPTH; i = i + 1) begin
-            if (INIT_MODE == 1) begin
-                // 确定性伪随机 pattern（**仅用于仿真**，让 TB 能独立复算期望值）
-                //   pattern(addr) = (addr*7 + (addr>>8) + 13) & 0xFF
+        if (INIT_MODE == 1) begin
+            for (i = 0; i < MEM_DEPTH; i = i + 1) begin
                 mem[i] = ((i * 7) + (i >> 8) + 13) & 8'hFF;
-            end else begin
-                // §五.9（2）：未用地址定义为 0x00
-                mem[i] = {DATA_W{1'b0}};
             end
         end
+    end
+`endif
 
+    // ============ 真实数据装载（综合 / 上板路径） ============
+    //   未覆盖的地址由 BRAM 默认初值 = 0x00 填充
+    //   （§五.9（2）：518400 ~ 524287 定义为 0x00）
+    initial begin
         if ((INIT_MODE == 0) && (INIT_EN != 0)) begin
-            // 全尺寸/小规模真实数据装载；$readmemh 未覆盖的地址保持 0x00
             $readmemh(INIT_FILE, mem);
         end
     end

@@ -25,21 +25,28 @@
 | 9 | UART 回读骨架 | ✅ | `uart_tx.v`（8N1 参数化，默认 921600）+ `readback_ctrl.v`（有条带回读，有界流水不丢字节） |
 | 10 | 参数集中管理 | ✅ | `c_config.vh`（单一真源，逐条标注出处） |
 | 11 | B interface stub | ✅ | `b_core_if.v`（冻结端口唯一落点）+ `b_core_stub.v`（**SIMULATION STUB ONLY**） |
-| 12 | testbench | 🟡 **部分** | ✅ `tb_ready_valid.v`；⬜ `tb_stripe_buffer.v`、`tb_c_top.v` 未写 |
+| 12 | testbench | ✅ | `tb/tb_stripe_buffer.v`（模块级 T1~T6）、`tb/tb_ready_valid.v`（小规模 A~K）、`tb/tb_c_top.v`（全尺寸边界 + c_top 冒烟）——**三者全 PASS** |
 | 13 | 基本自检 | ✅ | TB 内 scoreboard：逐字节比对 + 边界复算 + UART 解码复算 |
 | 14 | 必要的 assertion | 🟡 **部分** | ✅ TB 内逐拍断言（stall 保持 / 计数 / 边界）＋ RTL 内 `proto_err`/`overflow_err` 黏滞标志；⬜ 未写 SVA `assert property` |
-| 15 | Vivado 工程兼容代码 | 🟡 **部分** | ✅ RTL 可按文件列表 `read_verilog`；⬜ `scripts/*.tcl`、`constr/c_top.xdc` 未写 |
+| 15 | Vivado 工程兼容代码 | ✅ | `constr/c_top.xdc`（复用已上板实测基线）、`scripts/run_sim.tcl`、`scripts/synth_check.tcl`、`rtl/c_synth_top.v`（综合专用顶层） |
 | 16 | C 侧开发说明 | ✅ | 本文件 + 各文件头注释（含 TODO 与依据条款） |
 
 ### 已通过的验证（实测，非推断）
 
 ```
-工具   : Vivado 2022.2  xvlog / xelab / xsim（E:\Xilinx\Vivado\2022.2\bin）
-RTL    : 12 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if）
-仿真   : tb_ready_valid  xelab 0 ERROR ; xsim  →  RESULT: PASS  (all A~K, 0 error)
+工具   : Vivado 2022.2  xvlog / xelab / xsim / synth_design（E:\Xilinx\Vivado\2022.2\bin）
+RTL    : 14 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if / c_top / c_synth_top）
+仿真   : 3 个 testbench 全部 PASS
+           tb_stripe_buffer : RESULT: PASS  (T1~T6, 0 error)
+           tb_ready_valid   : RESULT: PASS  (all A~K scenarios, 0 error)
+           tb_c_top         : RESULT: PASS  (Part A 全尺寸边界 + Part B c_top 冒烟)
+综合   : synthesis only —— 0 ERROR / 0 CRITICAL WARNING
+           RAMB36 = 192 / 365 (52.60%)   RAMB18 = 0   DSP48E1 = 0
+           LUT 3723   FF 8190   WNS(synthesis, 200MHz) = -0.153 ns（3/20911 失败端点，
+           且剩余违例路径位于 **stub 内部**）
 ```
 
-`tb_ready_valid` 实测汇总（小规模 IMG 32×16 → OUT 64×32，STRIPE_H=5 ⇒ 7 条带、末条 2 行）：
+### tb_ready_valid 实测汇总（小规模 IMG 32×16 → OUT 64×32，STRIPE_H=5 ⇒ 7 条带、末条 2 行）
 
 | 指标 | 实测 | 期望 |
 |---|---|---|
@@ -53,6 +60,33 @@ RTL    : 12 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if）
 | 最长输入背压 | 33738 拍 | — |
 | `proto_err` / `overflow_err` | **0 / 0** | 0 / 0 |
 | `rom_addr` 最大值 | 512（= 填充区起点） | 不回绕、不无界增长 |
+
+### tb_stripe_buffer 实测汇总（模块级 WIDTH=8 / ROWS=4 ⇒ 32 B/条带）
+
+| 用例 | 内容 | 结果 |
+|---|---|---|
+| T1 | 单条带写满 + 立即回读 | ✅ 逐字节一致，`rd_start`/`rd_last` 位置正确 |
+| T2 | 两条带连写（触发一次 exchange）+ 顺序回读 | ✅ |
+| T3 | 两条带连写后不释放 → **wr_ready 必须掉 0**；持续 200 拍不得放行；`buf_state=SWAPPING` | ✅ 反压生效，`overflow_err=0`（未覆盖） |
+| T4 | 部分条带（len=12 < 32）收尾 + 回读 | ✅ |
+| T5 | `overflow_err` 恒 0；wr_total == rd_total | ✅ 204 == 204 |
+| T6 | `buf_state` 观察到 WRITING / SWAPPING / DRAINING | ✅ 三态全见 |
+
+### tb_c_top 实测汇总（**全尺寸** 1920×1080 / STRIPE_H=64）
+
+| 用例 | 内容 | 实测 | 期望 |
+|---|---|---|---|
+| A1 | 输出像素握手总数 | **2,073,600** | 2,073,600 |
+| A2 | `stripe_last` 脉冲数 | **17** | 17（16 条整 + 末条） |
+| A3 | **末条带长度** | **107,520 B** | 56 × 1920 = 107,520 |
+| A4 | `frame_last` 脉冲数 / `frame_last ⇒ stripe_last` | 1 / 成立 | 1 / 成立 |
+| A5 | `proto_err`（C 侧独立复算 vs B 侧 sideband） | 0 | 0 |
+| A6 | `overflow_err`（245,760 B 双 bank 内不覆盖） | 0 | 0 |
+| A7 | 回读 2,073,600 B 逐字节一致 + 条带顺序 FIFO | **全部一致** | — |
+| A8 | 最长输出背压 | 5 拍（1 B/cycle 回读基本追得上） | 记录值 |
+| B | `c_top` 板级冒烟（`USE_MMCM=0`，`busy` 于 47 拍后拉起，无 X 传播） | PASS | — |
+
+> 仿真总时长 21,965,800 ns ≈ 2.1966 M 拍（全尺寸单帧），**未生成任何波形文件**。
 
 ---
 
@@ -172,3 +206,83 @@ RTL    : 12 个文件 xvlog 语法分析 0 ERROR（含 c_core / b_core_if）
 - BRAM 预算口径仍为：「**一级 理论预算未闭合**（口径② ≈1406.6 > 1396.1 KiB）；**二级 实际资源未验证**」
   （§五.13（2）），C 侧本轮**未做**任何 BRAM 结论。
 - stub 的输出**纯粹是测试 pattern**，不得当作算法结果。
+
+---
+
+## 9. 仅综合（synthesis）取证结果 —— **实测，但仍非最终结论**
+
+> 命令：`vivado -mode batch -source scripts/synth_check.tcl`
+> 顶层：`c_synth_top`（含 stub，**不是完整 FSRCNN**）
+> 器件 / 工具：`xc7a200tfbg484-2` / Vivado 2022.2
+> 原始报告：`report/utilization_synth.rpt`、`report/timing_summary_synth.rpt`、`report/synth_result.txt`
+> **未执行** opt_design / place_design / route_design / write_bitstream。
+
+### 9.1 资源
+
+| 资源 | 本次实测 | 器件上限 | 占比 |
+|---|---|---|---|
+| **RAMB36/FIFO** | **192** | 365 | **52.60%** |
+| RAMB18 | 0 | 730 | 0% |
+| **DSP48E1** | **0** | 740 | 0% |
+| Slice LUTs | 3,723 | 134,600 | 2.77% |
+| Slice Registers | 8,190 | 269,200 | 3.04% |
+| LUT as Memory | 0 | 46,200 | 0% |
+| CRITICAL WARNING | **0** | — | — |
+| ERROR | **0** | — | — |
+
+**RAMB36 = 192 的构成（逐项可复算，来自综合日志的 Block RAM Final Mapping Report）**：
+
+| 项 | 实测 RAMB36 | 复算 |
+|---|---|---|
+| 输入 ROM（`u_rom`，524288×8，`$readmemh`） | ~128 | 524288 / 4096 = 128（4096×9 模式） |
+| 条带 bank0（`u_pp/u_bank0/mem_reg`，120K×8） | **32** | 日志明确列出 |
+| 条带 bank1（`u_pp/u_bank1/mem_reg`，120K×8） | **32** | 日志明确列出 |
+| **合计** | **192** | 128 + 32 + 32 |
+
+> 与 B 侧预算对照（成员B确认_v1.0 §五，B 侧口径）：B 估算「C 输入 ROM **127** + C 侧 64 行双缓冲 **60**」= **187**。
+> 本次实测 **128 + 64 = 192**，比 B 的估算 **多 5 块**（ROM 深度向上取整差 1 块；条带降为 32+32 而非 B 假设的 30+30）。
+> **按 §五.13（2）二级判据，C 侧骨架的实际 BRAM utilization（52.60%）在 85% 工程预算线内。**
+> ⚠️ 但这**不是**「BRAM 已闭合」：① 本设计含 stub，**不含 B 侧 44 块 RAMB36 行缓存与相位 bank**；
+> ② 未做 implementation；③ 二级闭合的责任与判据在 §五.13（2）/ §九 门槛 7，需 B 侧方案选定后合并复核。
+
+### 9.2 时序（**synthesis 级，不是最终 Fmax**）
+
+| 项 | 值 |
+|---|---|
+| 目标时钟 | 200 MHz（MMCM 24.0 / 1 / 6.0） |
+| **WNS** | **−0.153 ns** |
+| TNS | −0.377 ns |
+| 失败端点 | **3 / 20,911** |
+| WHS（保持） | +0.127 ns，失败 0 |
+| 关键路径位置 | **`u_b/u_b_core/stripe_base_reg[8]` → `stripe_h_reg[14]/D`**（即 **stub 内部**的条带几何，4.968 ns，CARRY4×4 + LUT3 + LUT6） |
+
+> ⚠️ **表述纪律**：这是 **synthesis 级**结果，**未做 place/route**，
+> **不得**据此宣称 Fmax、更不得宣称「200 MHz 已收敛」。
+> 参考：任务书 §五.4 已说明「完整 FSRCNN 的 Fmax 待实测」。
+> ✅ 值得记录的正向信号：**剩余唯一违例路径位于 stub 内部**，C 侧基础设施本身已无违例端点；
+> 真实 B 替换 stub 后该路径消失，应重新综合复核。
+
+### 9.3 本轮由综合暴露并已修复的 3 个真实缺陷
+
+综合（而非仿真）是发现下列问题的手段——**这三条都是仿真"侥幸通过"、综合才报出来的**：
+
+| # | 现象 | 根因 | 修复 | 效果 |
+|---|---|---|---|---|
+| 1 | **`CRITICAL WARNING [Synth 8-6859] multi-driven net` on `bank_full_q[0]/[1]`** | `bank_full_q` 被**写侧与读侧两个 always 块同时驱动**（仿真靠"后写胜出"侥幸通过，综合结果不确定） | 读侧改为只产生释放脉冲 `rd_done_q`/`rd_done_bank_q`，由写侧块**统一施加**；并在读侧起始条件加 `&& !rd_done_q` 防止重复读同一 bank | **0 CRITICAL WARNING** |
+| 2 | **WNS −4.470 ns**，关键路径 `stripe_base_q → CARRY4 → LUT1 → CARRY4 → LUT6×2 → DSP48E1(A×0x780) → LUT2 → wr_stripe_len_q/D` | `next_rem = OUT_H−next_base; next_h = min(...); wr_stripe_len = next_h×OUT_W` 被串成一条「减法→取小→乘法」链，且乘法被映射成 **DSP48E1** | 末条带行数在**展开期**即为常量（`LAST_H = OUT_H − (N_STRIPES−1)×STRIPE_H`），改用**常量 mux**；并把 `stripe_last_row` 也寄存 | WNS **−4.470 → −0.153 ns**；失败端点 **150 → 3**；**DSP48E1 2 → 0** |
+| 3 | **`WARNING [Synth 8-6896] loop limit (65536) exceeded inside initial block, initial block items will be ignored`**（`input_rom.v` / `stripe_buffer.v`） | 用无界 `for` 循环给整片 ROM/RAM 写初值；综合器**忽略**超限的 initial 块 ⇒ ROM 无初值、BRAM 统计失真（实测只报 16 块 RAMB36） | ① ROM 改走 `$readmemh`（Vivado 原生支持，不受循环上限影响），公式 pattern **仅包在 `` `ifdef C_SIM `` 内**；② `stripe_buffer`/`b_core_stub` 删除无效果的初值（BRAM 上电默认 0，且本设计保证先写后读） | BRAM 统计回到可信值（**16 → 192**）；新增 `scripts/gen_input_mem.py` 生成 1.5 MB 的 `rtl/input_image_pattern.mem`（已 gitignore） |
+
+### 9.4 已知遗留项（已定性，优先级低）
+
+| 项 | 说明 | 影响 |
+|---|---|---|
+| `WARNING [Synth 8-4767]` + `[Synth 8-7137]`：`rowbuf_reg` 未能推断为 LUTRAM，被拆成寄存器 | 位于 **stub** 内（`b_core_stub.v` 的 960 B 行缓存）。真实 B 替换后消失 | 约 7.7K FF 的**临时**开销（当前 FF 8190 主要来自这里）。**不修**：属 stub 内部实现细节，修它没有交付价值 |
+| `WARNING [Synth 8-7129]` ×3：`rd_avail`/`rd_start`/`b_busy` 端口无负载 | 这些端口是**为可观测性与真实 B 对接保留**的，当前 stub 未使用 | 无功能影响；保留 |
+| `WARNING [Synth 8-589]` ×2：`!==` 被替换为 `!=` | `output_stream` 的 `proto_err` 检查刻意用 `!==` 以便在**仿真**中捕获 X | 无功能影响；仿真语义保留 |
+| `WARNING [Synth 8-7080]` ×1 | Parallel synthesis criteria not met（回退单线程） | 无功能影响 |
+
+**本轮结论（严格）**：C 侧骨架 **可编译、可仿真、可综合**，
+三条 TB 全 PASS，综合 **0 ERROR / 0 CRITICAL WARNING**；
+synthesis 级 WNS **−0.153 ns** 且**剩余违例路径在 stub 内部**；
+RAMB36 **192/365 = 52.60%**，DSP **0**。
+**这不构成「完整 FSRCNN 已收敛」的结论**——完整设计尚未综合、未实现、未上板。

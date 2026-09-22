@@ -69,7 +69,11 @@ module b_core_stub #(
 
     //-------------------------------------------------------------------------
     // 一行输入缓存（仅 IMG_W 字节；**绝不**缓存整帧）
-    //   用分布式 RAM（LUTRAM）：小、单拍组合读出、不占 BRAM
+    //   期望映射为分布式 RAM（LUTRAM）：小、单拍组合读出、不占 BRAM。
+    //   ⚠️ 第一版给 rowbuf 写了整片 initial 初值，导致
+    //      WARNING [Synth 8-7137]（Set/reset 同优先级）+ [Synth 8-4767]
+    //      "RAM dissolved into registers"（被拆成 960×8 个 FF）。
+    //      本版**删除初值**：FILL 阶段先写满、EMIT 阶段才读，不依赖上电初值。
     //-------------------------------------------------------------------------
     (* ram_style = "distributed" *) reg [DATA_W-1:0] rowbuf [0:IMG_W-1];
 

@@ -75,6 +75,27 @@ module output_stream #(
     localparam integer XW        = (OUT_W <= 1) ? 1 : $clog2(OUT_W);    // 11
     localparam integer YW        = (OUT_H <= 1) ? 1 : $clog2(OUT_H);    // 11
     localparam [15:0]  FIRST_H   = (OUT_H < STRIPE_H) ? OUT_H[15:0] : STRIPE_H[15:0];
+    localparam [ADDR_W-1:0] FIRST_LEN = FIRST_H * OUT_W;   // 常量折叠，不产生硬件
+
+    //-------------------------------------------------------------------------
+    // ★ 条带几何全部用**常量**表达（第二版修正）
+    //   只有「末条带」与其它条带不同，而末条带行数在**展开期**即可算出：
+    //       LAST_H = OUT_H − (N_STRIPES−1) × STRIPE_H        （1080 − 16×64 = 56）
+    //   于是「下一互条带」不需要任何减法 / 取小 / 乘法，只需一个常量 mux。
+    //
+    //   反例（第一版实测）：写成 `next_rem = OUT_H − next_base; next_h = min(...);
+    //   wr_stripe_len = next_h × OUT_W` 时，Vivado 把乘法映射成 DSP48E1，
+    //   并把「减法 → 取小 → 乘法 → 寄存器」串成一条 9.285 ns 的路径：
+    //     WNS = −4.470 ns @200MHz，关键路径
+    //       u_out/stripe_base_q[7] → CARRY4 → LUT1 → CARRY4 → LUT6×2
+    //       → DSP48E1(A*(B:0x780)) → LUT2 → wr_stripe_len_q[*]/D
+    //-------------------------------------------------------------------------
+    localparam integer LAST_H   = OUT_H - (N_STRIPES - 1) * STRIPE_H;   // 56
+    localparam [15:0]  NEXT_H_LAST = LAST_H[15:0];
+    localparam [ADDR_W-1:0] FULL_LEN = STRIPE_H * OUT_W;               // 122880
+    localparam [ADDR_W-1:0] LAST_LEN = LAST_H  * OUT_W;               // 107520
+    localparam [4:0]   PENULT_IDX = (N_STRIPES >= 2) ? (N_STRIPES - 2) : 5'd31;
+    localparam         NSTR_L = N_STRIPES;   // 供比较使用（常量）
 
     //-------------------------------------------------------------------------
     // 坐标 / 条带寄存器
@@ -83,8 +104,8 @@ module output_stream #(
     reg  [YW-1:0]     y_q;
     reg  [4:0]        stripe_idx_q;
     reg  [15:0]       stripe_base_q;    // 当前条带起始输出行
-    reg  [15:0]       stripe_h_q;       // 当前条带行数（末条带 = 56）
-    reg  [15:0]       stripe_cnt_q;     // 已完成条带计数
+    reg  [15:0]       stripe_last_row_q;    // 当前条带末行（**寄存**，避免 add 落在比较路径上）
+    reg  [15:0]       stripe_cnt_q;         // 已完成条带计数
 
     //-------------------------------------------------------------------------
     // 握手（★ 唯一的有效传输定义）
@@ -93,14 +114,24 @@ module output_stream #(
 
     assign wr_push      = accept;
     assign wr_data      = out_data;
-    assign wr_stripe_len = stripe_h_q * OUT_W;
+
+    //-------------------------------------------------------------------------
+    // ★ 条带字节数必须**寄存**（只在帧起始 / 条带边界更新）
+    //   反例（第一版实测）：写成组合 `stripe_h_q * OUT_W` 时，Vivado 会把它
+    //   映射成 DSP48E1（`A*(B:0x780)`，1920 = 0x780），再串上 17 位比较器
+    //   `wr_cnt_q == wr_stripe_len-1`，于是成为 **200MHz 的关键路径**：
+    //     实测 WNS = −2.225 ns，关键路径 u_out/stripe_h_q_reg[6]
+    //       → DSP48E1(3.367ns) → LUT6 → CARRY4 ×2 → LUT5 → wr_cnt_q[*]/CE
+    //   寄存后乘法只驱动 FF，不再落在跨条带边界的关键路径上。
+    //   语义不变：`wr_stripe_len` 本来就只在条带切换时改变。
+    //-------------------------------------------------------------------------
+    reg [ADDR_W-1:0] wr_stripe_len_q;
+    assign wr_stripe_len = wr_stripe_len_q;
 
     //-------------------------------------------------------------------------
     // 边界复算（用自己数的 x/y，绝不直接用 B 的 sideband 判边界）
     //-------------------------------------------------------------------------
-    wire [15:0] stripe_last_row = stripe_base_q + stripe_h_q - 16'd1;
-
-    wire exp_stripe_last = (x_q == (OUT_W - 1)) && (y_q == stripe_last_row);
+    wire exp_stripe_last = (x_q == (OUT_W - 1)) && (y_q == stripe_last_row_q);
     wire exp_frame_last  = exp_stripe_last && (stripe_idx_q == (N_STRIPES - 1));
 
     // 复位后坐标系尚未开跑时的防御：只有 run 期间的 accept 才判边界
@@ -132,10 +163,11 @@ module output_stream #(
     wire [XW-1:0] x_nx     = last_col ? {XW{1'b0}} : (x_q + 1'b1);
     wire [YW-1:0] y_nx     = last_col ? ((y_q == (OUT_H - 1)) ? y_q : (y_q + 1'b1)) : y_q;
 
-    // 下一互条带几何
-    wire [15:0] next_base = stripe_base_q + STRIPE_H;
-    wire [15:0] next_rem  = (OUT_H > next_base) ? (OUT_H - next_base) : 16'd0;
-    wire [15:0] next_h    = (next_rem < STRIPE_H) ? next_rem : STRIPE_H;
+    // 下一互条带几何：**全部常量 mux**（无减法 / 无取小 / 无乘法）
+    wire [15:0] next_base     = stripe_base_q + STRIPE_H;
+    wire        next_is_last  = (stripe_idx_q == PENULT_IDX);
+    wire [15:0] next_h        = next_is_last ? NEXT_H_LAST : STRIPE_H[15:0];
+    wire [15:0] next_last_row = next_base + next_h - 16'd1;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -143,8 +175,9 @@ module output_stream #(
             y_q             <= {YW{1'b0}};
             stripe_idx_q    <= 5'd0;
             stripe_base_q   <= 16'd0;
-            stripe_h_q      <= FIRST_H;
+            stripe_last_row_q <= FIRST_H - 16'd1;
             stripe_cnt_q    <= 16'd0;
+            wr_stripe_len_q <= FIRST_LEN;
             frame_last_fire <= 1'b0;
             proto_err       <= 1'b0;
         end else if (frame_start) begin
@@ -154,13 +187,26 @@ module output_stream #(
             y_q             <= {YW{1'b0}};
             stripe_idx_q    <= 5'd0;
             stripe_base_q   <= 16'd0;
-            stripe_h_q      <= FIRST_H;
+            stripe_last_row_q <= FIRST_H - 16'd1;
             stripe_cnt_q    <= 16'd0;
+            wr_stripe_len_q <= FIRST_LEN;
             frame_last_fire <= 1'b0;
         end else begin
             frame_last_fire <= 1'b0;    // 默认 0，只在最终拍后 1 拍拉高
 
             if (chk) begin
+                // ---- 自检：out_ready 不得在写 bank 不可接收时放行 ----
+                //   （`wr_ready` 由 pingpong_buffer 组合给出，二者必须一致）
+                if (!wr_ready) begin
+                    proto_err <= 1'b1;
+                    `ifdef C_SIM
+                    if (!proto_err) begin
+                        $display("[PROTO_ERR] write accepted while buffer not ready @t=%0t (x=%0d y=%0d)",
+                                 $time, x_q, y_q);
+                    end
+                    `endif
+                end
+
                 // ---- 条件 4/5：边界必须与最后一个有效数据拍绑定 ----
                 if (out_stripe_last !== exp_stripe_last) begin
                     proto_err <= 1'b1;
@@ -203,9 +249,11 @@ module output_stream #(
                     if (stripe_idx_q == (N_STRIPES - 1)) begin
                         frame_last_fire <= 1'b1;   // 最终像素握手后 1 拍（= B 的 done 语义）
                     end else begin
-                        stripe_idx_q  <= stripe_idx_q + 5'd1;
-                        stripe_base_q <= next_base;
-                        stripe_h_q    <= next_h;
+                        stripe_idx_q      <= stripe_idx_q + 5'd1;
+                        stripe_base_q     <= next_base;
+                        stripe_last_row_q <= next_last_row;
+                        // 条带字节数用**常量 mux**（无乘法 ⇒ 不再推断 DSP48E1）
+                        wr_stripe_len_q   <= next_is_last ? LAST_LEN : FULL_LEN;
                     end
                 end
             end
