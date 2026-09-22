@@ -1,56 +1,25 @@
-# Vivado generated files
-.Xil/
-*.jou
-*.log
-*.str
-*.dmp
-*.wdb
-*.wcfg
-*.pb
-*.cache/
-*.hw/
-*.ip_user_files/
-*.runs/
-*.sim/
-*.srcs/sources_1/ip/
+# Local Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
 
-# Local work and temporary outputs
-work/
+# Downloaded public datasets are reproducible and are not redistributed
+.data/
+data/
+
+# Temporary rebuild outputs
+.artifacts/
+.review/
 tmp/
 temp/
 *.tmp
 *.bak
 ~$*
 
-# Python cache
-__pycache__/
-*.pyc
-.artifacts/
-
-# OS/editor files
+# OS and editors
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-
-# Vitis HLS generated files
-hls/work/
-hls/build/
-hls/.Xil/
-hls/**/solution*/
-*.xo
-*.xclbin
-
-# Local document review intermediates
-.review/
-.hls.failed
-dfx_runtime.txt
-hls/core/work/
-hls/window/work/
-hls/integration/work/
-hls/layer/work/
-hls/postprocess/work/
-hls/pixel_shuffle/work/
-hls/stage3/work/
-__pycache__/
-*.pyc

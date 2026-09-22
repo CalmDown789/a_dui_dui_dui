@@ -1,10 +1,16 @@
+# Make manifest hashes portable across Windows and Linux checkouts.
+* text=auto eol=lf
+
 # Preserve generated model artifacts and FPGA test vectors byte-for-byte.
 *.bin binary
 *.npy binary
 *.pt binary
+*.pth binary
+*.h5 binary
 *.png binary
+*.docx binary
 
-# Keep source and documentation as text while allowing platform-native checkouts.
+# Keep source and documentation as normalized LF text.
 *.py text
 *.md text
 *.json text
@@ -14,3 +20,5 @@
 *.cpp text
 *.hpp text
 *.h text
+*.mem text eol=lf
+*.coe text eol=lf
