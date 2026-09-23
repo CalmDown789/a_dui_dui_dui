@@ -33,6 +33,13 @@ route 完成且 DRC 为 0 errors；有 29 warnings，主要涉及未分配 UART 
 
 这次将 MAC phase 选择操作数额外寄存一拍的实验虽通过 smoke、背压及 4 组 bit-exact，但综合吸收了该级寄存器，未打断预期的 phase→DSP 物理路径；最终 WNS 为 -2.370 ns，比保留版本 -2.208 ns 更差，已撤销，不进入当前 RTL。
 
+随后仅改实现策略、未改 RTL，使用 `phys_opt_design -directive AggressiveFanoutOpt` 与
+`route_design -directive Explore` 做了一次真实 B+C 对照 route：WNS/TNS 为
+-1.949 ns / -48,730.961 ns，最差路径从 L5 转移到 L3 phase→DSP，布线延迟仍占约 81%。
+WNS 比默认实现改善 0.259 ns，但 route 时间从 4:16 增至 13:18，200 MHz 仍未闭合；
+故保留默认脚本，并将该策略作为已测量的慢速备选，不继续盲扫实现指令。数据见
+`report/bc_real_synth/physopt_aggressive_fanout_trial_20260924.txt`。
+
 ## 综合内存问题结论
 
 原异常根因是 `phase_mac_pipeline` 的运行时 `in_phase` 驱动宽 packed-bus part-select；Vivado 在 RTL Optimization Phase 2 将综合网表规模异常膨胀，旧运行达到约 30.4 GB 后无法完成。静态 `case` 相位索引修复后，真实 B+C 完整综合峰值约 3.13 GB、实现峰值约 4.13 GB，资源规模符合小型流式 CNN accelerator 的范围。详细前后证据、层级资源及 RAM 映射见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`。
@@ -47,7 +54,7 @@ route 完成且 DRC 为 0 errors；有 29 warnings，主要涉及未分配 UART 
 
 ### 必须在带 Vivado 的本机完成
 
-1. 分析 L5 phase 控制的高扇出和跨区域布线；做一次有限、可比较的局部改动后，跑真实 B bit-exact/backpressure、综合和完整 route。若 WNS 无实质改善，停止该方案并记录下一层根因。
+1. 分析 L3/L5 phase 控制到 DSP 的高扇出和跨区域布线；已测的 FanoutOpt+Explore 仅改善 0.259 ns 且明显加长 route 时间。下一个试验应让 phase 状态按 output-lane group 本地化，跑真实 B bit-exact/backpressure、综合和完整 route；若不能显著缩短相位控制网，停止该结构并重新评估并行度/时钟目标。
 2. 只有时序与启动/引脚约束达到板测门槛后再生成 bitstream；在 C 手上的板卡采集 HDMI 图像、UART 输出和吞吐数据，与同一版 A Golden 对拍。
 3. 保存 Vivado/XSim 版本、ROM/Golden 哈希、完整资源/时序/DRC 报告及原始仿真摘要。
 

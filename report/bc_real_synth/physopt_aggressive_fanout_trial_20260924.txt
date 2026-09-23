@@ -1,0 +1,43 @@
+REAL B+C IMPLEMENTATION STRATEGY TRIAL
+Date (local) : 2026-09-24
+Vivado      : 2022.2
+Part        : xc7a200tfbg484-2
+RTL base    : a9fe704101146795c2066f9bd4c446acd732b6b6
+RTL changes : none; only implementation directives changed
+
+Trial:
+  phys_opt_design -directive AggressiveFanoutOpt
+  route_design   -directive Explore
+
+Default baseline (report/bc_real_synth_result.txt):
+  Post-route WNS / TNS : -2.208 ns / -50,037.625 ns
+  Route peak memory    : about 4.13 GB
+  Critical path        : L5 phase selector -> DSP48E1 input
+  Route time           : 4 min 16 s (Vivado command elapsed)
+
+Trial result (raw reports were kept locally under the ignored
+_synth_bc/opt_trial_20260924/ directory):
+  Post-route WNS / TNS : -1.949 ns / -48,730.961 ns
+  WHS / THS            : +0.036 ns / 0 ns
+  Route peak memory    : 4,356.289 MB
+  Route time           : 13 min 18 s
+  Routing errors       : 0
+  Resources            : 230 RAMB36, 8 RAMB18, 394 DSP, 32,153 LUT,
+                         41,932 FF
+  Critical path        : L3 phase selector -> DSP48E1 input
+  Data path delay      : 3.428 ns (logic 0.666 ns, route 2.762 ns)
+  Logic levels         : LUT6 + MUXF7 (2 levels)
+  Place phys-opt log   : L5 phase-control net replication was applied;
+                         the worst path moved to another layer's phase bus.
+
+Decision:
+  This improved WNS by 0.259 ns and TNS by 1,306.664 ns, but did not close
+  200 MHz timing and required about 3.1x the baseline route time. Keep the
+  default synthesis script unchanged. Do not repeat this same directive pair
+  as a blind search; the remaining issue is the shared phase-to-DSP selection
+  topology across layers, with routing still about 81% of the worst path.
+  The next useful experiment should localize phase state by output-lane group
+  and compare the mapped fanout/placement, not add another arithmetic stage.
+
+AMD documents these directives in the [Vivado 2022.2 UG904 phys_opt_design
+reference](https://docs.amd.com/r/2022.2-English/ug904-vivado-implementation/phys_opt_design).
