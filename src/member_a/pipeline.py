@@ -7,6 +7,7 @@ import torch
 
 from .artifacts import (
     generate_fixed_vectors,
+    generate_full_integer_golden,
     generate_full_reference,
     write_delivery_manifest,
     write_metrics,
@@ -37,6 +38,7 @@ def run_pipeline(
     evaluation_dir = artifacts / "evaluation"
     vectors_dir = artifacts / "test_vectors"
     full_reference_dir = artifacts / "full_reference"
+    full_integer_dir = artifacts / "full_integer_golden"
     download_datasets(data_dir)
     train_file = data_dir / "t91"
     eval_file = data_dir / "set5"
@@ -75,6 +77,11 @@ def run_pipeline(
     export_quantized_bundle(model, scales, quant_dir)
     generate_fixed_vectors(quant_dir, vectors_dir)
     generate_full_reference(model, scales, full_reference_dir, device)
+    generate_full_integer_golden(
+        quant_dir,
+        full_reference_dir / "input_960x540_y_u8.bin",
+        full_integer_dir,
+    )
     write_metrics(evaluation_dir / "set5_metrics.csv", rows, summary)
     result = {
         "device": str(device),

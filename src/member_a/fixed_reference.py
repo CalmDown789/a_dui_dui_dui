@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Iterator
 from pathlib import Path
 import json
 
@@ -50,13 +51,19 @@ class FixedReference:
         self.quant_dir = Path(quant_dir)
         self.spec = json.loads((self.quant_dir / "quant_params.json").read_text(encoding="utf-8"))
 
-    def run(self, input_u8: np.ndarray) -> dict[str, np.ndarray]:
+    def iter_outputs(self, input_u8: np.ndarray) -> Iterator[tuple[str, np.ndarray]]:
+        """Yield the exact integer result of every stage in execution order.
+
+        The iterator form lets full-resolution artifact generation hash or write a
+        stage before advancing to the next one instead of retaining every 540p
+        activation and accumulator in memory at once.
+        """
         if input_u8.ndim == 2:
             input_u8 = input_u8[:, :, None]
         if input_u8.ndim != 3 or input_u8.shape[2] != 1 or input_u8.dtype != np.uint8:
             raise ValueError("Input must be uint8 HWC with one channel")
         current = input_u8.astype(np.int16)
-        outputs: dict[str, np.ndarray] = {"input": current}
+        yield "input", current
         for layer in self.spec["layers"]:
             name = layer["name"]
             shape = tuple(layer["weight_shape_oihw"])
@@ -67,14 +74,15 @@ class FixedReference:
             alpha_values = layer.get("prelu_q15")
             alpha = np.asarray(alpha_values, dtype=np.int16) if alpha_values is not None else None
             accum = np.clip(_apply_prelu_q15(accum, alpha), INT32_MIN, INT32_MAX).astype(np.int32)
-            outputs[f"{name}_accum"] = accum
+            yield f"{name}_accum", accum
             multipliers = np.asarray(layer["requant_multiplier_q31"], dtype=np.int64)
             if name == "subpixel":
                 phases = _requantize(accum, multipliers, 0, 255).astype(np.uint8)
-                outputs["subpixel_phases"] = phases
-                current = phases
+                yield "subpixel_phases", phases
+                yield "output", pixel_shuffle_hwc_x2(phases)
             else:
                 current = _requantize(accum, multipliers, INT16_MIN, INT16_MAX).astype(np.int16)
-                outputs[name] = current
-        outputs["output"] = pixel_shuffle_hwc_x2(outputs["subpixel_phases"])
-        return outputs
+                yield name, current
+
+    def run(self, input_u8: np.ndarray) -> dict[str, np.ndarray]:
+        return dict(self.iter_outputs(input_u8))

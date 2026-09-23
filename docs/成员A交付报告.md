@@ -11,6 +11,7 @@
 - OIHW 权重和 HWC 特征排布约定；
 - 零值、脉冲、梯度和确定性随机四组 96×54 对拍向量；
 - 程序生成的 960×540 输入与 1920×1080 参考输出；
+- A 确认的 960×540 全尺寸整数网络 Golden、C 侧 2^19 深输入 ROM 和全层摘要哈希；
 - 双三次、FP32 与量化模型的 Set5 PSNR/SSIM；
 - 文件级 CRC32、SHA-256 和一键验证程序。
 
@@ -30,4 +31,6 @@
 
 量化相对 FP32 的 PSNR 损失为 0.1012 dB，小于 1 dB 门槛，因此未触发 QAT。逐图结果见 `artifacts/evaluation/set5_metrics.csv`，机器可读汇总见 `artifacts/evaluation/summary.json`。
 
-完整尺寸参考目录同时包含 FP32 与量化仿真的 `960×540 → 1920×1080` 输出。公开数据仅用于训练与 Set5 验证，原始图像保存在忽略目录 `.data/`，不纳入交付仓库。
+`artifacts/full_reference/` 中的 FP32 与 QDQ 输出只用于算法效果分析，不作为 RTL 逐位验收依据。最终逐字节验收使用 `artifacts/full_integer_golden/output_1920x1080_y_u8.bin`：长度 `2073600` 字节，CRC32 `87d353f1`，SHA-256 `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`。该结果已通过全部整数层重新计算并逐层摘要比对。
+
+公开数据仅用于训练与 Set5 验证，原始图像保存在忽略目录 `.data/`，不纳入交付仓库。

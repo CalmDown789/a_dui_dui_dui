@@ -35,7 +35,25 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 .\.venv\Scripts\python.exe scripts\verify_delivery.py
 ```
 
-只交接整数实现时，可直接下载 `artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数、整数黄金参考和四组逐层向量；解压后运行：
+## 全尺寸整数 Golden
+
+成员 A 已补齐可供 B/C 最终逐字节验收的 `960×540 → 1920×1080` 整数网络 Golden。它由导出的 INT8 权重、INT16 激活、INT32 偏置/累加、Q1.15 PReLU 和 Q31 重量化参数直接计算，不是 FP32 输出，也不是 QDQ 软件仿真输出。
+
+- 权威输出：`artifacts/full_integer_golden/output_1920x1080_y_u8.bin`；
+- C 侧输入 ROM：`artifacts/full_integer_golden/input_rom_2p19_u8.mem`，共 `524288` 行，前 `518400` 字节为输入图像，末尾 `5888` 字节为 `00`；
+- 四相位诊断输出：`artifacts/full_integer_golden/subpixel_phases_540x960x4_hwc_u8.bin`；
+- 完整形状、值域、逐层摘要和 CRC32/SHA-256：`artifacts/full_integer_golden/manifest.json`。
+
+重新生成并执行全层整数重算验收：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate_full_integer_golden.py
+.\.venv\Scripts\python.exe scripts\verify_full_integer_golden.py --recompute
+```
+
+最终输出固定为 `2073600` 字节，CRC32 为 `87d353f1`，SHA-256 为 `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`。
+
+只交接小尺寸逐层整数实现时，可直接下载 `artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数和四组 96×54 逐层向量；全尺寸最终 Golden 以仓库中的 `artifacts/full_integer_golden/` 为准。解压小尺寸包后运行：
 
 ```powershell
 python scripts\verify_integer_delivery.py
