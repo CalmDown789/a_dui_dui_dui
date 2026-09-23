@@ -1,0 +1,77 @@
+
+****** xsim v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/tb_b_real_bit_exact/xsim_script.tcl
+# xsim {tb_b_real_bit_exact} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  dump files opened: 1 (dump_on=1)
+  geometry: IMG 96x54 -> OUT 192x108   N_IN=5184 N_OUT=20736  STRIPE_H=64
+  --- case 0 : impulse ---
+      first bytes: out[0] got=02 exp=04  DIFF
+      MISMATCH @ out[0]  row=0 col=0  got=02  exp=04
+      first bytes: out[1] got=03 exp=02  DIFF
+      first bytes: out[2] got=02 exp=02    ok
+      first bytes: out[3] got=04 exp=03  DIFF
+      first bytes: out[4] got=02 exp=02    ok
+      first bytes: out[5] got=03 exp=02  DIFF
+      first bytes: out[6] got=02 exp=01  DIFF
+      first bytes: out[7] got=03 exp=02  DIFF
+      fed=5184 out=20736  byte_match=4920/20736  mismatched=15816  first_mismatch=0  stripe_last=2 frame_last=1 done=1 held=6872
+      -> case impulse : BIT-EXACT FAIL
+  --- case 1 : ramp ---
+      first bytes: out[0] got=03 exp=04  DIFF
+      MISMATCH @ out[0]  row=0 col=0  got=03  exp=04
+      first bytes: out[1] got=04 exp=02  DIFF
+      first bytes: out[2] got=03 exp=04  DIFF
+      first bytes: out[3] got=05 exp=06  DIFF
+      first bytes: out[4] got=02 exp=06  DIFF
+      first bytes: out[5] got=03 exp=07  DIFF
+      first bytes: out[6] got=04 exp=09  DIFF
+      first bytes: out[7] got=03 exp=0a  DIFF
+      fed=5184 out=20736  byte_match=103/20736  mismatched=20633  first_mismatch=0  stripe_last=2 frame_last=1 done=1 held=6872
+      -> case ramp : BIT-EXACT FAIL
+  --- case 2 : random ---
+      first bytes: out[0] got=16 exp=bb  DIFF
+      MISMATCH @ out[0]  row=0 col=0  got=16  exp=bb
+      first bytes: out[1] got=00 exp=ca  DIFF
+      first bytes: out[2] got=00 exp=cb  DIFF
+      first bytes: out[3] got=0c exp=f6  DIFF
+      first bytes: out[4] got=11 exp=ff  DIFF
+      first bytes: out[5] got=17 exp=cc  DIFF
+      first bytes: out[6] got=11 exp=12  DIFF
+      first bytes: out[7] got=00 exp=00    ok
+      fed=5184 out=20736  byte_match=1581/20736  mismatched=19155  first_mismatch=0  stripe_last=2 frame_last=1 done=1 held=6872
+      -> case random : BIT-EXACT FAIL
+  --- case 3 : zero ---
+      first bytes: out[0] got=02 exp=04  DIFF
+      MISMATCH @ out[0]  row=0 col=0  got=02  exp=04
+      first bytes: out[1] got=03 exp=02  DIFF
+      first bytes: out[2] got=02 exp=02    ok
+      first bytes: out[3] got=04 exp=03  DIFF
+      first bytes: out[4] got=02 exp=02    ok
+      first bytes: out[5] got=03 exp=02  DIFF
+      first bytes: out[6] got=02 exp=01  DIFF
+      first bytes: out[7] got=03 exp=02  DIFF
+      fed=5184 out=20736  byte_match=4911/20736  mismatched=15825  first_mismatch=0  stripe_last=2 frame_last=1 done=1 held=6873
+      -> case zero : BIT-EXACT FAIL
+  total cycles = 180157
+  96x54 cases: 0/4 bit-exact PASS, 4 FAIL, err_cnt=0
+RESULT: FAIL  (cases_fail=4 err_cnt=0)
+$finish called at time : 901005 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_bit_exact.v" Line 323
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:53 . Memory (MB): peak = 239.023 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 15316 KB (Peak: 15316 KB), Simulation CPU Usage: 52077 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 19:45:39 2026...
+ro : BIT-EXACT FAIL
+  total cycles = 180157
+  96x54 cases: 0/4 bit-exact PASS, 4 FAIL, err_cnt=0
+RESULT: FAIL  (cases_fail=4 err_cnt=0)
+$finish called at time : 901005 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_bit_exact.v" Line 323
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:53 . Memory (MB): peak = 239.023 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 15316 KB (Peak: 15316 KB), Simulation CPU Usage: 52077 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 19:45:39 2026...

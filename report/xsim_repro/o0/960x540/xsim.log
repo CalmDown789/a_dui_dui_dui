@@ -1,0 +1,47 @@
+
+****** xsim v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/tb_b_real_full/xsim_script.tcl
+# xsim {tb_b_real_full} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  loading full_in.mem (518400 bytes) ...
+  loading full_out.mem (2073600 bytes) ...
+  geometry: 960x540 -> 1920x1080  N_IN=518400 N_OUT=2073600 STRIPE_H=64 stripes=17
+      progress: 250000 / 2073600 bytes  (12%), cyc=534535, mismatched=0
+      progress: 500000 / 2073600 bytes  (24%), cyc=1034335, mismatched=0
+      progress: 750000 / 2073600 bytes  (36%), cyc=1534135, mismatched=0
+      progress: 1000000 / 2073600 bytes  (48%), cyc=2033935, mismatched=0
+      progress: 1250000 / 2073600 bytes  (60%), cyc=2533735, mismatched=0
+      progress: 1500000 / 2073600 bytes  (72%), cyc=3033535, mismatched=0
+      progress: 1750000 / 2073600 bytes  (84%), cyc=3533335, mismatched=0
+      progress: 2000000 / 2073600 bytes  (96%), cyc=4033135, mismatched=0
+======================================================================
+ FULL FRAME 960x540 -> 1920x1080  (B real five-layer via b_core_if)
+   input beats fed      : 518400 / 518400
+   output bytes received: 2073600 / 2073600
+   byte match           : 2073600 / 2073600
+   mismatched bytes     : 0
+   X bytes              : 0
+   stripe_last pulses   : 17 (expect 17)
+   frame_last pulses    : 1 (expect 1)
+   done pulses          : 1 (expect 1)
+   hold-rule violations : 0
+   sim cycles           : 4180016
+======================================================================
+RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)
+$finish called at time : 20900155 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_full.v" Line 244
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:32:38 . Memory (MB): peak = 239.113 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 22988 KB (Peak: 22988 KB), Simulation CPU Usage: 1932733 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 19:42:40 2026...
+================================================================
+RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)
+$finish called at time : 20900155 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_full.v" Line 244
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:32:38 . Memory (MB): peak = 239.113 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 22988 KB (Peak: 22988 KB), Simulation CPU Usage: 1932733 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 19:42:40 2026...

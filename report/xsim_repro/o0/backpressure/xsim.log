@@ -1,0 +1,36 @@
+
+****** xsim v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/tb_b_real_backpressure/xsim_script.tcl
+# xsim {tb_b_real_backpressure} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  geometry: 96x54 -> 192x108  N_OUT=20736  STALL_LONG=300 STALL_IN=120
+  --- T-A random back-pressure (LFSR out_ready + sparse in_valid) ---
+  [T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=14 total=20810  hold_viol=0   in_idle max=7423
+  --- T-B single long out_ready stall (300 cycles) ---
+  [T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=300 total=300  hold_viol=0   in_idle max=4719
+  --- T-C single long input idle (120 cycles) ---
+  [T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=0 total=0  hold_viol=0   in_idle max=4624
+  total cycles = 145556
+RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)
+$finish called at time : 727925 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_backpressure.v" Line 341
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:55 . Memory (MB): peak = 239.176 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 17624 KB (Peak: 17624 KB), Simulation CPU Usage: 53906 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 20:02:45 2026...
+_last=1 done=1
+        stall(out) max=0 total=0  hold_viol=0   in_idle max=4624
+  total cycles = 145556
+RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)
+$finish called at time : 727925 ns : File "C:/Users/Administrator/WorkBuddy/srtp/c_side/tb/tb_b_real_backpressure.v" Line 341
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:55 . Memory (MB): peak = 239.176 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 17624 KB (Peak: 17624 KB), Simulation CPU Usage: 53906 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep 23 20:02:45 2026...
