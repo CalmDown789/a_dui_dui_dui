@@ -275,7 +275,7 @@ Slack (VIOLATED) : -2.749 ns
 | # | 现象 | 根因 | 修复 |
 |---|---|---|---|
 | 1 | `synth_b_real.tcl` 只跑 13 s 就退出，报告全缺 | `create_clock -period 5.000 [get_ports clk]` 放在 `synth_design` **之前** —— 此时设计未 elaborate，`get_ports` 找不到对象 ⇒ `ERROR [Common 17-53] No open design`。（`read_xdc` 可以在前，因为它只**挂起**约束给下一次 `synth_design`；`create_clock` 是**立即执行**命令） | 把 `create_clock` 移到 `synth_design` **之后**；脚本内加注释说明这一区别 |
-| 2 | `impl_check.tcl` 跑完 8.5 分钟后中途 `invalid command name "Flow"`，`impl_result.txt` 被截断 | **方括号陷阱的第 2 个落点**：上一次只改了**控制台** `puts`，漏了**写结果文件**的 `puts $rf " [Flow A] ..."`（双引号内 `[...]` 触发命令替换）。**修完仍是 4 处只生效 1 处**（见 #7），需再修 3 处 | 去掉 `[Flow A]`/`[Flow B]` 方括号，改写成 `Flow-A` / `Flow-B`；**并写了一个只扫双引号字符串内部的 lint 脚本作为硬门禁**（165 条 puts 行 → 违规 0）；把规则**精确表述**为「**双引号串内的 `[...]` 一定会被当命令执行**，所以其中内容必须是**你真想在此刻执行的命令**」——**不是**「不许出现方括号」（`[version -short]`、`[clock format …]` 就是合法的**故意**替换）；lint 用**白名单**认定合法替换，其余一律报错（**宁可误报也不漏报**，方向安全） |
+| 2 | `impl_check.tcl` 跑完 8.5 分钟后中途 `invalid command name "Flow"`，`impl_result.txt` 被截断 | **方括号陷阱的第 2 个落点**：上一次只改了**控制台** `puts`，漏了**写结果文件**的 `puts $rf " [Flow A] ..."`（双引号内 `[...]` 触发命令替换）。**修完仍是 4 处只生效 1 处**（见 #7），需再修 3 处 | 去掉 `[Flow A]`/`[Flow B]` 方括号，改写成 `Flow-A` / `Flow-B`；**并写了一个只扫双引号字符串内部的 lint 脚本作为硬门禁**（165 条 puts 行 → 违规 0）；把规则**精确表述**为「**双引号串内的 `[...]` 一定会被当命令执行**，所以其中内容必须是**你真想在此刻执行的命令**」——**不是**「不许出现方括号」（`[version -short]`、`[clock format …]` 就是合法的**故意**替换）；lint 用**白名单**认定合法替换，其余一律报错（**宁可误报也不漏报**，方向安全）。**该门禁已入库为 `scripts/lint_tcl.py`**：`--selftest` 自检 13 例（含一条逼真的坏脚本），对 `run_sim.tcl` / `synth_check.tcl` / `impl_check.tcl` / `synth_b_real.tcl` 四者 **LINT CLEAN** |
 | 2b | `report/b_real_synth/synth_result.txt` 里 `constraint` 字段写成 `create_clock -period 5.000 clk`（丢了 `[get_ports clk]`） | **同一陷阱的第 3 个落点**：`puts $rf "... [get_ports clk]"` 里 `[get_ports clk]` 被**真的执行**了；因为当时已有 open design 所以**没报错**，只是把结果文本 `clk` 写了进去 —— **静默写错**，比报错更危险 | 转义为 `\[get_ports clk\]`；并把「描述命令的文本」也纳入 lint 范围 |
 | 3 | 报告里 WNS 被写成 **`-0.1`**（真值 `-0.153`） | **Tcl ARE 的 `.` 默认匹配换行**（与 Python 相反），使 `.*?` 走到另一条回溯路径、给出更短匹配。四组对照实验定位：`.*?`+`\d`→`-0.1` ❌｜`.*?`+`[0-9]`→`-0.1` ❌｜`[^\n]*`+`\d`→`-0.153` ✅｜`[^\n]*`+`[0-9]`→`-0.153` ✅ ⇒ **元凶是 `.*?`** | 三个脚本的跨行正则统一改为显式 `[^\n]*`；数值改用 `[0-9]+\.[0-9]+`（拒绝 `1.2.3` 畸形串） |
 | 4 | 生成的 `*_result.txt` 中文变**双重编码乱码** | Tcl 按**系统码页（GBK）**解码脚本源码，中文字面量在内存里已损坏，`fconfigure -encoding utf-8` **修不了这一层** | 结果文件一律**纯 ASCII 标签**；中文叙述移到 `docs/` 的 `.md`。顺带把脚本里中文的 `error`/`puts` 消息也改 ASCII |
@@ -326,14 +326,15 @@ Slack (VIOLATED) : -2.749 ns
 | B 原语仅综合 | `report/b_real_synth/*` |
 | 报告文本 | `docs/C_IMPLEMENTATION_STATUS.md`、`docs/BRAM_BUDGET_MAP.md`、`docs/B_INTERFACE_CONTRACT.md`、`docs/ACCEPTANCE_DATA_DEPENDENCY.md`、`docs/DEPENDENCIES_A_B.md` |
 | 复核脚本 | `scripts/verify_golden.py` |
+| 门禁脚本 | `scripts/lint_tcl.py`（Tcl 方括号硬门禁；`--selftest` 13 例自检） |
 
 ### 5.2 提交记录
 
 | 项 | 值 |
 |---|---|
-| 本轮提交 | **两个**提交（见 `git log -2`）：① `b268ff9` = B 反馈闭环 7 项主体（RTL + 脚本 + 文档）；② 二号提交 = **仅证据**（`report/sim_result.txt` 入库、`synth_result.txt` 剔除陈旧值、审计表缺陷 #8~#12、脚本归因对齐），不动 RTL 口径与冻结参数 |
+| 本轮提交 | **三个**提交（见 `git log -3`）：<br>① `b268ff9` = B 反馈闭环 7 项主体（RTL / 脚本 / 文档）；**`synth_result.txt` 的陈旧值刷新、flatten 标签修正（缺陷 #8 / #9）与 `.gitignore` 也在这一提交里**<br>② = **仅证据**：`report/sim_result.txt` 首次入库、审计表缺陷 #10 / #11 / #12、`run_sim.tcl` 的归因对齐与 DLL 补位<br>③ = 入库方括号硬门禁 `scripts/lint_tcl.py`（缺陷 #2 的预防）<br>②③ 均**不动任何 RTL、不动冻结参数** |
 | 报告的生成基点 | 每个证据文件都**自证**了生成时的 HEAD 与未提交改动清单，三者基点**不同**，不得混引：<br>· `impl_result.txt` 第 9 / 11 项 → HEAD `0632b33`（**早于** `b268ff9`）<br>· `synth_result.txt` 第 8 / 10 项 → HEAD `0632b33`（同上；本轮**重跑刷新**，剔除了陈旧 `-0.1`）<br>· `sim_result.txt` 第 4 / 6 项 → HEAD `b268ff9`（即①提交之后、②提交之前） |
-| 对应关系 | ① `b268ff9` 的内容 = `0632b33` + 该次提交的改动 ⇒ 综合/实现两份报告的基点落在 ① 上；仿真报告晚一次提交，基点落在 ①。二号提交**只增删 evidence 与文档**，不改变任何被综合/仿真对象 ⇒ 三份证据对**同一份 RTL** 成立（RTL 文件在两次提交之间**零改动**，可由 `git diff --stat b268ff9..HEAD -- rtl/ tb/` 为空自证） |
+| 对应关系 | ① `b268ff9` 的内容 = `0632b33` + 该次提交的改动 ⇒ 综合/实现两份报告的基点落在 ① 上；仿真报告晚一次提交，基点落在 ①。②③ 只增删 evidence / 文档 / 工具，不改变任何被综合或仿真的对象 ⇒ 三份证据对**同一份 RTL** 成立（RTL 在 ①②③ 之间**零改动**；由 `git diff --stat b268ff9..HEAD -- rtl/ tb/` 为空自证，已实测为空） |
 
 提交纪律：
 - 证据文件（`report/`）**入库**（§五.13（2）二级判据要求「综合/实现报告入库 + commit 可追溯」）；
