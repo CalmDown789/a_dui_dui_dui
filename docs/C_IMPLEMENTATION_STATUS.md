@@ -265,6 +265,11 @@ LFSR 三个不同种子各跑一帧。
 > 器件 / 工具：`xc7a200tfbg484-2` / Vivado 2022.2
 > 原始报告：`report/utilization_synth.rpt`、`report/timing_summary_synth.rpt`、`report/synth_result.txt`
 > **未执行** opt_design / place_design / route_design / write_bitstream。
+>
+> **可追溯性（C17 第 8/10 项）**：本报告由代码提交 **`a552103`** 的**干净源码树**
+> 生成（`synth_result.txt` 中记录 `Git commit SHA = a552103d...`、
+> `未提交本地修改 = clean（源文件与 HEAD 一致；report/ 为产物目录已排除）`）。
+> 复现命令见 §7 第 3 条。
 
 ### 9.1 资源
 
