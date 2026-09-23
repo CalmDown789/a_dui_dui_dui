@@ -1,5 +1,21 @@
 # Verification status
 
+## 2026-09-23 member B minimal C delivery
+
+The C-facing set is exactly 15 RTL files plus 19 packed parameter ROMs and
+their manifest. `build_member_b_c_delivery.py` records the current clean B
+source commit and SHA256 of every entry, then reopens the ZIP to verify its
+entry set and byte digests. The isolated C `c_core` + real B regression was
+rerun with this exact 15-file RTL set (the unused `phase_mac_array.sv` was
+removed from its compile list):
+
+```text
+ACX750_MEMBER_B_C_CORE_REAL_PASS size=6x5 frames=2 bytes=240 max_stall=16111
+```
+
+This is a C ZIP copy plus B's real core under XSim, not C's official merged
+branch or XC7A200T implementation report.
+
 ## 2026-09-23 member A full integer Golden intake
 
 Member B independently checked the new A ZIP's eight full-integer-Golden file

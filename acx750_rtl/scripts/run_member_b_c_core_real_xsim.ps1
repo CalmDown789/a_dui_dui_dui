@@ -34,7 +34,7 @@ if(-not $ifText.Contains($old)){throw 'C b_core_if.v changed: parameter patch po
 $ifText=$ifText.Replace($old,$new)
 Set-Content -LiteralPath $ifPath -Value $ifText -Encoding utf8
 $bNames=@('same_pad_raster.sv','elastic_fifo.sv','window_kminus1_bram.sv','window_stream_frontend.sv',
-    'eight_phase_issue.sv','phase_mac_array.sv','phase_mac_pipeline.sv','phase_accumulator.sv','mac_issue_stage.sv',
+    'eight_phase_issue.sv','phase_mac_pipeline.sv','phase_accumulator.sv','mac_issue_stage.sv',
     'vector_postprocess_shared.sv','fsrcnn_stream_layer.sv','pixel_shuffle2x_row_banks.sv',
     'fsrcnn_network_core.sv','fsrcnn_network_mem_top.sv','b_core_real.sv')
 foreach($name in $bNames){Copy-Item -LiteralPath (Join-Path $taskRoot "rtl\stream\$name") -Destination $work}

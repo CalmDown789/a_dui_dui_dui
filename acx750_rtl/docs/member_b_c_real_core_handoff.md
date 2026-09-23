@@ -13,6 +13,7 @@
 - 同一脚本加 `-AlwaysReady` 时，96×54 全帧对拍通过，测试从复位释放到完成共 44,915 拍（包含 start、填充和流水起落），最长帧内 `out_valid=0` 间隔 193 拍。该仿真周期数不能乘以尚未实现的 200 MHz 当作板上帧率。
 - `scripts/run_member_b_c_core_real_xsim.ps1 -ParameterRomDir .\acx750_rtl\rom\member_a_d16_s8_m1_c16`：C 原始 `c_core`/ROM/条带双缓冲/UART 与真实 B 核连续跑两帧 6×5；240 字节、每帧三条带及 C 错误标志通过，最长连续输出背压 16,111 拍。
 - `b_core_real` 默认 960×540 参数已在 XSim 2025.2 完成编译展开；同一五层 `fsrcnn_network_mem_top` 已用 A 新整数 Golden 跑完整帧行为仿真，2,073,600 个输出 Y 字节逐值 PASS，4,180,019 拍。仍不能据此声称目标器件达到 200 MHz 或 30 fps；C 的正式整机接入尚待完成。
+- `scripts/build_member_b_c_delivery.py --output <zip路径>` 会从 B 当前提交生成并回读校验 C 所需的**精确 15 个 RTL + 19 个参数 ROM + B ROM manifest**。包根目录保持 `acx750_rtl/rtl/...` 与 `acx750_rtl/rom/...` 路径，`MEMBER_B_DELIVERY_MANIFEST.json` 列出来源提交、文件字节数和逐文件 SHA256；脚本拒绝覆盖已有包，也拒绝打包与所记提交不同的源文件。另把本地 C+B 两帧回归缩成同样的最小 15 RTL 文件集合后重新 XSim PASS，排除了未实例化的 `phase_mac_array.sv`。
 
 ## C 正式接入时必须做的最小适配
 
