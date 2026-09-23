@@ -50,7 +50,7 @@ module fsrcnn_network_mem_top_tb;
             invalid_run=invalid_run+1;
             if(invalid_run>max_invalid_run)max_invalid_run=invalid_run;
         end else invalid_run=0;
-        if(in_ready&&sent<N)sent=sent+1;
+        if(in_ready&&sent<N)sent<=sent+1;
         if(held&&(!out_valid||out_data!==held_data||stripe_last!==held_stripe||frame_last!==held_frame))
             $fatal(1,"output changed under stall");
         held=out_valid&&!out_ready;

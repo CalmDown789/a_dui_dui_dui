@@ -66,7 +66,7 @@ module fsrcnn_network_core_tb;
         if(cycle==26)start=0;
     end
     always @(posedge clk)if(rst_n)begin
-        if(in_ready&&sent<N)sent=sent+1;
+        if(in_ready&&sent<N)sent<=sent+1;
         if(held&&(!out_valid||out_data!==held_data||stripe_last!==held_stripe||frame_last!==held_frame))
             $fatal(1,"top output changed under stall");
         held=out_valid&&!out_ready;

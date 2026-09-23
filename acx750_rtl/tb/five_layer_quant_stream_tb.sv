@@ -81,7 +81,7 @@ module raw_stream_case #(
         result_ready=((cycle%13)!=4)&&((cycle%13)!=5)&&((cycle%13)!=6);
     end
     always @(posedge clk)if(!rst&&!done)begin
-        if(sent<W*H&&in_ready)sent=sent+1;
+        if(sent<W*H&&in_ready)sent<=sent+1;
         if(held&&(!post_valid||post_data!==held_data))
             $fatal(1,"L%0d result changed under stall",ID);
         held=post_valid&&!result_ready;
