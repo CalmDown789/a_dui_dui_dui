@@ -8,6 +8,7 @@
 > 原始日志与续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
 > default/`-O0` 命令、日志和数据哈希见
 > `docs/B_REAL_XSIM_REPRODUCIBILITY.md`。
+> 面向阶段总结撰写者的 C 端与项目总体状态见 `docs/CURRENT_PROJECT_STATUS.md`。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
 `C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。
