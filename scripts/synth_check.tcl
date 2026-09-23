@@ -55,11 +55,15 @@ if {![file exists "$root_dir/$mem_rel"]} {
 puts "ROM init file: $mem_rel ([file size "$root_dir/$mem_rel"] bytes)"
 
 # C17 第 10 项：必须明确是否存在未提交本地修改
+#   ⚠️ 只检查**源码路径**（rtl/tb/scripts/constr/docs/README/.gitignore）——
+#      report/ 是本脚本的**输出目录**，运行后必然有改动，把它算进去会让
+#      本字段永远显示 DIRTY，失去意义。
 set local_mod "unknown"
-if {[catch {exec git -C "$script_dir/.." status --porcelain} gitout]} {
+set src_paths [list rtl tb scripts constr docs README.md .gitignore]
+if {[catch {exec git -C "$script_dir/.." status --porcelain -- {*}$src_paths} gitout]} {
     set local_mod "git-unavailable"
 } elseif {[string trim $gitout] eq ""} {
-    set local_mod "clean"
+    set local_mod "clean (源文件与 HEAD 一致; report/ 为产物目录已排除)"
 } else {
     set local_mod "DIRTY: [string map {\n { }} [string trim $gitout]]"
 }

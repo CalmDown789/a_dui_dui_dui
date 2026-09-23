@@ -42,6 +42,7 @@ scripts/  run_sim.tcl           一键跑全部 TB（每个 TB 独立工作目�
 report/   综合报告输出目录（utilization_synth.rpt / timing_summary_synth.rpt /
           synth_result.txt 含 C17 十项必录信息）
 docs/     C_IMPLEMENTATION_STATUS.md  ← 实现状态、覆盖度、TODO、下一步
+          DEPENDENCIES_A_B.md        ← ★ 依赖 A/B 的事项清单（排期与交接用）
 ```
 
 ## 复现
