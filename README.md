@@ -39,6 +39,8 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 
 成员 A 已补齐可供 B/C 最终逐字节验收的 `960×540 → 1920×1080` 整数网络 Golden。它由导出的 INT8 权重、INT16 激活、INT32 偏置/累加、Q1.15 PReLU 和 Q31 重量化参数直接计算，不是 FP32 输出，也不是 QDQ 软件仿真输出。
 
+成员 A 的正式取数位置为冻结标签 `member-a-v1.0.1`，不是 `main`。`main` 上的历史回退只是成员分支隔离操作，不代表数据失效；完整原因、checkpoint 和输入生成来源见 `docs/成员A发布治理与来源确认.md`。
+
 - 权威输出：`artifacts/full_integer_golden/output_1920x1080_y_u8.bin`；
 - C 侧输入 ROM：`artifacts/full_integer_golden/input_rom_2p19_u8.mem`，共 `524288` 行，前 `518400` 字节为输入图像，末尾 `5888` 字节为 `00`；
 - 四相位诊断输出：`artifacts/full_integer_golden/subpixel_phases_540x960x4_hwc_u8.bin`；
