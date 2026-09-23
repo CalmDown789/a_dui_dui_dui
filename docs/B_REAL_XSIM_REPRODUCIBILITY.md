@@ -42,7 +42,7 @@ $env:C_REAL_B_XELAB_OPT = 'o0'
 | XSim 2022.2 默认优化 | 96×54 四组 | 历史记录 FAIL；同一数据此前默认优化下失配 | 原始简表在提交 `23d913c` 的 `report/sim_result_tb_b_real_bit_exact.txt`；本机 Vivado transcript `_bit_exact_codex.log` |
 | XSim 2022.2 `-O0` | 96×54 四组 | 4/4 PASS，0 失配 | `report/sim_result_tb_b_real_bit_exact.txt`；本机 `_sim/tb_b_real_bit_exact/xsim.log` |
 | XSim 2022.2 默认优化 | 960×540 全帧 | 23,874 匹配、2,049,726 失配、0 个 X；帧尾/条带尾/保持规则通过 | 历史结构化摘要 `report/b_real_full_summary.json`；旧 Vivado transcript `_full_sim_codex_resume.log` |
-| XSim 2022.2 `-O0` | 960×540 全帧 | 运行中；截至 2026-09-23 19:30 本机已比较 1,250,000/2,073,600 字节（60%），0 失配 | `_sim/tb_b_real_full/xsim.log` |
+| XSim 2022.2 `-O0` | 960×540 全帧 | 运行中；截至 2026-09-23 19:41 本机已比较 1,750,000/2,073,600 字节（84%），0 失配 | `_sim/tb_b_real_full/xsim.log` |
 
 旧全帧摘要记录的默认优化原始 `xsim.log` SHA-256 为
 `a9b816e184190e23b2a1a99f31720efa5c5f56e6e306f120b5a194f4d46b8f5f`。XSim 使用同一

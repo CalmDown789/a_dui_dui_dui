@@ -525,6 +525,7 @@ puts $rf " 6  uncommitted change : $local_mod"
 puts $rf " 7  B formal path      : rtl/b_real_ae29515 @ ae29515 (15-file closure)"
 puts $rf " 8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)"
 puts $rf " 9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)"
+puts $rf "10  real-B xelab mode : $real_b_xelab_opt"
 puts $rf "----------------------------------------------"
 foreach tb $all_tbs {
     if {[lsearch -exact $fail_list $tb] >= 0} {
