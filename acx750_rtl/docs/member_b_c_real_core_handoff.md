@@ -12,7 +12,7 @@
 - `scripts/run_network_mem_top_xsim.ps1 -Width 96 -Height 54 -ParameterRomDir .\acx750_rtl\rom\member_a_d16_s8_m1_c16`：20,736 个最终 Y 字节逐值通过，测试中最长 `out_valid=0` 间隔 117 拍；这是本测试输入和背压激励下的观测值，不是 960×540 节拍上界。
 - 同一脚本加 `-AlwaysReady` 时，96×54 全帧对拍通过，测试从复位释放到完成共 44,915 拍（包含 start、填充和流水起落），最长帧内 `out_valid=0` 间隔 193 拍。该仿真周期数不能乘以尚未实现的 200 MHz 当作板上帧率。
 - `scripts/run_member_b_c_core_real_xsim.ps1 -ParameterRomDir .\acx750_rtl\rom\member_a_d16_s8_m1_c16`：C 原始 `c_core`/ROM/条带双缓冲/UART 与真实 B 核连续跑两帧 6×5；240 字节、每帧三条带及 C 错误标志通过，最长连续输出背压 16,111 拍。
-- `b_core_real` 默认 960×540 参数已在 XSim 2025.2 完成**编译展开**，没有做全尺寸行为仿真，不能据此声称全尺寸逐值正确或达到帧率。
+- `b_core_real` 默认 960×540 参数已在 XSim 2025.2 完成编译展开；同一五层 `fsrcnn_network_mem_top` 已用 A 新整数 Golden 跑完整帧行为仿真，2,073,600 个输出 Y 字节逐值 PASS，4,180,019 拍。仍不能据此声称目标器件达到 200 MHz 或 30 fps；C 的正式整机接入尚待完成。
 
 ## C 正式接入时必须做的最小适配
 
@@ -33,7 +33,7 @@
 
 ## 仍需 A/C 给出的信息
 
-- **A**：用于全尺寸逐字节验收的 960×540 → 1920×1080 **整数网络 Golden**，必须与已审计参数及同一输入图绑定并给哈希。现有 `full_reference/ref_out_quant.npy` 是 QDQ 参考，不能代替整数 Golden。A 已交付的 960×540 输入 uint8 字节、`quant_params.json`、padding/舍入口径可直接引用；输入 `.mem` 的无损格式转换已由 B 完成，不需 A 重新选图。
+- **A 已解决**：用户新提供的 `a_dui_dui_dui-member-a.zip` 中，`artifacts/full_integer_golden/` 是 A 确认的 960×540→1920×1080 整数 Golden。B 核对 8 个文件的长度、CRC32、SHA256，56 个量化参数文件与旧审计包逐字节一致，四相位到最终输出的 PixelShuffle 逐字节一致。最终输出 SHA256 为 `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`。A 的 `input_rom_2p19_u8.mem` 与 B 此前转换版的 524288 个地址数值相同，C 可直接采用 A 权威 ROM 文本。A 的逐层重算脚本需要 PyTorch，B 当前通用 Python 缺少该依赖；这里的独立核对不等同于重新运行 A 的全部整数层。
 - **C**：上述最小接口/脚本适配、正式合并综合的原始报告与对应提交、时钟/XDC 实现报告；若继续以 UART 静态回读验功能，另需确定满足 30 fps 的实时输出通路，不能拿 UART 回读时间推帧率。
 
 ## 结论边界

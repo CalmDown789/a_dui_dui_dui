@@ -57,6 +57,9 @@ module fsrcnn_network_mem_top_tb;
         if(held)begin held_data=out_data;held_stripe=stripe_last;held_frame=frame_last;end
         if(out_valid&&out_ready)begin
             if(out_data!==output_mem[received])$fatal(1,"output byte=%0d",received);
+`ifdef TB_FULL_FRAME
+            if((received%262144)==0)$display("ACX750_MEMBER_B_FULL_FRAME_PROGRESS bytes=%0d cycles=%0d",received,cycle);
+`endif
             if(frame_last!==(received==4*N-1))$fatal(1,"frame_last byte=%0d",received);
             if(stripe_last!==(((received%(2*W))==2*W-1)&&
                 ((((received/(2*W)+1)%64)==0)||(received==4*N-1))))

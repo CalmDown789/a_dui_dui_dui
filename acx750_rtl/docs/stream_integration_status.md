@@ -16,13 +16,14 @@
 - `vector_postprocess_shared.sv` 已替换整链中逐通道并行后处理：16 通道层使用 2 lane，8/4 通道层使用 1 lane，每个像素分 8 组发射。替换后 ROM 顶层的 `6×5`、`96×54` bit-exact XSim 均再次通过。RTL 结构共有 13 个后处理 lane 乘法单元，实际 DSP 推断数量仍待目标综合。
 - `b_core_real.sv` 提供 C-B v0.2 实名适配；使用 C ZIP 的 `c_core`/ROM/输出条带/UART 原始模块连续联调两帧 6×5，总计 240 个 Y 字节逐值一致，C 的 `proto_err/overflow_err` 为 0，连续输出背压 16,111 拍。联调只在临时副本给 C `b_core_if.v` 增加三个尺寸参数，未改 C 原件。背压容量见 `member_b_backpressure_contract.md`。
 - `phase_mac_pipeline.sv` 将乘法和平衡加法树逐级寄存并保持相位标签，`pixel_shuffle2x_row_banks.sv` 改为同步读相位 word；改动后 6×5、96×54 整链与 C+B 联调再次逐值通过。
+- A 新交付的 `full_integer_golden/` 已完成 B 独立哈希、参数版本、ROM 零填充与四相位输出核对；`run_member_b_a_full_integer_xsim.ps1` 直接以 A 权威 960×540 输入和 1920×1080 整数输出作 RTL scoreboard。XSim 2025.2 的 2,073,600 个最终 Y 字节全部 bit-exact，`stripe_last/frame_last`、输入计数和完成状态通过，耗 4,180,019 个仿真周期。该整帧测试 `out_ready=1`；输出停顿已由 96×54 和 C+B 两帧小尺寸回归另行覆盖。
 
 ## 尚未完成
 
 - MAC 已改平衡树流水、共享后处理为 13 个结构 lane，但不能由此认定满足 200 MHz、354+16 DSP 预算。仍需参数 bank、BRAM 与 DSP 映射的目标综合证据。
 - ROM 顶层使用单行 packed `.mem` 初始化真实 A 参数；当前 XSim 通过，但 LUTROM/寄存器/BRAM 实际映射、并行取权端口数和资源量未签核。
 - PixelShuffle 双 row-bank 已改同步读并通过功能验证；是否推断成 v1.1 预计的 2 个 RAMB36 尚未签核。
-- `96×54` 完整功能通过；`960×540` 尚未仿真。XC7A200T 综合、布局布线、200 MHz 时序和 30 fps 由 C 板级工程与器件支持到位后签核。
+- `96×54` 与 `960×540` 整链功能逐值通过；XC7A200T 综合、布局布线、200 MHz 时序和 30 fps 由 C 板级工程与器件支持到位后签核。不能把 4,180,019 个 XSim 周期直接换算为板上帧率。
 - K−1 bank 新窗口尚未取得 RAMB36 综合报告。2026-09-23 本机启动 Vivado batch 两次均在读取 RTL 前出现 `Failed to install all user apps / load_features failed`；XSim 能正常运行。不能仅凭行为仿真把 v1.1 的 42 块行缓存 BRAM 预算标为已验证。
 
 ## 复现本轮新增回归
@@ -38,6 +39,7 @@
 .\acx750_rtl\scripts\run_phase_accumulator_xsim.ps1
 .\acx750_rtl\scripts\run_phase_mac_array_xsim.ps1
 .\acx750_rtl\scripts\run_network_mem_top_xsim.ps1 -Width 96 -Height 54
+.\acx750_rtl\scripts\run_member_b_a_full_integer_xsim.ps1
 ```
 
 生成小尺寸黄金数据时，`--delivery-root` 指向 A 交付根目录，`--output-dir` 指向测试产物目录，`--width/--height` 为低分辨率输入尺寸。`6×5` 和 `96×54` 两组已实际生成成功；文件本身只给后续 RTL testbench 作期望值。

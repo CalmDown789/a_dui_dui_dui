@@ -1,5 +1,16 @@
 # ACX750 FSRCNN pure RTL workspace
 
+Member A's new `artifacts/full_integer_golden/` delivery supplies the
+authoritative 960x540 integer input and 1920x1080 uint8 output. Member B
+verified its hashes, frozen parameter version, input-ROM padding and
+PixelShuffle phase order. The full-frame RTL scoreboard entry point is
+`scripts/run_member_b_a_full_integer_xsim.ps1`; passing vector staging alone
+does not count as an RTL result. C may use A's `input_rom_2p19_u8.mem`
+directly, since its 524288 values match B's earlier conversion. The complete
+full-frame XSim 2025.2 scoreboard passed all 2073600 output bytes in 4180019
+simulation cycles with `out_ready=1`; target-device timing and frame rate
+remain unverified.
+
 ## 2026-09-23 member B streaming-control increment
 
 Team member B added `rtl/stream/` with parameterized SAME-padding, K-1

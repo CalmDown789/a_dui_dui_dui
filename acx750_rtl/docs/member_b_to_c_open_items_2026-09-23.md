@@ -7,7 +7,7 @@
 3. 请用 v1.1 ready/valid 接口接入 `fsrcnn_network_mem_top`：输入 stall 时 ROM 地址、Y 数据和输入坐标保持；输出按 `out_valid&&out_ready` 写 C 的 64-row ping-pong，`stripe_last/frame_last` 随 token 保持。请确认综合后 C 侧 ROM 与 64-row 双 bank 的 RAMB36 实际用量，尤其 60 RAMB36 预算。
 4. 请提供按模块拆分的 `report_utilization` 和关键路径，使 B 能针对 MAC 加法树、后处理乘法、参数 bank、PixelShuffle 读口优化。当前 370 DSP/271 RAMB36 仍为理论预算。
 
-当前没有新的成员A模型或量化语义待确认；本轮对拍直接使用其已审计整数交付。
+成员 A 新 ZIP 已给出 A 确认的 960×540 整数 Golden，且与 B 已打包参数及输入版本一致；目前没有新的 A 模型、量化或黄金数据待确认。B 以该 Golden 为期望值完成 960×540 整帧 XSim，2,073,600 个输出字节逐值 PASS，计 4,180,019 个仿真周期。C 请使用 `artifacts/full_integer_golden/input_rom_2p19_u8.mem` 与 `output_1920x1080_y_u8.bin`，不要使用 `full_reference/ref_out_quant.npy` 代替整数期望值。
 
 5. C ZIP 的 `b_core_if.v` 对真实 `b_core_real` 未传 `IMG_W/IMG_H/STRIPE_H`，而 B 顶层默认 960×540；请 C 在正式接入时给该实例传入三项参数。本地小尺寸联调仅在隔离副本中补了这项连接，C 原件未改。
 6. C 现有四个 TB 的数据 scoreboard 以最近邻 stub 为期望值；启用真实 B 后必须改为 FSRCNN 整数黄金，不应期待原样全 PASS。B 可提供 6×5 与 96×54 的独立整数参考及一键 XSim。

@@ -1,5 +1,30 @@
 # Verification status
 
+## 2026-09-23 member A full integer Golden intake
+
+Member B independently checked the new A ZIP's eight full-integer-Golden file
+sizes, CRC32 and SHA256 digests. Its `quant_params.json` and 56 quantized
+parameter files are byte-identical to the previously audited A delivery. The
+524288-address input ROM contains the same 518400 input bytes followed by 5888
+zeros and matches B's prior C ROM conversion numerically. PixelShuffle of A's
+four phase bytes reproduces all 2073600 authoritative output bytes. The output
+SHA256 is `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`.
+This is independent file and layout verification; A's full integer-layer
+recomputation requires PyTorch and was not rerun in B's Python environment.
+`scripts/run_member_b_a_full_integer_xsim.ps1` stages these vectors, checks
+the frozen B parameter-ROM package hashes, and runs a full-frame RTL byte
+scoreboard. XSim 2025.2 completed with:
+
+```text
+A_FULL_INTEGER_STAGE_PASS input_bytes=518400 output_bytes=2073600 output_sha256=be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e
+ACX750_MEMBER_B_ROM_TOP_BIT_EXACT_PASS size=960x540 output_bytes=2073600 cycles=4180019 max_out_invalid_gap=1921
+```
+
+The test compared every output Y byte, input count, stripe/frame sideband,
+stall stability and `busy/done`. `out_ready` stayed high in this full-frame
+run; prior 96x54 and C+B two-frame regressions exercised output stalls.
+Simulation cycles do not prove 200 MHz timing or 30 fps on XC7A200T.
+
 ## 2026-09-23 member B streaming-control checks
 
 Full-network XSim markers after those control checks:
