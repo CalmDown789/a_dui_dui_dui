@@ -1,0 +1,639 @@
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source scripts/synth_bc_real.tcl
+# set target_part    "xc7a200tfbg484-2"
+# set top_module     "c_synth_top"
+# set target_clk_mhz 200
+# set do_impl 0
+# if {[info exists argv]} { foreach a $argv { if {$a eq "impl"} { set do_impl 1 } } }
+# set script_dir [file normalize [file dirname [info script]]]
+# set root_dir   [file normalize "$script_dir/.."]
+# set rtl_dir    "$root_dir/rtl"
+# set xdc_dir    "$root_dir/constr"
+# set b_real_dir "$rtl_dir/b_real_ae29515"
+# set rom_dir    "$root_dir/rom/member_a_d16_s8_m1_c16"
+# set stage      "$root_dir/_synth_bc"
+# set out_dir    "$root_dir/report/bc_real_synth"
+# file mkdir $out_dir
+# file mkdir "$stage/rtl"
+# if {![file exists "$rtl_dir/input_image_pattern.mem"]} {
+#     error "缺少 $rtl_dir/input_image_pattern.mem —�? 先跑: python scripts/gen_input_mem.py pattern-full"
+# }
+# file copy -force "$rtl_dir/input_image_pattern.mem" "$stage/rtl/input_image_pattern.mem"
+# set roms [glob -nocomplain -types f -directory $rom_dir *_packed.mem]
+# if {[llength $roms] != 19} { error "期望 19 �? *_packed.mem，实�? [llength $roms]�?$rom_dir�?" }
+# foreach f $roms { file copy -force $f "$stage/[file tail $f]" }
+# puts "== staged [llength $roms] packed ROMs + input pattern to $stage =="
+== staged 19 packed ROMs + input pattern to C:/Users/Administrator/WorkBuddy/srtp/c_side/_synth_bc ==
+# cd $stage
+# set git_sha "unknown"
+# catch {set git_sha [string trim [exec git -C $root_dir rev-parse HEAD]]}
+# set local_mod "unknown"
+# if {[catch {exec git -C $root_dir status --porcelain -- {*}[list rtl tb scripts constr docs rom] } g]} {
+#     set local_mod "(git status unavailable)"
+# } else {
+#     set local_mod [string map {\n { }} [string trim $g]]
+#     if {$local_mod eq ""} { set local_mod "clean" }
+# }
+# puts "================================================================"
+================================================================
+# puts " REAL B five-layer + C shell -- SYNTHESIS (part $target_part)"
+ REAL B five-layer + C shell -- SYNTHESIS (part xc7a200tfbg484-2)
+# puts " top=$top_module  C_USE_B_REAL=1  do_impl=$do_impl"
+ top=c_synth_top  C_USE_B_REAL=1  do_impl=0
+# puts "================================================================"
+================================================================
+# set c_files [list \
+#     "$rtl_dir/c_config.vh"     \
+#     "$rtl_dir/input_rom.v"     \
+#     "$rtl_dir/input_stream.v"  \
+#     "$rtl_dir/stripe_buffer.v" \
+#     "$rtl_dir/pingpong_buffer.v"\
+#     "$rtl_dir/output_stream.v" \
+#     "$rtl_dir/uart_tx.v"       \
+#     "$rtl_dir/readback_ctrl.v" \
+#     "$rtl_dir/c_ctrl.v"        \
+#     "$rtl_dir/b_core_stub.v"   \
+#     "$rtl_dir/b_core_if.v"     \
+#     "$rtl_dir/c_core.v"        \
+#     "$rtl_dir/c_top.v"         \
+#     "$rtl_dir/c_synth_top.v"   \
+# ]
+# foreach f $c_files { if {![file exists $f]} { error "缺少 C 価� RTL: $f" } }
+# read_verilog -verbose $c_files
+# set b_files [list \
+#     "$b_real_dir/stream/same_pad_raster.sv"            \
+#     "$b_real_dir/stream/elastic_fifo.sv"               \
+#     "$b_real_dir/stream/window_kminus1_bram.sv"        \
+#     "$b_real_dir/stream/window_stream_frontend.sv"     \
+#     "$b_real_dir/stream/eight_phase_issue.sv"          \
+#     "$b_real_dir/stream/phase_mac_pipeline.sv"         \
+#     "$b_real_dir/stream/phase_accumulator.sv"          \
+#     "$b_real_dir/stream/mac_issue_stage.sv"            \
+#     "$b_real_dir/stream/vector_postprocess_shared.sv"  \
+#     "$b_real_dir/stream/fsrcnn_stream_layer.sv"        \
+#     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"  \
+#     "$b_real_dir/stream/fsrcnn_network_core.sv"        \
+#     "$b_real_dir/stream/fsrcnn_network_mem_top.sv"     \
+#     "$b_real_dir/stream/b_core_real.sv"                \
+#     "$b_real_dir/postprocess/prelu_requantize.sv"      \
+# ]
+# foreach f $b_files { if {![file exists $f]} { error "缺少 B 真实 RTL: $f" } }
+# read_verilog -sv -verbose $b_files
+# read_xdc "$xdc_dir/c_top.xdc"
+# synth_design -top $top_module -part $target_part \
+#     -flatten_hierarchy rebuilt \
+#     -verilog_define C_USE_B_REAL
+Command: synth_design -top c_synth_top -part xc7a200tfbg484-2 -flatten_hierarchy rebuilt -verilog_define C_USE_B_REAL
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Device 21-403] Loading part xc7a200tfbg484-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 51348
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [E:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1869.191 ; gain = 409.598
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'c_synth_top' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_synth_top.v:28]
+INFO: [Synth 8-6157] synthesizing module 'c_top' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_top.v:29]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ROM_ADDR_W bound to: 19 - type: integer 
+	Parameter ROM_DEPTH bound to: 524288 - type: integer 
+	Parameter ROM_INIT_MODE bound to: 0 - type: integer 
+	Parameter ROM_INIT_EN bound to: 1 - type: integer 
+	Parameter ROM_INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+	Parameter USE_MMCM bound to: 1 - type: integer 
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter UART_BAUD bound to: 921600 - type: integer 
+	Parameter RB_ENABLE bound to: 1 - type: integer 
+	Parameter AUTO_START_EN bound to: 1 - type: integer 
+	Parameter AUTO_START_CYCLES bound to: 20000000 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_BASE' [E:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:79972]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 24.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 20.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 6.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_BASE' (0#1) [E:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:79972]
+INFO: [Synth 8-6157] synthesizing module 'c_core' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_core.v:34]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ROM_ADDR_W bound to: 19 - type: integer 
+	Parameter ROM_DEPTH bound to: 524288 - type: integer 
+	Parameter ROM_INIT_MODE bound to: 0 - type: integer 
+	Parameter ROM_INIT_EN bound to: 1 - type: integer 
+	Parameter ROM_INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter UART_BAUD bound to: 921600 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'c_ctrl' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_ctrl.v:32]
+INFO: [Synth 8-6155] done synthesizing module 'c_ctrl' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_ctrl.v:32]
+INFO: [Synth 8-6157] synthesizing module 'input_rom' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/input_rom.v:31]
+	Parameter ADDR_W bound to: 19 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter MEM_DEPTH bound to: 524288 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+	Parameter INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'rtl/input_image_pattern.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/input_rom.v:86]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/input_rom.v:31]
+INFO: [Synth 8-6157] synthesizing module 'input_stream' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/input_stream.v:37]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 19 - type: integer 
+	Parameter TOT_PIX bound to: 518400 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'input_stream' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/input_stream.v:37]
+INFO: [Synth 8-6157] synthesizing module 'b_core_if' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_core_if.v:59]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'b_core_real' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/b_core_real.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_network_mem_top' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'feature_weights_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:36]
+INFO: [Synth 8-3876] $readmem data file 'feature_bias_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:36]
+INFO: [Synth 8-3876] $readmem data file 'feature_prelu_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:37]
+INFO: [Synth 8-3876] $readmem data file 'feature_q31_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:37]
+INFO: [Synth 8-3876] $readmem data file 'shrink_weights_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:38]
+INFO: [Synth 8-3876] $readmem data file 'shrink_bias_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:38]
+INFO: [Synth 8-3876] $readmem data file 'shrink_prelu_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:39]
+INFO: [Synth 8-3876] $readmem data file 'shrink_q31_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:39]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_weights_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:40]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_bias_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:40]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_prelu_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:41]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_q31_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:41]
+INFO: [Synth 8-3876] $readmem data file 'expand_weights_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:42]
+INFO: [Synth 8-3876] $readmem data file 'expand_bias_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:42]
+INFO: [Synth 8-3876] $readmem data file 'expand_prelu_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:43]
+INFO: [Synth 8-3876] $readmem data file 'expand_q31_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:43]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_weights_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:44]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_bias_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:44]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_q31_packed.mem' is read successfully [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:45]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_network_core' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_core.sv:8]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 964 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 200 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 200 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 16 - type: integer 
+	Parameter LANES bound to: 2 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'prelu_requantize' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/postprocess/prelu_requantize.sv:8]
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'prelu_requantize' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/postprocess/prelu_requantize.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 8 - type: integer 
+	Parameter LANES bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 962 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 1152 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 1152 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized2' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized2' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 964 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 6400 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 6400 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized3' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared__parameterized1' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 4 - type: integer 
+	Parameter LANES bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter OUT_SIGNED bound to: 0 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'prelu_requantize__parameterized0' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/postprocess/prelu_requantize.sv:8]
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter OUT_SIGNED bound to: 0 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'prelu_requantize__parameterized0' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/postprocess/prelu_requantize.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared__parameterized1' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized3' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'pixel_shuffle2x_row_banks' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:8]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'pixel_shuffle2x_row_banks' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_network_core' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_core.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_network_mem_top' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'b_core_real' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/b_core_real.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'b_core_if' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_core_if.v:59]
+INFO: [Synth 8-6157] synthesizing module 'output_stream' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/output_stream.v:36]
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/output_stream.v:211]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/output_stream.v:221]
+INFO: [Synth 8-6155] done synthesizing module 'output_stream' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/output_stream.v:36]
+INFO: [Synth 8-6157] synthesizing module 'pingpong_buffer' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/pingpong_buffer.v:31]
+	Parameter WIDTH bound to: 1920 - type: integer 
+	Parameter ROWS bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'stripe_buffer' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/stripe_buffer.v:27]
+	Parameter WIDTH bound to: 1920 - type: integer 
+	Parameter ROWS bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'stripe_buffer' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/stripe_buffer.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'pingpong_buffer' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/pingpong_buffer.v:31]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/uart_tx.v:25]
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter BAUD bound to: 921600 - type: integer 
+	Parameter BAUD_DIV bound to: 217 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/uart_tx.v:65]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/uart_tx.v:25]
+INFO: [Synth 8-6157] synthesizing module 'readback_ctrl' [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/readback_ctrl.v:30]
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'readback_ctrl' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/readback_ctrl.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'c_core' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_core.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'c_top' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_top.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'c_synth_top' (0#1) [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/c_synth_top.v:28]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:52]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:62]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:64]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:52]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:62]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:64]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:52]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:62]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:64]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:52]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:62]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:64]
+WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  sums_q_reg with 13056 registers
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:52]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:62]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/phase_accumulator.sv:64]
+WARNING: [Synth 8-6014] Unused sequential element prelu_product_s1_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/postprocess/prelu_requantize.sv:97]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/vector_postprocess_shared.sv:72]
+WARNING: [Synth 8-7129] Port rd_avail in module readback_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rd_start in module readback_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[15] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[14] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[13] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[12] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[11] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[10] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[9] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[8] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[7] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[6] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[5] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[4] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[3] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[2] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[1] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[0] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port start in module fsrcnn_stream_layer__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port start in module fsrcnn_stream_layer__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port b_busy in module c_ctrl is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2928.426 ; gain = 1468.832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2928.426 ; gain = 1468.832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2928.426 ; gain = 1468.832
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2928.426 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Administrator/WorkBuddy/srtp/c_side/constr/c_top.xdc]
+Finished Parsing XDC File [C:/Users/Administrator/WorkBuddy/srtp/c_side/constr/c_top.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Administrator/WorkBuddy/srtp/c_side/constr/c_top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/c_synth_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/c_synth_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 3422.363 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  MMCME2_BASE => MMCME2_ADV: 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.183 . Memory (MB): peak = 3422.363 ; gain = 0.000
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [E:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 3422.363 ; gain = 1962.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a200tfbg484-2
+WARNING: [Synth 8-6014] Unused sequential element out_x_reg was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:74]
+WARNING: [Synth 8-6014] Unused sequential element out_x_reg_rep was removed.  [C:/Users/Administrator/WorkBuddy/srtp/c_side/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:74]
+INFO: [Synth 8-802] inferred FSM for state register 'st_reg' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              001 |                               00
+                   S_RUN |                              010 |                               01
+                  S_DONE |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'st_reg' using encoding 'one-hot' in module 'c_ctrl'

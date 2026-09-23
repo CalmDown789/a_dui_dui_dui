@@ -22,6 +22,9 @@
   连续有效拍停顿 300、保持违例 0。期间修正的是 C 侧背压 TB 的重复触发/启动计数，
   未修改 B 或 C RTL。
 - 真实 B+C 综合和实现尚未完成；仿真数值/协议结果已通过 `-O0` 全尺寸对拍。
+  2026-09-23 的 synth-only 因系统可用内存降至 0.61 GB，在综合早期安全中断；
+  没有生成综合资源/时序报告。原始日志与续跑检查点见
+  `docs/B_C_REAL_SYNTH_CHECKPOINT.md` 和 `report/bc_real_synth/synth_only_memory_stop.txt`。
 - 仓库没有 `.github` workflow，也没有配置好的 GitHub Actions / Vivado runner。
   GitHub 协作可承载代码分析、修改和 PR；Vivado 仿真、综合、布局布线需要
   装有相应版本和许可的机器或专用 self-hosted runner。
@@ -90,8 +93,8 @@
 
 读取 `report/bc_real_synth/` 中的原始报告，自检真实 `b_core_real` / 五层实例
 存在且 `b_core_stub=0`，记录 LUT/FF、RAMB36/RAMB18、DSP48E1、层次拆解、WNS
-和路由状态。上次本机综合在 RTL 优化阶段被人工停止，约 10 分钟、内存峰值
-约 30 GB；若再次遇到内存限制，可先运行 synth-only 并明确记录实现未完成。
+和路由状态。2026-09-23 的 synth-only 未生成报告，因可用内存降至 0.61 GB 而
+中断；在报告完成前不启动实现。具体续跑状态见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
 
 ### L3：用本机结果完成最终 A～Q 验收
 
@@ -112,7 +115,9 @@
 ## 本次本机运行检查点
 
 `tb_b_real_full` 于 2026-09-23 19:10（本机）启动，Vivado 2022.2/XSim 完成于
-19:42:40；完整日志和摘要已归档。A 输入/Golden `.mem` 文件位于 Git 忽略目录，
+19:42:40；完整日志和摘要已归档。随后 B+C synth-only 于约 20:07 启动，因系统
+可用内存降至 0.61 GB 于约 20:10 中断；无综合报告，未启动实现。详见
+`docs/B_C_REAL_SYNTH_CHECKPOINT.md`。A 输入/Golden `.mem` 文件位于 Git 忽略目录，
 不能由 GitHub clone 恢复；本机完整数据源路径和 SHA-256 见 `ref/README.md`。
 
 裸 `python` 是 Windows Store alias；当前机器请使用上面的托管 Python 路径。
