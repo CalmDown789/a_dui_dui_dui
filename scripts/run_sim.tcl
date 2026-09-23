@@ -45,6 +45,13 @@
 #     见 proc stage_b_roms（**xelab 之后**调用：xelab 会重建 xsim.dir/<snap>/）。
 #   · 新 TB（需 `-d C_USE_B_REAL`，走 b_core_if 的**正式分支**）：
 #       tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full
+#
+# ★ 2026-09-23 XSim 2022.2 optimization workaround:
+#   Default xelab optimization corrupts the registered PReLU/Q31 data association
+#   for back-to-back samples (confirmed by a 4-sample scalar probe and the 6x5
+#   layer probe). `xelab -O0` makes both probes bit-exact. Apply it only to the
+#   real-B acceptance benches; this changes simulation elaboration only, not RTL
+#   or synthesis. Recheck if the simulator version changes.
 ##############################################################################
 
 set script_dir [file normalize [file dirname [info script]]]
@@ -382,7 +389,10 @@ foreach tb $all_tbs {
 
     #--- 2. elaborate ----------------------------------------------------
     if {$ok} {
-        if {[catch {eval exec "$bin_dir/xelab.bat" "worklib.$tb" --nolog -s $tb > "$work/xelab.log"} err]} {
+        set xelab_cmd [list "$bin_dir/xelab.bat" "worklib.$tb" --nolog]
+        if {[lsearch -exact $real_b_tbs $tb] >= 0} { lappend xelab_cmd -O0 }
+        lappend xelab_cmd -s $tb
+        if {[catch {eval exec $xelab_cmd > "$work/xelab.log"} err]} {
             set ok 0; puts "xelab FAILED: $err"
         }
     }

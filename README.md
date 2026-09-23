@@ -1,9 +1,9 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-> **2026-09-23 接管状态**：B 的真实五层 RTL `ae29515` 已接入 `C_USE_B_REAL`
-> 路径，但在本项目 XSim 2022.2 上未通过 A 整数 Golden 逐字节验收。
-> 下面旧的 stub / 原语回归 PASS 只证明 C 侧骨架与接口，不能作为五层算法通过的证据。
-> 见 `docs/B_REAL_BITEXXACT_MISMATCH_HANDOFF.md` 和 `docs/B_C_REAL_ACCEPTANCE_REPORT.md`。
+> **2026-09-23 本机最新状态**：XSim 2022.2 默认优化会误算真实 B 的流式后处理；
+> 对真实 B 验收使用 `xelab -O0` 后，6×5 逐层探针与 96×54 四组 A 整数 Golden
+> 全部逐值匹配。960×540 全帧正在重跑，综合/实现和上板尚未验证。
+> 详见 `docs/B_REAL_XSIM_OPTIMIZATION_FINDING.md`；旧默认优化失败记录已被该结果复核。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
 `C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。

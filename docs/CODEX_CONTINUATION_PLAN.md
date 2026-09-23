@@ -1,20 +1,20 @@
 # 接续任务清单：GitHub 协作与本机执行（2026-09-23）
 
-本仓库分支 `c-side-latest`，本地接管提交为 `146fd2ed72f4d320c0483a35a9e0119e2c6d6ff6`。
-用户此前要求暂不上云，因此该提交目前只在本机。其他人要从 GitHub 取用，
-需要先由用户决定何时发布这个提交；本文不代替发布授权。
+本仓库分支 `c-side-latest`。用户已要求将必要提交推送到 GitHub；本轮验证记录
+需随当前分支提交发布，便于其他账号续跑和审查。工作树中 `_bself/` 与
+`tb/tb_const_probe.v` 是已有的未跟踪文件，交接时应保留，不要自动纳入提交。
 
 ## 当前证据与限制
 
 - B 真五层 RTL `ae29515` 的 15 文件闭包已接入 `C_USE_B_REAL`；19 个参数 ROM
   和来源哈希清单已提交。
-- 96×54 四组整数 Golden 均 FAIL，见 `report/sim_result_tb_b_real_bit_exact.txt`。
-- 960×540 整帧收到 2,073,600/2,073,600 字节，2,049,726 字节失配，X=0；
-  帧/条带尾标记与保持规则通过，见 `report/b_real_full_summary.json`。
-- 6×5 逐层记录显示 L1 INT32 MAC 为 0/480 失配，L1 后处理为 186/480 失配；
-  首错 token 0/channel 1，DUT `fa6b`、参考 `0f7b`，见
-  `report/b_real_layer_probe.txt`。
-- 真实 B+C 综合和实现尚未完成。验收总判定仍是 **FAIL（功能阻塞）**。
+- XSim 2022.2 默认 `xelab` 优化的旧失败已由同一 RTL 的 `-O0` 复核为模拟器
+  优化问题；不要将默认优化结果当作当前 RTL 功能结论。详情见
+  `docs/B_REAL_XSIM_OPTIMIZATION_FINDING.md`。
+- `-O0` 下 6×5 逐层探针全部 0 失配，96×54 impulse/ramp/random/zero 正式
+  验收全部 PASS。全帧 `tb_b_real_full` 正在以 `-O0` 重跑；启动于本机
+  2026-09-23 19:10，最新日志显示 250,000/2,073,600 输出字节、0 失配。
+- 真实 B+C 综合和实现尚未完成；全尺寸功能结论等待当前 `-O0` 全帧运行结束。
 - 仓库没有 `.github` workflow，也没有配置好的 GitHub Actions / Vivado runner。
   GitHub 协作可承载代码分析、修改和 PR；Vivado 仿真、综合、布局布线需要
   装有相应版本和许可的机器或专用 self-hosted runner。
@@ -68,7 +68,8 @@
 & 'C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Scripts\python.exe' scripts\extract_b_real_full_summary.py
 ```
 
-全尺寸运行约 23 分钟。每次先核对参考数据 SHA-256；若 A 文件缺失，应从
+默认优化下的旧全尺寸运行约 23 分钟；当前 `-O0` 速度更慢，按日志进度判断剩余
+时间，不要沿用旧耗时估计。每次先核对参考数据 SHA-256；若 A 文件缺失，应从
 已记录的 A commit `98c82f3` 复取并验证，不能退回到浮点/QDQ 参考。
 修正 PR 合并后由本机复跑，产出最终小图/整帧数值证据。
 
@@ -96,10 +97,21 @@
 
 ## 建议接续顺序
 
-1. 把 G1/G2 交给 GitHub 协作者，取得可审查的根因、修正 PR 和定向验证代码。
-2. 在本机检查/合入修正，完成 L1 的小图与整帧复测。
-3. 在本机单独完成 L2 综合/实现。
-4. 依据两类本机结果完成 L3，保留失败项和开放项。
+1. 等待本机 `-O0` 全帧复测完成并保存正式日志/摘要。
+2. 运行本机 smoke/backpressure 回归。
+3. 评估本机真实 B+C 综合/实现；先检查内存与综合报告，再决定是否运行完整实现。
+4. 依据真实 B 验证和 B+C 综合/实现结果更新验收文档，明确板级事项仍需接板实测。
+5. GitHub 协作者可独立审查仿真优化发现与重现流程；如提出 RTL 修改，需回本机复测。
+
+## 本次本机运行检查点
+
+`tb_b_real_full` 于 2026-09-23 19:10（本机）启动，Vivado 2022.2/XSim 子进程
+`xsimk` PID 83092。最新检查点为输出 250,000/2,073,600 字节（12%）、0 失配；
+日志位于 `_sim/tb_b_real_full/xsim.log`。若该进程仍在运行，继续等待它并检查
+日志，不要另起同一全帧实例；若已退出，保存已有日志后用上面的命令从头重跑。
+当前 `-O0` 速度比旧默认优化运行慢，依该检查点粗估还需约 35–50 分钟，实际
+以 XSim 输出为准。A 输入/Golden `.mem` 文件位于 Git 忽略目录，不能由 GitHub
+clone 恢复；本机完整数据源路径和 SHA-256 见 `ref/README.md`。
 
 裸 `python` 是 Windows Store alias；当前机器请使用上面的托管 Python 路径。
 `_sim/`、`_synth_bc/` 可再生，日志及 A 的大文件参考数据不随 Git 提交。
