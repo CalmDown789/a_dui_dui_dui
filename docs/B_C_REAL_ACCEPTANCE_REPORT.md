@@ -1,10 +1,12 @@
 # 真实 B 五层 RTL 接入 C 侧：验收报告（A～Q）
 
-> **最新状态（2026-09-23，本机）**：XSim 2022.2 下，同一 RTL/ROM/Golden 的默认
-> 优化配置在 96×54 四组及历史全帧对拍失败；使用 `xelab -O0` 后 6×5 全层探针、
-> 96×54 四组和 960×540 全帧均逐字节匹配。全帧 2,073,600/2,073,600，X=0，协议计数
-> 通过。真实 B+C 综合、实现和上板仍未完成，因此**总验收仍待完成**。旧默认优化数字
-> 保留为历史对照。复现命令、日志和数据哈希见 `docs/B_REAL_XSIM_REPRODUCIBILITY.md`。
+> **最新状态（2026-09-24，本机）**：XSim 2022.2 下，当前冻结 RTL/ROM/Golden 的
+> `xelab -O0` 回归 9/9 通过；96×54 四组及 960×540→1920×1080 全帧均逐字节匹配。
+> 真实 B+C 综合和 route 已完成：394 DSP、32,243 综合 LUT、41,673 综合 FF，综合/route
+> 峰值约 3.13/4.13 GB。post-route WNS=-2.208 ns，200 MHz 未闭合；尚无 bitstream 或板测，
+> 因此**功能仿真已通过，器件总验收仍待完成**。下文旧失配与“未运行”条目保留作历史诊断，
+> 不代表当前 RTL。全套当前日志摘要见 `report/sim_result_full_20260924.txt`；
+> 复现命令及仿真工具版本边界见 `docs/B_REAL_XSIM_REPRODUCIBILITY.md`。
 
 ## A. 验收对象与版本
 
@@ -18,8 +20,8 @@
 ## B. 正式编译路径
 
 `rtl/b_core_if.v` 的 `C_USE_B_REAL` 分支实例化 `b_core_real`，并显式传入
-`IMG_W/IMG_H/STRIPE_H`。`scripts/run_sim.tcl` 的真实 B 组只读入
-`rtl/b_real_ae29515/` 的 15 文件闭包；旧 `rtl/b_real/rtl` 是原语回归组。
+`IMG_W/IMG_H/STRIPE_H`。`scripts/run_sim.tcl` 的真实 B 组使用 11 个冻结的
+`ae29515` 上游文件及 4 个本地补丁覆盖；旧 `rtl/b_real/rtl` 是原语回归组。
 综合脚本 `scripts/synth_bc_real.tcl` 使用同一闭包并通过
 `synth_design -verilog_define C_USE_B_REAL` 选择正式路径。
 
@@ -46,7 +48,7 @@ RTL **15/15**、ROM 目录条目 **21/21** 哈希一致（后者含 19 个 `.mem
 ## E. 工具链与适用边界
 
 本机冻结工具链为 Vivado/XSim 2022.2。B 的既有 PASS 记录来自 XSim 2025.2。
-本报告只能断言 **2022.2 下当前 RTL 不满足判据**；需 B 在 2025.2 上按同一
+本报告的当前仿真判定适用于 **2022.2 + `xelab -O0`**；需 B 在 2025.2 上按同一
 输入、ROM、TB 复跑以确定版本边界。
 另有测试台调度风险：B 原始 TB 在 `posedge` 用阻塞赋值递增 `sent`，
 而 DUT 同沿采样 `input_mem[sent]`。这可能形成仿真事件排序竞争；
@@ -67,6 +69,8 @@ RTL **15/15**、ROM 目录条目 **21/21** 哈希一致（后者含 19 个 `.mem
 
 ## H. 背压与握手
 
+> 本节失配/超时数字是修复前诊断记录；当前长背压正式回归已通过，见完整回归摘要。
+
 B 原始 TB 在带停等和 `TB_ALWAYS_READY` 两种模式下都从输出 index 2 失配。
 由此可排除背压是该最早失配的必要条件。C 侧独立的
 `tb_b_real_backpressure.v` 的独立重跑中，随机背压场景 T-A 输出
@@ -80,19 +84,24 @@ T-B 超出 B v1.1 的合同级保证 `N=0`，只能作为诊断压力测试；
 
 ## I. 四组小尺寸逐字节验收
 
+修复前的 FAIL 数字已被当前 `xelab -O0` 结果取代：
+
 正式 C 路径 `tb_b_real_bit_exact.v`，每组期望 20,736 字节：
 
 | 用例 | 匹配字节 | 判定 |
 |---|---:|---|
-| impulse | 4,920 / 20,736 | FAIL |
-| ramp | 103 / 20,736 | FAIL |
-| random | 1,581 / 20,736 | FAIL |
-| zero | 4,911 / 20,736 | FAIL |
+| impulse | 20,736 / 20,736 | PASS |
+| ramp | 20,736 / 20,736 | PASS |
+| random | 20,736 / 20,736 | PASS |
+| zero | 20,736 / 20,736 | PASS |
 
-协议计数 `fed=5,184`、`got=20,736`、`stripe_last=2`、`frame_last=1`、
-`done=1`，无 X；**数值判据为 FAIL**。原始日志在 `_sim/tb_b_real_bit_exact/`。
+当前四组每组 fed=5,184、输出 20,736 字节、mismatch=0、stripe_last=2、
+frame_last=1、done=1；4/4 PASS，无 X。修复前失配详情保留在
+`docs/B_REAL_BITEXXACT_MISMATCH_HANDOFF.md`。
 
 ## J. B 原始流程独立复现
+
+> 本节记录的是修复前的原始 B 流程诊断结果；不能据此描述当前 C 接入路径的判定。
 
 不经过 `b_core_if`，用 B 未改动的 TB、B 的 Golden 生成脚本和 B 的 RTL，
 6×5、96×54、96×96、96×128 的已跑组合均在输出 index 2 首次失败；
@@ -103,13 +112,15 @@ T-B 超出 B v1.1 的合同级保证 `N=0`，只能作为诊断压力测试；
 ## K. 整帧逐字节验收
 
 `tb_b_real_full.v` 使用 A 整数 Golden，目标 2,073,600 输出字节。
-本轮完整复跑输出 2,073,600 / 2,073,600 字节、输入 518,400 / 518,400 拍；
-**匹配 23,874 字节，失配 2,049,726 字节，FAIL**。X 字节 0；
-`stripe_last=17/17`、`frame_last=1/1`、`done=1`，保持规则违反 0，
-共 4,180,016 个仿真周期。原始日志为 `_sim/tb_b_real_full/xsim.log`；
-`report/b_real_full_summary.json` 固定了日志和 A 整数 Golden 的 SHA-256。
+2026-09-24 当前 RTL 完整复跑：输入 518,400/518,400；输出 2,073,600/2,073,600；
+**匹配 2,073,600 字节，失配 0，PASS**。X 字节 0；`stripe_last=17/17`、
+`frame_last=1/1`、`done=1`，保持规则违反 0，共 4,699,401 个仿真周期，XSim elapsed
+36:28。原始日志为 `_sim/tb_b_real_full/xsim.log`；摘要及 Golden 哈希索引见
+`report/sim_result_full_20260924.txt` 与 `report/b_real_full_summary.json`。
 
 ## L. 常数输入定位实验
+
+> 本节的数值失配与首分歧定位属于修复前诊断快照；当前正式路径结果见 §I、§K。
 
 96×54 常数输入 `0/64/128/192/255` 的探针显示：输入 ≥64 时，DUT
 与参考的匹配均为 `0/20,736`，输出值集合与参考不相交；x 方向有周期 2
@@ -126,16 +137,18 @@ T-B 超出 B v1.1 的合同级保证 `N=0`，只能作为诊断压力测试；
 `scripts/synth_bc_real.tcl` 已备好目标器件取证。报告必须核对
 `b_core_real >= 1`、`b_core_stub = 0`、`fsrcnn_network_mem_top >= 1`、
 `fsrcnn_stream_layer >= 5` 的自校验，否则资源数字作废。
-**当前未取得有效的真实 B+C 综合报告**：本机于 2026-09-23 两次运行 synth-only；
-第二次完成 RTL Optimization Phase 2 后，系统提交余量降至 1.12 GB，页面文件仍为
-32 GB 且提交上限未扩展，因此安全中断。两次都未生成综合报告或资源数字。原始日志和
-续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
+2026-09-24 真实 B+C 综合已完成，脚本自检确认 `b_core_real=1`、`b_core_stub=0`、
+`fsrcnn_network_mem_top=1`、`fsrcnn_stream_layer=5`、7 个 FIFO。实测综合资源：
+230 RAMB36、8 RAMB18、394 DSP48E1、32,243 LUT、41,673 FF、5,717 LUTRAM；
+峰值内存约 3.13 GB。完整数据在 `report/bc_real_synth/`。此前约 30.4 GB 的异常综合
+记录属于修复前 RTL，根因分析见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`。
 
 ## N. 实现与时序
 
-综合级时序与 post-route 时序分别记录。未完成 route 前，不能给出目标器件
-的 Fmax、200 MHz 收敛或 30 fps 实测结论。当前未启动完整实现，
-状态为**未验证**；接续命令见 `docs/CODEX_CONTINUATION_PLAN.md`。
+完整 implementation/route 已完成，峰值内存约 4.13 GB，DRC 0 errors。post-route
+WNS=-2.208 ns、TNS=-50,037.625 ns、WHS=+0.036 ns；200 MHz 时序**未收敛**，不能宣称
+达到 200 MHz 或 30 fps。最差路径是 L5 phase 选择寄存器至 DSP48E1 输入，路径延迟
+3.669 ns，其中 2.979 ns 为布线延迟。见 `report/bc_real_synth/timing_summary_postroute.rpt`。
 
 ## O. 分层资源与预算
 
@@ -146,17 +159,17 @@ T-B 超出 B v1.1 的合同级保证 `N=0`，只能作为诊断压力测试；
 
 ## P. 交付范围与开放项
 
-UART 管脚、真实 start 触发、A 对全尺寸 Golden 的正式重新发布位置、B 对逐字节
-失配的根因及修正、B 在 2025.2 的同条件复跑仍开放。本文没有板级
+UART 管脚、真实 start 触发、A 对全尺寸 Golden 的正式重新发布位置、B 在 2025.2
+的同条件复跑仍开放。本文没有板级
 图像质量、PSNR、真实吞吐或 bitstream 验收数据。
 
 ## Q. 最终判定与下一步
 
-**FAIL（阻塞）**：§I/K 已证明真实五层网络在项目冻结的 2022.2 下
-不能复现整数 Golden；逐层探针把首个分歧定位到第一层 MAC 后处理。
-B 应按 `docs/B_REAL_BITEXXACT_MISMATCH_HANDOFF.md` 给出根因和修正提交；
-C 在固定的 RTL/ROM/Golden 版本上重跑小尺寸四组、整帧与目标器件实现，
-全部满足后再重新签署验收。接续任务拆分见 `docs/CODEX_CONTINUATION_PLAN.md`。
+**功能仿真 PASS；器件验收未完成。** 当前小尺寸与全尺寸 Golden 对拍均逐字节通过，
+真实 B+C 综合和 route 已运行。剩余阻塞项是 post-route 200 MHz 时序负裕量、未生成 bitstream、
+未在 ACX750 上采集 HDMI/UART 图像与吞吐数据，以及 UART 管脚和真实 start 触发方案待确认。
+因此当前结果足以进入时序优化与受控上板准备，但不能作为目标时钟性能或板级图像验收通过。
+状态快照及本机/GitHub 后续任务划分见 `docs/CURRENT_PROJECT_STATUS.md`。
 
 ---
 

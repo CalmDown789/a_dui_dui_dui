@@ -1,11 +1,11 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-> **2026-09-23 本机最新状态**：两处 C 侧 RTL 局部补丁解决了 B+C 综合内存膨胀并隔离
-> 一条路由关键路径。最新 96×54 bit-exact 与背压回归通过，B+C 综合及 place/route 已完成：
-> 32,339 LUT、37,061 FF、394 DSP、230 RAMB36 + 8 RAMB18；实现峰值约 4.24 GB。
-> 200 MHz 时序尚未收敛（post-route WNS=-3.348 ns），PReLU Q15 舍入/饱和逻辑仍是关键路径。
-> 当前版本尚未生成 bitstream，也未做板上图像验收；最新 postprocess 隔离拍版本的 960×540
-> 全帧回归待重跑。审计见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`，项目交接见
+> **2026-09-24 本机最新状态**：本地 9/9 回归通过；真实 B 五层 960×540 → 1920×1080
+> 全帧与 A 整数 Golden 逐字节匹配（2,073,600/2,073,600，0 mismatch、0 X）。真实 B+C
+> 综合/布局布线完成：32,243 LUT、41,673 FF、394 DSP、230 RAMB36 + 8 RAMB18；Vivado
+> 综合峰值 3.13 GB，route 峰值 4.13 GB。200 MHz 仍未收敛（post-route WNS=-2.208 ns，
+> TNS=-50,037.625 ns）；关键路径已转到 L5 phase 选择到 DSP 输入，约 81% 延迟来自布线。
+> 未生成 bitstream，未做板上图像验收。细节见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md` 与
 > `docs/CURRENT_PROJECT_STATUS.md`。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
@@ -45,7 +45,7 @@ b_real/   ★ B 真实 RTL 只读镜像（17 个原语，来源 acx750-rtl @ 658
           见 rtl/b_real/PROVENANCE.md（含逐文件 SHA-256）
           ※ 仅用于原语回归；正式五层路径在 rtl/b_real_ae29515/（15 文件）
 rtl/b_real_ae29515/  ★ B 五层真实 RTL @ ae29515；由 C_USE_B_REAL 启用
-rtl/b_real_c_patch/  ★ C 侧局部覆盖（MAC 静态相位选择、PReLU 输入隔离拍）
+rtl/b_real_c_patch/  ★ C 侧局部覆盖（MAC 相位选择、PReLU/Q31/累加器流水）
 tb/       tb_stripe_buffer.v     条带缓冲模块级定向测试 T1~T6（已 PASS）
           tb_backpressure_rand.v 随机化背压压力测试，3 种子 + 断言层（已 PASS）
           tb_ready_valid.v       小规模定向全链路 A~K 场景（已 PASS）
@@ -74,7 +74,7 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
 
 ## 复现
 
-### 仿真（当前 96×54 真实五层回归通过）
+### 仿真（当前 96×54 和全尺寸真实五层回归通过）
 
 ```powershell
 # 全部 TB（包含真实 B 验收）
@@ -110,8 +110,8 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
 
 ## 表述纪律（重要）
 
-- 真实 B+C 路径的综合与实现结果见 `report/bc_real_synth/`。当前 96×54 回归通过；
-  最新 postprocess 隔离拍版本尚未重跑 960×540 全帧，且没有板上图像验收。
+- 真实 B+C 路径的综合与实现结果见 `report/bc_real_synth/`。当前 96×54 四组 Golden、
+  长背压以及 960×540 全帧均通过；全帧 2,073,600 字节逐字节匹配。没有板上图像验收。
   布线 WNS 为负，不能声称 200 MHz 收敛或据此宣称 Fmax / FPS。
 - **synthesis-only** 口径（`report/synth_result.txt`）：RAMB36 192/365 = 52.60%、
   DSP48E1 0、WNS −0.1 ns、0 ERROR / 0 CRITICAL WARNING。含 stub，**不是完整 FSRCNN**，

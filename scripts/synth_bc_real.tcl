@@ -92,9 +92,9 @@ foreach f $c_files { if {![file exists $f]} { error "缺少 C 侧 RTL: $f" } }
 read_verilog -verbose $c_files
 
 #-----------------------------------------------------------------------------
-# 1b. 读入 **B 真实五层依赖闭包**（13 个 ae29515 文件 + 2 个 C 局部补丁）
+# 1b. 读入 **B 真实五层依赖闭包**（11 个冻结 ae29515 文件 + 4 个 C 局部补丁）
 #-----------------------------------------------------------------------------
-# 注：15-file 依赖闭包由 13 个锁定 B 源文件和 2 个 C 侧局部补丁组成，
+# 注：15-file 依赖闭包由 11 个锁定 B 源文件和 4 个 C 侧局部补丁组成，
 #     与 run_sim.tcl 的正式仿真路径**完全一致**；B 原仓库 stream/ 下另有
 #     phase_mac_array.sv / vector_postprocess_elastic.sv / mac_lane_map.sv 等
 #     未被 mem_top 层次引用的文件，故意不纳入，以保证「仿真路径 == 综合路径」。
@@ -105,7 +105,7 @@ set b_files [list \
     "$b_real_dir/stream/window_stream_frontend.sv"     \
     "$b_real_dir/stream/eight_phase_issue.sv"          \
     "$b_patch_dir/phase_mac_pipeline.sv"               \
-    "$b_real_dir/stream/phase_accumulator.sv"          \
+    "$b_patch_dir/phase_accumulator.sv"                \
     "$b_real_dir/stream/mac_issue_stage.sv"            \
     "$b_patch_dir/vector_postprocess_shared.sv"        \
     "$b_real_dir/stream/fsrcnn_stream_layer.sv"        \
@@ -113,7 +113,7 @@ set b_files [list \
     "$b_real_dir/stream/fsrcnn_network_core.sv"        \
     "$b_real_dir/stream/fsrcnn_network_mem_top.sv"     \
     "$b_real_dir/stream/b_core_real.sv"                \
-    "$b_real_dir/postprocess/prelu_requantize.sv"      \
+    "$b_patch_dir/prelu_requantize.sv"                 \
 ]
 foreach f $b_files { if {![file exists $f]} { error "缺少 B 真实 RTL: $f" } }
 read_verilog -sv -verbose $b_files

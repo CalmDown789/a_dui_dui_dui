@@ -9,22 +9,16 @@
 //   · 用户指令 §六：start 在 N 拍被接受，N+1 进入输入阶段
 //
 // ★ 地址写法声明（§五.9（4）第 7 项「必须二者择一并在实现说明中写明」）：
-//   本模块采用 **写法 A（请求地址）**：
-//     rom_addr 是本拍【请求】的地址，其数据在【下一拍】出现在 in_data/pixel_valid 上。
-//     即 pixel_valid 相对 rom_addr 延后 1 拍。
-//   形式化：rom_addr(t) 的数据 == in_data(t+1) == mem[pres_q(t+1)]
-//           且 rom_addr(t) == pres_q(t) + in_fire(t) == pres_q(t+1)
+//   ROM 地址由 req_addr_q 寄存器驱动；每个被发出的请求对应下一拍的
+//   rom_dout/resp_valid。地址递增不再位于 BRAM 地址/银行使能组合路径上。
 //
 // 时序（start 在 cycle N 被 c_ctrl 接受）：
 //   N+1 : start_load=1 → 输入阶段开始；rom_en=1，rom_addr = 0（首个请求）
 //   N+2 : in_valid=1，in_data = mem[0]  ← 第 1 个像素 (0,0)
 //         （§五.9：start 后【不早于 1 拍】给出第 1 个像素；此处 = start 后 1 拍，合规）
 //
-// 背压保持（用户指令 §五，§五.8 条件 2 的输入侧对偶）：
-//   in_valid=1 && in_ready=0 时，pres_q / x_q / y_q 全部不推进；
-//   由于 rom_addr 是 pres_q 的纯函数（in_fire=0），rom_addr 逐拍恒定，
-//   同步读 BRAM 输出寄存器随之恒定 ⇒ in_data 自动保持稳定。
-//   🚫 绝不出现「back-pressure 导致跳像素」。
+// 背压保持：resp_valid=1 && in_ready=0 时不发新请求，ROM 输出和响应坐标
+// 保持稳定。C 核心前的弹性 FIFO 也保证 B 侧 stall 时当前 data/x/y 不变。
 //
 // 位宽说明：所有内部计数器均为**无符号**；比较常量均为参数表达式，无符号扩展一致。
 //=============================================================================
@@ -69,67 +63,70 @@ module input_stream #(
     //-------------------------------------------------------------------------
     // 状态寄存器
     //-------------------------------------------------------------------------
-    reg  [ADDR_W-1:0] pres_q;      // 当前呈现在 in_data 上的像素索引（0..TOT_PIX）
-    reg               run_q;       // 输入阶段使能
-    reg               primed_q;    // ROM 同步读已填满 1 拍（第 1 拍 in_valid 必须为 0）
-    reg               done_q;      // 输入完成（黏滞）
-    reg  [XW-1:0]     x_q;         // 呈现像素的列坐标
-    reg  [YW-1:0]     y_q;         // 呈现像素的行坐标
+    reg  [ADDR_W-1:0] req_addr_q;  // 下一请求地址；直接驱动 ROM，0..TOT_PIX
+    reg  [XW-1:0]     req_x_q;
+    reg  [YW-1:0]     req_y_q;
+    reg  [XW-1:0]     resp_x_q;    // 与 rom_dout/resp_valid 对齐的响应坐标
+    reg  [YW-1:0]     resp_y_q;
+    reg               run_q;
+    reg               resp_valid_q;
+    reg               done_q;
 
     //-------------------------------------------------------------------------
-    // 握手与地址（★ 采用写法 A：rom_addr 是「请求地址」）
+    // 响应弹性保持 + 独立请求地址寄存器
     //-------------------------------------------------------------------------
-    wire in_fire = in_valid & in_ready;
+    wire in_fire  = in_valid & in_ready;
+    wire req_fire = run_q & (req_addr_q < TOT_PIX) & (~resp_valid_q | in_ready);
 
-    // 只有 run_q & primed_q 都成立才允许有效；pres_q 上界为防御性判断
-    //   （pres_q 无符号，与参数 TOT_PIX 比较时按 32 位无符号扩展，语义明确）
-    assign in_valid = run_q & primed_q & (pres_q < TOT_PIX);
-
-    // 请求地址 = 呈现索引 + 本拍是否消耗（= 下一拍要呈现的像素地址）
-    //   pres_q 单调 +1，行主序下 addr = y*IMG_W + x 恰好连续，无需除法/取模
-    assign rom_addr = pres_q + {{(ADDR_W-1){1'b0}}, in_fire};
-    assign rom_en   = run_q;
-
-    // in_data 直接取 BRAM 同步读输出寄存器（无组合逻辑，保证保持性）
+    assign in_valid = resp_valid_q;
+    assign rom_addr = req_addr_q;
+    assign rom_en   = req_fire;
     assign in_data  = rom_dout;
 
     //-------------------------------------------------------------------------
-    // 坐标推进（仅在手拍成功时推进；stall 时逐拍保持）
+    // 请求地址/坐标只在实际读 ROM 时推进；响应元数据跟随同步读延迟
     //-------------------------------------------------------------------------
-    wire          last_col = (x_q == IMG_W - 1);
-    wire          last_row = (y_q == IMG_H - 1);
-    wire [XW-1:0] x_nx     = last_col ? {XW{1'b0}} : (x_q + 1'b1);
-    wire [YW-1:0] y_nx     = last_col ? (last_row ? y_q : (y_q + 1'b1)) : y_q;
+    wire          last_col = (req_x_q == IMG_W - 1);
+    wire          last_row = (req_y_q == IMG_H - 1);
+    wire [XW-1:0] req_x_nx = last_col ? {XW{1'b0}} : (req_x_q + 1'b1);
+    wire [YW-1:0] req_y_nx = last_col ? (last_row ? req_y_q : (req_y_q + 1'b1)) : req_y_q;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             run_q    <= 1'b0;
-            primed_q <= 1'b0;
+            resp_valid_q <= 1'b0;
             done_q   <= 1'b0;
-            pres_q   <= {ADDR_W{1'b0}};
-            x_q      <= {XW{1'b0}};
-            y_q      <= {YW{1'b0}};
+            req_addr_q <= {ADDR_W{1'b0}};
+            req_x_q <= {XW{1'b0}};
+            req_y_q <= {YW{1'b0}};
+            resp_x_q <= {XW{1'b0}};
+            resp_y_q <= {YW{1'b0}};
         end else if (start_load) begin
-            // §六：cycle N+1 进入输入阶段，帧内计数器清零
             run_q    <= 1'b1;
-            primed_q <= 1'b0;
+            resp_valid_q <= 1'b0;
             done_q   <= 1'b0;
-            pres_q   <= {ADDR_W{1'b0}};
-            x_q      <= {XW{1'b0}};
-            y_q      <= {YW{1'b0}};
-        end else if (run_q) begin
-            primed_q <= 1'b1;   // 下一拍 ROM 输出即有效
-
-            if (in_fire) begin
-                pres_q <= pres_q + 1'b1;
-                x_q    <= x_nx;
-                y_q    <= y_nx;
-
-                if (pres_q == (TOT_PIX - 1)) begin
-                    // 最后一个像素已交付：收尾（★ 地址不回绕，停在填充区边界）
-                    run_q  <= 1'b0;
-                    done_q <= 1'b1;
+            req_addr_q <= {ADDR_W{1'b0}};
+            req_x_q <= {XW{1'b0}};
+            req_y_q <= {YW{1'b0}};
+            resp_x_q <= {XW{1'b0}};
+            resp_y_q <= {YW{1'b0}};
+        end else begin
+            if (req_fire) begin
+                req_addr_q <= req_addr_q + 1'b1;
+                resp_x_q <= req_x_q;
+                resp_y_q <= req_y_q;
+                if (!(last_col && last_row)) begin
+                    req_x_q <= req_x_nx;
+                    req_y_q <= req_y_nx;
                 end
+            end
+
+            if (req_fire) resp_valid_q <= 1'b1;
+            else if (in_fire) resp_valid_q <= 1'b0;
+
+            if (in_fire && (req_addr_q == TOT_PIX)) begin
+                run_q  <= 1'b0;
+                done_q <= 1'b1;
             end
         end
     end
@@ -139,8 +136,8 @@ module input_stream #(
     //-------------------------------------------------------------------------
     assign input_active = run_q;
     assign input_done   = done_q;
-    assign dbg_x        = {{(16-XW){1'b0}}, x_q};
-    assign dbg_y        = {{(16-YW){1'b0}}, y_q};
+    assign dbg_x        = {{(16-XW){1'b0}}, resp_x_q};
+    assign dbg_y        = {{(16-YW){1'b0}}, resp_y_q};
 
 endmodule
 

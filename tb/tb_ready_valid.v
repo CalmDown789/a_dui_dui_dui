@@ -6,7 +6,7 @@
 //   B  ready 周期性拉低      → UART 每字节忙 → 条带间周期性反压
 //   C  ready 连续拉低几十拍  → rb_enable=0 期间缓冲区写满 → 长背压
 //   D  out stall 时 data/stripe_last/frame_last 保持稳定（逐拍比对）
-//   E  in_ready=0 时 in_data / rom_addr / x / y 保持稳定（逐拍比对）
+//   E  B 输入 stall 时当前 data/x/y 稳定；ROM 响应 stall 时响应与请求地址稳定
 //   F  stripe 边界（x=OUT_W-1 且 y 落在条带末行）
 //   G  最后一条带为部分条带（OUT_H=32 / STRIPE_H=5 → 7 条，末条 2 行）
 //   H  frame_last（仅 x=OUT_W-1 且 y=OUT_H-1）
@@ -181,11 +181,10 @@ module tb_ready_valid;
     end
 
     //-------------------------------------------------------------------------
-    // 监控 E：in_valid=1 && in_ready=0 期间，in_data / rom_addr / x / y 必须保持
+    // 监控 E1：B 输入 stall 时当前 beat 和坐标必须保持。
     //-------------------------------------------------------------------------
     reg                 iv_prev;
     reg [7:0]           id_prev;
-    reg [9:0]           ia_prev;
     reg [15:0]          ix_prev, iy_prev;
 
     always @(posedge clk) begin
@@ -193,17 +192,42 @@ module tb_ready_valid;
             if (dut.in_valid && !dut.in_ready) begin
                 if (iv_prev) begin
                     if (dut.in_data         !== id_prev) fail("E: in_data drifted during in-stall");
-                    if (dut.rom_addr        !== ia_prev) fail("E: rom_addr drifted during in-stall");
                     if (dut.dbg_in_x        !== ix_prev)  fail("E: x drifted during in-stall");
                     if (dut.dbg_in_y        !== iy_prev)  fail("E: y drifted during in-stall");
                 end
                 iv_prev <= 1'b1;
                 id_prev <= dut.in_data;
-                ia_prev <= dut.rom_addr;
                 ix_prev <= dut.dbg_in_x;
                 iy_prev <= dut.dbg_in_y;
             end else begin
                 iv_prev <= 1'b0;
+            end
+        end
+    end
+
+    // E2: input_stream 的同步 ROM 响应尚未被 C→B FIFO 接收时，响应、坐标和
+    // 当前请求地址都必须保持。B 侧 stall 时 ROM 请求可在 FIFO 尚有空间时
+    // 预取；此时真正的 B 当前地址由 E1 的 FIFO head 坐标表示。
+    reg                 src_stall_prev;
+    reg [7:0]           src_data_prev;
+    reg [9:0]           src_addr_prev;
+    reg [15:0]          src_x_prev, src_y_prev;
+    always @(posedge clk) begin
+        if (rst_n) begin
+            if (dut.src_valid && !dut.src_ready) begin
+                if (src_stall_prev) begin
+                    if (dut.src_data !== src_data_prev) fail("E: ROM response data drifted under src stall");
+                    if (dut.rom_addr !== src_addr_prev) fail("E: ROM request address drifted under src stall");
+                    if (dut.src_x !== src_x_prev) fail("E: ROM response x drifted under src stall");
+                    if (dut.src_y !== src_y_prev) fail("E: ROM response y drifted under src stall");
+                end
+                src_stall_prev <= 1'b1;
+                src_data_prev <= dut.src_data;
+                src_addr_prev <= dut.rom_addr;
+                src_x_prev <= dut.src_x;
+                src_y_prev <= dut.src_y;
+            end else begin
+                src_stall_prev <= 1'b0;
             end
         end
     end

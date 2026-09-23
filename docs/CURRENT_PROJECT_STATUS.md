@@ -1,58 +1,63 @@
-# C 端与项目总体状态交接
+# FSRCNN FPGA 项目当前状态
 
-**快照时间：2026-09-23（北京时间）**
+**快照时间：2026-09-24（北京时间）**  
+**仓库：`CalmDown789/a_dui_dui_dui`，分支：`c-side-latest`**  
+本文记录本机 Vivado/XSim 2022.2 的可复现证据，不代表 bitstream 或板上验收。
 
-**代码/证据基线：2026-09-23 当前 C 侧状态同步快照**
-**用途：为另一位项目成员撰写阶段性总结提供事实材料；本文不是最终验收签署。**
+## C 端与真实 B 集成状态
 
-## C 端当前状态
+### 当前 RTL 和回归
 
-### 已完成并有证据
+- 正式综合/仿真启用 `C_USE_B_REAL`，真实 B 来自 `ae29515` 的五层依赖闭包；11 个上游文件保持锁定，另有 4 个本地兼容/时序覆盖：`phase_mac_pipeline`、`phase_accumulator`、`vector_postprocess_shared`、`prelu_requantize`。
+- C 侧在输入 ROM 到 B 前增加两项局部改动：请求地址寄存并与同步 ROM 响应握手；C→B 加 2-entry FIFO，`ready` 由寄存占用量产生，断开 B 反压到 ROM 地址/使能组合路径。
+- 完整仿真组 **9/9 PASS**：C 条带缓存、随机背压、C ready/valid、C 顶层、B 原语、B 真实核 smoke、真实核长背压、96×54 bit-exact、960×540 全帧。
+- 全帧证据：输入 518,400/518,400；输出 2,073,600/2,073,600；逐字节匹配 A 整数 Golden；mismatch=0、X=0；stripe_last=17/17、frame_last=1/1、done=1、hold-rule violation=0。全帧仿真耗时约 36 分 28 秒。
+- 小图 ready/valid 两帧：输入 1,024/1,024；输出/UART 4,096/4,096；UART error、proto_err、overflow_err 均为 0。
+- B bit-exact 使用 `xelab -O0`。此设置是 XSim 2022.2 的仿真配置，不改变 RTL 和综合；默认优化异常保留为工具对照记录。
 
-- C 的 `C_USE_B_REAL` 路径使用 B 五层 RTL 快照 `ae29515` 和两个 C 侧局部覆盖；19 个参数 ROM 已入库并有来源/哈希清单。冻结的上游 B 文件没有修改。
-- 针对综合内存异常，`phase_mac_pipeline` 将运行时相位宽切片改成常量索引 case。针对路由关键路径，`vector_postprocess_shared` 在 PReLU DSP 前寄存已选择操作数并同步延长元数据一拍。
-- 本机 Vivado/XSim 2022.2 用 `xelab -O0` 跑最新 RTL：`tb_b_real_backpressure` 3/3 帧逐字节匹配、hold violation 为 0；`tb_b_real_bit_exact` 的 96×54 四个 Golden 用例 4/4 通过。此前 960×540 全帧在上一版 RTL 下通过，加入 postprocess 隔离拍后尚未复跑。
-- 最新完整 B+C 综合和 place/route 已完成：综合资源为 32,339 LUT、37,061 FF、394 DSP、230 RAMB36 + 8 RAMB18；综合峰值 3,165.832 MB，实现峰值 4,239.918 MB。
-- 200 MHz 时序尚未收敛：布线 WNS=-3.348 ns、TNS=-89,415.367 ns。当前最差路径为 PReLU Q15 舍入/饱和组合逻辑到 Q31 DSP；0 个 routing error。
-- B 提供的 XSim 2025.2 PASS 是 B 侧记录；本机只有 2022.2，尚未在本机复跑 2025.2。
+### 综合与布局布线
 
-### 当前结论边界
+使用 `scripts/synth_bc_real.tcl -tclargs impl`，器件 `xc7a200tfbg484-2`，真实 B 路径自检通过：`b_core_real=1`、`b_core_stub=0`、5 层、7 个 FIFO、1 个 PixelShuffle。
 
-- 早前 XSim 2022.2 默认优化对拍异常仍应作为工具对照记录；最新回归只证明所列小图/背压场景，不证明 960×540 最新 RTL 全帧或板上图像。
-- 综合与 route 已完成，但 WNS 为负；没有生成本轮 bitstream，尚未证明板级图像或 200 MHz 实时性能。
-- 早期默认优化日志中的 L1 后处理差异属于该默认配置下的观测；`-O0` 分层探针全通过后，不能再据此单独断言 B 的数值 RTL 有缺陷。
+| 指标 | 综合 | 布线后 |
+|---|---:|---:|
+| RAMB36 / RAMB18 | 230 / 8 | 230 / 8 |
+| DSP48E1 | 394 | 394 |
+| LUT | 32,243 | 32,152 |
+| FF | 41,673 | 41,932 |
+| WNS / TNS | -1.169 ns / -8,153.583 ns | -2.208 ns / -50,037.625 ns |
+| WHS / THS | +0.029 ns / 0 ns | +0.036 ns / 0 ns |
+| Vivado 报告峰值内存 | 3.13 GB | 4.13 GB |
 
-## 项目总体状态
+route 完成且 DRC 为 0 errors；有 29 warnings，主要涉及未分配 UART 引脚及 BRAM/DSP pipeline advice。200 MHz 时序**没有闭合**。布线后最差路径来自 L5 的 phase 选择寄存器到 DSP48E1 输入：数据路径 3.669 ns，其中 route 2.979 ns（81.2%），逻辑两级（LUT6、MUXF7）。C ROM 地址路径不再是当前报告的最差路径，但仍需关注物理布局对其高扇出 bank enable 的影响。
 
-| 验收项 | 当前状态 | 可引用证据/限制 |
-|---|---|---|
-| C-B 接口与仿真协议 | `-O0` smoke、背压回归通过 | `docs/B_REAL_XSIM_REPRODUCIBILITY.md` |
-| 真实 B 数值对拍 | 当前 96×54 回归与三帧背压测试通过 | 最新 postprocess 隔离拍版本的全尺寸回归待本机复跑 |
-| B+C 综合资源 | 已完成真实五层综合 | 32,339 LUT、37,061 FF、394 DSP、230 RAMB36 + 8 RAMB18 |
-| 布局布线/实现时序 | 已布线，时序未收敛 | WNS=-3.348 ns；route error=0；200 MHz 不能签收 |
-| bitstream/上板/HDMI 图像 | 未完成 | 没有本轮 bitstream、板上运行记录或验收图像 |
-| 系统级最终验收 | 未完成 | 不能声称已达 200 MHz、30 fps 或板级图像正确 |
+这次将 MAC phase 选择操作数额外寄存一拍的实验虽通过 smoke、背压及 4 组 bit-exact，但综合吸收了该级寄存器，未打断预期的 phase→DSP 物理路径；最终 WNS 为 -2.370 ns，比保留版本 -2.208 ns 更差，已撤销，不进入当前 RTL。
 
-### 综合内存根因与结果
+## 综合内存问题结论
 
-最初异常来自 `phase_mac_pipeline` 中运行时相位驱动的宽 packed-bus part-select：旧版本完整工程在 RTL Optimization Phase 2 达到 30,381 MB 后没有生成 netlist。常量 case 局部补丁后，同一目标器件和 Vivado 版本在 53 秒完成该阶段；综合峰值约 3.17 GB，实现峰值约 4.24 GB。本机提交内存复验过程最高采样约 31.28/63.43 GB，没有再逼近上限。
+原异常根因是 `phase_mac_pipeline` 的运行时 `in_phase` 驱动宽 packed-bus part-select；Vivado 在 RTL Optimization Phase 2 将综合网表规模异常膨胀，旧运行达到约 30.4 GB 后无法完成。静态 `case` 相位索引修复后，真实 B+C 完整综合峰值约 3.13 GB、实现峰值约 4.13 GB，资源规模符合小型流式 CNN accelerator 的范围。详细前后证据、层级资源及 RAM 映射见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`。
 
-## 仍开放的项目事项
+## 板测状态与边界
 
-- **C 本机**：将 PReLU Q15 rounding/saturation 拆分为更短组合级，重新跑 bit-exact/backpressure、综合和 place/route；时序达标后再生成 bitstream。
-- **C 本机**：postprocess 隔离拍版本重跑 960×540 全帧 Golden；之后在板卡上实测启动、HDMI 图像、吞吐和画质。
-- 请 B 在同一输入、ROM、Golden 和无竞态 testbench 条件下确认 XSim 2025.2 结果；B 侧测试台竞态作为独立事项维护，不要与 C 侧默认优化现象混为一谈。
-- 确认 A 全尺寸整数 Golden 的正式发布位置；另需确认 UART 管脚与真实 start 触发方案。
-- 当前仓库没有已配置的 GitHub Actions Vivado runner。代码/文档审查可通过 GitHub 协作；综合、实现和板测依赖本机或具备相同工具与授权的硬件环境。
+- 尚未生成 bitstream，也没有板上 HDMI/输出图像、画质或吞吐验收记录。全尺寸 Golden PASS 是本机 XSim 数据，不能称为板测通过。
+- 200 MHz 时序失败，因此现在还不能按目标频率签收上板性能。下一个门槛是缩短 L5 phase→DSP 的物理路径并重新完整 route；是否降低目标频率需按项目验收要求另行决定。
+- UART TX 引脚约束仍待确认，真实 `start` 触发方案也需最终确定。板卡本机操作、器件编程、HDMI/串口采集属于必须在接有 ACX750 的本机完成的工作。
 
-## 阶段总结交接给另一位成员
+## 后续工作拆分
 
-请另一位项目成员基于本文及下列证据，独立撰写 `docs/STAGE_SUMMARY_2026-09-23.md`：
+### 必须在带 Vivado 的本机完成
 
-- `docs/B_C_REAL_ACCEPTANCE_REPORT.md`
-- `docs/B_REAL_XSIM_OPTIMIZATION_FINDING.md`
-- `docs/B_REAL_XSIM_REPRODUCIBILITY.md`
-- `docs/B_C_REAL_SYNTH_CHECKPOINT.md`
-- `docs/CODEX_CONTINUATION_PLAN.md`
+1. 分析 L5 phase 控制的高扇出和跨区域布线；做一次有限、可比较的局部改动后，跑真实 B bit-exact/backpressure、综合和完整 route。若 WNS 无实质改善，停止该方案并记录下一层根因。
+2. 只有时序与启动/引脚约束达到板测门槛后再生成 bitstream；在 C 手上的板卡采集 HDMI 图像、UART 输出和吞吐数据，与同一版 A Golden 对拍。
+3. 保存 Vivado/XSim 版本、ROM/Golden 哈希、完整资源/时序/DRC 报告及原始仿真摘要。
 
-阶段总结应分清最新小图回归、未复跑的全尺寸图像、已经完成但时序未收敛的综合/实现、未完成的 bitstream/板级验收，以及本机执行和 GitHub 协作任务。不要声称板测通过、200 MHz 收敛或全尺寸最新 RTL 已回归。若发现本文与原始报告冲突，应指出冲突并引用具体证据，不自行补猜结论。
+### 可由其他 GitHub 成员协作完成
+
+1. 独立复核 RTL 修改、闭包来源和这份阶段状态；检查是否有遗漏的代码/文档证据。
+2. 查阅项目约束和 B 侧实现，对 L5 phase 控制扇出/布局给出设计评审意见；建议必须附依据，不能以猜测替换板级要求。
+3. 确认 UART 引脚、上板 start 方案及可接受的最低时钟/帧率目标；提供书面验收门槛。
+4. GitHub 可做代码审查和文档校验；当前仓库没有已配置的 Vivado GitHub Actions runner，综合/布局布线不能假定会在 GitHub 自动执行。
+
+## 给阶段性总结作者的事实边界
+
+总结时可引用：全尺寸 **本机仿真**通过、真实 B+C 综合和 route 已完成、峰值内存约 3.13/4.13 GB、post-route WNS=-2.208 ns。必须同时写明：200 MHz 未收敛、没有 bitstream、没有板上图像或性能验收。不要把本机 Golden 对拍写成板测，也不要把 C+stub 的资源结果替代真实 B+C 数据。

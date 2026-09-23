@@ -1,0 +1,51 @@
+============================================================
+ C-side + real B : full XSim regression snapshot
+============================================================
+Run date (local)     : 2026-09-24
+Tool                 : Vivado / XSim 2022.2
+Real-B elaboration    : xelab -O0 (simulation-only workaround)
+C base commit        : 7694db5cbce0b67cad500d478408bb1cc72f6303
+Working tree         : local C changes were present; selected RTL matches
+                       the full-suite run. A later MAC operand-register
+                       experiment was reverted after route timing regressed.
+Post-revert retest   : tb_b_real_smoke, tb_b_real_backpressure, and
+                       tb_b_real_bit_exact rerun on selected RTL at 02:40 local;
+                       3 / 3 PASS. Current report/sim_result.txt and these
+                       three raw logs are from this post-revert run.
+
+Full regression      : 9 / 9 PASS
+  tb_stripe_buffer        PASS
+  tb_backpressure_rand    PASS
+  tb_ready_valid          PASS
+  tb_c_top                PASS
+  tb_b_real_primitives    PASS
+  tb_b_real_smoke         PASS
+  tb_b_real_backpressure  PASS (3 / 3 frames bit-exact under backpressure)
+  tb_b_real_bit_exact     PASS (96x54, 4 / 4 cases)
+  tb_b_real_full          PASS (960x540 input -> 1920x1080 output)
+
+Full-frame evidence:
+  Input beats            : 518,400 / 518,400
+  Output bytes           : 2,073,600 / 2,073,600
+  Byte matches / mismatch: 2,073,600 / 0
+  X bytes                : 0
+  stripe_last            : 17 / 17
+  frame_last / done      : 1 / 1
+  Hold-rule violations   : 0
+  Simulation cycles      : 4,699,401
+  XSim elapsed           : 00:36:28
+  Raw full-frame log SHA : D88E5079DF3D907723CCD85E30685B4877C268F2A0148ECEE86CEFABCC59FAE4
+  A integer Golden SHA   : BE8E576BEEA1632E6EE8257BA39A92C9C7950E9AE90B202BD240677E2D85504E
+
+Interpretation:
+  Functional simulation passes for the current selected RTL. This does not
+  establish 200 MHz timing closure, bitstream readiness, or board-level image
+  quality/performance. The full suite ran before the temporary experiment;
+  the three real-B benches affected by that experiment have since been rerun
+  successfully after restoring the selected RTL. The six unaffected suite
+  benches remain from the original full-suite run.
+
+Raw logs are under _sim/ (gitignored and regenerable); this file is a committed
+summary. The full-frame raw log was read directly before recording the counts
+and hashes above.
+============================================================

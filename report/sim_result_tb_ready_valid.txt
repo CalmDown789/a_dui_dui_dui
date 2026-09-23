@@ -2,19 +2,17 @@
  C-side RTL - SIMULATION result (xsim)
 ==============================================
  1  Vivado version     : 2022.2
- 2  testbenches run    : 3
- 3  pass / fail        : 3 / 0
+ 2  testbenches run    : 1
+ 3  pass / fail        : 1 / 0
  4  git commit SHA     : 7694db5cbce0b67cad500d478408bb1cc72f6303
- 5  generated at       : 2026-09-24 02:40:40 (local)
- 6  uncommitted change : DIRTY: M README.md  M docs/B_C_REAL_ACCEPTANCE_REPORT.md  M docs/CURRENT_PROJECT_STATUS.md  M docs/C_IMPLEMENTATION_STATUS.md  M docs/RTL_SYNTHESIS_MEMORY_AUDIT.md  M report/b_real_full_summary.json  M report/bc_real_synth/bc_real_synth_result.txt  M report/bc_real_synth/clocks_postroute.rpt  M report/bc_real_synth/clocks_synth.rpt  M report/bc_real_synth/route_status.rpt  M report/bc_real_synth/utilization_postroute.rpt  M report/bc_real_synth/utilization_postroute_hier.rpt  M report/bc_real_synth/utilization_synth.rpt  M report/bc_real_synth/utilization_synth_hier.rpt  M report/sim_result.txt  M rtl/b_real_c_patch/README.md  M rtl/b_real_c_patch/vector_postprocess_shared.sv  M rtl/c_core.v  M rtl/input_stream.v  M scripts/run_sim.tcl  M scripts/synth_bc_real.tcl  M tb/tb_ready_valid.v ?? _bself/ ?? report/bc_real_synth/drc_postroute.rpt ?? report/bc_real_synth/drc_synth.rpt ?? report/bc_real_synth/ram_utilization_postroute.rpt ?? report/bc_real_synth/ram_utilization_synth.rpt ?? report/bc_real_synth/timing_summary_postroute.rpt ?? report/bc_real_synth/timing_summary_synth.rpt ?? report/sim_result_full_20260924.txt ?? report/sim_result_tb_ready_valid.txt ?? rtl/b_real_c_patch/phase_accumulator.sv ?? rtl/b_real_c_patch/prelu_requantize.sv ?? tb/tb_const_probe.v
+ 5  generated at       : 2026-09-24 00:55:30 (local)
+ 6  uncommitted change : DIRTY: M report/bc_real_synth/bc_real_synth_result.txt  M report/bc_real_synth/clocks_postroute.rpt  M report/bc_real_synth/clocks_synth.rpt  M report/bc_real_synth/route_status.rpt  M report/bc_real_synth/utilization_postroute.rpt  M report/bc_real_synth/utilization_postroute_hier.rpt  M report/bc_real_synth/utilization_synth.rpt  M report/bc_real_synth/utilization_synth_hier.rpt  M report/sim_result.txt  M rtl/b_real_c_patch/README.md  M rtl/b_real_c_patch/vector_postprocess_shared.sv  M rtl/c_core.v  M rtl/input_stream.v  M scripts/run_sim.tcl  M scripts/synth_bc_real.tcl  M tb/tb_ready_valid.v ?? _bself/ ?? report/bc_real_synth/drc_postroute.rpt ?? report/bc_real_synth/drc_synth.rpt ?? report/bc_real_synth/ram_utilization_postroute.rpt ?? report/bc_real_synth/ram_utilization_synth.rpt ?? report/bc_real_synth/timing_summary_postroute.rpt ?? report/bc_real_synth/timing_summary_synth.rpt ?? report/sim_result_tb_ready_valid.txt ?? rtl/b_real_c_patch/phase_accumulator.sv ?? rtl/b_real_c_patch/prelu_requantize.sv ?? tb/tb_const_probe.v
  7  B formal path      : ae29515 closure + rtl/b_real_c_patch local RTL overrides
  8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)
  9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)
 10  real-B xelab mode : o0
 ----------------------------------------------
-   tb_b_real_smoke          : PASS   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
-   tb_b_real_backpressure   : PASS   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
-   tb_b_real_bit_exact      : PASS   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
+   tb_ready_valid           : PASS   (B=closure compiled; C datapath = b_core_stub)
 ----------------------------------------------
  raw logs : _sim/<tb>/xsim.log  (gitignored, regenerable)
 ==============================================

@@ -32,7 +32,7 @@
 #   · 新增 TB：tb_b_real_primitives（原语级回归，**非**正式路径）。
 #
 # ★ 2026-09-23 变更 B（**正式接入 B 五层真实 RTL @ ae29515**，取代原语镜像）：
-#   · 正式 B 文件列表 = 15 文件依赖闭包：13 个锁定 B 源文件 + 2 个 C 侧局部补丁
+#   · 正式 B 文件列表 = 15 文件依赖闭包：11 个锁定 B 源文件 + 4 个 C 侧局部补丁
 #     闭包由模块图从 b_core_real 出发传递求解（tools 脚本 `_b_closure.py`），
 #     逐文件 SHA-256 见 rtl/b_real_ae29515/PROVENANCE.md。
 #   · 旧 rtl/b_real/rtl（17 原语）**降级为 legacy**，仅供 tb_b_real_primitives 使用。
@@ -249,11 +249,11 @@ set b_real_files [list \
     "$b_real_dir/stream/elastic_fifo.sv"                 \
     "$b_real_dir/stream/mac_issue_stage.sv"              \
     "$b_patch_dir/phase_mac_pipeline.sv"                 \
-    "$b_real_dir/stream/phase_accumulator.sv"            \
+    "$b_patch_dir/phase_accumulator.sv"                  \
     "$b_real_dir/stream/eight_phase_issue.sv"            \
     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"    \
     "$b_patch_dir/vector_postprocess_shared.sv"          \
-    "$b_real_dir/postprocess/prelu_requantize.sv"        \
+    "$b_patch_dir/prelu_requantize.sv"                   \
 ]
 
 #-----------------------------------------------------------------------------

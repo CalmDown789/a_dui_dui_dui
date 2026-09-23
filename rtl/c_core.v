@@ -90,8 +90,48 @@ module c_core #(
     wire          frame_last_accept;
     wire          c_busy, c_done;
 
+    // Two-entry registered-ready FIFO separates the input ROM and B frontend.
+    // Data and coordinates cross a register boundary; ready is derived only
+    // from registered occupancy, so B's backpressure cannot reach ROM banking
+    // and address logic in the same cycle.
     wire          in_valid, in_ready;
     wire [PIXEL_W-1:0] in_data;
+    wire          src_valid, src_ready;
+    wire [PIXEL_W-1:0] src_data;
+    wire [15:0]   src_x, src_y;
+    reg  [PIXEL_W-1:0] c2b_data_q [0:1];
+    reg  [15:0]   c2b_x_q [0:1], c2b_y_q [0:1];
+    reg  [1:0]    c2b_count_q;
+    reg           c2b_wr_q, c2b_rd_q;
+    wire          c2b_push = src_valid && src_ready;
+    wire          c2b_pop  = in_valid && in_ready;
+    assign src_ready = (c2b_count_q != 2'd2);
+    assign in_valid  = (c2b_count_q != 2'd0);
+    assign in_data   = c2b_data_q[c2b_rd_q];
+    assign dbg_in_x  = c2b_x_q[c2b_rd_q];
+    assign dbg_in_y  = c2b_y_q[c2b_rd_q];
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            c2b_count_q <= 2'd0;
+            c2b_wr_q    <= 1'b0;
+            c2b_rd_q    <= 1'b0;
+        end else begin
+            if (c2b_push) begin
+                c2b_data_q[c2b_wr_q] <= src_data;
+                c2b_x_q[c2b_wr_q]    <= src_x;
+                c2b_y_q[c2b_wr_q]    <= src_y;
+                c2b_wr_q             <= !c2b_wr_q;
+            end
+            if (c2b_pop)
+                c2b_rd_q <= !c2b_rd_q;
+            case ({c2b_push, c2b_pop})
+                2'b10: c2b_count_q <= c2b_count_q + 1'b1;
+                2'b01: c2b_count_q <= c2b_count_q - 1'b1;
+                default: c2b_count_q <= c2b_count_q;
+            endcase
+        end
+    end
     wire          rom_en;
     wire [ROM_ADDR_W-1:0] rom_addr;
     wire [PIXEL_W-1:0]    rom_dout;
@@ -162,16 +202,16 @@ module c_core #(
         .clk          (clk),
         .rst_n        (rst_n),
         .start_load   (input_load),
-        .in_valid     (in_valid),
-        .in_data      (in_data),
-        .in_ready     (in_ready),
+        .in_valid     (src_valid),
+        .in_data      (src_data),
+        .in_ready     (src_ready),
         .rom_en       (rom_en),
         .rom_addr     (rom_addr),
         .rom_dout     (rom_dout),
         .input_active (),
         .input_done   (dbg_in_done),
-        .dbg_x        (dbg_in_x),
-        .dbg_y        (dbg_in_y)
+        .dbg_x        (src_x),
+        .dbg_y        (src_y)
     );
 
     //-------------------------------------------------------------------------

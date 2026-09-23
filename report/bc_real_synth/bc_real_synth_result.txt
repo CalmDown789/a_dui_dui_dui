@@ -9,9 +9,9 @@
  6  C_USE_B_REAL       : via 'synth_design -verilog_define C_USE_B_REAL'
  7  flatten_hierarchy  : rebuilt
  8  clock              : sys_clk 50MHz (W19) -> MMCME2_BASE -> 200 MHz
- 9  Git commit SHA     : 5ea7e7925b9abe277798a2f86ff2bb17c3be7b71
-10  uncommitted change : M scripts/run_sim.tcl  M scripts/synth_bc_real.tcl ?? docs/RTL_SYNTHESIS_MEMORY_AUDIT.md ?? rtl/b_real_c_patch/ ?? tb/tb_const_probe.v
-11  generated at       : 2026-09-23 22:42:32 (local)
+ 9  Git commit SHA     : 7694db5cbce0b67cad500d478408bb1cc72f6303
+10  uncommitted change : M rtl/b_real_c_patch/README.md  M rtl/b_real_c_patch/vector_postprocess_shared.sv  M rtl/c_core.v  M rtl/input_stream.v  M scripts/run_sim.tcl  M scripts/synth_bc_real.tcl  M tb/tb_ready_valid.v ?? rtl/b_real_c_patch/phase_accumulator.sv ?? rtl/b_real_c_patch/prelu_requantize.sv ?? tb/tb_const_probe.v
+11  generated at       : 2026-09-24 02:22:55 (local)
 12  implementation     : COMPLETED
 ----------------------------------------------------------
  SELF-CHECK (must be OK, else everything below is void):
@@ -27,26 +27,26 @@
    RAMB36/FIFO   : 230 / 365
    RAMB18        : 8 / 730
    DSP48E1       : 394 / 740
-   Slice LUTs    : 32339
-   Slice Regs    : 37061
+   Slice LUTs    : 32243
+   Slice Regs    : 41673
    LUT as Memory : 5717
    MMCME2_ADV    : 1
    PLLE2_ADV     : 0
    BUFGCTRL      : 1
-   WNS / TNS     : -3.157 / -12021.518 ns
+   WNS / TNS     : -1.169 / -8153.583 ns
    WHS / THS     : 0.029 / 0.000 ns
 ----------------------------------------------------------
  (B) POST-ROUTE (MEASURED)
    RAMB36/FIFO   : 230 / 365
    RAMB18        : 8 / 730
    DSP48E1       : 394 / 740
-   Slice LUTs    : 31848
-   Slice Regs    : 38065
+   Slice LUTs    : 32152
+   Slice Regs    : 41932
    MMCME2_ADV    : 1
    PLLE2_ADV     : 0
    BUFGCTRL      : 1
-   WNS / TNS     : -3.348 / -89415.367 ns
-   WHS / THS     : 0.008 / 0.000 ns
+   WNS / TNS     : -2.208 / -50037.625 ns
+   WHS / THS     : 0.036 / 0.000 ns
 ----------------------------------------------------------
  reports : report/bc_real_synth/
 ==========================================================

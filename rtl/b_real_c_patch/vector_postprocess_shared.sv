@@ -28,9 +28,9 @@ module vector_postprocess_shared #(
     reg [3:0] issued[0:1],completed[0:1];
     reg [1:0] occupied,ready_slot;
     reg write_slot,issue_slot,read_slot;
-    reg [4:0] meta_valid;
-    reg [3:0] meta_group[0:4];
-    reg [4:0] meta_slot;
+    reg [7:0] meta_valid;
+    reg [3:0] meta_group[0:7];
+    reg [7:0] meta_slot;
     reg dispatch_valid;
     reg [LANES*32-1:0] dispatch_accum;
     reg [LANES*16-1:0] dispatch_prelu;
@@ -88,12 +88,12 @@ module vector_postprocess_shared #(
             input_slot[0]<=0;input_slot[1]<=0;
             output_slot[0]<=0;output_slot[1]<=0;
             meta_valid<=0;meta_slot<=0;dispatch_valid<=0;
-            for(i=0;i<5;i=i+1)meta_group[i]<=0;
+            for(i=0;i<8;i=i+1)meta_group[i]<=0;
         end else begin
-            meta_valid<={meta_valid[3:0],issue_valid};
-            meta_slot<={meta_slot[3:0],issue_slot};
+            meta_valid<={meta_valid[6:0],issue_valid};
+            meta_slot<={meta_slot[6:0],issue_slot};
             meta_group[0]<=issue_group;
-            for(i=1;i<5;i=i+1)meta_group[i]<=meta_group[i-1];
+            for(i=1;i<8;i=i+1)meta_group[i]<=meta_group[i-1];
             dispatch_valid<=issue_valid;
             if(input_fire)begin
                 input_slot[write_slot]<=accum_flat;
@@ -109,11 +109,11 @@ module vector_postprocess_shared #(
             end
             if(lane_valid[0])begin
                 for(i=0;i<LANES;i=i+1)
-                    output_slot[meta_slot[4]][(meta_group[4]*LANES+i)*OUT_W+:OUT_W]
+                    output_slot[meta_slot[7]][(meta_group[7]*LANES+i)*OUT_W+:OUT_W]
                         <=lane_data[i*OUT_W+:OUT_W];
-                completed[meta_slot[4]]<=completed[meta_slot[4]]+1'b1;
-                if(completed[meta_slot[4]]==GROUPS-1)
-                    ready_slot[meta_slot[4]]<=1;
+                completed[meta_slot[7]]<=completed[meta_slot[7]]+1'b1;
+                if(completed[meta_slot[7]]==GROUPS-1)
+                    ready_slot[meta_slot[7]]<=1;
             end
             if(output_fire)begin
                 occupied[read_slot]<=0;
@@ -126,7 +126,7 @@ module vector_postprocess_shared #(
     always @(posedge clk)if(!rst)begin
         for(integer v=1;v<LANES;v=v+1)
             if(lane_valid[v]!==lane_valid[0])$fatal(1,"postprocess lane valid skew");
-        if(lane_valid[0]&&!meta_valid[4])$fatal(1,"postprocess metadata latency mismatch");
+        if(lane_valid[0]&&!meta_valid[7])$fatal(1,"postprocess metadata latency mismatch");
     end
 `endif
 endmodule

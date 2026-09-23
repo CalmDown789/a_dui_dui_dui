@@ -1,11 +1,13 @@
 # C 侧 RTL 实现状态（C_IMPLEMENTATION_STATUS）
 
-> **2026-09-23 最新状态**：真实 B `ae29515` RTL 与 ROM 未修改。XSim 2022.2 默认
-> `xelab` 优化下的 96×54 和历史整帧对拍失败；使用 `-O0` 后 6×5 逐层探针、
-> 96×54 四组及 960×540 全帧均逐字节匹配。真实 B+C 综合、实现和板级验证仍未完成。
-> 见 `B_REAL_XSIM_REPRODUCIBILITY.md` 与 `B_C_REAL_ACCEPTANCE_REPORT.md`。本文以下
-> `192 RAMB36`、旧 TB PASS 与时序
-> 仍是此前 C+stub / B 原语阶段的历史证据。
+> **当前状态（2026-09-24）**：C+真实 B 的完整回归 9/9 PASS；96×54 四组和
+> 960×540→1920×1080 全帧逐字节匹配 A 整数 Golden。真实 B+C 综合与 route 已完成，
+> post-route 为 394 DSP、32,152 LUT、41,932 FF、230 RAMB36 + 8 RAMB18，峰值约 4.13 GB；
+> 但 WNS=-2.208 ns，200 MHz 未闭合，尚无 bitstream 或板测。当前权威快照见
+> `CURRENT_PROJECT_STATUS.md`，完整验收见 `B_C_REAL_ACCEPTANCE_REPORT.md`。
+>
+> **下文主体是历史 C+stub / B 原语阶段的 C 侧实现记录**：其中 `192 RAMB36`、旧 TB
+> PASS、旧时序及资源预算不可作为当前真实 B+C 的综合或板级证据。不要据此覆盖上方最新状态。
 
 > 仓库：`srtp/c_side`（C 侧独立 Git 仓库，2026-09-23 新建）
 > 基线文档：
