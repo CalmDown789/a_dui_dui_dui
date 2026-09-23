@@ -1,0 +1,45 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Wed Sep 23 13:22:00 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/Administrator/WorkBuddy/srtp/c_side/report/impl/utilization_postroute_hier.rpt
+| Design       : c_synth_top
+| Device       : xc7a200tfbg484-2
+| Speed File   : -2
+| Design State : Routed
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+|     Instance     |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+| c_synth_top      |            (top) |       3642 |       3642 |       0 |    0 | 8113 |    192 |      0 |          0 |
+|   (c_synth_top)  |            (top) |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|   u_top          |            c_top |       3642 |       3642 |       0 |    0 | 8113 |    192 |      0 |          0 |
+|     (u_top)      |            c_top |         15 |         15 |       0 |    0 |   55 |      0 |      0 |          0 |
+|     u_core       |           c_core |       3627 |       3627 |       0 |    0 | 8058 |    192 |      0 |          0 |
+|       u_b        |        b_core_if |       3293 |       3293 |       0 |    0 | 7794 |      0 |      0 |          0 |
+|         u_b_core |      b_core_stub |       3293 |       3293 |       0 |    0 | 7794 |      0 |      0 |          0 |
+|       u_ctrl     |           c_ctrl |          7 |          7 |       0 |    0 |    8 |      0 |      0 |          0 |
+|       u_in       |     input_stream |         29 |         29 |       0 |    0 |   21 |      0 |      0 |          0 |
+|       u_out      |    output_stream |         60 |         60 |       0 |    0 |   51 |      0 |      0 |          0 |
+|       u_pp       |  pingpong_buffer |        192 |        192 |       0 |    0 |  121 |     64 |      0 |          0 |
+|         (u_pp)   |  pingpong_buffer |         81 |         81 |       0 |    0 |  115 |      0 |      0 |          0 |
+|         u_bank0  | stripe_buffer__1 |         53 |         53 |       0 |    0 |    3 |     32 |      0 |          0 |
+|         u_bank1  |    stripe_buffer |         58 |         58 |       0 |    0 |    3 |     32 |      0 |          0 |
+|       u_rb       |    readback_ctrl |          4 |          4 |       0 |    0 |   37 |      0 |      0 |          0 |
+|       u_rom      |        input_rom |         24 |         24 |       0 |    0 |    3 |    128 |      0 |          0 |
+|       u_uart     |          uart_tx |         19 |         19 |       0 |    0 |   23 |      0 |      0 |          0 |
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

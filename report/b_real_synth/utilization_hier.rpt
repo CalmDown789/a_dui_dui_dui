@@ -1,0 +1,161 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Wed Sep 23 13:42:21 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/Administrator/WorkBuddy/srtp/c_side/report/b_real_synth/utilization_hier.rpt
+| Design       : b_real_bench_top
+| Device       : xc7a200tfbg484-2
+| Speed File   : -2
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------+----------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|         Instance        |                 Module                 | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------------+----------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| b_real_bench_top        |                                  (top) |       4083 |       3507 |     480 |   96 | 3980 |      1 |     10 |        127 |
+|   (b_real_bench_top)    |                                  (top) |        626 |        626 |       0 |    0 |   65 |      0 |      0 |          0 |
+|   u_c1                  |                        conv1x1_backend |         52 |         52 |       0 |    0 |   66 |      0 |      0 |          1 |
+|     (u_c1)              |                        conv1x1_backend |          0 |          0 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     u_accumulator       |    channel_accumulator__parameterized0 |         52 |         52 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     u_mult              |                        dsp_signed_mult |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_c3                  |                        conv3x3_backend |        234 |        202 |       0 |   32 |  312 |      0 |      0 |          9 |
+|     (u_c3)              |                        conv3x3_backend |         48 |         16 |       0 |   32 |   99 |      0 |      0 |          0 |
+|     u_accumulator       |                    channel_accumulator |         51 |         51 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     u_dot9              |                          dot9_pipeline |        135 |        135 |       0 |    0 |  180 |      0 |      0 |          9 |
+|   u_c5                  |                        conv5x5_backend |        505 |        473 |       0 |   32 |  617 |      0 |      0 |         25 |
+|     (u_c5)              |                        conv5x5_backend |         48 |         16 |       0 |   32 |  100 |      0 |      0 |          0 |
+|     u_accumulator       | channel_accumulator__parameterized1__1 |         51 |         51 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     u_dot25             |                         dot25_pipeline |        406 |        406 |       0 |    0 |  484 |      0 |      0 |         25 |
+|       (u_dot25)         |                         dot25_pipeline |        406 |        406 |       0 |    0 |  484 |      0 |      0 |          0 |
+|       g_mult[0].u_mult  |                     dsp_signed_mult__2 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[10].u_mult |                    dsp_signed_mult__12 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[11].u_mult |                    dsp_signed_mult__13 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[12].u_mult |                    dsp_signed_mult__14 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[13].u_mult |                    dsp_signed_mult__15 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[14].u_mult |                    dsp_signed_mult__16 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[15].u_mult |                    dsp_signed_mult__17 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[16].u_mult |                    dsp_signed_mult__18 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[17].u_mult |                    dsp_signed_mult__19 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[18].u_mult |                    dsp_signed_mult__20 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[19].u_mult |                    dsp_signed_mult__21 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[1].u_mult  |                     dsp_signed_mult__3 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[20].u_mult |                    dsp_signed_mult__22 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[21].u_mult |                    dsp_signed_mult__23 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[22].u_mult |                    dsp_signed_mult__24 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[23].u_mult |                    dsp_signed_mult__25 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[24].u_mult |                    dsp_signed_mult__26 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[2].u_mult  |                     dsp_signed_mult__4 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[3].u_mult  |                     dsp_signed_mult__5 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[4].u_mult  |                     dsp_signed_mult__6 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[5].u_mult  |                     dsp_signed_mult__7 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[6].u_mult  |                     dsp_signed_mult__8 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[7].u_mult  |                     dsp_signed_mult__9 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[8].u_mult  |                    dsp_signed_mult__10 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[9].u_mult  |                    dsp_signed_mult__11 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_c5u                 |                   conv5x5_u8s8_backend |        505 |        473 |       0 |   32 |  617 |      0 |      0 |         25 |
+|     (u_c5u)             |                   conv5x5_u8s8_backend |         48 |         16 |       0 |   32 |  100 |      0 |      0 |          0 |
+|     u_accumulator       |    channel_accumulator__parameterized1 |         51 |         51 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     u_dot25             |                    dot25_u8s8_pipeline |        406 |        406 |       0 |    0 |  484 |      0 |      0 |         25 |
+|       (u_dot25)         |                    dot25_u8s8_pipeline |        406 |        406 |       0 |    0 |  484 |      0 |      0 |          0 |
+|       g_mult[0].u_mult  |                       dsp_u8s8_mult__2 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[10].u_mult |                      dsp_u8s8_mult__12 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[11].u_mult |                      dsp_u8s8_mult__13 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[12].u_mult |                      dsp_u8s8_mult__14 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[13].u_mult |                      dsp_u8s8_mult__15 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[14].u_mult |                      dsp_u8s8_mult__16 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[15].u_mult |                      dsp_u8s8_mult__17 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[16].u_mult |                      dsp_u8s8_mult__18 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[17].u_mult |                      dsp_u8s8_mult__19 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[18].u_mult |                      dsp_u8s8_mult__20 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[19].u_mult |                      dsp_u8s8_mult__21 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[1].u_mult  |                       dsp_u8s8_mult__3 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[20].u_mult |                      dsp_u8s8_mult__22 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[21].u_mult |                      dsp_u8s8_mult__23 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[22].u_mult |                      dsp_u8s8_mult__24 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[23].u_mult |                      dsp_u8s8_mult__25 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[24].u_mult |                          dsp_u8s8_mult |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[2].u_mult  |                       dsp_u8s8_mult__4 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[3].u_mult  |                       dsp_u8s8_mult__5 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[4].u_mult  |                       dsp_u8s8_mult__6 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[5].u_mult  |                       dsp_u8s8_mult__7 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[6].u_mult  |                       dsp_u8s8_mult__8 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[7].u_mult  |                       dsp_u8s8_mult__9 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[8].u_mult  |                      dsp_u8s8_mult__10 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|       g_mult[9].u_mult  |                      dsp_u8s8_mult__11 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_ca                  |                 channel_accumulator__1 |         51 |         51 |       0 |    0 |   33 |      0 |      0 |          0 |
+|   u_d25                 |                      dot25_pipeline__1 |        406 |        406 |       0 |    0 |  484 |      0 |      0 |         25 |
+|     (u_d25)             |                      dot25_pipeline__1 |        406 |        406 |       0 |    0 |  484 |      0 |      0 |          0 |
+|     g_mult[0].u_mult    |                    dsp_signed_mult__51 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[10].u_mult   |                    dsp_signed_mult__41 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[11].u_mult   |                    dsp_signed_mult__40 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[12].u_mult   |                    dsp_signed_mult__39 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[13].u_mult   |                    dsp_signed_mult__38 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[14].u_mult   |                    dsp_signed_mult__37 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[15].u_mult   |                    dsp_signed_mult__36 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[16].u_mult   |                    dsp_signed_mult__35 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[17].u_mult   |                    dsp_signed_mult__34 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[18].u_mult   |                    dsp_signed_mult__33 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[19].u_mult   |                    dsp_signed_mult__32 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[1].u_mult    |                    dsp_signed_mult__50 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[20].u_mult   |                    dsp_signed_mult__31 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[21].u_mult   |                    dsp_signed_mult__30 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[22].u_mult   |                    dsp_signed_mult__29 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[23].u_mult   |                    dsp_signed_mult__28 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[24].u_mult   |                    dsp_signed_mult__27 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[2].u_mult    |                    dsp_signed_mult__49 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[3].u_mult    |                    dsp_signed_mult__48 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[4].u_mult    |                    dsp_signed_mult__47 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[5].u_mult    |                    dsp_signed_mult__46 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[6].u_mult    |                    dsp_signed_mult__45 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[7].u_mult    |                    dsp_signed_mult__44 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[8].u_mult    |                    dsp_signed_mult__43 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[9].u_mult    |                    dsp_signed_mult__42 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_d25u                |                 dot25_u8s8_pipeline__1 |        406 |        406 |       0 |    0 |  484 |      0 |      0 |         25 |
+|     (u_d25u)            |                 dot25_u8s8_pipeline__1 |        406 |        406 |       0 |    0 |  484 |      0 |      0 |          0 |
+|     g_mult[0].u_mult    |                      dsp_u8s8_mult__50 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[10].u_mult   |                      dsp_u8s8_mult__40 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[11].u_mult   |                      dsp_u8s8_mult__39 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[12].u_mult   |                      dsp_u8s8_mult__38 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[13].u_mult   |                      dsp_u8s8_mult__37 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[14].u_mult   |                      dsp_u8s8_mult__36 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[15].u_mult   |                      dsp_u8s8_mult__35 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[16].u_mult   |                      dsp_u8s8_mult__34 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[17].u_mult   |                      dsp_u8s8_mult__33 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[18].u_mult   |                      dsp_u8s8_mult__32 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[19].u_mult   |                      dsp_u8s8_mult__31 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[1].u_mult    |                      dsp_u8s8_mult__49 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[20].u_mult   |                      dsp_u8s8_mult__30 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[21].u_mult   |                      dsp_u8s8_mult__29 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[22].u_mult   |                      dsp_u8s8_mult__28 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[23].u_mult   |                      dsp_u8s8_mult__27 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[24].u_mult   |                      dsp_u8s8_mult__26 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[2].u_mult    |                      dsp_u8s8_mult__48 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[3].u_mult    |                      dsp_u8s8_mult__47 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[4].u_mult    |                      dsp_u8s8_mult__46 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[5].u_mult    |                      dsp_u8s8_mult__45 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[6].u_mult    |                      dsp_u8s8_mult__44 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[7].u_mult    |                      dsp_u8s8_mult__43 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[8].u_mult    |                      dsp_u8s8_mult__42 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|     g_mult[9].u_mult    |                      dsp_u8s8_mult__41 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_d9                  |                       dot9_pipeline__1 |        135 |        135 |       0 |    0 |  180 |      0 |      0 |          9 |
+|   u_pr                  |                       prelu_requantize |        379 |        379 |       0 |    0 |  103 |      0 |      0 |          6 |
+|   u_rom                 |                     sync_parameter_rom |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|   u_sm                  |                     dsp_signed_mult__1 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_u8                  |                       dsp_u8s8_mult__1 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          1 |
+|   u_w3b                 |                         window3x3_bram |         42 |         42 |       0 |    0 |  217 |      0 |      3 |          0 |
+|   u_w3s                 |                       window3x3_stream |        162 |         42 |     120 |    0 |   91 |      0 |      1 |          0 |
+|   u_w5b                 |                         window5x5_bram |        126 |        126 |       0 |    0 |  474 |      0 |      5 |          0 |
+|   u_w5s                 |                       window5x5_stream |        454 |         94 |     360 |    0 |  237 |      0 |      1 |          0 |
++-------------------------+----------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

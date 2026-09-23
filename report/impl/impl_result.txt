@@ -1,0 +1,46 @@
+==============================================================
+ C-side RTL skeleton  --  IMPLEMENTATION (post-route) RESULT
+ NOTE: ASCII-only labels on purpose. Chinese narrative lives in
+       docs/C_IMPLEMENTATION_STATUS.md (section: impl evidence).
+==============================================================
+ 1  Vivado version        : 2022.2
+ 2  FPGA part             : xc7a200tfbg484-2
+ 3  synthesis strategy    : Vivado Synthesis Defaults
+ 4  implementation         : EXECUTED  opt_design + place_design + phys_opt_design + route_design
+ 5  bitstream              : NOT generated
+ 6  top module             : c_synth_top
+ 7  constraints            : constr/c_top.xdc
+ 8  clock                  : MMCME2_BASE 24.0/1/6.0 -> clk_200 = 200 MHz
+ 9  Git commit SHA         : 0632b33172ce517d3e5d5a754dc28e420fe263b8
+10  generation time        : 2026-09-23 13:59:36 (local)
+11  uncommitted changes    : DIRTY: M README.md  M docs/C_IMPLEMENTATION_STATUS.md  M docs/DEPENDENCIES_A_B.md  M docs/DEPENDENCIES_A_B.txt  M rtl/b_core_if.v  M rtl/b_core_stub.v  M rtl/c_config.vh  M rtl/c_core.v  M rtl/c_ctrl.v  M rtl/input_stream.v  M rtl/output_stream.v  M rtl/pingpong_buffer.v  M rtl/readback_ctrl.v  M scripts/run_sim.tcl  M scripts/synth_check.tcl  M tb/tb_stripe_buffer.v ?? docs/ACCEPTANCE_DATA_DEPENDENCY.md ?? docs/BRAM_BUDGET_MAP.md ?? docs/B_FEEDBACK_CLOSURE_AUDIT.md ?? rtl/b_real/ ?? rtl/b_real_bench_param.mem ?? rtl/b_real_bench_top.v ?? scripts/impl_check.tcl ?? scripts/synth_b_real.tcl ?? scripts/verify_golden.py ?? tb/b_real/ ?? tb/tb_b_real_primitives.v
+--------------------------------------------------------------
+ Flow-A : synth, flatten_hierarchy=none  -> per-module resources
+   WNS = -0.153 ns   TNS = -0.377 ns   WHS = 0.127 ns
+   failing endpoints = 3 / 20502
+   (WARNING: timings from this flow are NOT representative;
+    flatten none blocks cross-module optimization. Use Flow B.)
+ Flow-B : synth, default flatten  -> representative
+   WNS = -0.153 ns   TNS = -0.377 ns   WHS = 0.127 ns
+   failing endpoints = 3 / 20786
+ Flow-B : post-route (representative)
+   WNS = -2.749 ns   TNS = -25008.076 ns   WHS = 0.067 ns
+   failing endpoints = 17766 / 20906
+--------------------------------------------------------------
+ post-route resources
+   Block RAM Tile  : 192 / 365
+   RAMB36/FIFO     : 192 / 365
+   RAMB18          : 0 / 730
+   URAM            : n/a / 0   (Artix-7 has no URAM)
+   DSP48E1         : 0 / 740
+   Slice LUTs      : 3762
+   Slice Registers : 8252
+--------------------------------------------------------------
+ DISCIPLINE
+  * This file is POST-ROUTE (implementation). It must NOT be quoted
+    interchangeably with report/synth_result.txt (synthesis only).
+  * No bitstream was generated. WNS>0 is not a frame-rate claim.
+  * Per-module resources come from Flow A (flatten none, synthesis
+    only) -> report/impl/util_synth_A_hier_none.rpt
+  * Reports: report/impl/
+==============================================================

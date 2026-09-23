@@ -56,6 +56,12 @@ rtl/input_image_*.mem
 rtl/*_full.mem
 tb/data/*_full.mem
 
+#--- Vivado 在启动目录自动落盘的文件（非人工产出，每次 route_design 重生）----
+#   tight_setup_hold_pins.txt = 布局布线器给出的「setup/hold 紧张引脚」提示表，
+#   属于工具副产物；放在启动目录（仓库根）会污染工作树，故排除。
+#   需要留档时请把要点写进 report/impl/ 的说明文本，不要提交本文件。
+tight_setup_hold_pins.txt
+
 #--- 操作系统 / 编辑器 ------------------------------------------------------
 Thumbs.db
 desktop.ini

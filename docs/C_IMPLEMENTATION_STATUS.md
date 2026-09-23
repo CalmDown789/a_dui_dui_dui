@@ -3,7 +3,7 @@
 > 仓库：`srtp/c_side`（C 侧独立 Git 仓库，2026-09-23 新建）
 > 基线文档：
 > 1. `output/任务书v3.2.2_修订执行版.md`（= `FSRCNN_ACX750-200T部署任务书_v3.2.2修订执行版.docx`）
-> 2. `成员B对C架构接口与资源预算确认_v1.0.docx`
+> 2. `成员B对C架构接口与资源预算确认_v1.1.docx`（**现行版本**，取代 v1.0）
 >
 > 本轮性质：**C 侧可编译、可仿真的工程骨架**。**不是**完整 FSRCNN CNN。
 > 所有未由 A/B 确认的量一律 **parameter 化 + TODO**，未做任何猜测。
@@ -293,7 +293,7 @@ LFSR 三个不同种子各跑一帧。
 | 条带 bank1（`u_pp/u_bank1/mem_reg`，120K×8） | **32** | 日志明确列出 |
 | **合计** | **192** | 128 + 32 + 32 |
 
-> 与 B 侧预算对照（成员B确认_v1.0 §五，B 侧口径）：B 估算「C 输入 ROM **127** + C 侧 64 行双缓冲 **60**」= **187**。
+> 与 B 侧预算对照（成员B确认_v1.1 §五，B 侧口径）：B 估算「C 输入 ROM **127** + C 侧 64 行双缓冲 **60**」= **187**。
 > 本次实测 **128 + 64 = 192**，比 B 的估算 **多 5 块**（ROM 深度向上取整差 1 块；条带降为 32+32 而非 B 假设的 30+30）。
 > **按 §五.13（2）二级判据，C 侧骨架的实际 BRAM utilization（52.60%）在 85% 工程预算线内。**
 > ⚠️ 但这**不是**「BRAM 已闭合」：① 本设计含 stub，**不含 B 侧 44 块 RAMB36 行缓存与相位 bank**；
@@ -326,7 +326,35 @@ LFSR 三个不同种子各跑一帧。
 | 2 | **WNS −4.470 ns**，关键路径 `stripe_base_q → CARRY4 → LUT1 → CARRY4 → LUT6×2 → DSP48E1(A×0x780) → LUT2 → wr_stripe_len_q/D` | `next_rem = OUT_H−next_base; next_h = min(...); wr_stripe_len = next_h×OUT_W` 被串成一条「减法→取小→乘法」链，且乘法被映射成 **DSP48E1** | 末条带行数在**展开期**即为常量（`LAST_H = OUT_H − (N_STRIPES−1)×STRIPE_H`），改用**常量 mux**；并把 `stripe_last_row` 也寄存 | WNS **−4.470 → −0.153 ns**；失败端点 **150 → 3**；**DSP48E1 2 → 0** |
 | 3 | **`WARNING [Synth 8-6896] loop limit (65536) exceeded inside initial block, initial block items will be ignored`**（`input_rom.v` / `stripe_buffer.v`） | 用无界 `for` 循环给整片 ROM/RAM 写初值；综合器**忽略**超限的 initial 块 ⇒ ROM 无初值、BRAM 统计失真（实测只报 16 块 RAMB36） | ① ROM 改走 `$readmemh`（Vivado 原生支持，不受循环上限影响），公式 pattern **仅包在 `` `ifdef C_SIM `` 内**；② `stripe_buffer`/`b_core_stub` 删除无效果的初值（BRAM 上电默认 0，且本设计保证先写后读） | BRAM 统计回到可信值（**16 → 192**）；新增 `scripts/gen_input_mem.py` 生成 1.5 MB 的 `rtl/input_image_pattern.mem`（已 gitignore） |
 
-### 9.4 已知遗留项（已定性，优先级低）
+### 9.4 逐模块资源（Flow-A `flatten_hierarchy none`，新增）
+
+来源：`report/impl/util_synth_A_hier_none.rpt`（**该次综合用 `flatten none`，其时序不代表设计**）。
+
+| 实例 | 模块 | RAMB36 | LUT | FF |
+|---|---|---:|---:|---:|
+| `u_rom` | `input_rom` | **128** | 24 | 3 |
+| `u_pp` | `pingpong_buffer` | **64** | 171 | 56 |
+| ⠀└ `u_bank0` / `u_bank1` | `stripe_buffer` | 32 / 32 | 44 / 44 | 1 / 1 |
+| `u_b` | `b_core_if` → **`b_core_stub`** | **0** | **3,290** | **7,794** |
+| `u_ctrl` / `u_in` / `u_out` / `u_rb` / `u_uart` | — | 0 | 126 | 140 |
+| **合计** | | **192** | 3,626 | 8,048 |
+
+> 🔎 **本表最重要的一条**：**stub 占了 3,290 LUT / 7,794 FF（≈90% 的逻辑资源），却 0 块 BRAM**。
+> 即当前 LUT/FF 数字**几乎全是 stub 的**，与 C 侧基础设施无关 ⇒ 真实 B 替换后应大幅变化，**必须重测**。
+> 而 **BRAM 部分与 B 完全无关**：128 + 64 全部是 C 侧输入 ROM 与条带双缓冲。
+
+### 9.5 两条流程的综合级时序对比（纠正一处错误归因）
+
+| 流程 | flatten 策略 | 综合级 WNS | 失败端点 |
+|---|---|---|---|
+| Flow-A | `none`（保留层级） | **−0.153 ns** | 3 / 20,502 |
+| Flow-B | 默认（`rebuilt`） | **−0.153 ns** | 3 / 20,786 |
+
+> ⚠️ **纠正**：早前脚本注释里写过「`flatten_hierarchy none` 会显著恶化时序（−3.098 ns）」——**错误**。
+> −3.098 是一次**实现后**数值，被误记成了 flatten 的代价。**复跑实测两条流程综合级 WNS 完全相同**，
+> `flatten none` 在本设计上并未恶化综合级时序；实现后的差异来自**布局/布线**，与 flatten 选择无关。
+
+### 9.6 已知遗留项（已定性，优先级低）
 
 | 项 | 说明 | 影响 |
 |---|---|---|
@@ -336,7 +364,91 @@ LFSR 三个不同种子各跑一帧。
 | `WARNING [Synth 8-7080]` ×1 | Parallel synthesis criteria not met（回退单线程） | 无功能影响 |
 
 **本轮结论（严格）**：C 侧骨架 **可编译、可仿真、可综合**，
-三条 TB 全 PASS，综合 **0 ERROR / 0 CRITICAL WARNING**；
+五条 TB 全 PASS，综合 **0 ERROR / 0 CRITICAL WARNING**；
 synthesis 级 WNS **−0.153 ns** 且**剩余违例路径在 stub 内部**；
 RAMB36 **192/365 = 52.60%**，DSP **0**。
-**这不构成「完整 FSRCNN 已收敛」的结论**——完整设计尚未综合、未实现、未上板。
+**这不构成「完整 FSRCNN 已收敛」的结论**——完整设计尚未在目标配置下做时序收敛、未生成位流、未上板。
+
+---
+
+## 10. 实现（implementation）取证结果 —— **口径与 §9 不同，不得互相引用**
+
+> 命令：`vivado -mode batch -source scripts/impl_check.tcl`
+> 实测日期：2026-09-23　｜　器件 `xc7a200tfbg484-2`　｜　Vivado 2022.2
+> ⚠️ **未执行** `write_bitstream`；**未生成** `.bit`。
+> ⚠️ 本轮**未做任何时序收敛努力**：无 floorplan、未调 opt/place 策略、未做时序驱动综合。
+> **时序闭合不在本轮范围**，本节只提供**诚实的基线测量**。
+
+### 10.1 两条流程（脚本内分离，目的不同）
+
+| 流程 | 命令 | 目的 |
+|---|---|---|
+| **Flow-A** | `synth_design -flatten_hierarchy none` | 保留层级 ⇒ 出**逐模块**资源（§9.4） |
+| **Flow-B** | `synth_design`（默认）→ `opt_design` → `place_design` → `phys_opt_design` → `route_design` | 出**代表性**实现后资源与时序 |
+
+### 10.2 post-route 资源（Flow-B）
+
+| 资源 | 实测 | 上限 | 占比 |
+|---|---|---|---|
+| **Block RAM Tile** | **192** | 365 | **52.60%** |
+| RAMB36/FIFO | **192** | 365 | **52.60%** |
+| RAMB18 | 0 | 730 | 0% |
+| **DSP48E1** | **0** | 740 | 0% |
+| Slice LUTs | 3,762 | 133,800 | 2.81% |
+| Slice Registers | 8,252 | 269,200 | 3.07% |
+| LUT as Memory | 0 | 46,200 | 0% |
+| BUFGCTRL / MMCME2_ADV | 1 / 1 | 32 / 10 | — |
+| Bonded IOB | 11 | 285 | 3.86% |
+
+> ✅ **RAMB36 从综合到实现保持 192 不变**（BRAM 不随 opt/place/route 改变），这是合理的一致性检查。
+> ✅ **布线成功**：可布线网络 10,619 / 10,619 全部布通，**routing errors = 0**。
+
+### 10.3 post-route 时序（Flow-B）
+
+| 项 | 值 |
+|---|---|
+| 目标时钟 | 200 MHz（`sys_clk` 20 ns → MMCM → `u_top_n_0` 5.000 ns） |
+| **WNS** | **−2.749 ns** |
+| TNS | **−25,008.076 ns** |
+| 失败端点 | **17,766 / 20,906** |
+| WHS | +0.067 ns（失败 0） |
+| WPWS | 2.000 ns（失败 0） |
+| 结论 | `Timing constraints are not met.` |
+
+**最差路径**：
+
+```
+Slack (VIOLATED) : -2.749 ns
+  Source      : u_top/u_core/u_b/u_b_core/out_x_reg[4]/C          ← stub 内部
+  Destination : u_top/u_core/u_pp/u_bank1/mem_reg_1_3/DIADI[0]    ← 条带 bank1 的 BRAM 数据输入
+  Requirement : 5.000 ns
+  Data Path Delay : 7.104 ns  (logic 1.479 ns = 20.8% ; route 5.625 ns = 79.2%)
+  Logic Levels : 5  (LUT6×2, MUXF7×2, MUXF8×1)
+  Clock Path Skew : -0.216 ns   (DCD 5.335 ns / SCD 5.763 ns)
+```
+
+### 10.4 如何正确解读（**关键，别读成设计缺陷**）
+
+1. **违例由布线主导，不是逻辑深度主导**：逻辑仅占 **1.479 ns / 5 级**，
+   布线占 **79.2%**。在只用了 **12.83% slice** 的空器件上出现 5.6 ns 走线延迟，
+   属**布局/约束质量**问题（无 floorplan、无 I/O 时序约束、MMCM 位置未约束
+   ⇒ 时钟插入延迟高达 ~5.5 ns），**不是** RTL 组合逻辑过深。
+2. **失败路径起点在 stub 内部**（`u_b_core/out_x_reg[4]`），终点是 C 侧条带 BRAM。
+   真实 B 替换 stub 后拓扑改变，**必须重测**。
+3. **综合级 −0.153 ns 与 post-route −2.749 ns 差距巨大**，正说明**两个口径绝不能互相引用**：
+   综合级不含布局布线延迟与时钟树效应。
+4. 🚫 **不得**据此推 Fmax；**不得**写「已收敛/未收敛」之外的量化结论。
+   本轮**未做时序收敛努力**，该工作在 **B-1（真实五层 RTL）** 到位后一起做才有意义。
+
+### 10.5 B 原语在目标器件上的仅综合
+
+见 `report/b_real_synth/`（顶层 `b_real_bench_top`，17 个原语全部实例化）。
+**边界**：这是**原语集合**的 synthesis 级数据，**不是**五层网络、**不是**系统级结论，
+**不得**据此宣称或推翻 B v1.1 的 **271 RAMB36** 系统预算。
+
+---
+
+## 11. 本轮闭环审计
+
+7 项「B 反馈闭环修订」要求的逐条审计、实测数据与本轮新修缺陷，
+见 **`docs/B_FEEDBACK_CLOSURE_AUDIT.md`**。

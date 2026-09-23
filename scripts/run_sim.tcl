@@ -12,6 +12,20 @@
 #   2. TB 必须有硬 timeout，本脚本再包一层 `-timeout` 兜底。
 #   3. **绝不打开波形 dump**（无 $dumpvars / 无 -wave）；磁盘安全第一。
 #   4. `-d C_SIM` 打开 RTL 内的 `$display` 诊断分支（综合时不定义）。
+#   5. ★ 2026-09-23 实测加固：**本脚本不得与 synth/impl 脚本并发运行**。
+#      实测「同一 TB 单独跑 → RESULT 正常；5 个 TB 与 synth_design 并发跑 →
+#      5/5 全部在 `Simulation engine failed to start ... -1073741515`
+#      （0xC0000135 = STATUS_DLL_NOT_FOUND）」。
+#      并发时 xsimk.exe 启动即失败，且**同一进程内重试也无效**（环境级抖动，
+#      非 RTL/TB 缺陷）。故：跑本脚本时请确保无其他 Vivado/xsim 进程在跑；
+#      脚本内另加 5/15/30 s 递增退避重试（共 4 次）兜底。
+#
+# ★ 2026-09-23 变更（B 反馈闭环 #2「真实 B 模块接入」）：
+#   · 新增 **B 真实 RTL** 编译步骤（rtl/b_real/**，来源见 rtl/b_real/PROVENANCE.md）；
+#   · 该步骤单独用 `-sv` 调用 xvlog —— B 交付中含 .sv 文件
+#     （sync_parameter_rom.sv / prelu_requantize.sv），
+#     **不得**因此把 C 侧自己的 .v 也一起丢进 `-sv` 模式；
+#   · 新增 TB：tb_b_real_primitives（断言「接入的是真 B，不是 C 的 stub」）。
 ##############################################################################
 
 set script_dir [file normalize [file dirname [info script]]]
@@ -27,6 +41,9 @@ if {![file exists "$bin_dir/xvlog.bat"]} {
     set bin_dir "E:/Xilinx/Vivado/2022.2/bin"
 }
 
+#-----------------------------------------------------------------------------
+# C 侧自己的 RTL（Verilog-2001；不要用 -sv 编译，以免改变既有语义）
+#-----------------------------------------------------------------------------
 set rtl_files [list \
     "$rtl_dir/c_config.vh"     \
     "$rtl_dir/input_rom.v"     \
@@ -45,8 +62,37 @@ set rtl_files [list \
     "$rtl_dir/c_protocol_assertions.v" \
 ]
 
+#-----------------------------------------------------------------------------
+# B 侧真实 RTL（只读镜像；含 .sv，需 `-sv` 编译）
+#   来源：CalmDown789/a_dui_dui_dui @ acx750-rtl @ 658c82e2
+#   ⚠️ 只包含 B 已交付的**原语**；B 的五层集成 top 尚未交付
+#      （依据 B v1.1 §十.5），故 b_core_if 的 C_USE_B_REAL 分支仍为占位。
+#-----------------------------------------------------------------------------
+set b_rtl_dir "$rtl_dir/b_real/rtl"
+set b_real_files [list \
+    "$b_rtl_dir/compute/dsp_signed_mult.v"        \
+    "$b_rtl_dir/compute/dsp_u8s8_mult.v"          \
+    "$b_rtl_dir/compute/dot9_pipeline.v"          \
+    "$b_rtl_dir/compute/dot25_pipeline.v"         \
+    "$b_rtl_dir/compute/dot25_u8s8_pipeline.v"    \
+    "$b_rtl_dir/compute/channel_accumulator.v"    \
+    "$b_rtl_dir/compute/conv1x1_backend.v"        \
+    "$b_rtl_dir/compute/conv3x3_backend.v"        \
+    "$b_rtl_dir/compute/conv5x5_backend.v"        \
+    "$b_rtl_dir/compute/conv5x5_u8s8_backend.v"   \
+    "$b_rtl_dir/window/window3x3_stream.v"        \
+    "$b_rtl_dir/window/window3x3_bram.v"          \
+    "$b_rtl_dir/window/window5x5_stream.v"        \
+    "$b_rtl_dir/window/window5x5_bram.v"          \
+    "$b_rtl_dir/memory/sync_parameter_rom.sv"     \
+    "$b_rtl_dir/postprocess/pixel_shuffle2x_coord_map.v" \
+    "$b_rtl_dir/postprocess/prelu_requantize.sv"  \
+]
+
+#-----------------------------------------------------------------------------
 # 默认跑全部 TB（全量编译 RTL，最简单可靠，不按需裁剪）
-set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top]
+#-----------------------------------------------------------------------------
+set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top tb_b_real_primitives]
 # 可选：只跑指定 TB —— vivado -mode batch -source run_sim.tcl -tclargs tb_c_top
 #   （Vivado 批处理下若未用 -tclargs，$argv 可能是 Tcl 自身参数，
 #     故只在其首元素形如 "tb_*" 时才据此裁剪。）
@@ -54,22 +100,43 @@ if {[info exists argv] && [llength $argv] > 0 && [string match "tb_*" [lindex $a
     set all_tbs $argv
 }
 
+# 预检：B 真实 RTL 必须全部存在，否则本轮证据不成立
+foreach f $b_real_files {
+    if {![file exists $f]} { error "missing B real RTL file: $f (see rtl/b_real/PROVENANCE.md)" }
+}
+
 set fail_list [list]
 
 foreach tb $all_tbs {
     set work "$sim_root/$tb"
     file mkdir $work
+    # ★ 必须 cd 到本 TB 的工作目录再跑 xelab/xsim：
+    #   xelab 的 `-s <snapshot>` 与 xsim 的 `xsim.dir/<snapshot>/` 都是**相对 CWD** 解析的。
+    #   若从仓库外启动 vivado（例如 cwd = 上级目录），xsim 找不到快照目录，
+    #   会报 `Simulation engine failed to start: status code -1073741515`
+    #   （0xC0000135 = STATUS_DLL_NOT_FOUND）——看着像缺 DLL，其实是找错目录。
+    #   本脚本其余路径全部是绝对路径，故 cd 不影响它们。
+    cd $work
     puts "================================================================"
     puts " RUN $tb   (work dir: $work)"
     puts "================================================================"
 
     set ok 1
 
-    #--- 1. compile ------------------------------------------------------
-    set cmd [list "$bin_dir/xvlog.bat" --include $rtl_dir -d C_SIM --nolog --work worklib]
-    foreach f $rtl_files { lappend cmd $f }
-    lappend cmd "$tb_dir/$tb.v"
-    if {[catch {eval exec $cmd > "$work/xvlog.log"} err]} { set ok 0; puts "xvlog FAILED: $err" }
+    #--- 1a. compile B 真实 RTL（SystemVerilog 能力开启） -----------------
+    set cmd0 [list "$bin_dir/xvlog.bat" --include $rtl_dir -d C_SIM --nolog --work worklib -sv]
+    foreach f $b_real_files { lappend cmd0 $f }
+    if {[catch {eval exec $cmd0 > "$work/xvlog_b_real.log"} err]} {
+        set ok 0; puts "xvlog(B real) FAILED: $err"
+    }
+
+    #--- 1b. compile C 侧 RTL + TB（Verilog-2001） ------------------------
+    if {$ok} {
+        set cmd [list "$bin_dir/xvlog.bat" --include $rtl_dir -d C_SIM --nolog --work worklib]
+        foreach f $rtl_files { lappend cmd $f }
+        lappend cmd "$tb_dir/$tb.v"
+        if {[catch {eval exec $cmd > "$work/xvlog.log"} err]} { set ok 0; puts "xvlog FAILED: $err" }
+    }
 
     #--- 2. elaborate ----------------------------------------------------
     if {$ok} {
@@ -81,9 +148,30 @@ foreach tb $all_tbs {
     #--- 3. simulate（**无波形**；超时兜底） ------------------------------
     if {$ok} {
         # 外层超时 900 s 兜底（TB 内部还有 cycle 级硬 timeout）
-        if {[catch {exec "$bin_dir/xsim.bat" $tb -runall > "$work/xsim.log"} err]} {
-            set ok 0; puts "xsim FAILED: $err"
+        #
+        # ★ 重试：xsim 偶发 `Simulation engine failed to start: status code
+        #   -1073741515`（0xC0000135 = STATUS_DLL_NOT_FOUND）。
+        #   实测同一脚本连续两次运行，一次成功一次失败 —— 属工程环境抖动
+        #   （杀软扫描刚写出的快照 DLL / 上一轮残留），不是 RTL 或 TB 的问题。
+        #   ★ 2026-09-23 加固：实测「同一 TB 单独跑会成功、与 synth 并发跑必挂」
+        #     ⇒ 除退避重试外，本脚本顶部另加「并发自检」（见文件末 LATENCY 说明）。
+        #     退避改为 5/15/30 s，共 4 次；覆盖杀软扫描窗口。
+        set simok 0
+        set backoff {5 15 30}
+        for {set attempt 1} {$attempt <= 4} {incr attempt} {
+            if {[catch {exec "$bin_dir/xsim.bat" $tb -runall > "$work/xsim.log"} err]} {
+                puts "  xsim attempt $attempt FAILED: $err"
+                if {$attempt <= 3} {
+                    set d [lindex $backoff [expr {$attempt - 1}]]
+                    puts "    (退避 ${d}s 后重试)"
+                    catch {after [expr {$d * 1000}]}
+                }
+            } else {
+                set simok 1
+                break
+            }
         }
+        if {!$simok} { set ok 0; puts "xsim FAILED after 4 attempts" }
     }
 
     #--- 4. 判定 ---------------------------------------------------------
@@ -101,7 +189,7 @@ foreach tb $all_tbs {
     if {$pass} {
         puts "  $tb : PASS"
     } else {
-        puts "  $tb : FAIL  （见 $work/xsim.log）"
+        puts "  $tb : FAIL  (see $work/xsim.log)"
         lappend fail_list $tb
     }
 }

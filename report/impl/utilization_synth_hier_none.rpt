@@ -1,0 +1,46 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Wed Sep 23 13:17:48 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/Administrator/WorkBuddy/srtp/c_side/report/impl/utilization_synth_hier_none.rpt
+| Design       : c_synth_top
+| Device       : xc7a200tfbg484-2
+| Speed File   : -2
+| Design State : Synthesized
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+|     Instance     |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+| c_synth_top      |            (top) |       3626 |       3626 |       0 |    0 | 8048 |    192 |      0 |          0 |
+|   (c_synth_top)  |            (top) |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|   u_top          |            c_top |       3626 |       3626 |       0 |    0 | 8048 |    192 |      0 |          0 |
+|     (u_top)      |            c_top |         15 |         15 |       0 |    0 |   55 |      0 |      0 |          0 |
+|     u_core       |           c_core |       3611 |       3611 |       0 |    0 | 7993 |    192 |      0 |          0 |
+|       (u_core)   |           c_core |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       u_b        |        b_core_if |       3290 |       3290 |       0 |    0 | 7794 |      0 |      0 |          0 |
+|         (u_b)    |        b_core_if |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|         u_b_core |      b_core_stub |       3290 |       3290 |       0 |    0 | 7794 |      0 |      0 |          0 |
+|       u_ctrl     |           c_ctrl |          8 |          8 |       0 |    0 |    8 |      0 |      0 |          0 |
+|       u_in       |     input_stream |         30 |         30 |       0 |    0 |   21 |      0 |      0 |          0 |
+|       u_out      |    output_stream |         61 |         61 |       0 |    0 |   51 |      0 |      0 |          0 |
+|       u_pp       |  pingpong_buffer |        171 |        171 |       0 |    0 |   56 |     64 |      0 |          0 |
+|         (u_pp)   |  pingpong_buffer |         83 |         83 |       0 |    0 |   54 |      0 |      0 |          0 |
+|         u_bank0  | stripe_buffer__1 |         44 |         44 |       0 |    0 |    1 |     32 |      0 |          0 |
+|         u_bank1  |    stripe_buffer |         44 |         44 |       0 |    0 |    1 |     32 |      0 |          0 |
+|       u_rb       |    readback_ctrl |          6 |          6 |       0 |    0 |   37 |      0 |      0 |          0 |
+|       u_rom      |        input_rom |         24 |         24 |       0 |    0 |    3 |    128 |      0 |          0 |
+|       u_uart     |          uart_tx |         21 |         21 |       0 |    0 |   23 |      0 |      0 |          0 |
++------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+
