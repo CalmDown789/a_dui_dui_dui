@@ -1,5 +1,10 @@
 # B 反馈闭环修订 —— 审计表
 
+> **后续状态（2026-09-23）**：本文的 7 项闭环和 `5/5 PASS` 是当时 C+stub /
+> B 原语基线的历史记录。真实 B 五层 RTL `ae29515` 已进入正式路径，
+> 但在 XSim 2022.2 下逐字节验收 FAIL。最新证据与判定见
+> `B_REAL_BITEXXACT_MISMATCH_HANDOFF.md` 和 `B_C_REAL_ACCEPTANCE_REPORT.md`。
+
 > **本轮范围**：针对「B 反馈闭环修订」的 7 项要求，逐条核对现有 C 侧实现并补齐**可复现证据**。
 > **明确不做**：不重新设计架构；不改冻结口径；不生成 bitstream；不宣任何 Fmax / FPS。
 >
@@ -88,7 +93,7 @@
 | 顺带纠正 | `quant_params.json` 的 **13029 B（LF）/ `f2a9f20c…b77a`** 与 **13557 B（CRLF）/ `9a53d2e3…34b`** 是**同一份文件**（差 528 行行尾），**不是两个版本**；A 的 manifest 声明的正是 LF 口径 |
 | 另发现 | 两个交付 ZIP 内**都没有** Golden（`full_integer_golden` 条目 = 0/0），说明它是**独立于 ZIP 的一次性追加** |
 | 证据 | `docs/ACCEPTANCE_DATA_DEPENDENCY.md`（§二 清单 / §3.1 revert / §3.2 行尾 / §3.3 ZIP / §四 行动项 / §五 校验 SOP）；`scripts/verify_golden.py`（可执行复核，退出码 0/1/2） |
-| 仍开放 | 🔴 **A-G-1** 书面确认权威性并说明为何被 revert；**A-G-2** 生成条件；**A-G-4** 是否重新发布 |
+| 仍开放 | 🔴 **A-G-1** 澄清既有书面确认的正式发布位置并说明为何被 revert；**A-G-2** 生成条件；**A-G-4** 是否重新发布 |
 
 ---
 

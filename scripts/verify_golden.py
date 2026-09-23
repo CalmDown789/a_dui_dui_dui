@@ -180,7 +180,7 @@ def main():
         print("=" * 78)
         return 1
     print(" 结果: PASS  Golden 留档与 A 的清单/manifest 完全一致。")
-    print(" 注意: 这不等于「C 类 Golden 已定版」—— 权威性待 A 书面确认（A-G-1）。")
+    print(" 注意: A 的书面确认见 member-a@98c82f3；该提交已从 main 撤回，正式重新发布位置待 A 指定。")
     print("=" * 78)
     return 0
 

@@ -21,8 +21,9 @@
 `2dbb8c7 Revert "feat(member-a): add full-frame integer golden"`，
 即这份 Golden **被 revert 掉了**。因此：
 
-- 本目录的副本**只是证据留档**，**不代表权威定版**；
-- 权威性须由 A 书面确认（见 `docs/ACCEPTANCE_DATA_DEPENDENCY.md` §4 A-G-1）；
+- 同提交的 `docs/成员A全尺寸整数Golden确认.md` 已给出 A 的书面确认，
+  且最终输出哈希与本机副本一致；
+- A 尚需说明撤回原因并指定正式重新发布的 commit/路径；
 - 取用前**必须**按 `SHA256SUMS.txt` 校验。
 
 关键的三个文件（C 侧会用到）：

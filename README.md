@@ -1,7 +1,12 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-C 侧（系统集成 / 综合实现 / 板级验证）RTL 骨架。目标：**真实 B RTL 到位后，
-只需替换 `rtl/b_core_if.v` 里的 stub 实例，C 侧其余模块不需要重新设计。**
+> **2026-09-23 接管状态**：B 的真实五层 RTL `ae29515` 已接入 `C_USE_B_REAL`
+> 路径，但在本项目 XSim 2022.2 上未通过 A 整数 Golden 逐字节验收。
+> 下面旧的 stub / 原语回归 PASS 只证明 C 侧骨架与接口，不能作为五层算法通过的证据。
+> 见 `docs/B_REAL_BITEXXACT_MISMATCH_HANDOFF.md` 和 `docs/B_C_REAL_ACCEPTANCE_REPORT.md`。
+
+C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
+`C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。
 
 ## 设计基线（唯一依据）
 
@@ -35,7 +40,8 @@ rtl/      c_config.vh    参数单一真源（逐条标注 v3.2.2 出处）
           c_protocol_assertions.v  协议断言层 A1~A6（ifdef C_SIM，不进综合）
 b_real/   ★ B 真实 RTL 只读镜像（17 个原语，来源 acx750-rtl @ 658c82e2）
           见 rtl/b_real/PROVENANCE.md（含逐文件 SHA-256）
-          ※ 只含原语；B 的五层集成 top 尚未交付 ⇒ C_USE_B_REAL 仍为占位
+          ※ 仅用于原语回归；正式五层路径在 rtl/b_real_ae29515/（15 文件）
+rtl/b_real_ae29515/  ★ B 五层真实 RTL @ ae29515；由 C_USE_B_REAL 启用
 tb/       tb_stripe_buffer.v     条带缓冲模块级定向测试 T1~T6（已 PASS）
           tb_backpressure_rand.v 随机化背压压力测试，3 种子 + 断言层（已 PASS）
           tb_ready_valid.v       小规模定向全链路 A~K 场景（已 PASS）
@@ -64,31 +70,23 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
 
 ## 复现
 
-### 仿真（**五个 testbench** 全部 PASS）
+### 仿真（旧的五个 stub / 原语 testbench 已 PASS；真实五层 bit-exact FAIL）
 
 ```powershell
-# 方式一：一键（推荐）
+# 全部 TB（包含耗时的整帧真实 B 验收；当前预期有数值 FAIL）
 & vivado.bat -mode batch -source scripts/run_sim.tcl
 
-# 方式二：只跑一个（排查用）
-& vivado.bat -mode batch -source scripts/run_sim.tcl -tclargs tb_b_real_primitives
-
-# 方式三：手工（注意每个 TB 用**独立工作目录**）
-$bin = "E:\Xilinx\Vivado\2022.2\bin"
-$rtl = (Get-ChildItem rtl\*.v | ForEach-Object { $_.FullName })
-New-Item -ItemType Directory -Force _sim\myrun | Out-Null; Set-Location _sim\myrun
-& "$bin\xvlog.bat" --include ..\..\rtl -d C_SIM --nolog --work worklib @rtl ..\..\tb\tb_ready_valid.v
-& "$bin\xelab.bat" worklib.tb_ready_valid --nolog -s tb_sim
-& "$bin\xsim.bat" tb_sim -runall      # 期望 "RESULT: PASS  (all A~K scenarios, 0 error)"
+# 单项复现（脚本负责 ROM 与 xsim DLL staging）
+& vivado.bat -mode batch -source scripts/run_sim.tcl -tclargs tb_b_real_smoke
+& vivado.bat -mode batch -source scripts/run_sim.tcl -tclargs tb_b_real_bit_exact
+& vivado.bat -mode batch -source scripts/run_sim.tcl -tclargs tb_b_real_full
 ```
 
-> ⚠️ **两条硬约束（都踩过坑）**
-> 1. **每个 TB 必须用独立工作目录**：多个 snapshot 共用一个 `xsim.dir` 会报
->    `Simulation engine failed to start ... status code -1073741515`。
-> 2. **仿真不得与综合/实现并发跑**。实测同一批 5 个 TB 与 `synth_design` 并发时
->    **5/5 全部**在 `Simulation engine failed to start ... -1073741515`
->    （0xC0000135 = STATUS_DLL_NOT_FOUND，环境级抖动，与 RTL/TB 无关）；
->    单独跑则 **5/5 全 PASS**。`run_sim.tcl` 已内建 5/15/30 s 递增退避重试兜底。
+> ⚠️ **复现注意**
+> 1. 每个 TB 使用独立工作目录，避免日志和快照相互覆盖。
+> 2. `-1073741515` 的已定位原因是 xsim 运行库闭包缺失；`run_sim.tcl`
+>    在 `xelab` 之后把 DLL 放到 `xsimk.exe` 旁。仿真与综合串行运行是资源管理约定，
+>    不是该错误的归因。
 > 3. `tb_b_real_primitives.v` 里的 `sync_parameter_rom` 需要
 >    `MEM_FILE = "../../rtl/b_real_bench_param.mem"`（**相对 xsim 工作目录**），
 >    故必须经由 `run_sim.tcl` 或 `cd` 到 `_sim/<tb>` 后运行。
@@ -99,6 +97,7 @@ New-Item -ItemType Directory -Force _sim\myrun | Out-Null; Set-Location _sim\myr
 & vivado.bat -mode batch -source scripts/synth_check.tcl -nojournal -log _syn\vivado_synth.log   # synthesis only
 & vivado.bat -mode batch -source scripts/synth_b_real.tcl -nojournal -log _syn\vivado_breal.log  # B 原语（synthesis only）
 & vivado.bat -mode batch -source scripts/impl_check.tcl   -nojournal -log _syn\vivado_impl.log    # implementation（无位流）
+& vivado.bat -mode batch -source scripts/synth_bc_real.tcl -tclargs impl # 真实 B+C 路径
 ```
 
 **磁盘安全约定**：不 dump 波形（无 `$dumpvars`）；TB 只用小规模/内存数组；
@@ -107,7 +106,8 @@ New-Item -ItemType Directory -Force _sim\myrun | Out-Null; Set-Location _sim\myr
 
 ## 表述纪律（重要）
 
-- 完整设计**尚未综合完成实现**，本仓库**不得**出现 Fmax / FPS 的实测数字。
+- 真实 B+C 路径的综合与实现结果见 `report/bc_real_synth/`；
+  **功能逐字节验收仍失败**，不得据资源或仿真周期声称已达到 Fmax / FPS。
 - **synthesis-only** 口径（`report/synth_result.txt`）：RAMB36 192/365 = 52.60%、
   DSP48E1 0、WNS −0.1 ns、0 ERROR / 0 CRITICAL WARNING。含 stub，**不是完整 FSRCNN**，
   未做 place/route，**不得**据此宣称「200 MHz 已收敛」或任何 Fmax。

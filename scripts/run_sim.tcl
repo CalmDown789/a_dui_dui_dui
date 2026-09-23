@@ -25,12 +25,26 @@
 #        但**不得**再据此断言并发会导致本错误。
 #      · 脚本内另加 5/15/30 s 递增退避重试（共 4 次）作兜底。
 #
-# ★ 2026-09-23 变更（B 反馈闭环 #2「真实 B 模块接入」）：
-#   · 新增 **B 真实 RTL** 编译步骤（rtl/b_real/**，来源见 rtl/b_real/PROVENANCE.md）；
-#   · 该步骤单独用 `-sv` 调用 xvlog —— B 交付中含 .sv 文件
-#     （sync_parameter_rom.sv / prelu_requantize.sv），
-#     **不得**因此把 C 侧自己的 .v 也一起丢进 `-sv` 模式；
-#   · 新增 TB：tb_b_real_primitives（断言「接入的是真 B，不是 C 的 stub」）。
+# ★ 2026-09-23 变更 A（B 反馈闭环 #2「真实 B 模块接入」）：
+#   · 新增 **B 真实 RTL** 编译步骤；该步骤单独用 `-sv` 调用 xvlog —— B 交付含 .sv
+#     （sync_parameter_rom.sv / prelu_requantize.sv），**不得**因此把 C 侧自己的 .v
+#     也一起丢进 `-sv` 模式；
+#   · 新增 TB：tb_b_real_primitives（原语级回归，**非**正式路径）。
+#
+# ★ 2026-09-23 变更 B（**正式接入 B 五层真实 RTL @ ae29515**，取代原语镜像）：
+#   · 正式 B 文件列表 = rtl/b_real_ae29515/ 的 **依赖闭包 15 文件**
+#       stream/*.sv（14）+ postprocess/prelu_requantize.sv
+#     闭包由模块图从 b_core_real 出发传递求解（tools 脚本 `_b_closure.py`），
+#     逐文件 SHA-256 见 rtl/b_real_ae29515/PROVENANCE.md。
+#   · 旧 rtl/b_real/rtl（17 原语）**降级为 legacy**，仅供 tb_b_real_primitives 使用。
+#   · ⚠️ 两套**不可同编**：`prelu_requantize` 模块名在两边都有、内容不同。
+#     故每个 TB 只编译其一，由 $legacy_b_tbs 选择（见下）。
+#   · 真实核用**裸文件名** $readmemh 读 19 个参数 ROM
+#       $readmemh("feature_weights_packed.mem", w1)
+#     ⇒ 相对路径按**进程 CWD** 解析，必须逐 TB 复制到仿真工作目录。
+#     见 proc stage_b_roms（**xelab 之后**调用：xelab 会重建 xsim.dir/<snap>/）。
+#   · 新 TB（需 `-d C_USE_B_REAL`，走 b_core_if 的**正式分支**）：
+#       tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full
 ##############################################################################
 
 set script_dir [file normalize [file dirname [info script]]]
@@ -38,6 +52,68 @@ set root_dir   [file normalize "$script_dir/.."]
 set rtl_dir    "$root_dir/rtl"
 set tb_dir     "$root_dir/tb"
 set sim_root   "$root_dir/_sim"
+# B 五层真实网络的 19 个参数 ROM（裸文件名 $readmemh 的落点，见 stage_b_roms）
+set rom_dir    "$root_dir/rom/member_a_d16_s8_m1_c16"
+# 验收用只读参考数据（Golden / 96x54 用例），由 prepare_ref_data.py 生成
+set ref_stage  "$root_dir/ref/_staged_mem"
+
+#------------------------------------------------------------------------------
+# stage_b_roms —— 把 B 五层网络的 19 个参数 ROM 放进仿真进程的工作目录
+#
+#   真实核 rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv 用的是**裸文件名**：
+#       $readmemh("feature_weights_packed.mem", w1)   (共 19 条)
+#   裸相对路径由**仿真进程的 CWD** 解析；本脚本先 `cd $work` 再调 xsim.bat，
+#   故 CWD = 本 TB 的工作目录。
+#
+#   * 必须**在 xelab 之后**再往 xsim.dir/<snapshot>/ 放一份 —— 理由同
+#     patch_xsim_dlls：xelab 每次都重建该目录，早放的会被清掉。
+#   * 两处都放是刻意的冗余：CWD 是文档语义上的正解；
+#     快照目录则防 xsim.bat 内部改 CWD（不同 Vivado 版本行为可能不同）。
+#------------------------------------------------------------------------------
+proc stage_b_roms {work tb romdir} {
+    if {![file isdirectory $romdir]} {
+        puts "  !! B ROM dir not found: $romdir"
+        return 0
+    }
+    set mems [glob -nocomplain -types f -directory $romdir *_packed.mem]
+    set n [llength $mems]
+    if {$n == 0} { puts "  !! no *_packed.mem under $romdir"; return 0 }
+    foreach s $mems { catch {file copy -force $s "$work/[file tail $s]"} }
+    set snap "$work/xsim.dir/$tb"
+    if {[file isdirectory $snap]} {
+        foreach s $mems { catch {file copy -force $s "$snap/[file tail $s]"} }
+    }
+    puts "  staged B param ROMs: $n mem  ->  $work  (+ xsim.dir/$tb)"
+    return $n
+}
+
+#------------------------------------------------------------------------------
+# stage_ref_data —— 把验收用的只读参考数据（Golden / 96x54 用例）放进工作目录
+#
+#   与 stage_b_roms 同因：TB 里用**裸文件名** $readmemh，路径按进程 CWD 解析。
+#   源目录 ref/_staged_mem/ 由 scripts/prepare_ref_data.py 生成
+#   （该脚本同时把每组数据的 SHA-256 与 A 的 manifest / SHA256SUMS 对过账）。
+#   同样必须**在 xelab 之后**调用。
+#------------------------------------------------------------------------------
+proc stage_ref_data {work tb refdir pattern} {
+    if {![file isdirectory $refdir]} {
+        puts "  !! ref stage dir not found: $refdir"
+        puts "     (run: python scripts/prepare_ref_data.py)"
+        return 0
+    }
+    set files [glob -nocomplain -types f -directory $refdir $pattern]
+    if {[llength $files] == 0} {
+        puts "  !! no ref file matches '$pattern' under $refdir"
+        return 0
+    }
+    foreach s $files { catch {file copy -force $s "$work/[file tail $s]"} }
+    set snap "$work/xsim.dir/$tb"
+    if {[file isdirectory $snap]} {
+        foreach s $files { catch {file copy -force $s "$snap/[file tail $s]"} }
+    }
+    puts "  staged ref data: [llength $files] file(s) matching '$pattern'  ->  $work"
+    return [llength $files]
+}
 
 #------------------------------------------------------------------------------
 # xsim runtime DLL stager
@@ -143,46 +219,116 @@ set rtl_files [list \
 ]
 
 #-----------------------------------------------------------------------------
-# B 侧真实 RTL（只读镜像；含 .sv，需 `-sv` 编译）
-#   来源：CalmDown789/a_dui_dui_dui @ acx750-rtl @ 658c82e2
-#   ⚠️ 只包含 B 已交付的**原语**；B 的五层集成 top 尚未交付
-#      （依据 B v1.1 §十.5），故 b_core_if 的 C_USE_B_REAL 分支仍为占位。
+# B 侧【正式】RTL —— rtl/b_real_ae29515/（成员 B 五层真实网络 @ ae29515）
+#   来源：CalmDown789/a_dui_dui_dui 分支 member-b-five-layer-stream
+#          commit ae295159...（逐文件 SHA-256 见 rtl/b_real_ae29515/PROVENANCE.md）
+#   层次：b_core_real（13 端口，C-B v0.2）
+#           → fsrcnn_network_mem_top（含 19 条裸文件名 $readmemh）
+#             → fsrcnn_network_core → 5× fsrcnn_stream_layer + 4× elastic_fifo
+#                                    + pixel_shuffle2x_row_banks
+#   参数：**必须显式传** IMG_W/IMG_H/STRIPE_H（b_core_if.v 已传，见该文件头注）
+#   ⚠️ 这 15 个文件就是依赖闭包的全部；**不要**再多编 rtl/b_real/ 的旧原语
+#      （模块名 `prelu_requantize` 重名、内容不同 ⇒ 会 elab 出错）
 #-----------------------------------------------------------------------------
-set b_rtl_dir "$rtl_dir/b_real/rtl"
+set b_real_dir "$rtl_dir/b_real_ae29515"
 set b_real_files [list \
-    "$b_rtl_dir/compute/dsp_signed_mult.v"        \
-    "$b_rtl_dir/compute/dsp_u8s8_mult.v"          \
-    "$b_rtl_dir/compute/dot9_pipeline.v"          \
-    "$b_rtl_dir/compute/dot25_pipeline.v"         \
-    "$b_rtl_dir/compute/dot25_u8s8_pipeline.v"    \
-    "$b_rtl_dir/compute/channel_accumulator.v"    \
-    "$b_rtl_dir/compute/conv1x1_backend.v"        \
-    "$b_rtl_dir/compute/conv3x3_backend.v"        \
-    "$b_rtl_dir/compute/conv5x5_backend.v"        \
-    "$b_rtl_dir/compute/conv5x5_u8s8_backend.v"   \
-    "$b_rtl_dir/window/window3x3_stream.v"        \
-    "$b_rtl_dir/window/window3x3_bram.v"          \
-    "$b_rtl_dir/window/window5x5_stream.v"        \
-    "$b_rtl_dir/window/window5x5_bram.v"          \
-    "$b_rtl_dir/memory/sync_parameter_rom.sv"     \
-    "$b_rtl_dir/postprocess/pixel_shuffle2x_coord_map.v" \
-    "$b_rtl_dir/postprocess/prelu_requantize.sv"  \
+    "$b_real_dir/stream/fsrcnn_network_core.sv"          \
+    "$b_real_dir/stream/fsrcnn_network_mem_top.sv"       \
+    "$b_real_dir/stream/b_core_real.sv"                  \
+    "$b_real_dir/stream/fsrcnn_stream_layer.sv"          \
+    "$b_real_dir/stream/window_stream_frontend.sv"       \
+    "$b_real_dir/stream/window_kminus1_bram.sv"          \
+    "$b_real_dir/stream/same_pad_raster.sv"              \
+    "$b_real_dir/stream/elastic_fifo.sv"                 \
+    "$b_real_dir/stream/mac_issue_stage.sv"              \
+    "$b_real_dir/stream/phase_mac_pipeline.sv"           \
+    "$b_real_dir/stream/phase_accumulator.sv"            \
+    "$b_real_dir/stream/eight_phase_issue.sv"            \
+    "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"    \
+    "$b_real_dir/stream/vector_postprocess_shared.sv"    \
+    "$b_real_dir/postprocess/prelu_requantize.sv"        \
 ]
 
 #-----------------------------------------------------------------------------
-# 默认跑全部 TB（全量编译 RTL，最简单可靠，不按需裁剪）
+# B 侧【legacy】原语镜像 —— rtl/b_real/rtl/（**非正式路径**）
+#   仅 tb_b_real_primitives 用；不参与 FSRCNN 验收结论。
+#   上游：acx750-rtl 分支 @ 658c82e2（B 早期交付的 17 个原语）
 #-----------------------------------------------------------------------------
-set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top tb_b_real_primitives]
-# 可选：只跑指定 TB —— vivado -mode batch -source run_sim.tcl -tclargs tb_c_top
-#   （Vivado 批处理下若未用 -tclargs，$argv 可能是 Tcl 自身参数，
-#     故只在其首元素形如 "tb_*" 时才据此裁剪。）
-if {[info exists argv] && [llength $argv] > 0 && [string match "tb_*" [lindex $argv 0]]} {
-    set all_tbs $argv
-}
+set b_legacy_dir "$rtl_dir/b_real/rtl"
+set b_legacy_files [list \
+    "$b_legacy_dir/compute/dsp_signed_mult.v"        \
+    "$b_legacy_dir/compute/dsp_u8s8_mult.v"          \
+    "$b_legacy_dir/compute/dot9_pipeline.v"          \
+    "$b_legacy_dir/compute/dot25_pipeline.v"         \
+    "$b_legacy_dir/compute/dot25_u8s8_pipeline.v"    \
+    "$b_legacy_dir/compute/channel_accumulator.v"    \
+    "$b_legacy_dir/compute/conv1x1_backend.v"        \
+    "$b_legacy_dir/compute/conv3x3_backend.v"        \
+    "$b_legacy_dir/compute/conv5x5_backend.v"        \
+    "$b_legacy_dir/compute/conv5x5_u8s8_backend.v"   \
+    "$b_legacy_dir/window/window3x3_stream.v"        \
+    "$b_legacy_dir/window/window3x3_bram.v"          \
+    "$b_legacy_dir/window/window5x5_stream.v"        \
+    "$b_legacy_dir/window/window5x5_bram.v"          \
+    "$b_legacy_dir/memory/sync_parameter_rom.sv"     \
+    "$b_legacy_dir/postprocess/pixel_shuffle2x_coord_map.v" \
+    "$b_legacy_dir/postprocess/prelu_requantize.sv"  \
+]
 
-# 预检：B 真实 RTL 必须全部存在，否则本轮证据不成立
+#-----------------------------------------------------------------------------
+# TB 清单与每个 TB 的 B 侧编译选择
+#-----------------------------------------------------------------------------
+# 走 b_core_if 的 **正式 B 分支**（`-d C_USE_B_REAL`）—— 这 4 个是新加的
+set real_b_tbs [list tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full]
+# 需要 **legacy 原语镜像** 的 TB（其余一律用正式闭包）
+set legacy_b_tbs [list tb_b_real_primitives]
+# 需要 stage_ref_data 的 TB → 各自的 $readmemh 文件名模式
+#   （只 copy 该 TB 真正要读的，别把 8 MB 全塞进每个工作目录）
+set ref_pats [dict create \
+    tb_b_real_backpressure "tv_random_*.mem" \
+    tb_b_real_bit_exact "tv_*.mem"  \
+    tb_b_real_full       "full_*.mem" \
+]
+
+# 默认跑全部 TB（全量编译 RTL，最简单可靠，不按需裁剪）
+#   ⚠️ tb_b_real_full 是整帧 960×540 → 1920×1080，约 3.1M 仿真周期，
+#      明显慢于其余 TB；调试期可用 -tclargs 单独挑。
+set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top \
+                  tb_b_real_primitives \
+                  tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full]
+# 可选：只跑指定 TB —— vivado -mode batch -source run_sim.tcl -tclargs tb_c_top
+#   ⚠️ `-tclargs` 之后 Vivado 会把**剩余全部参数**塞进 $argv
+#      （例如 `-tclargs tb_x -nojournal -nolog` ⇒ argv = {tb_x -nojournal -nolog}）。
+#      故这里**不能**只看首元素，必须逐项过滤出真正形如 tb_* 的名字，
+#      否则 `-nojournal` / `-nolog` 会被当成 TB 名去跑，凭空造出 FAIL 行。
+set sel_tbs [list]
+if {[info exists argv]} {
+    foreach a $argv {
+        if {[string match "tb_*" $a]} { lappend sel_tbs $a }
+    }
+}
+if {[llength $sel_tbs] > 0} { set all_tbs $sel_tbs }
+
+# 预检：正式 B 闭包必须全部存在，否则本轮证据不成立
 foreach f $b_real_files {
-    if {![file exists $f]} { error "missing B real RTL file: $f (see rtl/b_real/PROVENANCE.md)" }
+    if {![file exists $f]} {
+        error "missing B real RTL: $f (see rtl/b_real_ae29515/PROVENANCE.md)"
+    }
+}
+# 预检：legacy 原语（仅 tb_b_real_primitives 需要）
+foreach f $b_legacy_files {
+    if {![file exists $f]} { error "missing B legacy RTL: $f (see rtl/b_real/PROVENANCE.md)" }
+}
+# 预检：19 个参数 ROM（缺失时 $readmemh 只会静默留下 X，必须硬失败）
+set b_rom_files [glob -nocomplain -types f -directory $rom_dir *_packed.mem]
+if {[llength $b_rom_files] != 19} {
+    error "expected 19 *_packed.mem under $rom_dir, found [llength $b_rom_files]"
+}
+# 预检：任何 TB 都不得同时要求 real 与 legacy（同编会撞 prelu_requantize）
+foreach tb $all_tbs {
+    if {[lsearch -exact $real_b_tbs $tb] >= 0 && [lsearch -exact $legacy_b_tbs $tb] >= 0} {
+        error "$tb is listed in both real_b_tbs and legacy_b_tbs -- prelu_requantize would clash"
+    }
 }
 
 set fail_list [list]
@@ -203,16 +349,32 @@ foreach tb $all_tbs {
 
     set ok 1
 
-    #--- 1a. compile B 真实 RTL（SystemVerilog 能力开启） -----------------
-    set cmd0 [list "$bin_dir/xvlog.bat" --include $rtl_dir -d C_SIM --nolog --work worklib -sv]
-    foreach f $b_real_files { lappend cmd0 $f }
+    # 每个 TB 的 B 侧编译集合：默认 = 正式五层闭包；legacy 只给 primitives TB
+    set bfiles $b_real_files
+    set bkind  "REAL  (rtl/b_real_ae29515 @ ae29515)"
+    if {[lsearch -exact $legacy_b_tbs $tb] >= 0} {
+        set bfiles $b_legacy_files
+        set bkind  "LEGACY(rtl/b_real/rtl 17 primitives -- NOT the formal path)"
+    }
+    # `-d C_USE_B_REAL` 只加在正式接入 TB 上（其余仍走 b_core_stub 隔离回归）
+    set cdefs [list -d C_SIM]
+    if {[lsearch -exact $real_b_tbs $tb] >= 0} { lappend cdefs -d C_USE_B_REAL }
+    puts "  B compile set : $bkind  ([llength $bfiles] files)"
+    puts "  defines       : $cdefs"
+
+    #--- 1a. compile B RTL（SystemVerilog 能力开启） ----------------------
+    set cmd0 [list "$bin_dir/xvlog.bat" --include $rtl_dir --nolog --work worklib]
+    foreach d $cdefs { lappend cmd0 $d }
+    lappend cmd0 -sv
+    foreach f $bfiles { lappend cmd0 $f }
     if {[catch {eval exec $cmd0 > "$work/xvlog_b_real.log"} err]} {
         set ok 0; puts "xvlog(B real) FAILED: $err"
     }
 
     #--- 1b. compile C 侧 RTL + TB（Verilog-2001） ------------------------
     if {$ok} {
-        set cmd [list "$bin_dir/xvlog.bat" --include $rtl_dir -d C_SIM --nolog --work worklib]
+        set cmd [list "$bin_dir/xvlog.bat" --include $rtl_dir --nolog --work worklib]
+        foreach d $cdefs { lappend cmd $d }
         foreach f $rtl_files { lappend cmd $f }
         lappend cmd "$tb_dir/$tb.v"
         if {[catch {eval exec $cmd > "$work/xvlog.log"} err]} { set ok 0; puts "xvlog FAILED: $err" }
@@ -230,6 +392,15 @@ foreach tb $all_tbs {
     #   previous run, so re-patch every time. Without this the engine fails
     #   to start with -1073741515 (STATUS_DLL_NOT_FOUND).
     if {$ok} { patch_xsim_dlls $work }
+
+    #--- 2c. stage B parameter ROMs（裸文件名 $readmemh ⇒ 进程 CWD） -----
+    #   必须在 xelab 之后：xelab 会重建 xsim.dir/<tb>/（同 2b 的理由）。
+    if {$ok} { stage_b_roms $work $tb $rom_dir }
+
+    #--- 2d. stage 验收参考数据（Golden / 96x54 用例） -------------------
+    if {$ok && [dict exists $ref_pats $tb]} {
+        stage_ref_data $work $tb $ref_stage [dict get $ref_pats $tb]
+    }
 
     #--- 3. simulate（**无波形**；超时兜底） ------------------------------
     if {$ok} {
@@ -321,7 +492,7 @@ set npass [expr {[llength $all_tbs] - [llength $fail_list]}]
 
 set rf [open "$root_dir/report/sim_result.txt" w]
 puts $rf "=============================================="
-puts $rf " C-side RTL skeleton - SIMULATION result (xsim)"
+puts $rf " C-side RTL - SIMULATION result (xsim)"
 puts $rf "=============================================="
 puts $rf " 1  Vivado version     : [version -short]"
 puts $rf " 2  testbenches run    : [llength $all_tbs]"
@@ -329,13 +500,24 @@ puts $rf " 3  pass / fail        : $npass / [llength $fail_list]"
 puts $rf " 4  git commit SHA     : $git_sha"
 puts $rf " 5  generated at       : [clock format [clock seconds] -format {%Y-%m-%d %H:%M:%S}] (local)"
 puts $rf " 6  uncommitted change : $local_mod"
+puts $rf " 7  B formal path      : rtl/b_real_ae29515 @ ae29515 (15-file closure)"
+puts $rf " 8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)"
+puts $rf " 9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)"
 puts $rf "----------------------------------------------"
 foreach tb $all_tbs {
     if {[lsearch -exact $fail_list $tb] >= 0} {
-        puts $rf "   [format %-22s $tb] : FAIL"
+        set st "FAIL"
     } else {
-        puts $rf "   [format %-22s $tb] : PASS"
+        set st "PASS"
     }
+    if {[lsearch -exact $legacy_b_tbs $tb] >= 0} {
+        set bk "B=legacy-17-primitives (NOT formal)"
+    } elseif {[lsearch -exact $real_b_tbs $tb] >= 0} {
+        set bk "B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL"
+    } else {
+        set bk "B=closure compiled; C datapath = b_core_stub"
+    }
+    puts $rf "   [format %-24s $tb] : $st   ($bk)"
 }
 puts $rf "----------------------------------------------"
 puts $rf " raw logs : _sim/<tb>/xsim.log  (gitignored, regenerable)"
@@ -349,8 +531,21 @@ puts $rf " NOTE 3: the 0xC0000135 / -1073741515 engine-start failure is NOT"
 puts $rf "         concurrency: it is the xsim runtime DLL closure being absent."
 puts $rf "         This script stages it next to xsimk.exe after each xelab;"
 puts $rf "         the set and the evidence are in the header of run_sim.tcl."
+puts $rf " NOTE 4: ONLY the rows tagged C_USE_B_REAL exercise member B's real"
+puts $rf "         five-layer network. Rows tagged 'b_core_stub' are interface /"
+puts $rf "         isolation regressions: their output is NOT FSRCNN and must"
+puts $rf "         never be quoted as an image-quality result."
+puts $rf " NOTE 5: any PASS of member B's OWN XSim run is B's evidence, NOT this"
+puts $rf "         file's. sim PASS here says nothing about synthesis/implementation."
 puts $rf "=============================================="
 close $rf
+
+# A one-TB invocation keeps its own summary so subsequent targeted regressions
+# cannot overwrite the evidence for a previous TB in sim_result.txt.
+if {[llength $all_tbs] == 1} {
+    set one_tb [lindex $all_tbs 0]
+    file copy -force "$root_dir/report/sim_result.txt" "$root_dir/report/sim_result_${one_tb}.txt"
+}
 
 puts ""
 puts " -> $root_dir/report/sim_result.txt"

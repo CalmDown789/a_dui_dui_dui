@@ -15,7 +15,7 @@
 //   （`ROM_INIT_MODE=0, INIT_EN=1`），其**深度与位宽完全相同**
 //   （2^19 深 × 8 bit），因此 BRAM block 数不会改变。
 //
-//   ⚠️ 本轮**不做** implementation、不做 place/route、**不生成 bitstream**。
+//   此顶层也可供实现取证；是否 place/route 由调用脚本决定，均不生成 bitstream。
 //
 // 依据：v3.2.2 §8.3 C9/C11/C17、§九 门槛 5、§五.2 分层表（A 层 KiB 预算 / B 层 block utilization）
 //=============================================================================
@@ -48,8 +48,8 @@ module c_synth_top (
         //   ⇒ 生成 .mem 后再综合：
         //        python scripts/gen_input_mem.py pattern-full
         //      （该文件约 1.6 MB，已被 .gitignore 忽略）
-        //   ⇒ TODO(A_CONFIRM): 真实 960×540 图像 .mem 属 A 侧交付物，
-        //      到位后把 INIT_FILE 指向它即可；深度/位宽相同，BRAM 数不变。
+        //   A 的真实 960×540 输入 ROM 已在 ref/a_full_integer_golden/ 留档。
+        //   本取证顶层仍用同深度/位宽的 pattern；上板前须换为 A 的已校验 .mem。
         .ROM_ADDR_W     (`C_ROM_ADDR_W),    // 19
         .ROM_DEPTH      (`C_ROM_DEPTH_POW2),// 524288
         .ROM_INIT_MODE  (0),                // 0 = 零填充 + $readmemh

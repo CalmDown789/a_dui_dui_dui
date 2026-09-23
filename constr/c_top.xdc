@@ -48,7 +48,7 @@ set_property -dict {PACKAGE_PIN N17  IOSTANDARD LVCMOS33} [get_ports {led[7]}]
 #   「CH9102 芯片在位，但 FPGA 侧管脚需在首次串口联通时用 IO Planner 确认」；
 #   §8.4 任务⑥）。
 #   ⇒ 本行**保持注释**，首次串口联通、确认管脚后再打开。
-#   ⇒ 本轮**不做 implementation / 不生成 bitstream**，故未约束该端口不影响任何结论。
+#   ⇒ 综合/实现取证可以运行，但 UART 引脚未约束意味着尚不能据此交付板级 bitstream。
 #
 # 确认后请按下面形式补全（示例，管脚号待填）：
 #   set_property -dict {PACKAGE_PIN XX  IOSTANDARD LVCMOS33} [get_ports uart_tx]

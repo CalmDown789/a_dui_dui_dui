@@ -1,0 +1,207 @@
+{
+ "repo": "https://github.com/CalmDown789/a_dui_dui_dui",
+ "branch": "member-b-five-layer-stream",
+ "commit": "ae29515945fbb6e9566626d7f2d28660ac94d5c4",
+ "method": "git cat-file blob (raw committed bytes, LF)",
+ "rtl": [
+  {
+   "path": "stream/b_core_real.sv",
+   "bytes": 1177,
+   "sha256": "3e9374f142188fc73000170a80c8393e9754b722c3a7767a00e90246a3d4c1fe"
+  },
+  {
+   "path": "stream/fsrcnn_network_mem_top.sv",
+   "bytes": 2697,
+   "sha256": "52f02d6d539b1363f1542cd6d55f7ba13f507e6a3fe26af0aec32a5bf85062cf"
+  },
+  {
+   "path": "stream/fsrcnn_network_core.sv",
+   "bytes": 5029,
+   "sha256": "d0d413bae07d946852e3c6323d670c10a85f76da88dfdd54bc0f9c2c4db95037"
+  },
+  {
+   "path": "stream/fsrcnn_stream_layer.sv",
+   "bytes": 2817,
+   "sha256": "3ec52632fa1f790be28a417fde0e174f8d3524c819b5af736496115bcbe4ccbe"
+  },
+  {
+   "path": "stream/window_stream_frontend.sv",
+   "bytes": 2986,
+   "sha256": "94778afc21a3ea1ef1b5bb5adb33435b13745bf23fc4eef909cd6d1402c84660"
+  },
+  {
+   "path": "stream/window_kminus1_bram.sv",
+   "bytes": 3264,
+   "sha256": "cf66969817e2ee2bb170fa3e3bc9f6a53d5d19b5282b3d5bf4c196fe000a34ee"
+  },
+  {
+   "path": "stream/same_pad_raster.sv",
+   "bytes": 2367,
+   "sha256": "6c699400d3f8779797bba2813e70ca5abcd6e4bb48a978b1487ef8f0a357f784"
+  },
+  {
+   "path": "stream/elastic_fifo.sv",
+   "bytes": 1840,
+   "sha256": "ad3409f54b1d1a0a9378364a6466e45a586a0bfc5e5bc9375a583a937129bb7b"
+  },
+  {
+   "path": "stream/mac_issue_stage.sv",
+   "bytes": 2380,
+   "sha256": "638a982889f2e708ad968f2fece4190391721860939a1d39cc18261fe7208203"
+  },
+  {
+   "path": "stream/phase_mac_pipeline.sv",
+   "bytes": 4539,
+   "sha256": "90274c20abafdb13b8550c9efc20ab6632e4b5fdf2f16690788b5a30ea9a6a4c"
+  },
+  {
+   "path": "stream/phase_accumulator.sv",
+   "bytes": 2773,
+   "sha256": "1f03bd32647f09585b7b7b6b371646eb4f9aff92f627c4caabd92d263d35c66c"
+  },
+  {
+   "path": "stream/eight_phase_issue.sv",
+   "bytes": 1830,
+   "sha256": "26858a8148ea5194d47b177097e5621770bb50f7f8824be1e52c0d461f415b2a"
+  },
+  {
+   "path": "stream/pixel_shuffle2x_row_banks.sv",
+   "bytes": 4352,
+   "sha256": "3b90586971f1d39f8f5d31a8ac4b7190df39ec67019fd505a0a067661e837940"
+  },
+  {
+   "path": "stream/vector_postprocess_shared.sv",
+   "bytes": 4690,
+   "sha256": "1203bb7cfb7b491ca5a2c43abb08c74d9ddcaeb133f10f7b8b913035f5d72bb8"
+  },
+  {
+   "path": "postprocess/prelu_requantize.sv",
+   "bytes": 4828,
+   "sha256": "7f4f21ce208ae9489088bf856dada8cdd8f675352a993b4ff02f52e5205bcff1"
+  }
+ ],
+ "rom": [
+  {
+   "path": "expand_bias_packed.mem",
+   "bytes": 202,
+   "sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca"
+  },
+  {
+   "path": "expand_prelu_packed.mem",
+   "bytes": 138,
+   "sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9"
+  },
+  {
+   "path": "expand_q31_packed.mem",
+   "bytes": 202,
+   "sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92"
+  },
+  {
+   "path": "expand_weights_packed.mem",
+   "bytes": 330,
+   "sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95"
+  },
+  {
+   "path": "feature_bias_packed.mem",
+   "bytes": 202,
+   "sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e"
+  },
+  {
+   "path": "feature_prelu_packed.mem",
+   "bytes": 138,
+   "sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733"
+  },
+  {
+   "path": "feature_q31_packed.mem",
+   "bytes": 202,
+   "sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897"
+  },
+  {
+   "path": "feature_weights_packed.mem",
+   "bytes": 874,
+   "sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030"
+  },
+  {
+   "path": "mapping0_bias_packed.mem",
+   "bytes": 138,
+   "sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159"
+  },
+  {
+   "path": "mapping0_prelu_packed.mem",
+   "bytes": 106,
+   "sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc"
+  },
+  {
+   "path": "mapping0_q31_packed.mem",
+   "bytes": 138,
+   "sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae"
+  },
+  {
+   "path": "mapping0_weights_packed.mem",
+   "bytes": 1226,
+   "sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a"
+  },
+  {
+   "path": "shrink_bias_packed.mem",
+   "bytes": 138,
+   "sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e"
+  },
+  {
+   "path": "shrink_prelu_packed.mem",
+   "bytes": 106,
+   "sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d"
+  },
+  {
+   "path": "shrink_q31_packed.mem",
+   "bytes": 138,
+   "sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839"
+  },
+  {
+   "path": "shrink_weights_packed.mem",
+   "bytes": 330,
+   "sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8"
+  },
+  {
+   "path": "subpixel_bias_packed.mem",
+   "bytes": 106,
+   "sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0"
+  },
+  {
+   "path": "subpixel_q31_packed.mem",
+   "bytes": 106,
+   "sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8"
+  },
+  {
+   "path": "subpixel_weights_packed.mem",
+   "bytes": 3274,
+   "sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71"
+  },
+  {
+   "path": "README.md",
+   "bytes": 1314,
+   "sha256": "236c8abfcca29da4465c96d3773b68c124087183b21d66a2fd09a9701e114762"
+  },
+  {
+   "path": "manifest.json",
+   "bytes": 5532,
+   "sha256": "9c8206b6ac2dcbac0f5826b9ad6fb10183611de8abb39ccaeb9395c9c073abba"
+  }
+ ],
+ "closure_modules": [
+  "b_core_real",
+  "eight_phase_issue",
+  "elastic_fifo",
+  "fsrcnn_network_core",
+  "fsrcnn_network_mem_top",
+  "fsrcnn_stream_layer",
+  "mac_issue_stage",
+  "phase_accumulator",
+  "phase_mac_pipeline",
+  "pixel_shuffle2x_row_banks",
+  "prelu_requantize",
+  "same_pad_raster",
+  "vector_postprocess_shared",
+  "window_kminus1_bram",
+  "window_stream_frontend"
+ ]
+}

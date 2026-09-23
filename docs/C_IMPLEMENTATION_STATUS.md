@@ -1,5 +1,11 @@
 # C 侧 RTL 实现状态（C_IMPLEMENTATION_STATUS）
 
+> **2026-09-23 最新状态**：本文以下的 `192 RAMB36`、五个 TB PASS 与实现时序
+> 属于此前 **C+stub / B 原语** 阶段的历史证据。真实 B 五层 RTL `ae29515`
+> 现已接入 `C_USE_B_REAL`，但在 XSim 2022.2 下未通过 A 整数 Golden
+> 逐字节验收。真实 B+C 的独立资源与时序结果、开放项及最终判定见
+> `B_C_REAL_ACCEPTANCE_REPORT.md`；不能用本文旧数字代替真实 B+C 结论。
+
 > 仓库：`srtp/c_side`（C 侧独立 Git 仓库，2026-09-23 新建）
 > 基线文档：
 > 1. `output/任务书v3.2.2_修订执行版.md`（= `FSRCNN_ACX750-200T部署任务书_v3.2.2修订执行版.docx`）
