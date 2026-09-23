@@ -3,8 +3,9 @@
 > **2026-09-23 本机最新状态**：XSim 2022.2 默认优化下，96×54 四组及历史
 > 960×540 全帧对拍均失败；同一真实 B RTL、ROM 和 Golden 使用 `xelab -O0` 后，
 > 6×5 逐层、96×54 四组及 960×540 全帧均逐值匹配。RTL 未修改。真实 B+C 综合、
-> 实现和上板尚未验证。2026-09-23 本机 synth-only 因可用内存降至 0.61 GB 中断，
-> 未生成综合报告；原始日志与续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
+> 实现和上板尚未验证。2026-09-23 两轮本机 synth-only 均未生成报告；第二轮完成 RTL
+> Optimization Phase 2 后，系统提交余量降到 1.12 GB，页面文件容量仍为 32 GB，故中断。
+> 原始日志与续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
 > default/`-O0` 命令、日志和数据哈希见
 > `docs/B_REAL_XSIM_REPRODUCIBILITY.md`。
 

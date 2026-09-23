@@ -126,9 +126,10 @@ T-B 超出 B v1.1 的合同级保证 `N=0`，只能作为诊断压力测试；
 `scripts/synth_bc_real.tcl` 已备好目标器件取证。报告必须核对
 `b_core_real >= 1`、`b_core_stub = 0`、`fsrcnn_network_mem_top >= 1`、
 `fsrcnn_stream_layer >= 5` 的自校验，否则资源数字作废。
-**当前未取得有效的真实 B+C 综合报告**：本机于 2026-09-23 运行 synth-only，
-在可用内存降到 0.61 GB 后安全中断；未生成综合报告或资源数字。原始中断日志和
-续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。下一账号可按检查点执行并回填报告。
+**当前未取得有效的真实 B+C 综合报告**：本机于 2026-09-23 两次运行 synth-only；
+第二次完成 RTL Optimization Phase 2 后，系统提交余量降至 1.12 GB，页面文件仍为
+32 GB 且提交上限未扩展，因此安全中断。两次都未生成综合报告或资源数字。原始日志和
+续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
 
 ## N. 实现与时序
 

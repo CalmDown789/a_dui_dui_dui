@@ -4,20 +4,30 @@
 
 - 目标：Vivado 2022.2、`xc7a200tfbg484-2`、真实 B 五层 RTL 加 C 外壳，运行
   `scripts/synth_bc_real.tcl` 的 synth-only 模式（没有传 `impl` 参数）。
-- 运行约在本机 20:07 启动。到 20:10 左右，可用内存降至约 0.61 GB，按安全阈值
-  中断 Vivado；进程退出后可用内存恢复到约 21.5 GB。
-- 日志显示 RTL 读入、约束处理及早期 FSM 提取已进行。中断前停在 `synth_design`
-  早期，尚未完成网表优化、自检或报告生成。
+- 首轮约在本机 20:07 启动；看到可用物理内存约 0.61 GB 后提前中断。后来发现该判断
+  没有同时检查 Windows 提交内存与页面文件，不能证明页面文件不可用。
+- 第二轮于 20:22:53 启动，监控提交内存和页面文件。Vivado 完成 RTL Optimization
+  Phase 2，日志峰值内存约 30.4 GB；随后一直没有新日志或资源报告。
+- 第二轮提交量升至约 62.31 GB / 63.43 GB，余量仅约 1.12 GB。页面文件已分配 32 GB、
+  当前使用约 4.71 GB，但本次运行期间分配容量和提交上限都没有扩展。为避免触及提交
+  上限导致系统分配失败，于本机约 21:02 安全中断 Vivado。
+- 中断时仍未完成 `synth_design`、真实 B 层级自检或报告生成。第二轮结束后进程已退出，
+  可用物理内存恢复到约 22.9 GB，系统提交余量恢复到约 42.5 GB。
 - `report/bc_real_synth/` 没有本次运行生成的综合报告或结果文件。不要引用旧 C+stub
   综合数字作为真实 B+C 结果。本次也未运行 `opt_design`、布局、布线或实现。
-- 原始完整 stdout/stderr 记录：
-  `report/bc_real_synth/synth_only_memory_stop.txt`。根目录原始 `.log` 文件仍在本机，
-  但按 `.gitignore` 规则不入库。
+- 两轮原始 stdout/stderr 记录分别在
+  `report/bc_real_synth/synth_only_memory_stop.txt` 和
+  `report/bc_real_synth/synth_only_commit_limit_stop.txt`。
+- 当前配置：系统管理页面文件为 32 GB；物理内存约 31.4 GB，总提交上限约 63.4 GB。
+  第二轮 E 盘尚有约 377 GB 可用，但提交余量很低时上限没有随运行增加。下次运行前应
+  先确认/预留足够页面文件提交容量，并实时监控 `CommitLimit - CommittedBytes`；不要只看
+  可用物理 RAM，也不要假设系统会及时扩展页面文件。
 
 ## 续跑
 
 1. 先确认 `report/bc_real_synth/` 中没有另一轮正在写入的 Vivado 报告。
-2. 关闭本机占用大量内存的程序；不要和 XSim/其他 Vivado 仿真并行运行。
+2. 先确认页面文件容量/提交上限足以覆盖该综合峰值；关闭本机占用大量内存的程序，
+   不要和 XSim/其他 Vivado 仿真并行运行。
 3. 从仓库根目录重新执行 synth-only：
 
    ```powershell
