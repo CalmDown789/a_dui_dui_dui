@@ -45,7 +45,7 @@
 | 项 | 结论 |
 |---|---|
 | 状态 | **`[已解决]`** |
-| 仿真 | **5 / 5 TB 全部 PASS**（`tb_stripe_buffer`、`tb_backpressure_rand`、`tb_ready_valid`、`tb_c_top`、`tb_b_real_primitives`） |
+| 仿真 | **5 / 5 TB 全部 PASS**（`tb_stripe_buffer`、`tb_backpressure_rand`、`tb_ready_valid`、`tb_c_top`、`tb_b_real_primitives`）；结果文件 `report/sim_result.txt`（**入库**） |
 | synthesis | 单独脚本 `scripts/synth_check.tcl`，**只调 `synth_design`**，不 opt/place/route |
 | implementation | 单独脚本 `scripts/impl_check.tcl`，`synth_design → opt_design → place_design → phys_opt_design → route_design`，**仍不生成 bitstream** |
 | 两口径纪律 | 两个脚本**互不引用**，各自结果文件都带口径标签 + commit SHA；实现脚本内再分 **Flow-A**（`flatten_hierarchy none` → **逐模块资源**）与 **Flow-B**（默认 flatten → **代表性实现时序**）。仅综合脚本则显式用 **`rebuilt`**（并已在结果文件第 3b 项写明，见 §2.2 脚注） |
@@ -115,9 +115,25 @@
 | `tb_b_real_primitives` | PASS（17/17 原语例化 + 30 项断言） |
 | **合计** | **5 / 5 PASS** |
 
-> ⚠️ **并发禁令（实测教训）**：仿真**不得**与综合/实现并发。并发时同一批 TB **5/5 全部**
-> 以 `Simulation engine failed to start ... -1073741515`（0xC0000135 = STATUS_DLL_NOT_FOUND）崩溃；
-> **单独跑则 5/5 全 PASS**。`run_sim.tcl` 已内建 5/15/30 s 递增退避重试兜底。
+> 📄 **证据文件**：`report/sim_result.txt`（**本轮新增**，由 `run_sim.tcl` 第 5 节写出）。
+> 纯 ASCII 标签，含 commit SHA / 生成时间 / 未提交改动 / 逐 TB 判定。
+> 原始日志 `_sim/<tb>/xsim.log` **已 gitignore**（体积大、可再生）。
+> ∴ 在本轮之前，**仿真证据并不在仓库内**（见缺陷 #10）。
+
+> ⚠️ **`-1073741515` 的真因（本轮定位并实测，**替换**旧归因）**：
+> 该错误码是 `0xC0000135 = STATUS_DLL_NOT_FOUND`，根因是 **xsimk.exe 的运行库闭包缺失** ——
+> 它只导入 `KERNEL32.dll / msvcrt.dll / librdi_simulator_kernel.dll`，而最后这个 Vivado 库
+> （`<XILINX_VIVADO>/lib/win64.o/`）没有被放到快照目录旁；`xelab` **每次重建**该目录，
+> 故上一轮放进去的会被清掉。解析 PE 导入表得到的**最小非系统闭包 = 13 个 DLL / 7.9 MB**
+> （`librdi_simulator_kernel` / `librdizlib` / `tcl85t` / 6 个 `libboost*` + `MSVCP140` /
+> `VCRUNTIME140` / `VCRUNTIME140_1`）。`run_sim.tcl` 的 `patch_xsim_dlls` 已按**位置**补齐，
+> 实测 **5/5 全 PASS**。两条反直觉实测：**只把 `lib/win64.o` 加进 `PATH` 无效**；
+> **MinGW 的 8 个运行库不在闭包内**（旧说法有误）；「每 TB 独立工作目录」**也不能**阻止该错误。
+>
+> ❌ **旧归因作废**：本节此前写「并发时 5/5 全部崩溃、单独跑则全 PASS」并据此断言
+> 「**并发**导致 0xC0000135」。该因果链**已被上述测量否证**（是缺 DLL，不是并发）。
+> 加固后**未复测**并发场景，故：并发仍**不建议**（CPU/磁盘/日志干扰，属**工程纪律**），
+> 但**不得**再把它写成该错误的原因。`scripts/run_sim.tcl` 的头部注释、重试注释与此处已同步更正。
 
 ### 2.2 仅综合（`scripts/synth_check.tcl`，顶层 `c_synth_top`，`-flatten_hierarchy rebuilt`）
 
@@ -269,6 +285,9 @@ Slack (VIOLATED) : -2.749 ns
 | 8 | 入库的 `report/synth_result.txt` 里 WNS 仍是**被截断的 `-0.1`**（真值 `-0.153`），而脚本里的正则**早已改成 `[^
 ]*`** | **「修脚本」≠「修产物」**：改完正则**没有重跑**，于是报告里留着一个「修好之前」的数 —— 这类**陈旧产物**比错误本身更隐蔽，因为它看起来「有据可查」 | 重跑 `synth_check.tcl` 刷新该文件；并给结果文件**新增 TNS / 失败端点**字段，使其与 §2.2 表格**同源自证**，不再依赖从 `timing_summary_synth.rpt` 另行摘抄 |
 | 9 | `synth_result.txt` 第 3 项把策略写成 `$synth_strategy (synth_design default)`，而脚本实际调用的是 `synth_design ... -flatten_hierarchy rebuilt` | **标签与代码不符**：`rebuilt` 并非 `synth_design` 的默认值（默认 `full`）；该括号措辞会让人误以为走的是默认流，进而**误判**资源数字的可比性 | 删去误导性的 `(synth_design default)`，**新增第 3b 项显式写明 `flatten_hierarchy = rebuilt`**，并在 §2.2 加「三种 flatten 口径不得混用」脚注 |
+| 10 | 仿真证据**从未入库**：`run_sim.tcl` 只把 PASS/FAIL 打到 stdout，而原始日志又落在已 gitignore 的 `_sim/` | **取证链路不完整**：三项取证里综合与实现都有 `report/*_result.txt` 入库，**只有仿真无任何仓库内凭证**，等于「5/5 PASS」只能靠转述 | 给 `run_sim.tcl` 增加第 5 节，写出 `report/sim_result.txt`（纯 ASCII，含 commit SHA / 生成时间 / 未提交改动 / 逐 TB 判定），并重跑一次；原始日志仍不入库（可再生） |
+| 11 | xsim 引擎反复以 **`-1073741515`**（STATUS_DLL_NOT_FOUND）起不来，脚本注释把它归因为「杀软扫描快照 DLL / 上一轮残留」，并靠 5/15/30 s 退避重试兜底 | **归因错误**：真因是 xsimk.exe 的导入库 **`librdi_simulator_kernel.dll`**（`<XILINX_VIVADO>/lib/win64.o/`）**没有被放到快照目录旁**，而 `xelab` **每次都重建该目录** ⇒ 上一轮放进去的会被清掉。解析 PE 导入表得到的**最小闭包只是 13 个 DLL / 7.9 MB**（含 `libboost*` 与 MSVC 运行库）；**MinGW 的 8 个运行库并不在其中**（此前说法有误） | `run_sim.tcl` 的 `patch_xsim_dlls` 改为按**位置**把这 13 个放到 `xsimk.exe` 旁，并在 elaborate 之后调用 —— 实测 **5/5 全 PASS**。另实测两条反直觉结论：**只把 `lib/win64.o` 加进 PATH 无效**；「每 TB 独立工作目录」**也不能**阻止该错误 |
+| 12 | **同一个文件里存在两套互相矛盾的归因**：`run_sim.tcl` 头部「设计要点」1 / 5 与它自己生成报告里的 `NOTE 2`，仍在说 `-1073741515` 是「并发才失败」「环境级抖动、重试无效」；而同一文件下方的 `patch_xsim_dlls` 头注释已按实测建立**正确**归因（缺 DLL 闭包）。读者会**先看到错的那一套** | **修 A 处漏 B 处**（与缺陷 #2 / #8 同族）：只改了新增章节，没回头清理**同一事实的旧副本**。同一事实在文件里有多份副本时，**必须一次性全部对齐**，否则文档自相矛盾，且**旧副本的位置往往更显眼** | 三处一并对齐：头部「设计要点 1 / 5」（点 1 明确「独立工作目录**不能**修此错误」；点 5 改为 DLL 闭包真因 + 显式写「并发归因**作废**、加固后未复测」）、报告 `NOTE 2`（降级为 **POLICY ONLY** 并标 **RETRACTED**）、重试链注释（注明「退避**不是**该错误的解，缺 DLL 时重试 4 次同样全败」）；启动脚本 `_run_sim_final.ps1` 的注释同步更正 |
 
 ---
 
@@ -299,7 +318,8 @@ Slack (VIOLATED) : -2.749 ns
 
 | 类别 | 文件 |
 |---|---|
-| 仿真日志 | `_sim/<tb>/`（由 `run_sim.tcl` 生成，已 gitignore） |
+| 仿真结果 | `report/sim_result.txt`（**入库**，由 `run_sim.tcl` 写出） |
+| 仿真原始日志 | `_sim/<tb>/xsim.log`（由 `run_sim.tcl` 生成，**已 gitignore**，可再生） |
 | 仅综合报告 | `report/utilization_synth.rpt`、`report/timing_summary_synth.rpt`、`report/synth_result.txt` |
 | 实现报告 | `report/impl/utilization_postroute.rpt`、`timing_summary_postroute.rpt`、`worst_path_postroute.rpt`、`ram_utilization_postroute.rpt`、`route_status.rpt`、`clocks_postroute.rpt`、`drc_postroute.rpt`、`impl_result.txt` |
 | 逐模块资源 | `report/impl/util_synth_A_hier_none.rpt`（Flow-A） |
@@ -311,9 +331,9 @@ Slack (VIOLATED) : -2.749 ns
 
 | 项 | 值 |
 |---|---|
-| 本轮提交 | 见 `git log -1`（提交信息以 `docs(c): B 反馈闭环` 开头） |
-| 报告的生成基点 | 全部 `report/**` 证据生成于**提交前**的工作树：`synth_result.txt` 第 8 / 10 项与 `impl_result.txt` 第 10 / 11 项**自证**记录了当时的 HEAD（`0632b33`）与未提交改动清单 |
-| 对应关系 | 报告对应「`0632b33` + 本提交的全部改动」这一状态；提交后工作树即再无改动，故上述自证字段可直接作为**提交前基点**使用 |
+| 本轮提交 | **两个**提交（见 `git log -2`）：① `b268ff9` = B 反馈闭环 7 项主体（RTL + 脚本 + 文档）；② 二号提交 = **仅证据**（`report/sim_result.txt` 入库、`synth_result.txt` 剔除陈旧值、审计表缺陷 #8~#12、脚本归因对齐），不动 RTL 口径与冻结参数 |
+| 报告的生成基点 | 每个证据文件都**自证**了生成时的 HEAD 与未提交改动清单，三者基点**不同**，不得混引：<br>· `impl_result.txt` 第 9 / 11 项 → HEAD `0632b33`（**早于** `b268ff9`）<br>· `synth_result.txt` 第 8 / 10 项 → HEAD `0632b33`（同上；本轮**重跑刷新**，剔除了陈旧 `-0.1`）<br>· `sim_result.txt` 第 4 / 6 项 → HEAD `b268ff9`（即①提交之后、②提交之前） |
+| 对应关系 | ① `b268ff9` 的内容 = `0632b33` + 该次提交的改动 ⇒ 综合/实现两份报告的基点落在 ① 上；仿真报告晚一次提交，基点落在 ①。二号提交**只增删 evidence 与文档**，不改变任何被综合/仿真对象 ⇒ 三份证据对**同一份 RTL** 成立（RTL 文件在两次提交之间**零改动**，可由 `git diff --stat b268ff9..HEAD -- rtl/ tb/` 为空自证） |
 
 提交纪律：
 - 证据文件（`report/`）**入库**（§五.13（2）二级判据要求「综合/实现报告入库 + commit 可追溯」）；

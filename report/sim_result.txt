@@ -1,0 +1,28 @@
+==============================================
+ C-side RTL skeleton - SIMULATION result (xsim)
+==============================================
+ 1  Vivado version     : 2022.2
+ 2  testbenches run    : 5
+ 3  pass / fail        : 5 / 0
+ 4  git commit SHA     : b268ff96ee1b7221dd0e3f30576ec89aba7cdb02
+ 5  generated at       : 2026-09-23 14:34:58 (local)
+ 6  uncommitted change : DIRTY: M docs/B_FEEDBACK_CLOSURE_AUDIT.md  M scripts/run_sim.tcl ?? report/sim_result.txt
+----------------------------------------------
+   tb_stripe_buffer       : PASS
+   tb_backpressure_rand   : PASS
+   tb_ready_valid         : PASS
+   tb_c_top               : PASS
+   tb_b_real_primitives   : PASS
+----------------------------------------------
+ raw logs : _sim/<tb>/xsim.log  (gitignored, regenerable)
+==============================================
+ NOTE 1: simulation only -- NOT synthesis, NOT implementation.
+ NOTE 2: do NOT run run_sim.tcl concurrently with synthesis/impl --
+         POLICY ONLY (CPU/disk/log contention).  RETRACTED: the earlier
+         'concurrency causes the -1073741515 failure' reading was wrong;
+         see NOTE 3.  Not re-tested since the DLL staging was added.
+ NOTE 3: the 0xC0000135 / -1073741515 engine-start failure is NOT
+         concurrency: it is the xsim runtime DLL closure being absent.
+         This script stages it next to xsimk.exe after each xelab;
+         the set and the evidence are in the header of run_sim.tcl.
+==============================================
