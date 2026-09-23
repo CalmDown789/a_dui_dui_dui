@@ -48,6 +48,14 @@ route 耗时约 8:05。最差路径仍是 phase 控制到 DSP 输入，route 占
 `report/bc_real_synth/phase_local_phase_state_trial_20260924.txt`。结论是不要再按整个
 output lane 复制二进制 phase 状态，也不能用综合 WNS 代替 post-route 判断。
 
+另以相同 RTL 检验了降频预案：150 MHz post-route WNS/TNS 为 -0.585/-751.208 ns，
+仍被 L5 phase→DSP 限制；120 MHz 时 WNS/TNS 为 +0.012/0 ns，但只有 12 ps 正 slack。
+在 120 MHz 下最差路径转为 C 输入请求地址寄存器到 ROM BRAM 地址端，数据延迟 7.370 ns，
+其中 6.991 ns 是布线延迟，地址网扇出 22。120 MHz 只能算工具报告边缘通过，不能视为有
+足够裕量的板测配置；同时 DRC 仍有大量 DSP pipeline advice，uart_tx 管脚未约束。两个
+降频结果均未生成 bitstream，也未改变正式 200 MHz 配置；完整报告见
+`report/bc_real_synth/clock_fallback_trial_20260924.txt`。
+
 ## 综合内存问题结论
 
 原异常根因是 `phase_mac_pipeline` 的运行时 `in_phase` 驱动宽 packed-bus part-select；Vivado 在 RTL Optimization Phase 2 将综合网表规模异常膨胀，旧运行达到约 30.4 GB 后无法完成。静态 `case` 相位索引修复后，真实 B+C 完整综合峰值约 3.13 GB、实现峰值约 4.13 GB，资源规模符合小型流式 CNN accelerator 的范围。详细前后证据、层级资源及 RAM 映射见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`。
@@ -55,14 +63,14 @@ output lane 复制二进制 phase 状态，也不能用综合 WNS 代替 post-ro
 ## 板测状态与边界
 
 - 尚未生成 bitstream，也没有板上 HDMI/输出图像、画质或吞吐验收记录。全尺寸 Golden PASS 是本机 XSim 数据，不能称为板测通过。
-- 200 MHz 时序失败，因此现在还不能按目标频率签收上板性能。下一个门槛是缩短 L5 phase→DSP 的物理路径并重新完整 route；是否降低目标频率需按项目验收要求另行决定。
+- 200 MHz 时序失败，因此现在还不能按目标频率签收上板性能。150 MHz 仍失败；120 MHz 只有 12 ps slack 且暴露出输入 ROM 地址布线瓶颈，不能作为有裕量的交付配置。下一个门槛是同时处理 L5 phase→DSP 和 C 请求地址→BRAM 两条高布线延迟路径，并确认 UART 管脚约束。
 - UART TX 引脚约束仍待确认，真实 `start` 触发方案也需最终确定。板卡本机操作、器件编程、HDMI/串口采集属于必须在接有 ACX750 的本机完成的工作。
 
 ## 后续工作拆分
 
 ### 必须在带 Vivado 的本机完成
 
-1. 继续针对 L3/L5 phase→DSP 路径做有界实验：现有证据表明路径只有两级逻辑，约 81–85% 延迟来自布线；FanoutOpt+Explore 仅改善 0.259 ns 且明显加长 route，按 output lane 复制 phase 状态则退化并增加 26.7% LUT。下一步应先分析 phase-case 选择网络和 DSP 邻近摆放，再提出一个单变量候选；每次最多做一次综合筛选和一次完整 route，按 post-route WNS/TNS、资源、扇出和耗时决策，未达到收益就撤回，避免重复尝试同一类复制方案。
+1. 继续做有界的物理路径优化：200 MHz 的 L5 phase→DSP 是主瓶颈；降到 120 MHz 后又暴露 C 请求地址→ROM BRAM 的长布线。现有 phase 复制试验已证明整 output lane 复制不划算；FanoutOpt+Explore 仅小幅改善且 route 时间很长。下一项 RTL 试验应先从静态时序路径、扇出与 RAM bank 物理位置提出单一假设；最多综合筛选一次、route 一次，有明确 post-route 改善才保留。不可把 120 MHz 的 12 ps 裕量作为签收依据。
 2. 只有时序与启动/引脚约束达到板测门槛后再生成 bitstream；在 C 手上的板卡采集 HDMI 图像、UART 输出和吞吐数据，与同一版 A Golden 对拍。
 3. 保存 Vivado/XSim 版本、ROM/Golden 哈希、完整资源/时序/DRC 报告及原始仿真摘要。
 

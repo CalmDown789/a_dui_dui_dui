@@ -1,0 +1,60 @@
+REAL B+C CLOCK-FALLBACK TIMING TRIALS
+Date: 2026-09-24 (local)
+Vivado: 2022.2
+Part: xc7a200tfbg484-2
+RTL: selected 200 MHz baseline; no datapath RTL changes
+Method: temporary local C_MMCM_CLKOUT0_DIVIDE_F and C_CLK_HZ overrides;
+        150 MHz used divide 8.0, 120 MHz used divide 10.0.
+        UART divider was kept consistent with each trial clock.
+        The official rtl/c_config.vh was restored to 200 MHz after both runs.
+
+Results
+Metric                         150 MHz trial       120 MHz trial
+MMCM output period             6.667 ns            8.333 ns
+Real B hierarchy self-check    PASS                PASS
+RAMB36 / RAMB18                230 / 8             230 / 8
+DSP48E1                        394                 394
+Post-route LUT                 30,414              30,085
+Post-route FF                  41,828              42,027
+Post-route WNS / TNS           -0.585 /            +0.012 /
+                               -751.208 ns         0 ns
+Post-route WHS / THS           +0.036 / 0 ns       +0.036 / 0 ns
+Peak implementation memory    4,217.695 MB        4,138.527 MB
+route_design elapsed           3:33                2:25
+Routing errors                 0                   0
+
+150 MHz worst path
+  L5 out_phase register -> L5 MAC DSP48E1 A input
+  WNS -0.585 ns; data path 3.876 ns (logic 0.685 ns, route 3.191 ns)
+  Route fraction 82.3%; phase net fanout 124.
+  Therefore 150 MHz is not timing-closed on this implementation.
+
+120 MHz worst path
+  C input request address req_addr_q_reg[13]_rep__2 -> input ROM
+  RAMB36E1 ADDRARDADDR[13]
+  WNS +0.012 ns; data path 7.370 ns (logic 0.379 ns, route 6.991 ns)
+  Route fraction 94.9%; address net fanout 22; zero logic levels.
+  The overall route completed with all 71,535 routable nets and 0 routing
+  errors, but 12 ps slack is only a marginal tool pass and gives no useful
+  implementation margin. It is not an engineering signoff or a board-ready
+  performance configuration.
+
+The 120 MHz timing report also records 1,094 DRC warnings, primarily DSP
+input/output pipelining advice, BRAM async-control checks, and the unresolved
+uart_tx pin/IO-standard assignment. No bitstream was generated and no board
+image was tested. The official 200 MHz target and source parameters remain
+unchanged.
+
+Third-party diagnosis
+  Lowering the clock did not fix one stable path; it changed which physical
+  path limits timing. At 150 MHz the distributed phase-to-DSP mux remained
+  worst. At 120 MHz the input ROM address route became worst. The project
+  therefore has at least two independent routing bottlenecks. Further clock
+  reduction alone would hide them and would need acceptance criteria for
+  throughput; the next useful work is physical localization of these control
+  paths and a margin-based post-route check, with UART pins resolved before
+  any bitstream can be called board-test ready.
+
+Raw reports are kept locally under ignored directories:
+  _synth_bc/150mhz_trial/
+  _synth_bc/120mhz_trial/
