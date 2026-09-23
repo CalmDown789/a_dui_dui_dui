@@ -1,0 +1,63 @@
+REAL B+C PHASE-STATE LOCAL-COPY TRIAL
+Date: 2026-09-24 (local)
+Vivado: 2022.2
+Part: xc7a200tfbg484-2
+Baseline source commit: 22ae012b378d5356aae941e8a1bd5e444daafaec
+
+Purpose
+  Duplicate the 3-bit issue-phase state per output lane, so each copy would
+  drive only that lane's MAC phase selection. The local C-side trial override
+  was checked for simulation and synthesized/elaborated before full route.
+
+Functional and elaboration checks
+  tb_b_real_smoke: PASS
+  tb_b_real_backpressure: PASS
+  tb_b_real_bit_exact: PASS
+  Phase-copy equality assertion: PASS throughout these simulations
+  Real B hierarchy self-check: 1 b_core_real, 0 stubs, 5 layers, 7 FIFOs
+  Full-frame simulation: NOT RUN on this trial
+
+Measured results
+                                Baseline       Phase-local trial
+  Synth LUT                     32,243          40,724
+  Synth FF                      41,673          41,798
+  Synth RAMB36 / RAMB18         230 / 8         230 / 8
+  Synth DSP48E1                 394             394
+  Synth WNS                     -1.169 ns       -0.884 ns
+  Post-route LUT                32,152          40,720
+  Post-route FF                 41,932          42,393
+  Post-route WNS / TNS          -2.208 /        -2.975 /
+                                -50,037.625 ns  -75,872.156 ns
+  Post-route RAMB36 / RAMB18    230 / 8         230 / 8
+  Post-route DSP48E1            394             394
+  Peak memory                   ~4.13 GB        4.32 GB
+  Route elapsed                 4:16            ~8:05
+
+Post-route worst path in the trial
+  L3 lane_phase_state_q_reg[4] -> L3 out_lane[1].mult_lane[6] DSP48E1 A[6]
+  Slack: -2.975 ns; data path delay: 4.418 ns
+  Logic: 0.666 ns (15.1%); route: 3.752 ns (84.9%); 2 logic levels
+  The local state copy's issue output still had fanout 347. The route from
+  that control net alone added 1.566 ns, and the following MUXF7-to-DSP net
+  added 2.186 ns. Routing reported congestion during global iteration 0;
+  all 76,574 routable nets eventually completed with 0 routing errors.
+
+Decision
+  REJECT this RTL candidate and keep the original shared-phase implementation.
+  The synthesis WNS improvement did not survive routing: final WNS regressed
+  by 0.767 ns, TNS regressed by about 25,835 ns, LUT increased by 8,568
+  (26.7%), and route time was about 1.9x baseline. BRAM/DSP counts were
+  unchanged. The implementation still misses 200 MHz.
+
+Third-party diagnosis
+  Copying phase state once per output lane did not localize the actual
+  critical loads: each copy still feeds hundreds of selection cells, and
+  the path remains dominated by routing rather than logic depth. This is
+  evidence against repeating the same lane-copy strategy or treating the
+  synth-only WNS as a signoff result. The next investigation should inspect
+  the 8-way phase-dependent activation/weight selection topology and placement
+  of its multiplier groups. Any new trial must include post-route WNS/TNS,
+  fanout, and route time before it can replace the current RTL.
+
+Raw Vivado trial data remains in the ignored local directory
+  _synth_bc/phase_local_20260924/.
