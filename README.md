@@ -39,11 +39,17 @@ tb/       tb_stripe_buffer.v     条带缓冲模块级定向测试 T1~T6（已 P
 constr/   c_top.xdc             引脚/时钟/复位约束（复用已上板实测基线；UART 引脚待确认）
 scripts/  run_sim.tcl           一键跑全部 TB（每个 TB 独立工作目录，无波形 dump）
           synth_check.tcl       **仅综合**取证（不实现/不布局布线/不生成位流）
+          gen_input_mem.py      生成综合/仿真用的 ROM 初始化 .mem
+          export_dep_txt.py     由依赖清单 .md 生成纯文本 .txt（CJK 宽字符对齐 + 折行）
 report/   综合报告输出目录（utilization_synth.rpt / timing_summary_synth.rpt /
           synth_result.txt 含 C17 十项必录信息）
 docs/     C_IMPLEMENTATION_STATUS.md  ← 实现状态、覆盖度、TODO、下一步
-          DEPENDENCIES_A_B.md        ← ★ 依赖 A/B 的事项清单（排期与交接用）
+          DEPENDENCIES_A_B.md        ← ★ 依赖 A/B 的事项清单（Markdown 源，排期/交接用）
+          DEPENDENCIES_A_B.txt       ← 同上**纯文本版**（自动生成，分发给 A/B 用）
 ```
+
+> 依赖清单的纯文本版由 `.md` 自动生成，**不要手改 .txt**：
+> `python scripts/export_dep_txt.py`
 
 ## 复现
 
