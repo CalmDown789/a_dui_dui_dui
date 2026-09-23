@@ -1,14 +1,12 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-> **2026-09-23 本机最新状态**：XSim 2022.2 默认优化下，96×54 四组及历史
-> 960×540 全帧对拍均失败；同一真实 B RTL、ROM 和 Golden 使用 `xelab -O0` 后，
-> 6×5 逐层、96×54 四组及 960×540 全帧均逐值匹配。RTL 未修改。真实 B+C 综合、
-> 实现和上板尚未验证。2026-09-23 两轮本机 synth-only 均未生成报告；第二轮完成 RTL
-> Optimization Phase 2 后，系统提交余量降到 1.12 GB，页面文件容量仍为 32 GB，故中断。
-> 原始日志与续跑步骤见 `docs/B_C_REAL_SYNTH_CHECKPOINT.md`。
-> default/`-O0` 命令、日志和数据哈希见
-> `docs/B_REAL_XSIM_REPRODUCIBILITY.md`。
-> 面向阶段总结撰写者的 C 端与项目总体状态见 `docs/CURRENT_PROJECT_STATUS.md`。
+> **2026-09-23 本机最新状态**：两处 C 侧 RTL 局部补丁解决了 B+C 综合内存膨胀并隔离
+> 一条路由关键路径。最新 96×54 bit-exact 与背压回归通过，B+C 综合及 place/route 已完成：
+> 32,339 LUT、37,061 FF、394 DSP、230 RAMB36 + 8 RAMB18；实现峰值约 4.24 GB。
+> 200 MHz 时序尚未收敛（post-route WNS=-3.348 ns），PReLU Q15 舍入/饱和逻辑仍是关键路径。
+> 当前版本尚未生成 bitstream，也未做板上图像验收；最新 postprocess 隔离拍版本的 960×540
+> 全帧回归待重跑。审计见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`，项目交接见
+> `docs/CURRENT_PROJECT_STATUS.md`。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
 `C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。
@@ -47,6 +45,7 @@ b_real/   ★ B 真实 RTL 只读镜像（17 个原语，来源 acx750-rtl @ 658
           见 rtl/b_real/PROVENANCE.md（含逐文件 SHA-256）
           ※ 仅用于原语回归；正式五层路径在 rtl/b_real_ae29515/（15 文件）
 rtl/b_real_ae29515/  ★ B 五层真实 RTL @ ae29515；由 C_USE_B_REAL 启用
+rtl/b_real_c_patch/  ★ C 侧局部覆盖（MAC 静态相位选择、PReLU 输入隔离拍）
 tb/       tb_stripe_buffer.v     条带缓冲模块级定向测试 T1~T6（已 PASS）
           tb_backpressure_rand.v 随机化背压压力测试，3 种子 + 断言层（已 PASS）
           tb_ready_valid.v       小规模定向全链路 A~K 场景（已 PASS）
@@ -75,10 +74,10 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
 
 ## 复现
 
-### 仿真（旧的五个 stub / 原语 testbench 已 PASS；真实五层 bit-exact FAIL）
+### 仿真（当前 96×54 真实五层回归通过）
 
 ```powershell
-# 全部 TB（包含耗时的整帧真实 B 验收；当前预期有数值 FAIL）
+# 全部 TB（包含真实 B 验收）
 & vivado.bat -mode batch -source scripts/run_sim.tcl
 
 # 单项复现（脚本负责 ROM 与 xsim DLL staging）
@@ -111,8 +110,9 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
 
 ## 表述纪律（重要）
 
-- 真实 B+C 路径的综合与实现结果见 `report/bc_real_synth/`；
-  **功能逐字节验收仍失败**，不得据资源或仿真周期声称已达到 Fmax / FPS。
+- 真实 B+C 路径的综合与实现结果见 `report/bc_real_synth/`。当前 96×54 回归通过；
+  最新 postprocess 隔离拍版本尚未重跑 960×540 全帧，且没有板上图像验收。
+  布线 WNS 为负，不能声称 200 MHz 收敛或据此宣称 Fmax / FPS。
 - **synthesis-only** 口径（`report/synth_result.txt`）：RAMB36 192/365 = 52.60%、
   DSP48E1 0、WNS −0.1 ns、0 ERROR / 0 CRITICAL WARNING。含 stub，**不是完整 FSRCNN**，
   未做 place/route，**不得**据此宣称「200 MHz 已收敛」或任何 Fmax。
@@ -123,8 +123,8 @@ docs/     C_IMPLEMENTATION_STATUS.md   ← 实现状态、覆盖度、TODO、下
     但 **B v1.1 §五 的物理 RAMB36 口径**理论 1219.5 KiB、用 C 实测值替换后 1242.0 KiB，
     **在 85% 线（1395.0 KiB）内**。两口径差异 = 「按字节」vs「按物理块向上取整」+ 是否计 40 块预留。
     详见 `docs/BRAM_BUDGET_MAP.md` §3.1。
-  - **二级 实际资源**：C 侧骨架实测 192/365，但**不含 B 侧 42+2 块**与 40 块预留；
-    故**只能**写「按 v1.1 物理块口径**外推**在 85% 线内（余量 ≈34 块）」，
-    **不得**写「BRAM 已闭合」。
+  - **二级 实际资源**：真实 B+C 综合实测 230 RAMB36 + 8 RAMB18，按 RAMB36 tile 折算
+    为 234/365（64.11%）。这是器件资源使用率；是否满足项目预算仍按 v1.1 指定的物理块
+    预算口径单独核对，不能用 C+stub 的 192/365 替代真实 B+C 数字。
 - `b_core_stub.v` 的输出是**测试 pattern**，**不是算法结果**，不得用于 PSNR/效果结论。
 - UART 属**离线静态回读**，**不得**用其传输时间推断实时 FPS。

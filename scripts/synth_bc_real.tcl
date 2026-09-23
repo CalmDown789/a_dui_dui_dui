@@ -5,7 +5,7 @@
 #   synth_check.tcl 只把 B 的**旧原语**读进内存**而不实例化**，因此资源数字
 #   完全来自 C 侧 + `b_core_stub`，**不反映 B 的五层网络**。
 #   本脚本用 `synth_design -verilog_define C_USE_B_REAL` 让 b_core_if 真正
-#   实例化 `b_core_real`@ae29515 的 15 文件闭包，从而得到
+#   实例化 `b_core_real`，并综合 ae29515 + C 局部补丁的 15 文件闭包，从而得到
 #   「B 五层 + C 外壳」在目标器件上的**实测**资源。
 #
 # 用法：
@@ -34,6 +34,7 @@ set root_dir   [file normalize "$script_dir/.."]
 set rtl_dir    "$root_dir/rtl"
 set xdc_dir    "$root_dir/constr"
 set b_real_dir "$rtl_dir/b_real_ae29515"
+set b_patch_dir "$rtl_dir/b_real_c_patch"
 set rom_dir    "$root_dir/rom/member_a_d16_s8_m1_c16"
 set stage      "$root_dir/_synth_bc"
 set out_dir    "$root_dir/report/bc_real_synth"
@@ -91,9 +92,9 @@ foreach f $c_files { if {![file exists $f]} { error "缺少 C 侧 RTL: $f" } }
 read_verilog -verbose $c_files
 
 #-----------------------------------------------------------------------------
-# 1b. 读入 **B 真实五层闭包**（15 文件，ae29515）
+# 1b. 读入 **B 真实五层依赖闭包**（13 个 ae29515 文件 + 2 个 C 局部补丁）
 #-----------------------------------------------------------------------------
-# 注：这 15 个文件就是 rtl/b_real_ae29515/ 的实际内容（14 stream + 1 postprocess），
+# 注：15-file 依赖闭包由 13 个锁定 B 源文件和 2 个 C 侧局部补丁组成，
 #     与 run_sim.tcl 的正式仿真路径**完全一致**；B 原仓库 stream/ 下另有
 #     phase_mac_array.sv / vector_postprocess_elastic.sv / mac_lane_map.sv 等
 #     未被 mem_top 层次引用的文件，故意不纳入，以保证「仿真路径 == 综合路径」。
@@ -103,10 +104,10 @@ set b_files [list \
     "$b_real_dir/stream/window_kminus1_bram.sv"        \
     "$b_real_dir/stream/window_stream_frontend.sv"     \
     "$b_real_dir/stream/eight_phase_issue.sv"          \
-    "$b_real_dir/stream/phase_mac_pipeline.sv"         \
+    "$b_patch_dir/phase_mac_pipeline.sv"               \
     "$b_real_dir/stream/phase_accumulator.sv"          \
     "$b_real_dir/stream/mac_issue_stage.sv"            \
-    "$b_real_dir/stream/vector_postprocess_shared.sv"  \
+    "$b_patch_dir/vector_postprocess_shared.sv"        \
     "$b_real_dir/stream/fsrcnn_stream_layer.sv"        \
     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"  \
     "$b_real_dir/stream/fsrcnn_network_core.sv"        \
@@ -241,7 +242,7 @@ puts $rf "=========================================================="
 puts $rf " 1  Vivado version     : [version -short]"
 puts $rf " 2  FPGA part          : $target_part"
 puts $rf " 3  top module         : $top_module"
-puts $rf " 4  B RTL              : rtl/b_real_ae29515 @ ae29515 (15-file closure)"
+puts $rf " 4  B RTL              : ae29515 closure + rtl/b_real_c_patch local RTL overrides"
 puts $rf " 5  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem, \$readmemh, CWD)"
 puts $rf " 6  C_USE_B_REAL       : via 'synth_design -verilog_define C_USE_B_REAL'"
 puts $rf " 7  flatten_hierarchy  : rebuilt"

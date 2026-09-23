@@ -32,8 +32,7 @@
 #   · 新增 TB：tb_b_real_primitives（原语级回归，**非**正式路径）。
 #
 # ★ 2026-09-23 变更 B（**正式接入 B 五层真实 RTL @ ae29515**，取代原语镜像）：
-#   · 正式 B 文件列表 = rtl/b_real_ae29515/ 的 **依赖闭包 15 文件**
-#       stream/*.sv（14）+ postprocess/prelu_requantize.sv
+#   · 正式 B 文件列表 = 15 文件依赖闭包：13 个锁定 B 源文件 + 2 个 C 侧局部补丁
 #     闭包由模块图从 b_core_real 出发传递求解（tools 脚本 `_b_closure.py`），
 #     逐文件 SHA-256 见 rtl/b_real_ae29515/PROVENANCE.md。
 #   · 旧 rtl/b_real/rtl（17 原语）**降级为 legacy**，仅供 tb_b_real_primitives 使用。
@@ -226,7 +225,7 @@ set rtl_files [list \
 ]
 
 #-----------------------------------------------------------------------------
-# B 侧【正式】RTL —— rtl/b_real_ae29515/（成员 B 五层真实网络 @ ae29515）
+# B 侧【正式】RTL —— B 五层网络 @ ae29515 + C 侧时序/综合局部补丁
 #   来源：CalmDown789/a_dui_dui_dui 分支 member-b-five-layer-stream
 #          commit ae295159...（逐文件 SHA-256 见 rtl/b_real_ae29515/PROVENANCE.md）
 #   层次：b_core_real（13 端口，C-B v0.2）
@@ -234,10 +233,11 @@ set rtl_files [list \
 #             → fsrcnn_network_core → 5× fsrcnn_stream_layer + 4× elastic_fifo
 #                                    + pixel_shuffle2x_row_banks
 #   参数：**必须显式传** IMG_W/IMG_H/STRIPE_H（b_core_if.v 已传，见该文件头注）
-#   ⚠️ 这 15 个文件就是依赖闭包的全部；**不要**再多编 rtl/b_real/ 的旧原语
+#   ⚠️ 这 15 个源文件就是依赖闭包的全部；**不要**再多编 rtl/b_real/ 的旧原语
 #      （模块名 `prelu_requantize` 重名、内容不同 ⇒ 会 elab 出错）
 #-----------------------------------------------------------------------------
 set b_real_dir "$rtl_dir/b_real_ae29515"
+set b_patch_dir "$rtl_dir/b_real_c_patch"
 set b_real_files [list \
     "$b_real_dir/stream/fsrcnn_network_core.sv"          \
     "$b_real_dir/stream/fsrcnn_network_mem_top.sv"       \
@@ -248,11 +248,11 @@ set b_real_files [list \
     "$b_real_dir/stream/same_pad_raster.sv"              \
     "$b_real_dir/stream/elastic_fifo.sv"                 \
     "$b_real_dir/stream/mac_issue_stage.sv"              \
-    "$b_real_dir/stream/phase_mac_pipeline.sv"           \
+    "$b_patch_dir/phase_mac_pipeline.sv"                 \
     "$b_real_dir/stream/phase_accumulator.sv"            \
     "$b_real_dir/stream/eight_phase_issue.sv"            \
     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"    \
-    "$b_real_dir/stream/vector_postprocess_shared.sv"    \
+    "$b_patch_dir/vector_postprocess_shared.sv"          \
     "$b_real_dir/postprocess/prelu_requantize.sv"        \
 ]
 
@@ -368,7 +368,7 @@ foreach tb $all_tbs {
 
     # 每个 TB 的 B 侧编译集合：默认 = 正式五层闭包；legacy 只给 primitives TB
     set bfiles $b_real_files
-    set bkind  "REAL  (rtl/b_real_ae29515 @ ae29515)"
+    set bkind  "REAL  (ae29515 + rtl/b_real_c_patch)"
     if {[lsearch -exact $legacy_b_tbs $tb] >= 0} {
         set bfiles $b_legacy_files
         set bkind  "LEGACY(rtl/b_real/rtl 17 primitives -- NOT the formal path)"
@@ -522,7 +522,7 @@ puts $rf " 3  pass / fail        : $npass / [llength $fail_list]"
 puts $rf " 4  git commit SHA     : $git_sha"
 puts $rf " 5  generated at       : [clock format [clock seconds] -format {%Y-%m-%d %H:%M:%S}] (local)"
 puts $rf " 6  uncommitted change : $local_mod"
-puts $rf " 7  B formal path      : rtl/b_real_ae29515 @ ae29515 (15-file closure)"
+puts $rf " 7  B formal path      : ae29515 closure + rtl/b_real_c_patch local RTL overrides"
 puts $rf " 8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)"
 puts $rf " 9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)"
 puts $rf "10  real-B xelab mode : $real_b_xelab_opt"
