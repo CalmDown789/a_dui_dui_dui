@@ -1,5 +1,19 @@
 # Frozen-model arithmetic budget
 
+## 2026-09-23 member B architecture baseline v1.1
+
+The frozen five-engine schedule allocates 50/16/72/16/200 lanes, 354 one-DSP
+MAC lanes in total, and provisionally 16 more DSPs for postprocessing: 370
+DSPs is a theoretical budget. The current shared postprocess RTL has 13 multiplier lanes in
+total (4/2/2/4/1 across L1..L5), within the provisional 16-lane allocation
+structurally; this is not a verified DSP48E1 count. Each engine takes 8 accepted phase transfers
+per LR pixel. At an *assumed* 200 MHz and no stalls, 518,400 LR positions take
+4,147,200 cycles, or 48.23 frames/s before pipeline fill, borders, stalls,
+output buffering, and implementation losses. At 150 MHz the same arithmetic
+upper bound is 36.17 frames/s. Neither is a realized frame rate. The earlier
+90 MHz/740-DSP calculation below remains a separate raw-device scenario, not
+the current instantiated-architecture budget.
+
 The confirmed 960x540 `d16/s8/m1/c16` topology contains exactly 1,468,108,800
 MAC per frame. At 30 fps it therefore requires 44.043264 GMAC/s.
 

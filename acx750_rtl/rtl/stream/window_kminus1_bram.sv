@@ -1,0 +1,93 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: K-1 rotating BRAM row banks, K=3 or K=5.
+// The bank overwritten on the current row supplies the oldest prior row
+// through read-before-write behavior. The current pixel lives in a register.
+module window_kminus1_bram #(
+    parameter integer DATA_W=8,
+    parameter integer IMG_W=100,
+    parameter integer K=5
+)(
+    input  wire                      clk,
+    input  wire                      rst,
+    input  wire [DATA_W-1:0]         pixel_in,
+    input  wire                      pixel_valid,
+    output wire [K*K*DATA_W-1:0]     window_flat,
+    output reg                       window_valid
+);
+    localparam integer BANKS=K-1;
+    localparam integer COL_W=(IMG_W<=1)?1:$clog2(IMG_W);
+    localparam integer ROWMOD_W=(BANKS<=1)?1:$clog2(BANKS);
+    reg [COL_W-1:0] col,col_d;
+    reg [15:0] row,row_d;
+    reg [ROWMOD_W-1:0] row_mod,row_mod_d;
+    reg [DATA_W-1:0] pixel_d;
+    reg read_valid_d;
+    wire [DATA_W-1:0] q[0:BANKS-1];
+    reg [DATA_W-1:0] prev[1:BANKS];
+    reg [DATA_W-1:0] shift[0:K*K-1];
+    genvar b,t;
+    generate
+        for(b=0;b<BANKS;b=b+1)begin:bank_gen
+            (* ram_style="block" *) reg [DATA_W-1:0] mem[0:IMG_W-1];
+            reg [DATA_W-1:0] read_data;
+            always @(posedge clk)if(pixel_valid)begin
+                read_data<=mem[col];
+                if(row_mod==b)mem[col]<=pixel_in;
+            end
+            assign q[b]=read_data;
+        end
+        for(t=0;t<K*K;t=t+1)begin:flat_gen
+            assign window_flat[t*DATA_W+:DATA_W]=shift[t];
+        end
+    endgenerate
+    integer i,j,bank_index;
+    always @*begin
+        for(i=1;i<=BANKS;i=i+1)begin
+            bank_index=row_mod_d-i;
+            if(bank_index<0)bank_index=bank_index+BANKS;
+            prev[i]=q[bank_index];
+        end
+    end
+    initial begin
+        if((K!=3&&K!=5)||IMG_W<K||DATA_W<1)
+            $error("window_kminus1_bram requires K=3/5, IMG_W>=K, DATA_W>=1");
+    end
+    always @(posedge clk)begin
+        if(rst)begin
+            col<=0;row<=0;row_mod<=0;
+            col_d<=0;row_d<=0;row_mod_d<=0;
+            pixel_d<=0;read_valid_d<=0;
+        end else begin
+            read_valid_d<=pixel_valid;
+            if(pixel_valid)begin
+                col_d<=col;row_d<=row;row_mod_d<=row_mod;pixel_d<=pixel_in;
+                if(col==IMG_W-1)begin
+                    col<=0;row<=row+1'b1;
+                    row_mod<=(row_mod==BANKS-1)?0:row_mod+1'b1;
+                end else col<=col+1'b1;
+            end
+        end
+    end
+    integer r;
+    always @(posedge clk)begin
+        if(rst)begin
+            for(j=0;j<K*K;j=j+1)shift[j]<=0;
+            window_valid<=0;
+        end else begin
+            window_valid<=0;
+            if(read_valid_d)begin
+                for(r=0;r<K;r=r+1)begin
+                    if(col_d==0)begin
+                        for(j=0;j<K-1;j=j+1)shift[r*K+j]<=0;
+                    end else begin
+                        for(j=0;j<K-1;j=j+1)shift[r*K+j]<=shift[r*K+j+1];
+                    end
+                    if(r==K-1)shift[r*K+K-1]<=pixel_d;
+                    else shift[r*K+K-1]<=prev[BANKS-r];
+                end
+                window_valid<=(row_d>=K-1)&&(col_d>=K-1);
+            end
+        end
+    end
+endmodule

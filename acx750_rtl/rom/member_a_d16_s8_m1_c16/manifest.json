@@ -1,0 +1,140 @@
+{
+  "owner": "成员B工作 / Team member B",
+  "source": "member A audited integer delivery",
+  "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "files": [
+    {
+      "name": "feature_weights_packed.mem",
+      "elements": 400,
+      "bits_per_element": 8,
+      "source_sha256": "7c3cd65dfed2b7909f8f5d5e19387e484e059e4d87eabec1ec4fa60b97414a99",
+      "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850"
+    },
+    {
+      "name": "feature_bias_packed.mem",
+      "elements": 16,
+      "bits_per_element": 32,
+      "source_sha256": "ce3cc3638a508459d3732996fe5bffc6bcc5539774ffdf8da115faa2af4ac0ad",
+      "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4"
+    },
+    {
+      "name": "feature_q31_packed.mem",
+      "elements": 16,
+      "bits_per_element": 32,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144"
+    },
+    {
+      "name": "feature_prelu_packed.mem",
+      "elements": 16,
+      "bits_per_element": 16,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335"
+    },
+    {
+      "name": "shrink_weights_packed.mem",
+      "elements": 128,
+      "bits_per_element": 8,
+      "source_sha256": "197d81c736451157d6502928b438d2a02cf571b8d4aa80ac744613b1a4eb6d43",
+      "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d"
+    },
+    {
+      "name": "shrink_bias_packed.mem",
+      "elements": 8,
+      "bits_per_element": 32,
+      "source_sha256": "e3eca0d176533365cf41271a6403f98fe5e2c6688069c2b2e2934b43be40fac5",
+      "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983"
+    },
+    {
+      "name": "shrink_q31_packed.mem",
+      "elements": 8,
+      "bits_per_element": 32,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41"
+    },
+    {
+      "name": "shrink_prelu_packed.mem",
+      "elements": 8,
+      "bits_per_element": 16,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a"
+    },
+    {
+      "name": "mapping0_weights_packed.mem",
+      "elements": 576,
+      "bits_per_element": 8,
+      "source_sha256": "5c68f4c57c366b5b2ec4fa229eeac94df295de99be1d43ec9e7d11cdd6a61fed",
+      "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad"
+    },
+    {
+      "name": "mapping0_bias_packed.mem",
+      "elements": 8,
+      "bits_per_element": 32,
+      "source_sha256": "3e5b33dea39582b2c634524509ad6ca53412d5579958fe6b459873a8ab16c2a9",
+      "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1"
+    },
+    {
+      "name": "mapping0_q31_packed.mem",
+      "elements": 8,
+      "bits_per_element": 32,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8"
+    },
+    {
+      "name": "mapping0_prelu_packed.mem",
+      "elements": 8,
+      "bits_per_element": 16,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7"
+    },
+    {
+      "name": "expand_weights_packed.mem",
+      "elements": 128,
+      "bits_per_element": 8,
+      "source_sha256": "7787c6a796e3c41198c6375b6925c2add85828872a18c7bf0c4dd31eb08cf7c6",
+      "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a"
+    },
+    {
+      "name": "expand_bias_packed.mem",
+      "elements": 16,
+      "bits_per_element": 32,
+      "source_sha256": "341250e044e01ba5c390366849487b11196b06826e4647840300133ace149cf8",
+      "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b"
+    },
+    {
+      "name": "expand_q31_packed.mem",
+      "elements": 16,
+      "bits_per_element": 32,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f"
+    },
+    {
+      "name": "expand_prelu_packed.mem",
+      "elements": 16,
+      "bits_per_element": 16,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365"
+    },
+    {
+      "name": "subpixel_weights_packed.mem",
+      "elements": 1600,
+      "bits_per_element": 8,
+      "source_sha256": "251f3c1d5f3a2e13a2968d0c341d050716b2ed26c56c5cf09dfb3854fe77a6bb",
+      "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b"
+    },
+    {
+      "name": "subpixel_bias_packed.mem",
+      "elements": 4,
+      "bits_per_element": 32,
+      "source_sha256": "a9caea3b9f1cbe05325be2d50219f0498fc24db0a3259806eb95e982a5295823",
+      "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192"
+    },
+    {
+      "name": "subpixel_q31_packed.mem",
+      "elements": 4,
+      "bits_per_element": 32,
+      "source_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c"
+    }
+  ]
+}

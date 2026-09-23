@@ -13,7 +13,14 @@ $regressions=@(
     'run_conv5x5_u8s8_xsim.ps1',
     'run_prelu_requantize_xsim.ps1',
     'run_parameter_rom_xsim.ps1',
-    'run_pixel_shuffle_map_xsim.ps1'
+    'run_pixel_shuffle_map_xsim.ps1',
+    'run_stream_control_xsim.ps1',
+    'run_padded_window_member_b_xsim.ps1',
+    'run_eight_phase_issue_xsim.ps1',
+    'run_window_stream_frontend_xsim.ps1',
+    'run_mac_lane_map_xsim.ps1',
+    'run_phase_accumulator_xsim.ps1',
+    'run_phase_mac_array_xsim.ps1'
 )
 
 foreach($regression in $regressions){

@@ -1,5 +1,25 @@
 # ACX750 FSRCNN pure RTL workspace
 
+## 2026-09-23 member B streaming-control increment
+
+Team member B added `rtl/stream/` with parameterized SAME-padding, K-1
+row-bank arrays, eight-phase MAC scheduling and INT32 assembly, four interlayer
+FIFOs, time-shared per-channel PReLU/Q31, and two PixelShuffle row banks. The
+`fsrcnn_network_mem_top.sv` port list follows C-B v0.2. XSim compares all five
+streaming layers and the final Y output at both 6x5 and 96x54 against
+independently computed values from member A's audited integer assets. The
+96x54 run checks 269,568 layer values and 20,736 output bytes. This is a
+functional baseline; the 370-DSP, 271-RAMB36, 200-MHz and 30-fps budgets
+still need architectural optimization and target synthesis/implementation.
+See `docs/stream_integration_status.md`.
+
+The later member-B increment adds `rtl/stream/b_core_real.sv` for C's named
+interface, a stallable balanced MAC tree, and synchronous PixelShuffle bank
+reads. The C-side ZIP integration check is `scripts/run_member_b_c_core_real_xsim.ps1`;
+it copies C files into a temporary test directory and leaves C's source intact.
+See `docs/member_b_backpressure_contract.md` for B-ARCH-10 capacity and stall
+details. No target-device utilization or timing result is implied by XSim.
+
 **Owner: team member B.** This subtree is member B's pure-RTL implementation,
 integer bit-exact verification, and synthesis-analysis work for the ACX750
 board and `XC7A200TFBG484-2` target. Member A owns the model/quantized tensors;
@@ -35,9 +55,9 @@ clock frequency remain external contracts owned by member C.
   channels, inserts idle cycles, exercises signed INT8 limits, and poisons
   later-channel bias values to check first-channel bias sampling.
 
-This is a correctness micro-kernel, not a 30 fps architecture. Parallelism,
-DSP packing, memory scheduling, and the full network top remain to be derived
-after the model and board interfaces are frozen.
+The primitives above remain useful independent checks. The newer five-engine
+network top is described in `docs/stream_integration_status.md`; its target
+resource mapping, timing and frame rate remain open.
 
 ## Member A delivery audit
 
