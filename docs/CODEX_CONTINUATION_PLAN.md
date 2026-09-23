@@ -13,7 +13,11 @@
   `docs/B_REAL_XSIM_OPTIMIZATION_FINDING.md`。
 - `-O0` 下 6×5 逐层探针全部 0 失配，96×54 impulse/ramp/random/zero 正式
   验收全部 PASS。全帧 `tb_b_real_full` 正在以 `-O0` 重跑；启动于本机
-  2026-09-23 19:10，最新日志显示 250,000/2,073,600 输出字节、0 失配。
+  2026-09-23 19:10，最新日志显示 1,250,000/2,073,600 输出字节、0 失配。
+- B 反馈要求把默认优化与 `-O0` 对照证据固定下来，不改 B RTL，也不混淆其测试台
+  竞态修正与 C 侧的 XSim 优化结果。复现配置、命令及数据哈希见
+  `docs/B_REAL_XSIM_REPRODUCIBILITY.md`；`run_sim.tcl` 可用
+  `C_REAL_B_XELAB_OPT=default|o0` 选择真实 B 仿真选项。
 - 真实 B+C 综合和实现尚未完成；全尺寸功能结论等待当前 `-O0` 全帧运行结束。
 - 仓库没有 `.github` workflow，也没有配置好的 GitHub Actions / Vivado runner。
   GitHub 协作可承载代码分析、修改和 PR；Vivado 仿真、综合、布局布线需要
@@ -106,11 +110,11 @@
 ## 本次本机运行检查点
 
 `tb_b_real_full` 于 2026-09-23 19:10（本机）启动，Vivado 2022.2/XSim 子进程
-`xsimk` PID 83092。截至 19:22，已输出 750,000/2,073,600 字节（36%）、0 失配。
+`xsimk` PID 83092。截至 19:30，已输出 1,250,000/2,073,600 字节（60%）、0 失配。
 日志位于
 `_sim/tb_b_real_full/xsim.log`。若该进程仍在运行，继续等待它并检查
 日志，不要另起同一全帧实例；若已退出，保存已有日志后用上面的命令从头重跑。
-当前 `-O0` 速度依日志粗估还需约 20–25 分钟，实际以 XSim 输出为准。A
+当前 `-O0` 速度依日志粗估还需约 12–15 分钟，实际以 XSim 输出为准。A
 输入/Golden `.mem` 文件位于 Git 忽略目录，不能由 GitHub
 clone 恢复；本机完整数据源路径和 SHA-256 见 `ref/README.md`。
 

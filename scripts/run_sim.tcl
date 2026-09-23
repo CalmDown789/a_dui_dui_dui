@@ -287,6 +287,16 @@ set b_legacy_files [list \
 #-----------------------------------------------------------------------------
 # 走 b_core_if 的 **正式 B 分支**（`-d C_USE_B_REAL`）—— 这 4 个是新加的
 set real_b_tbs [list tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full]
+# 默认规避 XSim 2022.2 的优化误算；对照复现可在启动 Vivado 前设置
+# C_REAL_B_XELAB_OPT=default。允许值：o0 / default。
+set real_b_xelab_opt "o0"
+if {[info exists ::env(C_REAL_B_XELAB_OPT)]} {
+    set real_b_xelab_opt [string tolower [string trim $::env(C_REAL_B_XELAB_OPT)]]
+}
+if {[lsearch -exact [list o0 default] $real_b_xelab_opt] < 0} {
+    error "invalid C_REAL_B_XELAB_OPT='$real_b_xelab_opt' (use o0 or default)"
+}
+puts "real-B xelab optimization: $real_b_xelab_opt"
 # 需要 **legacy 原语镜像** 的 TB（其余一律用正式闭包）
 set legacy_b_tbs [list tb_b_real_primitives]
 # 需要 stage_ref_data 的 TB → 各自的 $readmemh 文件名模式
@@ -390,7 +400,9 @@ foreach tb $all_tbs {
     #--- 2. elaborate ----------------------------------------------------
     if {$ok} {
         set xelab_cmd [list "$bin_dir/xelab.bat" "worklib.$tb" --nolog]
-        if {[lsearch -exact $real_b_tbs $tb] >= 0} { lappend xelab_cmd -O0 }
+        if {[lsearch -exact $real_b_tbs $tb] >= 0 && $real_b_xelab_opt eq "o0"} {
+            lappend xelab_cmd -O0
+        }
         lappend xelab_cmd -s $tb
         if {[catch {eval exec $xelab_cmd > "$work/xelab.log"} err]} {
             set ok 0; puts "xelab FAILED: $err"
