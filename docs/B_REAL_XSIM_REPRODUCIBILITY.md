@@ -14,6 +14,8 @@ C 侧据此把 XSim 2022.2 默认优化列为待复现的仿真器嫌疑；这�
 | 96×54 用例 | A 四组 manifest：impulse `5b2c57e5aef920f50fdd925ef319e20c6953f9f5786a9f45ca509574819e83fb`；ramp `220f0be44e1ba620da861f6924c933f19e45cbb45fe4d93d1a3688791ea6d9a5`；random `25e09ab491961179f78e5a0e952a86ae1150d3900ed2820ee41098aff1b06765`；zero `8343a457d2a7afa497bf84a4014fa560bfa891b1a46875d425498510d41216bf`。每份 manifest 都固定输入、逐层 Golden 和最终输出哈希 |
 | 960×540 全帧 Golden | A 来源提交 `98c82f394bdfba85bc2959bede9760edc4d6862f`；输出 `output_1920x1080_y_u8.bin` SHA-256 `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`；完整清单为 `ref/a_full_integer_golden/SHA256SUMS.txt` |
 | 验收台 | `tb_b_real_bit_exact.v` SHA-256 `372d2805927f683f37b2da8c366baa060649ccfb627aa0da02facd45a91ac960`；`tb_b_real_full.v` SHA-256 `1bbde2e7ec936c392c0813f86387dc57c7e3714b57fa7345c43045628b1e85ff` |
+| 96×54 对照执行版本 | C 提交 `9479cdbec0385ca31ca162d5c530f85a2f1a510a`；两次使用同一 `scripts/run_sim.tcl`，SHA-256 `fc5f3d7c7f3a201eeba8c26c052f103b93517a8ed79c899022a4fcb8eef6a70` |
+| 协议回归台 | `tb_b_real_smoke.v` SHA-256 `ad0b37a7e6e90cc8003de6c6415e4c4f59f7c08381caeffe8362b0847671e818`；修正后的 `tb_b_real_backpressure.v` SHA-256 `33dcc89c665c7a35c44de00c6e6323caacb72d030af63c6e81127aea20912b96` |
 
 ## 同一 runner 的对照命令
 
@@ -31,24 +33,30 @@ $env:C_REAL_B_XELAB_OPT = 'o0'
   -source 'scripts/run_sim.tcl' -tclargs tb_b_real_bit_exact
 ```
 
-`run_sim.tcl` 会打印所选模式。每次运行的 `xelab.log`、`xsim.log` 和结果报告应分别
-存到 `report/xsim_repro/default/` 与 `report/xsim_repro/o0/`，避免下一次运行覆盖证据。
-目前这两个 96×54 配置还需在模式开关加入后各重跑一次，以保存同 runner 的原始日志。
+`run_sim.tcl` 会打印所选模式。两种模式已经用同一 runner 和数据各重跑一次；
+`xelab.log`、`xsim.log` 和结果报告已分别保存在 `report/xsim_repro/default/96x54/`
+与 `report/xsim_repro/o0/96x54/`。全帧的同类文件位于 `report/xsim_repro/o0/960x540/`。
 
 ## 已有结果
 
 | 配置 | 用例 | 结果 | 证据 |
 |---|---|---|---|
-| XSim 2022.2 默认优化 | 96×54 四组 | 历史记录 FAIL；同一数据此前默认优化下失配 | 原始简表在提交 `23d913c` 的 `report/sim_result_tb_b_real_bit_exact.txt`；本机 Vivado transcript `_bit_exact_codex.log` |
-| XSim 2022.2 `-O0` | 96×54 四组 | 4/4 PASS，0 失配 | `report/sim_result_tb_b_real_bit_exact.txt`；本机 `_sim/tb_b_real_bit_exact/xsim.log` |
-| XSim 2022.2 默认优化 | 960×540 全帧 | 23,874 匹配、2,049,726 失配、0 个 X；帧尾/条带尾/保持规则通过 | 历史结构化摘要 `report/b_real_full_summary.json`；旧 Vivado transcript `_full_sim_codex_resume.log` |
-| XSim 2022.2 `-O0` | 960×540 全帧 | 运行中；截至 2026-09-23 19:41 本机已比较 1,750,000/2,073,600 字节（84%），0 失配 | `_sim/tb_b_real_full/xsim.log` |
+| XSim 2022.2 默认优化 | 96×54 四组 | 0/4 PASS；impulse/ramp/random/zero 分别有 15,816/20,633/19,155/15,825 个字节失配 | `report/xsim_repro/default/96x54/` |
+| XSim 2022.2 `-O0` | 96×54 四组 | 4/4 PASS，0 失配 | `report/xsim_repro/o0/96x54/` |
+| XSim 2022.2 `-O0` | 6×5 smoke | 2 帧 PASS；协议标志和保持规则正常 | `report/xsim_repro/o0/smoke/` |
+| XSim 2022.2 `-O0` | 96×54 backpressure | T-A/T-B/T-C 三帧 PASS；T-B 连续有效输出停顿 300 拍，所有字节匹配、保持违例 0 | `report/xsim_repro/o0/backpressure/` |
+| XSim 2022.2 默认优化 | 960×540 全帧 | 23,874 匹配、2,049,726 失配、0 个 X；帧尾/条带尾/保持规则通过 | `report/xsim_repro/default/960x540/` 的摘要和 Vivado transcript |
+| XSim 2022.2 `-O0` | 960×540 全帧 | PASS；2,073,600/2,073,600 字节匹配，X=0；17 条带尾、1 帧尾、0 保持违例；4,180,016 周期，32:38 | `report/xsim_repro/o0/960x540/` |
+
+背压回归的两次早期超时也被定位为 C 侧测试台问题：T-B 在停顿结束后因 `got`
+仍停在 1/4 阈值而重复触发；T-C 因 `fed` 停在 1/3 阈值而重复触发。修复后分别用
+完成标志限制为单次触发，并让 T-B 从 `out_valid` 有效拍开始计数。没有修改 B 或 C RTL。
 
 旧全帧摘要记录的默认优化原始 `xsim.log` SHA-256 为
 `a9b816e184190e23b2a1a99f31720efa5c5f56e6e306f120b5a194f4d46b8f5f`。XSim 使用同一
-`_sim/tb_b_real_full/xsim.log` 路径；当前 `-O0` 全帧正在运行，因此旧原始 log 已被
-覆盖。旧的 Vivado transcript 与结构化摘要仍保留旧运行计数。新全帧结束后，应立即把
-`-O0` 的 log、elaboration log、summary 和结果文本归档到 `report/xsim_repro/o0/`。
+`_sim/tb_b_real_full/xsim.log` 路径，历史默认优化原始 log 已被后来运行覆盖；旧摘要
+仍保留其 SHA 与完整计数，旧 Vivado transcript 已归档。新 `-O0` 原始日志和摘要均已
+归档。小图两种模式的当前原始 log 都在 `report/xsim_repro/`，可以直接对照。
 
 ## 验收边界
 

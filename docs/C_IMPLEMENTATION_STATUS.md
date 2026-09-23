@@ -1,10 +1,10 @@
 # C 侧 RTL 实现状态（C_IMPLEMENTATION_STATUS）
 
-> **2026-09-23 最新状态**：真实 B `ae29515` RTL 与 ROM 未修改。XSim 2022.2
-> 默认 `xelab` 优化会误算流式后处理；改用 `-O0` 后 6×5 逐层探针及 96×54
-> impulse/ramp/random/zero 四组均逐字节匹配。960×540 全帧正在复跑；真实 B+C
-> 综合、实现和板级验证仍未完成。见 `B_REAL_XSIM_OPTIMIZATION_FINDING.md` 和
-> `B_C_REAL_ACCEPTANCE_REPORT.md`。本文以下 `192 RAMB36`、旧 TB PASS 与时序
+> **2026-09-23 最新状态**：真实 B `ae29515` RTL 与 ROM 未修改。XSim 2022.2 默认
+> `xelab` 优化下的 96×54 和历史整帧对拍失败；使用 `-O0` 后 6×5 逐层探针、
+> 96×54 四组及 960×540 全帧均逐字节匹配。真实 B+C 综合、实现和板级验证仍未完成。
+> 见 `B_REAL_XSIM_REPRODUCIBILITY.md` 与 `B_C_REAL_ACCEPTANCE_REPORT.md`。本文以下
+> `192 RAMB36`、旧 TB PASS 与时序
 > 仍是此前 C+stub / B 原语阶段的历史证据。
 
 > 仓库：`srtp/c_side`（C 侧独立 Git 仓库，2026-09-23 新建）

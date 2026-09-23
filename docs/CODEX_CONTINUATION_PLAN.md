@@ -11,14 +11,17 @@
 - XSim 2022.2 默认 `xelab` 优化的旧失败已由同一 RTL 的 `-O0` 复核为模拟器
   优化问题；不要将默认优化结果当作当前 RTL 功能结论。详情见
   `docs/B_REAL_XSIM_OPTIMIZATION_FINDING.md`。
-- `-O0` 下 6×5 逐层探针全部 0 失配，96×54 impulse/ramp/random/zero 正式
-  验收全部 PASS。全帧 `tb_b_real_full` 正在以 `-O0` 重跑；启动于本机
-  2026-09-23 19:10，最新日志显示 1,750,000/2,073,600 输出字节、0 失配。
+- `-O0` 下 6×5 逐层探针、96×54 impulse/ramp/random/zero 正式验收及 960×540
+  全帧均 0 失配。全帧摘要和 raw log 在 `report/xsim_repro/o0/960x540/`；同 runner
+  的 96×54 default/`-O0` 对照日志在 `report/xsim_repro/{default,o0}/96x54/`。
 - B 反馈要求把默认优化与 `-O0` 对照证据固定下来，不改 B RTL，也不混淆其测试台
   竞态修正与 C 侧的 XSim 优化结果。复现配置、命令及数据哈希见
   `docs/B_REAL_XSIM_REPRODUCIBILITY.md`；`run_sim.tcl` 可用
   `C_REAL_B_XELAB_OPT=default|o0` 选择真实 B 仿真选项。
-- 真实 B+C 综合和实现尚未完成；全尺寸功能结论等待当前 `-O0` 全帧运行结束。
+- 本机真实 B smoke 与背压回归 `-O0` PASS；三种背压场景均逐字节匹配，T-B 实测
+  连续有效拍停顿 300、保持违例 0。期间修正的是 C 侧背压 TB 的重复触发/启动计数，
+  未修改 B 或 C RTL。
+- 真实 B+C 综合和实现尚未完成；仿真数值/协议结果已通过 `-O0` 全尺寸对拍。
 - 仓库没有 `.github` workflow，也没有配置好的 GitHub Actions / Vivado runner。
   GitHub 协作可承载代码分析、修改和 PR；Vivado 仿真、综合、布局布线需要
   装有相应版本和许可的机器或专用 self-hosted runner。
@@ -101,22 +104,16 @@
 
 ## 建议接续顺序
 
-1. 等待本机 `-O0` 全帧复测完成并保存正式日志/摘要。
-2. 运行本机 smoke/backpressure 回归。
-3. 评估本机真实 B+C 综合/实现；先检查内存与综合报告，再决定是否运行完整实现。
-4. 依据真实 B 验证和 B+C 综合/实现结果更新验收文档，明确板级事项仍需接板实测。
-5. GitHub 协作者可独立审查仿真优化发现与重现流程；如提出 RTL 修改，需回本机复测。
+1. 运行本机旧 C 壳层 smoke/ready-valid/backpressure 回归。
+2. 评估本机真实 B+C synth-only；读取资源/时序报告和峰值内存，再决定是否运行完整实现。
+3. 依据真实 B 验证和 B+C 综合/实现结果更新验收文档，明确板级事项仍需接板实测。
+4. GitHub 协作者可独立审查仿真优化发现与重现流程；如提出 RTL 修改，需回本机复测。
 
 ## 本次本机运行检查点
 
-`tb_b_real_full` 于 2026-09-23 19:10（本机）启动，Vivado 2022.2/XSim 子进程
-`xsimk` PID 83092。截至 19:41，已输出 1,750,000/2,073,600 字节（84%）、0 失配。
-日志位于
-`_sim/tb_b_real_full/xsim.log`。若该进程仍在运行，继续等待它并检查
-日志，不要另起同一全帧实例；若已退出，保存已有日志后用上面的命令从头重跑。
-当前 `-O0` 速度依日志粗估还需约 4–6 分钟，实际以 XSim 输出为准。A
-输入/Golden `.mem` 文件位于 Git 忽略目录，不能由 GitHub
-clone 恢复；本机完整数据源路径和 SHA-256 见 `ref/README.md`。
+`tb_b_real_full` 于 2026-09-23 19:10（本机）启动，Vivado 2022.2/XSim 完成于
+19:42:40；完整日志和摘要已归档。A 输入/Golden `.mem` 文件位于 Git 忽略目录，
+不能由 GitHub clone 恢复；本机完整数据源路径和 SHA-256 见 `ref/README.md`。
 
 裸 `python` 是 Windows Store alias；当前机器请使用上面的托管 Python 路径。
 `_sim/`、`_synth_bc/` 可再生，日志及 A 的大文件参考数据不随 Git 提交。

@@ -128,6 +128,8 @@ module tb_b_real_backpressure;
         integer out_hold_cnt;      // mode 1：距进入停等的计数
         integer in_hold_cnt;       // mode 2
         reg     stalling;
+        reg     stall_done;        // mode 1：避免停等结束后因 got 未变而重复触发
+        reg     in_stall_done;     // mode 2：避免 fed 停在触发点时重复触发
         begin
             @(negedge clk);
             if (busy !== 1'b0) fail("busy high before start pulse");
@@ -142,6 +144,8 @@ module tb_b_real_backpressure;
             in_idle_cur = 0; in_idle_max = 0;
             lfsr = 16'hACE1;
             stalling = 1'b0;
+            stall_done = 1'b0;
+            in_stall_done = 1'b0;
             out_hold_cnt = 0;
             in_hold_cnt = 0;
 
@@ -150,11 +154,12 @@ module tb_b_real_backpressure;
 
                 //-------------- 输入驱动 ----------------------------------
                 if (fed < N_IN) begin
-                    if (mode == 2 && in_hold_cnt == 0) begin
+                    if (mode == 2 && in_hold_cnt == 0 && !in_stall_done) begin
                         // 输入喂到一半时开始一次长留空
                         if (fed == N_IN/3) begin
                             in_valid = 1'b0;
                             in_hold_cnt = STALL_IN;
+                            in_stall_done = 1'b1;
                         end else begin
                             in_valid = 1'b1;
                             in_data  = in_mem[fed];
@@ -193,14 +198,18 @@ module tb_b_real_backpressure;
                     0: out_ready = lfsr[0];
                     1: begin
                         // 收到 1/4 输出后拉低 STALL_LONG 拍
-                        if (!stalling && got == N_OUT/4 && out_hold_cnt == 0) begin
+                        if (!stalling && !stall_done && got == N_OUT/4 &&
+                            out_hold_cnt == 0 && out_valid) begin
                             stalling = 1'b1;
                             out_hold_cnt = STALL_LONG;
                         end
                         if (stalling) begin
                             out_ready = 1'b0;
                             out_hold_cnt = out_hold_cnt - 1;
-                            if (out_hold_cnt <= 0) stalling = 1'b0;
+                            if (out_hold_cnt <= 0) begin
+                                stalling = 1'b0;
+                                stall_done = 1'b1;
+                            end
                         end else begin
                             out_ready = 1'b1;
                         end
