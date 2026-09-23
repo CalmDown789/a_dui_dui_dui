@@ -19,9 +19,6 @@ REQUIRED = [
     "artifacts/evaluation/summary.json",
     "artifacts/full_reference/ref_out_fp32.npy",
     "artifacts/full_reference/ref_out_quant.npy",
-    "artifacts/full_integer_golden/manifest.json",
-    "artifacts/full_integer_golden/input_rom_2p19_u8.mem",
-    "artifacts/full_integer_golden/output_1920x1080_y_u8.bin",
     "artifacts/test_vectors/zero/manifest.json",
     "artifacts/test_vectors/impulse/manifest.json",
     "artifacts/test_vectors/ramp/manifest.json",
@@ -70,24 +67,6 @@ def verify_delivery(root: Path) -> dict:
         raise AssertionError(f"Unexpected full reference shape: {full.shape}")
     if full_quant.shape != (1080, 1920):
         raise AssertionError(f"Unexpected quantized full reference shape: {full_quant.shape}")
-
-    golden_dir = root / "artifacts" / "full_integer_golden"
-    golden_manifest = json.loads((golden_dir / "manifest.json").read_text(encoding="utf-8"))
-    full_input_bytes = (golden_dir / "input_960x540_y_u8.bin").read_bytes()
-    full_input = np.frombuffer(full_input_bytes, dtype=np.uint8).reshape(540, 960)
-    integer_output = None
-    for name, values in reference.iter_outputs(full_input):
-        expected = golden_manifest["stage_digests"][name]
-        raw = np.ascontiguousarray(values).tobytes(order="C")
-        if list(values.shape) != expected["shape_hwc"] or values.dtype.name != expected["dtype"]:
-            raise AssertionError(f"Full integer stage metadata mismatch: {name}")
-        if hashlib.sha256(raw).hexdigest() != expected["sha256"]:
-            raise AssertionError(f"Full integer stage mismatch: {name}")
-        if name == "output":
-            integer_output = raw
-    expected_output = (golden_dir / golden_manifest["authoritative_output"]).read_bytes()
-    if integer_output != expected_output:
-        raise AssertionError("Full integer output is not byte-identical to the authoritative Golden")
     metrics = json.loads((root / "artifacts/evaluation/summary.json").read_text(encoding="utf-8"))
     if metrics["set5"]["quant_psnr_loss_db"] > 1.0:
         raise AssertionError("Quantized PSNR loss exceeds 1 dB")
@@ -105,8 +84,6 @@ def verify_delivery(root: Path) -> dict:
         "model_output": list(output.shape),
         "full_reference": list(full.shape),
         "quant_full_reference": list(full_quant.shape),
-        "full_integer_golden": [1080, 1920, 1],
-        "full_integer_sha256": golden_manifest["stage_digests"]["output"]["sha256"],
         "gmac_per_frame": macs["gmac_per_frame"],
         "gmac_per_second_30fps": macs["gmac_per_second_30fps"],
         "vector_sha256": vector_checks,

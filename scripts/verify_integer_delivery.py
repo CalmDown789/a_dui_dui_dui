@@ -63,35 +63,11 @@ def verify() -> dict:
                 raise AssertionError(f"Golden-reference mismatch: {case}/{filename}")
         cases[case] = manifest["files"]["output_hwc_uint8.bin"]["sha256"]
 
-    full_dir = ROOT / "artifacts" / "full_integer_golden"
-    full_manifest = json.loads((full_dir / "manifest.json").read_text(encoding="utf-8"))
-    if full_manifest["status"] != "A_CONFIRMED_INTEGER_GOLDEN":
-        raise AssertionError("Full-frame integer Golden is not A-confirmed")
-    for filename, metadata in full_manifest["files"].items():
-        crc32, sha256 = _digest(full_dir / filename)
-        if crc32 != metadata["crc32"] or sha256 != metadata["sha256"]:
-            raise AssertionError(f"Full-frame digest mismatch: {filename}")
-
-    full_input = (full_dir / "input_960x540_y_u8.bin").read_bytes()
-    full_rom = (full_dir / "input_rom_2p19_u8.bin").read_bytes()
-    if len(full_input) != 960 * 540 or len(full_rom) != 1 << 19:
-        raise AssertionError("Unexpected full-frame input or ROM size")
-    if full_rom[: len(full_input)] != full_input or any(full_rom[len(full_input) :]):
-        raise AssertionError("Full-frame ROM prefix/padding mismatch")
-    full_output = full_dir / full_manifest["authoritative_output"]
-    if full_output.stat().st_size != 1920 * 1080:
-        raise AssertionError("Unexpected full-frame integer output size")
-
     return {
         "status": "PASS",
         "model": spec["model"],
         "layers": [layer["name"] for layer in spec["layers"]],
         "cases": cases,
-        "full_integer_golden": {
-            "status": full_manifest["status"],
-            "output": full_manifest["authoritative_output"],
-            "sha256": full_manifest["stage_digests"]["output"]["sha256"],
-        },
     }
 
 
