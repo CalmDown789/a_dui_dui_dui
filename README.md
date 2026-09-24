@@ -11,7 +11,7 @@
 - 偏置与累加：INT32，溢出饱和；
 - PReLU：逐通道 Q1.15；
 - 算力：`1.4681088 G MAC/帧`，30fps 为 `44.043264 GMAC/s`；
-- 理论余量：相对 `133.2 GMAC/s` 为约 `3.02×`。
+- 理论估计：任务书按特定 DSP 打包、频率和利用率假设给出 `133.2 GMAC/s`，对应约 `3.02×`；该数值不是板上实测吞吐，也不保证实际达到 30fps。
 
 ## 环境
 
@@ -40,6 +40,8 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 成员 A 已补齐可供 B/C 最终逐字节验收的 `960×540 → 1920×1080` 整数网络 Golden。它由导出的 INT8 权重、INT16 激活、INT32 偏置/累加、Q1.15 PReLU 和 Q31 重量化参数直接计算，不是 FP32 输出，也不是 QDQ 软件仿真输出。
 
 成员 A 的正式取数位置为冻结标签 `member-a-v1.0.1`，不是 `main`。`main` 上的历史回退只是成员分支隔离操作，不代表数据失效；完整原因、checkpoint 和输入生成来源见 `docs/成员A发布治理与来源确认.md`。
+
+下游 B/C 对同一份权重、ROM 和整数 Golden 的复用情况，以及 36-bit 内部保护累加器为何不改变 A 的 INT32 对拍合同，见 `docs/成员A下游验证状态_2026-09-24.md`。该文件仅记录消费方验证事实，不把 RTL、Vivado 时序或板测结果纳入成员 A 的交付范围。
 
 - 权威输出：`artifacts/full_integer_golden/output_1920x1080_y_u8.bin`；
 - C 侧输入 ROM：`artifacts/full_integer_golden/input_rom_2p19_u8.mem`，共 `524288` 行，前 `518400` 字节为输入图像，末尾 `5888` 字节为 `00`；
