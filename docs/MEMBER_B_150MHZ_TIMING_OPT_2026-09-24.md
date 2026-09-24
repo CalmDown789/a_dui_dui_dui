@@ -44,8 +44,9 @@ ROM bank16、B 五层网络、C 外壳、36 位跨通道累加和 C 条带 RAM
 - 其余完成布线的方案保留精简原始证据：
   `member_b_evidence/timing_opt_wrptrlocal150/`、
   `timing_opt_pow2ptr150/`、`timing_opt_wrptrlocal_netdelay150/` 和
-  `timing_opt_wlfanout150/`。每组均包含结果摘要、时序、资源、时钟与
-  路由状态报告。对应 Tcl 和 RTL 在 `experiments/l5_timing_opt_20260924/`。
+  `timing_opt_wlfanout150/`。每组均包含结果摘要、时序、资源与路由状态
+  报告；新三组还保留时钟报告。对应 Tcl 和 RTL 在
+  `experiments/l5_timing_opt_20260924/`。
 
 ## 结果边界
 
