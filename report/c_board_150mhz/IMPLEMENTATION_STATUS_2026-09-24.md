@@ -35,7 +35,7 @@ Routing completed with 71,755 of 71,755 routable nets fully routed and zero rout
 
 - Post-route: RAMB36/FIFO 230, RAMB18 8, DSP48E1 394, Slice LUTs 30,417, Slice Registers 42,197, MMCM 1, BUFG 1.
 - DRC: 0 errors, 1,098 warnings. Warnings are primarily DSP pipeline advisories and RAM block asynchronous-control checks.
-- The bitstream was generated locally at report/c_board_150mhz/c_board_150MHz.bit; size 9,730,760 bytes; SHA-256 55e9e219bee3838f6cf932b6ede6e4d571d9fc862c78abc8aaf bcd60a6afd8e4 (remove the space before sharing).
+- The bitstream was generated locally at report/c_board_150mhz/c_board_150MHz.bit; size 9,730,760 bytes; SHA-256 55e9e219bee3838f6cf932b6ede6e4d571d9fc862c78abc8aafbcd60a6afd8e4.
 
 ## Next handoff
 
