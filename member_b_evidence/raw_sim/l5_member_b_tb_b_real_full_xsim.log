@@ -1,0 +1,55 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Thu Sep 24 14:18:29 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_b_real_full/xsim_script.tcl
+# xsim {tb_b_real_full} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  loading full_in.mem (518400 bytes) ...
+  loading full_out.mem (2073600 bytes) ...
+  geometry: 960x540 -> 1920x1080  N_IN=518400 N_OUT=2073600 STRIPE_H=64 stripes=17
+      progress: 250000 / 2073600 bytes  (12%), cyc=600805, mismatched=0
+      progress: 500000 / 2073600 bytes  (24%), cyc=1163005, mismatched=0
+      progress: 750000 / 2073600 bytes  (36%), cyc=1725205, mismatched=0
+      progress: 1000000 / 2073600 bytes  (48%), cyc=2287405, mismatched=0
+      progress: 1250000 / 2073600 bytes  (60%), cyc=2849605, mismatched=0
+      progress: 1500000 / 2073600 bytes  (72%), cyc=3411805, mismatched=0
+      progress: 1750000 / 2073600 bytes  (84%), cyc=3974005, mismatched=0
+      progress: 2000000 / 2073600 bytes  (96%), cyc=4536205, mismatched=0
+======================================================================
+ FULL FRAME 960x540 -> 1920x1080  (B real five-layer via b_core_if)
+   input beats fed      : 518400 / 518400
+   output bytes received: 2073600 / 2073600
+   byte match           : 2073600 / 2073600
+   mismatched bytes     : 0
+   X bytes              : 0
+   stripe_last pulses   : 17 (expect 17)
+   frame_last pulses    : 1 (expect 1)
+   done pulses          : 1 (expect 1)
+   hold-rule violations : 0
+   sim cycles           : 4699406
+======================================================================
+RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)
+$finish called at time : 23497105 ns : File "F:/FPGAÔ¤Ñ¡/10h³å´Ì_c_trial/tb/tb_b_real_full.v" Line 244
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:40:45 . Memory (MB): peak = 222.363 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 25716 KB (Peak: 25716 KB), Simulation CPU Usage: 2412109 ms
+INFO: [Common 17-206] Exiting xsim at Thu Sep 24 14:59:15 2026...
+ses   : 17 (expect 17)
+   frame_last pulses    : 1 (expect 1)
+   done pulses          : 1 (expect 1)
+   hold-rule violations : 0
+   sim cycles           : 4699406
+======================================================================
+RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)
+$finish called at time : 23497105 ns : File "F:/FPGAÔ¤Ñ¡/10h³å´Ì_c_trial/tb/tb_b_real_full.v" Line 244
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:40:45 . Memory (MB): peak = 222.363 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 25716 KB (Peak: 25716 KB), Simulation CPU Usage: 2412109 ms
+INFO: [Common 17-206] Exiting xsim at Thu Sep 24 14:59:15 2026...

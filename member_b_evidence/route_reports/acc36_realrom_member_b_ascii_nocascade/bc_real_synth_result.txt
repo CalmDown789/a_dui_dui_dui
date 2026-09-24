@@ -1,0 +1,58 @@
+==========================================================
+ REAL B five-layer + C shell : resource / timing evidence
+==========================================================
+ 1  Vivado version     : 2025.2
+ 2  FPGA part          : xc7a200tfbg484-2
+ 3  top module         : c_synth_top
+ 4  B RTL              : ae29515 closure + rtl/b_real_c_patch local RTL overrides
+ 5  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem, $readmemh, CWD)
+ 6  C_USE_B_REAL       : via 'synth_design -verilog_define C_USE_B_REAL'
+ 7  flatten_hierarchy  : rebuilt
+ 8  clock              : sys_clk 50MHz (W19) -> MMCME2_BASE -> 200 MHz
+ 9  Git commit SHA     : unknown
+10  uncommitted change : (git status unavailable)
+11  generated at       : 2026-09-24 16:07:33 (local)
+12  implementation     : FAILED
+----------------------------------------------------------
+ SELF-CHECK (must be OK, else everything below is void):
+   b_core_real cells            : 1
+   b_core_stub cells            : 0   (must be 0)
+   fsrcnn_network_mem_top cells : 1
+   fsrcnn_stream_layer cells    : 5  (must be 5)
+   pixel_shuffle2x_row_banks    : 1
+   elastic_fifo cells           : 7
+   VERDICT                      : OK
+----------------------------------------------------------
+ (A) SYNTHESIS-level (MEASURED)
+   RAMB36/FIFO   : 230 / 365
+   RAMB18        : 8 / 730
+   DSP48E1       : 394 / 740
+   Slice LUTs    : 29149
+   Slice Regs    : 48359
+   LUT as Memory : 5873
+   MMCME2_ADV    : 1
+   PLLE2_ADV     : 0
+   BUFGCTRL      : 1
+   WNS / TNS     : -0.844 / -402.596 ns
+   WHS / THS     : 0.029 / 0.000 ns
+----------------------------------------------------------
+ (B) POST-ROUTE (MEASURED)
+   RAMB36/FIFO   : 230 / 365
+   RAMB18        : 8 / 730
+   DSP48E1       : 394 / 740
+   Slice LUTs    : 29365
+   Slice Regs    : 48380
+   MMCME2_ADV    : 1
+   PLLE2_ADV     : 0
+   BUFGCTRL      : 1
+   WNS / TNS     : -0.844 / -402.596 ns
+   WHS / THS     : 0.029 / 0.000 ns
+----------------------------------------------------------
+ reports : _synth_bc/acc36_realrom_member_b_ascii_nocascade/reports/
+==========================================================
+ NOTE 1: this DOES instantiate b_core_real (see SELF-CHECK).
+         Do NOT quote synth_check.tcl numbers as 'B network cost'.
+ NOTE 2: functional correctness of B is NOT implied by this file.
+         Synthesis success != the five-layer net reproduces A Golden.
+ NOTE 3: Fmax / 30fps MUST NOT be claimed from synthesis-only data.
+==========================================================

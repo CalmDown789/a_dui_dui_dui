@@ -1,0 +1,41 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Thu Sep 24 14:04:08 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_b_real_backpressure/xsim_script.tcl
+# xsim {tb_b_real_backpressure} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  geometry: 96x54 -> 192x108  N_OUT=20736  STALL_LONG=300 STALL_IN=120
+  --- T-A random back-pressure (LFSR out_ready + sparse in_valid) ---
+  [T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=14 total=20807  hold_viol=0   in_idle max=7461
+  --- T-B single long out_ready stall (300 cycles) ---
+  [T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=300 total=300  hold_viol=0   in_idle max=4959
+  --- T-C single long input idle (120 cycles) ---
+  [T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=0 total=0  hold_viol=0   in_idle max=4959
+  total cycles = 156475
+RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)
+$finish called at time : 782520 ns : File "F:/FPGAÔ¤Ñ¡/10h³å´Ì_c_trial/tb/tb_b_real_backpressure.v" Line 341
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:11 . Memory (MB): peak = 222.867 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 19532 KB (Peak: 19532 KB), Simulation CPU Usage: 70983 ms
+INFO: [Common 17-206] Exiting xsim at Thu Sep 24 14:05:21 2026...
+iol=0   in_idle max=4959
+  --- T-C single long input idle (120 cycles) ---
+  [T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1
+        stall(out) max=0 total=0  hold_viol=0   in_idle max=4959
+  total cycles = 156475
+RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)
+$finish called at time : 782520 ns : File "F:/FPGAÔ¤Ñ¡/10h³å´Ì_c_trial/tb/tb_b_real_backpressure.v" Line 341
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:11 . Memory (MB): peak = 222.867 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 19532 KB (Peak: 19532 KB), Simulation CPU Usage: 70983 ms
+INFO: [Common 17-206] Exiting xsim at Thu Sep 24 14:05:21 2026...

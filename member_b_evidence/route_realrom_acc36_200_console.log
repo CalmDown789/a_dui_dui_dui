@@ -1,0 +1,879 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Thu Sep 24 15:49:11 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source experiments/l5_splitmem_20260924/synth_bc_realrom_member_b.tcl
+# set target_part    "xc7a200tfbg484-2"
+# set top_module     "c_synth_top"
+# set target_clk_mhz 200
+# set do_impl 0
+# set variant "l5splitmem_realrom_member_b"
+# if {[info exists argv] && [lsearch -exact $argv "acc36"] >= 0} { set variant "acc36_realrom_member_b" }
+# if {[info exists argv]} { foreach a $argv { if {$a eq "impl"} { set do_impl 1 } } }
+# set script_dir [file normalize [file dirname [info script]]]
+# set root_dir   [file normalize "$script_dir/../.."]
+# set experiment_dir "$root_dir/experiments/l5_splitmem_20260924"
+# set rtl_dir    "$root_dir/rtl"
+# set input_rom_file "$experiment_dir/rtl/c/input_rom.v"
+# set xdc_dir    "$root_dir/constr"
+# set b_real_dir "$rtl_dir/b_real_ae29515"
+# set fifo_file "$experiment_dir/rtl/b/elastic_fifo.sv"
+# set mac_issue_file "$experiment_dir/rtl/b/mac_issue_stage.sv"
+# set stream_layer_file "$experiment_dir/rtl/b/fsrcnn_stream_layer.sv"
+# set network_core_file "$experiment_dir/rtl/b/fsrcnn_network_core.sv"
+# set phase_acc_file "$experiment_dir/rtl/b/phase_accumulator.sv"
+# if {[info exists argv] && [lsearch -exact $argv "acc36"] >= 0} { set phase_acc_file "$experiment_dir/rtl/b/phase_accumulator_36.sv" }
+# set input_stream_file "$experiment_dir/rtl/c/input_stream.v"
+# set c_core_file "$experiment_dir/rtl/c/c_core.v"
+# set b_patch_dir "$experiment_dir/rtl/b"
+# set rom_dir    "$root_dir/rom/member_a_d16_s8_m1_c16"
+# set stage      "$root_dir/_synth_bc/$variant"
+# set out_dir    "$stage/reports"
+# file mkdir $out_dir
+# file mkdir "$stage/rtl"
+# set real_input_rom "$root_dir/ref/a_full_integer_golden/input_rom_2p19_u8.mem"
+# if {![file exists $real_input_rom]} { error "missing frozen A full input ROM: $real_input_rom" }
+# file copy -force $real_input_rom "$stage/rtl/input_image_pattern.mem"
+# set roms [glob -nocomplain -types f -directory $rom_dir *_packed.mem]
+# if {[llength $roms] != 19} { error "期望 19 �? *_packed.mem，实�? [llength $roms]�?$rom_dir�?" }
+# foreach f $roms { file copy -force $f "$stage/[file tail $f]" }
+# puts "== staged [llength $roms] packed ROMs + frozen A input ROM to $stage =="
+== staged 19 packed ROMs + frozen A input ROM to F:/FPGAԤѡ/10h���_c_trial/_synth_bc/acc36_realrom_member_b ==
+# set real_bank_dir "$root_dir/member_b_evidence/real_banks"
+# set real_bank_files [glob -nocomplain -types f -directory $real_bank_dir rom_bank_*.mem]
+# if {[llength $real_bank_files] != 16} { error "expected 16 real A image banks under $real_bank_dir" }
+# foreach f $real_bank_files { file copy -force $f "$stage/[file tail $f]" }
+# puts "== staged 16 real A image ROM banks from $real_bank_dir =="
+== staged 16 real A image ROM banks from F:/FPGAԤѡ/10h���_c_trial/member_b_evidence/real_banks ==
+# cd $stage
+# set git_sha "unknown"
+# catch {set git_sha [string trim [exec git -C $root_dir rev-parse HEAD]]}
+# set local_mod "unknown"
+# if {[catch {exec git -C $root_dir status --porcelain -- {*}[list rtl tb scripts constr docs rom] } g]} {
+#     set local_mod "(git status unavailable)"
+# } else {
+#     set local_mod [string map {\n { }} [string trim $g]]
+#     if {$local_mod eq ""} { set local_mod "clean" }
+# }
+# puts "================================================================"
+================================================================
+# puts " REAL B five-layer + C shell -- SYNTHESIS (part $target_part)"
+ REAL B five-layer + C shell -- SYNTHESIS (part xc7a200tfbg484-2)
+# puts " top=$top_module  C_USE_B_REAL=1  do_impl=$do_impl"
+ top=c_synth_top  C_USE_B_REAL=1  do_impl=1
+# puts "================================================================"
+================================================================
+# set c_files [list \
+#     "$rtl_dir/c_config.vh"     \
+#     $input_rom_file     \
+#     $input_stream_file  \
+#     "$rtl_dir/stripe_buffer.v" \
+#     "$rtl_dir/pingpong_buffer.v"\
+#     "$rtl_dir/output_stream.v" \
+#     "$rtl_dir/uart_tx.v"       \
+#     "$rtl_dir/readback_ctrl.v" \
+#     "$rtl_dir/c_ctrl.v"        \
+#     "$rtl_dir/b_core_stub.v"   \
+#     "$rtl_dir/b_core_if.v"     \
+#     $c_core_file        \
+#     "$rtl_dir/c_top.v"         \
+#     "$rtl_dir/c_synth_top.v"   \
+# ]
+# foreach f $c_files { if {![file exists $f]} { error "缺少 C 価� RTL: $f" } }
+# read_verilog -verbose $c_files
+# set b_files [list \
+#     "$b_real_dir/stream/same_pad_raster.sv"            \
+#     $fifo_file               \
+#     "$b_real_dir/stream/window_kminus1_bram.sv"        \
+#     "$b_real_dir/stream/window_stream_frontend.sv"     \
+#     "$b_real_dir/stream/eight_phase_issue.sv"          \
+#     "$b_patch_dir/phase_mac_pipeline.sv"               \
+#     $phase_acc_file                \
+#     $mac_issue_file            \
+#     "$b_patch_dir/vector_postprocess_shared.sv"        \
+#     $stream_layer_file        \
+#     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"  \
+#     $network_core_file        \
+#     "$b_real_dir/stream/fsrcnn_network_mem_top.sv"     \
+#     "$b_real_dir/stream/b_core_real.sv"                \
+#     "$b_patch_dir/prelu_requantize.sv"                 \
+# ]
+# foreach f $b_files { if {![file exists $f]} { error "缺少 B 真实 RTL: $f" } }
+# read_verilog -sv -verbose $b_files
+# read_xdc "$xdc_dir/c_top.xdc"
+# synth_design -top $top_module -part $target_part \
+#     -flatten_hierarchy rebuilt \
+#     -verilog_define C_USE_B_REAL
+Command: synth_design -top c_synth_top -part xc7a200tfbg484-2 -flatten_hierarchy rebuilt -verilog_define C_USE_B_REAL
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Device 21-403] Loading part xc7a200tfbg484-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 25144
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1306.559 ; gain = 540.441
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'c_synth_top' [F:/FPGAԤѡ/10h���_c_trial/rtl/c_synth_top.v:28]
+INFO: [Synth 8-6157] synthesizing module 'c_top' [F:/FPGAԤѡ/10h���_c_trial/rtl/c_top.v:29]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ROM_ADDR_W bound to: 19 - type: integer 
+	Parameter ROM_DEPTH bound to: 524288 - type: integer 
+	Parameter ROM_INIT_MODE bound to: 0 - type: integer 
+	Parameter ROM_INIT_EN bound to: 1 - type: integer 
+	Parameter ROM_INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+	Parameter USE_MMCM bound to: 1 - type: integer 
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter UART_BAUD bound to: 921600 - type: integer 
+	Parameter RB_ENABLE bound to: 1 - type: integer 
+	Parameter AUTO_START_EN bound to: 1 - type: integer 
+	Parameter AUTO_START_CYCLES bound to: 20000000 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_BASE' [F:/Xilinx/2025.2/Vivado/scripts/rt/data/unisim_comp.v:95964]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 2.400000e+01 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000e+00 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 2.000000e+01 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 6.000000e+00 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 5.000000e-01 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000e+00 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 1.000000e-02 - type: double 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_BASE' (0#1) [F:/Xilinx/2025.2/Vivado/scripts/rt/data/unisim_comp.v:95964]
+INFO: [Synth 8-6157] synthesizing module 'c_core' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/c_core.v:34]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ROM_ADDR_W bound to: 19 - type: integer 
+	Parameter ROM_DEPTH bound to: 524288 - type: integer 
+	Parameter ROM_INIT_MODE bound to: 0 - type: integer 
+	Parameter ROM_INIT_EN bound to: 1 - type: integer 
+	Parameter ROM_INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter UART_BAUD bound to: 921600 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'c_ctrl' [F:/FPGAԤѡ/10h���_c_trial/rtl/c_ctrl.v:32]
+INFO: [Synth 8-6155] done synthesizing module 'c_ctrl' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/c_ctrl.v:32]
+INFO: [Synth 8-6157] synthesizing module 'input_rom' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:60]
+	Parameter ADDR_W bound to: 19 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter MEM_DEPTH bound to: 524288 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+	Parameter INIT_FILE bound to: rtl/input_image_pattern.mem - type: string 
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 0 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_000.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 1 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_001.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 2 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_002.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 3 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_003.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 4 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_004.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:37]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized4' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 5 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_005.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized4' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized5' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 6 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_006.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized5' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized6' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 7 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_007.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized6' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized7' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 8 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_008.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized7' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized8' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 9 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_009.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized8' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized9' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 10 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_010.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:43]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized9' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized10' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 11 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_011.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized10' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized11' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 12 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_012.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized11' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized12' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 13 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_013.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized12' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized13' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 14 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_014.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized13' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6157] synthesizing module 'input_rom_bank__parameterized14' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+	Parameter BANK_ID bound to: 15 - type: integer 
+	Parameter BANK_DEPTH bound to: 32768 - type: integer 
+	Parameter ADDR_W bound to: 15 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter INIT_MODE bound to: 0 - type: integer 
+	Parameter INIT_EN bound to: 1 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'rom_bank_015.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom_bank__parameterized14' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'input_rom' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_rom.v:60]
+INFO: [Synth 8-6157] synthesizing module 'input_stream' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_stream.v:31]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PIXEL_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 19 - type: integer 
+	Parameter TOT_PIX bound to: 518400 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'input_stream' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/input_stream.v:31]
+INFO: [Synth 8-6157] synthesizing module 'b_core_if' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_core_if.v:59]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'b_core_real' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/b_core_real.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_network_mem_top' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'feature_weights_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:36]
+INFO: [Synth 8-3876] $readmem data file 'feature_bias_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:36]
+INFO: [Synth 8-3876] $readmem data file 'feature_prelu_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:37]
+INFO: [Synth 8-3876] $readmem data file 'feature_q31_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:37]
+INFO: [Synth 8-3876] $readmem data file 'shrink_weights_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:38]
+INFO: [Synth 8-3876] $readmem data file 'shrink_bias_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:38]
+INFO: [Synth 8-3876] $readmem data file 'shrink_prelu_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:39]
+INFO: [Synth 8-3876] $readmem data file 'shrink_q31_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:39]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_weights_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:40]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_bias_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:40]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_prelu_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:41]
+INFO: [Synth 8-3876] $readmem data file 'mapping0_q31_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:41]
+INFO: [Synth 8-3876] $readmem data file 'expand_weights_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:42]
+INFO: [Synth 8-3876] $readmem data file 'expand_bias_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:42]
+INFO: [Synth 8-3876] $readmem data file 'expand_prelu_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:43]
+INFO: [Synth 8-3876] $readmem data file 'expand_q31_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:43]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_weights_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:44]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_bias_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:44]
+INFO: [Synth 8-3876] $readmem data file 'subpixel_q31_packed.mem' is read successfully [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:45]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_network_core' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv:8]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter IMG_W bound to: 964 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 200 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 200 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+	Parameter ACT_W bound to: 8 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 1 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+	Parameter CIN bound to: 1 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 16 - type: integer 
+	Parameter LANES bound to: 2 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'prelu_requantize' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:8]
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'prelu_requantize' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 8 - type: integer 
+	Parameter LANES bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter OUT_SIGNED bound to: 1 - type: integer 
+	Parameter APPLY_PRELU bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 128 - type: integer 
+	Parameter IMG_W bound to: 962 - type: integer 
+	Parameter K bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 1152 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 1152 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 3 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Synth 8-226] default block is never used [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:68]
+INFO: [Common 17-14] Message 'Synth 8-226' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 8 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 16 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 128 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 1 - type: integer 
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized2' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+	Parameter CIN bound to: 8 - type: integer 
+	Parameter COUT bound to: 16 - type: integer 
+	Parameter IN_PAR bound to: 1 - type: integer 
+	Parameter OUT_PAR bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized2' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'fsrcnn_stream_layer__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'window_stream_frontend__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+	Parameter FIFO_DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'same_pad_raster__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter PAD bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'same_pad_raster__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/same_pad_raster.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'window_kminus1_bram__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+	Parameter DATA_W bound to: 256 - type: integer 
+	Parameter IMG_W bound to: 964 - type: integer 
+	Parameter K bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'window_kminus1_bram__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_kminus1_bram.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'elastic_fifo__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+	Parameter DATA_W bound to: 6400 - type: integer 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'elastic_fifo__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'window_stream_frontend__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/window_stream_frontend.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mac_issue_stage__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'eight_phase_issue__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+	Parameter DATA_W bound to: 6400 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'eight_phase_issue__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/eight_phase_issue.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_mac_pipeline__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+	Parameter K bound to: 5 - type: integer 
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+	Parameter ACT_W bound to: 16 - type: integer 
+	Parameter ACT_UNSIGNED bound to: 0 - type: integer 
+	Parameter PIPE_SELECTED_OPERANDS bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_mac_pipeline__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'phase_accumulator__parameterized3' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+	Parameter CIN bound to: 16 - type: integer 
+	Parameter COUT bound to: 4 - type: integer 
+	Parameter IN_PAR bound to: 2 - type: integer 
+	Parameter OUT_PAR bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'phase_accumulator__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mac_issue_stage__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/mac_issue_stage.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'vector_postprocess_shared__parameterized1' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+	Parameter CHANNELS bound to: 4 - type: integer 
+	Parameter LANES bound to: 1 - type: integer 
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter OUT_SIGNED bound to: 0 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'prelu_requantize__parameterized0' [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:8]
+	Parameter OUT_W bound to: 8 - type: integer 
+	Parameter OUT_SIGNED bound to: 0 - type: integer 
+	Parameter APPLY_PRELU bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'prelu_requantize__parameterized0' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'vector_postprocess_shared__parameterized1' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_stream_layer__parameterized3' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'pixel_shuffle2x_row_banks' [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:8]
+	Parameter IMG_W bound to: 960 - type: integer 
+	Parameter IMG_H bound to: 540 - type: integer 
+	Parameter STRIPE_ROWS bound to: 64 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'pixel_shuffle2x_row_banks' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_network_core' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'fsrcnn_network_mem_top' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'b_core_real' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_real_ae29515/stream/b_core_real.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'b_core_if' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/b_core_if.v:59]
+INFO: [Synth 8-6157] synthesizing module 'output_stream' [F:/FPGAԤѡ/10h���_c_trial/rtl/output_stream.v:36]
+	Parameter OUT_W bound to: 1920 - type: integer 
+	Parameter OUT_H bound to: 1080 - type: integer 
+	Parameter STRIPE_H bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [F:/FPGAԤѡ/10h���_c_trial/rtl/output_stream.v:211]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [F:/FPGAԤѡ/10h���_c_trial/rtl/output_stream.v:221]
+INFO: [Synth 8-6155] done synthesizing module 'output_stream' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/output_stream.v:36]
+INFO: [Synth 8-6157] synthesizing module 'pingpong_buffer' [F:/FPGAԤѡ/10h���_c_trial/rtl/pingpong_buffer.v:31]
+	Parameter WIDTH bound to: 1920 - type: integer 
+	Parameter ROWS bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'stripe_buffer' [F:/FPGAԤѡ/10h���_c_trial/rtl/stripe_buffer.v:27]
+	Parameter WIDTH bound to: 1920 - type: integer 
+	Parameter ROWS bound to: 64 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+	Parameter ADDR_W bound to: 17 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'stripe_buffer' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/stripe_buffer.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'pingpong_buffer' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/pingpong_buffer.v:31]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [F:/FPGAԤѡ/10h���_c_trial/rtl/uart_tx.v:25]
+	Parameter CLK_HZ bound to: 200000000 - type: integer 
+	Parameter BAUD bound to: 921600 - type: integer 
+	Parameter BAUD_DIV bound to: 217 - type: integer 
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/uart_tx.v:25]
+INFO: [Synth 8-6157] synthesizing module 'readback_ctrl' [F:/FPGAԤѡ/10h���_c_trial/rtl/readback_ctrl.v:30]
+	Parameter DATA_W bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'readback_ctrl' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/readback_ctrl.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'c_core' (0#1) [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/c_core.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'c_top' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/c_top.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'c_synth_top' (0#1) [F:/FPGAԤѡ/10h���_c_trial/rtl/c_synth_top.v:28]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:57]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:78]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:80]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:90]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:57]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:78]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:80]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:90]
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:57]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:78]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:80]
+WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  sums_q_reg with 13056 registers
+WARNING: [Synth 8-6014] Unused sequential element expected_phase_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:57]
+WARNING: [Synth 8-6014] Unused sequential element group_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:78]
+WARNING: [Synth 8-6014] Unused sequential element next_sum_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/phase_accumulator_36.sv:80]
+WARNING: [Synth 8-6014] Unused sequential element prelu_product_s1_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:29]
+WARNING: [Synth 8-6014] Unused sequential element prelu_magnitude_s2_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:41]
+WARNING: [Synth 8-6014] Unused sequential element prelu_negative_s2_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:111]
+WARNING: [Synth 8-6014] Unused sequential element prelu_rounded_magnitude_s3_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:128]
+WARNING: [Synth 8-6014] Unused sequential element prelu_negative_s3_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/prelu_requantize.sv:129]
+WARNING: [Synth 8-6014] Unused sequential element meta_valid_reg was removed.  [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/b/vector_postprocess_shared.sv:90]
+WARNING: [Synth 8-7137] Register c2b_data_q_reg in module c_core has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-7137] Register c2b_x_q_reg in module c_core has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-7137] Register c2b_y_q_reg in module c_core has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'c2b_data_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/c_core.v:121]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'c2b_x_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/c_core.v:122]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'c2b_y_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [F:/FPGAԤѡ/10h���_c_trial/experiments/l5_splitmem_20260924/rtl/c/c_core.v:123]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-7129] Port rd_avail in module readback_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rd_start in module readback_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[15] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[14] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[13] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[12] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[11] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[10] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[9] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[8] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[7] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[6] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[5] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[4] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[3] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[2] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[1] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prelu_q15[0] in module prelu_requantize__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port start in module fsrcnn_stream_layer__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port start in module fsrcnn_stream_layer__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port b_busy in module c_ctrl is either unconnected or has no load

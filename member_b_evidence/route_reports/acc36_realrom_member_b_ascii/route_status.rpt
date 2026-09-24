@@ -1,0 +1,51 @@
+Design Route Status
+                                               :      # nets :
+   ------------------------------------------- : ----------- :
+   # of logical nets.......................... :      116544 :
+       # of nets with no placed pins.......... :      116524 :
+       # of nets not needing routing.......... :          10 :
+           # of internally routed nets........ :          10 :
+       # of routable nets..................... :           0 :
+       # of nets with routing errors.......... :          10 :
+           # of nets with some unplaced pins.. :          10 :
+           # of nets with some unrouted pins.. :           2 :
+   ------------------------------------------- : ----------- :
+
+
+Nets with Routing Errors:
+  rst_n_IBUF
+    Unplaced Pins -- only the first 10 are listed, use -show_all to get the full list:
+      u_top/done_latch_i_1/I1
+      u_top/g_mmcm.u_mmcm/RST
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/i___120_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/i___123_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/i___126_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/i___129_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/i___133_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/out_data[511]_i_3/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/mac/mac/i___110_i_1/I0
+      u_top/u_core/u_b/u_b_core/core/core/l1/post/units[0].post/i___171_i_1/I0
+  sys_clk_IBUF
+    Unplaced Pin: u_top/g_mmcm.u_mmcm/CLKIN1
+  u_top/led_OBUF[1]
+    Unplaced Pin: u_top/done_latch_reg/Q
+  u_top/led_OBUF[2]
+    Unplaced Pins:
+      u_top/hb_cnt_reg[24]_i_1/S[2]
+      u_top/hb_cnt_reg[26]/Q
+  u_top/u_core/u_ctrl/led_OBUF[0]
+    Unplaced Pin: u_top/u_core/u_ctrl/busy_reg/Q
+  u_top/u_core/u_out/led_OBUF[0]
+    Unplaced Pin: u_top/u_core/u_out/led_OBUF[3]_inst_i_1/O
+  u_top/u_core/u_pp/led_OBUF[0]
+    Unplaced Pins:
+      u_top/u_core/u_pp/err_latch_i_1/I0
+      u_top/u_core/u_pp/overflow_err_i_1/I5
+      u_top/u_core/u_pp/overflow_err_reg/Q
+  u_top/u_core/u_pp/led_OBUF[1]
+    Unplaced Pin: u_top/u_core/u_pp/led_OBUF[5]_inst_i_1/O
+  u_top/u_core/u_pp/led_OBUF[2]
+    Unplaced Pin: u_top/u_core/u_pp/led_OBUF[6]_inst_i_1/O
+  u_top/u_core/u_rb/led_OBUF[0]
+    Unplaced Pin: u_top/u_core/u_rb/led_OBUF[7]_inst_i_1/O
+

@@ -1,0 +1,52 @@
+==============================================================================
+prepare_ref_data.py   A repo test_vectors = F:\FPGAԤѡ\10h���_a_assets\artifacts\test_vectors
+==============================================================================
+
+[1] 96x54 ������У�� manifest SHA-256 ����� ref/a_test_vectors/<case>/
+  case impulse  (layout=HWC_row_major)
+      input_y_u8.bin             len=   5184  sha256=8e460a93ca03986a  OK
+      output_hwc_uint8.bin       len=  20736  sha256=1f7bd840b24293fe  OK
+  wrote ref\_staged_mem\tv_impulse_in.mem                  5184 lines  (96x54 u8 input raster)
+  wrote ref\_staged_mem\tv_impulse_out.mem                20736 lines  (192x108 u8 final output)
+  case ramp  (layout=HWC_row_major)
+      input_y_u8.bin             len=   5184  sha256=5e63c1371eda6204  OK
+      output_hwc_uint8.bin       len=  20736  sha256=f04ed9c845d5cd81  OK
+  wrote ref\_staged_mem\tv_ramp_in.mem                     5184 lines  (96x54 u8 input raster)
+  wrote ref\_staged_mem\tv_ramp_out.mem                   20736 lines  (192x108 u8 final output)
+  case random  (layout=HWC_row_major)
+      input_y_u8.bin             len=   5184  sha256=08035d36d2d51376  OK
+      output_hwc_uint8.bin       len=  20736  sha256=efdbb2200f510faa  OK
+  wrote ref\_staged_mem\tv_random_in.mem                   5184 lines  (96x54 u8 input raster)
+  wrote ref\_staged_mem\tv_random_out.mem                 20736 lines  (192x108 u8 final output)
+  case zero  (layout=HWC_row_major)
+      input_y_u8.bin             len=   5184  sha256=523862a510945f2c  OK
+      output_hwc_uint8.bin       len=  20736  sha256=9dcb657ad24c6ebf  OK
+  wrote ref\_staged_mem\tv_zero_in.mem                     5184 lines  (96x54 u8 input raster)
+  wrote ref\_staged_mem\tv_zero_out.mem                   20736 lines  (192x108 u8 final output)
+  -> ref/a_test_vectors/SHA256SUMS.txt (8 ��)
+
+[2] ȫ�ߴ� Golden���� c_side/ref/a_full_integer_golden/SHA256SUMS.txt ����
+      input_rom_2p19_u8.mem          len=  1572864  sha256=f15e360bd0d5c3fb
+      output_1920x1080_y_u8.bin      len=  2073600  sha256=be8e576beea1632e
+      input_rom_2p19_u8.bin          len=   524288  sha256=a754715b08e88fa9
+
+[3] ���� ref/_staged_mem/full_in.mem �� full_out.mem
+  wrote ref/_staged_mem/full_in.mem                      518400 lines  (960x540 u8, zero-padded rom truncated)
+  wrote ref\_staged_mem\full_out.mem                    2073600 lines  (1920x1080 u8 integer Golden (final))
+
+[4] Ŀ¼�嵥
+      .gitignore                          249 B
+      full_in.mem                     1555200 B
+      full_out.mem                    6220800 B
+      tv_impulse_in.mem                 15552 B
+      tv_impulse_out.mem                62208 B
+      tv_ramp_in.mem                    15552 B
+      tv_ramp_out.mem                   62208 B
+      tv_random_in.mem                  15552 B
+      tv_random_out.mem                 62208 B
+      tv_zero_in.mem                    15552 B
+      tv_zero_out.mem                   62208 B
+      TOTAL                           8087289 B
+
+==============================================================================
+RESULT: PASS  (ref data verified + staged)

@@ -1,0 +1,17 @@
+成员B工作 / Vivado 2025.2 XC7A200T device-data installation attempt
+
+Installer: F:\Xilinx\.xinstall\2025.2\bin\xsetup.bat
+Mode: -a XilinxEULA,3rdPartyEULA -b Add
+Edition: Vivado ML Standard
+Selected device module: Artix-7 FPGAs only
+Destination: F:\Xilinx
+Result: DownloadFailed; installer returned 3 and rolled back.
+Failure archive: data_0169_2025.2_1114_2157_encrypt.xz
+Expected MD5 (installer log): b2b810738f5421eea4cbd51b7cf474f7
+Observed MD5 (local file): 3df95b502ae6fc0f1b6dd0da4a834df7
+Part state after rollback: installed.devices lists Zynq families only;
+xc7a200tfbg484-2 is still unavailable for synthesis and route.
+
+The installer cache remains at F:\Xilinx\Downloads\Vivado_2025.2\payload.
+Authentication token contents and signed download URLs are deliberately omitted.
+This failure is a download-integrity failure, not evidence of an RTL or license failure.
