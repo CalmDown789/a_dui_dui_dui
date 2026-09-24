@@ -127,6 +127,23 @@ synth_design -top $top_module -part $target_part \
     -flatten_hierarchy rebuilt \
     -verilog_define C_USE_B_REAL
 
+# Bound fanout only on the actual L5 phase-register Q nets. The measured
+# post-route baseline had replicated phase nets above 120 direct loads.
+set l5_phase_regs [get_cells -quiet -hier -filter {NAME =~ *l5/mac/issue/out_phase_reg*}]
+set l5_phase_q [get_pins -quiet -of_objects $l5_phase_regs -filter {REF_PIN_NAME == Q}]
+set l5_phase_nets [get_nets -quiet -of_objects $l5_phase_q]
+puts "L5 phase fanout cap: regs=[llength $l5_phase_regs], Q pins=[llength $l5_phase_q], direct nets=[llength $l5_phase_nets]"
+if {[llength $l5_phase_regs] == 0 || [llength $l5_phase_regs] > 64 || [llength $l5_phase_nets] == 0} {
+    error "Unexpected L5 phase register collection; refusing broad fanout constraint"
+}
+foreach n $l5_phase_nets {
+    set loads [get_pins -quiet -of_objects $n -filter {DIRECTION == IN}]
+    if {[llength $loads] > 48} {
+        puts "L5 phase MAX_FANOUT 48: [get_property NAME $n] loads=[llength $loads]"
+        set_property MAX_FANOUT 48 $n
+    }
+}
+
 #-----------------------------------------------------------------------------
 # 2b. 自校验：必须真的用上 b_core_real
 #-----------------------------------------------------------------------------

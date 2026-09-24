@@ -1,0 +1,55 @@
+REAL B+C L5 PHASE FANOUT-LIMIT TRIAL
+Date: 2026-09-24 (local)
+Vivado: 2022.2
+Part: xc7a200tfbg484-2
+RTL: unchanged at c82f10c70e8625a73c38cc7f06f4fb15ecf1671e
+Clock: 200 MHz
+
+Hypothesis
+  Limit fanout on L5 issue-phase register Q nets to improve the long
+  phase-select route into DSP48E1 input pins. The implementation script
+  selects the actual Q nets under l5/mac/issue/out_phase_reg and applies
+  MAX_FANOUT=48 only where direct input-pin load count exceeds 48.
+
+Checks
+  Real hierarchy self-check: PASS (1 b_core_real, 0 stubs, 5 layers, 7 FIFOs)
+  L5 phase Q nets found: 38
+  Nets above the threshold: 18; the largest pre-optimization net had 1,299
+  direct loads
+  Implementation: completed; routing errors: 0
+  RTL functional behavior: unchanged; no RTL files were modified
+
+Measured results
+                              Baseline          Fanout-48
+  Post-route WNS              -2.208 ns         -2.057 ns
+  Post-route TNS              -50,037.625 ns    -47,234.746 ns
+  Failing endpoints           59,275            57,734
+  RAMB36 / RAMB18             230 / 8           230 / 8
+  DSP48E1                     394               394
+  LUT                         32,152            32,166
+  FF                          41,932            42,149
+  Peak memory                 about 4.13 GB     4.13 GB
+  Route time                  4:16              4:11
+
+Path change
+  Baseline worst path:
+    L5 out_phase_reg[1] -> LUT6 -> MUXF7 -> DSP48E1 A[2]
+    Data delay 3.669 ns; route 2.979 ns (81.2%); source net fanout 123.
+
+  Fanout-48 worst path:
+    L5 out_window_reg[5687] -> LUT6 -> MUXF7 -> DSP48E1 A[7]
+    Slack -2.057 ns; data delay 3.521 ns; route 2.805 ns (79.7%).
+    The second-worst path remains phase-to-DSP at -2.040 ns. The direct
+    phase net in that path has fanout 107 and 1.262 ns route delay, so phase
+    fanout reduction alone does not close timing.
+
+Decision
+  Keep the bounded fanout setting in the local implementation flow because
+  it improved WNS and TNS with negligible area and route-time changes. This
+  is a small improvement only: the design still misses 200 MHz by about
+  2.06 ns, and there is no bitstream or board acceptance. The next candidate
+  must address the L5 activation/window-data route and be judged after route;
+  do not repeat output-lane phase duplication or blindly sweep thresholds.
+
+Raw reports remain in the ignored local directory
+  _synth_bc/fanout48_narrow/.

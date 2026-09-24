@@ -48,6 +48,18 @@ route 耗时约 8:05。最差路径仍是 phase 控制到 DSP 输入，route 占
 `report/bc_real_synth/phase_local_phase_state_trial_20260924.txt`。结论是不要再按整个
 output lane 复制二进制 phase 状态，也不能用综合 WNS 代替 post-route 判断。
 
+之后基于实际路径测试了一个仅作用于实现阶段的约束：综合后识别 L5 `out_phase_reg` 的 Q 网，
+只对直接负载超过 48 的网设置 `MAX_FANOUT=48`。本次找到 38 条相位 Q 网，其中 18 条超过阈值；
+真实 B 层级自检通过。完整 route 的 WNS/TNS 从基线 `-2.208/-50,037.625 ns` 改为
+`-2.057/-47,234.746 ns`，改善 `0.151 ns/2,802.879 ns`。LUT `32,152→32,166`、FF
+`41,932→42,149`，BRAM/DSP 不变，route 时间 `4:16→4:11`，峰值内存约 `4.13 GB`。
+最差路径转到 L5 窗口数据寄存器经 LUT6+MUXF7 到 DSP48E1，data delay `3.521 ns`
+（route `2.805 ns`，79.7%）；第二差路径仍是 phase→DSP，slack `-2.040 ns`。此约束已加入
+`scripts/synth_bc_real.tcl` 作为当前本机实现候选；200 MHz 仍未闭合，不能上板签收。原始试验报告
+保存在本机忽略目录 `_synth_bc/fanout48_narrow/`；汇总见
+`report/bc_real_synth/fanout48_phase_limit_trial_20260924.txt`。下一轮应针对 L5 窗口数据寄存器到
+选择器/DSP 的长布线进行局部化试验，并检查是否只是把路径在数据与控制间来回搬移。
+
 另以相同 RTL 检验了降频预案：150 MHz post-route WNS/TNS 为 -0.585/-751.208 ns，
 仍被 L5 phase→DSP 限制；120 MHz 时 WNS/TNS 为 +0.012/0 ns，但只有 12 ps 正 slack。
 在 120 MHz 下最差路径转为 C 输入请求地址寄存器到 ROM BRAM 地址端，数据延迟 7.370 ns，
@@ -63,7 +75,7 @@ output lane 复制二进制 phase 状态，也不能用综合 WNS 代替 post-ro
 ## 板测状态与边界
 
 - 尚未生成 bitstream，也没有板上 HDMI/输出图像、画质或吞吐验收记录。全尺寸 Golden PASS 是本机 XSim 数据，不能称为板测通过。
-- 200 MHz 时序失败，因此现在还不能按目标频率签收上板性能。150 MHz 仍失败；120 MHz 只有 12 ps slack 且暴露出输入 ROM 地址布线瓶颈，不能作为有裕量的交付配置。下一个门槛是同时处理 L5 phase→DSP 和 C 请求地址→BRAM 两条高布线延迟路径，并确认 UART 管脚约束。
+- 200 MHz 时序失败，因此现在还不能按目标频率签收上板性能。L5 phase-fanout 限制让 WNS 改善 0.151 ns，但最差路径已转到 L5 窗口数据→DSP，仍差 2.057 ns。150 MHz 仍失败；120 MHz 只有 12 ps slack 且暴露出输入 ROM 地址布线瓶颈，不能作为有裕量的交付配置。后续要继续改善 L5 选择器/DSP 输入路径，并确认 UART 管脚约束。
 - UART TX 引脚约束仍待确认，真实 `start` 触发方案也需最终确定。板卡本机操作、器件编程、HDMI/串口采集属于必须在接有 ACX750 的本机完成的工作。
 
 ## 后续工作拆分
