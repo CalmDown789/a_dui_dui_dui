@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "acx750-member-a"
+version = "1.0.0"
+description = "Member A FSRCNN-subpixel model, quantization and reference artifacts for ACX750-200T"
+requires-python = ">=3.11"
+dependencies = [
+  "h5py>=3.12",
+  "numpy>=2.0",
+  "Pillow>=10.0",
+  "torch>=2.5",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

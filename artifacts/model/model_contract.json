@@ -1,0 +1,56 @@
+{
+  "name": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+  "architecture_note": "FSRCNN trunk with a native dense 5x5 16-to-4 subpixel head; not a weight-equivalent 9x9 transposed convolution",
+  "config": {
+    "scale": 2,
+    "d": 16,
+    "s": 8,
+    "m": 1,
+    "c": 16,
+    "input_width": 960,
+    "input_height": 540
+  },
+  "input": {
+    "shape_nchw": [
+      1,
+      1,
+      540,
+      960
+    ],
+    "dtype": "uint8_Y",
+    "normalized_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "output": {
+    "shape_nchw": [
+      1,
+      1,
+      1080,
+      1920
+    ],
+    "dtype": "uint8_Y",
+    "normalized_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "pixel_shuffle_channel_order": [
+    "top_left",
+    "top_right",
+    "bottom_left",
+    "bottom_right"
+  ],
+  "macs": {
+    "feature": 207360000,
+    "shrink": 66355200,
+    "mapping": 298598400,
+    "expand": 66355200,
+    "subpixel": 829440000,
+    "total": 1468108800,
+    "gmac_per_frame": 1.4681088,
+    "gmac_per_second_30fps": 44.043264,
+    "margin_vs_133_2_gmac_s": 3.0242990165306547
+  }
+}
