@@ -84,7 +84,7 @@ def bin_to_mem(bin_path, mem_path, nbytes, label):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--a-repo", default=r"C:\Users\Administrator\a_dui_dui_dui",
+    ap.add_argument("--a-repo", default=C_SIDE,
                     help="A 仓库本地工作副本路径")
     args = ap.parse_args()
 
