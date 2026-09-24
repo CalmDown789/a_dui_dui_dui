@@ -1,54 +1,39 @@
-# ACX750-200T 成员 A FSRCNN 子像素模型交付
+# ACX750 FSRCNN 超分系统
 
-> **小组 PPT 统一口径与项目全阶段记录：**[《技术路径与阶段总结（2026-09-24）》](docs/技术路径与阶段总结_2026-09-24.md)。报告按调研、板卡基线、任务书修订、A/B/C 实现、仿真与布线、1080p→4K 路线排列；所有结果标明证据层级。当前完整五层网络尚未完成板上验收。
+项目目标是使用 ACX750-200T（`xc7a200tfbg484-2`）将 960×540 单通道 Y 图像放大到 1920×1080。本文汇总截至 2026-09-24 的可复核结果；不同阶段的仿真、实现和板测数据分别标明，不将计划或估算写成实测结论。
 
-已完成成员 A 的算法与数据交付，用于小梅哥 ACX750-200T 上的 540p 到 1080p 超分项目。模型为 `d=16 / s=8 / m=1 / c=16` 的 FSRCNN 主干，输出层直接训练为稠密 `5×5 Conv 16→4 + PixelShuffle×2`。它不是 9×9 反卷积的逐权重等价变换。
+## 当前结论
 
-## 冻结规格
+| 阶段 | 结果 | 证据与边界 |
+|---|---|---|
+| A：模型、量化与数据 | 已冻结 `d16/s8/m1/c16`；Set5 平均 PSNR：双三次 32.6398 dB、FP32 34.1202 dB、INT8/INT16 34.0190 dB | [A交付报告](docs/成员A交付报告.md)、[量化指标](artifacts/evaluation/summary.json) |
+| B+C：整数仿真 | 五层真实网络全尺寸输出 2,073,600 字节与整数 Golden 一致，失配 0 | A Golden SHA-256：`be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`；仿真采用 XSim 2022.2 `-O0`，详见 [下游验证记录](docs/成员A下游验证状态_2026-09-24.md) |
+| C：100 MHz 板测 | 已下载 bitstream；板上 UART 回读完整单帧，2,073,600 字节与 Golden 逐字节一致，失配 0 | [板测报告](docs/BOARD_TEST_REPORT_100MHZ_2026-09-24.md)。UART 回传约 22.43 秒/帧是传输时间，不是 CNN 计算帧率 |
+| B：150 MHz 时序试验 | 推荐实现策略候选完成布线，WNS/TNS `+0.132/0 ns`；资源 LUT 28,078、FF 48,498、RAMB36/18 `226/8`、DSP48E1 `394` | [时序试验记录](docs/MEMBER_B_150MHZ_TIMING_OPT_2026-09-24.md)。这是 B 的实验候选，不等于 C 的 150 MHz 板测或正式 RTL 集成 |
 
-- 输入：`960×540`，8-bit 灰度 Y，HWC 行优先；
-- 输出：`1920×1080`，8-bit 灰度 Y；
-- 权重：逐输出通道对称 INT8，OIHW；
-- 激活：逐层对称 INT16；
-- 偏置与累加：INT32，溢出饱和；
-- PReLU：逐通道 Q1.15；
-- 算力：`1.4681088 G MAC/帧`，30fps 为 `44.043264 GMAC/s`；
-- 理论余量：相对 `133.2 GMAC/s` 为约 `3.02×`。
+因此，项目已有模型、整数全帧对拍、100 MHz 单帧上板一致性和 150 MHz 完成布线的时序数据，形成了可展示、可复核的阶段成果。当前不能据此宣称 1080p30 已实现：150 MHz 结果裕量较小，且没有 150 MHz 板测或持续视频吞吐记录。
 
-## 环境
+## 冻结模型与接口
 
-```powershell
-C:\Python314\python.exe -m venv --system-site-packages .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
+FSRCNN 主干为 `Conv 1→16, 5×5`、`Conv 16→8, 1×1`、一个 `Conv 8→8, 3×3` mapping 层、`Conv 8→16, 1×1`；输出头为原生稠密 `Conv 16→4, 5×5 + PixelShuffle×2`。该输出头是直接训练的子像素卷积，不宣称与 9×9 反卷积逐权重等价。
 
-## 完整复现
+权重为逐输出通道对称 INT8，激活为逐层对称 INT16，偏置及累加为 INT32，PReLU 参数为 Q1.15。全尺寸整数 Golden、输入和清单位于 [`artifacts/full_integer_golden/`](artifacts/full_integer_golden/)；RTL 使用的打包参数位于 [`rom/member_a_d16_s8_m1_c16/`](rom/member_a_d16_s8_m1_c16/)。完整整数交付和权重/训练记录分别见 [`artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`](artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip) 与 [`artifacts/member_a_weights_and_logs.zip`](artifacts/member_a_weights_and_logs.zip)。
 
-下载 T91 与 Set5 原始图像并在本地生成 ×2 训练块，训练 FP32 模型、校准量化参数、必要时执行 5 epoch QAT，并生成全部交付物：
+模型计算量为 1.4681088 GMAC/帧，30 fps 对应 44.043264 GMAC/s；任务书中的 133.2 GMAC/s 和约 3.02× 余量是建立在 DSP 打包、频率和利用率假设上的理论估计，不是板测吞吐。
 
-```powershell
-.\.venv\Scripts\python.exe run_all.py
-```
+## 分工与下一阶段
 
-验证已经提交的模型、权重、格式、测试向量、全尺寸输出、指标和哈希：
+- A：模型、量化参数、逐层向量与整数 Golden 已冻结；下游使用状态见 [A验证记录](docs/成员A下游验证状态_2026-09-24.md)。
+- B：五层流式 RTL 与时序优化试验；150 MHz 推荐候选及对照数据见 [B试验记录](docs/MEMBER_B_150MHZ_TIMING_OPT_2026-09-24.md)。
+- C：板级集成、约束、bitstream 和实体板验证；已完成 100 MHz 单帧对拍，后续按板卡完整约束验证更高频率及连续帧运行。
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe scripts\verify_delivery.py
-```
+下一阶段是基于同一已验证功能基线开展 150 MHz 板级验证，并记录连续帧完成时间和系统接口行为；目标是增加时序裕量、确认可重复运行。该工作正在按计划推进，当前记录未将其描述为已完成或已遇到阻塞。
 
-只交接整数实现时，可直接下载 `artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数、整数黄金参考和四组逐层向量；解压后运行：
+## 代码与复核
 
-```powershell
-python scripts\verify_integer_delivery.py
-```
+- `rtl/`、`rom/`、`constr/`、`tb/`：当前 B+C 集成所需 RTL、参数 ROM、约束与仿真测试文件。
+- `scripts/`：仿真、数据准备、综合与报告校验脚本。
+- `experiments/l5_timing_opt_20260924/`、`member_b_evidence/timing_opt_netdelay150/`：150 MHz 推荐策略的复现脚本和精简原始报告。
+- `docs/BOARD_TEST_REPORT_100MHZ_2026-09-24.md`：C 板测数据与判定边界。
 
-审核模型质量证据时，可直接下载 `artifacts/member_a_weights_and_logs.zip`，其中集中提供 FP32 checkpoint、模型契约、50轮训练日志、Set5逐图指标、汇总指标及量化参数。
-
-训练数据保存到 `.data/` 且不会提交。任务书原件保存在 `docs/source/`，接口约定、算力核算和成员 A 报告位于 `docs/`。
-
-本次固定种子训练的 Set5 平均结果为：双三次 32.6398 dB、FP32 34.1202 dB、量化 34.0190 dB；量化损失 0.1012 dB，因此未触发 QAT。完整逐图 PSNR/SSIM 见 `artifacts/evaluation/set5_metrics.csv`。
-
-## 职责边界
-
-本交付不包含 RTL、板级约束、Vivado 工程或 bitstream。成员 B 可直接读取 `artifacts/quant/quant_params.json`、各层 `.mem/.coe` 权重以及 `artifacts/test_vectors/` 完成 RTL 对拍；成员 C 负责板卡工程、ILA、时序收敛和上板结果导出。
+来源版本：A 冻结交付 `member-a-v1.0.1`（全尺寸 Golden 来源提交 `98c82f3`）；B 150 MHz 时序试验分支提交 `4f93a87`；C 板测报告随 `c-side-latest` 最新提交 `4f1f73e` 同步。板测报告中的 RTL 源树哈希为 `618a532ab842e9a7b33b1f695689e446f37cebf6`。这些来源信息用于追溯，不代表各分支试验均已合并为同一正式版本。

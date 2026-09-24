@@ -14,9 +14,31 @@ data/
 .review/
 tmp/
 temp/
+_sim/
+_synth_bc/
+ref/_staged_mem/
+ref/a_full_integer_golden/_staged_mem/
 *.tmp
 *.bak
 ~$*
+
+# Vivado / XSim generated outputs
+.Xil/
+.runs/
+.cache/
+*.runs/
+*.cache
+*.jou
+*.str
+*.pb
+*.dcp
+*.ltx
+*.wdb
+*.vcd
+*.fst
+xsim.dir/
+webtalk*.jou
+webtalk*.log
 
 # OS and editors
 .DS_Store

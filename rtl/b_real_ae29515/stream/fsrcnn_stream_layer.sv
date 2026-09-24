@@ -1,0 +1,63 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: functional elastic layer for a frozen topology.
+// K=1 bypasses the row window; K=3/5 uses local K-1 BRAM row banks.
+// Real parameters enter as packed buses supplied by the integration ROM.
+module fsrcnn_stream_layer #(
+    parameter integer IMG_W=6,
+    parameter integer IMG_H=5,
+    parameter integer K=5,
+    parameter integer CIN=1,
+    parameter integer COUT=16,
+    parameter integer IN_PAR=1,
+    parameter integer OUT_PAR=2,
+    parameter integer ACT_W=8,
+    parameter integer ACT_UNSIGNED=1,
+    parameter integer OUT_W=16,
+    parameter integer APPLY_PRELU=1
+)(
+    input  wire                          clk,
+    input  wire                          rst,
+    input  wire                          start,
+    input  wire                          in_valid,
+    output wire                          in_ready,
+    input  wire [CIN*ACT_W-1:0]          in_pixel,
+    input  wire [COUT*CIN*K*K*8-1:0]     weight_flat,
+    input  wire [COUT*32-1:0]           bias_flat,
+    input  wire [COUT*16-1:0]           prelu_flat,
+    input  wire [COUT*32-1:0]           q31_flat,
+    output wire                          out_valid,
+    input  wire                          out_ready,
+    output wire [COUT*OUT_W-1:0]         out_pixel
+);
+    wire window_valid,window_ready;
+    wire [K*K*CIN*ACT_W-1:0] window_data;
+    wire result_valid,result_ready;
+    wire [COUT*32-1:0] result_data;
+    generate if(K==1)begin:g1
+        assign window_valid=in_valid;
+        assign in_ready=window_ready;
+        assign window_data=in_pixel;
+    end else begin:gk
+        wire busy;
+        window_stream_frontend #(.DATA_W(CIN*ACT_W),.IMG_W(IMG_W),
+            .IMG_H(IMG_H),.K(K),.FIFO_DEPTH(4)) frontend (
+            .clk(clk),.rst(rst),.start(start),.busy(busy),
+            .in_valid(in_valid),.in_ready(in_ready),.in_data(in_pixel),
+            .window_valid(window_valid),.window_ready(window_ready),
+            .window_data(window_data)
+        );
+    end endgenerate
+    mac_issue_stage #(.K(K),.CIN(CIN),.COUT(COUT),.IN_PAR(IN_PAR),
+        .OUT_PAR(OUT_PAR),.ACT_W(ACT_W),.ACT_UNSIGNED(ACT_UNSIGNED)) mac (
+        .clk(clk),.rst(rst),.window_valid(window_valid),.window_ready(window_ready),
+        .window_flat(window_data),.weight_flat(weight_flat),.bias_flat(bias_flat),
+        .result_valid(result_valid),.result_ready(result_ready),.result_flat(result_data)
+    );
+    vector_postprocess_shared #(.CHANNELS(COUT),.LANES((COUT+7)/8),
+        .OUT_W(OUT_W),.OUT_SIGNED(OUT_W==16),.APPLY_PRELU(APPLY_PRELU)) post (
+        .clk(clk),.rst(rst),.in_valid(result_valid),.in_ready(result_ready),
+        .accum_flat(result_data),.prelu_flat(prelu_flat),.q31_flat(q31_flat),
+        .out_valid(out_valid),.out_ready(out_ready),.out_flat(out_pixel)
+    );
+endmodule
