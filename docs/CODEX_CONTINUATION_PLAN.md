@@ -1,5 +1,7 @@
 # 接续任务清单：GitHub 协作与本机执行（2026-09-23）
 
+> **2026-09-24 交接更新：**用户要求把目前成果同步到 GitHub，由其他成员/机器续跑；此后不要在 C 的本机运行 Vivado、XSim 或实现流程。最新的 L5 split-memory / 36-bit 候选、测量边界和可复跑 Tcl 见 [`docs/FPGA_TIMING_HANDOFF_2026-09-24.md`](FPGA_TIMING_HANDOFF_2026-09-24.md)。下文 2026-09-23 的“当前本机可直接运行”步骤是历史说明，执行前按本段交接要求选择其他有 Vivado 2022.2 与器件 license 的 runner。
+
 本仓库分支 `c-side-latest`。用户已要求将必要提交推送到 GitHub；本轮验证记录
 需随当前分支提交发布，便于其他账号续跑和审查。工作树中 `_bself/` 与
 `tb/tb_const_probe.v` 是已有的未跟踪文件，交接时应保留，不要自动纳入提交。

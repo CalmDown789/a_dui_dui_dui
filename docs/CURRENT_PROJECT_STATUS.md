@@ -72,6 +72,12 @@ output lane 复制二进制 phase 状态，也不能用综合 WNS 代替 post-ro
 
 原异常根因是 `phase_mac_pipeline` 的运行时 `in_phase` 驱动宽 packed-bus part-select；Vivado 在 RTL Optimization Phase 2 将综合网表规模异常膨胀，旧运行达到约 30.4 GB 后无法完成。静态 `case` 相位索引修复后，真实 B+C 完整综合峰值约 3.13 GB、实现峰值约 4.13 GB，资源规模符合小型流式 CNN accelerator 的范围。详细前后证据、层级资源及 RAM 映射见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md`。
 
+## 2026-09-24 后续实现候选与接手状态
+
+之后完成了一个 L5 FIFO 宽字分片候选的完整 route：post-route WNS/TNS `-0.738 ns / -3,137.469 ns`，器件资源 RAMB36/RAMB18 `174/8`、DSP48E1 `394`、LUT `31,313`、FF `50,025`，route status 为 78,989/78,989 nets fully routed、0 routing errors，Vivado 报告峰值内存约 4.20 GB。该结果与匹配的 bank16 临时基线相比 WNS 改善 359 ps，但它使用一组 C 输入 ROM/边界实验 overlay，不能当成当前正式 RTL 的单改动结果；200 MHz 仍未闭合。
+
+另有 36-bit phase accumulator overlay 通过边界/随机定向探针、C+B smoke 和综合（LUT `29,644`、FF `48,358`、综合 WNS `-0.855 ns`），尚未 place-and-route。新成员接续要求、overlay 与原始报告见 [`docs/FPGA_TIMING_HANDOFF_2026-09-24.md`](FPGA_TIMING_HANDOFF_2026-09-24.md)。用户已要求后续 Vivado/XSim 在其他具备 Vivado 2022.2 与器件 license 的 runner 上运行；本机不再续跑。此时没有 bitstream，也没有板上图像验收。
+
 ## 板测状态与边界
 
 - 尚未生成 bitstream，也没有板上 HDMI/输出图像、画质或吞吐验收记录。全尺寸 Golden PASS 是本机 XSim 数据，不能称为板测通过。

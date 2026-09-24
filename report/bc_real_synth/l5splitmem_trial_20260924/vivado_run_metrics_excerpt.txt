@@ -1,0 +1,19 @@
+Sanitized extraction from the local Vivado 2022.2 logs
+Part: xc7a200tfbg484-2
+Candidate source snapshot commit: 6218c5eb09a09e7a7d63c12ae163f7dd29baf0f8
+
+Synthesis-only run:
+  synth_design elapsed: 00:03:47
+  reported peak memory: 3190.055 MB
+
+Full implementation run:
+  synth_design elapsed: 00:03:47; stage peak memory: 3187.469 MB
+  opt_design elapsed: 00:00:43; peak memory: 3858.551 MB
+  place_design elapsed: 00:04:18; peak memory: 3858.551 MB
+  phys_opt_design elapsed: 00:01:07; peak memory: 3858.551 MB
+  route_design elapsed: 00:10:59; peak memory: 4201.488 MB
+  route_design completed successfully
+
+The Vivado report headers contained a local hostname and absolute Windows
+workspace path. Those identifying header fields were redacted from the
+committed reports; report data and measured values were left unchanged.
