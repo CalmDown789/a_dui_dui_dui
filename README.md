@@ -1,3 +1,10 @@
+> **本分支入口（2026-09-25）**：`member-b-2025-2-bc-trial` 是基于 C 工程的
+> 成员 B 独立实验叠层；先读
+> [`docs/MEMBER_B_TO_C_HANDOFF_2026-09-24.md`](docs/MEMBER_B_TO_C_HANDOFF_2026-09-24.md)
+> 与 [`docs/MEMBER_B_150MHZ_TIMING_OPT_2026-09-24.md`](docs/MEMBER_B_150MHZ_TIMING_OPT_2026-09-24.md)。
+> 下方为继承的 C 工程说明，保留原文；本分支没有替换 C 正式 RTL，
+> 也不能把本机实现结果当作 C 板级签核。
+
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
 > **2026-09-24 本机最新状态**：本地 9/9 回归通过；真实 B 五层 960×540 → 1920×1080

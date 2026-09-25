@@ -46,12 +46,18 @@ work/
 
 #--- 本仓库自己的临时工作目录（仿真/综合现场，不入库） ----------------------
 _sim/
+/_sim_l5_member_b*/
 _syn/
 _synth_bc/
 __pycache__/
 *.pyc
 *.log
 *.log.*
+/dfx_runtime.txt
+
+# Member B simulation staging copies; authoritative banks remain tracked in
+# member_b_evidence/real_banks/ and the A reference input under ref/.
+/member_b_evidence/rom_tb/*.mem
 
 #--- 大体积输入数据（全尺寸输入图 .mem 不入库，见 scripts/gen_input_mem.py）---
 #  规则：tb/data/ 下的 tiny 数据入库；rtl 用的全尺寸 ROM 不入库
