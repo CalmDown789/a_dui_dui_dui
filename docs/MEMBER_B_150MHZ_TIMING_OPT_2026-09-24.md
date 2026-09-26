@@ -1,5 +1,7 @@
 # 成员 B：150 MHz 时序优化试验记录
 
+2026-09-26 更新：本页保留 9 月 24 日实验历史。最新推荐在相同 RTL/XDC/ROM 下达到 **WNS/TNS +0.492/0 ns、WHS/THS +0.018/0 ns**，详见 [`MEMBER_B_150MHZ_MARGIN_2026-09-26.md`](MEMBER_B_150MHZ_MARGIN_2026-09-26.md)。
+
 日期：2026-09-24。目标为 Vivado 2025.2、`xc7a200tfbg484-2`、真实 A 输入
 ROM bank16、B 五层网络、C 外壳、36 位跨通道累加和 C 条带 RAM
 `ram_decomp="power"` 的同条件实现。时钟由 50 MHz 板载输入经 MMCM 产生
@@ -13,7 +15,7 @@ ROM bank16、B 五层网络、C 外壳、36 位跨通道累加和 C 条带 RAM
 | 原基线 RTL + 默认实现 | +0.039/0 ns | 28,041 | 48,510 | 226/8 | 394 | 功能已验证，裕量小 |
 | FIFO 写指针按位片局部复制 + 默认实现 | +0.027/0 ns | 28,384 | 48,702 | 226/8 | 394 | 时序退化 |
 | FIFO 2 的幂深度简化指针回绕 + 默认实现 | +0.038/0 ns | 27,947 | 48,594 | 226/8 | 394 | 时序无实质收益 |
-| **原基线 RTL + NetDelay 实现策略** | **+0.132/0 ns** | **28,078** | **48,498** | **226/8** | **394** | 当前推荐候选，较基线增加 93 ps |
+| **原基线 RTL + NetDelay 实现策略** | **+0.132/0 ns** | **28,078** | **48,498** | **226/8** | **394** | 当时推荐候选，较基线增加 93 ps |
 | 局部复制写指针 + NetDelay 实现策略 | +0.138/0 ns | 28,340 | 48,674 | 226/8 | 394 | 仅多 6 ps，资源增加，不推荐集成 |
 | 原基线 RTL + L5 相位网络 fanout 约束 + WLDrivenBlockPlacement/AggressiveFanoutOpt/Explore | +0.128/0 ns | 28,021 | 48,498 | 226/8 | 394 | 比 NetDelay 少 4 ps，不推荐替换 |
 
@@ -21,7 +23,7 @@ ROM bank16、B 五层网络、C 外壳、36 位跨通道累加和 C 条带 RAM
 其直接 fanout 最高仅 2，没有命中受限对象，因此**没有布线结果**，不能计入
 改善。上表的 FIFO RTL 试验均通过三种背压场景与四组 96×54 A Golden 短
 回归；NetDelay 使用已通过完整 960×540 位精确仿真的**原基线 RTL**，
-只改变实现指令。最后一组 WL/fanout 试验也使用原基线 RTL，综合后将
+  只改变实现设置（包括综合后相位网络约束，见下方更正）。最后一组 WL/fanout 试验也使用原基线 RTL，综合后将
 48 条 L5 相位寄存器输出网络的 `MAX_FANOUT` 设为 48，并调整三个实现指令；
 路由错误为 0，但最差路径仍落在 L5 FIFO 写指针到分布式 RAM 写地址，
 没有改善目标瓶颈。
@@ -31,9 +33,13 @@ ROM bank16、B 五层网络、C 外壳、36 位跨通道累加和 C 条带 RAM
 - 运行脚本：`experiments/l5_timing_opt_20260924/synth_bc_realrom_150_netdelay_member_b.tcl`，
   参数 `-tclargs impl acc36 ascii ramdecomp`。Vivado 工作目录必须为纯 ASCII；
   本机以临时 `V:` 映射运行。
-- 与原基线实现的差别仅是 `place_design -directive ExtraNetDelay_high`、
+- 实现使用 `place_design -directive ExtraNetDelay_high`、
   `phys_opt_design -directive AggressiveExplore` 和
-  `route_design -directive NoTimingRelaxation`。完整结果与时序、资源、时钟、
+  `route_design -directive NoTimingRelaxation`。2026-09-26 核对原始
+  `netdelay_route_console.log` 后补正：脚本还在综合后对 L5 相位寄存器
+  Q 网络设置 `MAX_FANOUT 48`；集合为 49 条网络，其中 46 条超过阈值并
+  实际设置属性。此前“仅三个实现指令差异”的描述不完整，复现须保留该段。
+  完整结果与时序、资源、时钟、
   路由状态原件在 `member_b_evidence/timing_opt_netdelay150/`；路由错误为 0。
 - 当前最差路径是 L5 宽 FIFO 写指针寄存器到分布式 RAM 写地址：直连
   fanout 1,056，数据路径 6.386 ns，其中布线 6.007 ns（约 94%）。这说明

@@ -1,5 +1,7 @@
 # 成员 B → 成员 C：真实五层 B+C 实验与板级交接
 
+2026-09-26 裕量更新：原功能 RTL、ROM 和实验 XDC 不变，最新推荐 `route_setup030` 达到 **WNS/TNS +0.492/0 ns、WHS/THS +0.018/0 ns、route errors 0**。详细对照和两步复现入口见 [`MEMBER_B_150MHZ_MARGIN_2026-09-26.md`](MEMBER_B_150MHZ_MARGIN_2026-09-26.md)。本更新仅记录 B 的独立时序实验，不改变 C 板级任务；下方保留原交接内容。
+
 日期：2026-09-24。请从 `member-b-2025-2-bc-trial` 分支阅读本文件。这是基于
 `c-side-latest@6b87af3` 的**独立实验叠层**，不是对 C 正式 RTL 的直接替换。
 成员 B 负责网络 RTL、位精确验证和 150 MHz 时序优化；成员 C 负责板级工程、
@@ -89,14 +91,16 @@
   布线报告在 `member_b_evidence/timing_opt_wrptrlocal150/`。
 - 针对高扇出网络的第二组实验在综合网络选择阶段停止，**没有布线结果**；
   不把它当作时序改善。
-- **当前推荐：原基线 RTL + NetDelay 实现策略。** 同一真实 ROM、目标器件、
+- **9 月 24 日推荐：原基线 RTL + NetDelay 实现策略。** 同一真实 ROM、目标器件、
   150 MHz 时钟和 XDC 下，布线后 WNS/TNS 从 +0.039/0 提升到
   **+0.132/0 ns**（增加 93 ps），LUT/FF 为 28,078/48,498，
   RAMB36/18 为 226/8，DSP 为 394，路由错误 0。运行
   `experiments/l5_timing_opt_20260924/synth_bc_realrom_150_netdelay_member_b.tcl`
   并传入 `-tclargs impl acc36 ascii ramdecomp`；原始报告在
-  `member_b_evidence/timing_opt_netdelay150/`。该脚本只调整布局、物理优化
-  和布线指令，沿用本文件上文的已位精确验证 RTL。C 可在 100 MHz 板级
+  `member_b_evidence/timing_opt_netdelay150/`。该脚本调整布局、物理优化
+  和布线指令，并包含综合后 L5 相位网络的 `MAX_FANOUT 48` 设置
+  （2026-09-26 核对原日志补正，实际命中 46 条网络）；沿用本文件上文
+  的已位精确验证 RTL。C 可在 100 MHz 板级
   联调成功后，以实际板级 XDC 复现、评估 150 MHz；不能直接把这里的
   +0.132 ns 视为板级最终裕量。
 - 其它完成布线对照：FIFO 2 的幂深度简化指针 +0.038 ns；局部写指针
@@ -106,8 +110,8 @@
 
 ## 交付边界与沟通点
 
-- 150 MHz 原基线只有 39 ps 余量；推荐实现策略在本实验条件下达到
-  132 ps，仍未达到约 400 ps 的期望裕量。当前最差路径是 L5 宽 FIFO
+- 150 MHz 原基线只有 39 ps 余量；9 月 24 日推荐策略在本实验条件下达到
+  132 ps，当时未达到约 400 ps 的期望裕量（9 月 26 日已提高至 492 ps，见页首）。当时最差路径是 L5 宽 FIFO
   写指针到分布式 RAM 写地址，直连 fanout 1,056，数据路径布线占约 94%。
   **未验证或退化的 RTL 候选不得合入 C 板级基线**。
 - 单帧 4,699,406 周期按 150/100 MHz 分别折算约 31.92/21.28 fps，

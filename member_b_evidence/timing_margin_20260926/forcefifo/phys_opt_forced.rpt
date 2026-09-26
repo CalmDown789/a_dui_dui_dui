@@ -1,0 +1,241 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sat Sep 26 17:30:27 2026
+| Host         : OMENMAX running 64-bit major release  (build 9200)
+| Command      : report_phys_opt -file V://_synth_bc/acc36_realrom_150_member_b_forcefifo0926_ascii_ramdecomp/reports/phys_opt_forced.rpt
+| Design       : c_synth_top
+| Device       : xc7a200tfbg484-2
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Physical Synthesis Report
+
+
+Table of Contents
+----------------------
+
+1. Summary of Physical Synthesis Optimizations
+2. Detailed Results of Physical Synthesis Optimizations
+
+1. Summary of Physical Synthesis Optimizations
+===============================================
+
+
+------------------------------------------------------------------------------------------------------------------------
+|  Phase  |  Optimization         |  WNS Before  |  WNS Change  |  Elapsed   |  Summary of Actions                     |
+------------------------------------------------------------------------------------------------------------------------
+|      1  |  Fanout Optimization  |     0.000ns  |     0.000ns  |  00:00:16  |  Nets Optimized : 18 , New Cells : 156  |
+|      -  |  Total                |     0.000ns  |     0.000ns  |  00:00:16  |  Final WNS = 0.000ns                    |
+------------------------------------------------------------------------------------------------------------------------
+
+
+2. Detailed Results of Physical Synthesis Optimizations
+=======================================================
+Fanout Optimization
+===================
+
+
+--------------------------------------------
+|     Number of Nets Optimized :   |   18  |
+|  Number of New Cells Created :   |  156  |
+--------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+|  Original Cell         |  New/Modified Cell               |  #Loads  |  WNS    |  TNS      |  Location                    |
+-----------------------------------------------------------------------------------------------------------------------------
+|  wr_ptr_reg[0]         |                               -  |     150  |  3.614  |  603.514  |  SLICE_X143Y105 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_replica           |      36  |  3.614  |  142.954  |  SLICE_X109Y75 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_replica_1         |      11  |  3.748  |   42.339  |  SLICE_X111Y130 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_replica_2         |      54  |   3.81  |    226.8  |  SLICE_X119Y129 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_replica_3         |      11  |  3.824  |   42.907  |  SLICE_X101Y87 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[0]_replica_4         |       5  |  3.944  |   19.881  |  SLICE_X100Y103 SLICEM.C5FF  |
+|                     -  |  wr_ptr_reg[0]_replica_5         |       8  |  4.154  |    34.77  |  SLICE_X137Y110 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_replica_6         |       4  |   4.56  |   18.673  |  SLICE_X131Y110 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_replica_7         |      11  |  4.594  |   51.164  |  SLICE_X130Y119 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_replica_8         |       3  |  4.708  |   14.365  |  SLICE_X138Y94 SLICEL.DFF    |
+|                     -  |  wr_ptr_reg[0]_replica_9         |       2  |  4.728  |    9.657  |  SLICE_X133Y84 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]                   |       5  |      0  |        0  |  SLICE_X143Y105 SLICEL.AFF   |
+|  wr_ptr_reg[0]_rep     |                               -  |     132  |  4.175  |  636.643  |  SLICE_X130Y110 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica       |      17  |  4.175  |   75.464  |  SLICE_X123Y126 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_1     |      11  |   4.26  |   50.758  |  SLICE_X126Y127 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_2     |       7  |   4.43  |   31.504  |  SLICE_X113Y131 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_3     |      18  |  4.617  |   85.645  |  SLICE_X118Y125 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_4     |       3  |   4.63  |   13.933  |  SLICE_X100Y103 SLICEM.D5FF  |
+|                     -  |  wr_ptr_reg[0]_rep_replica_5     |       2  |   4.73  |    9.487  |  SLICE_X138Y120 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_6     |      15  |  4.783  |   72.958  |  SLICE_X133Y117 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_7     |      31  |  4.815  |  154.405  |  SLICE_X138Y110 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep_replica_8     |      14  |  4.933  |   70.703  |  SLICE_X126Y109 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep               |      14  |      0  |        0  |  SLICE_X130Y110 SLICEL.AFF   |
+|  wr_ptr_reg[0]_rep__0  |                               -  |     132  |  3.825  |  620.871  |  SLICE_X143Y105 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica    |       8  |  3.825  |   31.373  |  SLICE_X115Y129 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_1  |      17  |  3.865  |   69.824  |  SLICE_X118Y127 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_2  |      12  |  4.154  |   52.053  |  SLICE_X125Y119 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_3  |       6  |  4.236  |   26.283  |  SLICE_X122Y122 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_4  |      28  |  4.489  |  133.594  |  SLICE_X139Y108 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_5  |       1  |  4.668  |    4.668  |  SLICE_X141Y121 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_6  |      17  |  4.689  |   81.932  |  SLICE_X131Y108 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_7  |      14  |  4.851  |   70.055  |  SLICE_X130Y110 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0_replica_8  |       6  |   5.02  |   30.527  |  SLICE_X143Y104 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__0            |      23  |      0  |        0  |  SLICE_X143Y106 SLICEL.AFF   |
+|  wr_ptr_reg[0]_rep__1  |                               -  |     132  |  4.176  |   612.83  |  SLICE_X143Y105 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica    |       9  |  4.176  |   38.225  |  SLICE_X133Y116 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_1  |       6  |  4.208  |   25.826  |  SLICE_X99Y102 SLICEL.B5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_2  |      55  |  4.215  |  249.072  |  SLICE_X125Y85 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_3  |      21  |  4.245  |    96.97  |  SLICE_X137Y108 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_4  |      14  |   4.66  |   66.974  |  SLICE_X133Y87 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_5  |       4  |  4.743  |   19.215  |  SLICE_X130Y110 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_6  |       7  |  4.877  |   34.608  |  SLICE_X135Y107 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_7  |      12  |  4.962  |   61.177  |  SLICE_X143Y104 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__1_replica_8  |       2  |   5.07  |   10.233  |  SLICE_X143Y106 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__1            |       2  |      0  |        0  |  SLICE_X143Y106 SLICEL.CFF   |
+|  wr_ptr_reg[0]_rep__2  |                               -  |     132  |  4.142  |  615.719  |  SLICE_X138Y94 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica    |       1  |  4.142  |    4.142  |  SLICE_X118Y125 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_1  |       9  |  4.143  |   38.408  |  SLICE_X125Y119 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_2  |      17  |  4.287  |   77.381  |  SLICE_X137Y109 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_3  |      25  |  4.388  |  114.402  |  SLICE_X133Y111 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_4  |      13  |   4.43  |   58.351  |  SLICE_X130Y110 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_5  |       2  |  4.433  |    8.954  |  SLICE_X117Y78 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_6  |       9  |  4.491  |   41.792  |  SLICE_X126Y109 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_7  |      26  |  4.496  |  122.021  |  SLICE_X121Y82 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__2_replica_8  |       8  |  4.771  |    39.52  |  SLICE_X127Y90 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[0]_rep__2            |      22  |      0  |        0  |  SLICE_X127Y90 SLICEL.DFF    |
+|  wr_ptr_reg[0]_rep__3  |                               -  |     132  |  3.677  |  562.853  |  SLICE_X135Y107 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica    |       6  |  3.677  |   22.644  |  SLICE_X75Y114 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_1  |      14  |  3.782  |   54.492  |  SLICE_X67Y113 SLICEL.A5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_2  |      18  |  3.827  |   72.329  |  SLICE_X67Y113 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_3  |      12  |  4.042  |   49.522  |  SLICE_X99Y102 SLICEL.DFF    |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_4  |      13  |  4.056  |   55.488  |  SLICE_X125Y122 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_5  |       1  |  4.093  |    4.093  |  SLICE_X67Y100 SLICEL.A5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_6  |      26  |  4.103  |  110.907  |  SLICE_X99Y102 SLICEL.C5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_7  |       7  |  4.255  |   30.508  |  SLICE_X99Y102 SLICEL.D5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__3_replica_8  |       6  |  4.358  |   27.512  |  SLICE_X119Y126 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__3            |      29  |      0  |        0  |  SLICE_X93Y88 SLICEL.D5FF    |
+|  wr_ptr_reg[0]_rep__4  |                               -  |     132  |  3.223  |  494.427  |  SLICE_X94Y76 SLICEM.AFF     |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica    |       9  |  3.223  |   30.663  |  SLICE_X75Y114 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_1  |      39  |  3.247  |  135.745  |  SLICE_X83Y129 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_2  |      19  |  3.375  |   66.955  |  SLICE_X89Y131 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_3  |       7  |   3.38  |   24.625  |  SLICE_X105Y136 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_4  |      19  |  3.429  |   70.596  |  SLICE_X118Y127 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_5  |       7  |  3.603  |   26.507  |  SLICE_X67Y99 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_6  |      22  |  3.708  |   92.126  |  SLICE_X101Y87 SLICEL.A5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_7  |       1  |  4.303  |    4.303  |  SLICE_X74Y90 SLICEM.AFF     |
+|                     -  |  wr_ptr_reg[0]_rep__4_replica_8  |       7  |  4.596  |   32.913  |  SLICE_X85Y86 SLICEL.CFF     |
+|                     -  |  wr_ptr_reg[0]_rep__4            |       2  |      0  |        0  |  SLICE_X97Y80 SLICEL.BFF     |
+|  wr_ptr_reg[0]_rep__5  |                               -  |     132  |   3.61  |  525.247  |  SLICE_X135Y107 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica    |       8  |   3.61  |    29.73  |  SLICE_X75Y114 SLICEL.DFF    |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_1  |      21  |  3.617  |   79.199  |  SLICE_X75Y114 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_2  |      10  |  3.696  |   38.964  |  SLICE_X85Y86 SLICEL.DFF     |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_3  |      28  |  3.777  |  109.194  |  SLICE_X71Y95 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_4  |      23  |  3.887  |   92.495  |  SLICE_X67Y99 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_5  |      24  |  3.982  |  100.241  |  SLICE_X91Y90 SLICEL.D5FF    |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_6  |       5  |  3.989  |   20.308  |  SLICE_X87Y88 SLICEL.C5FF    |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_7  |       4  |  4.008  |   16.206  |  SLICE_X82Y85 SLICEL.BFF     |
+|                     -  |  wr_ptr_reg[0]_rep__5_replica_8  |       7  |  4.313  |   30.564  |  SLICE_X66Y102 SLICEM.A5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__5            |       2  |      0  |        0  |  SLICE_X145Y106 SLICEL.A5FF  |
+|  wr_ptr_reg[0]_rep__6  |                               -  |      44  |   3.15  |  161.009  |  SLICE_X134Y88 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[0]_rep__6_replica    |      14  |   3.15  |   46.336  |  SLICE_X75Y116 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[0]_rep__6_replica_1  |       6  |  3.327  |   20.771  |  SLICE_X62Y96 SLICEM.A5FF    |
+|                     -  |  wr_ptr_reg[0]_rep__6_replica_2  |       3  |  3.513  |   11.007  |  SLICE_X67Y113 SLICEL.B5FF   |
+|                     -  |  wr_ptr_reg[0]_rep__6_replica_3  |      13  |  3.715  |   51.255  |  SLICE_X82Y85 SLICEL.CFF     |
+|                     -  |  wr_ptr_reg[0]_rep__6_replica_4  |       4  |  3.793  |   15.225  |  SLICE_X74Y90 SLICEM.BFF     |
+|                     -  |  wr_ptr_reg[0]_rep__6            |       4  |      0  |        0  |  SLICE_X87Y88 SLICEL.B5FF    |
+|  wr_ptr_reg[1]         |                               -  |     141  |  3.503  |  575.182  |  SLICE_X143Y105 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[1]_replica           |      35  |  3.503  |  138.389  |  SLICE_X101Y87 SLICEL.DFF    |
+|                     -  |  wr_ptr_reg[1]_replica_1         |      11  |  3.709  |   42.337  |  SLICE_X109Y127 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_replica_2         |      11  |  3.792  |   42.865  |  SLICE_X101Y87 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[1]_replica_3         |      54  |  3.805  |  227.219  |  SLICE_X122Y122 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_replica_4         |       5  |  3.911  |   19.707  |  SLICE_X109Y127 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[1]_replica_5         |       8  |  4.119  |   34.878  |  SLICE_X122Y122 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_replica_6         |       1  |  4.539  |    4.539  |  SLICE_X139Y109 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_replica_7         |       2  |  4.582  |    9.282  |  SLICE_X133Y87 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_replica_8         |      11  |  4.604  |    51.17  |  SLICE_X131Y115 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_replica_9         |       1  |  4.793  |    4.793  |  SLICE_X141Y90 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]                   |       2  |      0  |        0  |  SLICE_X143Y105 SLICEL.DFF   |
+|  wr_ptr_reg[1]_rep     |                               -  |     132  |  4.254  |  654.208  |  SLICE_X135Y117 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica       |       7  |  4.254  |   31.157  |  SLICE_X115Y131 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_1     |       3  |  4.615  |   13.922  |  SLICE_X121Y126 SLICEL.B5FF  |
+|                     -  |  wr_ptr_reg[1]_rep_replica_2     |      18  |  4.664  |   86.903  |  SLICE_X121Y126 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_3     |      17  |  4.704  |   81.332  |  SLICE_X121Y126 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_4     |      11  |  4.806  |   53.279  |  SLICE_X126Y128 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_5     |      31  |  4.946  |  157.709  |  SLICE_X138Y112 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_6     |       2  |  4.946  |   10.009  |  SLICE_X139Y122 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_7     |      15  |  4.947  |    75.66  |  SLICE_X133Y118 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep_replica_8     |      14  |   4.98  |    71.14  |  SLICE_X127Y117 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep               |      14  |      0  |        0  |  SLICE_X133Y116 SLICEL.AFF   |
+|  wr_ptr_reg[1]_rep__0  |                               -  |     132  |   3.63  |  613.471  |  SLICE_X143Y105 SLICEL.B5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica    |       8  |   3.63  |   30.514  |  SLICE_X111Y130 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_1  |      17  |  3.765  |   68.831  |  SLICE_X117Y129 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_2  |      12  |  4.081  |    52.33  |  SLICE_X125Y119 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_3  |       6  |  4.307  |   26.309  |  SLICE_X122Y122 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_4  |      28  |  4.442  |  132.523  |  SLICE_X139Y108 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_5  |      17  |  4.605  |   80.641  |  SLICE_X131Y109 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_6  |       1  |  4.663  |    4.663  |  SLICE_X141Y121 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_7  |      14  |   4.76  |   68.818  |  SLICE_X131Y108 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0_replica_8  |       6  |  4.929  |   29.985  |  SLICE_X143Y104 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_rep__0            |      23  |      0  |        0  |  SLICE_X143Y106 SLICEL.DFF   |
+|  wr_ptr_reg[1]_rep__1  |                               -  |     132  |  4.177  |  639.023  |  SLICE_X135Y107 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica    |      55  |  4.177  |  258.457  |  SLICE_X125Y85 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_1  |       9  |  4.517  |   41.945  |  SLICE_X131Y108 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_2  |       6  |  4.592  |   27.882  |  SLICE_X145Y106 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_3  |      21  |  4.785  |  103.259  |  SLICE_X126Y109 SLICEL.DFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_4  |      14  |  4.796  |   70.445  |  SLICE_X134Y88 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_5  |      12  |  4.833  |   59.914  |  SLICE_X143Y102 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_6  |       4  |  4.914  |   19.995  |  SLICE_X126Y109 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_7  |       2  |  4.999  |    10.01  |  SLICE_X143Y108 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1_replica_8  |       7  |  5.112  |   36.698  |  SLICE_X135Y107 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__1            |       2  |      0  |        0  |  SLICE_X138Y108 SLICEL.AFF   |
+|  wr_ptr_reg[1]_rep__2  |                               -  |     132  |  3.855  |  630.061  |  SLICE_X127Y90 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica    |       9  |  3.855  |   39.505  |  SLICE_X137Y109 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_1  |      25  |  4.023  |  112.576  |  SLICE_X131Y108 SLICEL.CFF   |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_2  |      13  |  4.168  |   59.409  |  SLICE_X131Y110 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_3  |       1  |  4.254  |    4.254  |  SLICE_X125Y122 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_4  |      17  |  4.468  |   79.518  |  SLICE_X134Y108 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_5  |       9  |  4.566  |   42.271  |  SLICE_X127Y90 SLICEL.A5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_6  |      26  |  4.713  |  128.305  |  SLICE_X121Y82 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_7  |       2  |   4.77  |    9.569  |  SLICE_X119Y80 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__2_replica_8  |      22  |  4.958  |  113.848  |  SLICE_X127Y90 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__2            |       8  |      0  |        0  |  SLICE_X125Y85 SLICEL.DFF    |
+|  wr_ptr_reg[1]_rep__3  |                               -  |     132  |  3.105  |  526.469  |  SLICE_X138Y94 SLICEL.CFF    |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica    |       6  |  3.105  |   19.879  |  SLICE_X75Y117 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_1  |      14  |  3.198  |   47.439  |  SLICE_X133Y116 SLICEL.B5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_2  |      18  |  3.414  |   64.689  |  SLICE_X75Y116 SLICEL.B5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_3  |      13  |  3.527  |   48.641  |  SLICE_X125Y119 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_4  |       6  |  3.746  |   23.489  |  SLICE_X123Y126 SLICEL.BFF   |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_5  |       1  |  3.753  |    3.753  |  SLICE_X67Y100 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_6  |       7  |  3.856  |   27.643  |  SLICE_X68Y98 SLICEM.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_7  |      12  |  3.941  |   49.752  |  SLICE_X87Y88 SLICEL.D5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__3_replica_8  |      29  |  4.054  |  129.306  |  SLICE_X101Y87 SLICEL.C5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__3            |      26  |      0  |        0  |  SLICE_X101Y87 SLICEL.B5FF   |
+|  wr_ptr_reg[1]_rep__4  |                               -  |     132  |  3.323  |  512.797  |  SLICE_X97Y80 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica    |       9  |  3.323  |   32.041  |  SLICE_X60Y112 SLICEM.A5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_1  |      39  |  3.338  |  139.421  |  SLICE_X91Y131 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_2  |      19  |  3.588  |   74.166  |  SLICE_X131Y115 SLICEL.A5FF  |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_3  |      19  |   3.59  |   69.762  |  SLICE_X91Y131 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_4  |       7  |  3.604  |   25.676  |  SLICE_X107Y136 SLICEL.AFF   |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_5  |       7  |  3.737  |    27.54  |  SLICE_X67Y99 SLICEL.B5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_6  |      22  |  3.885  |   96.222  |  SLICE_X101Y87 SLICEL.D5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_7  |       1  |  4.459  |    4.459  |  SLICE_X74Y90 SLICEM.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__4_replica_8  |       7  |  4.699  |    33.71  |  SLICE_X97Y80 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__4            |       2  |      0  |        0  |  SLICE_X97Y80 SLICEL.CFF     |
+|  wr_ptr_reg[1]_rep__5  |                               -  |     132  |  3.605  |  567.562  |  SLICE_X101Y87 SLICEL.AFF    |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica    |      23  |  3.605  |   97.205  |  SLICE_X67Y100 SLICEL.B5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_1  |       8  |  3.638  |   30.118  |  SLICE_X69Y99 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_2  |      21  |  3.701  |   82.061  |  SLICE_X71Y96 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_3  |      24  |  4.014  |  107.989  |  SLICE_X67Y100 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_4  |      28  |  4.047  |  117.784  |  SLICE_X71Y95 SLICEL.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_5  |      10  |  4.442  |   46.463  |  SLICE_X82Y85 SLICEL.DFF     |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_6  |       5  |   4.52  |   23.188  |  SLICE_X85Y86 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_7  |       7  |  4.579  |    33.85  |  SLICE_X97Y73 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__5_replica_8  |       2  |  4.621  |    9.264  |  SLICE_X97Y80 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__5            |       4  |      0  |        0  |  SLICE_X85Y86 SLICEL.B5FF    |
+|  wr_ptr_reg[1]_rep__6  |                               -  |      44  |  3.326  |  167.285  |  SLICE_X127Y90 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__6_replica    |      14  |  3.326  |   49.003  |  SLICE_X75Y114 SLICEL.A5FF   |
+|                     -  |  wr_ptr_reg[1]_rep__6_replica_1  |       6  |  3.564  |   21.744  |  SLICE_X62Y96 SLICEM.AFF     |
+|                     -  |  wr_ptr_reg[1]_rep__6_replica_2  |       3  |  3.693  |   11.573  |  SLICE_X67Y113 SLICEL.BFF    |
+|                     -  |  wr_ptr_reg[1]_rep__6_replica_3  |      13  |  3.754  |   52.113  |  SLICE_X82Y85 SLICEL.A5FF    |
+|                     -  |  wr_ptr_reg[1]_rep__6_replica_4  |       4  |  3.927  |   15.956  |  SLICE_X74Y90 SLICEM.CFF     |
+|                     -  |  wr_ptr_reg[1]_rep__6            |       4  |      0  |        0  |  SLICE_X84Y79 SLICEM.A5FF    |
+-----------------------------------------------------------------------------------------------------------------------------
+
+

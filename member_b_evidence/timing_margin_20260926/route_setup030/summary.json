@@ -1,0 +1,16 @@
+{
+  "candidate": "route_setup030",
+  "WNS": 0.492,
+  "TNS": 0.0,
+  "WHS": 0.018,
+  "THS": 0.0,
+  "route_errors": 0,
+  "resources": {
+    "LUT": 28100,
+    "FF": 48498,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 394
+  },
+  "worst_path": "Slack (MET) :             0.492ns  (required time - arrival time)\n  Source:                 u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/fifo/wr_ptr_reg[0]/C\n                            (rising edge-triggered cell FDRE clocked by u_top_n_1799  {rise@0.000ns fall@3.333ns period=6.667ns})\n  Destination:            u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/fifo/g_wide_read.g_read_slice[95].mem_slice_reg_0_3_36_41/RAMA/WADR0\n                            (rising edge-triggered cell RAMD32 clocked by u_top_n_1799  {rise@0.000ns fall@3.333ns period=6.667ns})\n  Path Group:             u_top_n_1799\n  Path Type:              Setup (Max at Slow Process Corner)\n  Requirement:            6.667ns  (u_top_n_1799 rise@6.667ns - u_top_n_1799 rise@0.000ns)\n  Data Path Delay:        6.033ns  (logic 0.379ns (6.282%)  route 5.654ns (93.718%))\n  Logic Levels:           0  \n  Clock Path Skew:        -0.132ns (DCD - SCD + CPR)\n    Destination Clock Delay (DCD):    5.301ns = ( 11.968 - 6.667 ) \n    Source Clock Delay      (SCD):    5.706ns\n    Clock Pessimism Removal (CPR):    0.273ns\n  Clock Uncertainty:      0.071ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU\n    Total System Jitter     (TSJ):    0.071ns\n    Discrete Jitter          (DJ):    0.124ns\n    Phase Error              (PE):    0.000ns\n    User Uncertainty         (UU):    0.000ns"
+}
