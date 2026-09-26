@@ -1,0 +1,36 @@
+==============================================
+ C-side RTL - SIMULATION result (xsim)
+==============================================
+ 1  Vivado version     : 2025.2
+ 2  testbenches run    : 3
+ 3  pass / fail        : 2 / 1
+ 4  git commit SHA     : n/a
+ 5  generated at       : 2026-09-26 20:41:11 (local)
+ 6  uncommitted change : n/a
+ 7  B formal path      : ae29515 closure + rtl/b_real_c_patch local RTL overrides
+ 8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)
+ 9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)
+10  real-B xelab mode : o0
+----------------------------------------------
+   tb_b_real_backpressure   : PASS   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
+   tb_b_real_bit_exact      : PASS   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
+   tb_b_real_full           : FAIL   (B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL)
+----------------------------------------------
+ raw logs : _sim/<tb>/xsim.log  (gitignored, regenerable)
+==============================================
+ NOTE 1: simulation only -- NOT synthesis, NOT implementation.
+ NOTE 2: do NOT run run_sim.tcl concurrently with synthesis/impl --
+         POLICY ONLY (CPU/disk/log contention).  RETRACTED: the earlier
+         'concurrency causes the -1073741515 failure' reading was wrong;
+         see NOTE 3.  Not re-tested since the DLL staging was added.
+ NOTE 3: the 0xC0000135 / -1073741515 engine-start failure is NOT
+         concurrency: it is the xsim runtime DLL closure being absent.
+         This script stages it next to xsimk.exe after each xelab;
+         the set and the evidence are in the header of run_sim.tcl.
+ NOTE 4: ONLY the rows tagged C_USE_B_REAL exercise member B's real
+         five-layer network. Rows tagged 'b_core_stub' are interface /
+         isolation regressions: their output is NOT FSRCNN and must
+         never be quoted as an image-quality result.
+ NOTE 5: any PASS of member B's OWN XSim run is B's evidence, NOT this
+         file's. sim PASS here says nothing about synthesis/implementation.
+==============================================

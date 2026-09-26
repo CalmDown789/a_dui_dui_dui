@@ -1,0 +1,2801 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "variant": "v6",
+  "collected_at_utc": "2026-09-26T12:37:49.293613+00:00",
+  "repository": "F:\\FPGA预选\\10h冲刺_c_trial",
+  "sim_directory": "_sim_l5_member_b_acc36_pipeline200_v6",
+  "selected_testbenches": [
+    "tb_b_real_backpressure",
+    "tb_b_real_bit_exact"
+  ],
+  "run_log": {
+    "path": "experiments/timing_200_20260926/sim_pipeline200_v6_short.log",
+    "bytes": 24646,
+    "sha256": "eb235a5b6ecf7088947fc5080b567f525c6bc86452e85c8703d51cabebc9e4d5",
+    "canonical_sha256": "eb235a5b6ecf7088947fc5080b567f525c6bc86452e85c8703d51cabebc9e4d5",
+    "mtime_ns": 1790426218497743500,
+    "archive_path": "run.log.txt"
+  },
+  "actual_launch_command": "vivado.exe -mode batch -nojournal -log V:/experiments/timing_200_20260926/sim_pipeline200_v6_short.log -source V:/experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl -tclargs tb_b_real_backpressure tb_b_real_bit_exact",
+  "launch_pid": 25832,
+  "outer_session_start_local": "Sat Sep 26 20:31:58 2026",
+  "runner": {
+    "path": "experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl",
+    "bytes": 32816,
+    "sha256": "210ecdd79837caa2b182a3293848fe1e2c359f46a82c8aa46d3c8ff51a214b98",
+    "canonical_sha256": "d7d542de14597d61bd730e1b9a55f69737d57178542e0574ffc4eedbd833780a",
+    "mtime_ns": 1790425820250364400,
+    "archive_path": "source_snapshots/experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl.txt"
+  },
+  "collector": {
+    "path": "experiments/timing_200_20260926/collect_sim_evidence.py",
+    "bytes": 33230,
+    "sha256": "f78fc93aca3d7bb49f214027a9c63c9831875cf02bbbfe69f98437e7eb8bcd71",
+    "canonical_sha256": "f78fc93aca3d7bb49f214027a9c63c9831875cf02bbbfe69f98437e7eb8bcd71",
+    "mtime_ns": 1790425890520537700,
+    "archive_path": "collector.py.txt"
+  },
+  "sources": [
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+      "bytes": 3255,
+      "sha256": "354116f189917f9f818a9ac990ddb84cc2f1f712398a9e12ba3309a08379f49d",
+      "canonical_sha256": "5f61b6b25d2e3637727fc9f7f64e0c4d7d419915c94c88654964c93bfce14165",
+      "mtime_ns": 1790229322541192300,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv",
+      "bytes": 5279,
+      "sha256": "b1a26bb512c71d6066d54756e17a89a7d3b6eb8c26a6181093ed8b5f0e2dd2c7",
+      "canonical_sha256": "10f96d8d4a74959b93145def6e8fa1bf1a9c02a18b65c464b7eba5262fc01e34",
+      "mtime_ns": 1790229322541192300,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv",
+      "bytes": 2987,
+      "sha256": "16337e0e69f8bc13989d7ddc28ab98fbd0fcbb82beb3c0671b9ee863e6bcb868",
+      "canonical_sha256": "b7ec1d1ac6f5a11a135af7219143f29c84ef0d822577bfc3627ca5350ab6f391",
+      "mtime_ns": 1790229322541192300,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv",
+      "bytes": 9060,
+      "sha256": "26584981078de187be70dba6aa52bb2174dc26b58a10b30dfe11e731da276361",
+      "canonical_sha256": "06ba0f5a061b18b23e426b18c4d958ff28d6a8f86a6a9c9d6f243c0c4b3d723c",
+      "mtime_ns": 1790229322541192300,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/c/c_core.v",
+      "bytes": 15189,
+      "sha256": "565e3297e25ff2bbce84b101df1339f150070519dd6b331ff65f5d45aadd6478",
+      "canonical_sha256": "13e01e9b348cdb3182becd949ee05cc7c32639f469009c8b180392182c8741b4",
+      "mtime_ns": 1790229322545302200,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/c/c_core.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+      "bytes": 3980,
+      "sha256": "dd0ec7d745133534ecdba3f009bc75158c96d296bdaacd60b7364874ca8ea898",
+      "canonical_sha256": "4fbff6030a0fc97c763e7a02a67a11bed8c1fef4faff457881756f0ac6150654",
+      "mtime_ns": 1790229322545302200,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/c/input_rom.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+      "bytes": 7167,
+      "sha256": "15cb1062caa76ebad5826f1b4b0eaf1aecd0763fcc81c326803846372215d3b8",
+      "canonical_sha256": "238f68373d7a80d8dd97eac0198b06f48cb19bd26e6cee47416a6b0a57d78ddf",
+      "mtime_ns": 1790229322545302200,
+      "archive_path": "source_snapshots/experiments/l5_splitmem_20260924/rtl/c/input_stream.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+      "bytes": 3884,
+      "sha256": "1094dc3ea2fd1b9c95f71979db63a972427617e8b4e4cb4dc2799cb214ab70c5",
+      "canonical_sha256": "f42684c8842ee296bcca03567dbe514330faeba8f59739844f0436cdf9713607",
+      "mtime_ns": 1790417944794482800,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/mac_buffer_l3l5/mac_issue_stage.sv",
+      "bytes": 5203,
+      "sha256": "da3098de6ac8e0be63ccdedd62105fb4f9d7d9494ecadd1a7e0f20e0aaa3fb61",
+      "canonical_sha256": "ace74648445fcb6addf0104ad279f09da89f07d0e3092a5628025d3f74409a21",
+      "mtime_ns": 1790422629827140600,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/mac_buffer_l3l5/mac_issue_stage.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/prelu_requantize.sv",
+      "bytes": 11923,
+      "sha256": "4f93d7f88c8597d6cb0214022debf537c9da309ac0673a1b658c9db804a6faee",
+      "canonical_sha256": "c81f29d6c50aa26661d5ae491d11bd5d16cfbccdb8812481547f86432a7c3c55",
+      "mtime_ns": 1790425462212967300,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/post_partial32/prelu_requantize.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv",
+      "bytes": 6268,
+      "sha256": "928c3ee8d2d7c6c6fefa4c55c222f435d29dcd3b73c201aceed4e13015d31d25",
+      "canonical_sha256": "6e0c2ffc696e2c5071160add08a06d65f5bfd42de6924f116097a1cd6674c454",
+      "mtime_ns": 1790424126624538100,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_banked/stripe_buffer.v",
+      "bytes": 3902,
+      "sha256": "79e61180094bd1b05c34d1b4c8445eb5c7814ed4eabe1852fb1f8bdd314fc1be",
+      "canonical_sha256": "79e61180094bd1b05c34d1b4c8445eb5c7814ed4eabe1852fb1f8bdd314fc1be",
+      "mtime_ns": 1790422586599929400,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/stripe_banked/stripe_buffer.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+      "bytes": 15093,
+      "sha256": "7d1afd0285a3b660b2a3cd36fe849aaec056464d8c3a5a3d7bf19088f2eb09a1",
+      "canonical_sha256": "f56aac0ea3e45e432fffe4bfd56d00884abcecae74ccd137b58ab6db037ac9fe",
+      "mtime_ns": 1790419040360973000,
+      "archive_path": "source_snapshots/experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_core_if.v",
+      "bytes": 7409,
+      "sha256": "59155e799fb5fd054ad32ba472cdc799312a319a0e2f4b8882e8f728e9dbf9e1",
+      "canonical_sha256": "6cf3ff1e6c33fbc1356be78b4ba30490acaf89a1fdb20cc3f76f23f127802520",
+      "mtime_ns": 1790229322579232400,
+      "archive_path": "source_snapshots/rtl/b_core_if.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_core_stub.v",
+      "bytes": 11406,
+      "sha256": "839351859a2722084b248ce99aac056e364db6a59c607baefeeb2393ea3d4284",
+      "canonical_sha256": "eccac56807bbde5c5536eae3d07386d420eb3d9b577fadaa651ecccad31db566",
+      "mtime_ns": 1790229322579232400,
+      "archive_path": "source_snapshots/rtl/b_core_stub.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/b_core_real.sv",
+      "bytes": 1211,
+      "sha256": "3223705348fc3489209c7cbfcfb6ff2bef281dbb363bfe090455eec399539727",
+      "canonical_sha256": "3e9374f142188fc73000170a80c8393e9754b722c3a7767a00e90246a3d4c1fe",
+      "mtime_ns": 1790229322582801100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/b_core_real.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/eight_phase_issue.sv",
+      "bytes": 1882,
+      "sha256": "69b7490470499972b767c1e60d65787f20532e9636ef544e46ec9353ea752abd",
+      "canonical_sha256": "26858a8148ea5194d47b177097e5621770bb50f7f8824be1e52c0d461f415b2a",
+      "mtime_ns": 1790229322582801100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/eight_phase_issue.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv",
+      "bytes": 2755,
+      "sha256": "c2ae968fea8d204135e72b31e4325b7b6cbdf4aaa4a6cc865de9621fd51550a5",
+      "canonical_sha256": "52f02d6d539b1363f1542cd6d55f7ba13f507e6a3fe26af0aec32a5bf85062cf",
+      "mtime_ns": 1790229322582801100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv",
+      "bytes": 4461,
+      "sha256": "5e3b347f1494e8580677394c60115c0867c033e527c7ad975a105dd8d6facd5d",
+      "canonical_sha256": "3b90586971f1d39f8f5d31a8ac4b7190df39ec67019fd505a0a067661e837940",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/same_pad_raster.sv",
+      "bytes": 2436,
+      "sha256": "cd03c34b02ee092f5e5daa4aecbbb8b6679efd9ac4cce71a7c25c2057bb10808",
+      "canonical_sha256": "6c699400d3f8779797bba2813e70ca5abcd6e4bb48a978b1487ef8f0a357f784",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/same_pad_raster.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/window_kminus1_bram.sv",
+      "bytes": 3357,
+      "sha256": "bb40b987c7f6c013ba498b382f6aaaa2d09302f4e22ebf7efb196c3ce1975516",
+      "canonical_sha256": "cf66969817e2ee2bb170fa3e3bc9f6a53d5d19b5282b3d5bf4c196fe000a34ee",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/window_kminus1_bram.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/window_stream_frontend.sv",
+      "bytes": 3056,
+      "sha256": "41430919b663a20c33e08d4dba060c2c19360422e424f4e6f07f640c4dabafec",
+      "canonical_sha256": "94778afc21a3ea1ef1b5bb5adb33435b13745bf23fc4eef909cd6d1402c84660",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/b_real_ae29515/stream/window_stream_frontend.sv.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/c_config.vh",
+      "bytes": 7468,
+      "sha256": "52283345dab7652cc8b4384b1cf06d7a6ea2235101b92e70bc4ee87cb69ad157",
+      "canonical_sha256": "cf5ece69d923e776e11b1c89d0e40ed61326014f9848fa5b34aff5815f1ac0bd",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/c_config.vh.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/c_ctrl.v",
+      "bytes": 5907,
+      "sha256": "b1646302ed1c888642519f9fa4145337a52cd78d79f3a8ac774e980c886ba2cc",
+      "canonical_sha256": "a508a7c2f722e3ef9a428c41fe5676515768b05740ec76944172b30f0a5678ac",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/c_ctrl.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/c_protocol_assertions.v",
+      "bytes": 7246,
+      "sha256": "f65ea5ae26f67aad4fa367046374dadc5584172b37e0945d01254871348dfaad",
+      "canonical_sha256": "253186fc5aa728fc3ff7ac9768999ff48a95d8ac1a725a244b9f8c9e16ea5be5",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/c_protocol_assertions.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/c_synth_top.v",
+      "bytes": 4046,
+      "sha256": "4710f547595b17f818d0e9b136ed3636b0f5d3ade79236964162e15336bc8126",
+      "canonical_sha256": "cbcd736452d67b00f7f911c22355b0077866bd67894ca1622d8e8f4d047bf884",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/c_synth_top.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/c_top.v",
+      "bytes": 10048,
+      "sha256": "c963bf5f3a554d89e893b8ae4e502018bb448c124510f248a6bfdf40135253ee",
+      "canonical_sha256": "0b34809d7fd072c6e48e8c2048d8ed8d1a6c717a89124d7ef3cdd761a407fdcd",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/c_top.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/output_stream.v",
+      "bytes": 15698,
+      "sha256": "ec54a105671f93643f33f32c4d51add8b68f2f48949b583d1ad1495649acc72f",
+      "canonical_sha256": "a2bb694d42d24ef105bfb21d98896991dd8ccc6651337d1fede1098b1d562145",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/output_stream.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/readback_ctrl.v",
+      "bytes": 5419,
+      "sha256": "4b668c2af7f9a3514c7dcf4cc457273cd7a0155266f47591770b1a5e54c802a0",
+      "canonical_sha256": "3a34a6c6196850f3f3dd1a04f361f8b0d701249ad512363c3de90b0e752e7d98",
+      "mtime_ns": 1790229322586947100,
+      "archive_path": "source_snapshots/rtl/readback_ctrl.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "rtl/uart_tx.v",
+      "bytes": 5369,
+      "sha256": "8cf6eb1294e97002530edf81c6e2e4cdc53f00327d6c6d9897a841b95bebeb5e",
+      "canonical_sha256": "efbc1becfb890a18f437ee6542001a8d7fd5de52ba6bef798bbf9f6bea87e6d2",
+      "mtime_ns": 1790229322591095900,
+      "archive_path": "source_snapshots/rtl/uart_tx.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "tb/tb_b_real_backpressure.v",
+      "bytes": 14891,
+      "sha256": "54c8c96743dc0b3d05da7d2c5bdeacfc155457345442d4b996564e152bde47dc",
+      "canonical_sha256": "33dcc89c665c7a35c44de00c6e6323caacb72d030af63c6e81127aea20912b96",
+      "mtime_ns": 1790229322595253900,
+      "archive_path": "source_snapshots/tb/tb_b_real_backpressure.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    },
+    {
+      "path": "tb/tb_b_real_bit_exact.v",
+      "bytes": 14017,
+      "sha256": "b850e29353084314c00edd5bef5e0e7c82de69603b8a17888bdf6f8c990424f4",
+      "canonical_sha256": "372d2805927f683f37b2da8c366baa060649ccfb627aa0da02facd45a91ac960",
+      "mtime_ns": 1790229322595253900,
+      "archive_path": "source_snapshots/tb/tb_b_real_bit_exact.v.txt",
+      "hash_time_basis": "collection-time bytes; file mtime predates compile source list"
+    }
+  ],
+  "supplied_source_hashes": {
+    "manifest": {
+      "path": "_synth_bc/acc36_realrom_200_member_b_pipeline6_0300926_ascii_ramdecomp/reports/launch_source_manifest.json",
+      "bytes": 17740,
+      "sha256": "b8f806b8fd43dbc7709e41a830538ee4dbd9f003922a262dd1b34ac5fe5f451e",
+      "canonical_sha256": "b40fa80536a0ea36dfea8ea78e56028b19ee293f185e6d64513171ee13c04620",
+      "mtime_ns": 1790425928697622700,
+      "archive_path": "launch_manifest.json.txt"
+    },
+    "matched_paths": [
+      "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+      "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv",
+      "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv",
+      "experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv",
+      "experiments/l5_splitmem_20260924/rtl/c/c_core.v",
+      "experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+      "experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+      "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+      "experiments/timing_200_20260926/mac_buffer_l3l5/mac_issue_stage.sv",
+      "experiments/timing_200_20260926/post_partial32/prelu_requantize.sv",
+      "experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv",
+      "experiments/timing_200_20260926/stripe_banked/stripe_buffer.v",
+      "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+      "member_b_evidence/real_banks/rom_bank_000.mem",
+      "member_b_evidence/real_banks/rom_bank_001.mem",
+      "member_b_evidence/real_banks/rom_bank_002.mem",
+      "member_b_evidence/real_banks/rom_bank_003.mem",
+      "member_b_evidence/real_banks/rom_bank_004.mem",
+      "member_b_evidence/real_banks/rom_bank_005.mem",
+      "member_b_evidence/real_banks/rom_bank_006.mem",
+      "member_b_evidence/real_banks/rom_bank_007.mem",
+      "member_b_evidence/real_banks/rom_bank_008.mem",
+      "member_b_evidence/real_banks/rom_bank_009.mem",
+      "member_b_evidence/real_banks/rom_bank_010.mem",
+      "member_b_evidence/real_banks/rom_bank_011.mem",
+      "member_b_evidence/real_banks/rom_bank_012.mem",
+      "member_b_evidence/real_banks/rom_bank_013.mem",
+      "member_b_evidence/real_banks/rom_bank_014.mem",
+      "member_b_evidence/real_banks/rom_bank_015.mem",
+      "rom/member_a_d16_s8_m1_c16/expand_bias_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/expand_prelu_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/expand_q31_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/expand_weights_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/feature_bias_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/feature_prelu_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/feature_q31_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/feature_weights_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/mapping0_bias_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/mapping0_prelu_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/mapping0_q31_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/mapping0_weights_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/shrink_bias_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/shrink_prelu_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/shrink_q31_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/shrink_weights_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/subpixel_bias_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/subpixel_q31_packed.mem",
+      "rom/member_a_d16_s8_m1_c16/subpixel_weights_packed.mem",
+      "rtl/b_core_if.v",
+      "rtl/b_core_stub.v",
+      "rtl/b_real_ae29515/stream/b_core_real.sv",
+      "rtl/b_real_ae29515/stream/eight_phase_issue.sv",
+      "rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv",
+      "rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv",
+      "rtl/b_real_ae29515/stream/same_pad_raster.sv",
+      "rtl/b_real_ae29515/stream/window_kminus1_bram.sv",
+      "rtl/b_real_ae29515/stream/window_stream_frontend.sv",
+      "rtl/c_config.vh",
+      "rtl/c_ctrl.v",
+      "rtl/c_synth_top.v",
+      "rtl/c_top.v",
+      "rtl/output_stream.v",
+      "rtl/readback_ctrl.v",
+      "rtl/uart_tx.v"
+    ],
+    "not_covered": [
+      "experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl",
+      "ref/_staged_mem/tv_impulse_in.mem",
+      "ref/_staged_mem/tv_impulse_out.mem",
+      "ref/_staged_mem/tv_ramp_in.mem",
+      "ref/_staged_mem/tv_ramp_out.mem",
+      "ref/_staged_mem/tv_random_in.mem",
+      "ref/_staged_mem/tv_random_out.mem",
+      "ref/_staged_mem/tv_zero_in.mem",
+      "ref/_staged_mem/tv_zero_out.mem",
+      "rtl/c_protocol_assertions.v",
+      "tb/tb_b_real_backpressure.v",
+      "tb/tb_b_real_bit_exact.v"
+    ],
+    "manifest_mtime_precedes_compile": {
+      "tb_b_real_backpressure": false,
+      "tb_b_real_bit_exact": true
+    },
+    "note": "Independent supplied snapshot matches these bytes. Its label is not proof it predates a simulation: inspect the explicit per-TB timestamp relation. Uncovered inputs retain the collection-time boundary."
+  },
+  "testbenches": {
+    "tb_b_real_backpressure": {
+      "work_directory": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure",
+      "pass_line": "RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)",
+      "logs": {
+        "xvlog_b_real.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xvlog_b_real.log",
+          "bytes": 2926,
+          "sha256": "8c902e84fba625fb09a2969097dd8550dbf66576a1ff957f4f2c7e8974c5c260",
+          "canonical_sha256": "1a6b07e0c1ea7c4d6b0c7cffd08602c4088e7e7b79bba777c9ff56abc98bdc7d",
+          "mtime_ns": 1790425922213815000,
+          "archive_path": "logs/tb_b_real_backpressure/xvlog_b_real.log.txt"
+        },
+        "xvlog.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xvlog.log",
+          "bytes": 2488,
+          "sha256": "fb765a6dbe79ee8594019550c6033d9bd89e797d00a9168dc52e6c5e139d7648",
+          "canonical_sha256": "e689b28bb636bea53010d3daa8e5e40184ea73b964ba80e06fedb93486e8e019",
+          "mtime_ns": 1790425923358026900,
+          "archive_path": "logs/tb_b_real_backpressure/xvlog.log.txt"
+        },
+        "xelab.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xelab.log",
+          "bytes": 3617,
+          "sha256": "80e1c11d9d16c46a37bc865966161cc7a544605549980eb4395636e88e19e445",
+          "canonical_sha256": "5da44d801a8c5df27ed05bc53ff80ff36935a6d2ec23acdfd905dee953f66541",
+          "mtime_ns": 1790425928111574800,
+          "archive_path": "logs/tb_b_real_backpressure/xelab.log.txt"
+        },
+        "xsim.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.log",
+          "bytes": 1805,
+          "sha256": "59fe803616217a04301a2b03a56b434c95b25bddfc77a99a1513ede37ee6bbf9",
+          "canonical_sha256": "1209b40bb123def7fc14aecdce8a4bdf9fb3ced8d31ec7c911e2ca91f8601ee8",
+          "mtime_ns": 1790426050797206500,
+          "archive_path": "logs/tb_b_real_backpressure/xsim.log.txt"
+        },
+        "xsim_engine.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim_engine.log",
+          "bytes": 2618,
+          "sha256": "e9f5c4c857bf389d2efc86812b4647c128689b687723d30a4bec7e543d9b37a3",
+          "canonical_sha256": "e9f5c4c857bf389d2efc86812b4647c128689b687723d30a4bec7e543d9b37a3",
+          "mtime_ns": 1790426050797206500,
+          "archive_path": "logs/tb_b_real_backpressure/xsim_engine.log.txt"
+        },
+        "xsim.jou": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.jou",
+          "bytes": 1305,
+          "sha256": "94c844b4787b40dafb721293a0ef185c54a4129c987b76a614eb03b487f6bf8a",
+          "canonical_sha256": "94c844b4787b40dafb721293a0ef185c54a4129c987b76a614eb03b487f6bf8a",
+          "mtime_ns": 1790425930627944400,
+          "archive_path": "logs/tb_b_real_backpressure/xsim.jou.txt"
+        }
+      },
+      "source_list": {
+        "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/source_files.txt",
+        "bytes": 1487,
+        "sha256": "85579b04590b27f78bb6b6a07a03c3b314d9726732f0f6ddc6728de09c18e29d",
+        "canonical_sha256": "accb9876e60f9e26299a0c6cb9eb86078051d00ba116f76e5234561ddd3db86d",
+        "mtime_ns": 1790425921190912200,
+        "archive_path": "logs/tb_b_real_backpressure/source_files.txt"
+      },
+      "compile_defines_file": {
+        "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/compile_defines.txt",
+        "bytes": 26,
+        "sha256": "ba11771d23b8c7b672f0e72998642f0b8933d665985205bf68b00509c69e9c2a",
+        "canonical_sha256": "b37ebf5b2db92a5a9c654417b074828258de9dfb1c2c6ad59771f4861900538d",
+        "mtime_ns": 1790425921190912200,
+        "archive_path": "logs/tb_b_real_backpressure/compile_defines.txt"
+      },
+      "compile_defines": [
+        "-d",
+        "C_SIM",
+        "-d",
+        "C_USE_B_REAL"
+      ],
+      "source_paths": [
+        "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv",
+        "rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv",
+        "rtl/b_real_ae29515/stream/b_core_real.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv",
+        "rtl/b_real_ae29515/stream/window_stream_frontend.sv",
+        "rtl/b_real_ae29515/stream/window_kminus1_bram.sv",
+        "rtl/b_real_ae29515/stream/same_pad_raster.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+        "experiments/timing_200_20260926/mac_buffer_l3l5/mac_issue_stage.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv",
+        "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+        "rtl/b_real_ae29515/stream/eight_phase_issue.sv",
+        "rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv",
+        "experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv",
+        "experiments/timing_200_20260926/post_partial32/prelu_requantize.sv",
+        "rtl/c_config.vh",
+        "experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+        "experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+        "experiments/timing_200_20260926/stripe_banked/stripe_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+        "rtl/output_stream.v",
+        "rtl/uart_tx.v",
+        "rtl/readback_ctrl.v",
+        "rtl/c_ctrl.v",
+        "rtl/b_core_stub.v",
+        "rtl/b_core_if.v",
+        "experiments/l5_splitmem_20260924/rtl/c/c_core.v",
+        "rtl/c_top.v",
+        "rtl/c_synth_top.v",
+        "rtl/c_protocol_assertions.v",
+        "tb/tb_b_real_backpressure.v"
+      ],
+      "metrics": {
+        "scope": "real five-layer B network",
+        "frame_records": [
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "T-A"
+          },
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "T-B"
+          },
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "T-C"
+          }
+        ],
+        "output_bytes": 62208,
+        "frames": 3,
+        "stripe_last_pulses": 6,
+        "total_cycles": 167539,
+        "counter_lines": [
+          "[T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+          "[T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+          "[T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+          "total cycles = 167539"
+        ]
+      },
+      "staging": {
+        "parameters": {
+          "count": 19,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_bias_packed.mem",
+                "bytes": 204,
+                "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/expand_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                  "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/expand_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                  "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_prelu_packed.mem",
+                "bytes": 140,
+                "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/expand_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                  "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/expand_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                  "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_q31_packed.mem",
+                "bytes": 204,
+                "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/expand_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                  "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/expand_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                  "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_weights_packed.mem",
+                "bytes": 332,
+                "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/expand_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                  "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/expand_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                  "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_bias_packed.mem",
+                "bytes": 204,
+                "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/feature_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                  "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/feature_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                  "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_prelu_packed.mem",
+                "bytes": 140,
+                "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/feature_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                  "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/feature_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                  "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_q31_packed.mem",
+                "bytes": 204,
+                "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/feature_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                  "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/feature_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                  "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_weights_packed.mem",
+                "bytes": 876,
+                "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/feature_weights_packed.mem",
+                  "bytes": 876,
+                  "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                  "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/feature_weights_packed.mem",
+                  "bytes": 876,
+                  "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                  "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_bias_packed.mem",
+                "bytes": 140,
+                "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/mapping0_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                  "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/mapping0_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                  "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_prelu_packed.mem",
+                "bytes": 108,
+                "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/mapping0_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                  "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/mapping0_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                  "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_q31_packed.mem",
+                "bytes": 140,
+                "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/mapping0_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                  "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/mapping0_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                  "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_weights_packed.mem",
+                "bytes": 1228,
+                "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/mapping0_weights_packed.mem",
+                  "bytes": 1228,
+                  "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                  "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/mapping0_weights_packed.mem",
+                  "bytes": 1228,
+                  "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                  "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_bias_packed.mem",
+                "bytes": 140,
+                "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/shrink_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                  "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/shrink_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                  "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_prelu_packed.mem",
+                "bytes": 108,
+                "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/shrink_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                  "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/shrink_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                  "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_q31_packed.mem",
+                "bytes": 140,
+                "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/shrink_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                  "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/shrink_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                  "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_weights_packed.mem",
+                "bytes": 332,
+                "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/shrink_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                  "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/shrink_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                  "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_bias_packed.mem",
+                "bytes": 108,
+                "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/subpixel_bias_packed.mem",
+                  "bytes": 108,
+                  "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                  "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/subpixel_bias_packed.mem",
+                  "bytes": 108,
+                  "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                  "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_q31_packed.mem",
+                "bytes": 108,
+                "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/subpixel_q31_packed.mem",
+                  "bytes": 108,
+                  "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                  "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/subpixel_q31_packed.mem",
+                  "bytes": 108,
+                  "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                  "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_weights_packed.mem",
+                "bytes": 3276,
+                "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/subpixel_weights_packed.mem",
+                  "bytes": 3276,
+                  "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                  "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/subpixel_weights_packed.mem",
+                  "bytes": 3276,
+                  "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                  "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            }
+          ]
+        },
+        "input_image_banks": {
+          "count": 16,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_000.mem",
+                "bytes": 98304,
+                "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_000.mem",
+                  "bytes": 98304,
+                  "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_000.mem",
+                  "bytes": 98304,
+                  "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_001.mem",
+                "bytes": 98304,
+                "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_001.mem",
+                  "bytes": 98304,
+                  "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_001.mem",
+                  "bytes": 98304,
+                  "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_002.mem",
+                "bytes": 98304,
+                "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_002.mem",
+                  "bytes": 98304,
+                  "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_002.mem",
+                  "bytes": 98304,
+                  "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_003.mem",
+                "bytes": 98304,
+                "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_003.mem",
+                  "bytes": 98304,
+                  "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_003.mem",
+                  "bytes": 98304,
+                  "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_004.mem",
+                "bytes": 98304,
+                "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_004.mem",
+                  "bytes": 98304,
+                  "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_004.mem",
+                  "bytes": 98304,
+                  "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_005.mem",
+                "bytes": 98304,
+                "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_005.mem",
+                  "bytes": 98304,
+                  "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_005.mem",
+                  "bytes": 98304,
+                  "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_006.mem",
+                "bytes": 98304,
+                "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                "mtime_ns": 1790230813400456000
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_006.mem",
+                  "bytes": 98304,
+                  "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "mtime_ns": 1790230813400456000
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_006.mem",
+                  "bytes": 98304,
+                  "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "mtime_ns": 1790230813400456000
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_007.mem",
+                "bytes": 98304,
+                "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                "mtime_ns": 1790230813400456000
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_007.mem",
+                  "bytes": 98304,
+                  "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "mtime_ns": 1790230813400456000
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_007.mem",
+                  "bytes": 98304,
+                  "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "mtime_ns": 1790230813400456000
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_008.mem",
+                "bytes": 98304,
+                "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                "mtime_ns": 1790230813401765200
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_008.mem",
+                  "bytes": 98304,
+                  "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "mtime_ns": 1790230813401765200
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_008.mem",
+                  "bytes": 98304,
+                  "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "mtime_ns": 1790230813401765200
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_009.mem",
+                "bytes": 98304,
+                "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                "mtime_ns": 1790230813402270900
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_009.mem",
+                  "bytes": 98304,
+                  "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "mtime_ns": 1790230813402270900
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_009.mem",
+                  "bytes": 98304,
+                  "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "mtime_ns": 1790230813402270900
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_010.mem",
+                "bytes": 98304,
+                "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                "mtime_ns": 1790230813403128600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_010.mem",
+                  "bytes": 98304,
+                  "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "mtime_ns": 1790230813403128600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_010.mem",
+                  "bytes": 98304,
+                  "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "mtime_ns": 1790230813403128600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_011.mem",
+                "bytes": 98304,
+                "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                "mtime_ns": 1790230813403632900
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_011.mem",
+                  "bytes": 98304,
+                  "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "mtime_ns": 1790230813403632900
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_011.mem",
+                  "bytes": 98304,
+                  "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "mtime_ns": 1790230813403632900
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_012.mem",
+                "bytes": 98304,
+                "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_012.mem",
+                  "bytes": 98304,
+                  "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_012.mem",
+                  "bytes": 98304,
+                  "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_013.mem",
+                "bytes": 98304,
+                "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_013.mem",
+                  "bytes": 98304,
+                  "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_013.mem",
+                  "bytes": 98304,
+                  "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_014.mem",
+                "bytes": 98304,
+                "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_014.mem",
+                  "bytes": 98304,
+                  "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_014.mem",
+                  "bytes": 98304,
+                  "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_015.mem",
+                "bytes": 98304,
+                "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/rom_bank_015.mem",
+                  "bytes": 98304,
+                  "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/rom_bank_015.mem",
+                  "bytes": 98304,
+                  "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            }
+          ]
+        },
+        "golden": {
+          "count": 2,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_random_in.mem",
+                "bytes": 15552,
+                "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                "mtime_ns": 1790229827623707100
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/tv_random_in.mem",
+                  "bytes": 15552,
+                  "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "mtime_ns": 1790229827623707100
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/tv_random_in.mem",
+                  "bytes": 15552,
+                  "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "mtime_ns": 1790229827623707100
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_random_out.mem",
+                "bytes": 62208,
+                "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                "mtime_ns": 1790229827632801800
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/tv_random_out.mem",
+                  "bytes": 62208,
+                  "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "mtime_ns": 1790229827632801800
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_backpressure/xsim.dir/tb_b_real_backpressure/tv_random_out.mem",
+                  "bytes": 62208,
+                  "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "mtime_ns": 1790229827632801800
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "tb_b_real_bit_exact": {
+      "work_directory": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact",
+      "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+      "logs": {
+        "xvlog_b_real.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xvlog_b_real.log",
+          "bytes": 2926,
+          "sha256": "8c902e84fba625fb09a2969097dd8550dbf66576a1ff957f4f2c7e8974c5c260",
+          "canonical_sha256": "1a6b07e0c1ea7c4d6b0c7cffd08602c4088e7e7b79bba777c9ff56abc98bdc7d",
+          "mtime_ns": 1790426052010387200,
+          "archive_path": "logs/tb_b_real_bit_exact/xvlog_b_real.log.txt"
+        },
+        "xvlog.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xvlog.log",
+          "bytes": 2482,
+          "sha256": "e37aa635a07e74fbd269a458cc5d5af0e8e805a45df34446cd7500901c5ea651",
+          "canonical_sha256": "3f550a7286f4e5560070ceafd690f209eccb2314c3c7997936eda79681c1ccfb",
+          "mtime_ns": 1790426053068713700,
+          "archive_path": "logs/tb_b_real_bit_exact/xvlog.log.txt"
+        },
+        "xelab.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xelab.log",
+          "bytes": 3605,
+          "sha256": "91b82e5f8540a7c11161073e6f941f9b0a17fdc02fa49015e8b35a0e901922df",
+          "canonical_sha256": "79f08bab5114b16374b3aaa5a3d25b43a49fbc8ff97690ba884765f12ebd8522",
+          "mtime_ns": 1790426057834639000,
+          "archive_path": "logs/tb_b_real_bit_exact/xelab.log.txt"
+        },
+        "xsim.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.log",
+          "bytes": 3422,
+          "sha256": "82bbaef21f9a7224c4715ec8acdaf25534bcc7c4e57bd0a008d60f286ff37c63",
+          "canonical_sha256": "4ed6ef458ed44e6788135d40ce2e4f9349f26724dc0bb5f3f6703aa545b2e19e",
+          "mtime_ns": 1790426218037651800,
+          "archive_path": "logs/tb_b_real_bit_exact/xsim.log.txt"
+        },
+        "xsim_engine.log": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim_engine.log",
+          "bytes": 4183,
+          "sha256": "3a086323e571633b90a1bfeb73f6a899b33e8eeeddcb16274f8e758edb72b713",
+          "canonical_sha256": "3a086323e571633b90a1bfeb73f6a899b33e8eeeddcb16274f8e758edb72b713",
+          "mtime_ns": 1790426218037651800,
+          "archive_path": "logs/tb_b_real_bit_exact/xsim_engine.log.txt"
+        },
+        "xsim.jou": {
+          "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.jou",
+          "bytes": 1287,
+          "sha256": "ed4f308bfa32d90042003013bba71863e3db13c9248833a25846e5dd2f9aebbc",
+          "canonical_sha256": "ed4f308bfa32d90042003013bba71863e3db13c9248833a25846e5dd2f9aebbc",
+          "mtime_ns": 1790426060347874800,
+          "archive_path": "logs/tb_b_real_bit_exact/xsim.jou.txt"
+        }
+      },
+      "source_list": {
+        "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/source_files.txt",
+        "bytes": 1484,
+        "sha256": "9a7baf9e5ad0c5004464f72047d26c2fe275e1f44761888327e1cc4aeeced086",
+        "canonical_sha256": "dbf0fbe1daf21390de988013e559b903479292c1b0b9ca65fa990c804c6606cd",
+        "mtime_ns": 1790426050885677700,
+        "archive_path": "logs/tb_b_real_bit_exact/source_files.txt"
+      },
+      "compile_defines_file": {
+        "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/compile_defines.txt",
+        "bytes": 26,
+        "sha256": "ba11771d23b8c7b672f0e72998642f0b8933d665985205bf68b00509c69e9c2a",
+        "canonical_sha256": "b37ebf5b2db92a5a9c654417b074828258de9dfb1c2c6ad59771f4861900538d",
+        "mtime_ns": 1790426050885677700,
+        "archive_path": "logs/tb_b_real_bit_exact/compile_defines.txt"
+      },
+      "compile_defines": [
+        "-d",
+        "C_SIM",
+        "-d",
+        "C_USE_B_REAL"
+      ],
+      "source_paths": [
+        "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_network_core.sv",
+        "rtl/b_real_ae29515/stream/fsrcnn_network_mem_top.sv",
+        "rtl/b_real_ae29515/stream/b_core_real.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/fsrcnn_stream_layer.sv",
+        "rtl/b_real_ae29515/stream/window_stream_frontend.sv",
+        "rtl/b_real_ae29515/stream/window_kminus1_bram.sv",
+        "rtl/b_real_ae29515/stream/same_pad_raster.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+        "experiments/timing_200_20260926/mac_buffer_l3l5/mac_issue_stage.sv",
+        "experiments/l5_splitmem_20260924/rtl/b/phase_mac_pipeline.sv",
+        "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+        "rtl/b_real_ae29515/stream/eight_phase_issue.sv",
+        "rtl/b_real_ae29515/stream/pixel_shuffle2x_row_banks.sv",
+        "experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv",
+        "experiments/timing_200_20260926/post_partial32/prelu_requantize.sv",
+        "rtl/c_config.vh",
+        "experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+        "experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+        "experiments/timing_200_20260926/stripe_banked/stripe_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+        "rtl/output_stream.v",
+        "rtl/uart_tx.v",
+        "rtl/readback_ctrl.v",
+        "rtl/c_ctrl.v",
+        "rtl/b_core_stub.v",
+        "rtl/b_core_if.v",
+        "experiments/l5_splitmem_20260924/rtl/c/c_core.v",
+        "rtl/c_top.v",
+        "rtl/c_synth_top.v",
+        "rtl/c_protocol_assertions.v",
+        "tb/tb_b_real_bit_exact.v"
+      ],
+      "metrics": {
+        "scope": "real five-layer B network",
+        "frame_records": [
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "impulse"
+          },
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "ramp"
+          },
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "random"
+          },
+          {
+            "input_bytes": 5184,
+            "output_bytes": 20736,
+            "matching_bytes": 20736,
+            "expected_bytes": 20736,
+            "mismatches": 0,
+            "first_mismatch": -1,
+            "stripe_last_pulses": 2,
+            "frame_last_pulses": 1,
+            "done_pulses": 1,
+            "case": "zero"
+          }
+        ],
+        "output_bytes": 82944,
+        "frames": 4,
+        "stripe_last_pulses": 8,
+        "total_cycles": 222566,
+        "counter_lines": [
+          "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873",
+          "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6871",
+          "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6871",
+          "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6875",
+          "total cycles = 222566"
+        ]
+      },
+      "staging": {
+        "parameters": {
+          "count": 19,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_bias_packed.mem",
+                "bytes": 204,
+                "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/expand_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                  "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/expand_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "722147c8ce66b63766fa273924c395c0708991883ab887bebfbc11fa05326a0b",
+                  "canonical_sha256": "541c9ca488f625a321b2be5a871a5929f573e897af5b6206ba658c2dd55345ca",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_prelu_packed.mem",
+                "bytes": 140,
+                "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/expand_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                  "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/expand_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "7637684b2548fbf3167809e4c6b46b7deda310e06a8de9ca4ac5f2ede271f365",
+                  "canonical_sha256": "052540e3bf7ee126b653016f2d4754e2fc8214a72fb5d0c07e93d832d0d838e9",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_q31_packed.mem",
+                "bytes": 204,
+                "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/expand_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                  "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/expand_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "99e81e1c5e4706b240d58d895746eb1061d0affb20b8b6c85adeefb3a314565f",
+                  "canonical_sha256": "250f870d53de711fedbf36b919626dba1835b8b0436b1cb7ac8a0ef2d750df92",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/expand_weights_packed.mem",
+                "bytes": 332,
+                "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/expand_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                  "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/expand_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "3b844479c5442b3d724e902c5383e68fc6e0731fff30a200203017a2b796a24a",
+                  "canonical_sha256": "9c95fd40e36a4c087178da49f842ae21c81209ce04bb55d2759161b5719f6e95",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_bias_packed.mem",
+                "bytes": 204,
+                "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/feature_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                  "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/feature_bias_packed.mem",
+                  "bytes": 204,
+                  "sha256": "9917390d760c0f8a071b8120f965fa91f11c87075a932604bac4d1be817a52d4",
+                  "canonical_sha256": "d753d3694b94a1eeee6b4f3c82f17107f9736f199b000bcdd2e83cfd0994e62e",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_prelu_packed.mem",
+                "bytes": 140,
+                "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/feature_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                  "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/feature_prelu_packed.mem",
+                  "bytes": 140,
+                  "sha256": "28f98b3207425df2c48bc0cb3d07b05128689cb82c0e3f2aca162d077835c335",
+                  "canonical_sha256": "bd40a1b164e9dcd6cc8c35e340919b7cd9b3c5a42569bb4960c4e8bffd7f4733",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_q31_packed.mem",
+                "bytes": 204,
+                "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/feature_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                  "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/feature_q31_packed.mem",
+                  "bytes": 204,
+                  "sha256": "06492854dd1bd16b9d3c00118b44776e3828f7f19ec2cb52a1a8a86568ab2144",
+                  "canonical_sha256": "a1fafc2057a3178fd4a92e18909e4f197c3fb642f83afbe8eccea3cd7823e897",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/feature_weights_packed.mem",
+                "bytes": 876,
+                "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/feature_weights_packed.mem",
+                  "bytes": 876,
+                  "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                  "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/feature_weights_packed.mem",
+                  "bytes": 876,
+                  "sha256": "f296edc2d55253663f36ff31a1d1a342e5552e61b111f366c134c95f19885850",
+                  "canonical_sha256": "e5b1fab6d868294cee9fb00b0ac0971ff64b2675f3d6f3343bf5f7421ce6e030",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_bias_packed.mem",
+                "bytes": 140,
+                "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/mapping0_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                  "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/mapping0_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "d023526676fdee0adbd1a15e0b945728aee2fb7941619ea5dae10581e74960d1",
+                  "canonical_sha256": "07ef3a9febe5fb4740d97a68203c17613386a4b73df783be980766dfea3fb159",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_prelu_packed.mem",
+                "bytes": 108,
+                "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/mapping0_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                  "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/mapping0_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "8762855bf49ed80db660df0559d7b3681a72dfc22ffca7cbeb65fda0db4d30e7",
+                  "canonical_sha256": "4ed2b69ee166a9775520d3191b50da846553a750b6c5d5515e4e91c3180f85fc",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_q31_packed.mem",
+                "bytes": 140,
+                "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/mapping0_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                  "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/mapping0_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "b3835e6081d086f10a7d2660fae9f430601330df554c5884cfa9c3825985c9a8",
+                  "canonical_sha256": "a662ad434c7c3dc5e85217d4d2070cc74f0d71f8297e324f866c49efed568aae",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/mapping0_weights_packed.mem",
+                "bytes": 1228,
+                "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/mapping0_weights_packed.mem",
+                  "bytes": 1228,
+                  "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                  "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/mapping0_weights_packed.mem",
+                  "bytes": 1228,
+                  "sha256": "e862000a55e7857e9660cd0ff12273151f8ae3d4484c1a3f644df5d6c88bd4ad",
+                  "canonical_sha256": "7e3c8bfd15c121324d21a1151808b7e646438fc7d45080cd28487414912e159a",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_bias_packed.mem",
+                "bytes": 140,
+                "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/shrink_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                  "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/shrink_bias_packed.mem",
+                  "bytes": 140,
+                  "sha256": "0c13a273b9bd097c2624fa7a7b30e24524c852647c5cc921e575b4fb20b26983",
+                  "canonical_sha256": "a584ead8d3b912a9d8c14788bed57f4dca039379fe395c4d64508c864029973e",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_prelu_packed.mem",
+                "bytes": 108,
+                "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/shrink_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                  "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/shrink_prelu_packed.mem",
+                  "bytes": 108,
+                  "sha256": "d780cc87a58b90071000edea57268a33d78979fc019e8f3f44373205a7d05a4a",
+                  "canonical_sha256": "9c1ca29703ed76baa603fdb14feab6116d4e2287cf4343cc8e9bfc077051b68d",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_q31_packed.mem",
+                "bytes": 140,
+                "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/shrink_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                  "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/shrink_q31_packed.mem",
+                  "bytes": 140,
+                  "sha256": "e69ffc668f4b5788c338af2bc2bb9e8d46ba88abe4430ebbece823ddeff4ca41",
+                  "canonical_sha256": "fbb49763aec61bfed753d138671a55174521438bbb84b3ee94cce2f39c536839",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/shrink_weights_packed.mem",
+                "bytes": 332,
+                "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/shrink_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                  "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/shrink_weights_packed.mem",
+                  "bytes": 332,
+                  "sha256": "901b67319e4b7d1bc96e27e91a1aa7fe476250bf6ad0b83190eb3d076727e79d",
+                  "canonical_sha256": "4f1f927796a7ea21dd19293501e9bd20f02b0f4d7293098fc0487146a8cd2bb8",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_bias_packed.mem",
+                "bytes": 108,
+                "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/subpixel_bias_packed.mem",
+                  "bytes": 108,
+                  "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                  "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/subpixel_bias_packed.mem",
+                  "bytes": 108,
+                  "sha256": "a893bf7a2c06affd5c5ba02dadbc3c61907778d6735acb2f5a0af9160b042192",
+                  "canonical_sha256": "403d3d432a73adc305071fc4b835f19244990bd0ea380b0dd604595cf3b8ebd0",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_q31_packed.mem",
+                "bytes": 108,
+                "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/subpixel_q31_packed.mem",
+                  "bytes": 108,
+                  "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                  "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/subpixel_q31_packed.mem",
+                  "bytes": 108,
+                  "sha256": "abf2962abf63df664479cd9cf477e26d894ee3f8de6b02464659dbc6397c978c",
+                  "canonical_sha256": "9bc54acad057c236becbb93745fd33ed907e751f6dba5c4ea7e52ca7e3fbf9e8",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "rom/member_a_d16_s8_m1_c16/subpixel_weights_packed.mem",
+                "bytes": 3276,
+                "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                "mtime_ns": 1790229322579232400
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/subpixel_weights_packed.mem",
+                  "bytes": 3276,
+                  "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                  "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                  "mtime_ns": 1790229322579232400
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/subpixel_weights_packed.mem",
+                  "bytes": 3276,
+                  "sha256": "85a44e5a7fd28547f2b064a7a314f944b218a5da5e63e2d0b15ed5583916f60b",
+                  "canonical_sha256": "16d575c7eb63d002e96503a12428cea82061be69d12cec9cc5c63681d0d31b71",
+                  "mtime_ns": 1790229322579232400
+                }
+              ]
+            }
+          ]
+        },
+        "input_image_banks": {
+          "count": 16,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_000.mem",
+                "bytes": 98304,
+                "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_000.mem",
+                  "bytes": 98304,
+                  "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_000.mem",
+                  "bytes": 98304,
+                  "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "canonical_sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_001.mem",
+                "bytes": 98304,
+                "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_001.mem",
+                  "bytes": 98304,
+                  "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_001.mem",
+                  "bytes": 98304,
+                  "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "canonical_sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_002.mem",
+                "bytes": 98304,
+                "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_002.mem",
+                  "bytes": 98304,
+                  "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_002.mem",
+                  "bytes": 98304,
+                  "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "canonical_sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_003.mem",
+                "bytes": 98304,
+                "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_003.mem",
+                  "bytes": 98304,
+                  "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_003.mem",
+                  "bytes": 98304,
+                  "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "canonical_sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_004.mem",
+                "bytes": 98304,
+                "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_004.mem",
+                  "bytes": 98304,
+                  "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_004.mem",
+                  "bytes": 98304,
+                  "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "canonical_sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_005.mem",
+                "bytes": 98304,
+                "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                "mtime_ns": 1790230813396209700
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_005.mem",
+                  "bytes": 98304,
+                  "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "mtime_ns": 1790230813396209700
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_005.mem",
+                  "bytes": 98304,
+                  "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "canonical_sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f",
+                  "mtime_ns": 1790230813396209700
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_006.mem",
+                "bytes": 98304,
+                "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                "mtime_ns": 1790230813400456000
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_006.mem",
+                  "bytes": 98304,
+                  "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "mtime_ns": 1790230813400456000
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_006.mem",
+                  "bytes": 98304,
+                  "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "canonical_sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5",
+                  "mtime_ns": 1790230813400456000
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_007.mem",
+                "bytes": 98304,
+                "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                "mtime_ns": 1790230813400456000
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_007.mem",
+                  "bytes": 98304,
+                  "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "mtime_ns": 1790230813400456000
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_007.mem",
+                  "bytes": 98304,
+                  "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "canonical_sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73",
+                  "mtime_ns": 1790230813400456000
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_008.mem",
+                "bytes": 98304,
+                "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                "mtime_ns": 1790230813401765200
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_008.mem",
+                  "bytes": 98304,
+                  "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "mtime_ns": 1790230813401765200
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_008.mem",
+                  "bytes": 98304,
+                  "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "canonical_sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492",
+                  "mtime_ns": 1790230813401765200
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_009.mem",
+                "bytes": 98304,
+                "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                "mtime_ns": 1790230813402270900
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_009.mem",
+                  "bytes": 98304,
+                  "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "mtime_ns": 1790230813402270900
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_009.mem",
+                  "bytes": 98304,
+                  "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "canonical_sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c",
+                  "mtime_ns": 1790230813402270900
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_010.mem",
+                "bytes": 98304,
+                "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                "mtime_ns": 1790230813403128600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_010.mem",
+                  "bytes": 98304,
+                  "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "mtime_ns": 1790230813403128600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_010.mem",
+                  "bytes": 98304,
+                  "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "canonical_sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52",
+                  "mtime_ns": 1790230813403128600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_011.mem",
+                "bytes": 98304,
+                "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                "mtime_ns": 1790230813403632900
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_011.mem",
+                  "bytes": 98304,
+                  "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "mtime_ns": 1790230813403632900
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_011.mem",
+                  "bytes": 98304,
+                  "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "canonical_sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263",
+                  "mtime_ns": 1790230813403632900
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_012.mem",
+                "bytes": 98304,
+                "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_012.mem",
+                  "bytes": 98304,
+                  "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_012.mem",
+                  "bytes": 98304,
+                  "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "canonical_sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_013.mem",
+                "bytes": 98304,
+                "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_013.mem",
+                  "bytes": 98304,
+                  "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_013.mem",
+                  "bytes": 98304,
+                  "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "canonical_sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_014.mem",
+                "bytes": 98304,
+                "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_014.mem",
+                  "bytes": 98304,
+                  "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_014.mem",
+                  "bytes": 98304,
+                  "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "canonical_sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "member_b_evidence/real_banks/rom_bank_015.mem",
+                "bytes": 98304,
+                "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                "mtime_ns": 1790230813404777600
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/rom_bank_015.mem",
+                  "bytes": 98304,
+                  "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "mtime_ns": 1790230813404777600
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/rom_bank_015.mem",
+                  "bytes": 98304,
+                  "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "canonical_sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7",
+                  "mtime_ns": 1790230813404777600
+                }
+              ]
+            }
+          ]
+        },
+        "golden": {
+          "count": 8,
+          "sha256_matches": true,
+          "files": [
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_impulse_in.mem",
+                "bytes": 15552,
+                "sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                "canonical_sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                "mtime_ns": 1790229827607113900
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_impulse_in.mem",
+                  "bytes": 15552,
+                  "sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                  "canonical_sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                  "mtime_ns": 1790229827607113900
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_impulse_in.mem",
+                  "bytes": 15552,
+                  "sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                  "canonical_sha256": "d2dcf00232bf1d2f032aab35c484cdcecc33d75ef0fd7889706d6948c1e664b3",
+                  "mtime_ns": 1790229827607113900
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_impulse_out.mem",
+                "bytes": 62208,
+                "sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                "canonical_sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                "mtime_ns": 1790229827611215800
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_impulse_out.mem",
+                  "bytes": 62208,
+                  "sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                  "canonical_sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                  "mtime_ns": 1790229827611215800
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_impulse_out.mem",
+                  "bytes": 62208,
+                  "sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                  "canonical_sha256": "2d39dde5349f999fb79fc9399da2174bffdebeb0bf5b75a5025472de9f45c23c",
+                  "mtime_ns": 1790229827611215800
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_ramp_in.mem",
+                "bytes": 15552,
+                "sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                "canonical_sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                "mtime_ns": 1790229827615334200
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_ramp_in.mem",
+                  "bytes": 15552,
+                  "sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                  "canonical_sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                  "mtime_ns": 1790229827615334200
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_ramp_in.mem",
+                  "bytes": 15552,
+                  "sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                  "canonical_sha256": "349e6882c0d11c6f791496ecd42266d2bc209e510001a21e30bad5bc873e07a4",
+                  "mtime_ns": 1790229827615334200
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_ramp_out.mem",
+                "bytes": 62208,
+                "sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                "canonical_sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                "mtime_ns": 1790229827623707100
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_ramp_out.mem",
+                  "bytes": 62208,
+                  "sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                  "canonical_sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                  "mtime_ns": 1790229827623707100
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_ramp_out.mem",
+                  "bytes": 62208,
+                  "sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                  "canonical_sha256": "1a9d43a63ceaf9790e7cd5c2cbd863afecc862475602e9eadbb324785c0c73c0",
+                  "mtime_ns": 1790229827623707100
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_random_in.mem",
+                "bytes": 15552,
+                "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                "mtime_ns": 1790229827623707100
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_random_in.mem",
+                  "bytes": 15552,
+                  "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "mtime_ns": 1790229827623707100
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_random_in.mem",
+                  "bytes": 15552,
+                  "sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "canonical_sha256": "c04fad04a29a824a1e97822c94348b64fdb03b8be709b5d5b61a6007cadec329",
+                  "mtime_ns": 1790229827623707100
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_random_out.mem",
+                "bytes": 62208,
+                "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                "mtime_ns": 1790229827632801800
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_random_out.mem",
+                  "bytes": 62208,
+                  "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "mtime_ns": 1790229827632801800
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_random_out.mem",
+                  "bytes": 62208,
+                  "sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "canonical_sha256": "881eef82dd94babccf16a8795208bea2c593a599deeeb8af17829006c943a55a",
+                  "mtime_ns": 1790229827632801800
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_zero_in.mem",
+                "bytes": 15552,
+                "sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                "canonical_sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                "mtime_ns": 1790229827640154100
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_zero_in.mem",
+                  "bytes": 15552,
+                  "sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                  "canonical_sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                  "mtime_ns": 1790229827640154100
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_zero_in.mem",
+                  "bytes": 15552,
+                  "sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                  "canonical_sha256": "be4146dbf7a8eb62def596fc803e2d9397d804527889e44dbb1e83ffa143ee65",
+                  "mtime_ns": 1790229827640154100
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "ref/_staged_mem/tv_zero_out.mem",
+                "bytes": 62208,
+                "sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                "canonical_sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                "mtime_ns": 1790229827647646000
+              },
+              "staged_copies": [
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/tv_zero_out.mem",
+                  "bytes": 62208,
+                  "sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                  "canonical_sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                  "mtime_ns": 1790229827647646000
+                },
+                {
+                  "path": "_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_bit_exact/xsim.dir/tb_b_real_bit_exact/tv_zero_out.mem",
+                  "bytes": 62208,
+                  "sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                  "canonical_sha256": "c37b848d377868392652f5af5e6a73fb62112ed2a6a5ec6039113cb46d199e3e",
+                  "mtime_ns": 1790229827647646000
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "provenance_boundary": "Exact collected RTL/TB/runner bytes are archived with raw/canonical SHA256. Source mtimes predate compile lists and paths match compiler logs. Without a supplied earlier manifest, these are not claimed to be launch-time hashes. Git HEAD is not used.",
+  "validation_boundary": "Simulation evidence only. Real-network and C isolation scopes are separate; no timing, board or multi-frame video deployment claim."
+}

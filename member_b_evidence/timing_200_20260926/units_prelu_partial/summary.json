@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "status": "PRELU_PARTIAL_UNITS_PASS",
+  "scope": "Scalar/shared unit simulation only; network, DSP mapping, implementation and board validation are separate.",
+  "tool": {
+    "vivado": "2025.2",
+    "xsim": "2025.2",
+    "sw_build": 6299465,
+    "pid": 20920,
+    "elaboration": "-O0",
+    "session_start": "2026-09-26 20:14:43 Asia/Shanghai",
+    "session_end": "2026-09-26 20:14:57 Asia/Shanghai"
+  },
+  "git_head": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "collection_utc": "2026-09-26T12:25:06.847004+00:00",
+  "source_hash_scope": "Collection-time hashes; all six source mtimes precede earliest compile log. Not a claimed launch hash.",
+  "earliest_compile_log_mtime_ns": 1790424886668482000,
+  "package_count": 1,
+  "bench_count": 2,
+  "config_counts": {
+    "scalar": 6,
+    "shared": 5
+  },
+  "benches": [
+    {
+      "name": "tb_prelu_partial",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial",
+      "configurations_expected": 6,
+      "configurations": [
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=0 checked=3833 accepted=3855 full48_checked=3852 lo_ffff=528 negative_hi=1935 negative_alpha=1646 mixed_sign=455",
+          "values": {
+            "id": 0,
+            "checked": 3833,
+            "accepted": 3855,
+            "full48_checked": 3852,
+            "lo_ffff": 528,
+            "negative_hi": 1935,
+            "negative_alpha": 1646,
+            "mixed_sign": 455
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=1 checked=3823 accepted=3847 full48_checked=3844 lo_ffff=528 negative_hi=1911 negative_alpha=1681 mixed_sign=445",
+          "values": {
+            "id": 1,
+            "checked": 3823,
+            "accepted": 3847,
+            "full48_checked": 3844,
+            "lo_ffff": 528,
+            "negative_hi": 1911,
+            "negative_alpha": 1681,
+            "mixed_sign": 445
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=2 checked=3850 accepted=3870 full48_checked=3867 lo_ffff=528 negative_hi=1903 negative_alpha=1688 mixed_sign=441",
+          "values": {
+            "id": 2,
+            "checked": 3850,
+            "accepted": 3870,
+            "full48_checked": 3867,
+            "lo_ffff": 528,
+            "negative_hi": 1903,
+            "negative_alpha": 1688,
+            "mixed_sign": 441
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=3 checked=3869 accepted=3892 full48_checked=3889 lo_ffff=528 negative_hi=1955 negative_alpha=1667 mixed_sign=466",
+          "values": {
+            "id": 3,
+            "checked": 3869,
+            "accepted": 3892,
+            "full48_checked": 3889,
+            "lo_ffff": 528,
+            "negative_hi": 1955,
+            "negative_alpha": 1667,
+            "mixed_sign": 466
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=4 checked=3864 accepted=3887 full48_checked=3884 lo_ffff=528 negative_hi=1930 negative_alpha=1701 mixed_sign=456",
+          "values": {
+            "id": 4,
+            "checked": 3864,
+            "accepted": 3887,
+            "full48_checked": 3884,
+            "lo_ffff": 528,
+            "negative_hi": 1930,
+            "negative_alpha": 1701,
+            "mixed_sign": 456
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SCALAR_CONFIG_PASS id=5 checked=3853 accepted=3874 full48_checked=3871 lo_ffff=528 negative_hi=1953 negative_alpha=1665 mixed_sign=459",
+          "values": {
+            "id": 5,
+            "checked": 3853,
+            "accepted": 3874,
+            "full48_checked": 3871,
+            "lo_ffff": 528,
+            "negative_hi": 1953,
+            "negative_alpha": 1665,
+            "mixed_sign": 459
+          }
+        }
+      ],
+      "pass_marker": "PRELU_PARTIAL_SCALAR_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "warning_lines": [],
+      "round64_probe_checked": 1094,
+      "scalar_checked_total": 23092,
+      "full48_checked_total": 23207,
+      "enforced_tb_coverage": {
+        "minimum_checked_per_config": 3200,
+        "minimum_full48_checked_per_config": 3200,
+        "minimum_bubble_cycles": 30,
+        "resets_with_inflight_per_config": 3,
+        "final_expected_pipeline_empty": true,
+        "boundary_grid": "24 accumulator x 8 alpha x 11 Q31 multiplier values, plus 2000 pseudorandom cycles",
+        "reference_check": "V2 requant_pipe predecessor delayed one clock plus independent nine-stage valid/data and signed64 mathematics",
+        "full48_check": "Independent signed32 x signed16 multiply: two-edge latency, synchronous reset and hold versus prelu_product_s1b before saturation"
+      }
+    },
+    {
+      "name": "tb_prelu_partial_shared",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared",
+      "configurations_expected": 5,
+      "configurations": [
+        {
+          "line": "PRELU_PARTIAL_SHARED_CONFIG_PASS id=3 channels=1 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3515 out_stall=1433 simultaneous=81 gaps=333 cycles=4399",
+          "values": {
+            "id": 3,
+            "channels": 1,
+            "lanes": 1,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 3515,
+            "out_stall": 1433,
+            "simultaneous": 81,
+            "gaps": 333,
+            "cycles": 4399
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SHARED_CONFIG_PASS id=4 channels=4 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3805 out_stall=1563 simultaneous=46 gaps=344 cycles=4702",
+          "values": {
+            "id": 4,
+            "channels": 4,
+            "lanes": 2,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 3805,
+            "out_stall": 1563,
+            "simultaneous": 46,
+            "gaps": 344,
+            "cycles": 4702
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=422 outputs=418 in_stall=4208 out_stall=1561 simultaneous=20 gaps=323 cycles=5141",
+          "values": {
+            "id": 2,
+            "channels": 4,
+            "lanes": 1,
+            "signed": 0,
+            "prelu": 0,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 4208,
+            "out_stall": 1561,
+            "simultaneous": 20,
+            "gaps": 323,
+            "cycles": 5141
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5467 out_stall=1983 simultaneous=32 gaps=339 cycles=6403",
+          "values": {
+            "id": 0,
+            "channels": 16,
+            "lanes": 2,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 5467,
+            "out_stall": 1983,
+            "simultaneous": 32,
+            "gaps": 339,
+            "cycles": 6403
+          }
+        },
+        {
+          "line": "PRELU_PARTIAL_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5474 out_stall=2016 simultaneous=24 gaps=339 cycles=6416",
+          "values": {
+            "id": 1,
+            "channels": 8,
+            "lanes": 1,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 5474,
+            "out_stall": 2016,
+            "simultaneous": 24,
+            "gaps": 339,
+            "cycles": 6416
+          }
+        }
+      ],
+      "pass_marker": "PRELU_PARTIAL_SHARED_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "warning_lines": [],
+      "enforced_tb_coverage": {
+        "maximum_pending_vectors": 2,
+        "minimum_input_stall_cycles": 96,
+        "minimum_output_stall_cycles": 64,
+        "minimum_outputs": 300,
+        "reset_during_compute": 1,
+        "reset_while_output_held": 1,
+        "reset_discarded_vectors_per_config": 4,
+        "reference_check": "Independent signed64 math and external handshake FIFO, source/output hold, ordering and slot reuse"
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/prelu_requantize.sv",
+      "mtime_ns": 1790424755507641200,
+      "bytes": 9508,
+      "raw_sha256": "9146d890113534d289918f8c3c2f5c94fa47def3f593358672d240b0d2582d39",
+      "canonical_sha256": "6e6abe9f71ba193d6d9f95c200b4610614863d55de2d3c292688352130ae4a66"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/prelu_requantize_reference.sv",
+      "mtime_ns": 1790424742386329000,
+      "bytes": 7731,
+      "raw_sha256": "1989af306ddfa2b5789ae05666d324ce7d35cbf2308e4981512d324d72320b51",
+      "canonical_sha256": "1a3e07639bdcfa157cbfd87b33132b6f08bab1157cbde455a46007829d0a234b"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/tb_prelu_partial.sv",
+      "mtime_ns": 1790424791005508900,
+      "bytes": 15442,
+      "raw_sha256": "5d08e0b8a43e7c7ad0abab42f979ed2bdfed5d92437cc9194a28adcd7f9348e5",
+      "canonical_sha256": "5d08e0b8a43e7c7ad0abab42f979ed2bdfed5d92437cc9194a28adcd7f9348e5"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/tb_prelu_partial_shared.sv",
+      "mtime_ns": 1790424743572970400,
+      "bytes": 19014,
+      "raw_sha256": "bef3dc146da875b7e877a895cfbeef0a801de2ce36168be31ef01ab8127d8b93",
+      "canonical_sha256": "bef3dc146da875b7e877a895cfbeef0a801de2ce36168be31ef01ab8127d8b93"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/vector_postprocess_shared.sv",
+      "mtime_ns": 1790424126624538100,
+      "bytes": 6268,
+      "raw_sha256": "928c3ee8d2d7c6c6fefa4c55c222f435d29dcd3b73c201aceed4e13015d31d25",
+      "canonical_sha256": "6e0c2ffc696e2c5071160add08a06d65f5bfd42de6924f116097a1cd6674c454"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_partial/run_unit.tcl",
+      "mtime_ns": 1790424756537669000,
+      "bytes": 3779,
+      "raw_sha256": "b00b1c18ab13b03c2f0063c53e421b7734db05fd100f4762ff2a66b87dd44129",
+      "canonical_sha256": "b00b1c18ab13b03c2f0063c53e421b7734db05fd100f4762ff2a66b87dd44129"
+    }
+  ],
+  "reference_origin": {
+    "path": "experiments/timing_200_20260926/requant_pipe/prelu_requantize.sv",
+    "normalized_equal_except_module_name": true,
+    "bytes": 7721,
+    "raw_sha256": "46f448b9067507acc5cf2b6ec93d4a2a3eef8bf6084e8aef702e1efbcf2a489a",
+    "canonical_sha256": "d71c180e58b636ba6ff3d81069592109bc940ceb863c2eeda80b562c91133721"
+  },
+  "raw_logs": [
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial/xvlog.log",
+      "archived_path": "tb_prelu_partial/xvlog.log.txt",
+      "mtime_ns": 1790424886668482000,
+      "bytes": 957,
+      "raw_sha256": "a986ccd43298ac412f6f7095c4fac29e2ec907d917fccbd27951760c11fa153c",
+      "canonical_sha256": "53c96d02e04fa40abefd18ae1aa478e2ea8f753194d12adbe63f9b4471bbb8ff"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial/xelab.log",
+      "archived_path": "tb_prelu_partial/xelab.log.txt",
+      "mtime_ns": 1790424888611811300,
+      "bytes": 1792,
+      "raw_sha256": "58deef0aa6dd52c7d81c6081a1a9dd18caa327a7bc1762448dba6a90c97206eb",
+      "canonical_sha256": "2474f35cdef17b0606e1cb69d8b0db526f52e208ed0d5c6c66c0e25f5f72e391"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial/xsim.log",
+      "archived_path": "tb_prelu_partial/xsim.log.txt",
+      "mtime_ns": 1790424891558960800,
+      "bytes": 1716,
+      "raw_sha256": "735abfa076628740f6f7c6cadcd1d06cacbb99c44f5a568fa31a5179fb89d24c",
+      "canonical_sha256": "dcb6ae16af782456cef599c2594cdc6eae1e8706d0fdace29ca38b6c2a80c25b"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial/xsim_engine.log",
+      "archived_path": "tb_prelu_partial/xsim_engine.log.txt",
+      "mtime_ns": 1790424891558960800,
+      "bytes": 2678,
+      "raw_sha256": "15940c95b7eabbae9790ae01e7ef94ccdbee6a37deddf9d84fd5cfc537a63877",
+      "canonical_sha256": "15940c95b7eabbae9790ae01e7ef94ccdbee6a37deddf9d84fd5cfc537a63877"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xvlog.log",
+      "archived_path": "tb_prelu_partial_shared/xvlog.log.txt",
+      "mtime_ns": 1790424892537277500,
+      "bytes": 908,
+      "raw_sha256": "89273c4cab5382d41f9873ed95a09daea34da4346f21b295cbdc1282c5bee733",
+      "canonical_sha256": "a14d5f90e78f16115028f58a12a23154286e4f8aa4fbccc5376fe7c17d411bda"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xelab.log",
+      "archived_path": "tb_prelu_partial_shared/xelab.log.txt",
+      "mtime_ns": 1790424894565118900,
+      "bytes": 1367,
+      "raw_sha256": "e73bdb0b73c808dde8d1dbe5172855afa50bdad2ef56c8b0e1d1a30311717590",
+      "canonical_sha256": "f13435ed6e861962462f2108cc1d5b68830b1abf41ef5fb15814e39f97dbba74"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xsim.log",
+      "archived_path": "tb_prelu_partial_shared/xsim.log.txt",
+      "mtime_ns": 1790424897511239700,
+      "bytes": 1627,
+      "raw_sha256": "145136ea3c95578fc3ae7ae166d744e07d566e0d082d76ab6c702f9852d4bafc",
+      "canonical_sha256": "430ba54513afe580d95ccd2b1c0e41b910042d8eabedcca48f15ab7b5709d52b"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xsim_engine.log",
+      "archived_path": "tb_prelu_partial_shared/xsim_engine.log.txt",
+      "mtime_ns": 1790424897511239700,
+      "bytes": 2627,
+      "raw_sha256": "9e5939de8c516a7cc000a1fb6918bd39dd04e369d7dfdf43ea1108b80853017a",
+      "canonical_sha256": "9e5939de8c516a7cc000a1fb6918bd39dd04e369d7dfdf43ea1108b80853017a"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/units_prelu_partial.log",
+      "archived_path": "units_prelu_partial.log.txt",
+      "mtime_ns": 1790424897589736600,
+      "bytes": 5398,
+      "raw_sha256": "ccbab504742d08b276bfddff8bfff54106cc8a4d75b49e1a534c922fc9ecb6cf",
+      "canonical_sha256": "ccbab504742d08b276bfddff8bfff54106cc8a4d75b49e1a534c922fc9ecb6cf"
+    }
+  ],
+  "notes": [
+    "INT64 injected probe checks arithmetic expression, not DSP mapping.",
+    "Full48 reconstruction checked before saturation.",
+    "Reset drops in-flight tokens; accepted/checked differences are expected.",
+    "Only text logs; no DLL/WDB/snapshot binaries."
+  ]
+}

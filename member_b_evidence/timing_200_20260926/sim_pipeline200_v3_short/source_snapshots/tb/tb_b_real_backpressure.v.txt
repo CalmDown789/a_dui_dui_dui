@@ -1,0 +1,346 @@
+//=============================================================================
+// tb_b_real_backpressure.v —— 真实 B 的**重背压**与保持规则专项
+//-----------------------------------------------------------------------------
+// 走 b_core_if 正式分支（`-d C_USE_B_REAL`），96×54 / STRIPE_H=64。
+//
+// 与 tb_b_real_bit_exact.v 的分工：
+//   bit_exact  : 轻度周期停等下的**数值**正确性（4 组用例）
+//   本 TB      : **重背压**下的协议与数值完整性（单组用例，随机 + 极端停等）
+//
+// 用例：
+//   T-A 随机背压帧：out_ready 由 16 位最大长度 LFSR 驱动（平均 ~50% 占空），
+//       同时 in_valid 也随机留空（输入侧空闲合法）；
+//       要求：逐字节仍与 A 的整数 Golden 一致。
+//   T-B 极端长停等帧：中途把 out_ready 拉低 **STALL_LONG 拍连续**，再恢复；
+//       要求：① 停等期间 out_valid/out_data/stripe_last/frame_last 全程稳定
+//             ② 恢复后逐字节与 Golden 一致（不丢不重不换序）
+//   T-C 输入侧长停等：中途连续 STALL_IN 拍不喂（in_valid=0），
+//       要求：恢复后仍逐字节与 Golden 一致。
+//
+// B v1.1 的合同级连续输出背压保证为 N=0；本 TB 的 300 拍长停等属于
+// 诊断压力测试。正式 bit-exact FAIL 在无背压模式下也独立成立。
+//
+// 统计并输出：最大连续停等拍数 / 停等总拍数 / 比对字节数 / 不等字节数 / 首错位置。
+//
+// 磁盘安全：无波形 dump；2 帧；有硬 timeout。
+//=============================================================================
+
+`timescale 1ns / 1ps
+`default_nettype none
+
+module tb_b_real_backpressure;
+
+    localparam integer IMG_W  = 96;
+    localparam integer IMG_H  = 54;
+    localparam integer STRIPE = 64;
+    localparam integer OUT_W  = 2 * IMG_W;                       // 192
+    localparam integer OUT_H  = 2 * IMG_H;                       // 108
+    localparam integer N_IN   = IMG_W * IMG_H;                   // 5184
+    localparam integer N_OUT  = 4 * IMG_W * IMG_H;               // 20736
+    localparam integer N_ROW  = 2 * IMG_H;                       // 108
+    localparam integer N_STRP = (N_ROW + STRIPE - 1) / STRIPE;   // 2
+
+    localparam integer STALL_LONG = 300;    // T-B 的输出侧连续停等拍数
+    localparam integer STALL_IN   = 120;    // T-C 的输入侧连续留空拍数
+    localparam integer MAX_CYC    = 4000000;
+
+    //-------------------------------------------------------------------------
+    reg clk = 0, rst_n = 0;
+    reg  start = 0;
+    wire busy, done;
+    reg  in_valid = 0;
+    reg  [7:0] in_data = 0;
+    wire in_ready;
+    wire out_valid;
+    wire [7:0] out_data;
+    reg  out_ready = 0;
+    wire stripe_last, frame_last;
+
+    b_core_if #(
+        .IMG_W    (IMG_W),
+        .IMG_H    (IMG_H),
+        .OUT_W    (OUT_W),
+        .OUT_H    (OUT_H),
+        .STRIPE_H (STRIPE),
+        .DATA_W   (8)
+    ) dut (
+        .clk_200     (clk),
+        .rst_n       (rst_n),
+        .start       (start),
+        .busy        (busy),
+        .done        (done),
+        .in_valid    (in_valid),
+        .in_ready    (in_ready),
+        .in_data     (in_data),
+        .out_valid   (out_valid),
+        .out_data    (out_data),
+        .out_ready   (out_ready),
+        .stripe_last (stripe_last),
+        .frame_last  (frame_last)
+    );
+
+    always #2.5 clk = ~clk;   // 200 MHz
+
+    reg [7:0] in_mem  [0:N_IN-1];
+    reg [7:0] exp_mem [0:N_OUT-1];
+
+    integer err_cnt, cyc;
+    integer fed, got, n_stripe, n_flast, n_done;
+    integer n_diff, first_diff, x_cnt;
+    integer st_cur, st_max, st_total;      // 输出侧连续停等统计
+    integer in_idle_cur, in_idle_max;      // 输入侧连续空闲统计
+
+    // 保持规则
+    reg       held;
+    reg [7:0] h_d;
+    reg       h_s, h_f;
+    integer   hold_viol;
+
+    reg [15:0] lfsr;
+
+    task fail(input [8*96-1:0] msg);
+        begin
+            err_cnt = err_cnt + 1;
+            $display("[FAIL] %0t : %0s", $time, msg);
+        end
+    endtask
+
+    // 16 位最大长度 LFSR（x^16 + x^14 + x^13 + x^11 + 1），seed 非零
+    function [15:0] lfsr_next(input [15:0] s);
+        begin
+            lfsr_next = {s[14:0], s[15] ^ s[13] ^ s[12] ^ s[10]};
+        end
+    endfunction
+
+    initial begin
+        repeat (MAX_CYC) @(negedge clk);
+        $display("RESULT: FAIL (hard timeout after %0d cycles)", MAX_CYC);
+        $finish;
+    end
+
+    //-------------------------------------------------------------------------
+    // mode: 0 = LFSR 随机背压 + 随机输入留空
+    //       1 = 输出侧一次 STALL_LONG 连续停等
+    //       2 = 输入侧一次 STALL_IN 连续留空
+    //-------------------------------------------------------------------------
+    task run_frame_bp(input integer mode);
+        integer i;
+        integer out_hold_cnt;      // mode 1：距进入停等的计数
+        integer in_hold_cnt;       // mode 2
+        reg     stalling;
+        reg     stall_done;        // mode 1：避免停等结束后因 got 未变而重复触发
+        reg     in_stall_done;     // mode 2：避免 fed 停在触发点时重复触发
+        begin
+            @(negedge clk);
+            if (busy !== 1'b0) fail("busy high before start pulse");
+            start = 1'b1;
+            @(negedge clk);
+            start = 1'b0;
+
+            fed = 0; got = 0; n_stripe = 0; n_flast = 0;
+            n_diff = 0; first_diff = -1; x_cnt = 0;
+            held = 1'b0; hold_viol = 0;
+            st_cur = 0; st_max = 0; st_total = 0;
+            in_idle_cur = 0; in_idle_max = 0;
+            lfsr = 16'hACE1;
+            stalling = 1'b0;
+            stall_done = 1'b0;
+            in_stall_done = 1'b0;
+            out_hold_cnt = 0;
+            in_hold_cnt = 0;
+
+            while (got < N_OUT) begin
+                @(negedge clk);
+
+                //-------------- 输入驱动 ----------------------------------
+                if (fed < N_IN) begin
+                    if (mode == 2 && in_hold_cnt == 0 && !in_stall_done) begin
+                        // 输入喂到一半时开始一次长留空
+                        if (fed == N_IN/3) begin
+                            in_valid = 1'b0;
+                            in_hold_cnt = STALL_IN;
+                            in_stall_done = 1'b1;
+                        end else begin
+                            in_valid = 1'b1;
+                            in_data  = in_mem[fed];
+                        end
+                    end else if (mode == 2 && in_hold_cnt > 0) begin
+                        in_valid = 1'b0;
+                        in_hold_cnt = in_hold_cnt - 1;
+                        if (in_idle_cur > in_idle_max) in_idle_max = in_idle_cur;
+                    end else if (mode == 0) begin
+                        // 用 LFSR 低 3 位决定是否「本拍不喂」（0/7 概率留空）
+                        if (lfsr[2:0] == 3'b000) begin
+                            in_valid = 1'b0;
+                        end else begin
+                            in_valid = 1'b1;
+                            in_data  = in_mem[fed];
+                        end
+                    end else begin
+                        in_valid = 1'b1;
+                        in_data  = in_mem[fed];
+                    end
+                end else begin
+                    in_valid = 1'b0;
+                    in_data  = 8'h00;
+                end
+
+                // 输入侧连续空闲统计
+                if (!in_valid) begin
+                    in_idle_cur = in_idle_cur + 1;
+                    if (in_idle_cur > in_idle_max) in_idle_max = in_idle_cur;
+                end else begin
+                    in_idle_cur = 0;
+                end
+
+                //-------------- 输出就绪策略 ------------------------------
+                case (mode)
+                    0: out_ready = lfsr[0];
+                    1: begin
+                        // 收到 1/4 输出后拉低 STALL_LONG 拍
+                        if (!stalling && !stall_done && got == N_OUT/4 &&
+                            out_hold_cnt == 0 && out_valid) begin
+                            stalling = 1'b1;
+                            out_hold_cnt = STALL_LONG;
+                        end
+                        if (stalling) begin
+                            out_ready = 1'b0;
+                            out_hold_cnt = out_hold_cnt - 1;
+                            if (out_hold_cnt <= 0) begin
+                                stalling = 1'b0;
+                                stall_done = 1'b1;
+                            end
+                        end else begin
+                            out_ready = 1'b1;
+                        end
+                    end
+                    default: out_ready = 1'b1;
+                endcase
+
+                lfsr = lfsr_next(lfsr);
+
+                if (in_valid && in_ready) fed = fed + 1;
+
+                //-------------- 保持规则 ---------------------------------
+                if (held) begin
+                    if (!out_valid) begin
+                        hold_viol = hold_viol + 1;
+                        fail("out_valid dropped while out_ready=0 (hold rule)");
+                    end else if (out_data !== h_d || stripe_last !== h_s || frame_last !== h_f) begin
+                        hold_viol = hold_viol + 1;
+                        fail("held beat changed while out_ready=0");
+                        $display("        was d=%02x s=%b f=%b  now d=%02x s=%b f=%b",
+                                 h_d, h_s, h_f, out_data, stripe_last, frame_last);
+                    end
+                end
+
+                // 连续停等统计
+                if (out_valid && !out_ready) begin
+                    st_cur = st_cur + 1;
+                    st_total = st_total + 1;
+                    if (st_cur > st_max) st_max = st_cur;
+                end else begin
+                    st_cur = 0;
+                end
+
+                //-------------- 输出采集 + 比对 ---------------------------
+                if (out_valid && out_ready) begin
+                    if (got >= N_OUT) begin
+                        fail("extra output beat beyond N_OUT");
+                    end else if (^out_data === 1'bx) begin
+                        x_cnt = x_cnt + 1;
+                        if (x_cnt <= 3) fail("out_data contains X");
+                    end else if (out_data !== exp_mem[got]) begin
+                        n_diff = n_diff + 1;
+                        if (first_diff < 0) begin
+                            first_diff = got;
+                            $display("      MISMATCH @ out[%0d]  row=%0d col=%0d  got=%02x exp=%02x",
+                                     got, got / OUT_W, got % OUT_W,
+                                     out_data, exp_mem[got]);
+                        end
+                    end
+                    n_stripe = n_stripe + stripe_last;
+                    n_flast  = n_flast  + frame_last;
+                    if (frame_last && (got != N_OUT-1)) fail("frame_last not on the last beat");
+                    if (!frame_last && (got == N_OUT-1)) fail("last beat lacks frame_last");
+                    got = got + 1;
+                end
+
+                held = (out_valid && !out_ready);
+                if (held) begin
+                    h_d = out_data; h_s = stripe_last; h_f = frame_last;
+                end
+
+                cyc = cyc + 1;
+                if (cyc > MAX_CYC) begin
+                    fail("cycle budget exhausted inside frame");
+                    got = N_OUT;
+                end
+            end
+
+            @(negedge clk);
+            if (done) n_done = n_done + 1;
+            if (busy) fail("busy still high one cycle after the last output beat");
+            for (i = 0; i < 4; i = i + 1) begin
+                @(negedge clk);
+                if (done) n_done = n_done + 1;
+            end
+        end
+    endtask
+
+    task report(input [8*24-1:0] name);
+        begin
+            $display("  [%0s] fed=%0d out=%0d  byte_match=%0d/%0d  mismatched=%0d first=%0d  stripe_last=%0d frame_last=%0d done=%0d",
+                     name, fed, got, N_OUT - n_diff, N_OUT, n_diff, first_diff,
+                     n_stripe, n_flast, n_done);
+            $display("        stall(out) max=%0d total=%0d  hold_viol=%0d   in_idle max=%0d",
+                     st_max, st_total, hold_viol, in_idle_max);
+            if (fed      != N_IN)   fail("input beat count mismatch");
+            if (got      != N_OUT)  fail("output beat count mismatch");
+            if (n_diff   != 0)      fail("byte mismatch vs A integer Golden");
+            if (n_stripe != N_STRP) fail("stripe_last count mismatch");
+            if (n_flast  != 1)      fail("frame_last count mismatch");
+            if (n_done   != 1)      fail("done pulse count mismatch");
+            if (hold_viol != 0)     fail("hold-rule violations");
+        end
+    endtask
+
+    //-------------------------------------------------------------------------
+    initial begin
+        err_cnt = 0; cyc = 0; n_done = 0;
+        $readmemh("tv_random_in.mem",  in_mem);
+        $readmemh("tv_random_out.mem", exp_mem);
+
+        rst_n = 1'b0;
+        repeat (6) @(negedge clk);
+        rst_n = 1'b1;
+        repeat (2) @(negedge clk);
+
+        $display("  geometry: %0dx%0d -> %0dx%0d  N_OUT=%0d  STALL_LONG=%0d STALL_IN=%0d",
+                 IMG_W, IMG_H, OUT_W, OUT_H, N_OUT, STALL_LONG, STALL_IN);
+
+        //--- T-A 随机背压 ------------------------------------------------
+        $display("  --- T-A random back-pressure (LFSR out_ready + sparse in_valid) ---");
+        n_done = 0; run_frame_bp(0); report("T-A");
+
+        //--- T-B 输出侧长停等 --------------------------------------------
+        $display("  --- T-B single long out_ready stall (%0d cycles) ---", STALL_LONG);
+        n_done = 0; run_frame_bp(1); report("T-B");
+        if (st_max < STALL_LONG) fail("T-B did not observe the intended long stall");
+
+        //--- T-C 输入侧长留空 --------------------------------------------
+        $display("  --- T-C single long input idle (%0d cycles) ---", STALL_IN);
+        n_done = 0; run_frame_bp(2); report("T-C");
+
+        $display("  total cycles = %0d", cyc);
+        if (err_cnt == 0) begin
+            $display("RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)");
+        end else begin
+            $display("RESULT: FAIL  (err_cnt=%0d)", err_cnt);
+        end
+        $finish;
+    end
+
+endmodule
+
+`default_nettype wire

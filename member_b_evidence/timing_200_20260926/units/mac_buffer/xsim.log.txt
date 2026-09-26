@@ -1,0 +1,18 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:19:49 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_mac_partial_fifo2/xsim_script.tcl
+# xsim {tb_mac_partial_fifo2} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+MAC_PARTIAL_FIFO2_COVERAGE cycles=1786 pushes=683 pops=673 full_pop_blocked=265 simultaneous=275 max_steady_run=23 full_stalls=565 holds=984 reset_nonempty=6 append_stalled=340 empty_push=68
+MAC_PARTIAL_FIFO2_131BIT_TEST_PASS
+$finish called at time : 17866 ns : File "V:/experiments/timing_200_20260926/mac_buffer/tb_mac_partial_fifo2.sv" Line 181
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:19:50 2026...

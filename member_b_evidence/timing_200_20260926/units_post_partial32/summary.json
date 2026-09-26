@@ -1,0 +1,89 @@
+{
+  "status": "POST_PARTIAL32_UNITS_PASS",
+  "tool": "Vivado/XSim 2025.2",
+  "collection_time": "2026-09-26T20:32:59.212489",
+  "scope": "Scalar and shared units only; synthesis/network/route are separate. Source hashes collected after completed unit run.",
+  "configurations": {
+    "tb_post_partial32": [
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=0 checked=5388 accepted=5412 full48_checked=5409 lo_ffff=912 negative_hi=2724 negative_alpha=2222 mixed_sign=623 full64_checked=5394 full64_hold=319 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1236",
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=1 checked=5380 accepted=5404 full48_checked=5401 lo_ffff=912 negative_hi=2700 negative_alpha=2257 mixed_sign=613 full64_checked=5386 full64_hold=327 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1428",
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=2 checked=5403 accepted=5427 full48_checked=5424 lo_ffff=912 negative_hi=2692 negative_alpha=2264 mixed_sign=609 full64_checked=5409 full64_hold=304 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1397",
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=3 checked=5425 accepted=5449 full48_checked=5446 lo_ffff=912 negative_hi=2744 negative_alpha=2243 mixed_sign=634 full64_checked=5431 full64_hold=282 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1224",
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=4 checked=5420 accepted=5444 full48_checked=5441 lo_ffff=912 negative_hi=2719 negative_alpha=2277 mixed_sign=624 full64_checked=5426 full64_hold=287 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1434",
+      "POST_PARTIAL32_SCALAR_CONFIG_PASS id=5 checked=5407 accepted=5431 full48_checked=5428 lo_ffff=912 negative_hi=2742 negative_alpha=2241 mixed_sign=627 full64_checked=5413 full64_hold=300 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1200"
+    ],
+    "tb_post_partial32_shared": [
+      "POST_PARTIAL32_SHARED_CONFIG_PASS id=3 channels=1 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3515 out_stall=1433 simultaneous=81 gaps=333 cycles=4399",
+      "POST_PARTIAL32_SHARED_CONFIG_PASS id=4 channels=4 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3805 out_stall=1563 simultaneous=46 gaps=344 cycles=4702",
+      "POST_PARTIAL32_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=422 outputs=418 in_stall=4208 out_stall=1561 simultaneous=20 gaps=323 cycles=5141",
+      "POST_PARTIAL32_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5467 out_stall=1983 simultaneous=32 gaps=339 cycles=6403",
+      "POST_PARTIAL32_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5474 out_stall=2016 simultaneous=24 gaps=339 cycles=6416"
+    ]
+  },
+  "source_hashes": [
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/prelu_requantize.sv",
+      "sha256": "4f93d7f88c8597d6cb0214022debf537c9da309ac0673a1b658c9db804a6faee",
+      "bytes": 11923
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/prelu_requantize_reference.sv",
+      "sha256": "1989af306ddfa2b5789ae05666d324ce7d35cbf2308e4981512d324d72320b51",
+      "bytes": 7731
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/run_unit.tcl",
+      "sha256": "4bc28b6be1c8ef9aa1839056cc5631ef255e4da0adff32f7fd74569afc6d76da",
+      "bytes": 3802
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/tb_post_partial32.sv",
+      "sha256": "9d240846de7462ef90fe1f5238c038d0dd17d471139ccb40f8c5617314e3d708",
+      "bytes": 19165
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/tb_post_partial32_shared.sv",
+      "sha256": "4763c247be8e6ae9c99351699fdbfe30ea733ca39d40e98632834e01cf510fa6",
+      "bytes": 19024
+    },
+    {
+      "path": "experiments/timing_200_20260926/post_partial32/vector_postprocess_shared.sv",
+      "sha256": "928c3ee8d2d7c6c6fefa4c55c222f435d29dcd3b73c201aceed4e13015d31d25",
+      "bytes": 6268
+    }
+  ],
+  "log_hashes": [
+    {
+      "path": "tb_post_partial32/xelab.log.txt",
+      "sha256": "2697bf6179d9e4bf0494becf7a188827a252d66658b4607a06a0e9d7083419ad"
+    },
+    {
+      "path": "tb_post_partial32/xsim.log.txt",
+      "sha256": "8319f5c99ea43f9f7bcb1ef8154a60f507bfe1619de77d287f69c5ed67576db3"
+    },
+    {
+      "path": "tb_post_partial32/xsim_engine.log.txt",
+      "sha256": "ae23714d7e23af28ab958dbb78a717c074394a2ec114960f61c84e5e588f3f07"
+    },
+    {
+      "path": "tb_post_partial32/xvlog.log.txt",
+      "sha256": "82abf2ee4a67655a5a4bed13f18f9625fde07ab3fe01244dda99e0eb5dd8a791"
+    },
+    {
+      "path": "tb_post_partial32_shared/xelab.log.txt",
+      "sha256": "ce91ef71c1931526cd9c88147ca786670d6c5aebca99c4e85476574f0cbfc18f"
+    },
+    {
+      "path": "tb_post_partial32_shared/xsim.log.txt",
+      "sha256": "2124fa2acd47720b2add4040ebdf43f3a8574c47bb62ea91d4b5669be1844a37"
+    },
+    {
+      "path": "tb_post_partial32_shared/xsim_engine.log.txt",
+      "sha256": "79d1cefefe2d37bfb9dfbd8899f6f06ffaab5dd732b016fcbfe8954d2020b7bf"
+    },
+    {
+      "path": "tb_post_partial32_shared/xvlog.log.txt",
+      "sha256": "8d0ae2271ec1d2f0135b44279cadeab2ab0ae43576cae3aa84d941520d54fc74"
+    }
+  ]
+}

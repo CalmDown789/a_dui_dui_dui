@@ -1,0 +1,541 @@
+"""Archive completed 200 MHz candidate simulations without invoking Vivado.
+
+Examples (run from the repository root after each Vivado batch has exited)::
+
+  python experiments/timing_200_20260926/collect_sim_evidence.py --variant v1 \
+    --sim-dir _sim_l5_member_b_acc36_pipeline200 \
+    --run-log experiments/timing_200_20260926/sim_pipeline200.log \
+    --tb tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full tb_ready_valid tb_c_top \
+    --out member_b_evidence/timing_200_20260926/sim_v1_main
+
+  python experiments/timing_200_20260926/collect_sim_evidence.py --variant v2 \
+    --sim-dir _sim_l5_member_b_acc36_pipeline200_v2 \
+    --run-log experiments/timing_200_20260926/sim_pipeline200_v2_short.log \
+    --tb tb_b_real_backpressure tb_b_real_bit_exact tb_ready_valid tb_c_top \
+    --out member_b_evidence/timing_200_20260926/sim_v2_short
+
+For a later full-frame batch, supply its own --run-log, --tb tb_b_real_full
+and a NEW --out, e.g. sim_v2_full. --variant srl means V2 plus fifo_srl.
+--variant v3 selects prelu_pipeline scalar/shared and run_sim_pipeline200_v3.tcl;
+its sim directory is _sim_l5_member_b_acc36_pipeline200_v3. v3-srl adds fifo_srl.
+--dry-run validates without writing an archive. Existing output is never replaced.
+
+Current source bytes are archived and hashed, with an mtime-before-compilation
+guard. This is explicitly a collection-time snapshot, NOT a launch-time hash or
+a Git/HEAD identity. An optional --launch-manifest supplies an independent hash
+snapshot; its timestamp relation to each selected compile is recorded explicitly.
+"""
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import tempfile
+
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+EXP = "experiments/timing_200_20260926"
+OVERLAY = "experiments/l5_splitmem_20260924/rtl"
+B_REAL = "rtl/b_real_ae29515/stream"
+REAL_TBS = {"tb_b_real_smoke", "tb_b_real_backpressure", "tb_b_real_bit_exact", "tb_b_real_full"}
+SUPPORTED_TBS = REAL_TBS | {"tb_stripe_buffer", "tb_backpressure_rand", "tb_ready_valid", "tb_c_top"}
+REF_PATTERNS = {"tb_b_real_backpressure": "tv_random_*.mem",
+                "tb_b_real_bit_exact": "tv_*.mem", "tb_b_real_full": "full_*.mem"}
+REF_COUNTS = {"tb_b_real_backpressure": 2, "tb_b_real_bit_exact": 8, "tb_b_real_full": 2}
+REQUIRED_LOGS = ("xvlog_b_real.log", "xvlog.log", "xelab.log", "xsim.log", "xsim_engine.log")
+
+
+class EvidenceError(RuntimeError):
+    pass
+
+
+def require(condition, message):
+    if not condition:
+        raise EvidenceError(message)
+
+
+def text_bytes(data):
+    for encoding in ("utf-8-sig", "gb18030"):
+        try:
+            return data.decode(encoding)
+        except UnicodeDecodeError:
+            pass
+    return data.decode("utf-8", errors="replace")
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def resolve_repo_path(value):
+    """Translate the runner's V:/ alias without depending on an active SUBST."""
+    normalized = str(value).strip().strip('"').replace("\\", "/")
+    if re.match(r"(?i)^v:/+", normalized):
+        path = ROOT / re.sub(r"(?i)^v:/+", "", normalized)
+    else:
+        path = Path(normalized)
+        if not path.is_absolute():
+            path = ROOT / path
+    path = path.resolve()
+    require(path.is_relative_to(ROOT), f"Path is outside this repository: {value}")
+    return path
+
+
+def relative(path):
+    return Path(path).resolve().relative_to(ROOT).as_posix()
+
+
+def expected_sources(variant, tb):
+    v2 = variant != "v1"
+    v3 = variant in ("v3", "v3-srl")
+    use_srl = variant in ("srl", "v2-srl", "v3-srl")
+    b = [f"{OVERLAY}/b/fsrcnn_network_core.sv", f"{B_REAL}/fsrcnn_network_mem_top.sv",
+         f"{B_REAL}/b_core_real.sv", f"{OVERLAY}/b/fsrcnn_stream_layer.sv",
+         f"{B_REAL}/window_stream_frontend.sv", f"{B_REAL}/window_kminus1_bram.sv",
+         f"{B_REAL}/same_pad_raster.sv",
+         f"{EXP}/fifo_srl/elastic_fifo.sv" if use_srl else f"{OVERLAY}/b/elastic_fifo.sv",
+         f"{EXP}/{'mac_buffer_l3l5' if v2 else 'mac_buffer'}/mac_issue_stage.sv",
+         f"{OVERLAY}/b/phase_mac_pipeline.sv", f"{EXP}/bias_early/phase_accumulator_36.sv",
+         f"{B_REAL}/eight_phase_issue.sv", f"{B_REAL}/pixel_shuffle2x_row_banks.sv",
+         f"{EXP}/{'prelu_pipeline' if v3 else 'post_shift' if v2 else 'requant_pipe'}/vector_postprocess_shared.sv",
+         f"{EXP}/{'prelu_pipeline' if v3 else 'requant_pipe'}/prelu_requantize.sv"]
+    c = ["rtl/c_config.vh", f"{OVERLAY}/c/input_rom.v", f"{OVERLAY}/c/input_stream.v",
+         f"{EXP}/{'stripe_banked' if v2 else 'stripe_pipe'}/stripe_buffer.v",
+         f"{EXP}/stripe_pipe/pingpong_buffer.v", "rtl/output_stream.v", "rtl/uart_tx.v",
+         "rtl/readback_ctrl.v", "rtl/c_ctrl.v", "rtl/b_core_stub.v", "rtl/b_core_if.v",
+         f"{OVERLAY}/c/c_core.v", "rtl/c_top.v", "rtl/c_synth_top.v",
+         "rtl/c_protocol_assertions.v", f"tb/{tb}.v"]
+    return b, c
+
+
+def diagnostic_failures(text):
+    """Reject actual diagnostics, while allowing documented '0 FAIL/0 error'."""
+    failures = []
+    for line in text.splitlines():
+        # These are explicit diagnostic severity prefixes, not prose saying
+        # '0 error'. Bare nonzero FAIL summaries are checked below as well.
+        if re.search(r"(?i)^\s*(?:ERROR|FATAL)(?:\s*[:\[]|\b)|\[FAIL\]|\bRESULT:\s*FAIL\b", line):
+            failures.append(line)
+            continue
+        clean = re.sub(r"(?i)\b0\s+(?:FAIL(?:ED|URES)?|ERRORS?)\b", "", line)
+        if re.search(r"(?i)\bFAIL(?:ED)?\b", clean):
+            failures.append(line)
+        for match in re.finditer(r"\b(?:err_cnt|uart_err|proto_err|overflow_err|asrt|mismatched|hold_viol)\s*=\s*([0-9xXzZ]+)", line):
+            if not re.fullmatch(r"0+", match.group(1)):
+                failures.append(line)
+    return list(dict.fromkeys(failures))
+
+
+def validate_finished_log(text, tb, label):
+    passes = list(re.finditer(r"(?m)^\s*RESULT:\s*PASS\b.*$", text))
+    require(len(passes) == 1, f"{tb}/{label}: expected exactly one RESULT: PASS, found {len(passes)}")
+    finish = re.search(r"(?m)^\$finish called at time\s*:", text)
+    exit_marker = re.search(r"(?m)^INFO:\s*\[Common 17-206\]\s+Exiting xsim at", text)
+    require(finish is not None and exit_marker is not None,
+            f"{tb}/{label}: missing $finish or XSim exit marker; incomplete/running test")
+    require(passes[0].end() <= finish.start() < exit_marker.start(),
+            f"{tb}/{label}: invalid PASS/finish/exit ordering")
+    errors = diagnostic_failures(text)
+    require(not errors, f"{tb}/{label}: failure diagnostics: {errors[:4]}")
+    return passes[0].group(0).strip()
+
+
+def metrics_from_log(text, tb):
+    result = {"scope": "real five-layer B network" if tb in REAL_TBS else "C isolation/stub regression"}
+    frame_pattern = re.compile(
+        r"fed=(\d+)\s+out=(\d+)\s+byte_match=(\d+)/(\d+)\s+"
+        r"mismatched=(\d+)\s+first(?:_mismatch)?=(-?\d+)\s+"
+        r"stripe_last=(\d+)\s+frame_last=(\d+)\s+done=(\d+)")
+    records, case = [], None
+    for line in text.splitlines():
+        header = re.search(r"--- case\s+\d+\s*:\s*(\w+)\s*---|\[(T-[A-Z])\]", line)
+        if header:
+            case = header.group(1) or header.group(2)
+        match = frame_pattern.search(line)
+        if match:
+            keys = ("input_bytes", "output_bytes", "matching_bytes", "expected_bytes", "mismatches",
+                    "first_mismatch", "stripe_last_pulses", "frame_last_pulses", "done_pulses")
+            row = dict(zip(keys, map(int, match.groups())))
+            row["case"] = case
+            require(row["mismatches"] == 0 and row["matching_bytes"] == row["expected_bytes"] == row["output_bytes"],
+                    f"{tb}: reported byte counts do not match")
+            records.append(row)
+    if records:
+        result.update(frame_records=records, output_bytes=sum(r["output_bytes"] for r in records),
+                      frames=sum(r["frame_last_pulses"] for r in records),
+                      stripe_last_pulses=sum(r["stripe_last_pulses"] for r in records))
+    if tb in ("tb_b_real_backpressure", "tb_b_real_bit_exact"):
+        require(len(records) == (3 if tb.endswith("backpressure") else 4), f"{tb}: missing per-frame final counters")
+    match = re.search(r"(?m)^\s*total cycles\s*=\s*(\d+)", text)
+    if match:
+        result["total_cycles"] = int(match.group(1))
+    if tb == "tb_b_real_full":
+        fields = {"output_bytes": r"output bytes received:\s*(\d+)\s*/\s*(\d+)",
+                  "matching_bytes": r"byte match\s*:\s*(\d+)\s*/\s*(\d+)",
+                  "stripe_last_pulses": r"stripe_last pulses\s*:\s*(\d+)\s*\(expect\s+(\d+)\)",
+                  "frames": r"frame_last pulses\s*:\s*(\d+)\s*\(expect\s+(\d+)\)",
+                  "done_pulses": r"done pulses\s*:\s*(\d+)\s*\(expect\s+(\d+)\)"}
+        for key, pattern in fields.items():
+            match = re.search(pattern, text)
+            require(match is not None, f"{tb}: missing final {key} counter")
+            actual, expected = map(int, match.groups())
+            require(actual == expected, f"{tb}: {key} is {actual}, expected {expected}")
+            result[key] = actual
+        for label in ("mismatched bytes", "X bytes", "hold-rule violations"):
+            match = re.search(re.escape(label) + r"\s*:\s*(\d+)", text)
+            require(match is not None and int(match.group(1)) == 0, f"{tb}: missing/nonzero {label}")
+        match = re.search(r"sim cycles\s*:\s*(\d+)", text)
+        require(match is not None, f"{tb}: missing sim cycles")
+        result["total_cycles"] = int(match.group(1))
+    seeds = []
+    for match in re.finditer(r"(?m)^\[seed #(\d+)\]\s+out=(\d+)\s+rd=(\d+)\s+stripes=(\d+)\s+frame=(\d+)\s+longest_stall=(\d+)\s+asrt=(\d+)", text):
+        row = dict(zip(("seed", "output_bytes", "read_bytes", "stripes", "frames", "longest_stall", "assertions"), map(int, match.groups())))
+        require(row["assertions"] == 0 and row["output_bytes"] == row["read_bytes"], f"{tb}: seed counters disagree")
+        seeds.append(row)
+    if seeds:
+        result.update(seed_records=seeds, output_bytes=sum(r["output_bytes"] for r in seeds),
+                      frames=sum(r["frames"] for r in seeds), stripe_last_pulses=sum(r["stripes"] for r in seeds))
+    for source, target in (("out_accept", "output_bytes"), ("out_accepts", "output_bytes"),
+                           ("uart_bytes", "uart_bytes"), ("rd_bytes", "read_bytes"), ("in_accept", "input_bytes")):
+        match = re.search(r"(?m)^\s*" + source + r"\s*=\s*(\d+)\s*/\s*(\d+)", text)
+        if match:
+            actual, expected = map(int, match.groups())
+            require(actual == expected, f"{tb}: {source} count mismatch")
+            result[target] = actual
+    match = re.search(r"stripe_last(?: pulses)?\s*=\s*(\d+)\s*/\s*(\d+)\s*;\s*frame_last(?: pulses)?\s*=\s*(\d+)\s*/\s*(\d+)", text)
+    if match:
+        stripes, expected_s, frames, expected_f = map(int, match.groups())
+        require(stripes == expected_s and frames == expected_f, f"{tb}: stripe/frame count mismatch")
+        result.update(stripe_last_pulses=stripes, frames=frames)
+    match = re.search(r"cycles\(2nd frame wait\)\s*=\s*(\d+)", text)
+    if match:
+        result["second_frame_wait_cycles"] = int(match.group(1))
+    if tb == "tb_c_top":
+        result["scope"] = "Part A full-size C boundary test; Part B c_top smoke only (no full frame)"
+    # Preserve exact counter lines, so parsers never need to infer a missing metric.
+    result["counter_lines"] = [line.strip() for line in text.splitlines()
+                               if re.search(r"fed=|total cycles|output bytes received|byte match\s*:|sim cycles|out_accept|uart_bytes\s*=|rd_bytes\s*=|stripe_last(?: pulses)?\s*[:=]|cycles\(2nd frame", line)]
+    return result
+
+
+class Reader:
+    def __init__(self):
+        self.fingerprints = {}
+        self.archive_bytes = {}
+
+    def read(self, path, archive_name=None):
+        path = Path(path).resolve()
+        require(path.is_file(), f"Missing required file: {path}")
+        before = path.stat()
+        data = path.read_bytes()
+        after = path.stat()
+        key = (after.st_size, after.st_mtime_ns)
+        require((before.st_size, before.st_mtime_ns) == key and len(data) == after.st_size,
+                f"File changed while reading (possibly running): {path}")
+        previous = self.fingerprints.get(path)
+        require(previous is None or previous == key, f"File changed during collection: {path}")
+        self.fingerprints[path] = key
+        if archive_name:
+            old = self.archive_bytes.get(archive_name)
+            require(old is None or old == data, f"Archive name collision: {archive_name}")
+            self.archive_bytes[archive_name] = data
+        record = {"path": relative(path), "bytes": len(data), "sha256": digest(data),
+                  "canonical_sha256": digest(data.replace(b"\r\n", b"\n")),
+                  "mtime_ns": after.st_mtime_ns}
+        if archive_name:
+            record["archive_path"] = archive_name
+        return data, record
+
+    def check_stable(self):
+        for path, expected in self.fingerprints.items():
+            stat = path.stat()
+            require((stat.st_size, stat.st_mtime_ns) == expected,
+                    f"Input changed before archive publication: {path}")
+
+
+def active_processes():
+    """Read-only process inspection; do not trust PASS while XSim is still live."""
+    if os.name == "nt":
+        # Get-Process uses ordinary process inspection. WMI/CIM is denied in
+        # this local workspace, while xsimk's executable path identifies its
+        # exact snapshot directory without any command-line/CWD inference.
+        command = ("$ErrorActionPreference='Stop'; Get-Process | "
+                   "Where-Object {$_.ProcessName -match '^(xsimk|xsim|xelab|xvlog|vivado)$'} | "
+                   "Select-Object @{n='ProcessId';e={$_.Id}},@{n='Name';e={$_.ProcessName}},"
+                   "@{n='ExecutablePath';e={$_.Path}} | ConvertTo-Json -Compress")
+        process = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
+                                 capture_output=True, timeout=20, check=False)
+        require(process.returncode == 0, "Cannot inspect active simulator processes; refusing an uncertain archive")
+        raw = text_bytes(process.stdout).strip()
+        value = json.loads(raw) if raw else []
+        rows = value if isinstance(value, list) else [value]
+        require(all(row.get("ExecutablePath") for row in rows if row.get("Name") == "xsimk"),
+                "Cannot identify an active XSim kernel's snapshot path")
+        return rows
+    result = []
+    require(Path("/proc").is_dir(), "No supported process inspector on this platform")
+    for path in Path("/proc").iterdir():
+        if not path.name.isdigit():
+            continue
+        try:
+            command = (path / "cmdline").read_bytes().replace(b"\0", b" ").decode(errors="replace")
+            executable = str((path / "exe").resolve())
+        except (OSError, PermissionError):
+            continue
+        result.append({"ProcessId": int(path.name), "ExecutablePath": executable, "CommandLine": command})
+    return result
+
+
+def reject_active(work_dirs, launch_pid):
+    needles = []
+    for path in work_dirs:
+        needles += [path.as_posix().lower(), "v:/" + relative(path).lower()]
+    for process in active_processes():
+        haystack = " ".join(str(process.get(k) or "") for k in ("ExecutablePath", "CommandLine")).replace("\\", "/").lower()
+        # V:// and V:/ are the same runner alias.
+        haystack = re.sub(r"(?i)v:/+", "v:/", haystack)
+        is_tool = re.search(r"(?:xsimk|xsim|xelab|xvlog|vivado)(?:\.exe)?(?:\s|\"|$)", haystack)
+        if is_tool and (process.get("ProcessId") == launch_pid or any(n in haystack for n in needles)):
+            raise EvidenceError(f"Selected simulation/batch is still running: PID {process.get('ProcessId')}")
+
+
+def collect(args):
+    variant = "srl" if args.variant == "v2-srl" else args.variant
+    family_suffix = "" if variant == "v1" else "_v3" if variant in ("v3", "v3-srl") else "_v2"
+    use_srl = variant in ("srl", "v3-srl")
+    require(len(set(args.tb)) == len(args.tb), "Duplicate --tb entries")
+    require(set(args.tb) <= SUPPORTED_TBS, f"Unsupported TB(s): {set(args.tb)-SUPPORTED_TBS}")
+    sim_dir = resolve_repo_path(args.sim_dir)
+    run_log = resolve_repo_path(args.run_log)
+    expected_dir = "_sim_l5_member_b_acc36_pipeline200" + family_suffix + ("_srl" if use_srl else "")
+    require(sim_dir.name == expected_dir, f"Variant {variant} requires sim directory named {expected_dir}")
+    runner = resolve_repo_path(args.runner or f"{EXP}/run_sim_pipeline200{family_suffix}.tcl")
+    out = resolve_repo_path(args.out)
+    require(not out.exists(), f"Output already exists; choose a NEW --out (never overwrite): {out}")
+    require(not out.is_relative_to(sim_dir), "Archive must be outside the simulation work directory")
+    reader = Reader()
+    run_bytes, run_record = reader.read(run_log, "run.log.txt")
+    run_text = text_bytes(run_bytes)
+    command = re.search(r"(?m)^# Command line\s*:\s*(.+)$", run_text)
+    require(command is not None, "Run log lacks the actual Vivado command line")
+    source_arg = re.search(r'-source\s+("[^"]+"|\S+)', command.group(1))
+    require(source_arg is not None and resolve_repo_path(source_arg.group(1)) == runner,
+            "Run log's actual -source does not match the selected runner")
+    require(bool(re.search(r"(?:^|\s)srl(?:\s|$)", command.group(1))) == use_srl,
+            "Run log's srl argument disagrees with --variant")
+    all_pass = re.findall(r"(?m)^\s*ALL sims PASS\s*:\s*(.+)$", run_text)
+    require(len(all_pass) == 1 and set(args.tb) <= set(all_pass[0].split()),
+            "Run log has no completed ALL sims PASS covering all requested TBs")
+    require(re.search(r"(?m)^INFO:\s*\[Common 17-206\]\s+Exiting Vivado at", run_text) is not None,
+            "Vivado batch has not exited; refusing a running/incomplete batch")
+    pid_match = re.search(r"(?m)^# Process ID\s*:\s*(\d+)", run_text)
+    require(pid_match is not None, "Run log lacks launch PID")
+    launch_pid = int(pid_match.group(1))
+    start_match = re.search(r"(?m)^# Start of session at:\s*(.+)$", run_text)
+    require(start_match is not None, "Run log lacks a session start timestamp")
+    session_start = datetime.strptime(start_match.group(1).strip(), "%a %b %d %H:%M:%S %Y")
+    # Vivado reports this host's local time to whole seconds. A one-second
+    # allowance covers that displayed precision without admitting old runs.
+    session_start_ns = int(session_start.timestamp() * 1_000_000_000)
+    work_dirs = [sim_dir / tb for tb in args.tb]
+    reject_active(work_dirs, launch_pid)
+
+    runner_data, runner_record = reader.read(runner, "source_snapshots/" + relative(runner) + ".txt")
+    _, collector_record = reader.read(Path(__file__), "collector.py.txt")
+    # Keep the exact runner even though its contents are not executed here.
+    require(b"stage_b_roms" in runner_data and b"source_files.txt" in runner_data,
+            "Selected runner lacks expected staging/source-list mechanisms")
+    source_records = {}
+    tests = {}
+    for tb, work in zip(args.tb, work_dirs):
+        prefix = f"logs/{tb}"
+        source_data, list_record = reader.read(work / "source_files.txt", prefix + "/source_files.txt")
+        cutoff = list_record["mtime_ns"]
+        require(cutoff >= session_start_ns - 1_000_000_000,
+                f"{tb}: source list predates the selected outer batch (mixed old logs)")
+        require(runner_record["mtime_ns"] <= cutoff,
+                f"{tb}: runner modified after the compile source list; cannot identify executed version")
+        listed = [relative(resolve_repo_path(line)) for line in text_bytes(source_data).splitlines() if line.strip()]
+        expected_b, expected_c = expected_sources(variant, tb)
+        require(listed == expected_b + expected_c, f"{tb}: source_files.txt is not the exact {variant} closure")
+        define_bytes, define_record = reader.read(work / "compile_defines.txt", prefix + "/compile_defines.txt")
+        defines = text_bytes(define_bytes).split()
+        expected_defines = ["-d", "C_SIM"] + (["-d", "C_USE_B_REAL"] if tb in REAL_TBS else [])
+        require(defines == expected_defines, f"{tb}: wrong real-B/stub compile defines: {defines}")
+        logs, log_records = {}, {}
+        for name in REQUIRED_LOGS:
+            data, record = reader.read(work / name, prefix + "/" + name + ".txt")
+            require(data and b"\x00" not in data, f"{tb}/{name}: empty or non-text log")
+            logs[name], log_records[name] = text_bytes(data), record
+            errors = diagnostic_failures(logs[name])
+            require(not errors, f"{tb}/{name}: failure diagnostics: {errors[:4]}")
+        # Optional top-level textual engine/journal logs are preserved too.
+        for extra in sorted(work.glob("*.log")) + sorted(work.glob("*.jou")):
+            if extra.name not in log_records:
+                _, record = reader.read(extra, prefix + "/" + extra.name + ".txt")
+                log_records[extra.name] = record
+        require(all(record["mtime_ns"] <= run_record["mtime_ns"] for record in log_records.values()),
+                f"{tb}: logs are newer than the selected completed outer batch (mixed runs)")
+        for log_name, expected in (("xvlog_b_real.log", expected_b), ("xvlog.log", expected_c)):
+            analyzed = re.findall(r'Analyzing (?:SystemVerilog|Verilog) file "([^"]+)"', logs[log_name])
+            observed = [relative(resolve_repo_path(path)) for path in analyzed]
+            require(Counter(observed) == Counter(expected),
+                    f"{tb}/{log_name}: actually analyzed paths differ from the selected source closure")
+        require(f"Built simulation snapshot {tb}" in logs["xelab.log"], f"{tb}: elaboration did not build the expected snapshot")
+        if tb in REAL_TBS:
+            require(re.search(r"(?m)^Running:.*\s-O0(?:\s|$)", logs["xelab.log"]) is not None,
+                    f"{tb}: real-B elaboration did not use the validated -O0 mode")
+        compile_end = max(log_records[n]["mtime_ns"] for n in ("xvlog_b_real.log", "xvlog.log"))
+        require(cutoff <= compile_end <= log_records["xelab.log"]["mtime_ns"] <=
+                min(log_records[n]["mtime_ns"] for n in ("xsim.log", "xsim_engine.log")),
+                f"{tb}: logs are out of stage order (possible stale PASS during rerun)")
+        passes = [validate_finished_log(logs[name], tb, name) for name in ("xsim.log", "xsim_engine.log")]
+        require(passes[0] == passes[1], f"{tb}: console/engine PASS results disagree")
+        for rel in listed:
+            path = ROOT / rel
+            _, record = reader.read(path, "source_snapshots/" + rel + ".txt")
+            require(record["mtime_ns"] <= cutoff, f"{tb}: source/TB changed after compilation began: {rel}")
+            record["hash_time_basis"] = "collection-time bytes; file mtime predates compile source list"
+            source_records[rel] = record
+        # Includes are also inputs, even when the compiler does not list them.
+        pending = [ROOT / rel for rel in listed]
+        seen = set(pending)
+        while pending:
+            path = pending.pop()
+            content, _ = reader.read(path)
+            for include in re.findall(r'`include\s+"([^"]+)"', text_bytes(content)):
+                options = [path.parent / include, ROOT / "rtl" / include]
+                found = next((p.resolve() for p in options if p.is_file()), None)
+                require(found is not None and found.is_relative_to(ROOT), f"Cannot resolve included source {include} in {path}")
+                if found in seen:
+                    continue
+                seen.add(found)
+                pending.append(found)
+                rel = relative(found)
+                _, record = reader.read(found, "source_snapshots/" + rel + ".txt")
+                require(record["mtime_ns"] <= cutoff, f"{tb}: include changed since compile: {rel}")
+                record["hash_time_basis"] = "collection-time included source, guarded by mtime"
+                source_records[rel] = record
+        staging = {}
+        groups = [("parameters", ROOT / "rom/member_a_d16_s8_m1_c16", "*_packed.mem", 19),
+                  ("input_image_banks", ROOT / "member_b_evidence/real_banks", "rom_bank_*.mem", 16)]
+        if tb in REF_PATTERNS:
+            groups.append(("golden", ROOT / "ref/_staged_mem", REF_PATTERNS[tb], REF_COUNTS[tb]))
+        for group, source_dir, pattern, count in groups:
+            sources = sorted(source_dir.glob(pattern))
+            require(len(sources) == count, f"{tb}: {group} source count is {len(sources)}, expected {count}")
+            rows = []
+            for source in sources:
+                _, record = reader.read(source)
+                require(record["mtime_ns"] <= cutoff, f"{tb}: ROM/Golden source changed since compilation: {source}")
+                copies = []
+                for staged in (work / source.name, work / "xsim.dir" / tb / source.name):
+                    _, staged_record = reader.read(staged)
+                    require(staged_record["sha256"] == record["sha256"], f"{tb}: staged {group} bytes differ: {staged}")
+                    require(staged_record["mtime_ns"] <= log_records["xsim.log"]["mtime_ns"],
+                            f"{tb}: staging changed after simulation finished: {staged}")
+                    copies.append(staged_record)
+                rows.append({"source": record, "staged_copies": copies})
+            staging[group] = {"count": count, "sha256_matches": True, "files": rows}
+        tests[tb] = {"work_directory": relative(work), "pass_line": passes[0],
+                     "logs": log_records, "source_list": list_record, "compile_defines_file": define_record,
+                     "compile_defines": defines, "source_paths": listed,
+                     "metrics": metrics_from_log(logs["xsim.log"], tb), "staging": staging}
+
+    provenance_inputs = {**source_records, relative(runner): runner_record}
+    for test in tests.values():
+        for group in test["staging"].values():
+            for row in group["files"]:
+                provenance_inputs[row["source"]["path"]] = row["source"]
+    supplied = None
+    if args.launch_manifest:
+        manifest_path = resolve_repo_path(args.launch_manifest)
+        data, manifest_record = reader.read(manifest_path, "launch_manifest.json.txt")
+        manifest = json.loads(text_bytes(data))
+        require(isinstance(manifest, list), "Launch manifest must be a list of path/sha256 records")
+        entries = {relative(resolve_repo_path(item["path"])): item for item in manifest}
+        require(len(entries) == len(manifest), "Duplicate paths in launch manifest")
+        matches = []
+        for rel, record in provenance_inputs.items():
+            if rel in entries:
+                require(entries[rel]["sha256"].lower() == record["sha256"], f"Launch manifest hash mismatch: {rel}")
+                matches.append(rel)
+        require(matches, "Launch manifest matches none of the simulated inputs")
+        precedence = {tb: manifest_record["mtime_ns"] <= test["source_list"]["mtime_ns"]
+                      for tb, test in tests.items()}
+        supplied = {"manifest": manifest_record, "matched_paths": sorted(matches),
+                    "not_covered": sorted(set(provenance_inputs) - set(matches)),
+                    "manifest_mtime_precedes_compile": precedence,
+                    "note": "Independent supplied snapshot matches these bytes. Its label is not proof it predates a simulation: inspect the explicit per-TB timestamp relation. Uncovered inputs retain the collection-time boundary."}
+    reader.check_stable()
+    reject_active(work_dirs, launch_pid)
+    summary = {"schema_version": 1, "status": "PASS", "variant": variant,
+               "collected_at_utc": datetime.now(timezone.utc).isoformat(), "repository": str(ROOT),
+               "sim_directory": relative(sim_dir), "selected_testbenches": args.tb,
+               "run_log": run_record, "actual_launch_command": command.group(1), "launch_pid": launch_pid,
+               "outer_session_start_local": start_match.group(1).strip(),
+               "runner": runner_record, "collector": collector_record,
+               "sources": [source_records[p] for p in sorted(source_records)],
+               "supplied_source_hashes": supplied, "testbenches": tests,
+               "provenance_boundary": "Exact collected RTL/TB/runner bytes are archived with raw/canonical SHA256. Source mtimes predate compile lists and paths match compiler logs. Without a supplied earlier manifest, these are not claimed to be launch-time hashes. Git HEAD is not used.",
+               "validation_boundary": "Simulation evidence only. Real-network and C isolation scopes are separate; no timing, board or multi-frame video deployment claim."}
+    if args.dry_run:
+        print(json.dumps({"status": "DRY_RUN_PASS", "variant": variant, "testbenches": args.tb,
+                          "source_count": len(source_records), "archive_files": len(reader.archive_bytes),
+                          "out": str(out)}, ensure_ascii=False, indent=2))
+        return
+    out.parent.mkdir(parents=True, exist_ok=True)
+    temporary = Path(tempfile.mkdtemp(prefix=".sim_evidence_incomplete_", dir=out.parent))
+    # Deliberately retain an incomplete directory on an I/O failure. Never
+    # recursively delete user paths or publish a partially copied PASS archive.
+    for name, data in reader.archive_bytes.items():
+        target = temporary / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
+        require(digest(target.read_bytes()) == digest(data), f"Archive byte verification failed: {name}")
+    reader.check_stable()
+    reject_active(work_dirs, launch_pid)
+    (temporary / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (temporary / "README.md").write_text(
+        f"# {variant} simulation evidence\n\nStatus: PASS for the explicitly selected tests below.\n\n"
+        + "\n".join(f"- `{tb}`: {tests[tb]['pass_line']}" for tb in args.tb)
+        + "\n\nRaw log files are copied byte-for-byte with `.log.txt` names. "
+          "Exact collected RTL/TB/runner text is under `source_snapshots/`. "
+          "The summary records raw/canonical hashes, compiler paths, staging checks and counter scope. "
+          "Hashes are collected now and guarded by file timestamps; see `provenance_boundary` and the supplied manifest's timestamp relation. "
+          "No Git commit is substituted for uncommitted source identity. "
+          "Simulation PASS does not establish timing closure or board validation.\n", encoding="utf-8")
+    require(not out.exists(), f"Output appeared during collection; incomplete archive retained at {temporary}")
+    temporary.rename(out)
+    print(f"SIM_EVIDENCE_PASS variant={variant} tests={len(tests)} sources={len(source_records)} out={out}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--variant", required=True, choices=("v1", "v2", "srl", "v2-srl", "v3", "v3-srl"))
+    parser.add_argument("--sim-dir", required=True)
+    parser.add_argument("--run-log", required=True, help="Completed outer Vivado log for this exact batch")
+    parser.add_argument("--tb", required=True, nargs="+")
+    parser.add_argument("--out", required=True, help="New repository-local archive directory; never overwritten")
+    parser.add_argument("--runner", help="Expected runner; default is selected from --variant")
+    parser.add_argument("--launch-manifest", help="Optional independent path/sha256 JSON list; coverage and per-TB timestamp relation are recorded")
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+    try:
+        collect(args)
+    except (EvidenceError, OSError, ValueError, subprocess.SubprocessError) as exc:
+        print(f"SIM_EVIDENCE_REFUSED: {exc}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

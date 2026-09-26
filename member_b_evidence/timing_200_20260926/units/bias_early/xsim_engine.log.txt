@@ -1,0 +1,36 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 19:19:44 2026
+# Process ID         : 22540
+# Current directory  : V:/experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xsim_engine.log -mode tcl -source {xsim.dir/tb_bias_early/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 48379 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_bias_early/xsim_script.tcl
+# xsim {tb_bias_early} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+BIAS_EARLY_CONFIG_PASS id=5 CIN=16 COUT=4 IN_PAR=2 OUT_PAR=4 cycles=2083 phases=1363 complete=169 consumed=167 clip_hi=142 clip_lo=124 exact_hi=44 exact_lo=44 in_stalls=310 out_stalls=526 holds=525 reset_nonempty=1 reset_midphase=4 consecutive=8 recovered=124
+BIAS_EARLY_CONFIG_PASS id=4 CIN=8 COUT=16 IN_PAR=1 OUT_PAR=16 cycles=2083 phases=1343 complete=166 consumed=163 clip_hi=560 clip_lo=455 exact_hi=88 exact_lo=88 in_stalls=302 out_stalls=563 holds=561 reset_nonempty=2 reset_midphase=5 consecutive=6 recovered=408
+BIAS_EARLY_CONFIG_PASS id=3 CIN=8 COUT=8 IN_PAR=1 OUT_PAR=8 cycles=2089 phases=1342 complete=165 consumed=163 clip_hi=277 clip_lo=215 exact_hi=43 exact_lo=43 in_stalls=299 out_stalls=554 holds=553 reset_nonempty=1 reset_midphase=5 consecutive=8 recovered=194
+BIAS_EARLY_CONFIG_PASS id=2 CIN=16 COUT=8 IN_PAR=2 OUT_PAR=8 cycles=2090 phases=1394 complete=173 consumed=169 clip_hi=291 clip_lo=236 exact_hi=47 exact_lo=46 in_stalls=277 out_stalls=518 holds=516 reset_nonempty=3 reset_midphase=4 consecutive=7 recovered=209
+BIAS_EARLY_CONFIG_PASS id=1 CIN=1 COUT=16 IN_PAR=1 OUT_PAR=2 cycles=2090 phases=1354 complete=167 consumed=164 clip_hi=425 clip_lo=275 exact_hi=86 exact_lo=86 in_stalls=311 out_stalls=560 holds=558 reset_nonempty=2 reset_midphase=5 consecutive=8 recovered=0
+BIAS_EARLY_ALL_FIVE_CONFIGS_PASS
+$finish called at time : 20906 ns : File "V:/experiments/timing_200_20260926/bias_early/tb_bias_early.sv" Line 316
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:19:46 2026...

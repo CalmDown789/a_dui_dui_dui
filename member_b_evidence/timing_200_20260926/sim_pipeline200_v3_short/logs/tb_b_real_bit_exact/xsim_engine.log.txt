@@ -1,0 +1,81 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 20:07:51 2026
+# Process ID         : 21108
+# Current directory  : V:/_sim_l5_member_b_acc36_pipeline200_v3/tb_b_real_bit_exact
+# Command line       : xsim.exe -log V://_sim_l5_member_b_acc36_pipeline200_v3/tb_b_real_bit_exact/xsim_engine.log -mode tcl -source {xsim.dir/tb_b_real_bit_exact/xsim_script.tcl}
+# Log file           : V://_sim_l5_member_b_acc36_pipeline200_v3/tb_b_real_bit_exact/xsim_engine.log
+# Journal file       : V:/_sim_l5_member_b_acc36_pipeline200_v3/tb_b_real_bit_exact\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 28140 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_b_real_bit_exact/xsim_script.tcl
+# xsim {tb_b_real_bit_exact} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+  dump files opened: 1 (dump_on=1)
+  geometry: IMG 96x54 -> OUT 192x108   N_IN=5184 N_OUT=20736  STRIPE_H=64
+  --- case 0 : impulse ---
+      first bytes: out[0] got=04 exp=04    ok
+      first bytes: out[1] got=02 exp=02    ok
+      first bytes: out[2] got=02 exp=02    ok
+      first bytes: out[3] got=03 exp=03    ok
+      first bytes: out[4] got=02 exp=02    ok
+      first bytes: out[5] got=02 exp=02    ok
+      first bytes: out[6] got=01 exp=01    ok
+      first bytes: out[7] got=02 exp=02    ok
+      fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873
+      -> case impulse : BIT-EXACT OK
+  --- case 1 : ramp ---
+      first bytes: out[0] got=04 exp=04    ok
+      first bytes: out[1] got=02 exp=02    ok
+      first bytes: out[2] got=04 exp=04    ok
+      first bytes: out[3] got=06 exp=06    ok
+      first bytes: out[4] got=06 exp=06    ok
+      first bytes: out[5] got=07 exp=07    ok
+      first bytes: out[6] got=09 exp=09    ok
+      first bytes: out[7] got=0a exp=0a    ok
+      fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6871
+      -> case ramp : BIT-EXACT OK
+  --- case 2 : random ---
+      first bytes: out[0] got=bb exp=bb    ok
+      first bytes: out[1] got=ca exp=ca    ok
+      first bytes: out[2] got=cb exp=cb    ok
+      first bytes: out[3] got=f6 exp=f6    ok
+      first bytes: out[4] got=ff exp=ff    ok
+      first bytes: out[5] got=cc exp=cc    ok
+      first bytes: out[6] got=12 exp=12    ok
+      first bytes: out[7] got=00 exp=00    ok
+      fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6871
+      -> case random : BIT-EXACT OK
+  --- case 3 : zero ---
+      first bytes: out[0] got=04 exp=04    ok
+      first bytes: out[1] got=02 exp=02    ok
+      first bytes: out[2] got=02 exp=02    ok
+      first bytes: out[3] got=03 exp=03    ok
+      first bytes: out[4] got=02 exp=02    ok
+      first bytes: out[5] got=02 exp=02    ok
+      first bytes: out[6] got=01 exp=01    ok
+      first bytes: out[7] got=02 exp=02    ok
+      fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6875
+      -> case zero : BIT-EXACT OK
+  total cycles = 222566
+  96x54 cases: 4/4 bit-exact PASS, 0 FAIL, err_cnt=0
+RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)
+$finish called at time : 1113050 ns : File "V:/tb/tb_b_real_bit_exact.v" Line 323
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:02:16 . Memory (MB): peak = 222.801 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 20792 KB (Peak: 20792 KB), Simulation CPU Usage: 134233 ms
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:10:09 2026...

@@ -1,0 +1,34 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: C-B v0.2 named integration adapter.
+// C's b_core_if must pass IMG_W, IMG_H and STRIPE_H as parameters when
+// compiling its reduced-size testbenches. Defaults match the full frame.
+module b_core_real #(
+    parameter integer IMG_W=960,
+    parameter integer IMG_H=540,
+    parameter integer STRIPE_H=64
+)(
+    input  wire       clk_200,
+    input  wire       rst_n,
+    input  wire       start,
+    output wire       busy,
+    output wire       done,
+    input  wire       in_valid,
+    output wire       in_ready,
+    input  wire [7:0] in_data,
+    output wire       out_valid,
+    output wire [7:0] out_data,
+    input  wire       out_ready,
+    output wire       stripe_last,
+    output wire       frame_last
+);
+    fsrcnn_network_mem_top #(
+        .IMG_W(IMG_W),.IMG_H(IMG_H),.STRIPE_ROWS(STRIPE_H)
+    ) core (
+        .clk_200(clk_200),.rst_n(rst_n),.start(start),
+        .busy(busy),.done(done),
+        .in_valid(in_valid),.in_ready(in_ready),.in_data(in_data),
+        .out_valid(out_valid),.out_ready(out_ready),.out_data(out_data),
+        .stripe_last(stripe_last),.frame_last(frame_last)
+    );
+endmodule

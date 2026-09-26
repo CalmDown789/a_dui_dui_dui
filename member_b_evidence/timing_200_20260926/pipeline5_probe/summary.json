@@ -1,0 +1,16 @@
+{
+  "candidate": "pipeline5_probe",
+  "implementation": "NOT RUN",
+  "status": "SYNTHESIS_ONLY_PReLU_IMPROVED_Q31_REMAINS",
+  "WNS_synthesis_ns": 0.016,
+  "TNS_synthesis_ns": 0,
+  "resources": {
+    "LUT": 29862,
+    "FF": 49380,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 396
+  },
+  "launch_input_hashes_unchanged": true,
+  "reason": "L1-L4 PReLU now uses twelve independent DSPs with MREG=PREG=1. Worst path moved to unchanged Q31 PCOUT/PCIN cascade. Proceeding to a combined partial-product candidate rather than a long V5 implementation."
+}

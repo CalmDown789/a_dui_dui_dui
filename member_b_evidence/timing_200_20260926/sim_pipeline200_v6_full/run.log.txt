@@ -1,0 +1,502 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 20:38:36 2026
+# Process ID         : 21080
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/experiments/timing_200_20260926/sim_pipeline200_v6_full.log -source V:/experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl -tclargs tb_b_real_full tb_ready_valid tb_c_top
+# Log file           : V:/experiments/timing_200_20260926/sim_pipeline200_v6_full.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 31661 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20260926/run_sim_pipeline200_v6.tcl
+# set script_dir [file normalize [file dirname [info script]]]
+# set root_dir   [file normalize "$script_dir/../.."]
+# set member_b_overlay_dir "$root_dir/experiments/l5_splitmem_20260924"
+# set rtl_dir    "$root_dir/rtl"
+# set tb_dir     "$root_dir/tb"
+# set sim_root   "$root_dir/_sim_l5_member_b_acc36_pipeline200_v6"
+# set pipeline_tag "pipeline200_v6"
+# set pipeline_fifo_file "$member_b_overlay_dir/rtl/b/elastic_fifo.sv"
+# if {[info exists argv] && [lsearch -exact $argv srl] >= 0} {
+#     append sim_root "_srl"
+#     append pipeline_tag "_srl"
+#     set pipeline_fifo_file "$script_dir/fifo_srl/elastic_fifo.sv"
+# }
+# set rom_dir    "$root_dir/rom/member_a_d16_s8_m1_c16"
+# set ref_stage  "$root_dir/ref/_staged_mem"
+# proc stage_b_roms {work tb romdir} {
+#     if {![file isdirectory $romdir]} {
+#         puts "  !! B ROM dir not found: $romdir"
+#         return 0
+#     }
+#     set mems [glob -nocomplain -types f -directory $romdir *_packed.mem]
+#     set n [llength $mems]
+#     if {$n == 0} { puts "  !! no *_packed.mem under $romdir"; return 0 }
+#     foreach s $mems { file copy -force $s "$work/[file tail $s]" }
+#     set snap "$work/xsim.dir/$tb"
+#     if {[file isdirectory $snap]} {
+#         foreach s $mems { file copy -force $s "$snap/[file tail $s]" }
+#     }
+#     puts "  staged B param ROMs: $n mem  ->  $work  (+ xsim.dir/$tb)"
+#     return $n
+# }
+# proc stage_ref_data {work tb refdir pattern} {
+#     if {![file isdirectory $refdir]} {
+#         puts "  !! ref stage dir not found: $refdir"
+#         puts "     (run: python scripts/prepare_ref_data.py)"
+#         return 0
+#     }
+#     set files [glob -nocomplain -types f -directory $refdir $pattern]
+#     if {[llength $files] == 0} {
+#         puts "  !! no ref file matches '$pattern' under $refdir"
+#         return 0
+#     }
+#     foreach s $files { file copy -force $s "$work/[file tail $s]" }
+#     set snap "$work/xsim.dir/$tb"
+#     if {[file isdirectory $snap]} {
+#         foreach s $files { file copy -force $s "$snap/[file tail $s]" }
+#     }
+#     puts "  staged ref data: [llength $files] file(s) matching '$pattern'  ->  $work"
+#     return [llength $files]
+# }
+# proc patch_xsim_dlls {work} {
+#     set viv ""
+#     if {[info exists ::env(XILINX_VIVADO)]} { set viv $::env(XILINX_VIVADO) }
+#     if {$viv eq "" || ![file isdirectory $viv]} { error "Invalid XILINX_VIVADO environment" }
+# 
+#     set libdir "$viv/lib/win64.o"
+#     set tpdir  "$viv/tps/win64"
+#     if {![file isdirectory $libdir]} {
+#         puts "  !! $libdir not found -- cannot stage the xsim runtime"
+#         return 0
+#     }
+# 
+#     # named: the direct import of xsimk.exe + the Xilinx libs it pulls in
+#     set named {xv_simulator_kernel.dll librdi_simulator_kernel.dll librdizlib.dll tcl85t.dll tcl86t.dll}
+#     # families: boost + the MSVC runtime (globbed so a minor version bump survives)
+#     set pats [list "$libdir/*boost*.dll" \
+#                    "$tpdir/MSVCP140*.dll" \
+#                    "$tpdir/VCRUNTIME140*.dll"]
+# 
+#     set n 0
+#     foreach exe [glob -nocomplain -types f -directory "$work/xsim.dir" */xsimk.exe] {
+#         set c [file dirname $exe]
+#         set nf 0
+#         foreach d $named {
+#             if {[file exists "$libdir/$d"]} {
+#                 catch {file copy -force "$libdir/$d" "$c/$d"}
+#                 incr nf
+#             } else {
+#                 puts "  !! expected runtime missing: $libdir/$d"
+#             }
+#         }
+#         foreach p $pats {
+#             foreach s [glob -nocomplain -types f $p] {
+#                 catch {file copy -force $s "$c/[file tail $s]"}
+#                 incr nf
+#             }
+#         }
+#         puts "  staged xsim runtime: [file tail $c]  ($nf dlls)"
+#         incr n
+#     }
+#     if {$n == 0} { puts "  !! no xsimk.exe under $work/xsim.dir -- nothing staged" }
+#     return $n
+# }
+# set bin_dir [file normalize "$::env(XILINX_VIVADO)/bin"]
+# if {![file exists "$bin_dir/xvlog.bat"]} {
+#     error "No xvlog.bat under the selected Vivado environment: $bin_dir"
+# }
+# set rtl_files [list \
+#     "$rtl_dir/c_config.vh"     \
+#     "$member_b_overlay_dir/rtl/c/input_rom.v"     \
+#     "$member_b_overlay_dir/rtl/c/input_stream.v"  \
+#     "$script_dir/stripe_banked/stripe_buffer.v" \
+#     "$script_dir/stripe_pipe/pingpong_buffer.v"\
+#     "$rtl_dir/output_stream.v" \
+#     "$rtl_dir/uart_tx.v"       \
+#     "$rtl_dir/readback_ctrl.v" \
+#     "$rtl_dir/c_ctrl.v"        \
+#     "$rtl_dir/b_core_stub.v"   \
+#     "$rtl_dir/b_core_if.v"     \
+#     "$member_b_overlay_dir/rtl/c/c_core.v"        \
+#     "$rtl_dir/c_top.v"         \
+#     "$rtl_dir/c_synth_top.v"   \
+#     "$rtl_dir/c_protocol_assertions.v" \
+# ]
+# set b_real_dir "$rtl_dir/b_real_ae29515"
+# set b_patch_dir "$rtl_dir/b_real_c_patch"
+# set b_real_files [list \
+#     "$member_b_overlay_dir/rtl/b/fsrcnn_network_core.sv"          \
+#     "$b_real_dir/stream/fsrcnn_network_mem_top.sv"       \
+#     "$b_real_dir/stream/b_core_real.sv"                  \
+#     "$member_b_overlay_dir/rtl/b/fsrcnn_stream_layer.sv"          \
+#     "$b_real_dir/stream/window_stream_frontend.sv"       \
+#     "$b_real_dir/stream/window_kminus1_bram.sv"          \
+#     "$b_real_dir/stream/same_pad_raster.sv"              \
+#     $pipeline_fifo_file                 \
+#     "$script_dir/mac_buffer_l3l5/mac_issue_stage.sv"              \
+#     "$member_b_overlay_dir/rtl/b/phase_mac_pipeline.sv"                 \
+#     "$script_dir/bias_early/phase_accumulator_36.sv"                  \
+#     "$b_real_dir/stream/eight_phase_issue.sv"            \
+#     "$b_real_dir/stream/pixel_shuffle2x_row_banks.sv"    \
+#     "$script_dir/post_partial32/vector_postprocess_shared.sv"          \
+#     "$script_dir/post_partial32/prelu_requantize.sv"                   \
+# ]
+# set b_legacy_dir "$rtl_dir/b_real/rtl"
+# set b_legacy_files [list \
+#     "$b_legacy_dir/compute/dsp_signed_mult.v"        \
+#     "$b_legacy_dir/compute/dsp_u8s8_mult.v"          \
+#     "$b_legacy_dir/compute/dot9_pipeline.v"          \
+#     "$b_legacy_dir/compute/dot25_pipeline.v"         \
+#     "$b_legacy_dir/compute/dot25_u8s8_pipeline.v"    \
+#     "$b_legacy_dir/compute/channel_accumulator.v"    \
+#     "$b_legacy_dir/compute/conv1x1_backend.v"        \
+#     "$b_legacy_dir/compute/conv3x3_backend.v"        \
+#     "$b_legacy_dir/compute/conv5x5_backend.v"        \
+#     "$b_legacy_dir/compute/conv5x5_u8s8_backend.v"   \
+#     "$b_legacy_dir/window/window3x3_stream.v"        \
+#     "$b_legacy_dir/window/window3x3_bram.v"          \
+#     "$b_legacy_dir/window/window5x5_stream.v"        \
+#     "$b_legacy_dir/window/window5x5_bram.v"          \
+#     "$b_legacy_dir/memory/sync_parameter_rom.sv"     \
+#     "$b_legacy_dir/postprocess/pixel_shuffle2x_coord_map.v" \
+#     "$b_legacy_dir/postprocess/prelu_requantize.sv"  \
+# ]
+# set real_b_tbs [list tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full]
+# set real_b_xelab_opt "o0"
+# if {[info exists ::env(C_REAL_B_XELAB_OPT)]} {
+#     set real_b_xelab_opt [string tolower [string trim $::env(C_REAL_B_XELAB_OPT)]]
+# }
+# if {[lsearch -exact [list o0 default] $real_b_xelab_opt] < 0} {
+#     error "invalid C_REAL_B_XELAB_OPT='$real_b_xelab_opt' (use o0 or default)"
+# }
+# puts "real-B xelab optimization: $real_b_xelab_opt"
+real-B xelab optimization: o0
+# set legacy_b_tbs [list tb_b_real_primitives]
+# set ref_pats [dict create \
+#     tb_b_real_backpressure "tv_random_*.mem" \
+#     tb_b_real_bit_exact "tv_*.mem"  \
+#     tb_b_real_full       "full_*.mem" \
+# ]
+# set all_tbs [list tb_stripe_buffer tb_backpressure_rand tb_ready_valid tb_c_top \
+#                   tb_b_real_primitives \
+#                   tb_b_real_smoke tb_b_real_backpressure tb_b_real_bit_exact tb_b_real_full]
+# set sel_tbs [list]
+# if {[info exists argv]} {
+#     foreach a $argv {
+#         if {[string match "tb_*" $a]} { lappend sel_tbs $a }
+#     }
+# }
+# if {[llength $sel_tbs] > 0} { set all_tbs $sel_tbs }
+# foreach f $b_real_files {
+#     if {![file exists $f]} {
+#         error "missing B real RTL: $f (see rtl/b_real_ae29515/PROVENANCE.md)"
+#     }
+# }
+# foreach f $b_legacy_files {
+#     if {![file exists $f]} { error "missing B legacy RTL: $f (see rtl/b_real/PROVENANCE.md)" }
+# }
+# set b_rom_files [glob -nocomplain -types f -directory $rom_dir *_packed.mem]
+# if {[llength $b_rom_files] != 19} {
+#     error "expected 19 *_packed.mem under $rom_dir, found [llength $b_rom_files]"
+# }
+# foreach tb $all_tbs {
+#     if {[lsearch -exact $real_b_tbs $tb] >= 0 && [lsearch -exact $legacy_b_tbs $tb] >= 0} {
+#         error "$tb is listed in both real_b_tbs and legacy_b_tbs -- prelu_requantize would clash"
+#     }
+# }
+# set fail_list [list]
+# foreach tb $all_tbs {
+#     set work "$sim_root/$tb"
+#     file mkdir $work
+#     # �? 必须 cd 到本 TB 的工作目录再�? xelab/xsim�?
+#     #   xelab �? `-s <snapshot>` �? xsim �? `xsim.dir/<snapshot>/` 都是**相�?? CWD** 解析的�?
+#     #   若从仓库外启务� vivado（例�? cwd = 上级�?录），xsim 找不到快照目录，
+#     #   会报 `Simulation engine failed to start: status code -1073741515`
+#     #   �?0xC0000135 = STATUS_DLL_NOT_FOUND）——看着像缺 DLL，其实是找错�?录�?
+#     #   �?脚本其余�?径全部是绝�?�路径，�? cd 不影响它�?�?
+#     cd $work
+#     puts "================================================================"
+#     puts " RUN $tb   (work dir: $work)"
+#     puts "================================================================"
+# 
+#     set ok 1
+# 
+#     # 每个 TB �? B 侧编译集合：默�?�� = 正式五层�?包；legacy �?�? primitives TB
+#     set bfiles $b_real_files
+#     set bkind  "REAL V6 (PReLU/Q31 partial products, early bias, L3/L5 buffer, banked stripe)"
+#     if {[lsearch -exact $legacy_b_tbs $tb] >= 0} {
+#         set bfiles $b_legacy_files
+#         set bkind  "LEGACY(rtl/b_real/rtl 17 primitives -- NOT the formal path)"
+#     }
+#     # `-d C_USE_B_REAL` �?加在正式接入 TB 上（其余仍走 b_core_stub 隔�?�回归）
+#     set cdefs [list -d C_SIM]
+#     if {[lsearch -exact $real_b_tbs $tb] >= 0} { lappend cdefs -d C_USE_B_REAL }
+#     puts "  B compile set : $bkind  ([llength $bfiles] files)"
+#     puts "  defines       : $cdefs"
+#     set sf [open "$work/source_files.txt" w]
+#     foreach f [concat $bfiles $rtl_files [list "$tb_dir/$tb.v"]] {puts $sf $f}
+#     close $sf
+#     set df [open "$work/compile_defines.txt" w]
+#     puts $df $cdefs
+#     close $df
+# 
+#     #--- 1a. compile B RTL（SystemVerilog 能力开�?�? ----------------------
+#     set cmd0 [list "$bin_dir/xvlog.bat" --include $rtl_dir --nolog --work worklib]
+#     foreach d $cdefs { lappend cmd0 $d }
+#     lappend cmd0 -sv
+#     foreach f $bfiles { lappend cmd0 $f }
+#     if {[catch {eval exec $cmd0 > "$work/xvlog_b_real.log"} err]} {
+#         set ok 0; puts "xvlog(B real) FAILED: $err"
+#     }
+# 
+#     #--- 1b. compile C 価� RTL + TB（Verilog-2001�? ------------------------
+#     if {$ok} {
+#         set cmd [list "$bin_dir/xvlog.bat" --include $rtl_dir --nolog --work worklib]
+#         foreach d $cdefs { lappend cmd $d }
+#         foreach f $rtl_files { lappend cmd $f }
+#         lappend cmd "$tb_dir/$tb.v"
+#         if {[catch {eval exec $cmd > "$work/xvlog.log"} err]} { set ok 0; puts "xvlog FAILED: $err" }
+#     }
+# 
+#     #--- 2. elaborate ----------------------------------------------------
+#     if {$ok} {
+#         set xelab_cmd [list "$bin_dir/xelab.bat" "worklib.$tb" --nolog]
+#         if {[lsearch -exact $real_b_tbs $tb] >= 0 && $real_b_xelab_opt eq "o0"} {
+#             lappend xelab_cmd -O0
+#         }
+#         lappend xelab_cmd -s $tb
+#         if {[catch {eval exec $xelab_cmd > "$work/xelab.log"} err]} {
+#             set ok 0; puts "xelab FAILED: $err"
+#         }
+#     }
+# 
+#     #--- 2b. patch xsim runtime DLLs (MUST be after xelab) ----------------
+#     #   xelab rebuilds $work/xsim.dir/<tb>/ and wipes DLLs copied in on a
+#     #   previous run, so re-patch every time. Without this the engine fails
+#     #   to start with -1073741515 (STATUS_DLL_NOT_FOUND).
+#     if {$ok} { patch_xsim_dlls $work }
+# 
+#     #--- 2c. stage B parameter ROMs（裸文件�? $readmemh �? 进程 CWD�? -----
+#     #   必须圡� xelab 之后：xelab 会重�? xsim.dir/<tb>/（同 2b 的理由）�?
+#     if {$ok && [stage_b_roms $work $tb $rom_dir] != 19} {
+#         set ok 0; puts "missing staged parameter ROMs: $tb"
+#     }
+#     if {$ok} {
+#         set real_banks [glob -nocomplain -types f -directory "$root_dir/member_b_evidence/real_banks" rom_bank_*.mem]
+#         if {[llength $real_banks] != 16} { error "missing 16 real A image ROM banks" }
+#         foreach f $real_banks {
+#             file copy -force $f "$work/[file tail $f]"
+#             file copy -force $f "$work/xsim.dir/$tb/[file tail $f]"
+#         }
+#         puts "  staged real A input ROM banks: 16"
+#     }
+# 
+#     #--- 2d. stage 验收参考数�?（Golden / 96x54 用例�? -------------------
+#     if {$ok && [dict exists $ref_pats $tb]} {
+#         if {[stage_ref_data $work $tb $ref_stage [dict get $ref_pats $tb]] == 0} {
+#             set ok 0; puts "missing staged Golden data: $tb"
+#         }
+#     }
+# 
+#     #--- 3. simulate�?**无波�?**；超时兜底） ------------------------------
+#     if {$ok} {
+#         # 外层超时 900 s 兜底（TB 内部还有 cycle 级硬 timeout�?
+#         #
+#         # �? 重试：xsim 偶发 `Simulation engine failed to start: status code
+#         #   -1073741515`�?0xC0000135 = STATUS_DLL_NOT_FOUND）�?
+#         #   �? 2026-09-23 已定�?**真因**（�?�前�?记为「杀�?�?�? / 上一�?残留」）�?
+#         #     xsimk.exe �?导入 KERNEL32 / msvcrt / **librdi_simulator_kernel.dll**�?
+#         #     缺的正是最后这�? Vivado 库（<XILINX_VIVADO>/lib/win64.o/），
+#         #     它的最小闭包共 **13 �? DLL / 7.9 MB**（含 libboost* �? MSVC 运�?�库）�?
+#         #     这些 DLL **�?不在 PATH、也不会�? xsim.bat 放到�?照目录旁**�?
+#         #     **�? xelab 每�?�都重建�?照目�?**，故上一�?放进去的会�??一并清掉�?
+#         #     �? 已在 elaborate 之后调用 `patch_xsim_dlls`（��上�? proc）逐�?�补齐�?
+#         #       实测：补�? -1073741515，补�? RESULT: PASS；只往 PATH 里加�?�?**无效**�?
+#         #       �? MinGW �? 8 �?运�?�库**不在**该闭包内（�?�前说法有�??）�?
+#         #     �?重试链保留作兜底（��部�?描窗口等仍可能抖务�）。退�? 5/15/30 s，共 4 次�?
+#         #     注意：它**不是** -1073741515 的解 —�? 那个错�??靠上面的 DLL 补位解决�?
+#         #     �? DLL 时重�? 4 次同样全败（实测）�?
+#         set simok 0
+#         set backoff {5 15 30}
+#         for {set attempt 1} {$attempt <= 4} {incr attempt} {
+#             if {[catch {exec "$bin_dir/xsim.bat" $tb -runall -log "$work/xsim_engine.log" > "$work/xsim.log" 2>@1} err]} {
+#                 puts "  xsim attempt $attempt FAILED: $err"
+#                 if {$attempt <= 3} {
+#                     set d [lindex $backoff [expr {$attempt - 1}]]
+#                     puts "    (退�? ${d}s 后重�?)"
+#                     catch {after [expr {$d * 1000}]}
+#                 }
+#             } else {
+#                 set simok 1
+#                 break
+#             }
+#         }
+#         if {!$simok} { set ok 0; puts "xsim FAILED after 4 attempts" }
+#     }
+# 
+#     #--- 4. 判定 ---------------------------------------------------------
+#     set pass 0
+#     if {$ok && [file exists "$work/xsim.log"]} {
+#         set fh [open "$work/xsim.log" r]; set c [read $fh]; close $fh
+#         if {[string match "*RESULT: PASS*" $c]} { set pass 1 }
+#         if {[regexp {RESULT: (\w+)} $c -> r]} { puts "  -> RESULT: $r" }
+#         # ⚠️ 方括号必须转义：Tcl 会在双引号串内做命令替换�?
+#         #    裸写 [FAIL] 会去执�?�名�? FAIL 的命仡� �? invalid command name "FAIL"
+#         set nfail [regexp -all {\[FAIL\]} $c]
+#         if {$nfail > 0} { set pass 0; puts "  -> $nfail �? FAIL" }
+#         if {[regexp -nocase {fatal:|error:|RESULT: FAIL} $c]} {set pass 0}
+#         if {[file exists "$work/xsim_engine.log"]} {
+#             set fh [open "$work/xsim_engine.log" r]
+#             set engine_text [read $fh]
+#             close $fh
+#             if {[regexp -nocase {fatal:|error:|RESULT: FAIL} $engine_text]} {set pass 0}
+#         }
+#     }
+# 
+#     if {$pass} {
+#         puts "  $tb : PASS"
+#     } else {
+#         puts "  $tb : FAIL  (see $work/xsim.log)"
+#         lappend fail_list $tb
+#     }
+# }
+================================================================
+ RUN tb_b_real_full   (work dir: V://_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_full)
+================================================================
+  B compile set : REAL V6 (PReLU/Q31 partial products, early bias, L3/L5 buffer, banked stripe)  (15 files)
+  defines       : -d C_SIM -d C_USE_B_REAL
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/librdi_simulator_kernel.dll
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/tcl85t.dll
+  staged xsim runtime: tb_b_real_full  (24 dlls)
+  staged B param ROMs: 19 mem  ->  V://_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_full  (+ xsim.dir/tb_b_real_full)
+  staged real A input ROM banks: 16
+  staged ref data: 2 file(s) matching 'full_*.mem'  ->  V://_sim_l5_member_b_acc36_pipeline200_v6/tb_b_real_full
+  -> RESULT: PASS
+  tb_b_real_full : PASS
+================================================================
+ RUN tb_ready_valid   (work dir: V://_sim_l5_member_b_acc36_pipeline200_v6/tb_ready_valid)
+================================================================
+  B compile set : REAL V6 (PReLU/Q31 partial products, early bias, L3/L5 buffer, banked stripe)  (15 files)
+  defines       : -d C_SIM
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/librdi_simulator_kernel.dll
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/tcl85t.dll
+  staged xsim runtime: tb_ready_valid  (24 dlls)
+  staged B param ROMs: 19 mem  ->  V://_sim_l5_member_b_acc36_pipeline200_v6/tb_ready_valid  (+ xsim.dir/tb_ready_valid)
+  staged real A input ROM banks: 16
+  -> RESULT: PASS
+  tb_ready_valid : PASS
+================================================================
+ RUN tb_c_top   (work dir: V://_sim_l5_member_b_acc36_pipeline200_v6/tb_c_top)
+================================================================
+  B compile set : REAL V6 (PReLU/Q31 partial products, early bias, L3/L5 buffer, banked stripe)  (15 files)
+  defines       : -d C_SIM
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/librdi_simulator_kernel.dll
+  !! expected runtime missing: F:/Xilinx/2025.2/Vivado/lib/win64.o/tcl85t.dll
+  staged xsim runtime: tb_c_top  (24 dlls)
+  staged B param ROMs: 19 mem  ->  V://_sim_l5_member_b_acc36_pipeline200_v6/tb_c_top  (+ xsim.dir/tb_c_top)
+  staged real A input ROM banks: 16
+  -> RESULT: PASS
+  tb_c_top : PASS
+# puts ""
+
+# puts "================================================================"
+================================================================
+# if {[llength $fail_list] == 0} {
+#     puts " ALL sims PASS : $all_tbs"
+# } else {
+#     puts " FAILED : $fail_list"
+# }
+ ALL sims PASS : tb_b_real_full tb_ready_valid tb_c_top
+# puts " 日志�?�?: $sim_root/<tb>/"
+ 日志�?�?: V://_sim_l5_member_b_acc36_pipeline200_v6/<tb>/
+# puts "================================================================"
+================================================================
+# set git_sha "n/a"
+# if {![catch {exec git rev-parse HEAD} gs]} { set git_sha [string trim $gs] }
+# set local_mod "n/a"
+# if {![catch {exec git status --porcelain} lm]} {
+#     set lm [string trim $lm]
+#     if {$lm eq ""} {
+#         set local_mod "CLEAN"
+#     } else {
+#         set local_mod "DIRTY: [string map [list "\n" " "] $lm]"
+#     }
+# }
+# set npass [expr {[llength $all_tbs] - [llength $fail_list]}]
+# set rf [open "$root_dir/report/sim_result_l5_member_b_acc36_${pipeline_tag}.txt" w]
+# puts $rf "=============================================="
+# puts $rf " C-side RTL - SIMULATION result (xsim)"
+# puts $rf "=============================================="
+# puts $rf " 1  Vivado version     : [version -short]"
+# puts $rf " 2  testbenches run    : [llength $all_tbs]"
+# puts $rf " 3  pass / fail        : $npass / [llength $fail_list]"
+# puts $rf " 4  git commit SHA     : $git_sha"
+# puts $rf " 5  generated at       : [clock format [clock seconds] -format {%Y-%m-%d %H:%M:%S}] (local)"
+# puts $rf " 6  uncommitted change : $local_mod"
+# puts $rf " 7  B formal path      : $pipeline_tag; see each TB source_files.txt"
+# puts $rf " 8  B legacy path      : rtl/b_real/rtl (17 primitives, regression only)"
+# puts $rf " 9  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem)"
+# puts $rf "10  real-B xelab mode : $real_b_xelab_opt"
+# puts $rf "11  candidate        : V6 mac_buffer_l3l5 + post_partial32 + stripe_banked"
+# puts $rf "----------------------------------------------"
+# foreach tb $all_tbs {
+#     if {[lsearch -exact $fail_list $tb] >= 0} {
+#         set st "FAIL"
+#     } else {
+#         set st "PASS"
+#     }
+#     if {[lsearch -exact $legacy_b_tbs $tb] >= 0} {
+#         set bk "B=legacy-17-primitives (NOT formal)"
+#     } elseif {[lsearch -exact $real_b_tbs $tb] >= 0} {
+#         set bk "B=b_core_real@ae29515  via b_core_if + C_USE_B_REAL"
+#     } else {
+#         set bk "B=closure compiled; C datapath = b_core_stub"
+#     }
+#     puts $rf "   [format %-24s $tb] : $st   ($bk)"
+# }
+# puts $rf "----------------------------------------------"
+# puts $rf " raw logs : $sim_root/<tb>/xsim.log  (gitignored, regenerable)"
+# puts $rf "=============================================="
+# puts $rf " NOTE 1: simulation only -- NOT synthesis, NOT implementation."
+# puts $rf " NOTE 2: do NOT run run_sim.tcl concurrently with synthesis/impl --"
+# puts $rf "         POLICY ONLY (CPU/disk/log contention).  RETRACTED: the earlier"
+# puts $rf "         'concurrency causes the -1073741515 failure' reading was wrong;"
+# puts $rf "         see NOTE 3.  Not re-tested since the DLL staging was added."
+# puts $rf " NOTE 3: the 0xC0000135 / -1073741515 engine-start failure is NOT"
+# puts $rf "         concurrency: it is the xsim runtime DLL closure being absent."
+# puts $rf "         This script stages it next to xsimk.exe after each xelab;"
+# puts $rf "         the set and the evidence are in the header of run_sim.tcl."
+# puts $rf " NOTE 4: ONLY the rows tagged C_USE_B_REAL exercise member B's real"
+# puts $rf "         five-layer network. Rows tagged 'b_core_stub' are interface /"
+# puts $rf "         isolation regressions: their output is NOT FSRCNN and must"
+# puts $rf "         never be quoted as an image-quality result."
+# puts $rf " NOTE 5: any PASS of member B's OWN XSim run is B's evidence, NOT this"
+# puts $rf "         file's. sim PASS here says nothing about synthesis/implementation."
+# puts $rf "=============================================="
+# close $rf
+# if {[llength $all_tbs] == 1} {
+#     set one_tb [lindex $all_tbs 0]
+#     file copy -force "$root_dir/report/sim_result_l5_member_b_acc36_${pipeline_tag}.txt" "$root_dir/report/sim_result_l5_member_b_acc36_${pipeline_tag}_${one_tb}.txt"
+# }
+# puts ""
+
+# puts " -> $root_dir/report/sim_result_l5_member_b_acc36_${pipeline_tag}.txt"
+ -> V://report/sim_result_l5_member_b_acc36_pipeline200_v6.txt
+# if {[llength $fail_list] != 0} {error "Pipeline regression failed: $fail_list"}
+# puts "MARGIN200_PIPELINE_V6_REGRESSION_COMPLETE tag=$pipeline_tag"
+MARGIN200_PIPELINE_V6_REGRESSION_COMPLETE tag=pipeline200_v6
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 26 21:37:13 2026...

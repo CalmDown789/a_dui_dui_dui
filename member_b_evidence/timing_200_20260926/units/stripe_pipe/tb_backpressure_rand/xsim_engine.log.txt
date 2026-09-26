@@ -1,0 +1,43 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 19:20:04 2026
+# Process ID         : 19592
+# Current directory  : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xsim_engine.log -mode tcl -source {xsim.dir/tb_backpressure_rand/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 48339 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_backpressure_rand/xsim_script.tcl
+# xsim {tb_backpressure_rand} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+=====================================================
+ tb_backpressure_rand : OUT 16x12 STRIPE_H=5 -> 3 stripes, TOT_OUT=192
+ random out_valid gaps + random rd_req stalls ; assertions A1~A6
+=====================================================
+--- seed #0 (lfsr init = 670f) ---
+[seed #0] out=192 rd=192 stripes=3 frame=1 longest_stall=144 asrt=0
+--- seed #1 (lfsr init = 01c6) ---
+[seed #1] out=192 rd=192 stripes=3 frame=1 longest_stall=166 asrt=0
+--- seed #2 (lfsr init = 9c7b) ---
+[seed #2] out=192 rd=192 stripes=3 frame=1 longest_stall=144 asrt=0
+-----------------------------------------------------
+ 3 seeds x 1 frame done; err_cnt=0
+RESULT: PASS  (randomized back-pressure stress, 0 error)
+$finish called at time : 16100 ns : File "V:/tb/tb_backpressure_rand.v" Line 306
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:20:05 2026...

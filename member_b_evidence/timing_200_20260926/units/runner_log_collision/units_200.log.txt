@@ -1,0 +1,89 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 19:18:20 2026
+# Process ID         : 19484
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/experiments/timing_200_20260926/units_200.log -source V:/experiments/timing_200_20260926/run_units200.tcl -tclargs bias_early mac_buffer stripe_pipe requant_pipe fifo_srl
+# Log file           : V:/experiments/timing_200_20260926/units_200.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 48818 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20260926/run_units200.tcl
+# set units_root [file normalize [file dirname [info script]]]
+# set units_selected $argv
+# set units_saved_argv $argv
+# if {[llength $units_selected] == 0} {set units_selected {bias_early mac_buffer stripe_pipe requant_pipe}}
+# foreach units_pkg $units_selected {
+#     if {$units_pkg ni {bias_early mac_buffer stripe_pipe requant_pipe fifo_srl}} {error "Unknown unit $units_pkg"}
+#     # A child may interpret argv as testbench selectors, not package names.
+#     set argv {}
+#     source "$units_root/$units_pkg/run_unit.tcl"
+# }
+## set here [file normalize [file dirname [info script]]]
+## set work "$here/unit_work/run_[clock format [clock seconds] -format %Y%m%d_%H%M%S]_[pid]"
+## set snapshot "tb_bias_early"
+## if {![info exists ::env(XILINX_VIVADO)]} {
+##     error "Run this script using Vivado so XILINX_VIVADO is available"
+## }
+## set viv $::env(XILINX_VIVADO)
+## set bindir "$viv/bin"
+## file mkdir $work
+## cd $work
+## exec "$bindir/xvlog.bat" -sv --work worklib "$here/phase_accumulator_36.sv" \
+##     "$here/phase_accumulator_reference36.sv" "$here/tb_bias_early.sv" \
+##     > "$work/xvlog.log" 2>@1
+## exec "$bindir/xelab.bat" "worklib.$snapshot" -O0 -s $snapshot \
+##     > "$work/xelab.log" 2>@1
+## set libdir "$viv/lib/win64.o"
+## set tpdir "$viv/tps/win64"
+## set snapdir "$work/xsim.dir/$snapshot"
+## foreach name {xv_simulator_kernel.dll librdi_simulator_kernel.dll librdizlib.dll tcl85t.dll tcl86t.dll} {
+##     if {[file exists "$libdir/$name"]} {
+##         file copy -force "$libdir/$name" "$snapdir/$name"
+##     }
+## }
+## foreach pattern [list "$libdir/*boost*.dll" "$tpdir/MSVCP140*.dll" \
+##                      "$tpdir/VCRUNTIME140*.dll"] {
+##     foreach source [glob -nocomplain -types f $pattern] {
+##         file copy -force $source "$snapdir/[file tail $source]"
+##     }
+## }
+## exec "$bindir/xsim.bat" $snapshot -runall > "$work/xsim.log" 2>@1
+## set fh [open "$work/xsim.log" r]
+## set simlog [read $fh]
+## close $fh
+## if {[string first "BIAS_EARLY_ALL_FIVE_CONFIGS_PASS" $simlog] < 0 ||
+##     [regexp -nocase {fatal:|error:} $simlog] ||
+##     [regexp -all {BIAS_EARLY_CONFIG_PASS id=} $simlog] != 5} {
+##     error "Bias-early unit test failed; inspect $work/xsim.log"
+## }
+Bias-early unit test failed; inspect V:/experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191822_19484/xsim.log
+    while executing
+"error "Bias-early unit test failed; inspect $work/xsim.log""
+    invoked from within
+"if {[string first "BIAS_EARLY_ALL_FIVE_CONFIGS_PASS" $simlog] < 0 ||
+    [regexp -nocase {fatal:|error:} $simlog] ||
+    [regexp -all {BIAS_EARLY_CONF..."
+    (file "V:/experiments/timing_200_20260926/bias_early/run_unit.tcl" line 40)
+
+    while executing
+"source "$units_root/$units_pkg/run_unit.tcl""
+    ("foreach" body line 5)
+    invoked from within
+"foreach units_pkg $units_selected {
+    if {$units_pkg ni {bias_early mac_buffer stripe_pipe requant_pipe fifo_srl}} {error "Unknown unit $units_pkg"}..."
+    (file "V:/experiments/timing_200_20260926/run_units200.tcl" line 6)
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 26 19:18:30 2026...

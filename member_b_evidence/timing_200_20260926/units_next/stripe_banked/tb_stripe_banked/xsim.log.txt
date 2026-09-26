@@ -1,0 +1,22 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:43:58 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_stripe_banked/xsim_script.tcl
+# xsim {tb_stripe_banked} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+STRIPE_BANKED_CONFIG_PASS id=4 depth=1 banks=1 addr_w=1 writes=929 reads=1463 compared=2025 same_rw=682 different_rw=0 invalid_r=48 invalid_w=30 forward=0 reverse=0 bank_switch=0
+STRIPE_BANKED_CONFIG_PASS id=3 depth=32 banks=1 addr_w=6 writes=1022 reads=1474 compared=2058 same_rw=95 different_rw=617 invalid_r=48 invalid_w=34 forward=0 reverse=0 bank_switch=0
+STRIPE_BANKED_CONFIG_PASS id=2 depth=4096 banks=1 addr_w=13 writes=5093 reads=5571 compared=6122 same_rw=77 different_rw=653 invalid_r=55 invalid_w=32 forward=0 reverse=0 bank_switch=0
+STRIPE_BANKED_CONFIG_PASS id=1 depth=8197 banks=3 addr_w=14 writes=9174 reads=9682 compared=10250 same_rw=60 different_rw=655 invalid_r=51 invalid_w=26 forward=2 reverse=1 bank_switch=554
+STRIPE_BANKED_CONFIG_PASS id=0 depth=122880 banks=30 addr_w=17 writes=123856 reads=124334 compared=124933 same_rw=51 different_rw=635 invalid_r=48 invalid_w=34 forward=2 reverse=1 bank_switch=1027
+STRIPE_BANKED_ALL_CONFIGS_PASS configs=5
+$finish called at time : 2478185 ns : File "V:/experiments/timing_200_20260926/stripe_banked/tb_stripe_banked.sv" Line 213
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:44:00 2026...

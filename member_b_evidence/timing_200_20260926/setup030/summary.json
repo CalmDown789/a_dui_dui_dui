@@ -1,0 +1,37 @@
+{
+  "candidate": "setup030",
+  "frequency_MHz": 200,
+  "WNS": -0.613,
+  "TNS": -939.145,
+  "failing_setup_endpoints": 7800,
+  "WHS": 0.036,
+  "THS": 0.0,
+  "WPWS": 1.37,
+  "route_errors": 0,
+  "routed_nets": 76670,
+  "routable_nets": 76670,
+  "resources": {
+    "LUT": 29196,
+    "FF": 48911,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 394
+  },
+  "targets_ns": {
+    "0.1": false,
+    "0.25": false,
+    "0.4": false
+  },
+  "extra_setup_ns": 0.3,
+  "timing_with_extra_setup": {
+    "WNS": -0.913,
+    "TNS": -5997.43,
+    "failing_setup_endpoints": 27748,
+    "WHS": 0.036,
+    "THS": 0.0,
+    "WPWS": 1.37
+  },
+  "restored_minus_tight_WNS": 0.3,
+  "worst_path": "Slack (VIOLATED) :        -0.613ns  (required time - arrival time)\n  Source:                 u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/sum_stage_reg[13][5]/C\n                            (rising edge-triggered cell FDRE clocked by u_top_n_1799  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Destination:            u_top/u_core/u_b/u_b_core/core/core/l1/mac/acc/out_data_reg[417]/S\n                            (rising edge-triggered cell FDSE clocked by u_top_n_1799  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Path Group:             u_top_n_1799\n  Path Type:              Setup (Max at Slow Process Corner)\n  Requirement:            5.000ns  (u_top_n_1799 rise@5.000ns - u_top_n_1799 rise@0.000ns)\n  Data Path Delay:        5.080ns  (logic 2.883ns (56.747%)  route 2.197ns (43.253%))\n  Logic Levels:           12  (CARRY4=9 LUT1=1 LUT2=1 LUT5=1)\n  Clock Path Skew:        -0.041ns (DCD - SCD + CPR)\n    Destination Clock Delay (DCD):    5.620ns = ( 10.620 - 5.000 ) \n    Source Clock Delay      (SCD):    5.948ns\n    Clock Pessimism Removal (CPR):    0.287ns\n  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU\n    Total System Jitter     (TSJ):    0.071ns\n    Discrete Jitter          (DJ):    0.118ns\n    Phase Error              (PE):    0.000ns\n    User Uncertainty         (UU):    0.000ns",
+  "source_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a"
+}

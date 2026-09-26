@@ -1,0 +1,36 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 20:14:55 2026
+# Process ID         : 24900
+# Current directory  : V:/experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xsim_engine.log -mode tcl -source {xsim.dir/tb_prelu_partial_shared/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/prelu_partial/unit_work/run_20260926_201445_20920/tb_prelu_partial_shared\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 35149 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_prelu_partial_shared/xsim_script.tcl
+# xsim {tb_prelu_partial_shared} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PRELU_PARTIAL_SHARED_CONFIG_PASS id=3 channels=1 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3515 out_stall=1433 simultaneous=81 gaps=333 cycles=4399
+PRELU_PARTIAL_SHARED_CONFIG_PASS id=4 channels=4 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3805 out_stall=1563 simultaneous=46 gaps=344 cycles=4702
+PRELU_PARTIAL_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=422 outputs=418 in_stall=4208 out_stall=1561 simultaneous=20 gaps=323 cycles=5141
+PRELU_PARTIAL_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5467 out_stall=1983 simultaneous=32 gaps=339 cycles=6403
+PRELU_PARTIAL_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5474 out_stall=2016 simultaneous=24 gaps=339 cycles=6416
+PRELU_PARTIAL_SHARED_ALL_CONFIGS_PASS configs=5
+$finish called at time : 64195 ns : File "V:/experiments/timing_200_20260926/prelu_partial/tb_prelu_partial_shared.sv" Line 426
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:14:57 2026...

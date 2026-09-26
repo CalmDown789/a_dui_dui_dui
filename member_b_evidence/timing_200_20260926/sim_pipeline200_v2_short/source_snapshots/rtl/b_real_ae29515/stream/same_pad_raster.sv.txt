@@ -1,0 +1,69 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: parameterized SAME-padding raster adapter.
+// A start pulse begins one frame. The source sends only W*H real pixels;
+// this adapter emits (W+2*PAD)*(H+2*PAD) pixels, including border zeros.
+// All counters advance only on an output ready/valid handshake.
+module same_pad_raster #(
+    parameter integer DATA_W = 8,
+    parameter integer IMG_W = 96,
+    parameter integer IMG_H = 54,
+    parameter integer PAD = 2
+)(
+    input  wire                  clk,
+    input  wire                  rst,
+    input  wire                  start,
+    output reg                   busy,
+    input  wire                  in_valid,
+    output wire                  in_ready,
+    input  wire [DATA_W-1:0]     in_data,
+    output wire                  out_valid,
+    input  wire                  out_ready,
+    output wire [DATA_W-1:0]     out_data,
+    output wire                  out_last
+);
+    localparam integer PAD_W = IMG_W + 2*PAD;
+    localparam integer PAD_H = IMG_H + 2*PAD;
+    localparam integer X_W = (PAD_W <= 1) ? 1 : $clog2(PAD_W);
+    localparam integer Y_W = (PAD_H <= 1) ? 1 : $clog2(PAD_H);
+    reg [X_W-1:0] x;
+    reg [Y_W-1:0] y;
+    wire interior = (x >= PAD) && (x < PAD+IMG_W) &&
+                    (y >= PAD) && (y < PAD+IMG_H);
+    wire fire = out_valid && out_ready;
+
+    assign in_ready = busy && interior && out_ready;
+    assign out_valid = busy && (!interior || in_valid);
+    assign out_data = interior ? in_data : {DATA_W{1'b0}};
+    assign out_last = busy && (x == PAD_W-1) && (y == PAD_H-1);
+
+    initial begin
+        if (DATA_W < 1 || IMG_W < 1 || IMG_H < 1 || PAD < 0)
+            $error("same_pad_raster parameters must be positive, PAD nonnegative");
+    end
+
+    always @(posedge clk) begin
+        if (rst) begin
+            busy <= 1'b0;
+            x <= 0;
+            y <= 0;
+        end else if (!busy) begin
+            if (start) begin
+                busy <= 1'b1;
+                x <= 0;
+                y <= 0;
+            end
+        end else if (fire) begin
+            if (out_last) begin
+                busy <= 1'b0;
+                x <= 0;
+                y <= 0;
+            end else if (x == PAD_W-1) begin
+                x <= 0;
+                y <= y + 1'b1;
+            end else begin
+                x <= x + 1'b1;
+            end
+        end
+    end
+endmodule

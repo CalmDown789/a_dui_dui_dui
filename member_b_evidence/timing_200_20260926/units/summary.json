@@ -1,0 +1,1157 @@
+{
+  "schema_version": 1,
+  "scope": "Isolated simulation and specified stripe regressions only; complete network regression, implementation, timing and board validation remain separate.",
+  "status": "ALL_FIVE_UNIT_PACKAGES_PASS",
+  "date": "2026-09-26",
+  "tool": {
+    "vivado": "2025.2",
+    "xsim": "2025.2",
+    "sw_build": 6299465,
+    "pid": 33224,
+    "elaboration": "-O0",
+    "successful_session_start": "2026-09-26 19:19:40 Asia/Shanghai",
+    "successful_session_end": "2026-09-26 19:20:28 Asia/Shanghai"
+  },
+  "git_head": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "package_count": 5,
+  "bench_count": 8,
+  "config_counts": {
+    "bias_early": 5,
+    "requant_scalar": 6,
+    "requant_shared": 3,
+    "fifo_srl": 7
+  },
+  "benches": [
+    {
+      "name": "bias_early",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224",
+      "pass_marker": "BIAS_EARLY_ALL_FIVE_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "BIAS_EARLY_ALL_FIVE_CONFIGS_PASS",
+      "configurations_expected": 5,
+      "configurations": [
+        {
+          "line": "BIAS_EARLY_CONFIG_PASS id=5 CIN=16 COUT=4 IN_PAR=2 OUT_PAR=4 cycles=2083 phases=1363 complete=169 consumed=167 clip_hi=142 clip_lo=124 exact_hi=44 exact_lo=44 in_stalls=310 out_stalls=526 holds=525 reset_nonempty=1 reset_midphase=4 consecutive=8 recovered=124",
+          "values": {
+            "id": 5,
+            "CIN": 16,
+            "COUT": 4,
+            "IN_PAR": 2,
+            "OUT_PAR": 4,
+            "cycles": 2083,
+            "phases": 1363,
+            "complete": 169,
+            "consumed": 167,
+            "clip_hi": 142,
+            "clip_lo": 124,
+            "exact_hi": 44,
+            "exact_lo": 44,
+            "in_stalls": 310,
+            "out_stalls": 526,
+            "holds": 525,
+            "reset_nonempty": 1,
+            "reset_midphase": 4,
+            "consecutive": 8,
+            "recovered": 124
+          }
+        },
+        {
+          "line": "BIAS_EARLY_CONFIG_PASS id=4 CIN=8 COUT=16 IN_PAR=1 OUT_PAR=16 cycles=2083 phases=1343 complete=166 consumed=163 clip_hi=560 clip_lo=455 exact_hi=88 exact_lo=88 in_stalls=302 out_stalls=563 holds=561 reset_nonempty=2 reset_midphase=5 consecutive=6 recovered=408",
+          "values": {
+            "id": 4,
+            "CIN": 8,
+            "COUT": 16,
+            "IN_PAR": 1,
+            "OUT_PAR": 16,
+            "cycles": 2083,
+            "phases": 1343,
+            "complete": 166,
+            "consumed": 163,
+            "clip_hi": 560,
+            "clip_lo": 455,
+            "exact_hi": 88,
+            "exact_lo": 88,
+            "in_stalls": 302,
+            "out_stalls": 563,
+            "holds": 561,
+            "reset_nonempty": 2,
+            "reset_midphase": 5,
+            "consecutive": 6,
+            "recovered": 408
+          }
+        },
+        {
+          "line": "BIAS_EARLY_CONFIG_PASS id=3 CIN=8 COUT=8 IN_PAR=1 OUT_PAR=8 cycles=2089 phases=1342 complete=165 consumed=163 clip_hi=277 clip_lo=215 exact_hi=43 exact_lo=43 in_stalls=299 out_stalls=554 holds=553 reset_nonempty=1 reset_midphase=5 consecutive=8 recovered=194",
+          "values": {
+            "id": 3,
+            "CIN": 8,
+            "COUT": 8,
+            "IN_PAR": 1,
+            "OUT_PAR": 8,
+            "cycles": 2089,
+            "phases": 1342,
+            "complete": 165,
+            "consumed": 163,
+            "clip_hi": 277,
+            "clip_lo": 215,
+            "exact_hi": 43,
+            "exact_lo": 43,
+            "in_stalls": 299,
+            "out_stalls": 554,
+            "holds": 553,
+            "reset_nonempty": 1,
+            "reset_midphase": 5,
+            "consecutive": 8,
+            "recovered": 194
+          }
+        },
+        {
+          "line": "BIAS_EARLY_CONFIG_PASS id=2 CIN=16 COUT=8 IN_PAR=2 OUT_PAR=8 cycles=2090 phases=1394 complete=173 consumed=169 clip_hi=291 clip_lo=236 exact_hi=47 exact_lo=46 in_stalls=277 out_stalls=518 holds=516 reset_nonempty=3 reset_midphase=4 consecutive=7 recovered=209",
+          "values": {
+            "id": 2,
+            "CIN": 16,
+            "COUT": 8,
+            "IN_PAR": 2,
+            "OUT_PAR": 8,
+            "cycles": 2090,
+            "phases": 1394,
+            "complete": 173,
+            "consumed": 169,
+            "clip_hi": 291,
+            "clip_lo": 236,
+            "exact_hi": 47,
+            "exact_lo": 46,
+            "in_stalls": 277,
+            "out_stalls": 518,
+            "holds": 516,
+            "reset_nonempty": 3,
+            "reset_midphase": 4,
+            "consecutive": 7,
+            "recovered": 209
+          }
+        },
+        {
+          "line": "BIAS_EARLY_CONFIG_PASS id=1 CIN=1 COUT=16 IN_PAR=1 OUT_PAR=2 cycles=2090 phases=1354 complete=167 consumed=164 clip_hi=425 clip_lo=275 exact_hi=86 exact_lo=86 in_stalls=311 out_stalls=560 holds=558 reset_nonempty=2 reset_midphase=5 consecutive=8 recovered=0",
+          "values": {
+            "id": 1,
+            "CIN": 1,
+            "COUT": 16,
+            "IN_PAR": 1,
+            "OUT_PAR": 2,
+            "cycles": 2090,
+            "phases": 1354,
+            "complete": 167,
+            "consumed": 164,
+            "clip_hi": 425,
+            "clip_lo": 275,
+            "exact_hi": 86,
+            "exact_lo": 86,
+            "in_stalls": 311,
+            "out_stalls": 560,
+            "holds": 558,
+            "reset_nonempty": 2,
+            "reset_midphase": 5,
+            "consecutive": 8,
+            "recovered": 0
+          }
+        }
+      ],
+      "coverage": [],
+      "source_paths": [
+        "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+        "experiments/timing_200_20260926/bias_early/phase_accumulator_reference36.sv",
+        "experiments/timing_200_20260926/bias_early/tb_bias_early.sv",
+        "experiments/timing_200_20260926/bias_early/run_unit.tcl",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/bias_early/xelab.log.txt",
+          "bytes": 1523,
+          "sha256": "ee6f05b7d36ae4256cb8f35b6950d8a6928d314b9c529933b4babb6081d8a200"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/bias_early/xsim.log.txt",
+          "bytes": 2061,
+          "sha256": "10ad847176bc8dea1c1a3d12ffb734c52d1cbda98c0b991bfd684c87bb5c0ee6"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/bias_early/xsim_engine.log.txt",
+          "bytes": 2943,
+          "sha256": "1ec7288805eefabfd584d400b21ea12276eabadf03b82ff74bc044c4c94b52a5"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191941_33224/xvlog.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/bias_early/xvlog.log.txt",
+          "bytes": 667,
+          "sha256": "c4ff27026a895fd2b35555759aff95666f3823168973e80d8c9bb70990f6adf9"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "mac_buffer",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/mac_buffer/unit_work/run_20260926_191946_33224",
+      "pass_marker": "MAC_PARTIAL_FIFO2_131BIT_TEST_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "MAC_PARTIAL_FIFO2_131BIT_TEST_PASS",
+      "configurations_expected": null,
+      "configurations": [],
+      "coverage": [
+        {
+          "line": "MAC_PARTIAL_FIFO2_COVERAGE cycles=1786 pushes=683 pops=673 full_pop_blocked=265 simultaneous=275 max_steady_run=23 full_stalls=565 holds=984 reset_nonempty=6 append_stalled=340 empty_push=68",
+          "values": {
+            "cycles": 1786,
+            "pushes": 683,
+            "pops": 673,
+            "full_pop_blocked": 265,
+            "simultaneous": 275,
+            "max_steady_run": 23,
+            "full_stalls": 565,
+            "holds": 984,
+            "reset_nonempty": 6,
+            "append_stalled": 340,
+            "empty_push": 68
+          }
+        }
+      ],
+      "source_paths": [
+        "experiments/timing_200_20260926/mac_buffer/mac_issue_stage.sv",
+        "experiments/timing_200_20260926/mac_buffer/tb_mac_partial_fifo2.sv",
+        "experiments/timing_200_20260926/mac_buffer/run_unit.tcl",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/mac_buffer/unit_work/run_20260926_191946_33224/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/mac_buffer/xelab.log.txt",
+          "bytes": 684,
+          "sha256": "c96321f27acd0abe9383f6aa92decf96b5275f4c5b1b2b1acd79631129d0c5c6"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/mac_buffer/unit_work/run_20260926_191946_33224/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/mac_buffer/xsim.log.txt",
+          "bytes": 973,
+          "sha256": "75e5c404be1ce3cb7ffd92c5a11c13eac836d3edbbbeab4da115877f47747dfd"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/mac_buffer/unit_work/run_20260926_191946_33224/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/mac_buffer/xsim_engine.log.txt",
+          "bytes": 1866,
+          "sha256": "130e9b504998e1e42316e99cf286077ffe6c15e1411ca8532f543542ee072201"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/mac_buffer/unit_work/run_20260926_191946_33224/xvlog.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/mac_buffer/xvlog.log.txt",
+          "bytes": 452,
+          "sha256": "55d7675f521388acc50799337a8af036641366018ab588f64b4afa0dd603e05f"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "stripe_pipe/tb_stripe_pipe",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe",
+      "pass_marker": "STRIPE_PIPE_UNIT_TEST_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "STRIPE_PIPE_UNIT_TEST_PASS",
+      "configurations_expected": null,
+      "configurations": [],
+      "coverage": [
+        {
+          "line": "Coverage single=51 short=98 full=52 consecutive=1953 simultaneous_rw=647 blocked=3395 reuse=1 reset1=1 reset2=1 seeds=3",
+          "values": {
+            "single": 51,
+            "short": 98,
+            "full": 52,
+            "consecutive": 1953,
+            "simultaneous_rw": 647,
+            "blocked": 3395,
+            "reuse": 1,
+            "reset1": 1,
+            "reset2": 1,
+            "seeds": 3
+          }
+        },
+        {
+          "line": "Totals writes=2610 requests=2598 visible_responses=2597 cycles=6809",
+          "values": {
+            "writes": 2610,
+            "requests": 2598,
+            "visible_responses": 2597,
+            "cycles": 6809
+          }
+        }
+      ],
+      "source_paths": [
+        "experiments/timing_200_20260926/stripe_pipe/stripe_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/run_unit.tcl",
+        "experiments/timing_200_20260926/stripe_pipe/tb_stripe_pipe.sv",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_pipe/xelab.log.txt",
+          "bytes": 740,
+          "sha256": "dbfc7e15121f3a10978a19b52256b21871e5f2d10af4fb87ea7a625b1d36d7f7"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_pipe/xsim.log.txt",
+          "bytes": 1357,
+          "sha256": "02a8e1b1aa359b556bc1d559306017b8674f1fbb3904dd986bafdf5b53bb5e1e"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_pipe/xsim_engine.log.txt",
+          "bytes": 2298,
+          "sha256": "9eb0e177d23755824b508d87cc1c098864bd74454dea87a1a3914e1efcf23a05"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xvlog_rtl.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_pipe/xvlog_rtl.log.txt",
+          "bytes": 370,
+          "sha256": "c7acc53839eb91c7aeab8c7c5048ada00eddcf23b21ee4cab783269dd614d191"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xvlog_tb.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_pipe/xvlog_tb.log.txt",
+          "bytes": 192,
+          "sha256": "1126c54b915bf4533fc44562429bce2fee204a357c9d1e7819685f5258185a24"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "stripe_pipe/tb_stripe_buffer",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer",
+      "pass_marker": "RESULT: PASS",
+      "pass_marker_count": 1,
+      "pass_line": "RESULT: PASS  (T1~T6, 0 error)",
+      "configurations_expected": null,
+      "configurations": [],
+      "coverage": [
+        {
+          "line": " wr_total=204  rd_total=204  exp_val=204",
+          "values": {
+            "wr_total": 204,
+            "rd_total": 204,
+            "exp_val": 204
+          }
+        },
+        {
+          "line": " states: WRITING=1 SWAPPING=1 DRAINING=1",
+          "values": {
+            "WRITING": 1,
+            "SWAPPING": 1,
+            "DRAINING": 1
+          }
+        },
+        {
+          "line": " overflow_err=0  wr_ready_dropped=1",
+          "values": {
+            "overflow_err": 0,
+            "wr_ready_dropped": 1
+          }
+        }
+      ],
+      "source_paths": [
+        "experiments/timing_200_20260926/stripe_pipe/stripe_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/run_unit.tcl",
+        "rtl/output_stream.v",
+        "rtl/c_protocol_assertions.v",
+        "rtl/c_config.vh",
+        "tb/tb_stripe_buffer.v",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_buffer/xelab.log.txt",
+          "bytes": 748,
+          "sha256": "7395a413421f0aa2c9f7eb2a13db2e0d5a7c2728e027cdcdf86f8334eddfe2fe"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_buffer/xsim.log.txt",
+          "bytes": 1329,
+          "sha256": "68da2e2846d719aa837a05189ed1b4059c18e34596d8033b288d82f21b2ec6ff"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_buffer/xsim_engine.log.txt",
+          "bytes": 2279,
+          "sha256": "507582dc081f90800c2ead837e11f10867421240c7a845fb02df30f83fb8ff40"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer/xvlog_rtl.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_buffer/xvlog_rtl.log.txt",
+          "bytes": 672,
+          "sha256": "8cfb44663a929f171c4800763e0bbd233477212f6ce4d20436d02e39a1f6a4bb"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_buffer/xvlog_tb.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_stripe_buffer/xvlog_tb.log.txt",
+          "bytes": 148,
+          "sha256": "f3c4826616aad78d57c7c0ad402eccb036b662727248eb83558aff9450e2cc75"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "stripe_pipe/tb_backpressure_rand",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand",
+      "pass_marker": "RESULT: PASS",
+      "pass_marker_count": 1,
+      "pass_line": "RESULT: PASS  (randomized back-pressure stress, 0 error)",
+      "configurations_expected": null,
+      "configurations": [],
+      "coverage": [
+        {
+          "line": "[seed #0] out=192 rd=192 stripes=3 frame=1 longest_stall=144 asrt=0",
+          "values": {
+            "out": 192,
+            "rd": 192,
+            "stripes": 3,
+            "frame": 1,
+            "longest_stall": 144,
+            "asrt": 0
+          }
+        },
+        {
+          "line": "[seed #1] out=192 rd=192 stripes=3 frame=1 longest_stall=166 asrt=0",
+          "values": {
+            "out": 192,
+            "rd": 192,
+            "stripes": 3,
+            "frame": 1,
+            "longest_stall": 166,
+            "asrt": 0
+          }
+        },
+        {
+          "line": "[seed #2] out=192 rd=192 stripes=3 frame=1 longest_stall=144 asrt=0",
+          "values": {
+            "out": 192,
+            "rd": 192,
+            "stripes": 3,
+            "frame": 1,
+            "longest_stall": 144,
+            "asrt": 0
+          }
+        }
+      ],
+      "source_paths": [
+        "experiments/timing_200_20260926/stripe_pipe/stripe_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+        "experiments/timing_200_20260926/stripe_pipe/run_unit.tcl",
+        "rtl/output_stream.v",
+        "rtl/c_protocol_assertions.v",
+        "rtl/c_config.vh",
+        "tb/tb_backpressure_rand.v",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_backpressure_rand/xelab.log.txt",
+          "bytes": 874,
+          "sha256": "0521ace08633444f28b905d774ac3ddf66a0c0730d14e91e1b4ae34a60bec1d8"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_backpressure_rand/xsim.log.txt",
+          "bytes": 1416,
+          "sha256": "17bf584c208c240af621c7cee7db30667c71ca2f9fb697ae0dc5e51dc427d8a7"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_backpressure_rand/xsim_engine.log.txt",
+          "bytes": 2386,
+          "sha256": "76966ea1786772e66e89e75122dc602e743d0aaf0d03490da4e8807dcc40f394"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xvlog_rtl.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_backpressure_rand/xvlog_rtl.log.txt",
+          "bytes": 672,
+          "sha256": "8cfb44663a929f171c4800763e0bbd233477212f6ce4d20436d02e39a1f6a4bb"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_backpressure_rand/xvlog_tb.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/stripe_pipe/tb_backpressure_rand/xvlog_tb.log.txt",
+          "bytes": 156,
+          "sha256": "b8070c4747fc3369955fd1d609eb4c41cf93299ab7a4cb76ab755457fdf0d9f2"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "requant_pipe/scalar",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar",
+      "pass_marker": "REQUANT_SCALAR_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "REQUANT_SCALAR_ALL_CONFIGS_PASS",
+      "configurations_expected": 6,
+      "configurations": [
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=0 checked=3131 accepted=3151",
+          "values": {
+            "id": 0,
+            "checked": 3131,
+            "accepted": 3151
+          }
+        },
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=1 checked=3122 accepted=3143",
+          "values": {
+            "id": 1,
+            "checked": 3122,
+            "accepted": 3143
+          }
+        },
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=2 checked=3148 accepted=3166",
+          "values": {
+            "id": 2,
+            "checked": 3148,
+            "accepted": 3166
+          }
+        },
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=3 checked=3168 accepted=3188",
+          "values": {
+            "id": 3,
+            "checked": 3168,
+            "accepted": 3188
+          }
+        },
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=4 checked=3163 accepted=3183",
+          "values": {
+            "id": 4,
+            "checked": 3163,
+            "accepted": 3183
+          }
+        },
+        {
+          "line": "REQUANT_SCALAR_CONFIG_PASS id=5 checked=3152 accepted=3170",
+          "values": {
+            "id": 5,
+            "checked": 3152,
+            "accepted": 3170
+          }
+        }
+      ],
+      "coverage": [
+        {
+          "line": "REQUANT_ROUND64_PROBE_PASS checked=1094",
+          "values": {
+            "checked": 1094
+          }
+        }
+      ],
+      "source_paths": [
+        "experiments/timing_200_20260926/requant_pipe/prelu_requantize.sv",
+        "experiments/timing_200_20260926/requant_pipe/prelu_requantize_reference.sv",
+        "experiments/timing_200_20260926/requant_pipe/vector_postprocess_shared.sv",
+        "experiments/timing_200_20260926/requant_pipe/run_unit.tcl",
+        "experiments/timing_200_20260926/requant_pipe/tb_requant_scalar.sv",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/scalar/xelab.log.txt",
+          "bytes": 1783,
+          "sha256": "a36c05ec4f53045b42881248cfc643bef1d01db27d4cd90639e57d71c112d4a8"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/scalar/xsim.log.txt",
+          "bytes": 1172,
+          "sha256": "1852f5bebdd04ce7fb55c5f09f859e0ba60a88d801c7105d82df1b78cb32cc53"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/scalar/xsim_engine.log.txt",
+          "bytes": 2135,
+          "sha256": "dc9f22111f8df6f8683a01da44ce5f7ac6839fc2e71c42ede0a5561c9d7ec72d"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xvlog.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/scalar/xvlog.log.txt",
+          "bytes": 949,
+          "sha256": "a24c8a879e87a6f1afd4357c8b077b0e5affd1893ce47996b9b6fd38d85d7bf9"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "requant_pipe/shared",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192010_33224/tb_requant_shared",
+      "pass_marker": "REQUANT_SHARED_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "REQUANT_SHARED_ALL_CONFIGS_PASS configs=3",
+      "configurations_expected": 3,
+      "configurations": [
+        {
+          "line": "REQUANT_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=358 outputs=354 in_stall=3428 out_stall=1344 simultaneous=15 gaps=290 cycles=4234",
+          "values": {
+            "id": 2,
+            "channels": 4,
+            "lanes": 1,
+            "signed": 0,
+            "prelu": 0,
+            "inputs": 358,
+            "outputs": 354,
+            "in_stall": 3428,
+            "out_stall": 1344,
+            "simultaneous": 15,
+            "gaps": 290,
+            "cycles": 4234
+          }
+        },
+        {
+          "line": "REQUANT_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=358 outputs=354 in_stall=4262 out_stall=1443 simultaneous=26 gaps=313 cycles=5082",
+          "values": {
+            "id": 0,
+            "channels": 16,
+            "lanes": 2,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 358,
+            "outputs": 354,
+            "in_stall": 4262,
+            "out_stall": 1443,
+            "simultaneous": 26,
+            "gaps": 313,
+            "cycles": 5082
+          }
+        },
+        {
+          "line": "REQUANT_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=358 outputs=354 in_stall=4281 out_stall=1474 simultaneous=20 gaps=297 cycles=5095",
+          "values": {
+            "id": 1,
+            "channels": 8,
+            "lanes": 1,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 358,
+            "outputs": 354,
+            "in_stall": 4281,
+            "out_stall": 1474,
+            "simultaneous": 20,
+            "gaps": 297,
+            "cycles": 5095
+          }
+        }
+      ],
+      "coverage": [],
+      "source_paths": [
+        "experiments/timing_200_20260926/requant_pipe/prelu_requantize.sv",
+        "experiments/timing_200_20260926/requant_pipe/prelu_requantize_reference.sv",
+        "experiments/timing_200_20260926/requant_pipe/vector_postprocess_shared.sv",
+        "experiments/timing_200_20260926/requant_pipe/run_unit.tcl",
+        "experiments/timing_200_20260926/requant_pipe/tb_requant_shared.sv",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192010_33224/tb_requant_shared/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/shared/xelab.log.txt",
+          "bytes": 1089,
+          "sha256": "0ad17e88e64e1ec855c27fffbc5e83bc17f2bec18a3fed4ba123de876c1c27c7"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192010_33224/tb_requant_shared/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/shared/xsim.log.txt",
+          "bytes": 1256,
+          "sha256": "77fec98897aa179a1c4069df580ecc29cce9277d111e82423e49fc1a21df0fbf"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192010_33224/tb_requant_shared/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/shared/xsim_engine.log.txt",
+          "bytes": 2224,
+          "sha256": "7a4fcd4d1723d8afdc8a1fdf2441acc92d95025635661e33e59cf50d44b83e4e"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192010_33224/tb_requant_shared/xvlog.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/requant_pipe/shared/xvlog.log.txt",
+          "bytes": 886,
+          "sha256": "8f1f21667de3c9bdb2de0726883135045fb707312658e9c905764c8379aa3a77"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "name": "fifo_srl",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/fifo_srl/unit_work/run_20260926_192015_33224",
+      "pass_marker": "FIFO_SRL_ALL_SEVEN_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "pass_line": "FIFO_SRL_ALL_SEVEN_CONFIGS_PASS",
+      "configurations_expected": 7,
+      "configurations": [
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=7 width=37 depth=1 cycles=2179 pushes=791 pops=784 discarded=7 full_exchange=658 full_run=40 simultaneous=658 steady_run=40 append_stalled=0 full_stalls=1066 holds=1189 empty_to_one=133 became_full=133 drained_full=126 reset_full=7 reset_partial=0 reset_pending=5 reset_valid=3 random_cycles=2000",
+          "values": {
+            "id": 7,
+            "width": 37,
+            "depth": 1,
+            "cycles": 2179,
+            "pushes": 791,
+            "pops": 784,
+            "discarded": 7,
+            "full_exchange": 658,
+            "full_run": 40,
+            "simultaneous": 658,
+            "steady_run": 40,
+            "append_stalled": 0,
+            "full_stalls": 1066,
+            "holds": 1189,
+            "empty_to_one": 133,
+            "became_full": 133,
+            "drained_full": 126,
+            "reset_full": 7,
+            "reset_partial": 0,
+            "reset_pending": 5,
+            "reset_valid": 3,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=6 width=6400 depth=3 cycles=2279 pushes=891 pops=871 discarded=20 full_exchange=553 full_run=40 simultaneous=696 steady_run=40 append_stalled=148 full_stalls=1016 holds=1311 empty_to_one=47 became_full=90 drained_full=84 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=4 random_cycles=2000",
+          "values": {
+            "id": 6,
+            "width": 6400,
+            "depth": 3,
+            "cycles": 2279,
+            "pushes": 891,
+            "pops": 871,
+            "discarded": 20,
+            "full_exchange": 553,
+            "full_run": 40,
+            "simultaneous": 696,
+            "steady_run": 40,
+            "append_stalled": 148,
+            "full_stalls": 1016,
+            "holds": 1311,
+            "empty_to_one": 47,
+            "became_full": 90,
+            "drained_full": 84,
+            "reset_full": 6,
+            "reset_partial": 2,
+            "reset_pending": 4,
+            "reset_valid": 4,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=5 width=1025 depth=3 cycles=2279 pushes=925 pops=904 discarded=21 full_exchange=565 full_run=40 simultaneous=715 steady_run=40 append_stalled=170 full_stalls=973 holds=1278 empty_to_one=40 became_full=115 drained_full=109 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=3 random_cycles=2000",
+          "values": {
+            "id": 5,
+            "width": 1025,
+            "depth": 3,
+            "cycles": 2279,
+            "pushes": 925,
+            "pops": 904,
+            "discarded": 21,
+            "full_exchange": 565,
+            "full_run": 40,
+            "simultaneous": 715,
+            "steady_run": 40,
+            "append_stalled": 170,
+            "full_stalls": 973,
+            "holds": 1278,
+            "empty_to_one": 40,
+            "became_full": 115,
+            "drained_full": 109,
+            "reset_full": 6,
+            "reset_partial": 2,
+            "reset_pending": 4,
+            "reset_valid": 3,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=4 width=1152 depth=4 cycles=2327 pushes=961 pops=931 discarded=30 full_exchange=542 full_run=40 simultaneous=709 steady_run=40 append_stalled=216 full_stalls=952 holds=1310 empty_to_one=36 became_full=111 drained_full=104 reset_full=7 reset_partial=1 reset_pending=4 reset_valid=6 random_cycles=2000",
+          "values": {
+            "id": 4,
+            "width": 1152,
+            "depth": 4,
+            "cycles": 2327,
+            "pushes": 961,
+            "pops": 931,
+            "discarded": 30,
+            "full_exchange": 542,
+            "full_run": 40,
+            "simultaneous": 709,
+            "steady_run": 40,
+            "append_stalled": 216,
+            "full_stalls": 952,
+            "holds": 1310,
+            "empty_to_one": 36,
+            "became_full": 111,
+            "drained_full": 104,
+            "reset_full": 7,
+            "reset_partial": 1,
+            "reset_pending": 4,
+            "reset_valid": 6,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=3 width=200 depth=4 cycles=2327 pushes=912 pops=883 discarded=29 full_exchange=522 full_run=40 simultaneous=673 steady_run=40 append_stalled=205 full_stalls=999 holds=1356 empty_to_one=34 became_full=111 drained_full=105 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=3 random_cycles=2000",
+          "values": {
+            "id": 3,
+            "width": 200,
+            "depth": 4,
+            "cycles": 2327,
+            "pushes": 912,
+            "pops": 883,
+            "discarded": 29,
+            "full_exchange": 522,
+            "full_run": 40,
+            "simultaneous": 673,
+            "steady_run": 40,
+            "append_stalled": 205,
+            "full_stalls": 999,
+            "holds": 1356,
+            "empty_to_one": 34,
+            "became_full": 111,
+            "drained_full": 105,
+            "reset_full": 6,
+            "reset_partial": 2,
+            "reset_pending": 4,
+            "reset_valid": 3,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=1 width=6400 depth=4 cycles=2327 pushes=964 pops=941 discarded=23 full_exchange=534 full_run=40 simultaneous=738 steady_run=40 append_stalled=190 full_stalls=969 holds=1294 empty_to_one=36 became_full=95 drained_full=91 reset_full=4 reset_partial=4 reset_pending=2 reset_valid=5 random_cycles=2000",
+          "values": {
+            "id": 1,
+            "width": 6400,
+            "depth": 4,
+            "cycles": 2327,
+            "pushes": 964,
+            "pops": 941,
+            "discarded": 23,
+            "full_exchange": 534,
+            "full_run": 40,
+            "simultaneous": 738,
+            "steady_run": 40,
+            "append_stalled": 190,
+            "full_stalls": 969,
+            "holds": 1294,
+            "empty_to_one": 36,
+            "became_full": 95,
+            "drained_full": 91,
+            "reset_full": 4,
+            "reset_partial": 4,
+            "reset_pending": 2,
+            "reset_valid": 5,
+            "random_cycles": 2000
+          }
+        },
+        {
+          "line": "FIFO_SRL_CONFIG_PASS id=2 width=256 depth=32 cycles=3657 pushes=1779 pops=1542 discarded=237 full_exchange=422 full_run=40 simultaneous=674 steady_run=40 append_stalled=1070 full_stalls=751 holds=2004 empty_to_one=35 became_full=102 drained_full=98 reset_full=4 reset_partial=4 reset_pending=4 reset_valid=4 random_cycles=2000",
+          "values": {
+            "id": 2,
+            "width": 256,
+            "depth": 32,
+            "cycles": 3657,
+            "pushes": 1779,
+            "pops": 1542,
+            "discarded": 237,
+            "full_exchange": 422,
+            "full_run": 40,
+            "simultaneous": 674,
+            "steady_run": 40,
+            "append_stalled": 1070,
+            "full_stalls": 751,
+            "holds": 2004,
+            "empty_to_one": 35,
+            "became_full": 102,
+            "drained_full": 98,
+            "reset_full": 4,
+            "reset_partial": 4,
+            "reset_pending": 4,
+            "reset_valid": 4,
+            "random_cycles": 2000
+          }
+        }
+      ],
+      "coverage": [],
+      "source_paths": [
+        "experiments/timing_200_20260926/fifo_srl/elastic_fifo.sv",
+        "experiments/timing_200_20260926/fifo_srl/elastic_fifo_reference.sv",
+        "experiments/timing_200_20260926/fifo_srl/tb_elastic_fifo_srl.sv",
+        "experiments/timing_200_20260926/fifo_srl/run_unit.tcl",
+        "experiments/timing_200_20260926/run_units200.tcl"
+      ],
+      "logs": [
+        {
+          "original_path": "experiments/timing_200_20260926/fifo_srl/unit_work/run_20260926_192015_33224/xelab.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/fifo_srl/xelab.log.txt",
+          "bytes": 1877,
+          "sha256": "6742663fa46119d9d82f7781d9b521f43e7f5a339ea8f775c34a548d27a4989c"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/fifo_srl/unit_work/run_20260926_192015_33224/xsim.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/fifo_srl/xsim.log.txt",
+          "bytes": 3044,
+          "sha256": "9d6f6791e4b76e2893b80a12d3ac207c64774195897ccb28cacbacd232fc8567"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/fifo_srl/unit_work/run_20260926_192015_33224/xsim_engine.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/fifo_srl/xsim_engine.log.txt",
+          "bytes": 3922,
+          "sha256": "8c34e766289a6a4871d5648f41ea3e0bd7e52a57fc5999c0b26ae8b650c70a3f"
+        },
+        {
+          "original_path": "experiments/timing_200_20260926/fifo_srl/unit_work/run_20260926_192015_33224/xvlog.log",
+          "archived_path": "member_b_evidence/timing_200_20260926/units/fifo_srl/xvlog.log.txt",
+          "bytes": 644,
+          "sha256": "d7da49d6cbb595918b48704c441f496cbb857a41a1c53cc2afb5260936a73642"
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "dispatcher_log": {
+    "original_path": "experiments/timing_200_20260926/units_200_retry1.log",
+    "archived_path": "member_b_evidence/timing_200_20260926/units/units_200_retry1.log.txt",
+    "bytes": 14817,
+    "sha256": "1e125301d0acefd02e484321eeaac862f8518581e2138f22c95f304f8ce6f8e1"
+  },
+  "source_hashes": [
+    {
+      "path": "experiments/timing_200_20260926/bias_early/phase_accumulator_36.sv",
+      "raw_bytes": 3884,
+      "raw_sha256": "1094dc3ea2fd1b9c95f71979db63a972427617e8b4e4cb4dc2799cb214ab70c5",
+      "canonical_bytes": 3798,
+      "canonical_sha256": "f42684c8842ee296bcca03567dbe514330faeba8f59739844f0436cdf9713607"
+    },
+    {
+      "path": "experiments/timing_200_20260926/bias_early/phase_accumulator_reference36.sv",
+      "raw_bytes": 3358,
+      "raw_sha256": "12c77ecbeff0c6a441e7b2f0c4db099ad671e6967eb52931e1a9a8020fa5911f",
+      "canonical_bytes": 3269,
+      "canonical_sha256": "b4869622d53dbe22d970a9771d599339e55bf8a971d3cd73f4f990a717bf4029"
+    },
+    {
+      "path": "experiments/timing_200_20260926/bias_early/run_unit.tcl",
+      "raw_bytes": 2090,
+      "raw_sha256": "dc8151081f512a3837db2e18de492cd0dcd1360387a35ae35c15826171b8014b",
+      "canonical_bytes": 2045,
+      "canonical_sha256": "81f5f9b74e0a90ce08af1053bb25a1c353c5a6187109cfc9fccb19e7d1776fab"
+    },
+    {
+      "path": "experiments/timing_200_20260926/bias_early/tb_bias_early.sv",
+      "raw_bytes": 14622,
+      "raw_sha256": "e2c8bb8f12057a3248d639bb7d511a6fd728da5948a91a99dee69a0ccedf1020",
+      "canonical_bytes": 14622,
+      "canonical_sha256": "e2c8bb8f12057a3248d639bb7d511a6fd728da5948a91a99dee69a0ccedf1020"
+    },
+    {
+      "path": "experiments/timing_200_20260926/fifo_srl/elastic_fifo.sv",
+      "raw_bytes": 5337,
+      "raw_sha256": "b907fe31d0de9d92e648920e987bc760f4b29d7a082a6d4f2cbecd846bb87d6c",
+      "canonical_bytes": 5337,
+      "canonical_sha256": "b907fe31d0de9d92e648920e987bc760f4b29d7a082a6d4f2cbecd846bb87d6c"
+    },
+    {
+      "path": "experiments/timing_200_20260926/fifo_srl/elastic_fifo_reference.sv",
+      "raw_bytes": 3265,
+      "raw_sha256": "dbcb9778d2523fe88cbc12d5fde1717351e1551014b24006a2b4d0be9dfee1b7",
+      "canonical_bytes": 3181,
+      "canonical_sha256": "0c3874983ea3f3323780f497349e7737e7dc4337ae562386a97b8ac8d78d822f"
+    },
+    {
+      "path": "experiments/timing_200_20260926/fifo_srl/run_unit.tcl",
+      "raw_bytes": 1999,
+      "raw_sha256": "b365fc418c6486cb52302fc3a571e7a80beac8202c8753ac804936a619a5be6c",
+      "canonical_bytes": 1955,
+      "canonical_sha256": "39bd46c58bfe8cfa2ab4af8c2f1d723a82d22bae315d332ba9bff121d9290147"
+    },
+    {
+      "path": "experiments/timing_200_20260926/fifo_srl/tb_elastic_fifo_srl.sv",
+      "raw_bytes": 12193,
+      "raw_sha256": "ded6503654e510b106e947d162fd3a49fb2d2750e8c62ae138c3e8db8ddb7588",
+      "canonical_bytes": 12193,
+      "canonical_sha256": "ded6503654e510b106e947d162fd3a49fb2d2750e8c62ae138c3e8db8ddb7588"
+    },
+    {
+      "path": "experiments/timing_200_20260926/mac_buffer/mac_issue_stage.sv",
+      "raw_bytes": 5088,
+      "raw_sha256": "505e871bae49bb554fcdb5e83eceff623d4009bbfa5094f8ea5e83ad627f2f0a",
+      "canonical_bytes": 5088,
+      "canonical_sha256": "505e871bae49bb554fcdb5e83eceff623d4009bbfa5094f8ea5e83ad627f2f0a"
+    },
+    {
+      "path": "experiments/timing_200_20260926/mac_buffer/run_unit.tcl",
+      "raw_bytes": 1841,
+      "raw_sha256": "a36e957ca2a1e456521cc443aded9162cf34c01eb2ca90d92664d36785c95301",
+      "canonical_bytes": 1801,
+      "canonical_sha256": "7565794906374456ca36f755bdebbe7eaf39ba1a1c04ccd78ffa28df5c67690f"
+    },
+    {
+      "path": "experiments/timing_200_20260926/mac_buffer/tb_mac_partial_fifo2.sv",
+      "raw_bytes": 7376,
+      "raw_sha256": "975c079f5ac0a827b364264ed055a84bc43e88b38d4f2f9b4acce018e583f6e3",
+      "canonical_bytes": 7376,
+      "canonical_sha256": "975c079f5ac0a827b364264ed055a84bc43e88b38d4f2f9b4acce018e583f6e3"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/prelu_requantize.sv",
+      "raw_bytes": 7721,
+      "raw_sha256": "46f448b9067507acc5cf2b6ec93d4a2a3eef8bf6084e8aef702e1efbcf2a489a",
+      "canonical_bytes": 7513,
+      "canonical_sha256": "d71c180e58b636ba6ff3d81069592109bc940ceb863c2eeda80b562c91133721"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/prelu_requantize_reference.sv",
+      "raw_bytes": 7076,
+      "raw_sha256": "7f92680f5b33f63ceeb4ccddf49b0054ac66be9858ecadb8df60b125aea4fcf6",
+      "canonical_bytes": 6869,
+      "canonical_sha256": "1afa83ff1d5e98518302aac3598c61c85b22b8caaf98ce37f0878b01d4b8c32b"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/run_unit.tcl",
+      "raw_bytes": 2847,
+      "raw_sha256": "49a1949070af45a27308a91337c976e52922e50c4591cd395de7a79f2f1a4026",
+      "canonical_bytes": 2785,
+      "canonical_sha256": "3c86f69366ff7b4078be82b56f3c5aaf5c3957de93863e8fd2814baecc60681b"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/tb_requant_scalar.sv",
+      "raw_bytes": 12651,
+      "raw_sha256": "bdd2a0af284645260237573d7c8d9eb62f8f012da4c38046d70dfcfeb86c0dbc",
+      "canonical_bytes": 12651,
+      "canonical_sha256": "bdd2a0af284645260237573d7c8d9eb62f8f012da4c38046d70dfcfeb86c0dbc"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/tb_requant_shared.sv",
+      "raw_bytes": 17641,
+      "raw_sha256": "ce0bfbc1031dce9b165725a75eb842c947e1c3b2f2d740bc05b149c36790ffa8",
+      "canonical_bytes": 17641,
+      "canonical_sha256": "ce0bfbc1031dce9b165725a75eb842c947e1c3b2f2d740bc05b149c36790ffa8"
+    },
+    {
+      "path": "experiments/timing_200_20260926/requant_pipe/vector_postprocess_shared.sv",
+      "raw_bytes": 5667,
+      "raw_sha256": "550fd731d935fe561756e6e3489220efa1948af0c316ffc22bd6221f5fe602dd",
+      "canonical_bytes": 5535,
+      "canonical_sha256": "3d26a6e6f48e7542a5f09439ba76c41d33680690cad69f73a41ffc991349209d"
+    },
+    {
+      "path": "experiments/timing_200_20260926/run_units200.tcl",
+      "raw_bytes": 662,
+      "raw_sha256": "180b90485d0bdb5b710d664cc92399f6c9841c54280e31a231ab320949ef740b",
+      "canonical_bytes": 662,
+      "canonical_sha256": "180b90485d0bdb5b710d664cc92399f6c9841c54280e31a231ab320949ef740b"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_pipe/pingpong_buffer.v",
+      "raw_bytes": 15093,
+      "raw_sha256": "7d1afd0285a3b660b2a3cd36fe849aaec056464d8c3a5a3d7bf19088f2eb09a1",
+      "canonical_bytes": 14853,
+      "canonical_sha256": "f56aac0ea3e45e432fffe4bfd56d00884abcecae74ccd137b58ab6db037ac9fe"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_pipe/run_unit.tcl",
+      "raw_bytes": 4185,
+      "raw_sha256": "c66cd13dc11b52e8a00278ffed2b1e2cb33f08b5d30e515d071faeeadab8b6ff",
+      "canonical_bytes": 4097,
+      "canonical_sha256": "d1c3d71c7f1dced0ec3f776f740b0376eaf2071f52d456b2d4793f5e57d2136e"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_pipe/stripe_buffer.v",
+      "raw_bytes": 5086,
+      "raw_sha256": "65dbe2d42c89b12715930d7421ea140f54a4ca91470975466493c89f98b423b4",
+      "canonical_bytes": 5009,
+      "canonical_sha256": "22b142b35bc94b45d8cdb32feb933ff1bc42c0f8b3fc211eba90a5f980dfc2e2"
+    },
+    {
+      "path": "experiments/timing_200_20260926/stripe_pipe/tb_stripe_pipe.sv",
+      "raw_bytes": 20225,
+      "raw_sha256": "1d9c4d6c1be91c6103369e2b5b7f8f2fa385522102e803eae6d55096a8e2ad8f",
+      "canonical_bytes": 20225,
+      "canonical_sha256": "1d9c4d6c1be91c6103369e2b5b7f8f2fa385522102e803eae6d55096a8e2ad8f"
+    },
+    {
+      "path": "rtl/c_config.vh",
+      "raw_bytes": 7468,
+      "raw_sha256": "52283345dab7652cc8b4384b1cf06d7a6ea2235101b92e70bc4ee87cb69ad157",
+      "canonical_bytes": 7351,
+      "canonical_sha256": "cf5ece69d923e776e11b1c89d0e40ed61326014f9848fa5b34aff5815f1ac0bd"
+    },
+    {
+      "path": "rtl/c_protocol_assertions.v",
+      "raw_bytes": 7246,
+      "raw_sha256": "f65ea5ae26f67aad4fa367046374dadc5584172b37e0945d01254871348dfaad",
+      "canonical_bytes": 7088,
+      "canonical_sha256": "253186fc5aa728fc3ff7ac9768999ff48a95d8ac1a725a244b9f8c9e16ea5be5"
+    },
+    {
+      "path": "rtl/output_stream.v",
+      "raw_bytes": 15698,
+      "raw_sha256": "ec54a105671f93643f33f32c4d51add8b68f2f48949b583d1ad1495649acc72f",
+      "canonical_bytes": 15425,
+      "canonical_sha256": "a2bb694d42d24ef105bfb21d98896991dd8ccc6651337d1fede1098b1d562145"
+    },
+    {
+      "path": "tb/tb_backpressure_rand.v",
+      "raw_bytes": 13979,
+      "raw_sha256": "54fa47efd9e335e769d61341cf85fc8bd094c5b1a10e7b234b58f6b350c4a1b3",
+      "canonical_bytes": 13659,
+      "canonical_sha256": "0ed6ccb8e93cd6c911680c56c40561438cfb393e36155bf293d5968cf4f79d10"
+    },
+    {
+      "path": "tb/tb_stripe_buffer.v",
+      "raw_bytes": 11858,
+      "raw_sha256": "c878d350b52de245a9a178d0d0b08f606bc73533651f3f66d557c3665a89d984",
+      "canonical_bytes": 11596,
+      "canonical_sha256": "30302cc086bd6a7c41c0fe9a1538c14632b51012b0fa48b2f3dd04a6c284ce01"
+    }
+  ],
+  "source_hash_scope": "Hashes taken from fixed successful-run RTL, references, testbenches, direct runners, include dependencies, and run_units200 dispatcher; CRLF-to-LF normalization changes no other bytes.",
+  "log_archive_rule": "Original text log bytes retained verbatim as .log.txt for Git visibility; no DLL, executable, wave, snapshot, or temporary binaries copied.",
+  "runner_log_collision": {
+    "status": "RUNNER_FAILURE_NOT_RTL_FAILURE",
+    "initial_session_pid": 19484,
+    "initial_config_pass_occurrences": 7,
+    "expected_config_pass_occurrences": 5,
+    "initial_final_pass_occurrences": 2,
+    "initial_xsim_fatal_error": false,
+    "description": "The first attempt sent XSim engine log and redirected stdout to the same default xsim.log. Interleaving duplicated PASS lines, so the exact-count runner rejected a completed RTL test. The corrected runner uses -log xsim_engine.log while stdout goes to xsim.log, and xvlog/xelab use --nolog. Retry PID33224 produced unique markers for every unit.",
+    "logs": [
+      {
+        "original_path": "experiments/timing_200_20260926/units_200.log",
+        "archived_path": "member_b_evidence/timing_200_20260926/units/runner_log_collision/units_200.log.txt",
+        "bytes": 4297,
+        "sha256": "d3d9e4439470892ca30e1e5df3729d81c03202b6e3a6fc88a3c6cc4803be1a05"
+      },
+      {
+        "original_path": "experiments/timing_200_20260926/bias_early/unit_work/run_20260926_191822_19484/xsim.log",
+        "archived_path": "member_b_evidence/timing_200_20260926/units/runner_log_collision/bias_early_xsim.log.txt",
+        "bytes": 2833,
+        "sha256": "1d3000dee5b86b3ed16d9b323ff703934581a75a744b0d0bd106c47e616c355c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 21:41:59 2026
+# Process ID         : 20904
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/_synth_bc/postroute200_v2_pressure000_try1/vivado.log -source V:/experiments/timing_200_20260926/postroute_finish/finish.tcl -tclargs V:/_synth_bc/postroute200_v2_pressure000_try1 C:/Users/24889/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe
+# Log file           : V:/_synth_bc/postroute200_v2_pressure000_try1/vivado.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 33646 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20260926/postroute_finish/finish.tcl
+# if {![info exists argv] || [llength $argv] != 2} {
+#     error "Expected prepared stage and Python executable"
+# }
+# set finish_here [file normalize [file dirname [info script]]]
+# set finish_stage [file normalize [lindex $argv 0]]
+# set finish_python [lindex $argv 1]
+# if {![string match "2025.2*" [version -short]]} {error "This experiment was reviewed for Vivado 2025.2"}
+Traceback (most recent call last):
+  File "V:\experiments\timing_200_20260926\postroute_finish\prepare.py", line 2, in <module>
+    from pathlib import Path
+  File "F:\Xilinx\2025.2\Vivado\tps\win64\python-3.13.0\lib\pathlib\__init__.py", line 8, in <module>
+    from ._abc import *
+  File "F:\Xilinx\2025.2\Vivado\tps\win64\python-3.13.0\lib\pathlib\_abc.py", line 15, in <module>
+    from glob import _Globber, _no_recurse_symlinks
+  File "F:\Xilinx\2025.2\Vivado\tps\win64\python-3.13.0\lib\glob.py", line 5, in <module>
+    import re
+  File "F:\Xilinx\2025.2\Vivado\tps\win64\python-3.13.0\lib\re\__init__.py", line 126, in <module>
+    from . import _compiler, _parser
+  File "F:\Xilinx\2025.2\Vivado\tps\win64\python-3.13.0\lib\re\_compiler.py", line 18, in <module>
+    assert _sre.MAGIC == MAGIC, "SRE module mismatch"
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError: SRE module mismatch
+    while executing
+"exec $finish_python "$finish_here/prepare.py" verify $finish_stage"
+    invoked from within
+"puts [exec $finish_python "$finish_here/prepare.py" verify $finish_stage]"
+    (file "V:/experiments/timing_200_20260926/postroute_finish/finish.tcl" line 10)
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 26 21:42:01 2026...

@@ -1,0 +1,24 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:20:22 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_elastic_fifo_srl/xsim_script.tcl
+# xsim {tb_elastic_fifo_srl} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+FIFO_SRL_CONFIG_PASS id=7 width=37 depth=1 cycles=2179 pushes=791 pops=784 discarded=7 full_exchange=658 full_run=40 simultaneous=658 steady_run=40 append_stalled=0 full_stalls=1066 holds=1189 empty_to_one=133 became_full=133 drained_full=126 reset_full=7 reset_partial=0 reset_pending=5 reset_valid=3 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=6 width=6400 depth=3 cycles=2279 pushes=891 pops=871 discarded=20 full_exchange=553 full_run=40 simultaneous=696 steady_run=40 append_stalled=148 full_stalls=1016 holds=1311 empty_to_one=47 became_full=90 drained_full=84 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=4 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=5 width=1025 depth=3 cycles=2279 pushes=925 pops=904 discarded=21 full_exchange=565 full_run=40 simultaneous=715 steady_run=40 append_stalled=170 full_stalls=973 holds=1278 empty_to_one=40 became_full=115 drained_full=109 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=3 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=4 width=1152 depth=4 cycles=2327 pushes=961 pops=931 discarded=30 full_exchange=542 full_run=40 simultaneous=709 steady_run=40 append_stalled=216 full_stalls=952 holds=1310 empty_to_one=36 became_full=111 drained_full=104 reset_full=7 reset_partial=1 reset_pending=4 reset_valid=6 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=3 width=200 depth=4 cycles=2327 pushes=912 pops=883 discarded=29 full_exchange=522 full_run=40 simultaneous=673 steady_run=40 append_stalled=205 full_stalls=999 holds=1356 empty_to_one=34 became_full=111 drained_full=105 reset_full=6 reset_partial=2 reset_pending=4 reset_valid=3 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=1 width=6400 depth=4 cycles=2327 pushes=964 pops=941 discarded=23 full_exchange=534 full_run=40 simultaneous=738 steady_run=40 append_stalled=190 full_stalls=969 holds=1294 empty_to_one=36 became_full=95 drained_full=91 reset_full=4 reset_partial=4 reset_pending=2 reset_valid=5 random_cycles=2000
+FIFO_SRL_CONFIG_PASS id=2 width=256 depth=32 cycles=3657 pushes=1779 pops=1542 discarded=237 full_exchange=422 full_run=40 simultaneous=674 steady_run=40 append_stalled=1070 full_stalls=751 holds=2004 empty_to_one=35 became_full=102 drained_full=98 reset_full=4 reset_partial=4 reset_pending=4 reset_valid=4 random_cycles=2000
+FIFO_SRL_ALL_SEVEN_CONFIGS_PASS
+$finish called at time : 36576 ns : File "V:/experiments/timing_200_20260926/fifo_srl/tb_elastic_fifo_srl.sv" Line 256
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:20:28 2026...

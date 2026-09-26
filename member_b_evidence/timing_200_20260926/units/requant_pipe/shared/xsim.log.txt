@@ -1,0 +1,20 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:20:13 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_requant_shared/xsim_script.tcl
+# xsim {tb_requant_shared} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+REQUANT_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=358 outputs=354 in_stall=3428 out_stall=1344 simultaneous=15 gaps=290 cycles=4234
+REQUANT_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=358 outputs=354 in_stall=4262 out_stall=1443 simultaneous=26 gaps=313 cycles=5082
+REQUANT_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=358 outputs=354 in_stall=4281 out_stall=1474 simultaneous=20 gaps=297 cycles=5095
+REQUANT_SHARED_ALL_CONFIGS_PASS configs=3
+$finish called at time : 50985 ns : File "V:/experiments/timing_200_20260926/requant_pipe/tb_requant_shared.sv" Line 405
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:20:15 2026...

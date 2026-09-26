@@ -1,0 +1,46 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:50:00 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_ready_valid/xsim_script.tcl
+# xsim {tb_ready_valid} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+=====================================================
+ tb_ready_valid : IMG 32x16 -> OUT 64x32, STRIPE_H=5 (7 stripes, last 2 rows)
+ TOT_IN=512  TOT_OUT=2048  BAUD_DIV=10
+=====================================================
+[SNAP] long out-stall @10535000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=0 rd_len=320 rd_avail=1 | rb:0 dbg_out=(0,10) stripe=2
+[info] after 2000 cycles (rb_enable=0): busy=1 out_accept=641 out_ready=0 buf_state=10
+[SNAP] long out-stall @350475000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=5 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,15) stripe=3
+[SNAP] long out-stall @677195000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=6 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,20) stripe=4
+[SNAP] long out-stall @1003275000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=5 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,25) stripe=5
+[SNAP] long out-stall @1329995000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=128 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=6 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,30) stripe=6
+[info] frame1 done @ 163135 cycles after start-open; out_accept=2048
+[SNAP] long out-stall @1653955000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=127 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=3 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,0) stripe=0
+[SNAP] long out-stall @1982475000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=5 rd_len=128 rd_avail=1 | rb:1 dbg_out=(0,5) stripe=1
+[SNAP] long out-stall @2113355000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=6 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,10) stripe=2
+[SNAP] long out-stall @2439435000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=5 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,15) stripe=3
+[SNAP] long out-stall @2766155000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=6 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,20) stripe=4
+[SNAP] long out-stall @3092235000 : wr_bank=1 full0=1 full1=1 pending=1 wr_cnt=319 len=320 other_free=0 swap_now=0 | rd_busy=1 rd_bank=0 rd_ptr=5 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,25) stripe=5
+[SNAP] long out-stall @3418955000 : wr_bank=0 full0=1 full1=1 pending=1 wr_cnt=319 len=128 other_free=0 swap_now=0 | rd_busy=1 rd_bank=1 rd_ptr=6 rd_len=320 rd_avail=1 | rb:1 dbg_out=(0,30) stripe=6
+-----------------------------------------------------
+ cycles(2nd frame wait) = 254653
+ in_accept   = 1024 / 1024
+ out_accept  = 4096 / 4096
+ uart_bytes  = 4096 / 4096  (uart_err=0)
+ stripe_last pulses = 14 / 14  ; frame_last pulses = 2 / 2
+ (DUT 内部 stripe_cnt 已是「本帧」计数，每帧复位，故末值为 7)
+ longest OUT stall = 33610 cyc ; longest IN stall = 33738 cyc
+ max rom_addr = 512 (fill-region start = 512)
+ proto_err=0 overflow_err=0 done_cnt=2
+-----------------------------------------------------
+RESULT: PASS  (all A~K scenarios, 0 error)
+$finish called at time : 4200115 ns : File "V:/tb/tb_ready_valid.v" Line 498
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:50:02 2026...

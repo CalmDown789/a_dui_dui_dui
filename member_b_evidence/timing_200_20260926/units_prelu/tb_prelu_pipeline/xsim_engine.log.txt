@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 20:04:24 2026
+# Process ID         : 27272
+# Current directory  : V:/experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xsim_engine.log -mode tcl -source {xsim.dir/tb_prelu_pipeline/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 35846 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_prelu_pipeline/xsim_script.tcl
+# xsim {tb_prelu_pipeline} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+REQUANT_ROUND64_PROBE_PASS checked=1094
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=0 checked=3129 accepted=3151
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=1 checked=3119 accepted=3143
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=2 checked=3146 accepted=3166
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=3 checked=3165 accepted=3188
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=4 checked=3160 accepted=3183
+PRELU_PIPELINE_SCALAR_CONFIG_PASS id=5 checked=3149 accepted=3170
+PRELU_PIPELINE_SCALAR_ALL_CONFIGS_PASS
+$finish called at time : 34582 ns : File "V:/experiments/timing_200_20260926/prelu_pipeline/tb_prelu_pipeline.sv" Line 302
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:04:26 2026...

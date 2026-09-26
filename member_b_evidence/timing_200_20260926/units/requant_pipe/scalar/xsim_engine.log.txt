@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 19:20:08 2026
+# Process ID         : 8880
+# Current directory  : V:/experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xsim_engine.log -mode tcl -source {xsim.dir/tb_requant_scalar/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/requant_pipe/unit_work/run_20260926_192006_33224/tb_requant_scalar\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 48336 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_requant_scalar/xsim_script.tcl
+# xsim {tb_requant_scalar} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+REQUANT_ROUND64_PROBE_PASS checked=1094
+REQUANT_SCALAR_CONFIG_PASS id=0 checked=3131 accepted=3151
+REQUANT_SCALAR_CONFIG_PASS id=1 checked=3122 accepted=3143
+REQUANT_SCALAR_CONFIG_PASS id=2 checked=3148 accepted=3166
+REQUANT_SCALAR_CONFIG_PASS id=3 checked=3168 accepted=3188
+REQUANT_SCALAR_CONFIG_PASS id=4 checked=3163 accepted=3183
+REQUANT_SCALAR_CONFIG_PASS id=5 checked=3152 accepted=3170
+REQUANT_SCALAR_ALL_CONFIGS_PASS
+$finish called at time : 34582 ns : File "V:/experiments/timing_200_20260926/requant_pipe/tb_requant_scalar.sv" Line 302
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:20:10 2026...

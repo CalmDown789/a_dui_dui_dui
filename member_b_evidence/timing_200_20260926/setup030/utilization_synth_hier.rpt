@@ -1,0 +1,102 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sat Sep 26 18:24:45 2026
+| Host         : OMENMAX running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file V://_synth_bc/acc36_realrom_200_member_b_setup0300926_ascii_ramdecomp/reports/utilization_synth_hier.rpt
+| Design       : c_synth_top
+| Device       : xc7a200tfbg484-2
+| Speed File   : -2
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+---------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|             Instance            |                    Module                   | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++---------------------------------+---------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| c_synth_top                     |                                       (top) |      29418 |      23545 |    5848 |   25 | 48413 |    226 |      8 |        394 |
+|   (c_synth_top)                 |                                       (top) |          0 |          0 |       0 |    0 |     0 |      0 |      0 |          0 |
+|   u_top                         |                                       c_top |      29418 |      23545 |    5848 |   25 | 48413 |    226 |      8 |        394 |
+|     (u_top)                     |                                       c_top |         11 |         11 |       0 |    0 |    55 |      0 |      0 |          0 |
+|     u_core                      |                                      c_core |      29407 |      23534 |    5848 |   25 | 48358 |    226 |      8 |        394 |
+|       u_pp                      |                             pingpong_buffer |        433 |        433 |       0 |    0 |   180 |     60 |      0 |          0 |
+|         (u_pp)                  |                             pingpong_buffer |        135 |        135 |       0 |    0 |   170 |      0 |      0 |          0 |
+|         u_bank0                 |                               stripe_buffer |        134 |        134 |       0 |    0 |     5 |     30 |      0 |          0 |
+|         u_bank1                 |                             stripe_buffer_0 |        164 |        164 |       0 |    0 |     5 |     30 |      0 |          0 |
+|       u_b                       |                                   b_core_if |      28790 |      22917 |    5848 |   25 | 47810 |     38 |      8 |        394 |
+|         u_b_core                |                                 b_core_real |      28790 |      22917 |    5848 |   25 | 47810 |     38 |      8 |        394 |
+|           core                  |                      fsrcnn_network_mem_top |      28790 |      22917 |    5848 |   25 | 47810 |     38 |      8 |        394 |
+|             core                |                         fsrcnn_network_core |      28790 |      22917 |    5848 |   25 | 47810 |     38 |      8 |        394 |
+|               f12               |                elastic_fifo__parameterized0 |        187 |         15 |     172 |    0 |    16 |      0 |      0 |          0 |
+|               f23               |                elastic_fifo__parameterized1 |        231 |        143 |      88 |    0 |    16 |      0 |      0 |          0 |
+|               f34               |              elastic_fifo__parameterized1_1 |        103 |         15 |      88 |    0 |    16 |      0 |      0 |          0 |
+|               f45               |              elastic_fifo__parameterized0_2 |        443 |        271 |     172 |    0 |    16 |      0 |      0 |          0 |
+|               l1                |                         fsrcnn_stream_layer |       4530 |       4389 |     136 |    5 |  6652 |      0 |      4 |         62 |
+|                 gk.frontend     |                      window_stream_frontend |        252 |        116 |     136 |    0 |   293 |      0 |      4 |          0 |
+|                   win           |                         window_kminus1_bram |         56 |         56 |       0 |    0 |   264 |      0 |      4 |          0 |
+|                   fifo          |                                elastic_fifo |        147 |         11 |     136 |    0 |     7 |      0 |      0 |          0 |
+|                 mac             |                             mac_issue_stage |       2890 |       2890 |       0 |    0 |  3993 |      0 |      0 |         50 |
+|                   (mac)         |                             mac_issue_stage |        730 |        730 |       0 |    0 |     0 |      0 |      0 |          0 |
+|                   acc           |                           phase_accumulator |        963 |        963 |       0 |    0 |  1666 |      0 |      0 |          0 |
+|                   issue         |                           eight_phase_issue |          1 |          1 |       0 |    0 |   204 |      0 |      0 |          0 |
+|                   mac           |                          phase_mac_pipeline |       1250 |       1250 |       0 |    0 |  2123 |      0 |      0 |         50 |
+|                 post            |                 vector_postprocess_shared_8 |       1388 |       1383 |       0 |    5 |  2366 |      0 |      0 |         12 |
+|                   (post)        |                 vector_postprocess_shared_8 |        331 |        326 |       0 |    5 |  1707 |      0 |      0 |          0 |
+|                   units[0].post |                          prelu_requantize_9 |        560 |        560 |       0 |    0 |   332 |      0 |      0 |          6 |
+|                   units[1].post |                         prelu_requantize_10 |        497 |        497 |       0 |    0 |   327 |      0 |      0 |          6 |
+|               l2                |         fsrcnn_stream_layer__parameterized0 |       1767 |       1762 |       0 |    5 |  2879 |      0 |      0 |         22 |
+|                 mac             |             mac_issue_stage__parameterized0 |       1100 |       1100 |       0 |    0 |  1696 |      0 |      0 |         16 |
+|                   (mac)         |             mac_issue_stage__parameterized0 |        518 |        518 |       0 |    0 |     0 |      0 |      0 |          0 |
+|                   acc           |         phase_accumulator__parameterized0_7 |        295 |        295 |       0 |    0 |   834 |      0 |      0 |          0 |
+|                   issue         |           eight_phase_issue__parameterized0 |        110 |        110 |       0 |    0 |   260 |      0 |      0 |          0 |
+|                   mac           |          phase_mac_pipeline__parameterized0 |        217 |        217 |       0 |    0 |   602 |      0 |      0 |         16 |
+|                 post            | vector_postprocess_shared__parameterized0_5 |        667 |        662 |       0 |    5 |  1183 |      0 |      0 |          6 |
+|                   (post)        | vector_postprocess_shared__parameterized0_5 |        172 |        167 |       0 |    5 |   859 |      0 |      0 |          0 |
+|                   units[0].post |                          prelu_requantize_6 |        495 |        495 |       0 |    0 |   324 |      0 |      0 |          6 |
+|               l3                |         fsrcnn_stream_layer__parameterized1 |       4633 |       3836 |     792 |    5 |  8537 |      8 |      0 |         78 |
+|                 gk.frontend     |      window_stream_frontend__parameterized0 |       1043 |        251 |     792 |    0 |  1401 |      8 |      0 |          0 |
+|                   win           |         window_kminus1_bram__parameterized0 |        150 |        150 |       0 |    0 |  1336 |      8 |      0 |          0 |
+|                   fifo          |                elastic_fifo__parameterized2 |        850 |         58 |     792 |    0 |    43 |      0 |      0 |          0 |
+|                 mac             |             mac_issue_stage__parameterized1 |       2929 |       2929 |       0 |    0 |  5959 |      0 |      0 |         72 |
+|                   (mac)         |             mac_issue_stage__parameterized1 |        382 |        382 |       0 |    0 |     0 |      0 |      0 |          0 |
+|                   acc           |           phase_accumulator__parameterized0 |        401 |        401 |       0 |    0 |   834 |      0 |      0 |          0 |
+|                   issue         |           eight_phase_issue__parameterized1 |        390 |        390 |       0 |    0 |  1165 |      0 |      0 |          0 |
+|                   mac           |          phase_mac_pipeline__parameterized1 |       1811 |       1811 |       0 |    0 |  3960 |      0 |      0 |         72 |
+|                 post            |   vector_postprocess_shared__parameterized0 |        661 |        656 |       0 |    5 |  1177 |      0 |      0 |          6 |
+|                   (post)        |   vector_postprocess_shared__parameterized0 |        172 |        167 |       0 |    5 |   857 |      0 |      0 |          0 |
+|                   units[0].post |                          prelu_requantize_4 |        489 |        489 |       0 |    0 |   320 |      0 |      0 |          6 |
+|               l4                |         fsrcnn_stream_layer__parameterized2 |       2896 |       2891 |       0 |    5 |  4527 |      0 |      0 |         28 |
+|                 mac             |             mac_issue_stage__parameterized2 |       1519 |       1519 |       0 |    0 |  2205 |      0 |      0 |         16 |
+|                   (mac)         |             mac_issue_stage__parameterized2 |        806 |        806 |       0 |    0 |     0 |      0 |      0 |          0 |
+|                   acc           |           phase_accumulator__parameterized2 |        750 |        750 |       0 |    0 |  1666 |      0 |      0 |          0 |
+|                   issue         |           eight_phase_issue__parameterized2 |          4 |          4 |       0 |    0 |   132 |      0 |      0 |          0 |
+|                   mac           |          phase_mac_pipeline__parameterized2 |         39 |         39 |       0 |    0 |   407 |      0 |      0 |         16 |
+|                 post            |                   vector_postprocess_shared |       1377 |       1372 |       0 |    5 |  2322 |      0 |      0 |         12 |
+|                   (post)        |                   vector_postprocess_shared |        319 |        314 |       0 |    5 |  1687 |      0 |      0 |          0 |
+|                   units[0].post |                            prelu_requantize |        560 |        560 |       0 |    0 |   322 |      0 |      0 |          6 |
+|                   units[1].post |                          prelu_requantize_3 |        498 |        498 |       0 |    0 |   313 |      0 |      0 |          6 |
+|               l5                |         fsrcnn_stream_layer__parameterized3 |      13892 |       9487 |    4400 |    5 | 25105 |     28 |      4 |        204 |
+|                 gk.frontend     |      window_stream_frontend__parameterized1 |       5822 |       1422 |    4400 |    0 |  6971 |     28 |      4 |          0 |
+|                   win           |         window_kminus1_bram__parameterized1 |       1062 |       1062 |       0 |    0 |  6727 |     28 |      4 |          0 |
+|                   fifo          |                elastic_fifo__parameterized3 |       4724 |        324 |    4400 |    0 |   221 |      0 |      0 |          0 |
+|                 mac             |             mac_issue_stage__parameterized3 |       7794 |       7794 |       0 |    0 | 17572 |      0 |      0 |        200 |
+|                   acc           |           phase_accumulator__parameterized3 |        200 |        200 |       0 |    0 |   418 |      0 |      0 |          0 |
+|                   issue         |           eight_phase_issue__parameterized3 |       1931 |       1931 |       0 |    0 |  6450 |      0 |      0 |          0 |
+|                   mac           |          phase_mac_pipeline__parameterized3 |       5663 |       5663 |       0 |    0 | 10704 |      0 |      0 |        200 |
+|                 post            |   vector_postprocess_shared__parameterized1 |        276 |        271 |       0 |    5 |   562 |      0 |      0 |          4 |
+|                   (post)        |   vector_postprocess_shared__parameterized1 |        169 |        164 |       0 |    5 |   395 |      0 |      0 |          0 |
+|                   units[0].post |            prelu_requantize__parameterized0 |        107 |        107 |       0 |    0 |   167 |      0 |      0 |          4 |
+|               shuffle           |                   pixel_shuffle2x_row_banks |        108 |        108 |       0 |    0 |    46 |      2 |      0 |          0 |
+|       u_in                      |                                input_stream |         52 |         52 |       0 |    0 |   206 |      0 |      0 |          0 |
+|       u_out                     |                               output_stream |         59 |         59 |       0 |    0 |    51 |      0 |      0 |          0 |
++---------------------------------+---------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

@@ -1,0 +1,42 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 19:19:54 2026
+# Process ID         : 32796
+# Current directory  : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe
+# Command line       : xsim.exe -log V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xsim_engine.log -mode tcl -source {xsim.dir/tb_stripe_pipe/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20260926/stripe_pipe/unit_work/run_20260926_191951_33224/tb_stripe_pipe\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 48385 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_stripe_pipe/xsim_script.tcl
+# xsim {tb_stripe_pipe} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+stripe_pipe: independent FIFO scoreboard, depth=32
+Directed: one-byte stripe (first and last on the same response)
+Directed: short stripe with read-request gaps
+Directed: two full banks, backpressure, earliest reuse, simultaneous R/W
+Random seed=12ab34cd
+Random seed=6d2b79f5
+Random seed=f00d1234
+Reset: request stage occupied, output stage empty
+Reset: output stage occupied before downstream capture
+Coverage single=51 short=98 full=52 consecutive=1953 simultaneous_rw=647 blocked=3395 reuse=1 reset1=1 reset2=1 seeds=3
+Totals writes=2610 requests=2598 visible_responses=2597 cycles=6809
+STRIPE_PIPE_UNIT_TEST_PASS
+$finish called at time : 68087 ns : File "V:/experiments/timing_200_20260926/stripe_pipe/tb_stripe_pipe.sv" Line 483
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:19:55 2026...

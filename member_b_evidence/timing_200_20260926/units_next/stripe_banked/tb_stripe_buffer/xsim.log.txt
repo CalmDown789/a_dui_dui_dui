@@ -1,0 +1,29 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:44:09 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_stripe_buffer/xsim_script.tcl
+# xsim {tb_stripe_buffer} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+=====================================================
+ tb_stripe_buffer : WIDTH=8 ROWS=4 满条带=32 B  部分条带=12 B  ADDR_W=6
+=====================================================
+[T1] 写 1 个满条带 + 回读
+[T2] 连写 2 个满条带 + 顺序回读
+[T3] 连写 2 条后不释放（考察反压 + 不覆盖）
+[T4] 部分条带（len=12）收尾 + 回读
+-----------------------------------------------------
+ wr_total=204  rd_total=204  exp_val=204
+ states: WRITING=1 SWAPPING=1 DRAINING=1
+ overflow_err=0  wr_ready_dropped=1
+-----------------------------------------------------
+RESULT: PASS  (T1~T6, 0 error)
+$finish called at time : 13540 ns : File "V:/tb/tb_stripe_buffer.v" Line 248
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:44:11 2026...

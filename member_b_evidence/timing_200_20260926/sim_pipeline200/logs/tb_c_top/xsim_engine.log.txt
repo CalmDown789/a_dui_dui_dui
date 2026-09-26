@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Sep 26 20:11:14 2026
+# Process ID         : 35496
+# Current directory  : V:/_sim_l5_member_b_acc36_pipeline200/tb_c_top
+# Command line       : xsim.exe -log V://_sim_l5_member_b_acc36_pipeline200/tb_c_top/xsim_engine.log -mode tcl -source {xsim.dir/tb_c_top/xsim_script.tcl}
+# Log file           : V://_sim_l5_member_b_acc36_pipeline200/tb_c_top/xsim_engine.log
+# Journal file       : V:/_sim_l5_member_b_acc36_pipeline200/tb_c_top\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 36055 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_c_top/xsim_script.tcl
+# xsim {tb_c_top} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+=====================================================
+ tb_c_top Part A : 960x540 -> 1920x1080, STRIPE_H=64
+   N_STRIPES=17  LAST_H=56  TOT_OUT=2073600  LEN_FULL=122880  LEN_LAST=107520
+=====================================================
+Part B: c_top 冒烟 OK — busy 于 47 拍后拉起, led=00000001
+Part B: PASS (无 X 传播；未跑整帧，无结论性指标)
+-----------------------------------------------------
+ out_accepts=2073600 / 2073600
+ stripe_last=17 / 17 ; frame_last=1 / 1
+ last stripe bytes=107520 (exp 107520 = 56 rows x 1920)
+ rd_bytes=2073600 / 2073600 ; longest out-stall=5 cyc
+ proto_err=0 overflow_err=0
+-----------------------------------------------------
+Part A: PASS
+RESULT: PASS  (Part A 全尺寸边界 + Part B c_top 冒烟, 0 error)
+$finish called at time : 21965970 ns : File "V:/tb/tb_c_top.v" Line 287
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:11:19 2026...

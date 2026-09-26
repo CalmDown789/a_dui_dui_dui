@@ -1,0 +1,136 @@
+{
+  "status": "ROUND_CLOSED_TARGETS_UNMET",
+  "date": "2026-09-26",
+  "frequency_MHz": 200,
+  "targets_ns": [
+    0.1,
+    0.25,
+    0.4
+  ],
+  "max_WNS_candidate": "postroute_v1_000",
+  "recommended_resume_baseline": "pipeline000",
+  "reason": "Only 0.002 ns lower WNS than the record, substantially lower TNS and larger hold margin. No 200 MHz candidate meets timing.",
+  "results": [
+    {
+      "candidate": "setup030",
+      "WNS": -0.613,
+      "TNS": -939.145,
+      "failing_setup_endpoints": 7800,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "resources": {
+        "LUT": 29196,
+        "FF": 48911,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "routed_nets": 76670,
+      "route_errors": 0
+    },
+    {
+      "candidate": "pipeline000",
+      "WNS": -0.164,
+      "TNS": -7.523,
+      "failing_setup_endpoints": 226,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "resources": {
+        "LUT": 27994,
+        "FF": 49170,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "routed_nets": 73987,
+      "route_errors": 0
+    },
+    {
+      "candidate": "pipeline030",
+      "WNS": -0.312,
+      "TNS": -68.68,
+      "failing_setup_endpoints": 1153,
+      "WHS": 0.013,
+      "THS": 0.0,
+      "resources": {
+        "LUT": 28012,
+        "FF": 49275,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "routed_nets": 74134,
+      "route_errors": 0
+    },
+    {
+      "candidate": "pipeline2_030",
+      "WNS": -0.481,
+      "TNS": -350.776,
+      "failing_setup_endpoints": 3104,
+      "WHS": 0.05,
+      "THS": 0.0,
+      "resources": {
+        "LUT": 29477,
+        "FF": 49343,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "routed_nets": 73235,
+      "route_errors": 0
+    },
+    {
+      "candidate": "pipeline6_030",
+      "WNS": -0.638,
+      "TNS": -394.339,
+      "failing_setup_endpoints": 3742,
+      "WHS": 0.023,
+      "THS": 0.0,
+      "resources": {
+        "LUT": 29952,
+        "FF": 49729,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 396
+      },
+      "routed_nets": 73171,
+      "route_errors": 0
+    },
+    {
+      "candidate": "postroute_v1_000",
+      "WNS": -0.162,
+      "TNS": -45.955,
+      "WHS": 0.013,
+      "THS": 0.0,
+      "WPWS": 1.37,
+      "failing_setup_endpoints": 813,
+      "route_errors": 0,
+      "baseline_hash": {
+        "bytes": 86362959,
+        "sha256": "db0b4f01ec3e79ffa6e4b2c06c7783dceea721c3d37302856957cacc55a8fe4f"
+      },
+      "checkpoint_hash": {
+        "bytes": 34706557,
+        "sha256": "3aa1ef2df72cf3a0ec7baac6de5ec33596de6d72d8f7b043a3ff2ed8856d2e00"
+      }
+    },
+    {
+      "candidate": "postroute_v2_000",
+      "WNS": -0.403,
+      "TNS": -220.478,
+      "WHS": 0.05,
+      "THS": 0.0,
+      "WPWS": 1.37,
+      "failing_setup_endpoints": 2126,
+      "route_errors": 0,
+      "baseline_hash": {
+        "bytes": 87499717,
+        "sha256": "85af072639135921b6a087e9f9bf061f1d15783a81efb63f63b427d610ebc9b0"
+      },
+      "checkpoint_hash": {
+        "bytes": 34859363,
+        "sha256": "ab8bbecead033109d8b99db06086c1fdca99f843b05f89ba313ffcf508b450ba"
+      }
+    }
+  ]
+}

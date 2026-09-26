@@ -1,0 +1,52 @@
+{
+  "candidate": "pipeline030",
+  "pipeline_version": "V1",
+  "stage": "acc36_realrom_200_member_b_pipeline0300926_ascii_ramdecomp",
+  "runner": "experiments/timing_200_20260926/synth_200_pipeline030.tcl",
+  "implementation": "COMPLETED",
+  "frequency_MHz": 200,
+  "run_config": {
+    "script": "V:/experiments/timing_200_20260926/synth_200_pipeline030.tcl",
+    "argv": "impl acc36 ascii ramdecomp",
+    "extra_setup_ns": "0.300",
+    "target_MHz": "200",
+    "vivado": "2025.2"
+  },
+  "WNS": -0.312,
+  "TNS": -68.68,
+  "failing_setup_endpoints": 1153,
+  "WHS": 0.013,
+  "THS": 0.0,
+  "WPWS": 1.37,
+  "route_errors": 0,
+  "routed_nets": 74134,
+  "routable_nets": 74134,
+  "resources": {
+    "LUT": 28012,
+    "FF": 49275,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 394
+  },
+  "targets_ns": {
+    "0.1": false,
+    "0.25": false,
+    "0.4": false
+  },
+  "setup_tag": "setup030",
+  "extra_setup_ns": 0.3,
+  "timing_with_extra_setup": {
+    "WNS": -0.612,
+    "TNS": -1642.081,
+    "failing_setup_endpoints": 11347,
+    "WHS": 0.013,
+    "THS": 0.0,
+    "WPWS": 1.37
+  },
+  "restored_minus_tight_WNS": 0.3,
+  "worst_path": "Slack (VIOLATED) :        -0.312ns  (required time - arrival time)\n  Source:                 u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/y_reg[0]/C\n                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Destination:            u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[1].mem_reg_2/DIADI[25]\n                            (rising edge-triggered cell RAMB36E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Path Group:             u_top_n_1388\n  Path Type:              Setup (Max at Slow Process Corner)\n  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)\n  Data Path Delay:        4.657ns  (logic 0.820ns (17.609%)  route 3.837ns (82.391%))\n  Logic Levels:           4  (LUT2=2 LUT6=2)\n  Clock Path Skew:        -0.211ns (DCD - SCD + CPR)\n    Destination Clock Delay (DCD):    5.434ns = ( 10.434 - 5.000 ) \n    Source Clock Delay      (SCD):    5.857ns\n    Clock Pessimism Removal (CPR):    0.213ns\n  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU\n    Total System Jitter     (TSJ):    0.071ns\n    Discrete Jitter          (DJ):    0.118ns\n    Phase Error              (PE):    0.000ns\n    User Uncertainty         (UU):    0.000ns",
+  "source_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "archive_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "staged_roms_equal_sources": 35,
+  "launch_input_hashes_unchanged": true
+}

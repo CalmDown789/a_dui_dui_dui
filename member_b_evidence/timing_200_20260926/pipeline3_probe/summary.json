@@ -1,0 +1,19 @@
+{
+  "candidate": "pipeline3_probe",
+  "status": "SYNTHESIS_ONLY_NOT_SELECTED",
+  "implementation": "NOT RUN",
+  "WNS_synthesis_ns": 0.016,
+  "TNS_synthesis_ns": 0,
+  "WHS_synthesis_ns": 0.029,
+  "resources": {
+    "LUT": 29619,
+    "FF": 49434,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 394
+  },
+  "prelu_DSPs": 12,
+  "prelu_MREG_enabled": 0,
+  "launch_input_hashes_unchanged": true,
+  "reason": "Added PReLU result stage did not enable MREG or split the PCOUT-to-PCIN path. No full-frame or implementation run selected for this candidate."
+}

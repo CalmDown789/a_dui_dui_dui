@@ -1,0 +1,22 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 19:43:52 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_post_shift/xsim_script.tcl
+# xsim {tb_post_shift} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+POST_SHIFT_CONFIG_PASS id=3 channels=1 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3110 out_stall=1245 simultaneous_io=80 capture_issue=77 slot0=212 slot1=210 groups=1 gaps=317 cycles=3968
+POST_SHIFT_CONFIG_PASS id=4 channels=4 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3265 out_stall=1145 simultaneous_io=30 capture_issue=140 slot0=212 slot1=210 groups=2 gaps=312 cycles=4123
+POST_SHIFT_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=422 outputs=418 in_stall=3834 out_stall=1344 simultaneous_io=15 capture_issue=163 slot0=212 slot1=210 groups=4 gaps=318 cycles=4742
+POST_SHIFT_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=4796 out_stall=1443 simultaneous_io=26 capture_issue=181 slot0=212 slot1=210 groups=8 gaps=345 cycles=5722
+POST_SHIFT_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=4815 out_stall=1474 simultaneous_io=20 capture_issue=176 slot0=212 slot1=210 groups=8 gaps=329 cycles=5735
+POST_SHIFT_ALL_CONFIGS_PASS configs=5
+$finish called at time : 57385 ns : File "V:/experiments/timing_200_20260926/post_shift/tb_post_shift.sv" Line 499
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 19:43:54 2026...

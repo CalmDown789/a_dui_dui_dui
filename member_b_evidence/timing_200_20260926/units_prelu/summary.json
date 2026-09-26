@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "status": "PRELU_PIPELINE_UNITS_PASS",
+  "scope": "Scalar/shared unit simulation only; DSP register mapping, complete network regression, implementation and board validation remain separate.",
+  "tool": {
+    "vivado": "2025.2",
+    "xsim": "2025.2",
+    "sw_build": 6299465,
+    "pid": 21792,
+    "elaboration": "-O0",
+    "session_start": "2026-09-26 20:04:18 Asia/Shanghai",
+    "session_end": "2026-09-26 20:04:32 Asia/Shanghai"
+  },
+  "git_head": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "package_count": 1,
+  "bench_count": 2,
+  "config_counts": {
+    "scalar": 6,
+    "shared": 5
+  },
+  "benches": [
+    {
+      "name": "tb_prelu_pipeline",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline",
+      "configurations_expected": 6,
+      "configurations": [
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=0 checked=3129 accepted=3151",
+          "values": {
+            "id": 0,
+            "checked": 3129,
+            "accepted": 3151
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=1 checked=3119 accepted=3143",
+          "values": {
+            "id": 1,
+            "checked": 3119,
+            "accepted": 3143
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=2 checked=3146 accepted=3166",
+          "values": {
+            "id": 2,
+            "checked": 3146,
+            "accepted": 3166
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=3 checked=3165 accepted=3188",
+          "values": {
+            "id": 3,
+            "checked": 3165,
+            "accepted": 3188
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=4 checked=3160 accepted=3183",
+          "values": {
+            "id": 4,
+            "checked": 3160,
+            "accepted": 3183
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SCALAR_CONFIG_PASS id=5 checked=3149 accepted=3170",
+          "values": {
+            "id": 5,
+            "checked": 3149,
+            "accepted": 3170
+          }
+        }
+      ],
+      "pass_marker": "PRELU_PIPELINE_SCALAR_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "round64_probe_checked": 1094,
+      "scalar_checked_total": 18868,
+      "enforced_tb_coverage": {
+        "minimum_checked_per_config": 2500,
+        "minimum_bubble_cycles": 30,
+        "resets_with_inflight_per_config": 3,
+        "final_expected_pipeline_empty": true,
+        "reference_check": "requant_pipe predecessor delayed by one clock plus independent nine-stage valid/data and signed64 mathematics"
+      },
+      "warning_lines": []
+    },
+    {
+      "name": "tb_prelu_pipeline_shared",
+      "status": "PASS",
+      "original_work_directory": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline_shared",
+      "configurations_expected": 5,
+      "configurations": [
+        {
+          "line": "PRELU_PIPELINE_SHARED_CONFIG_PASS id=3 channels=1 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3515 out_stall=1433 simultaneous=81 gaps=333 cycles=4399",
+          "values": {
+            "id": 3,
+            "channels": 1,
+            "lanes": 1,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 3515,
+            "out_stall": 1433,
+            "simultaneous": 81,
+            "gaps": 333,
+            "cycles": 4399
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SHARED_CONFIG_PASS id=4 channels=4 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=3805 out_stall=1563 simultaneous=46 gaps=344 cycles=4702",
+          "values": {
+            "id": 4,
+            "channels": 4,
+            "lanes": 2,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 3805,
+            "out_stall": 1563,
+            "simultaneous": 46,
+            "gaps": 344,
+            "cycles": 4702
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SHARED_CONFIG_PASS id=2 channels=4 lanes=1 signed=0 prelu=0 inputs=422 outputs=418 in_stall=4208 out_stall=1561 simultaneous=20 gaps=323 cycles=5141",
+          "values": {
+            "id": 2,
+            "channels": 4,
+            "lanes": 1,
+            "signed": 0,
+            "prelu": 0,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 4208,
+            "out_stall": 1561,
+            "simultaneous": 20,
+            "gaps": 323,
+            "cycles": 5141
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SHARED_CONFIG_PASS id=0 channels=16 lanes=2 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5467 out_stall=1983 simultaneous=32 gaps=339 cycles=6403",
+          "values": {
+            "id": 0,
+            "channels": 16,
+            "lanes": 2,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 5467,
+            "out_stall": 1983,
+            "simultaneous": 32,
+            "gaps": 339,
+            "cycles": 6403
+          }
+        },
+        {
+          "line": "PRELU_PIPELINE_SHARED_CONFIG_PASS id=1 channels=8 lanes=1 signed=1 prelu=1 inputs=422 outputs=418 in_stall=5474 out_stall=2016 simultaneous=24 gaps=339 cycles=6416",
+          "values": {
+            "id": 1,
+            "channels": 8,
+            "lanes": 1,
+            "signed": 1,
+            "prelu": 1,
+            "inputs": 422,
+            "outputs": 418,
+            "in_stall": 5474,
+            "out_stall": 2016,
+            "simultaneous": 24,
+            "gaps": 339,
+            "cycles": 6416
+          }
+        }
+      ],
+      "pass_marker": "PRELU_PIPELINE_SHARED_ALL_CONFIGS_PASS",
+      "pass_marker_count": 1,
+      "enforced_tb_coverage": {
+        "maximum_pending_vectors": 2,
+        "minimum_input_stalls": 96,
+        "minimum_output_stalls": 64,
+        "simultaneous_input_output": true,
+        "input_gaps": true,
+        "minimum_outputs": 300,
+        "reset_compute": 1,
+        "reset_held_output": 1,
+        "discarded_vectors_per_config": 4
+      },
+      "warning_lines": []
+    }
+  ],
+  "source_hash_capture": "Collection-time raw/canonical hashes of frozen inputs. All source mtimes predate the compiled xvlog logs. No launch-time hash is claimed.",
+  "sources": [
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/prelu_requantize.sv",
+      "bytes": 8589,
+      "raw_sha256": "6a6cb8e31cc57e94260d98842bac4daab13023c8fe31b2d75c2724ef8c52e2e9",
+      "canonical_sha256": "a0f15f3a6cf74fd23e07f5fd27bfd99f646f345bcb3071c589d82242f89afdb1"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/prelu_requantize_reference.sv",
+      "bytes": 7731,
+      "raw_sha256": "1989af306ddfa2b5789ae05666d324ce7d35cbf2308e4981512d324d72320b51",
+      "canonical_sha256": "1a3e07639bdcfa157cbfd87b33132b6f08bab1157cbde455a46007829d0a234b"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/tb_prelu_pipeline.sv",
+      "bytes": 12712,
+      "raw_sha256": "a9db30a21a7ecd4ab369c5916ade7a1143c99ba3c64075fb05cf42384aa63674",
+      "canonical_sha256": "a9db30a21a7ecd4ab369c5916ade7a1143c99ba3c64075fb05cf42384aa63674"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/tb_prelu_pipeline_shared.sv",
+      "bytes": 18433,
+      "raw_sha256": "56fedd84e76bef815ceb4ad03f058c5b883ebe319fbf700479948280113f5638",
+      "canonical_sha256": "56fedd84e76bef815ceb4ad03f058c5b883ebe319fbf700479948280113f5638"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/vector_postprocess_shared.sv",
+      "bytes": 6268,
+      "raw_sha256": "928c3ee8d2d7c6c6fefa4c55c222f435d29dcd3b73c201aceed4e13015d31d25",
+      "canonical_sha256": "6e0c2ffc696e2c5071160add08a06d65f5bfd42de6924f116097a1cd6674c454"
+    },
+    {
+      "path": "experiments/timing_200_20260926/prelu_pipeline/run_unit.tcl",
+      "bytes": 3787,
+      "raw_sha256": "bfe35efd69885d430a678db03127350a1d0a1696cdfb54095368a7464a31dde5",
+      "canonical_sha256": "bfe35efd69885d430a678db03127350a1d0a1696cdfb54095368a7464a31dde5"
+    }
+  ],
+  "reference_origin": {
+    "path": "experiments/timing_200_20260926/requant_pipe/prelu_requantize.sv",
+    "bytes": 7721,
+    "raw_sha256": "46f448b9067507acc5cf2b6ec93d4a2a3eef8bf6084e8aef702e1efbcf2a489a",
+    "canonical_sha256": "d71c180e58b636ba6ff3d81069592109bc940ceb863c2eeda80b562c91133721",
+    "normalized_equal_except_module_name": true
+  },
+  "raw_logs": [
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xvlog.log",
+      "archived_path": "tb_prelu_pipeline/xvlog.log.txt",
+      "bytes": 964,
+      "raw_sha256": "065fadb48c38fe7a5213ebf7a983d07e4b55fc72d9189535da98e38aa42ffb25",
+      "canonical_sha256": "467bf87a60bdb1bc0205e0c449b57becd6d403c7ea6f140148e48618c1408ad7"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xelab.log",
+      "archived_path": "tb_prelu_pipeline/xelab.log.txt",
+      "bytes": 1797,
+      "raw_sha256": "b491f42c702b84879a18f3a148c6b98d98449bdfd8dfeb299646e125b8310e92",
+      "canonical_sha256": "e21986bda32560d605a63a1722cdc2a0a86c793697c1cf31c1e46d254837c636"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xsim.log",
+      "archived_path": "tb_prelu_pipeline/xsim.log.txt",
+      "bytes": 1223,
+      "raw_sha256": "30b86996e811ed5e8aee8c2a0b96a94d96306ed1f538df60779658fb7627040c",
+      "canonical_sha256": "c358a1c3facc41ea80a7036d9adaedeebf3ce8ea6e5489fd77f5f9cefc61d123"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline/xsim_engine.log",
+      "archived_path": "tb_prelu_pipeline/xsim_engine.log.txt",
+      "bytes": 2195,
+      "raw_sha256": "08820dc9f083ce4af163523cf828abe0b672d93b0af95160fa16dbe3177bdd0c",
+      "canonical_sha256": "08820dc9f083ce4af163523cf828abe0b672d93b0af95160fa16dbe3177bdd0c"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline_shared/xvlog.log",
+      "archived_path": "tb_prelu_pipeline_shared/xvlog.log.txt",
+      "bytes": 915,
+      "raw_sha256": "6fac3fd3dde4579860c677f6f963a93c6cc67a0be8e9b22c0d4477fcf57281e6",
+      "canonical_sha256": "9bf1f1d092dc2f805c75f76c97d2e7a79f810a38147f6ac9aef989da6d195a35"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline_shared/xelab.log",
+      "archived_path": "tb_prelu_pipeline_shared/xelab.log.txt",
+      "bytes": 1372,
+      "raw_sha256": "9e2f37d576f2eaf1328329643d6d47314c941c2140d035a6ba2bb60aad8daf26",
+      "canonical_sha256": "025d2f577ce686fd24c8a4575e12f08dfac675c0aed13211ef23c4889c180d6e"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline_shared/xsim.log",
+      "archived_path": "tb_prelu_pipeline_shared/xsim.log.txt",
+      "bytes": 1637,
+      "raw_sha256": "497ebae9cd0637237921148dec29385621344558549e1a90d326156b32095cd0",
+      "canonical_sha256": "23ae906022d1b6e1890ec976b5f7a4296c9e027b2ca78f3a0b7e5d2d7cf0e304"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/prelu_pipeline/unit_work/run_20260926_200420_21792/tb_prelu_pipeline_shared/xsim_engine.log",
+      "archived_path": "tb_prelu_pipeline_shared/xsim_engine.log.txt",
+      "bytes": 2646,
+      "raw_sha256": "f4776b43cf4a03be358a2b1e7c214820ac6982bb955427a164e36f257742ce6e",
+      "canonical_sha256": "f4776b43cf4a03be358a2b1e7c214820ac6982bb955427a164e36f257742ce6e"
+    },
+    {
+      "original_path": "experiments/timing_200_20260926/units_prelu_pipeline.log",
+      "archived_path": "units_prelu_pipeline.log.txt",
+      "bytes": 5426,
+      "raw_sha256": "5b624cfcae791fcf2d3a9805d56652da9eea155a38e718bb68ab7953b70d9ffd",
+      "canonical_sha256": "5b624cfcae791fcf2d3a9805d56652da9eea155a38e718bb68ab7953b70d9ffd"
+    }
+  ],
+  "notes": [
+    "1094-case injected INT64 probe covers the arithmetic expression; it does not prove DSP mapping.",
+    "Reset drops in-flight tokens; accepted/checked differences are expected and tested.",
+    "Only raw textual compiler/elaborator/simulator logs are copied; no DLL/WDB/snapshot binaries."
+  ]
+}

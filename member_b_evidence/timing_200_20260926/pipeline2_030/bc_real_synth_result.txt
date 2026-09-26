@@ -1,0 +1,60 @@
+==========================================================
+ REAL B five-layer + C shell : resource / timing evidence
+==========================================================
+ 1  Vivado version     : 2025.2
+ 2  FPGA part          : xc7a200tfbg484-2
+ 3  top module         : c_synth_top
+ 4  B RTL              : V2 early bias + L3/L5 buffer + shifted post slots + Q31 register; source_files.txt
+ 5  B param ROMs       : rom/member_a_d16_s8_m1_c16 (19 x *_packed.mem, $readmemh, CWD)
+ 6  C_USE_B_REAL       : via 'synth_design -verilog_define C_USE_B_REAL'
+ 7  flatten_hierarchy  : rebuilt
+ 8  clock              : sys_clk 50MHz (W19) -> MMCME2_BASE -> 200 MHz
+ 9  Git commit SHA     : 6cc8ea4173d2a720f741e80b7cbd9279558ee93a
+10  uncommitted change : ?? docs/MEMBER_B_200MHZ_TIMING_2026-09-26.md ?? experiments/timing_200_20260926/ ?? experiments/timing_margin_20260926/run_sim_srl.tcl ?? experiments/timing_margin_20260926/srl_candidate/ ?? experiments/timing_margin_20260926/synth_srl.tcl
+11  generated at       : 2026-09-26 21:40:08 (local)
+12  implementation     : COMPLETED
+13  candidate variant  : acc36_realrom_200_member_b_pipeline2_0300926_ascii_ramdecomp
+14  route setup tag    : setup030 (extra 0.300 ns; restored to 0 for signoff)
+----------------------------------------------------------
+ SELF-CHECK (must be OK, else everything below is void):
+   b_core_real cells            : 1
+   b_core_stub cells            : 0   (must be 0)
+   fsrcnn_network_mem_top cells : 1
+   fsrcnn_stream_layer cells    : 5  (must be 5)
+   pixel_shuffle2x_row_banks    : 1
+   elastic_fifo cells           : 7
+   VERDICT                      : OK
+----------------------------------------------------------
+ (A) SYNTHESIS-level (MEASURED)
+   RAMB36/FIFO   : 226 / 365
+   RAMB18        : 8 / 730
+   DSP48E1       : 394 / 740
+   Slice LUTs    : 29619
+   Slice Regs    : 48759
+   LUT as Memory : 6135
+   MMCME2_ADV    : 1
+   PLLE2_ADV     : 0
+   BUFGCTRL      : 1
+   WNS / TNS     : 0.016 / 0.000 ns
+   WHS / THS     : 0.029 / 0.000 ns
+----------------------------------------------------------
+ (B) POST-ROUTE (MEASURED)
+   RAMB36/FIFO   : 226 / 365
+   RAMB18        : 8 / 730
+   DSP48E1       : 394 / 740
+   Slice LUTs    : 29477
+   Slice Regs    : 49343
+   MMCME2_ADV    : 1
+   PLLE2_ADV     : 0
+   BUFGCTRL      : 1
+   WNS / TNS     : -0.481 / -350.776 ns
+   WHS / THS     : 0.050 / 0.000 ns
+----------------------------------------------------------
+ reports : _synth_bc/acc36_realrom_200_member_b_pipeline2_0300926_ascii_ramdecomp/reports/
+==========================================================
+ NOTE 1: this DOES instantiate b_core_real (see SELF-CHECK).
+         Do NOT quote synth_check.tcl numbers as 'B network cost'.
+ NOTE 2: functional correctness of B is NOT implied by this file.
+         Synthesis success != the five-layer net reproduces A Golden.
+ NOTE 3: Fmax / 30fps MUST NOT be claimed from synthesis-only data.
+==========================================================

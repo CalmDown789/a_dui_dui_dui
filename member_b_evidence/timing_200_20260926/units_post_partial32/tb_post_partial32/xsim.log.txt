@@ -1,0 +1,24 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 20:30:33 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_post_partial32/xsim_script.tcl
+# xsim {tb_post_partial32} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+REQUANT_ROUND64_PROBE_PASS checked=1094
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=0 checked=5388 accepted=5412 full48_checked=5409 lo_ffff=912 negative_hi=2724 negative_alpha=2222 mixed_sign=623 full64_checked=5394 full64_hold=319 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1236
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=1 checked=5380 accepted=5404 full48_checked=5401 lo_ffff=912 negative_hi=2700 negative_alpha=2257 mixed_sign=613 full64_checked=5386 full64_hold=327 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1428
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=2 checked=5403 accepted=5427 full48_checked=5424 lo_ffff=912 negative_hi=2692 negative_alpha=2264 mixed_sign=609 full64_checked=5409 full64_hold=304 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1397
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=3 checked=5425 accepted=5449 full48_checked=5446 lo_ffff=912 negative_hi=2744 negative_alpha=2243 mixed_sign=634 full64_checked=5431 full64_hold=282 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1224
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=4 checked=5420 accepted=5444 full48_checked=5441 lo_ffff=912 negative_hi=2719 negative_alpha=2277 mixed_sign=624 full64_checked=5426 full64_hold=287 full64_resets=3 signs=15 a_min=155 a_max=152 b_min=195 b_max=192 both_low_high=1434
+POST_PARTIAL32_SCALAR_CONFIG_PASS id=5 checked=5407 accepted=5431 full48_checked=5428 lo_ffff=912 negative_hi=2742 negative_alpha=2241 mixed_sign=627 full64_checked=5413 full64_hold=300 full64_resets=3 signs=15 a_min=0 a_max=193 b_min=195 b_max=192 both_low_high=1200
+POST_PARTIAL32_SCALAR_ALL_CONFIGS_PASS
+$finish called at time : 57192 ns : File "V:/experiments/timing_200_20260926/post_partial32/tb_post_partial32.sv" Line 411
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:30:36 2026...

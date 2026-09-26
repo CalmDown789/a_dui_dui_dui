@@ -1,0 +1,24 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep 26 20:14:49 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_prelu_partial/xsim_script.tcl
+# xsim {tb_prelu_partial} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+REQUANT_ROUND64_PROBE_PASS checked=1094
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=0 checked=3833 accepted=3855 full48_checked=3852 lo_ffff=528 negative_hi=1935 negative_alpha=1646 mixed_sign=455
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=1 checked=3823 accepted=3847 full48_checked=3844 lo_ffff=528 negative_hi=1911 negative_alpha=1681 mixed_sign=445
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=2 checked=3850 accepted=3870 full48_checked=3867 lo_ffff=528 negative_hi=1903 negative_alpha=1688 mixed_sign=441
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=3 checked=3869 accepted=3892 full48_checked=3889 lo_ffff=528 negative_hi=1955 negative_alpha=1667 mixed_sign=466
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=4 checked=3864 accepted=3887 full48_checked=3884 lo_ffff=528 negative_hi=1930 negative_alpha=1701 mixed_sign=456
+PRELU_PARTIAL_SCALAR_CONFIG_PASS id=5 checked=3853 accepted=3874 full48_checked=3871 lo_ffff=528 negative_hi=1953 negative_alpha=1665 mixed_sign=459
+PRELU_PARTIAL_SCALAR_ALL_CONFIGS_PASS
+$finish called at time : 41622 ns : File "V:/experiments/timing_200_20260926/prelu_partial/tb_prelu_partial.sv" Line 353
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 26 20:14:51 2026...
