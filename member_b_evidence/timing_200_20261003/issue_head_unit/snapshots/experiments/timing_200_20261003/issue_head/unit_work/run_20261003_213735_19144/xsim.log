@@ -1,0 +1,20 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Oct  3 21:37:38 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_issue_head/xsim_script.tcl
+# xsim {tb_issue_head} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+ISSUE_HEAD_CASE_PASS id=0 width=1 rounds=3 windows_each=64 samples_each=512 cycles=2445 old_stalls=671 new_stalls=698
+ISSUE_HEAD_CASE_PASS id=2 width=6400 rounds=3 windows_each=64 samples_each=512 cycles=2475 old_stalls=646 new_stalls=723
+ISSUE_HEAD_CASE_PASS id=1 width=256 rounds=3 windows_each=64 samples_each=512 cycles=2485 old_stalls=737 new_stalls=751
+ISSUE_HEAD_UNIT_PASS cases=3 rounds_each=3
+$finish called at time : 12425 ns : File "V:/experiments/timing_200_20261003/issue_head/tb_issue_head.sv" Line 90
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Oct  3 21:37:40 2026...

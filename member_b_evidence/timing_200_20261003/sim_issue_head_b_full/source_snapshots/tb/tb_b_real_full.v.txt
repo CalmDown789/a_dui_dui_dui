@@ -1,0 +1,249 @@
+//=============================================================================
+// tb_b_real_full.v —— 全尺寸 960×540 → 1920×1080 逐字节整数 Golden 验收
+//-----------------------------------------------------------------------------
+// 走 b_core_if 正式分支（`-d C_USE_B_REAL`），参数取**默认整帧**：
+//   IMG_W=960 / IMG_H=540 / STRIPE_H=64（与 c_config.vh 的 C_IMG_W/H、C_STRIPE_H 一致）
+//
+// 判据（任务书 §三 / §八 验收项 J）：
+//   输入 = A `artifacts/full_integer_golden/input_rom_2p19_u8.mem` 的**前 518400 行**
+//          （即 960×540 的真实 Y 图；该 .mem 原本填零到 2^19）
+//   期望 = A `artifacts/full_integer_golden/output_1920x1080_y_u8.bin`
+//          （2073600 B = 1920×1080×1 u8，**整数** Golden，PixelShuffle 之后的行主序）
+//   两文件在使用前均按 ref/a_full_integer_golden/SHA256SUMS.txt 校验（见 prepare_ref_data.py）。
+//
+//   ⚠️ **禁止**用 `full_reference/ref_out_quant.npy`（浮点/QDQ 参考）做本项判据。
+//   ⚠️ 本 TB 的 PASS **只说明 RTL 仿真**与 A 的整数 Golden 一致；
+//      不代表综合/实现通过，也不代表上板实测。
+//
+// 输出量：2073600 字节；每输出行 2*IMG_W = 1920 字节；共 2*IMG_H = 1080 行。
+// 背压：本 TB 用 out_ready=1 全速收（背压行为已在 tb_b_real_backpressure.v 专项覆盖），
+//       以把宝贵的仿真时间用在「全尺寸数值一致性」上。
+//
+// 磁盘安全：无波形 dump；有硬 timeout；进度每 PROG_STEP 字节打印一次。
+//=============================================================================
+
+`timescale 1ns / 1ps
+`default_nettype none
+
+module tb_b_real_full;
+
+    localparam integer IMG_W  = 960;
+    localparam integer IMG_H  = 540;
+    localparam integer STRIPE = 64;                              // = `C_STRIPE_H
+    localparam integer OUT_W  = 2 * IMG_W;                       // 1920
+    localparam integer OUT_H  = 2 * IMG_H;                       // 1080
+    localparam integer N_IN   = IMG_W * IMG_H;                   // 518400
+    localparam integer N_OUT  = 4 * IMG_W * IMG_H;               // 2073600
+    localparam integer N_ROW  = 2 * IMG_H;                       // 1080
+    localparam integer N_STRP = (N_ROW + STRIPE - 1) / STRIPE;   // 17
+
+    localparam integer MAX_CYC   = 40000000;
+    localparam integer MAX_SHOW  = 10;        // 最多打印多少条具体错位
+    localparam integer PROG_STEP = 250000;
+
+    //-------------------------------------------------------------------------
+    reg clk = 0, rst_n = 0;
+    reg  start = 0;
+    wire busy, done;
+    reg  in_valid = 0;
+    reg  [7:0] in_data = 0;
+    wire in_ready;
+    wire out_valid;
+    wire [7:0] out_data;
+    reg  out_ready = 0;
+    wire stripe_last, frame_last;
+
+    b_core_if #(
+        .IMG_W    (IMG_W),
+        .IMG_H    (IMG_H),
+        .OUT_W    (OUT_W),
+        .OUT_H    (OUT_H),
+        .STRIPE_H (STRIPE),
+        .DATA_W   (8)
+    ) dut (
+        .clk_200     (clk),
+        .rst_n       (rst_n),
+        .start       (start),
+        .busy        (busy),
+        .done        (done),
+        .in_valid    (in_valid),
+        .in_ready    (in_ready),
+        .in_data     (in_data),
+        .out_valid   (out_valid),
+        .out_data    (out_data),
+        .out_ready   (out_ready),
+        .stripe_last (stripe_last),
+        .frame_last  (frame_last)
+    );
+
+    always #2.5 clk = ~clk;   // 200 MHz
+
+    //-------------------------------------------------------------------------
+    // 全尺寸数据（内存约 2.6 MB）
+    //-------------------------------------------------------------------------
+    reg [7:0] in_mem  [0:N_IN-1];
+    reg [7:0] exp_mem [0:N_OUT-1];
+
+    integer err_cnt, cyc;
+    integer fed, got, n_stripe, n_flast, n_done;
+    integer n_diff, x_cnt;
+    integer next_prog;
+    reg     t_done_seen;
+
+    reg       held;
+    reg [7:0] h_d;
+    reg       h_s, h_f;
+    integer   hold_viol;
+    integer   st_cur, st_max, st_total;
+
+    task fail(input [8*96-1:0] msg);
+        begin
+            err_cnt = err_cnt + 1;
+            $display("[FAIL] %0t : %0s", $time, msg);
+        end
+    endtask
+
+    initial begin
+        repeat (MAX_CYC) @(negedge clk);
+        $display("RESULT: FAIL (hard timeout after %0d cycles)", MAX_CYC);
+        $display("  last: fed=%0d got=%0d cyc=%0d in_valid=%b in_ready=%b out_valid=%b busy=%b",
+                 fed, got, cyc, in_valid, in_ready, out_valid, busy);
+        $finish;
+    end
+
+    //-------------------------------------------------------------------------
+    initial begin
+        err_cnt = 0; cyc = 0; n_done = 0;
+        held = 1'b0; hold_viol = 0;
+        st_cur = 0; st_max = 0; st_total = 0;
+        next_prog = PROG_STEP;
+        t_done_seen = 1'b0;
+
+        $display("  loading full_in.mem (%0d bytes) ...", N_IN);
+        $readmemh("full_in.mem", in_mem);
+        $display("  loading full_out.mem (%0d bytes) ...", N_OUT);
+        $readmemh("full_out.mem", exp_mem);
+
+        rst_n = 1'b0;
+        repeat (6) @(negedge clk);
+        rst_n = 1'b1;
+        repeat (2) @(negedge clk);
+
+        $display("  geometry: %0dx%0d -> %0dx%0d  N_IN=%0d N_OUT=%0d STRIPE_H=%0d stripes=%0d",
+                 IMG_W, IMG_H, OUT_W, OUT_H, N_IN, N_OUT, STRIPE, N_STRP);
+
+        @(negedge clk);
+        if (busy !== 1'b0) fail("busy high before start pulse");
+        start = 1'b1;
+        @(negedge clk);
+        start = 1'b0;
+
+        fed = 0; got = 0; n_stripe = 0; n_flast = 0;
+        n_diff = 0; x_cnt = 0;
+
+        while (got < N_OUT) begin
+            @(negedge clk);
+
+            if (fed < N_IN) begin
+                in_valid = 1'b1;
+                in_data  = in_mem[fed];
+            end else begin
+                in_valid = 1'b0;
+                in_data  = 8'h00;
+            end
+
+            out_ready = 1'b1;   // 全速收
+
+            if (in_valid && in_ready) fed = fed + 1;
+
+            if (held) begin
+                if (!out_valid) begin
+                    hold_viol = hold_viol + 1;
+                    fail("out_valid dropped while out_ready=0 (hold rule)");
+                end else if (out_data !== h_d || stripe_last !== h_s || frame_last !== h_f) begin
+                    hold_viol = hold_viol + 1;
+                    fail("held beat changed while out_ready=0");
+                end
+            end
+
+            if (out_valid && !out_ready) begin
+                st_cur = st_cur + 1; st_total = st_total + 1;
+                if (st_cur > st_max) st_max = st_cur;
+            end else begin
+                st_cur = 0;
+            end
+
+            if (out_valid && out_ready) begin
+                if (got >= N_OUT) begin
+                    fail("extra output beat beyond N_OUT");
+                end else if (^out_data === 1'bx) begin
+                    x_cnt = x_cnt + 1;
+                    if (x_cnt <= MAX_SHOW) fail("out_data contains X");
+                end else if (out_data !== exp_mem[got]) begin
+                    n_diff = n_diff + 1;
+                    if (n_diff <= MAX_SHOW) begin
+                        $display("      MISMATCH @ out[%0d]  row=%0d col=%0d  got=%02x exp=%02x",
+                                 got, got / OUT_W, got % OUT_W, out_data, exp_mem[got]);
+                    end
+                end
+                n_stripe = n_stripe + stripe_last;
+                n_flast  = n_flast  + frame_last;
+                if (frame_last && (got != N_OUT-1)) fail("frame_last not on the last beat");
+                if (!frame_last && (got == N_OUT-1)) fail("last beat lacks frame_last");
+                got = got + 1;
+                if (got >= next_prog) begin
+                    $display("      progress: %0d / %0d bytes  (%0d%%), cyc=%0d, mismatched=%0d",
+                             got, N_OUT, (got * 100) / N_OUT, cyc, n_diff);
+                    next_prog = next_prog + PROG_STEP;
+                end
+            end
+
+            held = (out_valid && !out_ready);
+            if (held) begin
+                h_d = out_data; h_s = stripe_last; h_f = frame_last;
+            end
+
+            cyc = cyc + 1;
+        end
+
+        // done
+        @(negedge clk);
+        if (done) begin n_done = n_done + 1; t_done_seen = 1'b1; end
+        if (busy) fail("busy still high one cycle after the last output beat");
+        repeat (4) @(negedge clk);
+        if (done) n_done = n_done + 1;
+
+        $display("======================================================================");
+        $display(" FULL FRAME 960x540 -> 1920x1080  (B real five-layer via b_core_if)");
+        $display("   input beats fed      : %0d / %0d", fed, N_IN);
+        $display("   output bytes received: %0d / %0d", got, N_OUT);
+        $display("   byte match           : %0d / %0d", N_OUT - n_diff, N_OUT);
+        $display("   mismatched bytes     : %0d", n_diff);
+        $display("   X bytes              : %0d", x_cnt);
+        $display("   stripe_last pulses   : %0d (expect %0d)", n_stripe, N_STRP);
+        $display("   frame_last pulses    : %0d (expect 1)", n_flast);
+        $display("   done pulses          : %0d (expect 1)", n_done);
+        $display("   hold-rule violations : %0d", hold_viol);
+        $display("   sim cycles           : %0d", cyc);
+        $display("======================================================================");
+
+        if (fed      != N_IN)   fail("input beat count mismatch");
+        if (got      != N_OUT)  fail("output beat count mismatch");
+        if (n_diff   != 0)      fail("full-frame byte mismatch vs A integer Golden");
+        if (x_cnt    != 0)      fail("output contained X");
+        if (n_stripe != N_STRP) fail("stripe_last count mismatch");
+        if (n_flast  != 1)      fail("frame_last count mismatch");
+        if (n_done   != 1)      fail("done pulse count mismatch");
+        if (hold_viol != 0)     fail("hold-rule violations");
+
+        if (err_cnt == 0) begin
+            $display("RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)");
+        end else begin
+            $display("RESULT: FAIL  (err_cnt=%0d)", err_cnt);
+        end
+        $finish;
+    end
+
+endmodule
+
+`default_nettype wire

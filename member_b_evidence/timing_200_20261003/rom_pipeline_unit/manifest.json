@@ -1,0 +1,199 @@
+{
+  "kind": "rom-pipeline-unit",
+  "note": "Latency-three C ROM/input-stream RTL unit: four geometries, three completed frames each, two aborted runs/reset, stalls, request/data/coordinate order. Actual 960x540 ROM checked against original A bytes. Not connected real-B, full C system, gate-level or board acceptance.",
+  "files": [
+    {
+      "source": "_synth_bc/rom_pipeline_unit_20261003_try1.log",
+      "archive": "snapshots/_synth_bc/rom_pipeline_unit_20261003_try1.log",
+      "bytes": 3250,
+      "sha256": "51d4cbedd5e0519d023baf6b1ab4aed04d67fb55c1bcb1c04144cc829eb60e17"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/frozen_manifest.json",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/frozen_manifest.json",
+      "bytes": 1457,
+      "sha256": "4e3a3098ac9bc106d68cfb0aad27f9b0b20538431c8d744df46383ec2cbbee3c"
+    },
+    {
+      "source": "experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+      "archive": "snapshots/experiments/l5_splitmem_20260924/rtl/c/input_rom.v",
+      "bytes": 3980,
+      "sha256": "dd0ec7d745133534ecdba3f009bc75158c96d296bdaacd60b7364874ca8ea898"
+    },
+    {
+      "source": "experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+      "archive": "snapshots/experiments/l5_splitmem_20260924/rtl/c/input_stream.v",
+      "bytes": 7167,
+      "sha256": "15cb1062caa76ebad5826f1b4b0eaf1aecd0763fcc81c326803846372215d3b8"
+    },
+    {
+      "source": "experiments/timing_200_20261003/prepare_rom_pipeline.py",
+      "archive": "snapshots/experiments/timing_200_20261003/prepare_rom_pipeline.py",
+      "bytes": 3351,
+      "sha256": "b48c64f8f0fb0b4237331d6d88d44c97a4b4745cac75ea3bf2b81b89787b88c0"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/input_rom.v",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/input_rom.v",
+      "bytes": 4632,
+      "sha256": "2d4fbc46350017a869224c3b1e598dd9070ec6c9ed2434a61d3f52838c7758eb"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/input_stream.v",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/input_stream.v",
+      "bytes": 4745,
+      "sha256": "1b62995ba824cd4c60a3a7cb82605561e2750d5e94fd35213e16b503567a8c54"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/tb_rom_pipeline.sv",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/tb_rom_pipeline.sv",
+      "bytes": 4766,
+      "sha256": "7b96d5d39a6aea6003b8253cc7d6909333cd98b03be345d6fa7a195eff254429"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/run_unit.tcl",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/run_unit.tcl",
+      "bytes": 1766,
+      "sha256": "a0f6a35ccaed77d6c7c676361752a4ef3fe4339172c779c7fbcc4d47375e494e"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_000.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_000.mem",
+      "bytes": 98304,
+      "sha256": "7782811686ea007fef3769b58896b7ba110e612f3bb26d3025c9c50b55b79411"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_001.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_001.mem",
+      "bytes": 98304,
+      "sha256": "0d80ba9d54f1ea2bbfedeab77cccff016909a2a6a8219c974a6baed8e6599448"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_002.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_002.mem",
+      "bytes": 98304,
+      "sha256": "1e5b7260a1aabb55d05f9b52f576783bfadc35a252d7603842589e5778d36c1c"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_003.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_003.mem",
+      "bytes": 98304,
+      "sha256": "e0a51e708a5a612299aa4e8ed72d95b07de0bdb2843a191c44fcd3eb547e2cda"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_004.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_004.mem",
+      "bytes": 98304,
+      "sha256": "738f94fc9dabbb7c9085d12d365bae10cf1ac375fc5cb97abf7bac5214b0fc74"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_005.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_005.mem",
+      "bytes": 98304,
+      "sha256": "221aac5ff2832e013aee339696e8bcd3ac5744b2bcf4bb2b4ceb4680d3ba323f"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_006.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_006.mem",
+      "bytes": 98304,
+      "sha256": "606f0f4d5ffb400aeef91d57ed147bc92cbbd52f4cae36277152c4ca1468d1c5"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_007.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_007.mem",
+      "bytes": 98304,
+      "sha256": "3c433c72c28c3d191b10c6939485034ac3ae4f048f888e7f6b933df99f110e73"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_008.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_008.mem",
+      "bytes": 98304,
+      "sha256": "709dc446bb74bfad7635980bdbf7598766b0ddd44b17de0e38c014b5cdf9e492"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_009.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_009.mem",
+      "bytes": 98304,
+      "sha256": "af8ef0460e458b3167ce5ca246cb1b4eb5de79d3d6da8ed249627eff0b9d5d9c"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_010.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_010.mem",
+      "bytes": 98304,
+      "sha256": "a26088cba226a8b4c84a2dddc3e1748d641d7afbd8fa269aa7c7fa1e3e24ff52"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_011.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_011.mem",
+      "bytes": 98304,
+      "sha256": "4a2631f75cf900b4ec230b1e124cf6cff15c10d9cf0db0e8dab99e1adb384263"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_012.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_012.mem",
+      "bytes": 98304,
+      "sha256": "ba0e4ec8619760303c8af57d6f92465df4aff6fdb2f67675d29c4cba8c8e5fcc"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_013.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_013.mem",
+      "bytes": 98304,
+      "sha256": "74bca1378a50ba8142a59d06c401a8e8b48d586a54d59ce3c17572459738e892"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_014.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_014.mem",
+      "bytes": 98304,
+      "sha256": "e18cb5486c30ac98db69ba0a4317117cdd9fd7feacd4389e30cc10d7959e7b82"
+    },
+    {
+      "source": "member_b_evidence/real_banks/rom_bank_015.mem",
+      "archive": "snapshots/member_b_evidence/real_banks/rom_bank_015.mem",
+      "bytes": 98304,
+      "sha256": "4a72c6f2560ace13a8a32d87f02426d52476a52436f8081d21cf39943222ecb7"
+    },
+    {
+      "source": "ref/a_full_integer_golden/input_rom_2p19_u8.mem",
+      "archive": "snapshots/ref/a_full_integer_golden/input_rom_2p19_u8.mem",
+      "bytes": 1572864,
+      "sha256": "f15e360bd0d5c3fb1ebd5e85cec32cafaf125c723890c39cf514301c064634c9"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xelab.log",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xelab.log",
+      "bytes": 2369,
+      "sha256": "e6e0dc67709878a2d44cc3bc36a067a6b307a9dc1bacd918359127841d96f748"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim.jou",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim.jou",
+      "bytes": 1369,
+      "sha256": "0d30e78882ee6b6e0caf1435fd6844c61fcad635cc4a837d1fa39df5043ec2dc"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim.log",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim.log",
+      "bytes": 1272,
+      "sha256": "7bb7c299ae8c1bfe8af71a787d12a2469c9c18ed020fd184bcd6981df9586442"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim_engine.log",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim_engine.log",
+      "bytes": 2164,
+      "sha256": "286045d3952a5a6c3f478e174fa8fec38a1e6f6132e941a5b0fe492eb1555a75"
+    },
+    {
+      "source": "experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xvlog.log",
+      "archive": "snapshots/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xvlog.log",
+      "bytes": 674,
+      "sha256": "390bad9a12f9725c8df4dfb12238570125e9db9934a9dbca611725e5e37ac20b"
+    },
+    {
+      "source": "experiments/timing_200_20261003/archive_supplemental.py",
+      "archive": "snapshots/experiments/timing_200_20261003/archive_supplemental.py",
+      "bytes": 9193,
+      "sha256": "576bf2776e2fa14cd40de20780b8a0cf3fa2630ed938c5aee7579f7ef692df98"
+    }
+  ],
+  "checkpoints": []
+}

@@ -1,0 +1,180 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sat Oct  3 22:55:52 2026
+| Host         : OMENMAX running 64-bit major release  (build 9200)
+| Command      : report_incremental_reuse -file V://_synth_bc/acc36_realrom_200_member_b_rom_pipeline_inc_20261003_setup030_ascii_ramdecomp_try2/reports/incremental_reuse_final.rpt
+| Design       : c_synth_top
+| Device       : xc7a200t
+| Design State : Physopt postRoute
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Incremental Implementation Information
+
+Table of Contents
+-----------------
+1. Incremental Flow Summary
+2. Reuse Summary
+3. Reference Checkpoint Information
+4. Comparison with Reference Run
+5. Optimization Comparison With Reference Run
+5.1 iphys_opt_replay Optimizations
+5.2 QoR Suggestion Optimizations
+6. Command Comparison with Reference Run
+6.1 Reference:
+6.2 Incremental:
+7. Non Reuse Information
+
+1. Incremental Flow Summary
+---------------------------
+
++-----------------------+---------------+
+|    Flow Information   |     Value     |
++-----------------------+---------------+
+| Synthesis Flow        |       Default |
+| Auto Incremental      |            No |
+| Incremental Directive | TimingClosure |
+| Target WNS            |           0.0 |
+| QoR Suggestions       |             0 |
++-----------------------+---------------+
+
+
+2. Reuse Summary
+----------------
+
++-------+------------------------------+------------------------------------+----------------------------+--------------------+--------+
+|  Type | Matched % (of Initial Total) | Initial Reuse % (of Initial Total) | Current Reuse % (of Total) | Fixed % (of Total) |  Total |
++-------+------------------------------+------------------------------------+----------------------------+--------------------+--------+
+| Cells |                        98.89 |                              98.90 |                      95.94 |               0.01 |  91103 |
+| Nets  |                        95.15 |                              94.31 |                      85.42 |               0.00 |  91472 |
+| Pins  |                            - |                              89.51 |                      52.44 |                  - | 413364 |
+| Ports |                       100.00 |                             100.00 |                     100.00 |              90.90 |     11 |
++-------+------------------------------+------------------------------------+----------------------------+--------------------+--------+
+
+
+3. Reference Checkpoint Information
+-----------------------------------
+
++----------------+---------------------------------------------------------------------------------------------------------------------------+
+| DCP Location:  | V:/_synth_bc/acc36_realrom_200_member_b_rom_pipeline_inc_20261003_setup030_ascii_ramdecomp_try2/incremental_reference.dcp |
++----------------+---------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------+----------------------------+
+|         DCP Information        |            Value           |
++--------------------------------+----------------------------+
+| Vivado Version                 |                     2025.2 |
+| DCP State                      |                 POST_ROUTE |
+| Recorded WNS                   |                     -0.341 |
+| Recorded WHS                   |                      0.036 |
+| Reference Speed File Version   | PRODUCTION 1.23 2018-06-13 |
+| Incremental Speed File Version | PRODUCTION 1.23 2018-06-13 |
++--------------------------------+----------------------------+
+* Recorded WNS/WHS timing numbers are estimated timing numbers. They may vary slightly from sign-off timing numbers.
+
+
+4. Comparison with Reference Run
+--------------------------------
+
++-----------------+---------------------------+---------------------------+---------------------------+
+|                 |          WNS(ns)          |  Runtime(elapsed)(hh:mm)  |    Runtime(cpu)(hh:mm)    |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|      Stage      |  Reference  | Incremental |  Reference  | Incremental |  Reference  | Incremental |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+| synth_design    |      -0.024 |       0.016 |       00:03 |       00:02 |       00:03 |       00:02 |
+| opt_design      |             |             |     < 1 min |     < 1 min |     < 1 min |     < 1 min |
+| read_checkpoint |             |             |             |       00:01 |             |       00:02 |
+| place_design    |      -0.598 |      -1.707 |       00:52 |       00:05 |       00:53 |       00:07 |
+| phys_opt_design |      -0.290 |      -1.022 |       00:06 |     < 1 min |       00:10 |     < 1 min |
+| route_design    |      -0.164 |      -0.817 |       01:19 |       01:32 |       02:14 |       02:24 |
+| phys_opt_design |      -0.372 |      -0.817 |       00:03 |       00:02 |       00:04 |       00:03 |
+| phys_opt_design |      -0.343 |             |       00:04 |             |       00:06 |             |
+| route_design    |      -0.343 |             |       00:04 |             |       00:08 |             |
+| phys_opt_design |      -0.041 |             |       00:01 |             |       00:02 |             |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+5. Optimization Comparison With Reference Run
+---------------------------------------------
+
+5.1 iphys_opt_replay Optimizations
+----------------------------------
+
++-------------------------+--------+------------+
+| iphys_opt_design replay | Reused | Not Reused |
++-------------------------+--------+------------+
+| fanout_opt              |     23 |          6 |
+| dsp_register_opt        |      8 |          0 |
+| clock_opt               |      8 |          1 |
+| restruct_opt            |      0 |          2 |
+| critical_cell_opt       |      2 |          6 |
++-------------------------+--------+------------+
+
+
+5.2 QoR Suggestion Optimizations
+--------------------------------
+
++-------------------------------------+-------+
+|           QoR Suggestions           | Value |
++-------------------------------------+-------+
+| QoR Suggestions (Recommended)       |     0 |
+|   Suggestions Included In Reference |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+|   New Suggestions (INCR_FRIENDLY=1) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| QoR Suggestions (Not Recommended)   |     0 |
+|   New Suggestions (INCR_FRIENDLY=0) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| Disabled New Suggestions            |     0 |
++-------------------------------------+-------+
+
+
+6. Command Comparison with Reference Run
+----------------------------------------
+
+6.1 Reference:
+--------------
+synth_design-define default::[not_specified] -verilog_define default::[not_specified]C_USE_B_REAL -vhdl_define default::[not_specified] -top  c_synth_top -part  xc7a200tfbg484-2 
+opt_design
+place_design -directive ExtraNetDelay_high
+phys_opt_design -directive AggressiveExplore
+route_design -directive NoTimingRelaxation
+phys_opt_design -directive AggressiveExplore
+phys_opt_design -directive AggressiveExplore
+route_design -directive AggressiveExplore  -tns_cleanup
+phys_opt_design -directive AggressiveExplore
+
+6.2 Incremental:
+----------------
+synth_design-define default::[not_specified] -verilog_define default::[not_specified]C_USE_B_REAL -vhdl_define default::[not_specified] -top  c_synth_top -part  xc7a200tfbg484-2 
+opt_design
+read_checkpoint -directive TimingClosure  -incremental V:/_synth_bc/acc36_realrom_200_member_b_rom_pipeline_inc_20261003_setup030_ascii_ramdecomp_try2/incremental_reference.dcp
+place_design -directive Explore
+phys_opt_design
+route_design -directive Explore
+phys_opt_design
+
+7. Non Reuse Information
+------------------------
+
++------------------------------------------------------+-------+
+|                         Type                         |   %   |
++------------------------------------------------------+-------+
+| Non-Reused Cells                                     |  4.05 |
+|   Added by Tool                                      |  0.01 |
+|   Moved by Tool                                      |  0.02 |
+|   New                                                |  1.07 |
+|   Discarded illegal placement due to netlist changes |  0.05 |
+|   Discarded to improve timing                        |  2.88 |
+| Partially reused nets                                |  0.02 |
+| Non-Reused nets                                      | 14.54 |
+| Non-Reused Ports                                     |  0.00 |
++------------------------------------------------------+-------+
+
+

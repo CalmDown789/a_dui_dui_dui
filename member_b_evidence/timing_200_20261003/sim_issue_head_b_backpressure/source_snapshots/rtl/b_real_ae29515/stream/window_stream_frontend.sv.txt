@@ -1,0 +1,70 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: SAME padded raster -> local BRAM window ->
+// elastic output. The two in-flight reservations account for the synchronous
+// BRAM window's delayed valid; downstream stalls propagate back to the input.
+// DATA_W is the width of one complete HWC pixel token, e.g. 8*16 for L3.
+module window_stream_frontend #(
+    parameter integer DATA_W = 8,
+    parameter integer IMG_W = 96,
+    parameter integer IMG_H = 54,
+    parameter integer K = 5,
+    parameter integer FIFO_DEPTH = 4
+)(
+    input  wire                      clk,
+    input  wire                      rst,
+    input  wire                      start,
+    output wire                      busy,
+    input  wire                      in_valid,
+    output wire                      in_ready,
+    input  wire [DATA_W-1:0]         in_data,
+    output wire                      window_valid,
+    input  wire                      window_ready,
+    output wire [K*K*DATA_W-1:0]     window_data
+);
+    localparam integer PAD=(K-1)/2;
+    localparam integer PAD_W=IMG_W+2*PAD;
+    wire pad_valid,pad_ready,pad_last,pad_busy;
+    wire [DATA_W-1:0] pad_data;
+    wire [K*K*DATA_W-1:0] raw_window;
+    wire raw_valid;
+    wire fifo_ready;
+    wire [$clog2(FIFO_DEPTH+1)-1:0] occupancy;
+    reg pending1,pending2;
+    wire pad_fire=pad_valid&&pad_ready;
+    wire start_accept=start&&!busy;
+    wire local_rst=rst||start_accept;
+    assign busy=pad_busy||pending1||pending2||(occupancy!=0);
+
+    initial begin
+        if((K!=3&&K!=5)||FIFO_DEPTH<3)
+            $error("window_stream_frontend requires K=3/5 and FIFO_DEPTH>=3");
+    end
+
+    // Reserve room for accepted pixels still travelling through the window.
+    assign pad_ready=(occupancy+pending1+pending2 < FIFO_DEPTH);
+    always @(posedge clk)begin
+        if(local_rst)begin pending1<=0;pending2<=0;end
+        else begin pending1<=pad_fire;pending2<=pending1;end
+    end
+    same_pad_raster #(.DATA_W(DATA_W),.IMG_W(IMG_W),.IMG_H(IMG_H),.PAD(PAD)) pad (
+        .clk(clk),.rst(rst),.start(start_accept),.busy(pad_busy),
+        .in_valid(in_valid),.in_ready(in_ready),.in_data(in_data),
+        .out_valid(pad_valid),.out_ready(pad_ready),.out_data(pad_data),
+        .out_last(pad_last)
+    );
+    window_kminus1_bram #(.DATA_W(DATA_W),.IMG_W(PAD_W),.K(K)) win (
+        .clk(clk),.rst(local_rst),.pixel_in(pad_data),.pixel_valid(pad_fire),
+        .window_flat(raw_window),.window_valid(raw_valid)
+    );
+    elastic_fifo #(.DATA_W(K*K*DATA_W),.DEPTH(FIFO_DEPTH)) fifo (
+        .clk(clk),.rst(local_rst),.in_valid(raw_valid),.in_ready(fifo_ready),
+        .in_data(raw_window),.out_valid(window_valid),.out_ready(window_ready),
+        .out_data(window_data),.occupancy(occupancy)
+    );
+    // A failed assertion here means the reservation calculation underflowed.
+`ifndef SYNTHESIS
+    always @(posedge clk)if(!rst&&raw_valid&&!fifo_ready)
+        $fatal(1,"window_stream_frontend: window FIFO overflow");
+`endif
+endmodule

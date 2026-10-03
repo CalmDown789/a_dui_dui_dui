@@ -1,0 +1,296 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 17:34:50 2026
+# Process ID         : 13860
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/vivado.log -source V:/experiments/timing_200_20261003/postroute_focus/finish.tcl -tclargs V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3 C:/Users/24889/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe
+# Log file           : V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/vivado.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 45727 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20261003/postroute_focus/finish.tcl
+# if {![info exists argv] || [llength $argv] != 2} {
+#     error "Expected prepared stage and Python executable"
+# }
+# set finish_here [file normalize [file dirname [info script]]]
+# set finish_stage [file normalize [lindex $argv 0]]
+# set finish_python [lindex $argv 1]
+# if {![string match "2025.2*" [version -short]]} {error "This experiment was reviewed for Vivado 2025.2"}
+# puts [exec $finish_python -I "$finish_here/prepare.py" verify $finish_stage]
+POSTROUTE_FINISH_INPUTS_VERIFIED
+# source "$finish_stage/settings.tcl"
+## set finish_extra_setup_ns 0.300
+# if {$finish_extra_setup_ns ni {0.000 0.300 0.500}} {error "Unsupported setup pressure"}
+# if {[file exists "$finish_stage/reports"] || [file exists "$finish_stage/run_started.txt"]} {
+#     error "This stage has already been used; prepare a new stage"
+# }
+# set finish_lock [open "$finish_stage/run_started.txt" {WRONLY CREAT EXCL}]
+# puts $finish_lock "started=[clock format [clock seconds] -format {%Y-%m-%d %H:%M:%S}]"
+# close $finish_lock
+# file mkdir "$finish_stage/reports"
+# set finish_old_dir [pwd]
+# cd $finish_stage
+# set_param general.maxThreads 2
+# proc finish_slack {clock delay} {
+#     set paths [get_timing_paths -from $clock -to $clock -delay_type $delay -max_paths 1 -nworst 1]
+#     if {[llength $paths] != 1} {error "Expected a timed path within the 200 MHz clock"}
+#     return [get_property SLACK [lindex $paths 0]]
+# }
+# proc finish_uncertainty {clock} {
+#     set text [report_timing -from $clock -to $clock -delay_type max -max_paths 1 -return_string]
+#     set values [dict create]
+#     foreach {key pattern} {
+#         UU {User Uncertainty\s+\(UU\):\s+(-?[0-9.]+)ns}
+#         TSJ {Total System Jitter\s+\(TSJ\):\s+([0-9.]+)ns}
+#         DJ {Discrete Jitter\s+\(DJ\):\s+([0-9.]+)ns}
+#         PE {Phase Error\s+\(PE\):\s+([0-9.]+)ns}
+#     } {
+#         if {![regexp $pattern $text -> number]} {error "Cannot audit timing uncertainty field $key"}
+#         dict set values $key $number
+#     }
+#     return $values
+# }
+# proc finish_snapshot {folder clock} {
+#     file mkdir $folder
+#     report_timing_summary -delay_type min_max -max_paths 20 -file "$folder/timing_summary.rpt"
+#     report_timing -delay_type max -max_paths 100 -nworst 1 -file "$folder/setup_paths.rpt"
+#     report_timing -delay_type min -max_paths 100 -nworst 1 -file "$folder/hold_paths.rpt"
+#     report_timing -from $clock -to $clock -delay_type max -max_paths 20 -file "$folder/same_clock_setup.rpt"
+#     report_timing -from $clock -to $clock -delay_type min -max_paths 20 -file "$folder/same_clock_hold.rpt"
+#     report_route_status -file "$folder/route_status.rpt"
+#     report_drc -file "$folder/drc.rpt"
+#     report_utilization -file "$folder/utilization.rpt"
+#     report_utilization -hierarchical -file "$folder/utilization_hier.rpt"
+#     report_clocks -file "$folder/clocks.rpt"
+#     write_xdc "$folder/constraints.xdc"
+# }
+Command: open_checkpoint V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/input/source_postroute.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 321.363 ; gain = 1.812
+INFO: [Device 21-403] Loading part xc7a200tfbg484-2
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.615 . Memory (MB): peak = 943.773 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6398 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.162 . Memory (MB): peak = 1138.844 ; gain = 21.023
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.060 . Memory (MB): peak = 1926.582 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1926.582 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1926.582 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1941.539 ; gain = 14.957
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1941.539 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.568 . Memory (MB): peak = 1991.012 ; gain = 49.473
+Read Physdb Files: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1991.012 ; gain = 64.430
+Restored from archive | CPU: 2.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1991.012 ; gain = 64.430
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2079.566 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1487 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 1481 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 6 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:00:23 ; elapsed = 00:00:22 . Memory (MB): peak = 2085.285 ; gain = 1774.828
+update_timing: Time (s): cpu = 00:00:24 ; elapsed = 00:00:13 . Memory (MB): peak = 2244.129 ; gain = 158.844
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/reports/before/drc.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/Xilinx/2025.2/Vivado/data/ip'.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/reports/before/drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/reports/before_pressure/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_fifo_we030_20261003_try3/reports/before_pressure/drc.rpt.
+report_drc completed successfully
+MEMBER_B_FIFO_WE_QUERY pins=9900 unique_nets=9
+# set finish_status [catch {
+#     open_checkpoint "$finish_stage/input/source_postroute.dcp"
+#     if {[get_property PART [current_design]] ne "xc7a200tfbg484-2"} {error "Unexpected FPGA part"}
+#     update_timing
+#     set finish_pin [get_pins -quiet {u_top/g_mmcm.u_mmcm/CLKOUT0}]
+#     set finish_clock [get_clocks -quiet -of_objects $finish_pin]
+#     if {[llength $finish_clock] != 1} {error "Expected exactly one MMCM output clock"}
+#     if {abs([get_property PERIOD $finish_clock]-5.000) > 0.000001} {error "Baseline period is not 5 ns"}
+#     set finish_waveform [get_property WAVEFORM $finish_clock]
+#     if {![report_route_status -boolean_check ROUTED_FULLY] ||
+#         [report_route_status -boolean_check ERRORS_IN_ROUTES]} {error "Baseline DCP is not fully and legally routed"}
+#     set finish_original_uncertainty [finish_uncertainty $finish_clock]
+#     if {abs([dict get $finish_original_uncertainty UU]) > 0.000001} {error "Baseline must already have restored UU=0"}
+#     finish_snapshot "$finish_stage/reports/before" $finish_clock
+#     set finish_before_setup [finish_slack $finish_clock max]
+#     set finish_before_hold [finish_slack $finish_clock min]
+# 
+#     # Only a temporary same-clock setup pressure; frequency, automatic jitter,
+#     # hold uncertainty, exceptions and DRC severity are not modified.
+#     if {$finish_extra_setup_ns > 0} {
+#         set_clock_uncertainty -setup -from $finish_clock -to $finish_clock $finish_extra_setup_ns
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/before_pressure" $finish_clock
+#     set finish_pressure_before [finish_slack $finish_clock max]
+#     if {abs(($finish_before_setup-$finish_pressure_before)-$finish_extra_setup_ns) > 0.002} {
+#         error "Initial same-clock setup pressure does not match requested value"
+#     }
+#     # Local 2025.2 help states that positive-slack designs are not optimized.
+#     # Preserve a measured no-op result if no negative setup path exists.
+#     set finish_global_paths [get_timing_paths -delay_type max -max_paths 1 -nworst 1]
+#     if {[llength $finish_global_paths] != 1} {error "Cannot determine global setup slack"}
+#     set finish_opt_applied 0
+#     if {[get_property SLACK [lindex $finish_global_paths 0]] < 0} {
+#         # The 226-endpoint baseline audit identified 192 paths from L5's
+#         # final MAC valid to this FIFO write-enable cone (fanout about 1056).
+#         # Replicate only its physical driver; no RTL/protocol/clock edits.
+#         set focus_pins [get_pins -hierarchical -filter {NAME =~ *l5/gk.frontend/fifo*/WE}]
+#         if {[llength $focus_pins] == 0} {error "No L5 window FIFO write-enable pins found"}
+#         # RAM32M hierarchy exposes separate segment names for each primitive.
+#         # Local 2025.2 get_nets help: parent_net returns the driver-leaf segment.
+#         set focus_nets [lsort -unique [get_nets -parent_net -segments -of_objects $focus_pins]]
+#         puts "MEMBER_B_FIFO_WE_QUERY pins=[llength $focus_pins] unique_nets=[llength $focus_nets]"
+#         if {[llength $focus_nets] == 0 || [llength $focus_nets] > 8} {
+#             error "Unexpected number of targeted FIFO write-enable nets: [llength $focus_nets]"
+#         }
+#         set focus_report [open "$finish_stage/reports/targeted_nets.txt" w]
+#         puts $focus_report "pins=[llength $focus_pins] nets=[llength $focus_nets]"
+#         foreach focus_net $focus_nets {
+#             puts $focus_report "$focus_net loads=[llength [get_pins -of_objects $focus_net -filter {DIRECTION == IN}]]"
+#         }
+#         close $focus_report
+#         puts "MEMBER_B_TARGETED_REPLICATION nets=$focus_nets"
+#         phys_opt_design -force_replication_on_nets $focus_nets
+#         if {![report_route_status -boolean_check ROUTED_FULLY] ||
+#             [report_route_status -boolean_check ERRORS_IN_ROUTES]} {
+#             route_design -directive NoTimingRelaxation -preserve
+#         }
+#         finish_snapshot "$finish_stage/reports/after_targeted_replication" $finish_clock
+#         phys_opt_design -directive AggressiveExplore
+#         set finish_opt_applied 1
+#     } else {
+#         puts "POSTROUTE_FINISH_NO_NEGATIVE_SETUP_PATH; physical optimization skipped"
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_physopt_pressure" $finish_clock
+#     set finish_route_repair 0
+#     if {![report_route_status -boolean_check ROUTED_FULLY] ||
+#         [report_route_status -boolean_check ERRORS_IN_ROUTES]} {
+#         # Normal routed-design continuation, not read_checkpoint -incremental
+#         # or route_design -eco (different directive compatibility rules).
+#         route_design -directive NoTimingRelaxation -preserve
+#         set finish_route_repair 1
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_pressure" $finish_clock
+#     set finish_tight_setup [finish_slack $finish_clock max]
+#     set finish_tight_hold [finish_slack $finish_clock min]
+#     # No physical command may occur between this measurement and restored one.
+#     set_clock_uncertainty -setup -from $finish_clock -to $finish_clock 0.000
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_restored" $finish_clock
+#     set finish_restored_setup [finish_slack $finish_clock max]
+#     set finish_restored_hold [finish_slack $finish_clock min]
+#     set finish_final_uncertainty [finish_uncertainty $finish_clock]
+#     if {abs(($finish_restored_setup-$finish_tight_setup)-$finish_extra_setup_ns) > 0.002} {
+#         error "Final same-physical-design setup difference does not match pressure"
+#     }
+#     if {abs($finish_restored_hold-$finish_tight_hold) > 0.002} {error "Setup restore changed hold slack"}
+#     if {abs([get_property PERIOD $finish_clock]-5.000) > 0.000001 ||
+#         [get_property WAVEFORM $finish_clock] ne $finish_waveform} {error "Clock period or waveform changed"}
+#     foreach finish_key {UU TSJ DJ PE} {
+#         if {[dict get $finish_final_uncertainty $finish_key] != [dict get $finish_original_uncertainty $finish_key]} {
+#             error "Restored clock uncertainty component changed: $finish_key"
+#         }
+#     }
+#     set finish_routed [report_route_status -boolean_check ROUTED_FULLY]
+#     set finish_route_error [report_route_status -boolean_check ERRORS_IN_ROUTES]
+#     write_checkpoint "$finish_stage/postroute.dcp"
+#     set finish_result [open "$finish_stage/reports/result.txt" w]
+#     set finish_measured_status "COMPLETED_MEASURED"
+#     if {!$finish_routed || $finish_route_error} {set finish_measured_status "FAILED_ROUTE"}
+#     puts $finish_result "status=$finish_measured_status"
+#     puts $finish_result "extra_setup_ns=$finish_extra_setup_ns"
+#     puts $finish_result "phys_opt_applied=$finish_opt_applied"
+#     puts $finish_result "route_repair_applied=$finish_route_repair"
+#     puts $finish_result "same_clock_before_setup_ns=$finish_before_setup"
+#     puts $finish_result "same_clock_before_hold_ns=$finish_before_hold"
+#     puts $finish_result "same_clock_after_tight_setup_ns=$finish_tight_setup"
+#     puts $finish_result "same_clock_after_restored_setup_ns=$finish_restored_setup"
+#     puts $finish_result "same_clock_after_restored_hold_ns=$finish_restored_hold"
+#     puts $finish_result "restored_minus_tight_ns=[expr {$finish_restored_setup-$finish_tight_setup}]"
+#     puts $finish_result "route_fully_complete=$finish_routed"
+#     puts $finish_result "route_errors_present=$finish_route_error"
+#     puts $finish_result "uncertainty_components=$finish_final_uncertainty"
+#     puts $finish_result "acceptance=Inspect global restored setup/hold/pulse-width, DRC and route reports; completion is not timing acceptance"
+#     close $finish_result
+#     if {!$finish_routed || $finish_route_error} {error "Final routing is incomplete or has errors; result is not accepted"}
+#     puts [exec $finish_python -I "$finish_here/prepare.py" finalize $finish_stage]
+# } finish_message finish_options]
+# cd $finish_old_dir
+# if {$finish_status} {
+#     set finish_failure [open "$finish_stage/failed.txt" w]
+#     puts $finish_failure $finish_message
+#     close $finish_failure
+#     return -options $finish_options $finish_message
+# }
+Unexpected number of targeted FIFO write-enable nets: 9
+    while executing
+"error "Unexpected number of targeted FIFO write-enable nets: [llength $focus_nets]""
+    invoked from within
+"if {[llength $focus_nets] == 0 || [llength $focus_nets] > 8} {
+            error "Unexpected number of targeted FIFO write-enable nets: [llength $focu..."
+    invoked from within
+"if {[get_property SLACK [lindex $finish_global_paths 0]] < 0} {
+        # The 226-endpoint baseline audit identified 192 paths from L5's
+        # fin..."
+    invoked from within
+"if {$finish_status} {
+    set finish_failure [open "$finish_stage/failed.txt" w]
+    puts $finish_failure $finish_message
+    close $finish_failure
+  ..."
+    (file "V:/experiments/timing_200_20261003/postroute_focus/finish.tcl" line 181)
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  3 17:36:06 2026...

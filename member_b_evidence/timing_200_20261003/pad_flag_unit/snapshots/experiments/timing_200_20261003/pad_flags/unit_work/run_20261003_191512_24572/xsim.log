@@ -1,0 +1,22 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Oct  3 19:15:15 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_pad_flags/xsim_script.tcl
+# xsim {tb_pad_flags} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PAD_FLAG_CASE_PASS id=2 W=1 H=1 PAD=1 cycles=46 frames=3 stalls=15 resets=0
+PAD_FLAG_CASE_PASS id=3 W=9 H=7 PAD=0 cycles=517 frames=3 stalls=170 resets=1
+PAD_FLAG_CASE_PASS id=1 W=7 H=5 PAD=2 cycles=574 frames=3 stalls=183 resets=1
+PAD_FLAG_CASE_PASS id=4 W=960 H=540 PAD=2 cycles=2838548 frames=3 stalls=693812 resets=2
+PAD_FLAG_REFERENCE_EQUIVALENCE_PASS cases=4 frames_each=3
+$finish called at time : 14192755 ns : File "V:/experiments/timing_200_20261003/pad_flags/tb_pad_flags.sv" Line 67
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 219.473 ; gain = 0.000
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Oct  3 19:15:22 2026...

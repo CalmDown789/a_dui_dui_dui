@@ -1,0 +1,57 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 21:37:33 2026
+# Process ID         : 19144
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -source experiments/timing_200_20261003/issue_head/run_unit.tcl -log _synth_bc/issue_head_unit_20261003_try1.log -journal _synth_bc/issue_head_unit_20261003_try1.jou
+# Log file           : V:/_synth_bc/issue_head_unit_20261003_try1.log
+# Journal file       : V:/_synth_bc/issue_head_unit_20261003_try1.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 42385 MB
+#-----------------------------------------------------------
+source experiments/timing_200_20261003/issue_head/run_unit.tcl
+# set here [file normalize [file dirname [info script]]]
+# set work "$here/unit_work/run_[clock format [clock seconds] -format %Y%m%d_%H%M%S]_[pid]"
+# set snapshot tb_issue_head
+# set_param general.maxThreads 2
+# set viv $::env(XILINX_VIVADO)
+# set bindir "$viv/bin"
+# file mkdir $work
+# cd $work
+# exec "$bindir/xvlog.bat" --nolog -sv --work worklib "$here/eight_phase_issue.sv" \
+#     "$here/eight_phase_issue_reference.sv" "$here/tb_issue_head.sv" > "$work/xvlog.log" 2>@1
+# exec "$bindir/xelab.bat" --nolog "worklib.$snapshot" -O0 -s $snapshot > "$work/xelab.log" 2>@1
+# set libdir "$viv/lib/win64.o"
+# set tpdir "$viv/tps/win64"
+# set snapdir "$work/xsim.dir/$snapshot"
+# foreach name {xv_simulator_kernel.dll librdi_simulator_kernel.dll librdizlib.dll tcl85t.dll tcl86t.dll} {
+#     if {[file exists "$libdir/$name"]} {file copy "$libdir/$name" "$snapdir/$name"}
+# }
+# foreach pattern [list "$libdir/*boost*.dll" "$tpdir/MSVCP140*.dll" "$tpdir/VCRUNTIME140*.dll"] {
+#     foreach source [glob -nocomplain -types f $pattern] {
+#         file copy -force $source "$snapdir/[file tail $source]"
+#     }
+# }
+# exec "$bindir/xsim.bat" $snapshot -runall -log "$work/xsim_engine.log" > "$work/xsim.log" 2>@1
+# set fh [open "$work/xsim.log" r]
+# set simlog [read $fh]
+# close $fh
+# if {[string first "ISSUE_HEAD_UNIT_PASS cases=3 rounds_each=3" $simlog]<0 ||
+#     [regexp -nocase {fatal:|error:} $simlog]} {
+#     error "Direct-head sequencer test failed; inspect $work/xsim.log"
+# }
+# puts "ISSUE_HEAD_UNIT_COMPLETE log=$work/xsim.log"
+ISSUE_HEAD_UNIT_COMPLETE log=V:/experiments/timing_200_20261003/issue_head/unit_work/run_20261003_213735_19144/xsim.log
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  3 21:37:40 2026...

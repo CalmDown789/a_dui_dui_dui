@@ -1,0 +1,109 @@
+`timescale 1ns / 1ps
+
+// 成员B工作 / Team member B: two alternating LR-row phase banks.
+// Input phases are packed {C3,C2,C1,C0}, one 32-bit token per LR pixel.
+// Output is row-major uint8 Y with ready/valid and stripe/frame markers.
+// Each bank has a synchronous read port and a registered phase word. This is
+// the BRAM-friendly form; actual RAMB36 mapping still needs target synthesis.
+module pixel_shuffle2x_row_banks #(
+    parameter integer IMG_W=96,
+    parameter integer IMG_H=54,
+    parameter integer STRIPE_ROWS=64
+)(
+    input  wire          clk,
+    input  wire          rst,
+    input  wire          start,
+    output reg           busy,
+    output reg           done,
+    input  wire          in_valid,
+    output wire          in_ready,
+    input  wire [31:0]   in_phases,
+    output wire          out_valid,
+    input  wire          out_ready,
+    output wire [7:0]    out_data,
+    output wire          stripe_last,
+    output wire          frame_last
+);
+    localparam integer IN_X_W=(IMG_W<=1)?1:$clog2(IMG_W);
+    localparam integer ROW_W=(IMG_H<=1)?1:$clog2(IMG_H+1);
+    localparam integer OUT_X_W=(2*IMG_W<=1)?1:$clog2(2*IMG_W);
+    (* ram_style="block" *) reg [31:0] bank0[0:IMG_W-1];
+    (* ram_style="block" *) reg [31:0] bank1[0:IMG_W-1];
+    reg [31:0] read_data0,read_data1;
+    reg word_valid;
+    reg full0,full1;
+    reg [IN_X_W-1:0] write_x;
+    reg [ROW_W-1:0] write_row,read_row;
+    reg [OUT_X_W-1:0] out_x;
+    reg lower_row;
+    wire write_bank=write_row[0];
+    wire read_bank=read_row[0];
+    wire write_full=write_bank?full1:full0;
+    wire read_full=read_bank?full1:full0;
+    wire in_fire=in_valid&&in_ready;
+    wire out_fire=out_valid&&out_ready;
+    wire fetch_word=busy&&read_full&&!word_valid;
+    wire [31:0] current_phases=read_bank?read_data1:read_data0;
+    wire [1:0] selected_phase={lower_row,out_x[0]};
+    wire [31:0] hr_y=read_row*2+lower_row;
+    wire last_x=(out_x==2*IMG_W-1);
+    wire last_row=lower_row&&last_x;
+    assign in_ready=busy&&(write_row<IMG_H)&&!write_full;
+    assign out_valid=busy&&(read_row<IMG_H)&&read_full&&word_valid;
+    assign out_data=current_phases[selected_phase*8+:8];
+    assign frame_last=out_valid&&last_row&&(read_row==IMG_H-1);
+    assign stripe_last=out_valid&&last_x&&
+        ((((hr_y+1)%STRIPE_ROWS)==0)||frame_last);
+    initial if(IMG_W<1||IMG_H<1||STRIPE_ROWS<1)
+        $error("pixel_shuffle2x_row_banks parameters invalid");
+    // Keep memory writes and reads outside the reset process so each bank can
+    // be inferred as a synchronous dual-port memory.
+    always @(posedge clk)begin
+        if(in_fire)begin
+            if(write_bank)bank1[write_x]<=in_phases;
+            else bank0[write_x]<=in_phases;
+        end
+        if(fetch_word)begin
+            if(read_bank)read_data1<=bank1[out_x>>1];
+            else read_data0<=bank0[out_x>>1];
+        end
+    end
+    always @(posedge clk)begin
+        if(rst)begin
+            busy<=0;done<=0;full0<=0;full1<=0;
+            write_x<=0;write_row<=0;read_row<=0;out_x<=0;lower_row<=0;
+            word_valid<=0;
+        end else begin
+            done<=0;
+            if(!busy)begin
+                if(start)begin
+                    busy<=1;full0<=0;full1<=0;
+                    write_x<=0;write_row<=0;read_row<=0;out_x<=0;lower_row<=0;
+                    word_valid<=0;
+                end
+            end else begin
+                if(fetch_word)word_valid<=1;
+                if(in_fire)begin
+                    if(write_x==IMG_W-1)begin
+                        write_x<=0;write_row<=write_row+1'b1;
+                        if(write_bank)full1<=1;
+                        else full0<=1;
+                    end else write_x<=write_x+1'b1;
+                end
+                if(out_fire)begin
+                    if(out_x[0])word_valid<=0;
+                    if(last_x)begin
+                        out_x<=0;
+                        if(lower_row)begin
+                            lower_row<=0;
+                            read_row<=read_row+1'b1;
+                            if(read_bank)full1<=0;
+                            else full0<=0;
+                            if(read_row==IMG_H-1)begin busy<=0;done<=1;end
+                        end else lower_row<=1;
+                    end else out_x<=out_x+1'b1;
+                end
+            end
+        end
+    end
+endmodule

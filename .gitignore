@@ -50,6 +50,7 @@ _sim/
 _syn/
 _synth_bc/
 __pycache__/
+/experiments/timing_200_20261003/**/unit_work/
 *.pyc
 *.log
 *.log.*
@@ -79,3 +80,7 @@ desktop.ini
 *.swp
 *.bak
 *.tmp
+
+# Explicit immutable evidence for this round, including selected logs/journals.
+# Actual Vivado/XSim caches and DCPs remain outside this evidence directory.
+!/member_b_evidence/timing_200_20261003/**

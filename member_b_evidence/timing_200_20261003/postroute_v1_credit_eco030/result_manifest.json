@@ -1,0 +1,416 @@
+{
+  "status": "COMPLETED_MEASURED",
+  "baseline_hash": {
+    "bytes": 34311894,
+    "sha256": "1c368542539842a1bf7d0e216c5f3ed1254e38093df993b8736f4e7619e681ff"
+  },
+  "postroute_hash": {
+    "bytes": 34652782,
+    "sha256": "821625c0674db1517f8e79b20e461ec53017c66de09174de17232d758b70a4e0"
+  },
+  "values": {
+    "status": "COMPLETED_MEASURED",
+    "eco_cells": "9",
+    "eco_original_before_setup_ns": "-0.083",
+    "eco_original_before_hold_ns": "0.036",
+    "eco_after_logical_change_setup_ns": "-0.072",
+    "extra_setup_ns": "0.300",
+    "phys_opt_applied": "1",
+    "route_repair_applied": "0",
+    "same_clock_before_setup_ns": "-0.072",
+    "same_clock_before_hold_ns": "0.036",
+    "same_clock_after_tight_setup_ns": "-0.343",
+    "same_clock_after_restored_setup_ns": "-0.043",
+    "same_clock_after_restored_hold_ns": "0.036",
+    "restored_minus_tight_ns": "0.30000000000000004",
+    "route_fully_complete": "1",
+    "route_errors_present": "0",
+    "uncertainty_components": "UU 0.000 TSJ 0.071 DJ 0.118 PE 0.000",
+    "acceptance": "Inspect global restored setup/hold/pulse-width, DRC and route reports; completion is not timing acceptance"
+  },
+  "reports": [
+    {
+      "path": "reports/after_eco/clocks.rpt",
+      "bytes": 2252,
+      "sha256": "6c966e7503a33364d5f3d344beae7509c7d0d9f6b61ee93900a1ce76e551249b"
+    },
+    {
+      "path": "reports/after_eco/constraints.xdc",
+      "bytes": 12100,
+      "sha256": "ea47695cf799be1b9f59398ee09f9d886fce383ea3c38e09576e9f479282fef5"
+    },
+    {
+      "path": "reports/after_eco/drc.rpt",
+      "bytes": 656271,
+      "sha256": "d9f7ed5559dc1f3e9fdbf605fafb1a58f216a9bf6b2595d97c7fb5b1a8a61d81"
+    },
+    {
+      "path": "reports/after_eco/hold_paths.rpt",
+      "bytes": 551791,
+      "sha256": "b6c6ddaa4fc44efe9a4b70950e93e4ca597004de9ab68017d44fc4b24fd2a84c"
+    },
+    {
+      "path": "reports/after_eco/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/after_eco/same_clock_hold.rpt",
+      "bytes": 115942,
+      "sha256": "cafb6bae1ccd4e1ca986b37c3e790984072c73e0e259944b565ad5b264a914e5"
+    },
+    {
+      "path": "reports/after_eco/same_clock_setup.rpt",
+      "bytes": 128324,
+      "sha256": "e27913648c005943395a0d773c8716f6ae84a7bfcc7b8c407da8846144c5f6cb"
+    },
+    {
+      "path": "reports/after_eco/setup_paths.rpt",
+      "bytes": 627806,
+      "sha256": "7020edcbd2ebe2a21dbb29db2b0a3ec863a2dfa880521de5735f95631076a036"
+    },
+    {
+      "path": "reports/after_eco/timing_summary.rpt",
+      "bytes": 267069,
+      "sha256": "a7b91dfefa88d77da363bdd23162f940a997a56401f3b0dca36fe56dd1513d5b"
+    },
+    {
+      "path": "reports/after_eco/utilization.rpt",
+      "bytes": 11986,
+      "sha256": "4dc07dff3a408a618c942e9415e715b3f42e7ead475bf1f49a33175807fd106b"
+    },
+    {
+      "path": "reports/after_eco/utilization_hier.rpt",
+      "bytes": 15810,
+      "sha256": "88e2e79f9b75f9d4f81a40689a8aff9938c93ad18523ce8c897af37320048d09"
+    },
+    {
+      "path": "reports/after_physopt_pressure/clocks.rpt",
+      "bytes": 2265,
+      "sha256": "abd7172514d336759dbdc6c32ec31203fa761ccfc3d9c3e1c3f5dc02260b3d0a"
+    },
+    {
+      "path": "reports/after_physopt_pressure/constraints.xdc",
+      "bytes": 12361,
+      "sha256": "52143177eaf7e2d0aa5153b55bd3f8ffd2332c7ce55bd6a3f772041353dd61f1"
+    },
+    {
+      "path": "reports/after_physopt_pressure/drc.rpt",
+      "bytes": 656284,
+      "sha256": "08483deb76854457e531a60b16af115767be8892ff26acb1373b0bfb0e381697"
+    },
+    {
+      "path": "reports/after_physopt_pressure/hold_paths.rpt",
+      "bytes": 551830,
+      "sha256": "2fe140527e69789449cb32684d74cc6ed64d83507e39bf605974b45cf96d9e71"
+    },
+    {
+      "path": "reports/after_physopt_pressure/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/after_physopt_pressure/same_clock_hold.rpt",
+      "bytes": 115981,
+      "sha256": "9875ef44b634928932612a868178154438e29fc05d00330733b25df21f5585aa"
+    },
+    {
+      "path": "reports/after_physopt_pressure/same_clock_setup.rpt",
+      "bytes": 129179,
+      "sha256": "c6fd4f27df963c5e34c5b90b6f53a655846564fd78296d8f8aafa3be8bc048a2"
+    },
+    {
+      "path": "reports/after_physopt_pressure/setup_paths.rpt",
+      "bytes": 620878,
+      "sha256": "2f71af7030336e90194ae95470e727c60498f2261bf94b26624095fe094b92a2"
+    },
+    {
+      "path": "reports/after_physopt_pressure/timing_summary.rpt",
+      "bytes": 267924,
+      "sha256": "7047bd1f99d7d2cc394c3da86c7fc55eb5a3fe03a9cd5cfdd8dcc944387514d3"
+    },
+    {
+      "path": "reports/after_physopt_pressure/utilization.rpt",
+      "bytes": 12009,
+      "sha256": "3a299e46a9dc304c7ad1a2ffa8e48317f18282ab4990a9729266e8c5d64002b4"
+    },
+    {
+      "path": "reports/after_physopt_pressure/utilization_hier.rpt",
+      "bytes": 15849,
+      "sha256": "a76aa48a6ef60f16250a9477e0a27b02f79f8385dafb51648274f42e57b55d5f"
+    },
+    {
+      "path": "reports/after_pressure/clocks.rpt",
+      "bytes": 2257,
+      "sha256": "3a8adce2f99c2bff106c76bfb40b1b3b87d72c483c423670d789b6f62e4c277e"
+    },
+    {
+      "path": "reports/after_pressure/constraints.xdc",
+      "bytes": 12353,
+      "sha256": "521197f1ebca73b2920f5d04088d50e5da126745581c7dbd029678026c25ae47"
+    },
+    {
+      "path": "reports/after_pressure/drc.rpt",
+      "bytes": 656276,
+      "sha256": "4d967e4a5bf3efe40911cc6f82186f1166828713f831e3de634df5e2b90f60ad"
+    },
+    {
+      "path": "reports/after_pressure/hold_paths.rpt",
+      "bytes": 551806,
+      "sha256": "10747ea9d7509a799b19527b7c50451991e71e31121efabed9945f164efba995"
+    },
+    {
+      "path": "reports/after_pressure/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/after_pressure/same_clock_hold.rpt",
+      "bytes": 115957,
+      "sha256": "9f313df7cda811356303a5f027a73234dd097fa25f5f59dfba08d185b07af5ff"
+    },
+    {
+      "path": "reports/after_pressure/same_clock_setup.rpt",
+      "bytes": 129155,
+      "sha256": "1cf7948649ebbc5364169da6c94e5c23092acf4e37bf4469983e5759819879d8"
+    },
+    {
+      "path": "reports/after_pressure/setup_paths.rpt",
+      "bytes": 620854,
+      "sha256": "9201f48781571270f55424cf48f3ec6976812ba656129f00ee33b70f5c97dafe"
+    },
+    {
+      "path": "reports/after_pressure/timing_summary.rpt",
+      "bytes": 267900,
+      "sha256": "ce2d501e1c2c7ecd42fcb53f7d57d3ab1dba502bb0a0248f49f77df9355999b1"
+    },
+    {
+      "path": "reports/after_pressure/utilization.rpt",
+      "bytes": 11991,
+      "sha256": "d8853e14dfaaa8005c5a0ff1899504fad731c5f53cda465dbd2fd0acbcc98be0"
+    },
+    {
+      "path": "reports/after_pressure/utilization_hier.rpt",
+      "bytes": 15825,
+      "sha256": "41b55583371585972b04d60e5815ca77c53a509beb0333bb66e93f0c9216a92b"
+    },
+    {
+      "path": "reports/after_restored/clocks.rpt",
+      "bytes": 2257,
+      "sha256": "0e92b9e02befcf6c1c24f2e41f0952adceff3f1209485ff2917a823f3c8afa6c"
+    },
+    {
+      "path": "reports/after_restored/constraints.xdc",
+      "bytes": 12555,
+      "sha256": "51a2dbff44a52982b3e84a45b25af0dc597fb6c6448c015dda3c1038851f72df"
+    },
+    {
+      "path": "reports/after_restored/drc.rpt",
+      "bytes": 656276,
+      "sha256": "fb6397f47f4abca99fb199671a7af9aed17e6e2a052095ce9f48971bd574ac8f"
+    },
+    {
+      "path": "reports/after_restored/hold_paths.rpt",
+      "bytes": 551806,
+      "sha256": "7e6314f8eff5b1bcbd67daa88bbaa2c1cc7f00887b2633cdf24b48ef20a73240"
+    },
+    {
+      "path": "reports/after_restored/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/after_restored/same_clock_hold.rpt",
+      "bytes": 115957,
+      "sha256": "eb61c9160d2ad85299e653c9f71a78a48350e8b6b590603e62e48d7746d7de97"
+    },
+    {
+      "path": "reports/after_restored/same_clock_setup.rpt",
+      "bytes": 129146,
+      "sha256": "d8c3c634454469356e8e6bf065fa12faa504c8f758aa8f654b812fe0df3bec9b"
+    },
+    {
+      "path": "reports/after_restored/setup_paths.rpt",
+      "bytes": 620765,
+      "sha256": "4716495ba4d912e67181937e47de28c96394d53dc0c742f95758f1e1984ecabe"
+    },
+    {
+      "path": "reports/after_restored/timing_summary.rpt",
+      "bytes": 267891,
+      "sha256": "ab9d3b62c8998daf9d2237ac5a38cb5cbcecba6377391a509235dca956f4c079"
+    },
+    {
+      "path": "reports/after_restored/utilization.rpt",
+      "bytes": 11991,
+      "sha256": "356da026080cbfde9a9e9187d3adbdd77f11e3a806d639dd70706f1fa9b4d9d1"
+    },
+    {
+      "path": "reports/after_restored/utilization_hier.rpt",
+      "bytes": 15825,
+      "sha256": "d0966da4eb6f91b14a5d5d61ffb070771ed6cc2835ed5ded5db580190f15b9d4"
+    },
+    {
+      "path": "reports/before/clocks.rpt",
+      "bytes": 2249,
+      "sha256": "28902a32d4f9ebe59c152f300567db501a6b0eb37064a7bc090d42427bbc08fb"
+    },
+    {
+      "path": "reports/before/constraints.xdc",
+      "bytes": 10702,
+      "sha256": "5f6e3f7743df477ff92a151af674cd4b0edd47d87a3086738f48463d19651644"
+    },
+    {
+      "path": "reports/before/drc.rpt",
+      "bytes": 649932,
+      "sha256": "591aa0dd8513590d2f63e4bda281c1b2b01a7ddd33bdca429ce52ee9786b7bbf"
+    },
+    {
+      "path": "reports/before/hold_paths.rpt",
+      "bytes": 551782,
+      "sha256": "e65f02d29938ef1fed54034686740dec18fee20be4a513c7c13dfe1f028d982a"
+    },
+    {
+      "path": "reports/before/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/before/same_clock_hold.rpt",
+      "bytes": 115933,
+      "sha256": "6f8c514c8af688034b5ea71381381a230f48bae9e079eda8c14ce5eecc35962f"
+    },
+    {
+      "path": "reports/before/same_clock_setup.rpt",
+      "bytes": 135208,
+      "sha256": "6a28c1c1b2d78fa1957a46ebf8d4fc50f10e3db0d82bed9e28070fd73d798d6f"
+    },
+    {
+      "path": "reports/before/setup_paths.rpt",
+      "bytes": 670969,
+      "sha256": "2a6f9099497a01f33e213f268ff1b97735d80a570f32ced63ff0a1875b06cb2e"
+    },
+    {
+      "path": "reports/before/timing_summary.rpt",
+      "bytes": 273953,
+      "sha256": "1e3473ed7ae743760740badce270740fb79a44bed61b6a10bb9677124c912ccf"
+    },
+    {
+      "path": "reports/before/utilization.rpt",
+      "bytes": 11983,
+      "sha256": "eba46127c6f4686948e27b035521a9ac80cdf1cb117c25b2f66b0a54160522ba"
+    },
+    {
+      "path": "reports/before/utilization_hier.rpt",
+      "bytes": 15801,
+      "sha256": "c9ef0adf4ddf1584434f20eac7b32713b812ca69f581efb1d34a8784333672ad"
+    },
+    {
+      "path": "reports/before_pressure/clocks.rpt",
+      "bytes": 2258,
+      "sha256": "31e8d21a9dff241c6ce3a1de704bf6a882e91d32baf39441c19626470ed95515"
+    },
+    {
+      "path": "reports/before_pressure/constraints.xdc",
+      "bytes": 12354,
+      "sha256": "fc33ffd7b5ddf5fc3917cc99411f85a6262602327bcd1764bc2df945c49bf8f1"
+    },
+    {
+      "path": "reports/before_pressure/drc.rpt",
+      "bytes": 656277,
+      "sha256": "c14cd0627a637e4f3c28ecae5f99c7d1ad98bf3d583a0c557c14107443ebd2cd"
+    },
+    {
+      "path": "reports/before_pressure/hold_paths.rpt",
+      "bytes": 551809,
+      "sha256": "22957a5877514d666c84dc3a6f27d3af0122128edf19cac4b030770241a61eea"
+    },
+    {
+      "path": "reports/before_pressure/route_status.rpt",
+      "bytes": 651,
+      "sha256": "b60322d57ae3e5fd29d8c4f6b84411044fcfbf8942f11484a49d003eb16eeb75"
+    },
+    {
+      "path": "reports/before_pressure/same_clock_hold.rpt",
+      "bytes": 115960,
+      "sha256": "40a63794445b47d46f59020d32cd91bb5c94e34b9d658846eabb31be455a1fd9"
+    },
+    {
+      "path": "reports/before_pressure/same_clock_setup.rpt",
+      "bytes": 128342,
+      "sha256": "5de288fd84784629c7bcdf4d518861849e83d7c9dff8ab0645397e85a54bfc04"
+    },
+    {
+      "path": "reports/before_pressure/setup_paths.rpt",
+      "bytes": 627902,
+      "sha256": "54511bc8054c61f81e4e4198a7b6d4d395e0e3f462c230932c5ad4bf73e61304"
+    },
+    {
+      "path": "reports/before_pressure/timing_summary.rpt",
+      "bytes": 267087,
+      "sha256": "eb5f32220e625518cd334007b83337929a2df63d70915c9c93d8bbc5290e2ec5"
+    },
+    {
+      "path": "reports/before_pressure/utilization.rpt",
+      "bytes": 11992,
+      "sha256": "0ff6b3ec0305bb42bbd0f658ef82e05b486c76947a05cff7578df0782a067ce1"
+    },
+    {
+      "path": "reports/before_pressure/utilization_hier.rpt",
+      "bytes": 15828,
+      "sha256": "3b7ddffdcdebfc3c9ec9879d3b8769a7c3071c993b5af642ca3d45817929e4a4"
+    },
+    {
+      "path": "reports/eco_changes.tsv",
+      "bytes": 1136,
+      "sha256": "9aaf20623ffd0569356c4d50db09a9fd72304f1cd4d792981f84bab9c0c0006c"
+    },
+    {
+      "path": "reports/result.txt",
+      "bytes": 685,
+      "sha256": "3699d4db456b933f3176bad2368b174cfa9efe799e306b1bf85aa8af9adf9559"
+    }
+  ],
+  "global_timing": {
+    "before": {
+      "WNS": -0.083,
+      "TNS": -6.608,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "WPWS": 1.37
+    },
+    "before_pressure": {
+      "WNS": -0.372,
+      "TNS": -455.318,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "WPWS": 1.37
+    },
+    "after_physopt_pressure": {
+      "WNS": -0.343,
+      "TNS": -436.585,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "WPWS": 1.37
+    },
+    "after_pressure": {
+      "WNS": -0.343,
+      "TNS": -436.585,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "WPWS": 1.37
+    },
+    "after_restored": {
+      "WNS": -0.043,
+      "TNS": -0.26,
+      "WHS": 0.036,
+      "THS": 0.0,
+      "WPWS": 1.37
+    }
+  },
+  "timing_targets_ns": {
+    "0.1": false,
+    "0.25": false,
+    "0.4": false
+  },
+  "note": "Completion records an experiment, not timing acceptance or board validation."
+}

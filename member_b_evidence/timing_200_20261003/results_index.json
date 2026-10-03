@@ -1,0 +1,969 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-10-03T15:06:32.628013+00:00",
+  "task_status": "PAUSED_AT_USER_REQUEST",
+  "branch": "member-b-2025-2-bc-trial",
+  "target_device": "xc7a200tfbg484-2",
+  "frequency_MHz": 200,
+  "final_clock": {
+    "period_ns": 5.0,
+    "UU_ns": 0.0,
+    "TSJ_ns": 0.071,
+    "DJ_ns": 0.118,
+    "PE_ns": 0.0
+  },
+  "original_V1_nominal": {
+    "WNS": -0.164,
+    "TNS": -7.523,
+    "WHS": 0.036,
+    "THS": 0.0,
+    "WPWS": 1.37,
+    "failing_setup_endpoints": 226,
+    "evidence": "member_b_evidence/timing_200_20260926/pipeline000",
+    "dcp_sha256": "abe0c41bfda7b06d5dd920094053b56eef17daa02a32d7ebb5c5bfd43e25b1d0"
+  },
+  "completed_implementations": [
+    {
+      "name": "postroute_v1_nominal000",
+      "stage": "postroute200_v1_nominal000_20261003_try2",
+      "evidence": "member_b_evidence/timing_200_20261003/postroute_v1_nominal000",
+      "timing": {
+        "WNS": -0.083,
+        "TNS": -6.608,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 214,
+      "resources": {
+        "LUT": 27994,
+        "FF": 49170,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394,
+        "BUFG": 2
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 34311894,
+        "sha256": "1c368542539842a1bf7d0e216c5f3ed1254e38093df993b8736f4e7619e681ff"
+      },
+      "baseline_dcp": {
+        "bytes": 86334752,
+        "sha256": "abe0c41bfda7b06d5dd920094053b56eef17daa02a32d7ebb5c5bfd43e25b1d0"
+      },
+      "function_scope": "Unchanged V1 RTL; prior V1 full/short simulation reused, no new board evidence."
+    },
+    {
+      "name": "postroute_v1_credit_eco030",
+      "stage": "postroute200_v1_credit_eco030_20261003_try1",
+      "evidence": "member_b_evidence/timing_200_20261003/postroute_v1_credit_eco030",
+      "timing": {
+        "WNS": -0.043,
+        "TNS": -0.26,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 11,
+      "resources": {
+        "LUT": 27995,
+        "FF": 49170,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394,
+        "BUFG": 2
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 34652782,
+        "sha256": "821625c0674db1517f8e79b20e461ec53017c66de09174de17232d758b70a4e0"
+      },
+      "baseline_dcp": {
+        "bytes": 34311894,
+        "sha256": "1c368542539842a1bf7d0e216c5f3ed1254e38093df993b8736f4e7619e681ff"
+      },
+      "function_scope": "Nine audited LUT truth tables plus abstract credit proof; no standalone gate/full-frame simulation of this DCP."
+    },
+    {
+      "name": "postroute_v1_credit_route030",
+      "stage": "postroute200_v1_credit_route030_20261003_try2",
+      "evidence": "member_b_evidence/timing_200_20261003/postroute_v1_credit_route030",
+      "timing": {
+        "WNS": -0.041,
+        "TNS": -0.217,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 10,
+      "resources": {
+        "LUT": 27996,
+        "FF": 49170,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394,
+        "BUFG": 2
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 34772281,
+        "sha256": "17bf0e1b62ac10fb5ad41539f30d3ca4d766b06830c0465b7d0c8a4eecca0278"
+      },
+      "baseline_dcp": {
+        "bytes": 34652782,
+        "sha256": "821625c0674db1517f8e79b20e461ec53017c66de09174de17232d758b70a4e0"
+      },
+      "function_scope": "Same nine-LUT ECO; only physical continuation. Related behavioral credit model is tested with cached-padding candidate; not gate-level equivalence."
+    },
+    {
+      "name": "postroute_pad_flags030",
+      "stage": "postroute200_v1_pad_flags030_20261003_try1",
+      "evidence": "member_b_evidence/timing_200_20261003/postroute_pad_flags030",
+      "timing": {
+        "WNS": -0.158,
+        "TNS": -5.057,
+        "WHS": 0.027,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 132,
+      "resources": {
+        "LUT": 27923,
+        "FF": 49168,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394,
+        "BUFG": 1
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 34307068,
+        "sha256": "fdc0dee1170bdd4debba6e2dc5c2b165cf8d7375ee247f23f87a4fb2a3ad34ca"
+      },
+      "baseline_dcp": {
+        "bytes": 86393418,
+        "sha256": "7cb3701a14e2c58c968a1b1b8ec537befbeba831a503a7cfac2d4d6d0d78cead"
+      },
+      "function_scope": "Same cached-padding/credit-write RTL as the full Golden PASS; physical continuation only, no gate-level or board validation."
+    },
+    {
+      "name": "fifo_capacity_nominal",
+      "stage": "acc36_realrom_200_member_b_fifo_capacity_20261003_nominal_ascii_ramdecomp",
+      "evidence": "member_b_evidence/timing_200_20261003/fifo_capacity_nominal",
+      "timing": {
+        "WNS": -0.64,
+        "TNS": -786.978,
+        "WHS": 0.047,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 6212,
+      "resources": {
+        "LUT": 28207,
+        "FF": 49362,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 86256270,
+        "sha256": "1865f6351050ee6cee16402a3f8cd2137ca5c5c8f5268ac2192de267ca9ad3ab"
+      },
+      "function_scope": "Unadopted; independent FIFO and real B short/backpressure pass; no full-frame.",
+      "launch_input_hashes_unchanged": true
+    },
+    {
+      "name": "pad_flags_setup030",
+      "stage": "acc36_realrom_200_member_b_pad_flags_20261003_setup030_ascii_ramdecomp",
+      "evidence": "member_b_evidence/timing_200_20261003/pad_flags_setup030",
+      "timing": {
+        "WNS": -0.179,
+        "TNS": -6.939,
+        "WHS": 0.027,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 164,
+      "resources": {
+        "LUT": 27923,
+        "FF": 49168,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 86393418,
+        "sha256": "7cb3701a14e2c58c968a1b1b8ec537befbeba831a503a7cfac2d4d6d0d78cead"
+      },
+      "function_scope": "Cached-padding/credit-write RTL; see separately collected short and full simulation status. No board evidence.",
+      "launch_input_hashes_unchanged": true
+    },
+    {
+      "name": "rom_pipeline_inc_setup030",
+      "stage": "acc36_realrom_200_member_b_rom_pipeline_inc_20261003_setup030_ascii_ramdecomp_try2",
+      "evidence": "member_b_evidence/timing_200_20261003/rom_pipeline_inc_setup030",
+      "timing": {
+        "WNS": -0.517,
+        "TNS": -791.2,
+        "WHS": 0.013,
+        "THS": 0.0,
+        "WPWS": 1.37
+      },
+      "failing_setup_endpoints": 5698,
+      "resources": {
+        "LUT": 27896,
+        "FF": 49365,
+        "RAMB36": 226,
+        "RAMB18": 8,
+        "DSP": 394
+      },
+      "fully_routed": true,
+      "route_errors": 0,
+      "targets_ns": {
+        "0.1": false,
+        "0.25": false,
+        "0.4": false
+      },
+      "postroute_dcp": {
+        "bytes": 86877840,
+        "sha256": "3c02435158a80a6c68363fa3fa4595a2e309f1f00e9a4e7490418a09a06b9e61"
+      },
+      "function_scope": "Three-edge C ROM/stream; actual C shell + real B four-case Golden pass and full-ROM source unit pass. B RTL unchanged from separate B-only full-frame PASS. No full-system/board signoff.",
+      "launch_input_hashes_unchanged": true
+    }
+  ],
+  "simulations": {
+    "sim_fifo_capacity_short": {
+      "status": "PASS",
+      "variant": "v1-fifo-capacity",
+      "testbenches": {
+        "tb_b_real_backpressure": {
+          "pass_line": "RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-A"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-B"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-C"
+              }
+            ],
+            "output_bytes": 62208,
+            "frames": 3,
+            "stripe_last_pulses": 6,
+            "total_cycles": 161955,
+            "counter_lines": [
+              "[T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "total cycles = 161955"
+            ]
+          }
+        },
+        "tb_b_real_bit_exact": {
+          "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "impulse"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "ramp"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "random"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "zero"
+              }
+            ],
+            "output_bytes": 82944,
+            "frames": 4,
+            "stripe_last_pulses": 8,
+            "total_cycles": 211980,
+            "counter_lines": [
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6874",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6872",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6870",
+              "total cycles = 211980"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_fifo_capacity_short",
+      "boundary": "Simulation evidence only. Real-network and C isolation scopes are separate; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_pad_flags_short": {
+      "status": "PASS",
+      "variant": "v1-pad-flags",
+      "testbenches": {
+        "tb_b_real_backpressure": {
+          "pass_line": "RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-A"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-B"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-C"
+              }
+            ],
+            "output_bytes": 62208,
+            "frames": 3,
+            "stripe_last_pulses": 6,
+            "total_cycles": 161955,
+            "counter_lines": [
+              "[T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "total cycles = 161955"
+            ]
+          }
+        },
+        "tb_b_real_bit_exact": {
+          "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "impulse"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "ramp"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "random"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "zero"
+              }
+            ],
+            "output_bytes": 82944,
+            "frames": 4,
+            "stripe_last_pulses": 8,
+            "total_cycles": 211980,
+            "counter_lines": [
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6874",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6872",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6870",
+              "total cycles = 211980"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_pad_flags_short",
+      "boundary": "Simulation evidence only. Real-network and C isolation scopes are separate; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_pad_flags_full": {
+      "status": "PASS",
+      "variant": "v1-pad-flags",
+      "testbenches": {
+        "tb_b_real_full": {
+          "pass_line": "RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "output_bytes": 2073600,
+            "matching_bytes": 2073600,
+            "stripe_last_pulses": 17,
+            "frames": 1,
+            "done_pulses": 1,
+            "total_cycles": 4959092,
+            "counter_lines": [
+              "output bytes received: 2073600 / 2073600",
+              "byte match           : 2073600 / 2073600",
+              "stripe_last pulses   : 17 (expect 17)",
+              "sim cycles           : 4959092"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_pad_flags_full",
+      "boundary": "Simulation evidence only. Real-network and C isolation scopes are separate; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_rom_pipeline_integration": {
+      "status": "PASS",
+      "variant": "v1-rom-pipeline",
+      "testbenches": {
+        "tb_c_rom_pipeline_bit_exact": {
+          "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+          "metrics": {
+            "scope": "actual C shell ROM/stream plus real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "impulse"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "ramp"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "random"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "zero"
+              }
+            ],
+            "output_bytes": 82944,
+            "frames": 4,
+            "stripe_last_pulses": 8,
+            "total_cycles": 798286,
+            "counter_lines": [
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=0",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=196306",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=197359",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=197359",
+              "total cycles = 798286"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_rom_pipeline_integration",
+      "boundary": "Actual C shell/new ROM+stream and real B on four 96x54 cases; B output Golden/data/coordinate handshakes checked. UART decoded bytes are not checked; this is not the full 960x540 system test; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_issue_head_c": {
+      "status": "PASS",
+      "variant": "v1-rom3-head-c",
+      "testbenches": {
+        "tb_c_rom_pipeline_bit_exact": {
+          "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+          "metrics": {
+            "scope": "actual C shell ROM/stream plus real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "impulse"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "ramp"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "random"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "zero"
+              }
+            ],
+            "output_bytes": 82944,
+            "frames": 4,
+            "stripe_last_pulses": 8,
+            "total_cycles": 798291,
+            "counter_lines": [
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=0",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=196301",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=197344",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=197344",
+              "total cycles = 798291"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_issue_head_c",
+      "boundary": "Actual C shell/new ROM+stream and real B on four 96x54 cases; B output Golden/data/coordinate handshakes checked. UART decoded bytes are not checked; this is not the full 960x540 system test; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_issue_head_b_short": {
+      "status": "PASS",
+      "variant": "v1-rom3-head-b",
+      "testbenches": {
+        "tb_b_real_bit_exact": {
+          "pass_line": "RESULT: PASS  (96x54 bit-exact vs A integer Golden, 4/4 cases)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "impulse"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "ramp"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "random"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "zero"
+              }
+            ],
+            "output_bytes": 82944,
+            "frames": 4,
+            "stripe_last_pulses": 8,
+            "total_cycles": 211962,
+            "counter_lines": [
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6872",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6873",
+              "fed=5184 out=20736  byte_match=20736/20736  mismatched=0  first_mismatch=-1  stripe_last=2 frame_last=1 done=1 held=6872",
+              "total cycles = 211962"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_issue_head_b_short",
+      "boundary": "Direct FIFO-head B sequencer tested via b_core_if; C modules are compiled but unused by these B-only tests; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_issue_head_b_backpressure": {
+      "status": "PASS",
+      "variant": "v1-rom3-head-b",
+      "testbenches": {
+        "tb_b_real_backpressure": {
+          "pass_line": "RESULT: PASS  (B real five-layer under heavy back-pressure: 3/3 frames bit-exact)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "frame_records": [
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-A"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-B"
+              },
+              {
+                "input_bytes": 5184,
+                "output_bytes": 20736,
+                "matching_bytes": 20736,
+                "expected_bytes": 20736,
+                "mismatches": 0,
+                "first_mismatch": -1,
+                "stripe_last_pulses": 2,
+                "frame_last_pulses": 1,
+                "done_pulses": 1,
+                "case": "T-C"
+              }
+            ],
+            "output_bytes": 62208,
+            "frames": 3,
+            "stripe_last_pulses": 6,
+            "total_cycles": 161940,
+            "counter_lines": [
+              "[T-A] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-B] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "[T-C] fed=5184 out=20736  byte_match=20736/20736  mismatched=0 first=-1  stripe_last=2 frame_last=1 done=1",
+              "total cycles = 161940"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_issue_head_b_backpressure",
+      "boundary": "Direct FIFO-head B sequencer tested via b_core_if; C modules are compiled but unused by these B-only tests; no timing, board or multi-frame video deployment claim."
+    },
+    "sim_issue_head_b_full": {
+      "status": "PASS",
+      "variant": "v1-rom3-head-b",
+      "testbenches": {
+        "tb_b_real_full": {
+          "pass_line": "RESULT: PASS  (full-frame 1920x1080 integer Golden, byte-exact 2073600/2073600)",
+          "metrics": {
+            "scope": "real five-layer B network",
+            "output_bytes": 2073600,
+            "matching_bytes": 2073600,
+            "stripe_last_pulses": 17,
+            "frames": 1,
+            "done_pulses": 1,
+            "total_cycles": 4959087,
+            "counter_lines": [
+              "output bytes received: 2073600 / 2073600",
+              "byte match           : 2073600 / 2073600",
+              "stripe_last pulses   : 17 (expect 17)",
+              "sim cycles           : 4959087"
+            ]
+          }
+        }
+      },
+      "evidence": "member_b_evidence/timing_200_20261003/sim_issue_head_b_full",
+      "boundary": "Direct FIFO-head B sequencer tested via b_core_if; C modules are compiled but unused by these B-only tests; no timing, board or multi-frame video deployment claim."
+    },
+    "issue_head_unit": {
+      "status": "PASS",
+      "cases": [
+        {
+          "id": 0,
+          "width": 1,
+          "rounds": 3,
+          "windows_each": 64,
+          "samples_each": 512,
+          "cycles": 2445,
+          "old_stalls": 671,
+          "new_stalls": 698
+        },
+        {
+          "id": 2,
+          "width": 6400,
+          "rounds": 3,
+          "windows_each": 64,
+          "samples_each": 512,
+          "cycles": 2475,
+          "old_stalls": 646,
+          "new_stalls": 723
+        },
+        {
+          "id": 1,
+          "width": 256,
+          "rounds": 3,
+          "windows_each": 64,
+          "samples_each": 512,
+          "cycles": 2485,
+          "old_stalls": 737,
+          "new_stalls": 751
+        }
+      ],
+      "evidence": "member_b_evidence/timing_200_20261003/issue_head_unit",
+      "boundary": "Direct FIFO-head eight-phase RTL sequencer: widths 1/256/6400, three completed 64-window rounds each, stalls and mid-window reset, old/new accepted output word/phase/last ordering checked. Requires valid/data held until input handshake; input-consumption timing and startup latency differ. Not cycle equivalence, extracted formal proof, gate-level or board acceptance.",
+      "cycle_equivalence": false,
+      "synthesized_or_routed": false
+    },
+    "rom_pipeline_unit": {
+      "status": "PASS",
+      "latency_edges": 3,
+      "cases": [
+        {
+          "id": 0,
+          "W": 1,
+          "H": 1,
+          "frames": 3,
+          "pixels_each": 1,
+          "cycles": 93,
+          "stalls": 18,
+          "resets": 3
+        },
+        {
+          "id": 1,
+          "W": 7,
+          "H": 5,
+          "frames": 3,
+          "pixels_each": 35,
+          "cycles": 198,
+          "stalls": 21,
+          "resets": 3
+        },
+        {
+          "id": 2,
+          "W": 9,
+          "H": 7,
+          "frames": 3,
+          "pixels_each": 63,
+          "cycles": 281,
+          "stalls": 20,
+          "resets": 3
+        },
+        {
+          "id": 3,
+          "W": 960,
+          "H": 540,
+          "frames": 3,
+          "pixels_each": 518400,
+          "cycles": 1726162,
+          "stalls": 170890,
+          "resets": 3
+        }
+      ],
+      "evidence": "member_b_evidence/timing_200_20261003/rom_pipeline_unit",
+      "boundary": "Latency-three C ROM/input-stream RTL unit: four geometries, three completed frames each, two aborted runs/reset, stalls, request/data/coordinate order. Actual 960x540 ROM checked against original A bytes. Not connected real-B, full C system, gate-level or board acceptance.",
+      "connected_real_B_tested": false,
+      "synthesized_or_routed": false
+    }
+  },
+  "best_measured": "postroute_v1_credit_route030",
+  "any_minimum_target_pass": false,
+  "adopted_200MHz_board_release": false,
+  "board_boundary": "Original experimental XDC/DRC severity retained; UART LOC/IOSTANDARD and output delays incomplete. No bitstream/board signoff and no multi-frame PC-video deployment claim.",
+  "preserved_150MHz_release": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "failure_boundary": "Query guard failures, unsupported post-route replication, user-app initialization and argv-start failure archived separately; no physical acceptance inferred.",
+  "evidence_note": "Raw-byte SHA256 preserved via new-round-only .gitattributes. Large DCP/simulation caches local only; retain _synth_bc separately for exact reruns. User understanding not established by assistant evidence."
+}

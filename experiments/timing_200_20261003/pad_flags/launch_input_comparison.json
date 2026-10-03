@@ -1,0 +1,19 @@
+{
+  "status": "SHARED_LAUNCH_INPUT_HASHES_MATCH",
+  "original_inputs": 66,
+  "candidate_inputs": 66,
+  "shared_unchanged": 63,
+  "removed": [
+    "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+    "experiments/timing_200_20260926/synth_200_pipeline030.tcl",
+    "rtl/b_real_ae29515/stream/same_pad_raster.sv"
+  ],
+  "added": [
+    "experiments/timing_200_20261003/pad_flags/elastic_fifo.sv",
+    "experiments/timing_200_20261003/pad_flags/same_pad_raster.sv",
+    "experiments/timing_200_20261003/synth_pad_flags.tcl"
+  ],
+  "original_manifest_sha256": "e5f8ca4361b0bc3123bff7481eb13ced411bcaf8b5ec7bbe6a0d5930c2fe086a",
+  "candidate_manifest_sha256": "b5338fb43d0883f80c2a7833e367ccbb04cd46f8c73fe5e621800f4b418ef23c",
+  "note": "Candidate has new FIFO write-enable model, cached pad boundary RTL and runner; arithmetic/ROM/constraints shared bytes unchanged. Does not imply physical timing or functional equivalence."
+}

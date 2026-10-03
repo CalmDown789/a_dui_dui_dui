@@ -1,0 +1,36 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 20:38:28 2026
+# Process ID         : 29860
+# Current directory  : V:/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768
+# Command line       : xsim.exe -log V:/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim_engine.log -mode tcl -source {xsim.dir/tb_rom_pipeline/xsim_script.tcl}
+# Log file           : V:/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768/xsim_engine.log
+# Journal file       : V:/experiments/timing_200_20261003/rom_pipeline/unit_work/run_20261003_203825_16768\xsim.jou
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 45427 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_rom_pipeline/xsim_script.tcl
+# xsim {tb_rom_pipeline} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+ROM_PIPELINE_CASE_PASS id=0 W=1 H=1 frames=3 pixels_each=1 cycles=93 stalls=18 resets=3
+ROM_PIPELINE_CASE_PASS id=1 W=7 H=5 frames=3 pixels_each=35 cycles=198 stalls=21 resets=3
+ROM_PIPELINE_CASE_PASS id=2 W=9 H=7 frames=3 pixels_each=63 cycles=281 stalls=20 resets=3
+ROM_PIPELINE_CASE_PASS id=3 W=960 H=540 frames=3 pixels_each=518400 cycles=1726162 stalls=170890 resets=3
+ROM_PIPELINE_UNIT_PASS cases=4 frames_each=3 latency_edges=3
+$finish called at time : 17261620 ns : File "V:/experiments/timing_200_20261003/rom_pipeline/tb_rom_pipeline.sv" Line 109
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:08 . Memory (MB): peak = 218.871 ; gain = 0.000
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Oct  3 20:38:38 2026...

@@ -1,0 +1,468 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 18:54:53 2026
+# Process ID         : 4596
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/vivado.log -source V:/experiments/timing_200_20261003/postroute_eco/finish.tcl -tclargs V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1 C:/Users/24889/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe
+# Log file           : V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/vivado.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 45478 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20261003/postroute_eco/finish.tcl
+# if {![info exists argv] || [llength $argv] != 2} {
+#     error "Expected prepared stage and Python executable"
+# }
+# set finish_here [file normalize [file dirname [info script]]]
+# set finish_stage [file normalize [lindex $argv 0]]
+# set finish_python [lindex $argv 1]
+# if {![string match "2025.2*" [version -short]]} {error "This experiment was reviewed for Vivado 2025.2"}
+# puts [exec $finish_python -I "$finish_here/prepare.py" verify $finish_stage]
+POSTROUTE_FINISH_INPUTS_VERIFIED
+# source "$finish_stage/settings.tcl"
+## set finish_extra_setup_ns 0.300
+# if {$finish_extra_setup_ns ni {0.000 0.300 0.500}} {error "Unsupported setup pressure"}
+# if {[file exists "$finish_stage/reports"] || [file exists "$finish_stage/run_started.txt"]} {
+#     error "This stage has already been used; prepare a new stage"
+# }
+# set finish_lock [open "$finish_stage/run_started.txt" {WRONLY CREAT EXCL}]
+# puts $finish_lock "started=[clock format [clock seconds] -format {%Y-%m-%d %H:%M:%S}]"
+# close $finish_lock
+# file mkdir "$finish_stage/reports"
+# set finish_old_dir [pwd]
+# cd $finish_stage
+# set_param general.maxThreads 2
+# proc finish_slack {clock delay} {
+#     set paths [get_timing_paths -from $clock -to $clock -delay_type $delay -max_paths 1 -nworst 1]
+#     if {[llength $paths] != 1} {error "Expected a timed path within the 200 MHz clock"}
+#     return [get_property SLACK [lindex $paths 0]]
+# }
+# proc finish_uncertainty {clock} {
+#     set text [report_timing -from $clock -to $clock -delay_type max -max_paths 1 -return_string]
+#     set values [dict create]
+#     foreach {key pattern} {
+#         UU {User Uncertainty\s+\(UU\):\s+(-?[0-9.]+)ns}
+#         TSJ {Total System Jitter\s+\(TSJ\):\s+([0-9.]+)ns}
+#         DJ {Discrete Jitter\s+\(DJ\):\s+([0-9.]+)ns}
+#         PE {Phase Error\s+\(PE\):\s+([0-9.]+)ns}
+#     } {
+#         if {![regexp $pattern $text -> number]} {error "Cannot audit timing uncertainty field $key"}
+#         dict set values $key $number
+#     }
+#     return $values
+# }
+# proc finish_snapshot {folder clock} {
+#     file mkdir $folder
+#     report_timing_summary -delay_type min_max -max_paths 20 -file "$folder/timing_summary.rpt"
+#     report_timing -delay_type max -max_paths 100 -nworst 1 -file "$folder/setup_paths.rpt"
+#     report_timing -delay_type min -max_paths 100 -nworst 1 -file "$folder/hold_paths.rpt"
+#     report_timing -from $clock -to $clock -delay_type max -max_paths 20 -file "$folder/same_clock_setup.rpt"
+#     report_timing -from $clock -to $clock -delay_type min -max_paths 20 -file "$folder/same_clock_hold.rpt"
+#     report_route_status -file "$folder/route_status.rpt"
+#     report_drc -file "$folder/drc.rpt"
+#     report_utilization -file "$folder/utilization.rpt"
+#     report_utilization -hierarchical -file "$folder/utilization_hier.rpt"
+#     report_clocks -file "$folder/clocks.rpt"
+#     write_xdc "$folder/constraints.xdc"
+# }
+Command: open_checkpoint V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/input/source_postroute.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 324.785 ; gain = 5.848
+INFO: [Device 21-403] Loading part xc7a200tfbg484-2
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.668 . Memory (MB): peak = 942.199 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6398 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.138 . Memory (MB): peak = 1132.328 ; gain = 15.453
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 1921.266 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1921.266 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1921.266 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1936.285 ; gain = 15.020
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1936.285 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.618 . Memory (MB): peak = 1986.285 ; gain = 50.000
+Read Physdb Files: Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1986.285 ; gain = 65.020
+Restored from archive | CPU: 3.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1986.285 ; gain = 65.020
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2075.531 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1487 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 1481 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 6 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2081.188 ; gain = 1774.340
+update_timing: Time (s): cpu = 00:00:27 ; elapsed = 00:00:14 . Memory (MB): peak = 2242.074 ; gain = 160.887
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/before/drc.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/Xilinx/2025.2/Vivado/data/ip'.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/before/drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_eco/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_eco/drc.rpt.
+report_drc completed successfully
+MEMBER_B_NINE_LUT_CREDIT_ECO_APPLIED; after_eco_setup=-0.072
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/before_pressure/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/before_pressure/drc.rpt.
+report_drc completed successfully
+Command: phys_opt_design -directive AggressiveExplore
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a200t'
+INFO: [Vivado_Tcl 4-241] Physical synthesis in post route mode 
+INFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: AggressiveExplore
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 2.00s |  WALL: 1.67s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2460.508 ; gain = 0.000
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Physopt 32-668] Current Timing Summary | WNS=-0.372 | TNS=-455.319 | WHS=0.036 | THS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 315f6a125
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:13 . Memory (MB): peak = 2494.535 ; gain = 34.027
+
+Phase 2 Critical Path Optimization
+INFO: [Physopt 32-668] Current Timing Summary | WNS=-0.372 | TNS=-455.319 | WHS=0.036 | THS=0.000 |
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].read_data[140].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/g_mmcm.u_mmcm_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/y_reg[9]_1.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x[2]_i_3_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f45/pixel_in[138].
+INFO: [Physopt 32-703] Processed net u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x_reg_n_0_[6]. Clock skew was adjusted for instance u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x_reg[6].
+INFO: [Physopt 32-952] Improved path group WNS = -0.365. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x_reg_n_0_[6].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].read_data[32].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f45/pixel_in[23].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.mem_reg_0_31_18_23/DOC1.
+INFO: [Physopt 32-703] Processed net u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local[2]_repN_3. Clock skew was adjusted for instance u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local_reg[2]_replica_3.
+INFO: [Physopt 32-952] Improved path group WNS = -0.354. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local[2]_repN_3.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[0].read_data[104].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/x_reg[9]_0.
+INFO: [Physopt 32-663] Processed net u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/bank_gen[1].mem_reg_0_i_45_n_0.  Re-placed instance u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/bank_gen[1].mem_reg_0_i_45
+INFO: [Physopt 32-952] Improved path group WNS = -0.349. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/bank_gen[1].mem_reg_0_i_45_n_0.
+INFO: [Physopt 32-703] Processed net u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local[0]_repN_2. Clock skew was adjusted for instance u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local_reg[0]_replica_2.
+INFO: [Physopt 32-952] Improved path group WNS = -0.347. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f45/g_narrow_read.rd_ptr_local[0]_repN_2.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/mac/mac/out_lane[0].mult_lane[29].operand_pipe.act_q[3].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/out_lane[3].mult_lane[29].operand_pipe.act_q[3]_i_3_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/out_phase_reg[2]_rep__4_2[3].
+INFO: [Physopt 32-703] Processed net u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/out_phase_reg[1]_rep__5_n_0. Clock skew was adjusted for instance u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/out_phase_reg[1]_rep__5.
+INFO: [Physopt 32-952] Improved path group WNS = -0.345. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/out_phase_reg[1]_rep__5_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_pp/u_bank0/rd_data_reg[7]_0[5].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_pp/u_bank0/rd_data_reg[5]_i_4_n_0.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 12 pins.
+INFO: [Physopt 32-952] Improved path group WNS = -0.342. Path group: u_top_n_1388. Processed net: u_top/u_core/u_pp/u_bank0/rd_data[5]_i_10_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/bank_gen[1].mem_reg_0_i_41_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l3/gk.frontend/pad/x[9]_i_11_n_0.
+INFO: [Physopt 32-663] Processed net u_top/u_core/u_b/u_b_core/core/core/f23/pixel_in[83].  Re-placed instance u_top/u_core/u_b/u_b_core/core/core/f23/bank_gen[1].mem_reg_2_i_21
+INFO: [Physopt 32-952] Improved path group WNS = -0.342. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/f23/pixel_in[83].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].read_data[140].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/y_reg[9]_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/bank_gen[3].mem_reg_0_i_44_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/pad_fire.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x_reg_n_0_[3].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].read_data[140].
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/g_mmcm.u_mmcm_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/y_reg[9]_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/bank_gen[3].mem_reg_0_i_44_n_0.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/pad_fire.
+INFO: [Physopt 32-953] Path group WNS did not improve. Path group: u_top_n_1388. Processed net: u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pad/x_reg_n_0_[3].
+INFO: [Physopt 32-668] Current Timing Summary | WNS=-0.341 | TNS=-435.864 | WHS=0.036 | THS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Phase 2 Critical Path Optimization | Checksum: 315f6a125
+
+Time (s): cpu = 00:06:33 ; elapsed = 00:04:54 . Memory (MB): peak = 2962.461 ; gain = 501.953
+
+Phase 3 Hold Fix Optimization
+INFO: [Physopt 32-668] Current Timing Summary | WNS=-0.341 | TNS=-435.864 | WHS=0.036 | THS=0.000 |
+INFO: [Physopt 32-1493] The number of hold_fix net fail limit is 5.
+INFO: [Physopt 32-66] No high hold slack nets found for hold slack optimization.
+INFO: [Physopt 32-668] Current Timing Summary | WNS=-0.341 | TNS=-435.864 | WHS=0.036 | THS=0.000 |
+Phase 3 Hold Fix Optimization | Checksum: 315f6a125
+
+Time (s): cpu = 00:06:34 ; elapsed = 00:04:55 . Memory (MB): peak = 2962.461 ; gain = 501.953
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2962.461 ; gain = 0.000
+INFO: [Physopt 32-669] Post Physical Optimization Timing Summary | WNS=-0.341 | TNS=-435.864 | WHS=0.036 | THS=0.000 |
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization   |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Critical Path  |          0.031  |         19.454  |            0  |              0  |                     7  |           0  |           1  |  00:04:41  |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Summary of Hold Fix Optimizations
+=================================
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization               |  WHS Gain (ns)  |  THS Gain (ns)  |  Added LUTs  |  Added FFs  |  Optimized Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT1 and ZHOLD Insertion   |          0.000  |          0.000  |           0  |          0  |               0  |           0  |           0  |  00:00:00  |
+|  Total                      |          0.000  |          0.000  |           0  |          0  |               0  |           0  |           0  |  00:00:00  |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: 2576e6ebf
+
+Time (s): cpu = 00:06:34 ; elapsed = 00:04:55 . Memory (MB): peak = 2962.461 ; gain = 501.953
+INFO: [Common 17-83] Releasing license: Implementation
+104 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+phys_opt_design: Time (s): cpu = 00:06:36 ; elapsed = 00:04:57 . Memory (MB): peak = 2962.461 ; gain = 501.953
+update_timing: Time (s): cpu = 00:00:25 ; elapsed = 00:00:13 . Memory (MB): peak = 2962.461 ; gain = 0.000
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_physopt_pressure/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_physopt_pressure/drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_pressure/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_pressure/drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type min -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 20 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_restored/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/reports/after_restored/drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.137 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:03 ; elapsed = 00:00:00.715 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Wrote PlaceStorage: Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.081 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2962.461 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2962.461 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1/postroute.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 2962.461 ; gain = 0.000
+POSTROUTE_FINISH_HASHES_VERIFIED
+# set finish_status [catch {
+#     open_checkpoint "$finish_stage/input/source_postroute.dcp"
+#     if {[get_property PART [current_design]] ne "xc7a200tfbg484-2"} {error "Unexpected FPGA part"}
+#     update_timing
+#     set finish_pin [get_pins -quiet {u_top/g_mmcm.u_mmcm/CLKOUT0}]
+#     set finish_clock [get_clocks -quiet -of_objects $finish_pin]
+#     if {[llength $finish_clock] != 1} {error "Expected exactly one MMCM output clock"}
+#     if {abs([get_property PERIOD $finish_clock]-5.000) > 0.000001} {error "Baseline period is not 5 ns"}
+#     set finish_waveform [get_property WAVEFORM $finish_clock]
+#     if {![report_route_status -boolean_check ROUTED_FULLY] ||
+#         [report_route_status -boolean_check ERRORS_IN_ROUTES]} {error "Baseline DCP is not fully and legally routed"}
+#     set finish_original_uncertainty [finish_uncertainty $finish_clock]
+#     if {abs([dict get $finish_original_uncertainty UU]) > 0.000001} {error "Baseline must already have restored UU=0"}
+#     finish_snapshot "$finish_stage/reports/before" $finish_clock
+#     set finish_before_setup [finish_slack $finish_clock max]
+#     set finish_before_hold [finish_slack $finish_clock min]
+# 
+#     # Member B: genuine LUT-function ECO, no timing exceptions.
+#     # Only minterm I2(full)=I1(ready)=I0(raw_valid)=1 changes. The hashed
+#     # frontend credit proof excludes full && raw_valid in every reachable
+#     # state. Original FIFO ready, pointers, count, all data paths remain.
+#     set eco_original_before_setup $finish_before_setup
+#     set eco_original_before_hold $finish_before_hold
+#     set eco_we_pins [get_pins -hier -filter {NAME =~ *l5/gk.frontend/fifo*/WE}]
+#     set eco_nets [lsort -unique [get_nets -parent_net -segments -of_objects $eco_we_pins]]
+#     if {[llength $eco_nets]!=9} {error "Unexpected FIFO driver set"}
+#     set eco_cells [list]
+#     set eco_expected_raw {u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/window_valid_reg/Q}
+#     set eco_expected_full {u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/fifo/count_reg[2]/Q}
+#     set eco_expected_ready {u_top/u_core/u_b/u_b_core/core/core/l5/mac/issue/window_ready}
+#     foreach eco_net $eco_nets {
+#         set eco_driver [get_pins -leaf -of_objects $eco_net -filter {DIRECTION == OUT}]
+#         set eco_cell [get_cells -of_objects $eco_driver]
+#         if {[llength $eco_cell]!=1 || [get_property REF_NAME $eco_cell] ne "LUT3" ||
+#             [get_property INIT $eco_cell] ne "8'h8A"} {error "Unexpected FIFO LUT function"}
+#         for {set eco_i 0} {$eco_i<3} {incr eco_i} {
+#             set eco_input [get_pins "$eco_cell/I$eco_i"]
+#             set eco_parent [lsort -unique [get_nets -parent_net -segments -of_objects $eco_input]]
+#             set eco_source [get_pins -leaf -of_objects $eco_parent -filter {DIRECTION == OUT}]
+#             if {[llength $eco_parent]!=1 || [llength $eco_source]!=1} {error "Unexpected LUT input driver"}
+#             set eco_name [get_property NAME [lindex $eco_source 0]]
+#             if {$eco_i==0 && $eco_name ne $eco_expected_raw} {error "I0 is not the audited raw-valid register"}
+#             if {$eco_i==1 && [get_property NAME [lindex $eco_parent 0]] ne $eco_expected_ready} {
+#                 error "I1 is not the audited window-ready signal"
+#             }
+#             if {$eco_i==2 && $eco_name ne $eco_expected_full} {error "I2 is not the audited count-full register"}
+#         }
+#         lappend eco_cells $eco_cell
+#     }
+#     # Validate every cell before changing any one of them.
+#     set eco_log [open "$finish_stage/reports/eco_changes.tsv" w]
+#     puts $eco_log "cell\told_INIT\tnew_INIT"
+#     foreach eco_cell $eco_cells {
+#         set_property INIT "8'h0A" $eco_cell
+#         puts $eco_log "$eco_cell\t8'h8A\t8'h0A"
+#     }
+#     close $eco_log
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_eco" $finish_clock
+#     set finish_before_setup [finish_slack $finish_clock max]
+#     set finish_before_hold [finish_slack $finish_clock min]
+#     puts "MEMBER_B_NINE_LUT_CREDIT_ECO_APPLIED; after_eco_setup=$finish_before_setup"
+# 
+#     # Only a temporary same-clock setup pressure; frequency, automatic jitter,
+#     # hold uncertainty, exceptions and DRC severity are not modified.
+#     if {$finish_extra_setup_ns > 0} {
+#         set_clock_uncertainty -setup -from $finish_clock -to $finish_clock $finish_extra_setup_ns
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/before_pressure" $finish_clock
+#     set finish_pressure_before [finish_slack $finish_clock max]
+#     if {abs(($finish_before_setup-$finish_pressure_before)-$finish_extra_setup_ns) > 0.002} {
+#         error "Initial same-clock setup pressure does not match requested value"
+#     }
+#     # Local 2025.2 help states that positive-slack designs are not optimized.
+#     # Preserve a measured no-op result if no negative setup path exists.
+#     set finish_global_paths [get_timing_paths -delay_type max -max_paths 1 -nworst 1]
+#     if {[llength $finish_global_paths] != 1} {error "Cannot determine global setup slack"}
+#     set finish_opt_applied 0
+#     if {[get_property SLACK [lindex $finish_global_paths 0]] < 0} {
+#         phys_opt_design -directive AggressiveExplore
+#         set finish_opt_applied 1
+#     } else {
+#         puts "POSTROUTE_FINISH_NO_NEGATIVE_SETUP_PATH; physical optimization skipped"
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_physopt_pressure" $finish_clock
+#     set finish_route_repair 0
+#     if {![report_route_status -boolean_check ROUTED_FULLY] ||
+#         [report_route_status -boolean_check ERRORS_IN_ROUTES]} {
+#         # Normal routed-design continuation, not read_checkpoint -incremental
+#         # or route_design -eco (different directive compatibility rules).
+#         route_design -directive NoTimingRelaxation -preserve
+#         set finish_route_repair 1
+#     }
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_pressure" $finish_clock
+#     set finish_tight_setup [finish_slack $finish_clock max]
+#     set finish_tight_hold [finish_slack $finish_clock min]
+#     # No physical command may occur between this measurement and restored one.
+#     set_clock_uncertainty -setup -from $finish_clock -to $finish_clock 0.000
+#     update_timing
+#     finish_snapshot "$finish_stage/reports/after_restored" $finish_clock
+#     set finish_restored_setup [finish_slack $finish_clock max]
+#     set finish_restored_hold [finish_slack $finish_clock min]
+#     set finish_final_uncertainty [finish_uncertainty $finish_clock]
+#     if {abs(($finish_restored_setup-$finish_tight_setup)-$finish_extra_setup_ns) > 0.002} {
+#         error "Final same-physical-design setup difference does not match pressure"
+#     }
+#     if {abs($finish_restored_hold-$finish_tight_hold) > 0.002} {error "Setup restore changed hold slack"}
+#     if {abs([get_property PERIOD $finish_clock]-5.000) > 0.000001 ||
+#         [get_property WAVEFORM $finish_clock] ne $finish_waveform} {error "Clock period or waveform changed"}
+#     foreach finish_key {UU TSJ DJ PE} {
+#         if {[dict get $finish_final_uncertainty $finish_key] != [dict get $finish_original_uncertainty $finish_key]} {
+#             error "Restored clock uncertainty component changed: $finish_key"
+#         }
+#     }
+#     set finish_routed [report_route_status -boolean_check ROUTED_FULLY]
+#     set finish_route_error [report_route_status -boolean_check ERRORS_IN_ROUTES]
+#     write_checkpoint "$finish_stage/postroute.dcp"
+#     set finish_result [open "$finish_stage/reports/result.txt" w]
+#     set finish_measured_status "COMPLETED_MEASURED"
+#     if {!$finish_routed || $finish_route_error} {set finish_measured_status "FAILED_ROUTE"}
+#     puts $finish_result "status=$finish_measured_status"
+#     puts $finish_result "eco_cells=9"
+#     puts $finish_result "eco_original_before_setup_ns=$eco_original_before_setup"
+#     puts $finish_result "eco_original_before_hold_ns=$eco_original_before_hold"
+#     puts $finish_result "eco_after_logical_change_setup_ns=$finish_before_setup"
+#     puts $finish_result "extra_setup_ns=$finish_extra_setup_ns"
+#     puts $finish_result "phys_opt_applied=$finish_opt_applied"
+#     puts $finish_result "route_repair_applied=$finish_route_repair"
+#     puts $finish_result "same_clock_before_setup_ns=$finish_before_setup"
+#     puts $finish_result "same_clock_before_hold_ns=$finish_before_hold"
+#     puts $finish_result "same_clock_after_tight_setup_ns=$finish_tight_setup"
+#     puts $finish_result "same_clock_after_restored_setup_ns=$finish_restored_setup"
+#     puts $finish_result "same_clock_after_restored_hold_ns=$finish_restored_hold"
+#     puts $finish_result "restored_minus_tight_ns=[expr {$finish_restored_setup-$finish_tight_setup}]"
+#     puts $finish_result "route_fully_complete=$finish_routed"
+#     puts $finish_result "route_errors_present=$finish_route_error"
+#     puts $finish_result "uncertainty_components=$finish_final_uncertainty"
+#     puts $finish_result "acceptance=Inspect global restored setup/hold/pulse-width, DRC and route reports; completion is not timing acceptance"
+#     close $finish_result
+#     if {!$finish_routed || $finish_route_error} {error "Final routing is incomplete or has errors; result is not accepted"}
+#     puts [exec $finish_python -I "$finish_here/prepare.py" finalize $finish_stage]
+# } finish_message finish_options]
+# cd $finish_old_dir
+# if {$finish_status} {
+#     set finish_failure [open "$finish_stage/failed.txt" w]
+#     puts $finish_failure $finish_message
+#     close $finish_failure
+#     return -options $finish_options $finish_message
+# }
+# puts "POSTROUTE_FINISH_COMPLETE stage=$finish_stage"
+POSTROUTE_FINISH_COMPLETE stage=V:/_synth_bc/postroute200_v1_credit_eco030_20261003_try1
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  3 19:02:36 2026...

@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "state": "PREPARED_NOT_RUN",
+  "baseline": "F:\\FPGA\u9884\u9009\\10h\u51b2\u523a_c_trial\\_synth_bc\\acc36_realrom_200_member_b_pad_flags_20261003_setup030_ascii_ramdecomp\\postroute.dcp",
+  "baseline_hash": {
+    "bytes": 86393418,
+    "sha256": "7cb3701a14e2c58c968a1b1b8ec537befbeba831a503a7cfac2d4d6d0d78cead"
+  },
+  "extra_setup_ns": 0.3,
+  "frozen_inputs": [
+    {
+      "path": "input/source_postroute.dcp",
+      "bytes": 86393418,
+      "sha256": "7cb3701a14e2c58c968a1b1b8ec537befbeba831a503a7cfac2d4d6d0d78cead"
+    },
+    {
+      "path": "input/baseline_reports/bc_real_synth_result.txt",
+      "bytes": 2612,
+      "sha256": "70f4a538ae9b5d7f2d9330a1e354c9645e1ea1a04ec8048b601e95b76c13a9e1"
+    },
+    {
+      "path": "input/baseline_reports/clocks_original.rpt",
+      "bytes": 2176,
+      "sha256": "8b42cfbac43beb6ba9d75b319eb50a991527c68ced5bf3bd6aef8a76a530a75c"
+    },
+    {
+      "path": "input/baseline_reports/clocks_postroute.rpt",
+      "bytes": 2289,
+      "sha256": "183e45a5fe4043a42096ce54e23dc3f90bd2cb7e54a28d368032f7affc3c52e3"
+    },
+    {
+      "path": "input/baseline_reports/clocks_setup030.rpt",
+      "bytes": 2291,
+      "sha256": "c754a606593c7e7633ddb45e57905b0fe50bfabf1953b0df2cc75fa3ceb01380"
+    },
+    {
+      "path": "input/baseline_reports/clocks_synth.rpt",
+      "bytes": 2167,
+      "sha256": "0f52a068424d586ea0e7118652c140980c2e346819676e10b1d21ec50ad7bb3b"
+    },
+    {
+      "path": "input/baseline_reports/constraints_original.xdc",
+      "bytes": 10205,
+      "sha256": "307e73c1704c6af3cef094ebc9d237e343851566dadfd96fac6ddbbbe639e171"
+    },
+    {
+      "path": "input/baseline_reports/constraints_restored.xdc",
+      "bytes": 10655,
+      "sha256": "aafd30e727ceafad8214e798fe0383be20ffceb37ed24f9ec82a680f46d06388"
+    },
+    {
+      "path": "input/baseline_reports/drc_postroute.rpt",
+      "bytes": 649514,
+      "sha256": "9226c3fd729f34684bb328a42d0531032e05e6ea0f1fd2a392bbff3f6a20b77f"
+    },
+    {
+      "path": "input/baseline_reports/drc_synth.rpt",
+      "bytes": 646937,
+      "sha256": "608ee709d17343254564de597793627d6a83b75bf0ed4b1e9207f27a44c6445e"
+    },
+    {
+      "path": "input/baseline_reports/l5_fifo_storage.txt",
+      "bytes": 1231640,
+      "sha256": "9e1a66bbb492f2c020778778cb6f97187d04ca951e2d7da6ace54851a2d6b5fb"
+    },
+    {
+      "path": "input/baseline_reports/launch_source_manifest.json",
+      "bytes": 17739,
+      "sha256": "b5338fb43d0883f80c2a7833e367ccbb04cd46f8c73fe5e621800f4b418ef23c"
+    },
+    {
+      "path": "input/baseline_reports/prelu_abs_input_timing_postroute.rpt",
+      "bytes": 144229,
+      "sha256": "346f1b4f3fdab4dd38dde0538563c000754b73f7f5ad7d4cf90cdebb1694c33b"
+    },
+    {
+      "path": "input/baseline_reports/ram_utilization_postroute.rpt",
+      "bytes": 289905,
+      "sha256": "9a0418353db39f6f5128fb4b9e524798c658dc73fcffaef8499bdf48d3d005fb"
+    },
+    {
+      "path": "input/baseline_reports/ram_utilization_synth.rpt",
+      "bytes": 289893,
+      "sha256": "a628a498424de05b39da6ca98eb4ce6c52754de523fa2ce30c4895a989ce2813"
+    },
+    {
+      "path": "input/baseline_reports/requant_full_input_timing_postroute.rpt",
+      "bytes": 143681,
+      "sha256": "4e13f2fc2ecb9e66623fbbceecd9369041829949f5e733c1f66a2a61cd51ac46"
+    },
+    {
+      "path": "input/baseline_reports/requant_full_registers.txt",
+      "bytes": 58946,
+      "sha256": "ff6146b97e2e5f273eac2c9a6a41506e43b16ddf3390ff3df4280004d3ee0b60"
+    },
+    {
+      "path": "input/baseline_reports/route_status.rpt",
+      "bytes": 651,
+      "sha256": "5d8cfa2f57a6aedf588bcd9a2eab9a8231bd9ba116bd6c534c309fc533f930c9"
+    },
+    {
+      "path": "input/baseline_reports/run_config.txt",
+      "bytes": 149,
+      "sha256": "1b8b7da6f31078030bd96542a49e376c937d3375c5c380783913e94baa691a9c"
+    },
+    {
+      "path": "input/baseline_reports/setup_paths.rpt",
+      "bytes": 609588,
+      "sha256": "27d2f966538059c8a77a81b344f6cdea75d8921ab98a9452e0448a3794b737f3"
+    },
+    {
+      "path": "input/baseline_reports/source_files.txt",
+      "bytes": 1455,
+      "sha256": "8fe39fcba7f8280acdad221e2b43c5fb3d2975aa7c1accdb5b9656d9d9f83c53"
+    },
+    {
+      "path": "input/baseline_reports/stripe_bram_registers.txt",
+      "bytes": 8042,
+      "sha256": "a6bbd16cf40adbb1de7037375625ef16e432d876e4b46d8b32213f3c1f6ef9dc"
+    },
+    {
+      "path": "input/baseline_reports/timing_placed_setup030.rpt",
+      "bytes": 124164,
+      "sha256": "f6ba89c0d8f02e39e64a67e1eab9aea251217724c1f6cb3fc10af86fc28f0800"
+    },
+    {
+      "path": "input/baseline_reports/timing_summary_postroute.rpt",
+      "bytes": 259330,
+      "sha256": "82db58810c6c0aae81190b3b20bb3cae82e2036a8faa3041b5255d19f8ac17ae"
+    },
+    {
+      "path": "input/baseline_reports/timing_summary_route_setup030.rpt",
+      "bytes": 259345,
+      "sha256": "1a917cfe016bfdb8e18b695828a55e7f867eb52eea5d2eccdb11b129c232e900"
+    },
+    {
+      "path": "input/baseline_reports/timing_summary_synth.rpt",
+      "bytes": 229767,
+      "sha256": "deebfb15185962a1fd7bb78dbbe5bddb4c60c1ae5c9359bb1dcde36f78b56a22"
+    },
+    {
+      "path": "input/baseline_reports/utilization_postroute.rpt",
+      "bytes": 12043,
+      "sha256": "520528ef9d3a9da65a26855569250873a7060f15b064520ec39b39355518986b"
+    },
+    {
+      "path": "input/baseline_reports/utilization_postroute_hier.rpt",
+      "bytes": 16066,
+      "sha256": "017110a94ecf27b8a66ab181e679747a847f1ca539132875b28d6309db580b80"
+    },
+    {
+      "path": "input/baseline_reports/utilization_synth.rpt",
+      "bytes": 9822,
+      "sha256": "cc61b3e0cdf9f9eb91ac766e1d3d02a7630c696db018b4cf6d253ed422fc6b74"
+    },
+    {
+      "path": "input/baseline_reports/utilization_synth_hier.rpt",
+      "bytes": 15757,
+      "sha256": "c3e8c3716454f6a501269054746b74bb4a3212273ff55f053e9ac8a9eab64ff3"
+    },
+    {
+      "path": "settings.tcl",
+      "bytes": 33,
+      "sha256": "9293e8b7f83e768808801cce1a098bf9db87da1036f7bb5b00d5e4b44dcfa8ef"
+    }
+  ],
+  "tools": [
+    {
+      "path": "experiments/timing_200_20261003/postroute_pad/finish.tcl",
+      "bytes": 9198,
+      "sha256": "31fda0f19433c6dadfdfe285c33b47f3feb40db41faf5fccf480efcf00359392"
+    },
+    {
+      "path": "experiments/timing_200_20261003/postroute_pad/prepare.py",
+      "bytes": 6898,
+      "sha256": "5775942f92e079c9659eb5885da031115da306a1a49f03f12007a5cb6fb28f53"
+    }
+  ]
+}

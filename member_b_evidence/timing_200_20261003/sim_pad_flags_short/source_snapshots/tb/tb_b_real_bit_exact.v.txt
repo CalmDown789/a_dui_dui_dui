@@ -1,0 +1,328 @@
+//=============================================================================
+// tb_b_real_bit_exact.v —— 96×54 逐字节 bit-exact 验收（**真正 B 五层网络**）
+//-----------------------------------------------------------------------------
+// 走 b_core_if 正式分支（`-d C_USE_B_REAL`），参数显式传 IMG_W=96 / IMG_H=54 /
+// STRIPE_H=64。这一项是「B 的整数实现在 C 工程里能不能复现 A 的整数 Golden」的
+// **唯一合法 bit-exact 判据**（小尺寸四组用例，A 逐层都给了向量）。
+//
+// 数据来源（全部经 SHA-256 对账，见 scripts/prepare_ref_data.py）：
+//   A 仓库 `artifacts/test_vectors/<case>/input_y_u8.bin`      5184 B = 96×54×1 u8
+//   A 仓库 `artifacts/test_vectors/<case>/output_hwc_uint8.bin` 20736 B = 108×192×1 u8
+//     ↑ 后者是 **PixelShuffle 之后**的最终输出（manifest: shape=[108,192,1]），
+//       正是本 DUT 出流顺序（行主序、每输出行 2*IMG_W=192 字节、共 2*IMG_H=108 行）。
+//   ⚠️ **禁止**用 `full_reference/ref_out_quant.npy` 之类浮点/QDQ 参考做本项判据。
+//
+// 四组用例：impulse / ramp / random / zero（与 A 命名一致）
+//   · 同一 DUT 实例连续跑 4 帧（**中途不复位**）——顺带验证帧间无状态泄漏；
+//   · 输出期间施加**轻度周期性停等**（每 11 拍停 2 拍），
+//     使 bit-exact 结论在**有背压**的前提下也成立。
+//
+// 判定：
+//   逐字节 === 比较（含 X 检测）；分别统计 输出字节数 / 不等字节数 / 首个不等位置 /
+//   仿真周期数，并核对 stripe_last / frame_last 计数。
+//
+// 磁盘安全：无波形 dump；4×20736 B；有硬 timeout。
+//=============================================================================
+
+`timescale 1ns / 1ps
+`default_nettype none
+
+module tb_b_real_bit_exact;
+
+    localparam integer IMG_W  = 96;
+    localparam integer IMG_H  = 54;
+    localparam integer STRIPE = 64;
+    localparam integer OUT_W  = 2 * IMG_W;                       // 192
+    localparam integer OUT_H  = 2 * IMG_H;                       // 108
+    localparam integer N_IN   = IMG_W * IMG_H;                   // 5184
+    localparam integer N_OUT  = 4 * IMG_W * IMG_H;               // 20736
+    localparam integer N_ROW  = 2 * IMG_H;                       // 108
+    localparam integer N_STRP = (N_ROW + STRIPE - 1) / STRIPE;   // 2
+
+    localparam integer N_CASE  = 4;
+    localparam integer MAX_CYC = 4000000;
+
+    //-------------------------------------------------------------------------
+    reg clk = 0, rst_n = 0;
+    reg  start = 0;
+    wire busy, done;
+    reg  in_valid = 0;
+    reg  [7:0] in_data = 0;
+    wire in_ready;
+    wire out_valid;
+    wire [7:0] out_data;
+    reg  out_ready = 0;
+    wire stripe_last, frame_last;
+
+    b_core_if #(
+        .IMG_W    (IMG_W),
+        .IMG_H    (IMG_H),
+        .OUT_W    (OUT_W),
+        .OUT_H    (OUT_H),
+        .STRIPE_H (STRIPE),
+        .DATA_W   (8)
+    ) dut (
+        .clk_200     (clk),
+        .rst_n       (rst_n),
+        .start       (start),
+        .busy        (busy),
+        .done        (done),
+        .in_valid    (in_valid),
+        .in_ready    (in_ready),
+        .in_data     (in_data),
+        .out_valid   (out_valid),
+        .out_data    (out_data),
+        .out_ready   (out_ready),
+        .stripe_last (stripe_last),
+        .frame_last  (frame_last)
+    );
+
+    always #2.5 clk = ~clk;   // 200 MHz
+
+    //-------------------------------------------------------------------------
+    // 数据存储（A 的用例，经 prepare_ref_data.py 校验后 stage 到 CWD）
+    //-------------------------------------------------------------------------
+    reg [7:0] in_mem  [0:N_IN-1];
+    reg [7:0] exp_mem [0:N_OUT-1];
+
+    // 诊断转储：把 DUT 实际输出逐字节写盘，供离线比对（落在工作目录，gitignored）
+    integer fd0, fd1, fd2, fd3;
+    integer dump_on;
+
+    integer err_cnt;
+    integer cyc;
+
+    task fail(input [8*96-1:0] msg);
+        begin
+            err_cnt = err_cnt + 1;
+            $display("[FAIL] %0t : %0s", $time, msg);
+        end
+    endtask
+
+    // 按用例装载（**字符串字面量**，不依赖仿真器对「变量文件名」的支持）
+    task load_case(input integer c);
+        begin            case (c)
+                0: begin $readmemh("tv_impulse_in.mem", in_mem);
+                         $readmemh("tv_impulse_out.mem", exp_mem); end
+                1: begin $readmemh("tv_ramp_in.mem",    in_mem);
+                         $readmemh("tv_ramp_out.mem",    exp_mem); end
+                2: begin $readmemh("tv_random_in.mem",  in_mem);
+                         $readmemh("tv_random_out.mem",  exp_mem); end
+                3: begin $readmemh("tv_zero_in.mem",    in_mem);
+                         $readmemh("tv_zero_out.mem",    exp_mem); end
+                default: begin $readmemh("tv_zero_in.mem", in_mem);
+                               $readmemh("tv_zero_out.mem", exp_mem); end
+            endcase
+        end
+    endtask
+
+    function [8*64-1:0] case_name(input integer c);
+        begin
+            case (c)
+                0: case_name = "impulse";
+                1: case_name = "ramp";
+                2: case_name = "random";
+                3: case_name = "zero";
+                default: case_name = "?";
+            endcase
+        end
+    endfunction
+
+    //-------------------------------------------------------------------------
+    // 逐帧统计
+    //-------------------------------------------------------------------------
+    integer fed, got, n_stripe, n_flast, n_done;
+    integer n_diff, first_diff, x_cnt;
+    integer frame_ok;
+
+    // 保持规则
+    reg       held;
+    reg [7:0] h_d;
+    reg       h_s, h_f;
+    integer   held_events;
+
+    //-------------------------------------------------------------------------
+    // 硬 timeout
+    //-------------------------------------------------------------------------
+    initial begin
+        repeat (MAX_CYC) @(negedge clk);
+        $display("RESULT: FAIL (hard timeout after %0d cycles)", MAX_CYC);
+        $finish;
+    end
+
+    //-------------------------------------------------------------------------
+    // 单帧：start → 边喂边收 → 比对
+    //-------------------------------------------------------------------------
+    task run_case_frame(input integer c);
+        integer i;
+        begin
+            @(negedge clk);
+            if (busy !== 1'b0) fail("busy high before start pulse");
+            start = 1'b1;
+            @(negedge clk);
+            start = 1'b0;
+
+            fed = 0; got = 0; n_stripe = 0; n_flast = 0;
+            n_diff = 0; first_diff = -1; x_cnt = 0;
+            held = 1'b0; h_d = 8'h00; h_s = 1'b0; h_f = 1'b0;
+            held_events = 0;
+
+            while (got < N_OUT) begin
+                @(negedge clk);
+
+                if (fed < N_IN) begin
+                    in_valid = 1'b1;
+                    in_data  = in_mem[fed];
+                end else begin
+                    in_valid = 1'b0;
+                    in_data  = 8'h00;
+                end
+
+                // 轻度周期性停等：每 11 拍停 2 拍（确保背压下仍然 bit-exact）
+                out_ready = ((cyc % 11) >= 2);
+
+                if (in_valid && in_ready) fed = fed + 1;
+
+                if (held) begin
+                    if (!out_valid) begin
+                        fail("out_valid dropped while out_ready=0 (hold rule)");
+                    end else if (out_data !== h_d || stripe_last !== h_s || frame_last !== h_f) begin
+                        fail("held beat changed while out_ready=0");
+                    end
+                end
+
+                if (out_valid && out_ready) begin
+                    if (got >= N_OUT) begin
+                        fail("extra output beat beyond N_OUT");
+                    end else begin
+                        case (c)
+                            0: if (dump_on) $fdisplay(fd0, "%02x", out_data);
+                            1: if (dump_on) $fdisplay(fd1, "%02x", out_data);
+                            2: if (dump_on) $fdisplay(fd2, "%02x", out_data);
+                            3: if (dump_on) $fdisplay(fd3, "%02x", out_data);
+                        endcase
+                        if (got < 8) begin
+                            $display("      first bytes: out[%0d] got=%02x exp=%02x  %s",
+                                     got, out_data, exp_mem[got],
+                                     (out_data === exp_mem[got]) ? "ok" : "DIFF");
+                        end
+                        if (^out_data === 1'bx) begin
+                            x_cnt = x_cnt + 1;
+                            if (x_cnt <= 3) fail("out_data contains X");
+                        end else if (out_data !== exp_mem[got]) begin
+                            n_diff = n_diff + 1;
+                            if (first_diff < 0) begin
+                                first_diff = got;
+                                $display("      MISMATCH @ out[%0d]  row=%0d col=%0d  got=%02x  exp=%02x",
+                                         got, got / OUT_W, got % OUT_W,
+                                         out_data, exp_mem[got]);
+                            end
+                        end
+                    end
+                    n_stripe = n_stripe + stripe_last;
+                    n_flast  = n_flast  + frame_last;
+                    if (frame_last && (got != N_OUT-1)) fail("frame_last not on the last beat");
+                    if (!frame_last && (got == N_OUT-1)) fail("last beat lacks frame_last");
+                    got = got + 1;
+                end
+
+                held = (out_valid && !out_ready);
+                if (held) begin
+                    h_d = out_data; h_s = stripe_last; h_f = frame_last;
+                    held_events = held_events + 1;
+                end
+
+                cyc = cyc + 1;
+
+                if (cyc > MAX_CYC) begin
+                    fail("cycle budget exhausted inside frame");
+                    i = 0;   // 立即脱出
+                    got = N_OUT;
+                end
+            end
+
+            // done 应在最后一拍后 1 拍出现
+            @(negedge clk);
+            if (done) n_done = n_done + 1;
+            if (busy) fail("busy still high one cycle after the last output beat");
+        end
+    endtask
+
+    //-------------------------------------------------------------------------
+    // 主流程
+    //-------------------------------------------------------------------------
+    integer c, k;
+    integer tot_pass, tot_fail;
+
+    initial begin
+        err_cnt = 0; cyc = 0;
+        tot_pass = 0; tot_fail = 0;
+        n_done = 0;
+        dump_on = 0;
+        fd0 = $fopen("dut_impulse.hex", "w");
+        fd1 = $fopen("dut_ramp.hex",    "w");
+        fd2 = $fopen("dut_random.hex",  "w");
+        fd3 = $fopen("dut_zero.hex",    "w");
+        if (fd0 && fd1 && fd2 && fd3) dump_on = 1;
+        $display("  dump files opened: %0d (dump_on=%0d)", fd0 && fd1 && fd2 && fd3, dump_on);
+
+        rst_n = 1'b0;
+        repeat (6) @(negedge clk);
+        rst_n = 1'b1;
+        repeat (2) @(negedge clk);
+
+        $display("  geometry: IMG %0dx%0d -> OUT %0dx%0d   N_IN=%0d N_OUT=%0d  STRIPE_H=%0d",
+                 IMG_W, IMG_H, OUT_W, OUT_H, N_IN, N_OUT, STRIPE);
+
+        for (c = 0; c < N_CASE; c = c + 1) begin
+            load_case(c);
+            $display("  --- case %0d : %0s ---", c, case_name(c));
+            n_done = 0;              // ★ 每帧清零：否则 done 计数会跨帧累加
+            run_case_frame(c);
+            // 收尾：确认 done 只来 1 次
+            for (k = 0; k < 6; k = k + 1) begin
+                @(negedge clk);
+                if (done) n_done = n_done + 1;
+            end
+
+            frame_ok = (fed == N_IN) && (got == N_OUT) && (n_diff == 0) &&
+                       (n_stripe == N_STRP) && (n_flast == 1) && (n_done == 1) &&
+                       (x_cnt == 0) && (held_events > 0);
+
+            if (fed      != N_IN)   fail("input beat count mismatch");
+            if (got      != N_OUT)  fail("output beat count mismatch");
+            if (n_stripe != N_STRP) fail("stripe_last count mismatch");
+            if (n_flast  != 1)      fail("frame_last count mismatch");
+            if (n_done   != 1)      fail("done pulse count mismatch");
+            if (held_events == 0)   fail("no stall cycles -- backpressure not exercised");
+
+            $display("      fed=%0d out=%0d  byte_match=%0d/%0d  mismatched=%0d  first_mismatch=%0d  stripe_last=%0d frame_last=%0d done=%0d held=%0d",
+                     fed, got, N_OUT - n_diff, N_OUT, n_diff, first_diff,
+                     n_stripe, n_flast, n_done, held_events);
+
+            if (frame_ok) begin
+                tot_pass = tot_pass + 1;
+                $display("      -> case %0s : BIT-EXACT OK", case_name(c));
+            end else begin
+                tot_fail = tot_fail + 1;
+                $display("      -> case %0s : BIT-EXACT FAIL", case_name(c));
+            end
+        end
+
+        $display("  total cycles = %0d", cyc);
+        $display("  96x54 cases: %0d/%0d bit-exact PASS, %0d FAIL, err_cnt=%0d",
+                 tot_pass, N_CASE, tot_fail, err_cnt);
+        $fclose(fd0); $fclose(fd1); $fclose(fd2); $fclose(fd3);
+
+        if (err_cnt == 0 && tot_fail == 0) begin
+            $display("RESULT: PASS  (96x54 bit-exact vs A integer Golden, %0d/%0d cases)",
+                     tot_pass, N_CASE);
+        end else begin
+            $display("RESULT: FAIL  (cases_fail=%0d err_cnt=%0d)", tot_fail, err_cnt);
+        end
+        $finish;
+    end
+
+endmodule
+
+`default_nettype wire

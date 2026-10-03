@@ -1,0 +1,1399 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sat Oct  3 20:30:07 2026
+| Host         : OMENMAX running 64-bit major release  (build 9200)
+| Command      : report_timing -to [get_pins -of_objects [get_cells -quiet -hier -filter {NAME =~ *prelu_magnitude_s2_reg* && REF_NAME =~ FD*}] -filter {REF_PIN_NAME == D}] -max_paths 14 -nworst 1 -file V://_synth_bc/acc36_realrom_200_member_b_pad_flags_20261003_setup030_ascii_ramdecomp/reports/prelu_abs_input_timing_postroute.rpt
+| Design       : c_synth_top
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.368ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.349ns  (logic 1.891ns (43.477%)  route 2.458ns (56.523%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_0
+    SLICE_X44Y116        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100    10.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000    10.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1_n_0
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y116        FDRE (Setup_fdre_C_D)       -0.107    10.425    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]
+  -------------------------------------------------------------------
+                         required time                         10.425    
+                         arrival time                         -10.057    
+  -------------------------------------------------------------------
+                         slack                                  0.368    
+
+Slack (MET) :             0.419ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[45]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.506ns  (logic 2.048ns (45.446%)  route 2.458ns (54.554%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_0
+    SLICE_X44Y116        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    10.214 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1/O[1]
+                         net (fo=1, routed)           0.000    10.214    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1_n_6
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[45]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[45]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y116        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[45]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.214    
+  -------------------------------------------------------------------
+                         slack                                  0.419    
+
+Slack (MET) :             0.477ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[46]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.448ns  (logic 1.990ns (44.735%)  route 2.458ns (55.265%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_0
+    SLICE_X44Y116        CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.199    10.156 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1/O[2]
+                         net (fo=1, routed)           0.000    10.156    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1_n_5
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[46]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[46]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y116        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[46]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.156    
+  -------------------------------------------------------------------
+                         slack                                  0.477    
+
+Slack (MET) :             0.498ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[44]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.427ns  (logic 1.969ns (44.473%)  route 2.458ns (55.527%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_0
+    SLICE_X44Y116        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.178    10.135 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1/O[0]
+                         net (fo=1, routed)           0.000    10.135    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__1_n_7
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[44]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y116        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[44]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y116        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[44]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.135    
+  -------------------------------------------------------------------
+                         slack                                  0.498    
+
+Slack (MET) :             0.498ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.217ns  (logic 2.019ns (47.876%)  route 2.198ns (52.124%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.109ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.290ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    DSP48_X3Y42          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X3Y42          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.197     8.275    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_negative_s1
+    SLICE_X64Y94         LUT2 (Prop_lut2_I0_O)        0.105     8.380 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0/O
+                         net (fo=1, routed)           0.000     8.380    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0_n_0
+    SLICE_X64Y94         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     8.824 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0/CO[3]
+                         net (fo=1, routed)           0.000     8.824    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0_n_0
+    SLICE_X64Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     8.924 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0/CO[3]
+                         net (fo=1, routed)           0.000     8.924    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0_n_0
+    SLICE_X64Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.024 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0/CO[3]
+                         net (fo=1, routed)           0.000     9.024    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0_n_0
+    SLICE_X64Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.124 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.124    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0_n_0
+    SLICE_X64Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.224 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.224    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0_n_0
+    SLICE_X64Y99         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.324 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.001     9.325    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0_n_0
+    SLICE_X64Y100        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.425 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.425    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0_n_0
+    SLICE_X64Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.525 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.525    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0_n_0
+    SLICE_X64Y102        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.625 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.625    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0_n_0
+    SLICE_X64Y103        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.725 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.725    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0_n_0
+    SLICE_X64Y104        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.825 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.825    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0_n_0
+    SLICE_X64Y105        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.925 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.925    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0_n_0
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.294    10.309    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]/C
+                         clock pessimism              0.290    10.599    
+                         clock uncertainty           -0.069    10.530    
+    SLICE_X64Y105        FDRE (Setup_fdre_C_D)       -0.107    10.423    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]
+  -------------------------------------------------------------------
+                         required time                         10.423    
+                         arrival time                          -9.925    
+  -------------------------------------------------------------------
+                         slack                                  0.498    
+
+Slack (MET) :             0.514ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.411ns  (logic 1.953ns (44.271%)  route 2.458ns (55.729%))
+  Logic Levels:           12  (CARRY4=11 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.262    10.119 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000    10.119    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_4
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y115        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.119    
+  -------------------------------------------------------------------
+                         slack                                  0.514    
+
+Slack (MET) :             0.519ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[41]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.406ns  (logic 1.948ns (44.208%)  route 2.458ns (55.792%))
+  Logic Levels:           12  (CARRY4=11 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    10.114 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/O[1]
+                         net (fo=1, routed)           0.000    10.114    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_6
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[41]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[41]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y115        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[41]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.114    
+  -------------------------------------------------------------------
+                         slack                                  0.519    
+
+Slack (MET) :             0.538ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.165ns  (logic 2.019ns (48.478%)  route 2.146ns (51.522%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.122ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.434ns = ( 10.434 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.836ns
+    Clock Pessimism Removal (CPR):    0.280ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.614     5.836    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/clk_200
+    DSP48_X4Y26          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X4Y26          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.206 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.146     8.351    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_negative_s1
+    SLICE_X72Y57         LUT2 (Prop_lut2_I0_O)        0.105     8.456 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2[15]_i_19__2/O
+                         net (fo=1, routed)           0.000     8.456    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2[15]_i_19__2_n_0
+    SLICE_X72Y57         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     8.900 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__2/CO[3]
+                         net (fo=1, routed)           0.000     8.900    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__2_n_0
+    SLICE_X72Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.000 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__2/CO[3]
+                         net (fo=1, routed)           0.000     9.000    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__2_n_0
+    SLICE_X72Y59         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.100 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__2/CO[3]
+                         net (fo=1, routed)           0.000     9.100    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__2_n_0
+    SLICE_X72Y60         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.200 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.200    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__2_n_0
+    SLICE_X72Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.300 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.300    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__2_n_0
+    SLICE_X72Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.400 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.400    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__2_n_0
+    SLICE_X72Y63         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.500 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.500    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__2_n_0
+    SLICE_X72Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.600 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.600    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__2_n_0
+    SLICE_X72Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.700 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.700    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__2_n_0
+    SLICE_X72Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.800 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.800    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__2_n_0
+    SLICE_X72Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.900 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.900    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__2_n_0
+    SLICE_X72Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100    10.000 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000    10.000    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__2_n_0
+    SLICE_X72Y68         FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.419    10.434    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/clk_200
+    SLICE_X72Y68         FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]/C
+                         clock pessimism              0.280    10.714    
+                         clock uncertainty           -0.069    10.645    
+    SLICE_X72Y68         FDRE (Setup_fdre_C_D)       -0.107    10.538    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]
+  -------------------------------------------------------------------
+                         required time                         10.538    
+                         arrival time                         -10.000    
+  -------------------------------------------------------------------
+                         slack                                  0.538    
+
+Slack (MET) :             0.549ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[45]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.374ns  (logic 2.176ns (49.747%)  route 2.198ns (50.253%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.109ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.290ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    DSP48_X3Y42          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X3Y42          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.197     8.275    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_negative_s1
+    SLICE_X64Y94         LUT2 (Prop_lut2_I0_O)        0.105     8.380 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0/O
+                         net (fo=1, routed)           0.000     8.380    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0_n_0
+    SLICE_X64Y94         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     8.824 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0/CO[3]
+                         net (fo=1, routed)           0.000     8.824    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0_n_0
+    SLICE_X64Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     8.924 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0/CO[3]
+                         net (fo=1, routed)           0.000     8.924    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0_n_0
+    SLICE_X64Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.024 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0/CO[3]
+                         net (fo=1, routed)           0.000     9.024    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0_n_0
+    SLICE_X64Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.124 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.124    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0_n_0
+    SLICE_X64Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.224 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.224    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0_n_0
+    SLICE_X64Y99         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.324 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.001     9.325    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0_n_0
+    SLICE_X64Y100        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.425 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.425    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0_n_0
+    SLICE_X64Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.525 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.525    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0_n_0
+    SLICE_X64Y102        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.625 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.625    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0_n_0
+    SLICE_X64Y103        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.725 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.725    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0_n_0
+    SLICE_X64Y104        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.825 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.825    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0_n_0
+    SLICE_X64Y105        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    10.082 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0/O[1]
+                         net (fo=1, routed)           0.000    10.082    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0_n_6
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[45]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.294    10.309    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[45]/C
+                         clock pessimism              0.290    10.599    
+                         clock uncertainty           -0.069    10.530    
+    SLICE_X64Y105        FDRE (Setup_fdre_C_D)        0.101    10.631    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[45]
+  -------------------------------------------------------------------
+                         required time                         10.631    
+                         arrival time                         -10.082    
+  -------------------------------------------------------------------
+                         slack                                  0.549    
+
+Slack (MET) :             0.577ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[42]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.348ns  (logic 1.890ns (43.464%)  route 2.458ns (56.536%))
+  Logic Levels:           12  (CARRY4=11 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.199    10.056 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/O[2]
+                         net (fo=1, routed)           0.000    10.056    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_5
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[42]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[42]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y115        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[42]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.056    
+  -------------------------------------------------------------------
+                         slack                                  0.577    
+
+Slack (MET) :             0.589ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[45]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.322ns  (logic 2.176ns (50.350%)  route 2.146ns (49.650%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.122ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.434ns = ( 10.434 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.836ns
+    Clock Pessimism Removal (CPR):    0.280ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.614     5.836    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/clk_200
+    DSP48_X4Y26          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X4Y26          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.206 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.146     8.351    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_product_negative_s1
+    SLICE_X72Y57         LUT2 (Prop_lut2_I0_O)        0.105     8.456 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2[15]_i_19__2/O
+                         net (fo=1, routed)           0.000     8.456    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2[15]_i_19__2_n_0
+    SLICE_X72Y57         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     8.900 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__2/CO[3]
+                         net (fo=1, routed)           0.000     8.900    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__2_n_0
+    SLICE_X72Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.000 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__2/CO[3]
+                         net (fo=1, routed)           0.000     9.000    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__2_n_0
+    SLICE_X72Y59         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.100 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__2/CO[3]
+                         net (fo=1, routed)           0.000     9.100    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__2_n_0
+    SLICE_X72Y60         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.200 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.200    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__2_n_0
+    SLICE_X72Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.300 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.300    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__2_n_0
+    SLICE_X72Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.400 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.400    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__2_n_0
+    SLICE_X72Y63         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.500 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.500    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__2_n_0
+    SLICE_X72Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.600 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.600    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__2_n_0
+    SLICE_X72Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.700 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.700    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__2_n_0
+    SLICE_X72Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.800 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.800    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__2_n_0
+    SLICE_X72Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.900 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__2/CO[3]
+                         net (fo=1, routed)           0.000     9.900    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__2_n_0
+    SLICE_X72Y68         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    10.157 r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__2/O[1]
+                         net (fo=1, routed)           0.000    10.157    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[47]_i_1__2_n_6
+    SLICE_X72Y68         FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[45]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.419    10.434    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/clk_200
+    SLICE_X72Y68         FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[45]/C
+                         clock pessimism              0.280    10.714    
+                         clock uncertainty           -0.069    10.645    
+    SLICE_X72Y68         FDRE (Setup_fdre_C_D)        0.101    10.746    u_top/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/prelu_magnitude_s2_reg[45]
+  -------------------------------------------------------------------
+                         required time                         10.746    
+                         arrival time                         -10.157    
+  -------------------------------------------------------------------
+                         slack                                  0.589    
+
+Slack (MET) :             0.598ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[40]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.327ns  (logic 1.869ns (43.190%)  route 2.458ns (56.810%))
+  Logic Levels:           12  (CARRY4=11 LUT2=1)
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.312ns = ( 10.312 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.857 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.857    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_0
+    SLICE_X44Y115        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.178    10.035 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1/O[0]
+                         net (fo=1, routed)           0.000    10.035    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[43]_i_1__1_n_7
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[40]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.297    10.312    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y115        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[40]/C
+                         clock pessimism              0.289    10.601    
+                         clock uncertainty           -0.069    10.532    
+    SLICE_X44Y115        FDRE (Setup_fdre_C_D)        0.101    10.633    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[40]
+  -------------------------------------------------------------------
+                         required time                         10.633    
+                         arrival time                         -10.035    
+  -------------------------------------------------------------------
+                         slack                                  0.598    
+
+Slack (MET) :             0.607ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[46]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.316ns  (logic 2.118ns (49.071%)  route 2.198ns (50.929%))
+  Logic Levels:           13  (CARRY4=12 LUT2=1)
+  Clock Path Skew:        -0.109ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.290ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    DSP48_X3Y42          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X3Y42          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.197     8.275    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_product_negative_s1
+    SLICE_X64Y94         LUT2 (Prop_lut2_I0_O)        0.105     8.380 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0/O
+                         net (fo=1, routed)           0.000     8.380    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2[15]_i_19__0_n_0
+    SLICE_X64Y94         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     8.824 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0/CO[3]
+                         net (fo=1, routed)           0.000     8.824    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_12__0_n_0
+    SLICE_X64Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     8.924 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0/CO[3]
+                         net (fo=1, routed)           0.000     8.924    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_7__0_n_0
+    SLICE_X64Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.024 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0/CO[3]
+                         net (fo=1, routed)           0.000     9.024    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_2__0_n_0
+    SLICE_X64Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.124 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.124    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[15]_i_1__0_n_0
+    SLICE_X64Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.224 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.224    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[19]_i_1__0_n_0
+    SLICE_X64Y99         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.324 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.001     9.325    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[23]_i_1__0_n_0
+    SLICE_X64Y100        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.425 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.425    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[27]_i_1__0_n_0
+    SLICE_X64Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.525 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.525    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[31]_i_1__0_n_0
+    SLICE_X64Y102        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.625 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.625    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[35]_i_1__0_n_0
+    SLICE_X64Y103        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.725 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.725    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[39]_i_1__0_n_0
+    SLICE_X64Y104        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.825 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0/CO[3]
+                         net (fo=1, routed)           0.000     9.825    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[43]_i_1__0_n_0
+    SLICE_X64Y105        CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.199    10.024 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0/O[2]
+                         net (fo=1, routed)           0.000    10.024    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[47]_i_1__0_n_5
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[46]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.294    10.309    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/clk_200
+    SLICE_X64Y105        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[46]/C
+                         clock pessimism              0.290    10.599    
+                         clock uncertainty           -0.069    10.530    
+    SLICE_X64Y105        FDRE (Setup_fdre_C_D)        0.101    10.631    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/prelu_magnitude_s2_reg[46]
+  -------------------------------------------------------------------
+                         required time                         10.631    
+                         arrival time                         -10.024    
+  -------------------------------------------------------------------
+                         slack                                  0.607    
+
+Slack (MET) :             0.615ns  (required time - arrival time)
+  Source:                 u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]/D
+                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             u_top_n_1388
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)
+  Data Path Delay:        4.311ns  (logic 1.853ns (42.979%)  route 2.458ns (57.021%))
+  Logic Levels:           11  (CARRY4=10 LUT2=1)
+  Clock Path Skew:        -0.106ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.313ns = ( 10.313 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.708ns
+    Clock Pessimism Removal (CPR):    0.289ns
+  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.118ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock u_top_n_1388 rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.065     2.505    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.077     2.582 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559     4.141    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.222 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.485     5.708    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    DSP48_X2Y46          DSP48E1                                      r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X2Y46          DSP48E1 (Prop_dsp48e1_CLK_P[30])
+                                                      0.370     6.078 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_s1_reg/P[30]
+                         net (fo=48, routed)          2.458     8.536    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_product_negative_s1
+    SLICE_X44Y105        LUT2 (Prop_lut2_I0_O)        0.105     8.641 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1/O
+                         net (fo=1, routed)           0.000     8.641    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2[15]_i_18__1_n_0
+    SLICE_X44Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     8.957 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     8.957    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_12__1_n_0
+    SLICE_X44Y106        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.057 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     9.057    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_7__1_n_0
+    SLICE_X44Y107        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.157 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000     9.157    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_2__1_n_0
+    SLICE_X44Y108        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.257 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.257    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[15]_i_1__1_n_0
+    SLICE_X44Y109        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.357 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.357    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[19]_i_1__1_n_0
+    SLICE_X44Y110        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.457 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.457    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[23]_i_1__1_n_0
+    SLICE_X44Y111        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.557 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.557    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[27]_i_1__1_n_0
+    SLICE_X44Y112        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.657 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.657    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[31]_i_1__1_n_0
+    SLICE_X44Y113        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.757 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     9.757    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[35]_i_1__1_n_0
+    SLICE_X44Y114        CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.262    10.019 r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000    10.019    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]_i_1__1_n_4
+    SLICE_X44Y114        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock u_top_n_1388 rise edge)
+                                                      5.000     5.000 r  
+    W19                                               0.000     5.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     5.000    sys_clk
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     6.374 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.004     7.378    u_top/sys_clk_IBUF
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                      0.073     7.451 r  u_top/g_mmcm.u_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     8.938    u_top_n_1388
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     9.015 r  input_slot_reg[1][511]_i_3/O
+                         net (fo=61743, routed)       1.298    10.313    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/clk_200
+    SLICE_X44Y114        FDRE                                         r  u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]/C
+                         clock pessimism              0.289    10.602    
+                         clock uncertainty           -0.069    10.533    
+    SLICE_X44Y114        FDRE (Setup_fdre_C_D)        0.101    10.634    u_top/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/prelu_magnitude_s2_reg[39]
+  -------------------------------------------------------------------
+                         required time                         10.634    
+                         arrival time                         -10.019    
+  -------------------------------------------------------------------
+                         slack                                  0.615    
+
+
+
+

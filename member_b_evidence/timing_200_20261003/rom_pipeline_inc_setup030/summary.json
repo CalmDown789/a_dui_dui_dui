@@ -1,0 +1,102 @@
+{
+  "candidate": "rom_pipeline_inc_setup030",
+  "pipeline_version": "V1-pad-flags-credit-memory-ROM3-incremental",
+  "stage": "acc36_realrom_200_member_b_rom_pipeline_inc_20261003_setup030_ascii_ramdecomp_try2",
+  "runner": "experiments/timing_200_20261003/synth_rom_pipeline_inc.tcl",
+  "implementation": "COMPLETED",
+  "frequency_MHz": 200,
+  "run_config": {
+    "script": "V:/experiments/timing_200_20261003/synth_rom_pipeline_inc.tcl",
+    "argv": "impl acc36 ascii ramdecomp",
+    "extra_setup_ns": "0.300",
+    "target_MHz": "200",
+    "vivado": "2025.2"
+  },
+  "WNS": -0.517,
+  "TNS": -791.2,
+  "failing_setup_endpoints": 5698,
+  "WHS": 0.013,
+  "THS": 0.0,
+  "WPWS": 1.37,
+  "route_errors": 0,
+  "routed_nets": 74042,
+  "routable_nets": 74042,
+  "resources": {
+    "LUT": 27896,
+    "FF": 49365,
+    "RAMB36": 226,
+    "RAMB18": 8,
+    "DSP": 394
+  },
+  "targets_ns": {
+    "0.1": false,
+    "0.25": false,
+    "0.4": false
+  },
+  "setup_tag": "setup030",
+  "extra_setup_ns": 0.3,
+  "timing_with_extra_setup": {
+    "WNS": -0.817,
+    "TNS": -4304.814,
+    "failing_setup_endpoints": 19315,
+    "WHS": 0.013,
+    "THS": 0.0,
+    "WPWS": 1.37
+  },
+  "restored_minus_tight_WNS": 0.3,
+  "worst_path": "Slack (VIOLATED) :        -0.517ns  (required time - arrival time)\n  Source:                 u_top/u_core/u_b/u_b_core/core/core/l5/mac/mac/tree_stage[6].valid_q_reg[7]/C\n                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Destination:            u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/fifo/count_reg[2]/D\n                            (rising edge-triggered cell FDRE clocked by u_top_n_1388  {rise@0.000ns fall@2.500ns period=5.000ns})\n  Path Group:             u_top_n_1388\n  Path Type:              Setup (Max at Slow Process Corner)\n  Requirement:            5.000ns  (u_top_n_1388 rise@5.000ns - u_top_n_1388 rise@0.000ns)\n  Data Path Delay:        5.150ns  (logic 0.874ns (16.970%)  route 4.276ns (83.030%))\n  Logic Levels:           4  (LUT5=2 LUT6=2)\n  Clock Path Skew:        -0.101ns (DCD - SCD + CPR)\n    Destination Clock Delay (DCD):    5.506ns = ( 10.506 - 5.000 ) \n    Source Clock Delay      (SCD):    5.823ns\n    Clock Pessimism Removal (CPR):    0.217ns\n  Clock Uncertainty:      0.069ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU\n    Total System Jitter     (TSJ):    0.071ns\n    Discrete Jitter          (DJ):    0.118ns\n    Phase Error              (PE):    0.000ns\n    User Uncertainty         (UU):    0.000ns\n\n    Pin Reuse",
+  "source_commit": "unknown",
+  "archive_commit": "4b90246e0bc009a713b0e1ededdf8a54525e02f9",
+  "input_ROM_register_mapping": {
+    "physical_BRAMs": 128,
+    "active_A_ports": 128,
+    "active_B_ports": 0,
+    "all_active_ports_DO_REG_1": true
+  },
+  "incremental_reuse": {
+    "before_place": {
+      "Cells": {
+        "matched_percent": 98.89,
+        "current_reuse_percent": 98.9,
+        "fixed_percent": 0.01,
+        "total": 91099
+      },
+      "Nets": {
+        "matched_percent": 95.15,
+        "current_reuse_percent": 94.31,
+        "fixed_percent": 0.0,
+        "total": 73402
+      }
+    },
+    "after_place": {
+      "Cells": {
+        "matched_percent": 98.89,
+        "current_reuse_percent": 96.03,
+        "fixed_percent": 0.01,
+        "total": 91099
+      },
+      "Nets": {
+        "matched_percent": 95.15,
+        "current_reuse_percent": 89.0,
+        "fixed_percent": 0.0,
+        "total": 75050
+      }
+    },
+    "final": {
+      "Cells": {
+        "matched_percent": 98.89,
+        "current_reuse_percent": 95.94,
+        "fixed_percent": 0.01,
+        "total": 91103
+      },
+      "Nets": {
+        "matched_percent": 95.15,
+        "current_reuse_percent": 85.42,
+        "fixed_percent": 0.0,
+        "total": 91472
+      }
+    }
+  },
+  "staged_roms_equal_sources": 35,
+  "launch_input_hashes_unchanged": true
+}

@@ -1,0 +1,5284 @@
+{
+  "status": "ABSTRACT_REACHABLE_CREDIT_PROOF_PASS",
+  "depth": 4,
+  "reachable_states": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      1
+    ],
+    [
+      3,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      1
+    ],
+    [
+      3,
+      1,
+      0
+    ],
+    [
+      4,
+      0,
+      0
+    ]
+  ],
+  "checked_transitions": 256,
+  "impossible_branch": "raw_valid && count==4",
+  "RTL_inputs": [
+    {
+      "path": "rtl/b_real_ae29515/stream/window_stream_frontend.sv",
+      "sha256": "41430919b663a20c33e08d4dba060c2c19360422e424f4e6f07f640c4dabafec"
+    },
+    {
+      "path": "rtl/b_real_ae29515/stream/window_kminus1_bram.sv",
+      "sha256": "bb40b987c7f6c013ba498b382f6aaaa2d09302f4e22ebf7efb196c3ce1975516"
+    },
+    {
+      "path": "experiments/l5_splitmem_20260924/rtl/b/elastic_fifo.sv",
+      "sha256": "354116f189917f9f818a9ac990ddb84cc2f1f712398a9e12ba3309a08379f49d"
+    }
+  ],
+  "LUT_truth_table": [
+    {
+      "I0_raw_valid": 0,
+      "I1_window_ready": 0,
+      "I2_full": 0,
+      "original": 0,
+      "guarded": 0
+    },
+    {
+      "I0_raw_valid": 1,
+      "I1_window_ready": 0,
+      "I2_full": 0,
+      "original": 1,
+      "guarded": 1
+    },
+    {
+      "I0_raw_valid": 0,
+      "I1_window_ready": 1,
+      "I2_full": 0,
+      "original": 0,
+      "guarded": 0
+    },
+    {
+      "I0_raw_valid": 1,
+      "I1_window_ready": 1,
+      "I2_full": 0,
+      "original": 1,
+      "guarded": 1
+    },
+    {
+      "I0_raw_valid": 0,
+      "I1_window_ready": 0,
+      "I2_full": 1,
+      "original": 0,
+      "guarded": 0
+    },
+    {
+      "I0_raw_valid": 1,
+      "I1_window_ready": 0,
+      "I2_full": 1,
+      "original": 0,
+      "guarded": 0
+    },
+    {
+      "I0_raw_valid": 0,
+      "I1_window_ready": 1,
+      "I2_full": 1,
+      "original": 0,
+      "guarded": 0
+    },
+    {
+      "I0_raw_valid": 1,
+      "I1_window_ready": 1,
+      "I2_full": 1,
+      "original": 1,
+      "guarded": 0
+    }
+  ],
+  "transitions": [
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        0,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        0,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        1,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        2,
+        1,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        1,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        1
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        1,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        2,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        3,
+        0,
+        1
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 1,
+      "guarded_write": 1
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "after": [
+        4,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "after": [
+        3,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    },
+    {
+      "before": [
+        4,
+        0,
+        0
+      ],
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        0
+      ],
+      "original_write": 0,
+      "guarded_write": 0
+    }
+  ],
+  "scope": "Frontend over-approximation, all stalls/crops/resets; checked source hashes. Not extracted formal equivalence, gate simulation, or board validation.",
+  "observable_reason": "RAM writes remain identical; old FIFO ready/count/pointers are retained by ECO. Only an unreachable RAM-write minterm changes."
+}

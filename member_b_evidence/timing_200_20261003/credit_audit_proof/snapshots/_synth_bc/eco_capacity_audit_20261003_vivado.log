@@ -1,0 +1,97 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 18:39:56 2026
+# Process ID         : 11240
+# Current directory  : V:/
+# Command line       : vivado.exe -mode batch -nojournal -log V:/_synth_bc/eco_capacity_audit_20261003_vivado.log -source V:/experiments/timing_200_20261003/audit_fifo_luts.tcl -tclargs V:/_synth_bc/postroute200_v1_nominal000_20261003_try2/postroute.dcp V:/_synth_bc/eco_capacity_audit_20261003
+# Log file           : V:/_synth_bc/eco_capacity_audit_20261003_vivado.log
+# Journal file       : 
+# Running On         : OMENMAX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33737 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68097 MB
+# Available Virtual  : 41551 MB
+#-----------------------------------------------------------
+source V:/experiments/timing_200_20261003/audit_fifo_luts.tcl
+# if {[llength $argv]!=2} {error "Expected DCP and new audit directory"}
+# set audit_input [file normalize [lindex $argv 0]]
+# set audit_dir [file normalize [lindex $argv 1]]
+# if {[file exists $audit_dir]} {error "Refuse to overwrite LUT audit"}
+# file mkdir $audit_dir
+# set_param general.maxThreads 2
+# open_checkpoint $audit_input
+Command: open_checkpoint V:/_synth_bc/postroute200_v1_nominal000_20261003_try2/postroute.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 317.250 ; gain = 0.000
+INFO: [Device 21-403] Loading part xc7a200tfbg484-2
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.738 . Memory (MB): peak = 939.895 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6398 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.151 . Memory (MB): peak = 1131.207 ; gain = 16.059
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 1921.727 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1921.727 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1921.727 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1937.254 ; gain = 15.527
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1937.254 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.699 . Memory (MB): peak = 1985.957 ; gain = 48.703
+Read Physdb Files: Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1985.957 ; gain = 64.230
+Restored from archive | CPU: 4.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1985.957 ; gain = 64.230
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2074.055 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1487 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 1481 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 6 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2079.785 ; gain = 1771.152
+# if {[get_property PART [current_design]] ne "xc7a200tfbg484-2"} {error "Unexpected part"}
+# set pins [get_pins -hier -filter {NAME =~ *l5/gk.frontend/fifo*/WE}]
+# set nets [lsort -unique [get_nets -parent_net -segments -of_objects $pins]]
+# set f [open "$audit_dir/lut_audit.tsv" w]
+# puts $f "net\tcell\tinit\tI0_net\tI0_driver\tI1_net\tI1_driver\tI2_net\tI2_driver"
+# foreach net $nets {
+#     set outputs [get_pins -leaf -of_objects $net -filter {DIRECTION == OUT}]
+#     set cells [get_cells -of_objects $outputs]
+#     if {[llength $cells]!=1 || [get_property REF_NAME $cells] ne "LUT3"} {error "Expected LUT3 driver"}
+#     set row [list $net $cells [get_property INIT $cells]]
+#     for {set i 0} {$i<3} {incr i} {
+#         set pin [get_pins "$cells/I$i"]
+#         set n [lsort -unique [get_nets -parent_net -segments -of_objects $pin]]
+#         set d [get_pins -leaf -of_objects $n -filter {DIRECTION == OUT}]
+#         lappend row $n $d
+#     }
+#     puts $f [join $row "\t"]
+# }
+# close $f
+# update_timing
+update_timing: Time (s): cpu = 00:00:28 ; elapsed = 00:00:15 . Memory (MB): peak = 2244.145 ; gain = 158.297
+# report_timing_summary -delay_type min_max -max_paths 5 -file "$audit_dir/timing_summary.rpt"
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+# report_route_status -file "$audit_dir/route_status.rpt"
+# write_xdc "$audit_dir/constraints.xdc"
+# puts "L5_FIFO_LUT_READ_ONLY_AUDIT_COMPLETE nets=[llength $nets]"
+L5_FIFO_LUT_READ_ONLY_AUDIT_COMPLETE nets=9
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  3 18:40:50 2026...
