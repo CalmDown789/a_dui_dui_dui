@@ -1,10 +1,10 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-> **状态更新（2026-10-03）**：真实 B 五层全尺寸仿真通过；C 端 100 MHz 单帧已上板并与 Golden 逐字节一致。
-> C 端 150 MHz 已完成布线并生成 bitstream，但 WNS=-0.210 ns，时序未通过且未上板；
-> 200 MHz 真实 B+C 基线后布线 WNS=-2.208 ns，也未闭合。B 的独立 150 MHz 实验候选
-> WNS=+0.132 ns，不能代表 C 端实现或板测结果。当前没有连续帧 30 fps 或 HDMI 验收结论。
-> 统一证据与后续事项见 [2026-10-03 进度快照](docs/PROJECT_STATUS_SYNC_2026-10-03.md)。
+> **状态更新（2026-10-03）**：真实 B 五层全尺寸整数仿真通过；C 端 100 MHz 单帧上板与 Golden 一致。
+> C 自有 150 MHz 实现 WNS=-0.210 ns，未通过且未上板；200 MHz C 基线 WNS=-2.208 ns。
+> B 实验分支最新 150 MHz 候选 WNS=+0.492 ns，但没有该候选 bitstream 或板测；
+> B 的 200 MHz V1 主基线 WNS=-0.164 ns，仍未闭合。连续帧/PC 回传是下一阶段，
+> 当前无 30 fps 或 HDMI 验收结论。详见[2026-10-03 进度快照](docs/PROJECT_STATUS_SYNC_2026-10-03.md)。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
 `C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。
