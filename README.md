@@ -9,9 +9,9 @@
 | A：模型、量化与数据 | 已冻结 `d16/s8/m1/c16`；Set5 平均 PSNR：双三次 32.6398 dB、FP32 34.1202 dB、INT8/INT16 34.0190 dB | [A交付报告](docs/成员A交付报告.md)、[量化指标](artifacts/evaluation/summary.json) |
 | B+C：整数仿真 | 五层真实网络全尺寸输出 2,073,600 字节与整数 Golden 一致，失配 0 | A Golden SHA-256：`be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`；仿真采用 XSim 2022.2 `-O0`，详见 [下游验证记录](docs/成员A下游验证状态_2026-09-24.md) |
 | C：100 MHz 板测 | 已下载 bitstream；板上 UART 回读完整单帧，2,073,600 字节与 Golden 逐字节一致，失配 0 | [板测报告](docs/BOARD_TEST_REPORT_100MHZ_2026-09-24.md)。UART 回传约 22.43 秒/帧是传输时间，不是 CNN 计算帧率 |
-| B：150 MHz 时序试验 | 推荐实现策略候选完成布线，WNS/TNS `+0.132/0 ns`；资源 LUT 28,078、FF 48,498、RAMB36/18 `226/8`、DSP48E1 `394` | [时序试验记录](docs/MEMBER_B_150MHZ_TIMING_OPT_2026-09-24.md)。这是 B 的实验候选，不等于 C 的 150 MHz 板测或正式 RTL 集成 |
+| B：150 MHz 时序试验 | 9 月 26 日实验候选布线 WNS/TNS `+0.492/0 ns`，WHS/THS `+0.018/0 ns`；LUT 28,100、FF 48,498、RAMB36/18 `226/8`、DSP48E1 `394` | [B 端 150 MHz 裕量补试报告](https://github.com/CalmDown789/a_dui_dui_dui/blob/member-b-2025-2-bc-trial/docs/MEMBER_B_150MHZ_MARGIN_2026-09-26.md)。实验结果，未生成该候选 bitstream 或上板 |
 
-因此，项目已有模型、整数全帧对拍、100 MHz 单帧上板一致性和 150 MHz 完成布线的时序数据，形成了可展示、可复核的阶段成果。当前不能据此宣称 1080p30 已实现：150 MHz 结果裕量较小，且没有 150 MHz 板测或持续视频吞吐记录。
+因此，项目已有模型、整数全帧对拍和 100 MHz 单帧上板一致性。B 的 150 MHz 实验候选已取得 +0.492 ns WNS，但尚未生成该候选 bitstream 或上板；200 MHz 仍未闭合。当前没有 150 MHz 板测、连续帧吞吐或 HDMI 验收证据，不能据此宣称 1080p30 已实现。
 
 ## 冻结模型与接口
 
