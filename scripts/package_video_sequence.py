@@ -18,11 +18,18 @@ def package(name, manifest_name, sequence=SEQUENCE):
         "scripts/export_pc_player.py": (ROOT / "scripts/export_pc_player.py").read_bytes(),
         "scripts/received_frames.py": (ROOT / "scripts/received_frames.py").read_bytes(),
         "scripts/compare_received_frames.py": (ROOT / "scripts/compare_received_frames.py").read_bytes(),
+        "scripts/capture_raw_uart.py": (ROOT / "scripts/capture_raw_uart.py").read_bytes(),
         "src/member_a/pc_player.html": (ROOT / "src/member_a/pc_player.html").read_bytes(),
+        "artifacts/pc_player_manual_acceptance.json": (ROOT / "artifacts/pc_player_manual_acceptance.json").read_bytes(),
         "docs/成员A多帧交接_2026-10-03.md": (ROOT / "docs/成员A多帧交接_2026-10-03.md").read_bytes(),
         "docs/成员A_PC收发协议确认清单_2026-10-03.md": (ROOT / "docs/成员A_PC收发协议确认清单_2026-10-03.md").read_bytes(),
         "docs/成员A任务核验_2026-10-03.md": (ROOT / "docs/成员A任务核验_2026-10-03.md").read_bytes(),
+        "docs/成员A_UART接收工具_2026-10-03.md": (ROOT / "docs/成员A_UART接收工具_2026-10-03.md").read_bytes(),
     }
+    for relative in ("experiments/member_a_uart_prototype_20261003/README.md",
+                     "experiments/member_a_uart_prototype_20261003/host/stop_wait_client.py",
+                     "artifacts/uart_prototype_selftest.json"):
+        entries[relative] = (ROOT / relative).read_bytes()
     # Portable packages are capture-comparison kits, not standalone training or
     # inference environments. The manifest pins all frozen quantization assets.
     for frame in manifest["frames"]:
@@ -44,6 +51,8 @@ def package(name, manifest_name, sequence=SEQUENCE):
         entries["artifacts/multiframe/two_frame_manifest.json"] = (sequence / manifest_name).read_bytes()
     if (sequence / "verification.json").is_file():
         entries["artifacts/multiframe/verification.json"] = (sequence / "verification.json").read_bytes()
+    if (sequence / "single_authority_manifest.json").is_file():
+        entries["artifacts/multiframe/single_authority_manifest.json"] = (sequence / "single_authority_manifest.json").read_bytes()
     target = ROOT / "artifacts" / name
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipped:
         for relative, raw in sorted(entries.items()):

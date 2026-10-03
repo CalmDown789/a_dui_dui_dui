@@ -51,6 +51,15 @@ def compare_received(expected_path, received_path):
     orders = [record["order"] for record in received["frames"]]
     expected_ids = list(lookup)
     errors = []
+    if received.get("capture_status") not in (None,"COMPLETE"):
+        errors.append("capture_session_failed")
+    if received.get("unexpected_tail_bytes",0):
+        errors.append("unexpected_trailing_data")
+    if "raw_stream" in received:
+        raw_spec = received["raw_stream"]
+        actual = digest(safe_path(received_path.parent,raw_spec["path"]).read_bytes())
+        if any(actual[key] != raw_spec[key] for key in actual):
+            errors.append("raw_stream_integrity_mismatch")
     missing = sorted(set(expected_ids) - set(ids))
     unknown = sorted(set(ids) - set(expected_ids))
     duplicates = sorted(frame_id for frame_id, count in Counter(ids).items() if count > 1)

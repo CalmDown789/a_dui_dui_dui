@@ -88,6 +88,10 @@ python scripts\verify_integer_delivery.py
 
 实时 PC 上传与回传适配尚未完成，等待 A/C 确认接口、帧头/编号、流控、CRC 和超时恢复，见[协议确认清单](docs/成员A_PC收发协议确认清单_2026-10-03.md)。离线播放器和对拍工具不等于实时收发链路。
 
+已补充已知 UART TX 的[PC 接收保存工具](docs/成员A_UART接收工具_2026-10-03.md)：`capture_raw_uart.py` 支持短读、超时、断连和尾部额外数据，输出同一套接收清单与原始字节。不上传输入、不发送未知命令；打开实际端口前必须核验完整帧起点与 RTS/DTR 接线安全。软件读取器的验证记录位于 `artifacts/uart_capture_selftest.json`，不等于实体串口或 A4 双向通路已通过。
+
+另按用户提供的 C 隔离原型说明，增加[双向 UART 实验客户端](experiments/member_a_uart_prototype_20261003/README.md)。实验输入采用 `SRTP`、小端字段和 IEEE CRC-32，按 stop-and-wait 收齐裸 Y 输出后才发下一帧；失败不自动重发。协议状态固定为 `PROTOTYPE_UNCONFIRMED`，没有 C 原型来源提交或板测证据，不对正式 TX-only 工程发送输入。两帧、8 帧及错字节的软件联测见 `artifacts/uart_prototype_selftest.json`。当前链路的输入加输出理论串行时间约 28.125 秒/帧，不是实时视频；UDP 未实现。
+
 ## 职责边界
 
 本交付不包含 RTL、板级约束、Vivado 工程或 bitstream。成员 B 可直接读取 `artifacts/quant/quant_params.json`、各层 `.mem/.coe` 权重以及 `artifacts/test_vectors/` 完成 RTL 对拍；成员 C 负责板卡工程、ILA、时序收敛和上板结果导出。

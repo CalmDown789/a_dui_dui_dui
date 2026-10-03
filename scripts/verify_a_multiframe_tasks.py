@@ -23,6 +23,8 @@ if __name__ == "__main__":
         ("safe_directory_reproduction",[sys.executable,"scripts/check_sequence_reproduction.py","--regenerated",".data/repro_sequence_20261003_final/manifest.json"]),
         ("player_controller",[sys.executable,"scripts/verify_pc_player.py","--node",str(args.node)]),
         ("receive_manifest_faults",[sys.executable,"scripts/selftest_received_delivery.py"]),
+        ("raw_uart_receive_fixture",[sys.executable,"scripts/selftest_raw_uart_capture.py"]),
+        ("prototype_uart_stop_wait_fixture",[sys.executable,"experiments/member_a_uart_prototype_20261003/host/selftest.py"]),
         ("package_build",[sys.executable,"scripts/package_video_sequence.py"]),
         ("portable_software_tests",[sys.executable,"scripts/selftest_video_delivery.py"]),
         ("python_test_suite",[sys.executable,"-m","pytest","--basetemp",str(ROOT/".data/pytest_task_temp")]),
@@ -44,5 +46,9 @@ if __name__ == "__main__":
     report = {"schema":"member-a-task-execution-ledger-v1","status":"PASS" if len(ledger)==len(commands) and all(r["exit_code"]==0 for r in ledger) else "FAIL",
               "python":platform.python_version(),"executions":ledger,"board_capture_tested":False,
               "live_io_tested":False,"browser_visual_verified":False}
+    manual = ROOT/"artifacts/pc_player_manual_acceptance.json"
+    if manual.is_file():
+        report["manual_reference_player_acceptance"] = {"record":str(manual.relative_to(ROOT).as_posix()),
+            "status":json.loads(manual.read_text(encoding="utf-8"))["status"],"scope":"Software reference player only, not board capture"}
     (ROOT/"results/multiframe/task_execution.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8",newline="\n")
     sys.exit(0 if report["status"]=="PASS" else 1)

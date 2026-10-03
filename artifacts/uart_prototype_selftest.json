@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "protocol_status": "PROTOTYPE_UNCONFIRMED",
+  "cases": [
+    {
+      "case": "authority_pair_exact",
+      "frame_ids_sent": [
+        0,
+        1
+      ],
+      "capture_status": "COMPLETE",
+      "comparison": "PASS",
+      "player_command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\export_pc_player.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\authority_pair_exact\\reference\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\authority_pair_exact\\received_manifest.json",
+        "--output",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\authority_pair_exact\\player.html"
+      ],
+      "player_exit_code": 0,
+      "elapsed_host_seconds": 1.030568900052458,
+      "received_manifest": ".data/uart_prototype_selftest/run_8poa5yt6/authority_pair_exact/received_manifest.json",
+      "short_reads_and_writes_tested": true,
+      "next_input_before_output_drained": false
+    },
+    {
+      "case": "video_eight_exact",
+      "frame_ids_sent": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "capture_status": "COMPLETE",
+      "comparison": "PASS",
+      "player_command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\export_pc_player.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_exact\\reference\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_exact\\received_manifest.json",
+        "--output",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_exact\\player.html"
+      ],
+      "player_exit_code": 0,
+      "elapsed_host_seconds": 3.3040584000991657,
+      "received_manifest": ".data/uart_prototype_selftest/run_8poa5yt6/video_eight_exact/received_manifest.json",
+      "short_reads_and_writes_tested": true,
+      "next_input_before_output_drained": false
+    },
+    {
+      "case": "video_eight_wrong_byte",
+      "frame_ids_sent": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "capture_status": "COMPLETE",
+      "comparison": "FAIL",
+      "player_command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\export_pc_player.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_wrong_byte\\reference\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_wrong_byte\\received_manifest.json",
+        "--output",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\uart_prototype_selftest\\run_8poa5yt6\\video_eight_wrong_byte\\player.html"
+      ],
+      "player_exit_code": 1,
+      "elapsed_host_seconds": 3.274729400058277,
+      "received_manifest": ".data/uart_prototype_selftest/run_8poa5yt6/video_eight_wrong_byte/received_manifest.json",
+      "short_reads_and_writes_tested": true,
+      "next_input_before_output_drained": false
+    }
+  ],
+  "fixture_source": "Software endpoint validates input packets and copies frozen integer Golden as output; not C RTL",
+  "physical_port_opened": false,
+  "board_capture_tested": false,
+  "C_compatibility_verified": false,
+  "packet_examples": [
+    {
+      "sequence_id": "authority_plus_second_frame",
+      "frame_id": 0,
+      "packet_bytes": 518420,
+      "header_hex": "535254500000000000e907008a8a7921fb0f3a2c",
+      "packet_sha256": "37860840473516b837d72fda7531b3f0cedd199f7c8c2b647bb2f8b4657a3411",
+      "payload_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+      "header_crc32": "2c3a0ffb",
+      "payload_crc32": "21798a8a"
+    },
+    {
+      "sequence_id": "authority_plus_second_frame",
+      "frame_id": 1,
+      "packet_bytes": 518420,
+      "header_hex": "535254500100000000e907007a6af5507e132f28",
+      "packet_sha256": "d2dc37a7b766456b9e49f3190c1fd8d0a9d63b6fb3335eac6a68efdec446a08e",
+      "payload_sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+      "header_crc32": "282f137e",
+      "payload_crc32": "50f56a7a"
+    }
+  ],
+  "CRC_check_123456789": "cbf43926"
+}

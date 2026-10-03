@@ -16,7 +16,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=8.0"]
+test = ["pytest>=8.0", "pyserial==3.5"]
+serial = ["pyserial==3.5"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
