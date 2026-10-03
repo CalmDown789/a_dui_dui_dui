@@ -1,0 +1,19 @@
+{
+  "schema": "member-a-video-delivery-selftest-v1",
+  "status": "PASS",
+  "fixture_source": "Software Golden bytes and deliberate mutations; no hardware capture supplied",
+  "board_capture_tested": false,
+  "checks": {
+    "eight_frame_exact": "PASS",
+    "two_frame_exact": "PASS",
+    "one_wrong_byte_detected": "PASS",
+    "truncated_stream_detected": "PASS",
+    "extra_byte_detected": "PASS",
+    "wrong_frame_order_detected": "PASS",
+    "repeated_frame_detected": "PASS",
+    "member_a_two_frame_check.zip_standalone": "PASS",
+    "member_a_video_8frames.zip_standalone": "PASS",
+    "rom_prefix_and_zero_padding": "PASS",
+    "preview_export": "PASS"
+  }
+}

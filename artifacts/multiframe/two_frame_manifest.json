@@ -1,0 +1,536 @@
+{
+  "schema": "member-a-prerecorded-integer-sequence-v1",
+  "status": "A_CONFIRMED_INTEGER_GOLDEN",
+  "frame_count": 2,
+  "input": {
+    "shape_hwc": [
+      540,
+      960,
+      1
+    ],
+    "dtype": "uint8",
+    "layout": "HWC_row_major",
+    "bytes_per_frame": 518400
+  },
+  "output": {
+    "shape_hwc": [
+      1080,
+      1920,
+      1
+    ],
+    "dtype": "uint8",
+    "layout": "HWC_row_major",
+    "bytes_per_frame": 2073600
+  },
+  "model": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+  "model_provenance": {
+    "frozen_a_source_commit": "98c82f394bdfba85bc2959bede9760edc4d6862f",
+    "frozen_a_tag": "member-a-v1.0.1",
+    "checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+    "quant_assets": {
+      "expand_bias_int32.bin": {
+        "bytes": 64,
+        "crc32": "8d82b380",
+        "sha256": "341250e044e01ba5c390366849487b11196b06826e4647840300133ace149cf8"
+      },
+      "expand_prelu_q15.bin": {
+        "bytes": 32,
+        "crc32": "991827e4",
+        "sha256": "e334922dd8cf140de009c0d56a7388748a0c6b3f5ce7c90e380155b7965d65ee"
+      },
+      "expand_weight_oihw_int8.bin": {
+        "bytes": 128,
+        "crc32": "48ea2094",
+        "sha256": "7787c6a796e3c41198c6375b6925c2add85828872a18c7bf0c4dd31eb08cf7c6"
+      },
+      "feature_bias_int32.bin": {
+        "bytes": 64,
+        "crc32": "c49d0103",
+        "sha256": "ce3cc3638a508459d3732996fe5bffc6bcc5539774ffdf8da115faa2af4ac0ad"
+      },
+      "feature_prelu_q15.bin": {
+        "bytes": 32,
+        "crc32": "37929c51",
+        "sha256": "6bd459d167739de3de593e898e15355669e7e491758b2e4920ee87dc52987450"
+      },
+      "feature_weight_oihw_int8.bin": {
+        "bytes": 400,
+        "crc32": "b5b2a369",
+        "sha256": "7c3cd65dfed2b7909f8f5d5e19387e484e059e4d87eabec1ec4fa60b97414a99"
+      },
+      "mapping0_bias_int32.bin": {
+        "bytes": 32,
+        "crc32": "6be291d6",
+        "sha256": "3e5b33dea39582b2c634524509ad6ca53412d5579958fe6b459873a8ab16c2a9"
+      },
+      "mapping0_prelu_q15.bin": {
+        "bytes": 16,
+        "crc32": "b8267211",
+        "sha256": "d75083181a5d5675d62718c7452617344d2a95dd80a91174a5c15ab5f210d314"
+      },
+      "mapping0_weight_oihw_int8.bin": {
+        "bytes": 576,
+        "crc32": "c6bd399f",
+        "sha256": "5c68f4c57c366b5b2ec4fa229eeac94df295de99be1d43ec9e7d11cdd6a61fed"
+      },
+      "quant_params.json": {
+        "bytes": 13029,
+        "crc32": "0a1303ff",
+        "sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a"
+      },
+      "shrink_bias_int32.bin": {
+        "bytes": 32,
+        "crc32": "3ed62099",
+        "sha256": "e3eca0d176533365cf41271a6403f98fe5e2c6688069c2b2e2934b43be40fac5"
+      },
+      "shrink_prelu_q15.bin": {
+        "bytes": 16,
+        "crc32": "e7196feb",
+        "sha256": "a3cc292646d05dedacc26f8d249791fbffba7a447f3494356682b4d649aced20"
+      },
+      "shrink_weight_oihw_int8.bin": {
+        "bytes": 128,
+        "crc32": "fdb8e670",
+        "sha256": "197d81c736451157d6502928b438d2a02cf571b8d4aa80ac744613b1a4eb6d43"
+      },
+      "subpixel_bias_int32.bin": {
+        "bytes": 16,
+        "crc32": "cf8bdeb4",
+        "sha256": "a9caea3b9f1cbe05325be2d50219f0498fc24db0a3259806eb95e982a5295823"
+      },
+      "subpixel_weight_oihw_int8.bin": {
+        "bytes": 1600,
+        "crc32": "b4a545db",
+        "sha256": "251f3c1d5f3a2e13a2968d0c341d050716b2ed26c56c5cf09dfb3854fe77a6bb"
+      }
+    },
+    "reference": "src/member_a/fixed_reference.py",
+    "reference_sha256_lf": "91e0e4561abcec7f1c47a33c8a130c7487e8ee6207808e9204fa5678a3a258c0"
+  },
+  "source": {
+    "title": "Big Buck Bunny (2008)",
+    "creator": "Blender Foundation",
+    "attribution": "(c) copyright 2008, Blender Foundation / www.bigbuckbunny.org",
+    "license": "CC-BY-3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "license_statement_url": "https://peach.blender.org/about/",
+    "download_url": "https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg.zip",
+    "archive_sha256": "dc24016805203e5ae750f19cbd616e20561664d5bf5755ae484e3ed5487824b2",
+    "archive_bytes": 196898884,
+    "movie_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28",
+    "movie_bytes": 196898674,
+    "source_frame_rate": "24/1",
+    "source_frame_indices": [
+      1440,
+      1452,
+      1464,
+      1476,
+      1488,
+      1500,
+      1512,
+      1524
+    ],
+    "sequence_sampling_fps": 2,
+    "source_timestamps_seconds": [
+      60.0,
+      60.5,
+      61.0,
+      61.5,
+      62.0,
+      62.5,
+      63.0,
+      63.5
+    ],
+    "transform": "Select frames; Lanczos resize to 960x540; FFmpeg gray uint8 full-range luma; no audio",
+    "decode_note": "The original OGG reports a keyframe-flag warning. Frames are decoded sequentially from the beginning (no keyframe seek); archive CRC and source/input hashes are verified.",
+    "ffmpeg_version": "ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers",
+    "ffmpeg_filter": "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos,format=gray",
+    "extracted_raw_sha256": "f3b867edb9e17faf3ed60b223427674366470435c025e636a6e837096b3928ae",
+    "frame_count": 8,
+    "notice": "These frames are a sampled prerecorded sequence, not a 30fps throughput test."
+  },
+  "two_frame_probe_ids": [
+    0,
+    7
+  ],
+  "frames": [
+    {
+      "frame_id": 0,
+      "sequence_index": 0,
+      "source_frame_index": 1440,
+      "source_timestamp_seconds": 60.0,
+      "input": {
+        "path": "frame_000_input_y_u8.bin",
+        "bytes": 518400,
+        "crc32": "1a10d1b3",
+        "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf"
+      },
+      "golden": {
+        "path": "frame_000_output_y_u8.bin",
+        "bytes": 2073600,
+        "crc32": "b943791d",
+        "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+      },
+      "stage_digests": {
+        "input": {
+          "shape_hwc": [
+            540,
+            960,
+            1
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": 29,
+          "maximum": 255,
+          "bytes": 1036800,
+          "crc32": "5038125f",
+          "sha256": "6934b0bf0f22b7c9782c26e05e16f9c3d706105c02fb6ddee6bdd86628473b81"
+        },
+        "feature_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -37239,
+          "maximum": 207552,
+          "bytes": 33177600,
+          "crc32": "70f03915",
+          "sha256": "6f06439f5c47ad4510d50f993d984073fb4adcb7add00aee97275bf78848866a"
+        },
+        "feature": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -6856,
+          "maximum": 32767,
+          "bytes": 16588800,
+          "crc32": "569a9d9e",
+          "sha256": "02f965c96584fc9b30f2486cb0da8a49a0c90754cb489681daca7ab53902a0ee"
+        },
+        "shrink_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -2144372,
+          "maximum": 4948666,
+          "bytes": 16588800,
+          "crc32": "302e493f",
+          "sha256": "581fa3bc90afd7cab68ed24faad11959b254a2b22ac96129685c0d254816b623"
+        },
+        "shrink": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -12288,
+          "maximum": 29643,
+          "bytes": 8294400,
+          "crc32": "b72f16ca",
+          "sha256": "1fbb5a6196908271fac04498756b382ff159e81bcc000154c1c6660ccb114615"
+        },
+        "mapping0_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -3211477,
+          "maximum": 13038513,
+          "bytes": 16588800,
+          "crc32": "0608872f",
+          "sha256": "0b49dfa98e5ab95db102975d63f4347d2a08bf2d734afb06976ca3d2fe28e148"
+        },
+        "mapping0": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -5584,
+          "maximum": 32767,
+          "bytes": 8294400,
+          "crc32": "57845d64",
+          "sha256": "adff5b3f2946a051b435e9e05a2c84e3d342a2c4e4b57d26f8391e42b4f32619"
+        },
+        "expand_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -1511236,
+          "maximum": 7604327,
+          "bytes": 33177600,
+          "crc32": "4c5688b1",
+          "sha256": "c8627bb40d5a87cb08dd57c1dfae1b71c1c38090a585383c3a83af006ad406b6"
+        },
+        "expand": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -6915,
+          "maximum": 31890,
+          "bytes": 16588800,
+          "crc32": "c81eb293",
+          "sha256": "99bfa27b0ff5e6a3be8f5e5c8c0f0a0c6449ab93b3736f7236c7d05d0b93b94c"
+        },
+        "subpixel_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            4
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": 800874,
+          "maximum": 10852495,
+          "bytes": 8294400,
+          "crc32": "1d62246d",
+          "sha256": "d6fd4f73e48cb08c7f74c36d822e517abb1a3aec258313c0583fd6bb312941f5"
+        },
+        "subpixel_phases": {
+          "shape_hwc": [
+            540,
+            960,
+            4
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "minimum": 28,
+          "maximum": 255,
+          "bytes": 2073600,
+          "crc32": "cc778fea",
+          "sha256": "f34d01f48129ed4185b12213b90265dce41a1df46a50f1b7a89d3f1f880a7847"
+        },
+        "output": {
+          "shape_hwc": [
+            1080,
+            1920,
+            1
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "minimum": 28,
+          "maximum": 255,
+          "bytes": 2073600,
+          "crc32": "b943791d",
+          "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+        }
+      }
+    },
+    {
+      "frame_id": 7,
+      "sequence_index": 7,
+      "source_frame_index": 1524,
+      "source_timestamp_seconds": 63.5,
+      "input": {
+        "path": "frame_007_input_y_u8.bin",
+        "bytes": 518400,
+        "crc32": "50f56a7a",
+        "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb"
+      },
+      "golden": {
+        "path": "frame_007_output_y_u8.bin",
+        "bytes": 2073600,
+        "crc32": "d3d06326",
+        "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+      },
+      "stage_digests": {
+        "input": {
+          "shape_hwc": [
+            540,
+            960,
+            1
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": 0,
+          "maximum": 255,
+          "bytes": 1036800,
+          "crc32": "0a4bbce4",
+          "sha256": "f074566d813b9c0ee39e3c0c9401343f5da51ca2fb7474d7e1586be89b858ada"
+        },
+        "feature_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -34743,
+          "maximum": 201323,
+          "bytes": 33177600,
+          "crc32": "979d3462",
+          "sha256": "f39dd5f84c2d56a979d98de1c3622e8f547897aba269eb657df201553aeda43a"
+        },
+        "feature": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -5479,
+          "maximum": 32767,
+          "bytes": 16588800,
+          "crc32": "e3bef363",
+          "sha256": "ab5e0380c8281cbe9622cc987ac80e839a1a99397864f0afca24f5273df49d2d"
+        },
+        "shrink_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -2163389,
+          "maximum": 4629576,
+          "bytes": 16588800,
+          "crc32": "f8cfaeb6",
+          "sha256": "2c5612fcb2b5ef406db46dedb71eb406b3ce3c31b63418e31a97f17c07bf5c28"
+        },
+        "shrink": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -12397,
+          "maximum": 28116,
+          "bytes": 8294400,
+          "crc32": "49a59640",
+          "sha256": "8b2aaff00e33a4df87e02d55680743d1f92505a5d9c98eb430efd6c469920133"
+        },
+        "mapping0_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -3228577,
+          "maximum": 12782840,
+          "bytes": 16588800,
+          "crc32": "47617d53",
+          "sha256": "dc101b2dad060d55b99dfbfe044621660635a7ee4276c54abcedd34bc76f1af2"
+        },
+        "mapping0": {
+          "shape_hwc": [
+            540,
+            960,
+            8
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -5614,
+          "maximum": 32520,
+          "bytes": 8294400,
+          "crc32": "5ba4426b",
+          "sha256": "76088229e712001c5dce92d8b3c7a59eb48106af210a1b7497c476c989b69c74"
+        },
+        "expand_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -1490364,
+          "maximum": 7502425,
+          "bytes": 33177600,
+          "crc32": "4c9e0e89",
+          "sha256": "f737a5f147a6d440e256a79bfdd588764e43085f2636dcf308722df2e024295d"
+        },
+        "expand": {
+          "shape_hwc": [
+            540,
+            960,
+            16
+          ],
+          "dtype": "int16",
+          "layout": "HWC_row_major",
+          "minimum": -6820,
+          "maximum": 31462,
+          "bytes": 16588800,
+          "crc32": "ac470050",
+          "sha256": "e39d1060049f90e2363409c373179ad3ab5bea7c49d667d04eabcbed84049f2b"
+        },
+        "subpixel_accum": {
+          "shape_hwc": [
+            540,
+            960,
+            4
+          ],
+          "dtype": "int32",
+          "layout": "HWC_row_major",
+          "minimum": -78887,
+          "maximum": 10377590,
+          "bytes": 8294400,
+          "crc32": "6b803b30",
+          "sha256": "697725f555b72b0a3e768dccf7929297281d8883a9929d574eb5c93fb122b136"
+        },
+        "subpixel_phases": {
+          "shape_hwc": [
+            540,
+            960,
+            4
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "minimum": 0,
+          "maximum": 255,
+          "bytes": 2073600,
+          "crc32": "d5d413be",
+          "sha256": "ce68c5d987e56de6822a067bf433c067b084c8f0c77ba0d0d3382012f3560375"
+        },
+        "output": {
+          "shape_hwc": [
+            1080,
+            1920,
+            1
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "minimum": 0,
+          "maximum": 255,
+          "bytes": 2073600,
+          "crc32": "d3d06326",
+          "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+        }
+      }
+    }
+  ],
+  "boundary": "Independent network frames in listed order. No FPGA interface, clock, bitstream, board-pass or sustained-FPS claim.",
+  "purpose": "Initial two-image check using distinct source timestamps, then proceed to all eight frames."
+}

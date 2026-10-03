@@ -69,6 +69,17 @@ python scripts\verify_integer_delivery.py
 
 本次固定种子训练的 Set5 平均结果为：双三次 32.6398 dB、FP32 34.1202 dB、量化 34.0190 dB；量化损失 0.1012 dB，因此未触发 QAT。完整逐图 PSNR/SSIM 见 `artifacts/evaluation/set5_metrics.csv`。
 
+## 预录视频多帧检查（2026-10-03）
+
+新增公开授权视频的固定 8 帧 `960×540` 输入及逐帧 `1920×1080` 整数 Golden。模型、权重、量化参数和原冻结标签保持不变。先用 frame 000/007 做两幅不同画面的检查，再按清单顺序跑完整 8 帧。
+
+- 取数：`artifacts/multiframe/manifest.json`；两帧子集：`two_frame_manifest.json`；
+- 便携包：`artifacts/member_a_two_frame_check.zip` 和 `artifacts/member_a_video_8frames.zip`；
+- 回传工具：`python scripts/compare_board_sequence.py --capture-dir <回传目录>`，支持单帧与无头连续数据；
+- [交接说明与命令](docs/成员A多帧交接_2026-10-03.md)。
+
+清单包含帧编号、顺序、源视频时间、哈希和冻结模型来源。抽样序列是 2 fps 展示素材，不是持续帧率指标；软件 Golden 已完成整数重算，C 的该组多帧板测仍需回传数据验证。
+
 ## 职责边界
 
 本交付不包含 RTL、板级约束、Vivado 工程或 bitstream。成员 B 可直接读取 `artifacts/quant/quant_params.json`、各层 `.mem/.coe` 权重以及 `artifacts/test_vectors/` 完成 RTL 对拍；成员 C 负责板卡工程、ILA、时序收敛和上板结果导出。
