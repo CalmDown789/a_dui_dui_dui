@@ -1,6 +1,6 @@
 # ACX750 FSRCNN 超分系统
 
-项目目标是使用 ACX750-200T（`xc7a200tfbg484-2`）将 960×540 单通道 Y 图像放大到 1920×1080。本文汇总截至 2026-09-24 的可复核结果；不同阶段的仿真、实现和板测数据分别标明，不将计划或估算写成实测结论。最新统一进度见[2026-10-03 同步快照](docs/PROJECT_STATUS_SYNC_2026-10-03.md)，其中补充了 C 端 150 MHz 实现未通过时序的实测状态。
+项目目标是使用 ACX750-200T（`xc7a200tfbg484-2`）将 960×540 单通道 Y 图像放大到 1920×1080。本文汇总截至 2026-09-24 的可复核结果；不同阶段的仿真、实现和板测数据分别标明，不将计划或估算写成实测结论。最新统一进度见[2026-10-03 同步快照](docs/PROJECT_STATUS_SYNC_2026-10-03.md)，其中汇总了 B 端 150/200 MHz 最新实验和 C 端板测边界。
 
 ## 当前结论
 
@@ -10,6 +10,7 @@
 | B+C：整数仿真 | 五层真实网络全尺寸输出 2,073,600 字节与整数 Golden 一致，失配 0 | A Golden SHA-256：`be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`；仿真采用 XSim 2022.2 `-O0`，详见 [下游验证记录](docs/成员A下游验证状态_2026-09-24.md) |
 | C：100 MHz 板测 | 已下载 bitstream；板上 UART 回读完整单帧，2,073,600 字节与 Golden 逐字节一致，失配 0 | [板测报告](docs/BOARD_TEST_REPORT_100MHZ_2026-09-24.md)。UART 回传约 22.43 秒/帧是传输时间，不是 CNN 计算帧率 |
 | B：150 MHz 时序试验 | 9 月 26 日实验候选布线 WNS/TNS `+0.492/0 ns`，WHS/THS `+0.018/0 ns`；LUT 28,100、FF 48,498、RAMB36/18 `226/8`、DSP48E1 `394` | [B 端 150 MHz 裕量补试报告](https://github.com/CalmDown789/a_dui_dui_dui/blob/member-b-2025-2-bc-trial/docs/MEMBER_B_150MHZ_MARGIN_2026-09-26.md)。实验结果，未生成该候选 bitstream 或上板 |
+| B：200 MHz 时序试验 | V1 nominal 布线 WNS/TNS `−0.164/−7.523 ns`，仍有 setup 违例；目标未闭合 | [B 端 200 MHz 收尾报告](https://github.com/CalmDown789/a_dui_dui_dui/blob/member-b-2025-2-bc-trial/docs/MEMBER_B_200MHZ_TIMING_2026-09-26.md) |
 
 因此，项目已有模型、整数全帧对拍和 100 MHz 单帧上板一致性。B 的 150 MHz 实验候选已取得 +0.492 ns WNS，但尚未生成该候选 bitstream 或上板；200 MHz 仍未闭合。当前没有 150 MHz 板测、连续帧吞吐或 HDMI 验收证据，不能据此宣称 1080p30 已实现。
 
