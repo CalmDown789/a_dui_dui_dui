@@ -1,12 +1,10 @@
 # c_side —— FSRCNN 超分加速器 C 侧 RTL 工程（ACX750-200T）
 
-> **2026-09-24 本机最新状态**：本地 9/9 回归通过；真实 B 五层 960×540 → 1920×1080
-> 全帧与 A 整数 Golden 逐字节匹配（2,073,600/2,073,600，0 mismatch、0 X）。真实 B+C
-> 综合/布局布线完成：32,243 LUT、41,673 FF、394 DSP、230 RAMB36 + 8 RAMB18；Vivado
-> 综合峰值 3.13 GB，route 峰值 4.13 GB。200 MHz 仍未收敛（post-route WNS=-2.208 ns，
-> TNS=-50,037.625 ns）；关键路径已转到 L5 phase 选择到 DSP 输入，约 81% 延迟来自布线。
-> 未生成 bitstream，未做板上图像验收。细节见 `docs/RTL_SYNTHESIS_MEMORY_AUDIT.md` 与
-> `docs/CURRENT_PROJECT_STATUS.md`。
+> **状态更新（2026-10-03）**：真实 B 五层全尺寸仿真通过；C 端 100 MHz 单帧已上板并与 Golden 逐字节一致。
+> C 端 150 MHz 已完成布线并生成 bitstream，但 WNS=-0.210 ns，时序未通过且未上板；
+> 200 MHz 真实 B+C 基线后布线 WNS=-2.208 ns，也未闭合。B 的独立 150 MHz 实验候选
+> WNS=+0.132 ns，不能代表 C 端实现或板测结果。当前没有连续帧 30 fps 或 HDMI 验收结论。
+> 统一证据与后续事项见 [2026-10-03 进度快照](docs/PROJECT_STATUS_SYNC_2026-10-03.md)。
 
 C 侧（系统集成 / 综合实现 / 板级验证）RTL 工程。`rtl/b_core_if.v` 的
 `C_USE_B_REAL` 分支现已接入真实 B 五层网络；旧 stub 保留作接口隔离回归。
