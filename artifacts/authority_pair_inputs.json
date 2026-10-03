@@ -1,0 +1,24 @@
+{
+  "sequence_id": "authority_plus_second_frame",
+  "preprocessing": {
+    "frame_0000": "Unmodified original A input_960x540_y_u8.bin; program-generated reference, source commit 98c82f394bdfba85bc2959bede9760edc4d6862f",
+    "frame_0001": "Unmodified delivered BBB source frame 1524 at 63.5 s. Explicit limited-range decoded YUV420P to full-range gray, Lanczos 1280x720 to 960x540; preprocessing.json pins FFmpeg and source hashes.",
+    "runtime_conversion": "None; inference and any future transmission consume these exact .bin bytes."
+  },
+  "frames": [
+    {
+      "frame_id": 0,
+      "path": "full_integer_golden/input_960x540_y_u8.bin",
+      "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+      "source": "Original A full_integer_golden; output must remain be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+    },
+    {
+      "frame_id": 1,
+      "path": "multiframe/frame_007_input_y_u8.bin",
+      "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+      "source": "Big Buck Bunny (2008), Blender Foundation, CC BY 3.0; see multiframe/preprocessing.json and ATTRIBUTION.md",
+      "source_frame_index": 1524,
+      "source_timestamp_seconds": 63.5
+    }
+  ]
+}

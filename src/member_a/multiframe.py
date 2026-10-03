@@ -9,6 +9,7 @@ from .fixed_reference import FixedReference
 
 FROZEN_QUANT_SHA = "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a"
 FROZEN_CHECKPOINT_SHA = "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5"
+FROZEN_ASSET_LIST_SHA = "017c56b7973659c3a9f5c1db9daa1639f21744e90eedc19e4af093219d4733d6"
 
 
 def quant_provenance(quant_dir):
@@ -20,6 +21,12 @@ def quant_provenance(quant_dir):
 
 
 def generate_sequence(root, input_stream, source_path, output_dir):
+    import time, subprocess, platform
+    from datetime import datetime, timezone
+    import torch
+    started = datetime.now(timezone.utc).isoformat(); timer = time.perf_counter()
+    if output_dir.exists():
+        raise ValueError("Refusing to overwrite a sequence; choose a new --output-dir")
     source = json.loads(source_path.read_text(encoding="utf-8"))
     payload = input_stream.read_bytes()
     if hashlib.sha256(payload).hexdigest() != source["extracted_raw_sha256"]:
@@ -28,6 +35,7 @@ def generate_sequence(root, input_stream, source_path, output_dir):
     if count != 8 or len(payload) != count * 960 * 540:
         raise ValueError("Expected exactly eight 960x540 input frames")
     quant_dir = root / "artifacts/quant"
+    verify_frozen_assets(root)
     quant_hash = _digest(quant_dir / "quant_params.json", normalize_text=True)["sha256"]
     checkpoint = root / "artifacts/model/fsrcnn_d16_s8_m1_c16_x2_fp32.pth"
     if quant_hash != FROZEN_QUANT_SHA or _digest(checkpoint)["sha256"] != FROZEN_CHECKPOINT_SHA:
@@ -53,13 +61,18 @@ def generate_sequence(root, input_stream, source_path, output_dir):
             raise AssertionError("Invalid integer reference output")
         output.tofile(output_path)
         frames.append({
-            "frame_id": index, "sequence_index": index,
+            "frame_id": index, "sequence_index": index, "order": index,
             "source_frame_index": source["source_frame_indices"][index],
             "source_timestamp_seconds": source["source_timestamps_seconds"][index],
             "input": {"path": input_path.name, **_digest(input_path)},
             "golden": {"path": output_path.name, **_digest(output_path)},
             "stage_digests": stages,
         })
+        for key, values in (("input",image),("golden",output)):
+            preview = output_dir / (Path(frames[-1][key]["path"]).stem+".png")
+            Image.fromarray(values).save(preview)
+            frames[-1][key].update(shape_hwc=[values.shape[0],values.shape[1],1],dtype="uint8",
+                                  preview={"path":preview.name,**_digest(preview)})
         thumbnail = Image.fromarray(image).resize((320, 180))
         thumbnails.append(thumbnail)
         previews.append(Image.fromarray(output).resize((480, 270)))
@@ -79,6 +92,11 @@ def generate_sequence(root, input_stream, source_path, output_dir):
                      append_images=previews[1:], duration=500, loop=0, optimize=False)
     manifest = {
         "schema": "member-a-prerecorded-integer-sequence-v1",
+        "sequence_id": "bbb_clip_01",
+        "generation": {"source_commit":subprocess.check_output(["git","rev-parse","HEAD"],cwd=root,text=True).strip(),
+                       "worktree_dirty":bool(subprocess.check_output(["git","status","--porcelain"],cwd=root,text=True).strip()),
+                       "started_utc":started,"elapsed_seconds":time.perf_counter()-timer,
+                       "environment":{"python":platform.python_version(),"torch":torch.__version__,"numpy":np.__version__}},
         "status": "A_CONFIRMED_INTEGER_GOLDEN", "frame_count": count,
         "input": {"shape_hwc": [540, 960, 1], "dtype": "uint8", "layout": "HWC_row_major", "bytes_per_frame": 518400},
         "output": {"shape_hwc": [1080, 1920, 1], "dtype": "uint8", "layout": "HWC_row_major", "bytes_per_frame": 2073600},
@@ -90,18 +108,27 @@ def generate_sequence(root, input_stream, source_path, output_dir):
             "reference": "src/member_a/fixed_reference.py",
             "reference_sha256_lf": _digest(root / "src/member_a/fixed_reference.py", normalize_text=True)["sha256"],
         },
-        "source": source, "two_frame_probe_ids": [0, 7],
+        "source": source, "preprocessing":source.get("preprocessing"), "two_frame_probe_ids": [0, 7],
         "frames": frames,
         "boundary": "Independent network frames in listed order. No FPGA interface, clock, bitstream, board-pass or sustained-FPS claim.",
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
-    probe = {**manifest, "frame_count": 2, "frames": [frames[0], frames[7]],
+    probe = {**manifest, "sequence_id":"bbb_two_image_probe", "frame_count": 2,
+             "frames": [dict(frames[i],order=order) for order,i in enumerate((0,7))],
              "purpose": "Initial two-image check using distinct source timestamps, then proceed to all eight frames."}
     (output_dir / "two_frame_manifest.json").write_text(json.dumps(probe, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (output_dir / "preprocessing.json").write_text(json.dumps(source,indent=2)+"\n",encoding="utf-8",newline="\n")
     return manifest
 
 
 def verify_sequence(root, manifest_path, *, recompute=False):
+    import time
+    import platform
+    from datetime import datetime, timezone
+    import torch
+    started = datetime.now(timezone.utc).isoformat()
+    timer = time.perf_counter()
+    verify_frozen_assets(root)
     # Import the stdlib capture validator without requiring package installation.
     import importlib.util
     module_spec = importlib.util.spec_from_file_location("board_compare", root / "scripts/compare_board_sequence.py")
@@ -123,7 +150,7 @@ def verify_sequence(root, manifest_path, *, recompute=False):
     input_digest = hashlib.sha256()
     for frame in manifest["frames"]:
         input_digest.update((manifest_path.parent / frame["input"]["path"]).read_bytes())
-    is_complete_source = [frame["frame_id"] for frame in manifest["frames"]] == list(range(8))
+    is_complete_source = len(manifest["frames"]) == 8 and [frame.get("source_frame_index") for frame in manifest["frames"]] == list(range(1440,1536,12))
     if is_complete_source and input_digest.hexdigest() != manifest["source"]["extracted_raw_sha256"]:
         raise ValueError("Extracted input-stream provenance mismatch")
     checked = []
@@ -139,7 +166,23 @@ def verify_sequence(root, manifest_path, *, recompute=False):
                         "golden_sha256": frame["golden"]["sha256"]})
         print(f"verified frame {frame['frame_id']} recompute={recompute}", flush=True)
     return {"status": "PASS", "recomputed_all_integer_stages": recompute,
+            "file_validation": "PASS", "integer_recomputation": "PASS" if recompute else "NOT_RUN",
+            "started_utc": started, "elapsed_seconds": time.perf_counter()-timer,
+            "environment": {"python": platform.python_version(), "torch": torch.__version__, "numpy": np.__version__},
             "frame_count": len(checked), "frames": checked, "board_capture_tested": False,
             "selected_input_stream_sha256": input_digest.hexdigest(),
             "source_stream_hash_verified": is_complete_source,
             "frozen_quant_assets_verified": True, "frozen_checkpoint_verified": True}
+
+
+def verify_frozen_assets(root):
+    import hashlib
+    path = root / "artifacts/frozen_quant_assets.json"
+    raw = path.read_bytes().replace(b"\r\n", b"\n")
+    expected = json.loads(raw)
+    if hashlib.sha256(raw).hexdigest() != FROZEN_ASSET_LIST_SHA:
+        raise ValueError("Frozen asset registry changed")
+    if quant_provenance(root / "artifacts/quant") != expected:
+        raise ValueError("Frozen quantization asset hash mismatch")
+    if _digest(root / "artifacts/model/fsrcnn_d16_s8_m1_c16_x2_fp32.pth")["sha256"] != FROZEN_CHECKPOINT_SHA:
+        raise ValueError("Frozen checkpoint hash mismatch")

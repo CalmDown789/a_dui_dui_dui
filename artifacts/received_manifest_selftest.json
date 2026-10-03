@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "exact",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\exact_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\exact_comparison.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "report": ".data\\received_manifest_selftest\\exact_comparison.json",
+      "observed_status": "PASS",
+      "test_status": "PASS"
+    },
+    {
+      "case": "missing",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\missing_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\missing_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\missing_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "repeat",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\repeat_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\repeat_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\repeat_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "reorder",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\reorder_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\reorder_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\reorder_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "crc_failed",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\crc_failed_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\crc_failed_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\crc_failed_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "one_byte",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\one_byte_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\one_byte_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\one_byte_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "short",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\short_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\short_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\short_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    },
+    {
+      "case": "long",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\scripts\\compare_received_frames.py",
+        "--manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\artifacts\\multiframe\\manifest.json",
+        "--received-manifest",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\long_received_manifest.json",
+        "--report",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\received_manifest_selftest\\long_comparison.json"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "report": ".data\\received_manifest_selftest\\long_comparison.json",
+      "observed_status": "FAIL",
+      "test_status": "PASS"
+    }
+  ],
+  "board_capture_tested": false,
+  "fixture_source": "Copied Golden and deliberately corrupted files; synthetic timestamps; no UART/network input"
+}

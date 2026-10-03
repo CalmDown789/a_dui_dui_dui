@@ -1,0 +1,70 @@
+verified frame 0 recompute=True
+verified frame 1 recompute=True
+verified frame 2 recompute=True
+verified frame 3 recompute=True
+verified frame 4 recompute=True
+verified frame 5 recompute=True
+verified frame 6 recompute=True
+verified frame 7 recompute=True
+{
+  "status": "PASS",
+  "recomputed_all_integer_stages": true,
+  "file_validation": "PASS",
+  "integer_recomputation": "PASS",
+  "started_utc": "2026-10-03T10:20:46.920290+00:00",
+  "elapsed_seconds": 14.40979290008545,
+  "environment": {
+    "python": "3.14.6",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.5.1"
+  },
+  "frame_count": 8,
+  "frames": [
+    {
+      "frame_id": 0,
+      "input_sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf",
+      "golden_sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+    },
+    {
+      "frame_id": 1,
+      "input_sha256": "2bf06bb7cc2564c53b17253b4b8aad5ada3c3bc916531889ed6a49bd92160dc4",
+      "golden_sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f"
+    },
+    {
+      "frame_id": 2,
+      "input_sha256": "405e4e16d6c62f6b0b9113a4ef6f7f4a37dd92ef4a1f9cd990e15fa93801b436",
+      "golden_sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a"
+    },
+    {
+      "frame_id": 3,
+      "input_sha256": "4d323600308a0c527b149ebda1eaa1a4b8ad974de2e80387a962a38717676d23",
+      "golden_sha256": "910b3ef6ef5f88c17df6e1741a2ca745a61d617784ff9b851ed4b3de7c7d0e93"
+    },
+    {
+      "frame_id": 4,
+      "input_sha256": "b246177fbe457af4cab34df110c522d6a7a0b796c5dc308577343d83c0127d4f",
+      "golden_sha256": "c42e34b79e47ee2920e73b405ad958d37442e955bdce6e21af916952e4eae267"
+    },
+    {
+      "frame_id": 5,
+      "input_sha256": "367b41a62345cd0e7f4366bda491c22f1d0e70d60ee7ec830168baffe56d0d0b",
+      "golden_sha256": "d64fcc2e10f89e18b012cd4945d85febb4e900dde8ea93920c57db68c981db37"
+    },
+    {
+      "frame_id": 6,
+      "input_sha256": "4d56ea4b36c14e52ca41a4706c8545fcb62e4bb79ee761fdd56991905d3671fa",
+      "golden_sha256": "8a61381679eb711e6e10a2e9b798e6329048ae77b29eeb6e4681ce854c6222df"
+    },
+    {
+      "frame_id": 7,
+      "input_sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+      "golden_sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+    }
+  ],
+  "board_capture_tested": false,
+  "selected_input_stream_sha256": "f3b867edb9e17faf3ed60b223427674366470435c025e636a6e837096b3928ae",
+  "source_stream_hash_verified": true,
+  "frozen_quant_assets_verified": true,
+  "frozen_checkpoint_verified": true
+}
+

@@ -62,14 +62,23 @@ def main():
         raise ValueError("Source movie differs from the pinned release")
     # Select source frames, not synthesized/interpolated frames. Seek/filter are
     # after input decoding so frame numbers stay tied to the complete movie.
-    extraction = "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos,format=gray"
+    extraction = "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos:in_range=tv:out_range=pc,format=gray"
     output = cache / "sequence_960x540_y_u8.bin"
+    temporary_output = cache / "sequence_960x540_y_u8.tmp"
     command = [ffmpeg, "-hide_banner", "-loglevel", "warning", "-y", "-i", str(movie),
                "-vf", extraction, "-frames:v", "8", "-fps_mode", "passthrough",
-               "-an", "-f", "rawvideo", "-pix_fmt", "gray", str(output)]
+               "-an", "-f", "rawvideo", "-pix_fmt", "gray", str(temporary_output)]
     subprocess.run(command, check=True)
-    if output.stat().st_size != 8 * 960 * 540:
+    if temporary_output.stat().st_size != 8 * 960 * 540:
         raise ValueError("Unexpected extracted byte count")
+    if output.exists() and sha(output) != sha(temporary_output):
+        raise ValueError("Decoded bytes changed; refusing to overwrite prior input stream")
+    temporary_output.replace(output)
+    lut = subprocess.check_output([ffmpeg, "-v", "error", "-f", "lavfi", "-i",
+        "nullsrc=size=256x16,format=yuv420p,geq=lum=X:cb=128:cr=128,format=gray",
+        "-frames:v", "1", "-f", "rawvideo", "-pix_fmt", "gray", "pipe:1"])
+    if list(lut[:256]) != [max(0,min(255,int((value-16)*255/219+.5))) for value in range(256)]:
+        raise ValueError("Pinned FFmpeg limited/full range conversion check failed")
     source = {
         "title": "Big Buck Bunny (2008)", "creator": "Blender Foundation",
         "attribution": "(c) copyright 2008, Blender Foundation / www.bigbuckbunny.org",
@@ -79,6 +88,16 @@ def main():
         "archive_bytes": archive.stat().st_size, "movie_sha256": sha(movie),
         "movie_bytes": movie.stat().st_size,
         "source_frame_rate": "24/1", "source_frame_indices": list(range(1440, 1536, 12)),
+        "source_shape_wh": [1280, 720], "source_pixel_format": "yuv420p",
+        "preprocessing": {
+            "crop": "none", "resize": "1280x720 to 960x540, Lanczos via pinned FFmpeg/libswscale",
+            "color_input": "Decoded Theora planar YUV420P; consume luma, no RGB/BGR conversion",
+            "range": "Interpret source Y as limited [16,235], output full [0,255]; explicit tv to pc",
+            "range_formula": "clip(floor((Y-16)*255/219 + 0.5),0,255); scale/range conversion fused by libswscale",
+            "rounding": "Pinned FFmpeg/libswscale integer filtering and quantization; no Python/OpenCV gray conversion",
+            "authority": "Exact exported .bin SHA-256 is authoritative; same bytes for Golden and PC input",
+            "range_lut_256_codes_verified": True,
+        },
         "sequence_sampling_fps": 2, "source_timestamps_seconds": [60 + i * .5 for i in range(8)],
         "transform": "Select frames; Lanczos resize to 960x540; FFmpeg gray uint8 full-range luma; no audio",
         "decode_note": "The original OGG reports a keyframe-flag warning. Frames are decoded sequentially from the beginning (no keyframe seek); archive CRC and source/input hashes are verified.",

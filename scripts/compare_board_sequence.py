@@ -29,6 +29,8 @@ def load_manifest(path):
     if not frames or len(frames) != manifest["frame_count"]:
         raise ValueError("Invalid frame_count")
     ids = [frame["frame_id"] for frame in frames]
+    if any("order" in frame for frame in frames) and [frame.get("order") for frame in frames] != list(range(len(frames))):
+        raise ValueError("Manifest order must match the listed frame order")
     if any(type(value) is not int or value < 0 for value in ids) or len(set(ids)) != len(ids):
         raise ValueError("frame_id must be unique nonnegative integers")
     for name in ("input", "output"):
@@ -48,19 +50,27 @@ def load_manifest(path):
             spec = manifest["input" if name == "input" else "output"]
             if len(data) != spec["bytes_per_frame"]:
                 raise ValueError(f"Invalid frame length: {metadata['path']}")
-    names = [Path(frame["golden"]["path"]).name for frame in frames]
+            if "preview" in metadata:
+                preview = metadata["preview"]
+                actual = digest(safe_path(path.parent,preview["path"]).read_bytes())
+                if any(actual[key] != preview[key] for key in actual):
+                    raise ValueError("Lossless preview integrity mismatch")
+    names = [safe_path(path.parent,frame["golden"]["path"]) for frame in frames]
     if len(set(names)) != len(names):
-        raise ValueError("Golden filenames must be unique")
+        raise ValueError("Golden file paths must be unique")
     return manifest
 
 
 def compare_bytes(expected, received, width):
-    differing = [i for i, (a, b) in enumerate(zip(expected, received)) if a != b]
-    first = differing[0] if differing else min(len(expected), len(received)) if len(expected) != len(received) else None
+    equal_length = len(expected) == len(received)
+    differing = [i for i, (a, b) in enumerate(zip(expected, received)) if a != b] if equal_length else None
+    first = differing[0] if differing else min(len(expected),len(received)) if not equal_length else None
     return {
         "status": "PASS" if expected == received else "FAIL",
         "expected": digest(expected), "received": digest(received),
-        "byte_mismatch": len(differing), "missing_bytes": max(0, len(expected) - len(received)),
+        "length_status": "PASS" if equal_length else "FAIL",
+        "content_comparison": "DONE" if equal_length else "NOT_RUN_LENGTH_ERROR",
+        "byte_mismatch": len(differing) if differing is not None else None, "missing_bytes": max(0, len(expected) - len(received)),
         "extra_bytes": max(0, len(received) - len(expected)),
         "first_error": None if first is None else {
             "byte_offset": first, "row": first // width if first < len(expected) else None,
@@ -90,7 +100,7 @@ def compare_capture(manifest_path, *, capture_dir=None, stream=None, capture_fil
         elif capture_file is not None:
             received = capture_file.read_bytes()
         else:
-            path = capture_dir / Path(frame["golden"]["path"]).name
+            path = safe_path(capture_dir,frame["golden"]["path"])
             missing_file = not path.is_file()
             received = b"" if missing_file else path.read_bytes()
         result = {"frame_id": frame["frame_id"], "missing_file": missing_file,
@@ -101,8 +111,8 @@ def compare_capture(manifest_path, *, capture_dir=None, stream=None, capture_fil
             if other["frame_id"] != frame["frame_id"] and other["golden"]["sha256"] == result["received"]["sha256"]
         ]
         results.append(result)
-    expected_names = {Path(frame["golden"]["path"]).name for frame in frames}
-    unexpected_files = sorted(path.name for path in capture_dir.glob("*.bin") if path.name not in expected_names) if capture_dir else []
+    expected_names = {safe_path(capture_dir,frame["golden"]["path"]) for frame in frames} if capture_dir else set()
+    unexpected_files = sorted(path.relative_to(capture_dir).as_posix() for path in capture_dir.rglob("*.bin") if path.resolve() not in expected_names) if capture_dir else []
     extra_stream_bytes = max(0, len(payload) - frame_bytes * len(frames)) if payload is not None else 0
     return {
         "schema": "member-a-board-sequence-comparison-v1",
@@ -149,7 +159,7 @@ def main():
         for index, frame_result in enumerate(report["frames"]):
             frame = next(frame for frame in manifest["frames"] if frame["frame_id"] == frame_result["frame_id"])
             data = payload[index * height * width:(index + 1) * height * width] if payload is not None else (
-                args.capture_file.read_bytes() if args.capture_file else (args.capture_dir / Path(frame["golden"]["path"]).name).read_bytes())
+                args.capture_file.read_bytes() if args.capture_file else safe_path(args.capture_dir,frame["golden"]["path"]).read_bytes())
             image = Image.frombytes("L", (width, height), data)
             image.save(args.preview_dir / f"frame_{frame['frame_id']:03d}_capture.png")
             previews.append(image.resize((480, 270)))

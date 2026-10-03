@@ -135,7 +135,7 @@ def test_delivered_eight_frame_contract():
     assert probe["model_provenance"] == manifest["model_provenance"]
 
 
-@pytest.mark.parametrize("name", ["member_a_two_frame_check.zip", "member_a_video_8frames.zip"])
+@pytest.mark.parametrize("name", ["member_a_two_frame_check.zip", "member_a_video_8frames.zip", "member_a_authority_plus_second_frame.zip"])
 def test_portable_package_integrity(name):
     index = json.loads((ROOT / "artifacts/video_packages.json").read_text())
     metadata = next(package for package in index["packages"] if package["path"] == name)

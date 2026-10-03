@@ -45,7 +45,7 @@ def main():
             assert failure["frames"][0]["byte_mismatch"] == 1
             assert failure["frames"][0]["first_error"]["byte_offset"] == 123
         results[name + "_detected"] = "PASS"
-    for package in ("member_a_two_frame_check.zip", "member_a_video_8frames.zip"):
+    for package in ("member_a_two_frame_check.zip", "member_a_video_8frames.zip", "member_a_authority_plus_second_frame.zip"):
         destination = scratch / package.removesuffix(".zip")
         destination.mkdir(exist_ok=True)
         with zipfile.ZipFile(ROOT / "artifacts" / package) as zipped:
@@ -57,13 +57,21 @@ def main():
         capture.mkdir(exist_ok=True)
         for frame in packaged["frames"]:
             name = frame["golden"]["path"]
-            shutil.copyfile(packaged_manifest.parent / name, capture / Path(name).name)
+            (capture/name).parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(packaged_manifest.parent / name, capture / name)
         # -S excludes installed packages: core comparison really is stdlib-only.
         completed = subprocess.run([sys.executable, "-S", str(destination / "scripts/compare_board_sequence.py"),
                                     "--capture-dir", str(capture)], capture_output=True, text=True)
         assert completed.returncode == 0, completed.stderr + completed.stdout
         assert json.loads(completed.stdout)["status"] == "PASS"
         results[package + "_standalone"] = "PASS"
+        player_path = destination / "software_fixture_player.html"
+        completed = subprocess.run([sys.executable, "-S", str(destination / "scripts/export_pc_player.py"),
+                                    "--output", str(player_path)], capture_output=True, text=True)
+        assert completed.returncode == 0, completed.stderr + completed.stdout
+        assert json.loads(completed.stdout)["capture_status"] == "NOT_TESTED"
+        assert "__PLAYER_DATA_JSON__" not in player_path.read_text(encoding="utf-8")
+        results[package + "_player_standalone"] = "PASS"
     # Test ROM conversion prefix and padding without publishing duplicate .mem.
     mem = scratch / "frame000.mem"
     subprocess.run([sys.executable, str(ROOT / "scripts/input_bin_to_mem.py"),

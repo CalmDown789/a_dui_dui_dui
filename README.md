@@ -73,12 +73,20 @@ python scripts\verify_integer_delivery.py
 
 新增公开授权视频的固定 8 帧 `960×540` 输入及逐帧 `1920×1080` 整数 Golden。模型、权重、量化参数和原冻结标签保持不变。先用 frame 000/007 做两幅不同画面的检查，再按清单顺序跑完整 8 帧。
 
+按 10 月 3 日详细任务说明补充 A1 成对包：`artifacts/member_a_authority_plus_second_frame.zip`，包含旧权威帧 0000 和不同自然画面 0001，来源见 `artifacts/authority_pair/manifest.json`。它与视频的 frame ID 使用不同序列 ID，避免混淆。每帧无损灰度预览与原始字节同时交付。
+
 - 取数：`artifacts/multiframe/manifest.json`；两帧子集：`two_frame_manifest.json`；
 - 便携包：`artifacts/member_a_two_frame_check.zip` 和 `artifacts/member_a_video_8frames.zip`；
 - 回传工具：`python scripts/compare_board_sequence.py --capture-dir <回传目录>`，支持单帧与无头连续数据；
+- PC 播放器：`python scripts/export_pc_player.py --output <D盘HTML路径>`，可选加载回传文件并并排对照；
+- 接收清单：`python scripts/compare_received_frames.py --manifest artifacts/multiframe/manifest.json --received-manifest <D盘接收清单> --report <D盘报告>`；播放器支持同一个 `--received-manifest`，保留接收顺序，不用 Golden 补缺帧；
+- 新序列生成：`python scripts/generate_multiframe_golden.py --inputs artifacts/authority_pair_inputs.json --output-dir <D盘新目录>`，拒绝覆盖已有目录；
+- [验收命令、退出码和日志](results/multiframe/task_execution.json)，[完整任务核验](docs/成员A任务核验_2026-10-03.md)；
 - [交接说明与命令](docs/成员A多帧交接_2026-10-03.md)。
 
 清单包含帧编号、顺序、源视频时间、哈希和冻结模型来源。抽样序列是 2 fps 展示素材，不是持续帧率指标；软件 Golden 已完成整数重算，C 的该组多帧板测仍需回传数据验证。
+
+实时 PC 上传与回传适配尚未完成，等待 A/C 确认接口、帧头/编号、流控、CRC 和超时恢复，见[协议确认清单](docs/成员A_PC收发协议确认清单_2026-10-03.md)。离线播放器和对拍工具不等于实时收发链路。
 
 ## 职责边界
 

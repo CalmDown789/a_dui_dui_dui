@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
+<title>成员 A 多帧整数参考播放器</title>
+<style>
+:root{font-family:system-ui,"Microsoft YaHei",sans-serif;color:#18303c;background:#eef3f6}
+*{box-sizing:border-box}body{margin:0}main{max-width:1420px;margin:auto;padding:24px}
+h1{font-size:25px;margin:0 0 9px}.muted{color:#536a77;font-size:14px;line-height:1.6}
+.bar,.panel,.notice{background:#fff;border:1px solid #d4dfe5;border-radius:10px;padding:16px;margin-top:16px}.panel{overflow:auto}
+.notice{background:#e6f1fa;border-color:#a9cde6}.fail{background:#fff0ee;border-color:#d97c6d;color:#8e2920}.pass{color:#196742}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:10px 0}
+button,select{font:inherit;border:1px solid #aec2ce;border-radius:6px;padding:8px 13px;background:#fff;color:#18303c;cursor:pointer}
+button.primary{background:#1c607d;color:#fff;border-color:#1c607d}input[type=range]{width:min(620px,100%)}
+.pictures{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}h2{font-size:16px;margin:0 0 12px}
+canvas{width:100%;height:auto;display:block;background:#dce4e8;aspect-ratio:16/9;image-rendering:auto}
+pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin-bottom:0}
+.panel p{min-height:2.8em}.capture-hidden{display:none}.no-capture .pictures{grid-template-columns:repeat(2,minmax(0,1fr))}
+label{font-size:14px}footer{margin-top:20px;font-size:12px;line-height:1.7;color:#536a77}
+@media(max-width:850px){.pictures,.no-capture .pictures{grid-template-columns:1fr}main{padding:16px}}
+</style>
+</head>
+<body>
+<main>
+<h1>成员 A 多帧整数参考播放器</h1>
+<div class="muted">FSRCNN d16/s8/m1/c16 · 960×540 Y 输入 → 1920×1080 Y 输出</div>
+<div id="modeNotice" class="notice" role="status"></div>
+<section class="bar">
+<div id="frameStatus" aria-live="polite"></div>
+<div class="controls">
+<button id="first">首帧</button><button id="previous">上一帧</button>
+<button id="play" class="primary">播放</button><button id="next">下一帧</button>
+<label>展示速度 <select id="speed"><option value="1">1 fps</option><option value="2" selected>2 fps</option><option value="4">4 fps</option><option value="8">8 fps</option></select></label>
+<label><input id="loop" type="checkbox" checked> 循环</label>
+<button id="view">原图 1:1 显示</button>
+</div>
+<input id="position" aria-label="帧位置" type="range" min="0" value="0">
+<div class="muted">空格播放/暂停，左右方向键切帧。展示速度由电脑控制，不代表 FPGA 的运行帧率。</div>
+</section>
+<div class="pictures">
+<section class="panel"><h2>输入 Y · 960×540</h2><canvas id="inputCanvas" aria-label="输入灰度图"></canvas><pre id="inputInfo"></pre></section>
+<section class="panel"><h2>冻结整数 Golden · 1920×1080</h2><canvas id="goldenCanvas" aria-label="整数参考图"></canvas><pre id="goldenInfo"></pre></section>
+<section class="panel" id="capturePanel"><h2>回传文件 · 1920×1080</h2><canvas id="captureCanvas" aria-label="回传图"></canvas><pre id="captureInfo"></pre></section>
+</div>
+<section class="panel"><h2>检查结果与来源</h2><pre id="evidence"></pre></section>
+<footer>视频素材及对应帧来源：Big Buck Bunny (2008)，(c) copyright 2008, Blender Foundation / www.bigbuckbunny.org；旧权威帧为程序生成数据，具体来源见清单。<br>
+画面及缩放、灰度化、超分衍生图按 CC BY 3.0 保留署名：https://creativecommons.org/licenses/by/3.0/ 。<br>
+本页面在本机离线显示，不连接串口或上传数据。线上帧协议尚待 A/C 确认。</footer>
+</main>
+<script id="playerData" type="application/json">__PLAYER_DATA_JSON__</script>
+<script>
+"use strict";
+const data=JSON.parse(document.getElementById("playerData").textContent);
+const state={index:0,playing:false,timer:null,actualSize:false};
+const element=id=>document.getElementById(id);
+const count=data.frames.length;
+element("position").max=String(count-1);
+if(data.mode==="software_reference"){
+ document.body.classList.add("no-capture");element("capturePanel").classList.add("capture-hidden");
+ element("modeNotice").textContent="软件整数参考预览：尚未加载板卡回传文件，不能据此判定板测通过。";
+}else{
+ const passed=data.capture_report.status==="PASS";
+ element("modeNotice").textContent="回传文件逐字节检查："+data.capture_report.status+"。文件来源由采集者确认；这不验证线上帧编号、CRC 或硬件帧率。";
+ element("modeNotice").classList.add(passed?"pass":"fail");
+}
+function bytes(encoded){const raw=atob(encoded);return Uint8Array.from(raw,character=>character.charCodeAt(0));}
+function paint(id,encoded,shape){
+ const canvas=element(id),[height,width]=shape;canvas.width=width;canvas.height=height;
+ canvas.style.width=state.actualSize?width+"px":"100%";
+ const context=canvas.getContext("2d"),raw=bytes(encoded);
+ if(raw.length!==width*height){context.clearRect(0,0,width,height);return false;}
+ const pixels=context.createImageData(width,height);
+ for(let i=0;i<raw.length;i++){const j=i*4;pixels.data[j]=pixels.data[j+1]=pixels.data[j+2]=raw[i];pixels.data[j+3]=255;}
+ context.putImageData(pixels,0,0);return true;
+}
+function metadata(record){return "长度："+record.bytes.toLocaleString()+" 字节\nSHA-256："+record.sha256;}
+function render(){
+ const frame=data.frames[state.index],contract=data.manifest.frames[state.index];
+ element("position").value=String(state.index);
+ element("frameStatus").textContent="帧 "+(state.index+1)+" / "+count+" · frame ID "+String(frame.frame_id).padStart(3,"0")+
+ (frame.source_timestamp_seconds==null?"":" · 源视频 "+frame.source_timestamp_seconds.toFixed(1)+" 秒");
+ element("frameStatus").textContent+=" · sequence "+(data.manifest.sequence_id||"legacy_video_sequence");
+ paint("inputCanvas",frame.input_b64,data.manifest.input.shape_hwc);
+ paint("goldenCanvas",frame.golden_b64,data.manifest.output.shape_hwc);
+ element("inputInfo").textContent="输入文件："+contract.input.path+"\n"+metadata(contract.input)+(contract.source?"\n来源："+JSON.stringify(contract.source):"");
+ element("goldenInfo").textContent=metadata(contract.golden);
+ let evidence="模式："+(data.mode==="software_reference"?"软件参考，板测 NOT_TESTED":"回传文件比对")+
+  "\n清单 SHA-256："+data.manifest_sha256+"\n模型："+data.manifest.model+"\n实时收发：未启用（协议未确认）";
+ if(data.capture_report){
+  const result=data.capture_report.frames[state.index];
+  const valid=paint("captureCanvas",frame.capture_b64,data.manifest.output.shape_hwc);
+  element("captureInfo").textContent="文件来源："+(frame.capture_source||"用户输入文件")+"\n"+metadata(result.received)+(valid?"":"\n长度错误或缺帧，拒绝绘制不完整画面");
+  if(data.mode==="received_manifest")evidence+="\n接收来源："+data.capture_report.evidence_source+"\n接收顺序："+frame.receive_order+"\n序列异常："+JSON.stringify(data.capture_report.sequence_errors)+"\n首字节至末字节接收耗时："+data.capture_report.receive_first_to_last_seconds+" s（不是核心性能）";
+  evidence+="\n整组判定："+data.capture_report.status+"\n本帧判定："+result.status+
+   "\n失配字节："+result.byte_mismatch+"；缺少："+result.missing_bytes+"；多余："+result.extra_bytes+
+   "\n首错："+JSON.stringify(result.first_error)+"\n整组额外数据："+data.capture_report.extra_stream_bytes+" 字节";
+ }
+ element("evidence").textContent=evidence;
+}
+function stop(){state.playing=false;clearTimeout(state.timer);state.timer=null;element("play").textContent="播放";}
+function tick(){
+ if(!state.playing)return;
+ if(state.index===count-1){if(!element("loop").checked){stop();return;}state.index=0;}else state.index++;
+ render();state.timer=setTimeout(tick,1000/Number(element("speed").value));
+}
+function play(){state.playing=true;element("play").textContent="暂停";state.timer=setTimeout(tick,1000/Number(element("speed").value));}
+function seek(index){stop();state.index=Math.max(0,Math.min(count-1,index));render();}
+element("first").onclick=()=>seek(0);
+element("previous").onclick=()=>seek(state.index-1);
+element("next").onclick=()=>seek(state.index+1);
+element("position").oninput=event=>seek(Number(event.target.value));
+element("play").onclick=()=>state.playing?stop():play();
+element("speed").onchange=()=>{if(state.playing){stop();play();}};
+element("view").onclick=()=>{state.actualSize=!state.actualSize;element("view").textContent=state.actualSize?"适应窗口":"原图 1:1 显示";render();};
+document.addEventListener("keydown",event=>{
+ if(event.target.matches("input,select,button"))return;
+ if(event.code==="Space"){event.preventDefault();state.playing?stop():play();}
+ if(event.code==="ArrowRight"){event.preventDefault();seek(state.index+1);}
+ if(event.code==="ArrowLeft"){event.preventDefault();seek(state.index-1);}
+});
+render();
+</script>
+</body>
+</html>

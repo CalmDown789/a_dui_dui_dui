@@ -1,0 +1,34 @@
+verified frame 0 recompute=True
+verified frame 1 recompute=True
+{
+  "status": "PASS",
+  "recomputed_all_integer_stages": true,
+  "file_validation": "PASS",
+  "integer_recomputation": "PASS",
+  "started_utc": "2026-10-03T10:21:05.403986+00:00",
+  "elapsed_seconds": 3.825966599979438,
+  "environment": {
+    "python": "3.14.6",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.5.1"
+  },
+  "frame_count": 2,
+  "frames": [
+    {
+      "frame_id": 0,
+      "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+      "golden_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+    },
+    {
+      "frame_id": 1,
+      "input_sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+      "golden_sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+    }
+  ],
+  "board_capture_tested": false,
+  "selected_input_stream_sha256": "db57cb406f178571eb1ef55913e81f5fc9703a15fb390f6e3c5297d03c469724",
+  "source_stream_hash_verified": false,
+  "frozen_quant_assets_verified": true,
+  "frozen_checkpoint_verified": true
+}
+

@@ -105,7 +105,8 @@
       }
     },
     "reference": "src/member_a/fixed_reference.py",
-    "reference_sha256_lf": "91e0e4561abcec7f1c47a33c8a130c7487e8ee6207808e9204fa5678a3a258c0"
+    "reference_sha256_lf": "91e0e4561abcec7f1c47a33c8a130c7487e8ee6207808e9204fa5678a3a258c0",
+    "quant_assets_repository_path": "artifacts/quant"
   },
   "source": {
     "title": "Big Buck Bunny (2008)",
@@ -130,6 +131,21 @@
       1512,
       1524
     ],
+    "source_shape_wh": [
+      1280,
+      720
+    ],
+    "source_pixel_format": "yuv420p",
+    "preprocessing": {
+      "crop": "none",
+      "resize": "1280x720 to 960x540, Lanczos via pinned FFmpeg/libswscale",
+      "color_input": "Decoded Theora planar YUV420P; consume luma, no RGB/BGR conversion",
+      "range": "Interpret source Y as limited [16,235], output full [0,255]; explicit tv to pc",
+      "range_formula": "clip(floor((Y-16)*255/219 + 0.5),0,255); scale/range conversion fused by libswscale",
+      "rounding": "Pinned FFmpeg/libswscale integer filtering and quantization; no Python/OpenCV gray conversion",
+      "authority": "Exact exported .bin SHA-256 is authoritative; same bytes for Golden and PC input",
+      "range_lut_256_codes_verified": true
+    },
     "sequence_sampling_fps": 2,
     "source_timestamps_seconds": [
       60.0,
@@ -144,7 +160,7 @@
     "transform": "Select frames; Lanczos resize to 960x540; FFmpeg gray uint8 full-range luma; no audio",
     "decode_note": "The original OGG reports a keyframe-flag warning. Frames are decoded sequentially from the beginning (no keyframe seek); archive CRC and source/input hashes are verified.",
     "ffmpeg_version": "ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers",
-    "ffmpeg_filter": "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos,format=gray",
+    "ffmpeg_filter": "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos:in_range=tv:out_range=pc,format=gray",
     "extracted_raw_sha256": "f3b867edb9e17faf3ed60b223427674366470435c025e636a6e837096b3928ae",
     "frame_count": 8,
     "notice": "These frames are a sampled prerecorded sequence, not a 30fps throughput test."
@@ -163,13 +179,37 @@
         "path": "frame_000_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "1a10d1b3",
-        "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf"
+        "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_000_input_y_u8.png",
+          "bytes": 155151,
+          "sha256": "7b3538ae49ca14980954dcfb2d35ff4319c707af2943e91bd777c77f98e838d8",
+          "crc32": "02808d36"
+        }
       },
       "golden": {
         "path": "frame_000_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "b943791d",
-        "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+        "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_000_output_y_u8.png",
+          "bytes": 605014,
+          "sha256": "11920a13fff5dc4503227e45ad5c534a0110c83eddcf8435f6fac5fd889f5083",
+          "crc32": "67e43c53"
+        }
       },
       "stage_digests": {
         "input": {
@@ -340,7 +380,8 @@
           "crc32": "b943791d",
           "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
         }
-      }
+      },
+      "order": 0
     },
     {
       "frame_id": 1,
@@ -351,13 +392,37 @@
         "path": "frame_001_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "3e0ad241",
-        "sha256": "2bf06bb7cc2564c53b17253b4b8aad5ada3c3bc916531889ed6a49bd92160dc4"
+        "sha256": "2bf06bb7cc2564c53b17253b4b8aad5ada3c3bc916531889ed6a49bd92160dc4",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_001_input_y_u8.png",
+          "bytes": 157670,
+          "sha256": "e462436a0328126e1fe04e3423aef731c7e26ae83b0214df24be448d99512221",
+          "crc32": "8a65727f"
+        }
       },
       "golden": {
         "path": "frame_001_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "ba7ef1cb",
-        "sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f"
+        "sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_001_output_y_u8.png",
+          "bytes": 610158,
+          "sha256": "304595376c811549c14fe9003b54a671a51097c2ef9af291cfd6385d47947814",
+          "crc32": "235812d1"
+        }
       },
       "stage_digests": {
         "input": {
@@ -528,7 +593,8 @@
           "crc32": "ba7ef1cb",
           "sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f"
         }
-      }
+      },
+      "order": 1
     },
     {
       "frame_id": 2,
@@ -539,13 +605,37 @@
         "path": "frame_002_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "97c97290",
-        "sha256": "405e4e16d6c62f6b0b9113a4ef6f7f4a37dd92ef4a1f9cd990e15fa93801b436"
+        "sha256": "405e4e16d6c62f6b0b9113a4ef6f7f4a37dd92ef4a1f9cd990e15fa93801b436",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_002_input_y_u8.png",
+          "bytes": 159200,
+          "sha256": "070890fd287a15e1645ae8ebf303a83da633ea859b8b32e76116ed434d852e96",
+          "crc32": "8b08c1c1"
+        }
       },
       "golden": {
         "path": "frame_002_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "2da1ba08",
-        "sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a"
+        "sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_002_output_y_u8.png",
+          "bytes": 552963,
+          "sha256": "f0515b5f44422cff1e42b03f94c43bc6764437f01faa62ed52fde08f33a004e7",
+          "crc32": "1ba3a229"
+        }
       },
       "stage_digests": {
         "input": {
@@ -716,7 +806,8 @@
           "crc32": "2da1ba08",
           "sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a"
         }
-      }
+      },
+      "order": 2
     },
     {
       "frame_id": 3,
@@ -727,13 +818,37 @@
         "path": "frame_003_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "dfaea9fe",
-        "sha256": "4d323600308a0c527b149ebda1eaa1a4b8ad974de2e80387a962a38717676d23"
+        "sha256": "4d323600308a0c527b149ebda1eaa1a4b8ad974de2e80387a962a38717676d23",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_003_input_y_u8.png",
+          "bytes": 162441,
+          "sha256": "9553d853cf6bb113d2d44a0cd43f833da4f369f3e54d5c34c4a69fa6a21d1d59",
+          "crc32": "9d77d09d"
+        }
       },
       "golden": {
         "path": "frame_003_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "922a6ac2",
-        "sha256": "910b3ef6ef5f88c17df6e1741a2ca745a61d617784ff9b851ed4b3de7c7d0e93"
+        "sha256": "910b3ef6ef5f88c17df6e1741a2ca745a61d617784ff9b851ed4b3de7c7d0e93",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_003_output_y_u8.png",
+          "bytes": 561397,
+          "sha256": "8a2189b37ffe52fd8a8d06de4ae81dd254fdd460c2e432a80f29a44545c78051",
+          "crc32": "6ec2e5ee"
+        }
       },
       "stage_digests": {
         "input": {
@@ -904,7 +1019,8 @@
           "crc32": "922a6ac2",
           "sha256": "910b3ef6ef5f88c17df6e1741a2ca745a61d617784ff9b851ed4b3de7c7d0e93"
         }
-      }
+      },
+      "order": 3
     },
     {
       "frame_id": 4,
@@ -915,13 +1031,37 @@
         "path": "frame_004_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "f39e2d66",
-        "sha256": "b246177fbe457af4cab34df110c522d6a7a0b796c5dc308577343d83c0127d4f"
+        "sha256": "b246177fbe457af4cab34df110c522d6a7a0b796c5dc308577343d83c0127d4f",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_004_input_y_u8.png",
+          "bytes": 160090,
+          "sha256": "af64afa2c9dc28dbfc2c7b724f6fcebe1a2e52b2727f53006bdd27c376e2244e",
+          "crc32": "58b040bb"
+        }
       },
       "golden": {
         "path": "frame_004_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "eb59c165",
-        "sha256": "c42e34b79e47ee2920e73b405ad958d37442e955bdce6e21af916952e4eae267"
+        "sha256": "c42e34b79e47ee2920e73b405ad958d37442e955bdce6e21af916952e4eae267",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_004_output_y_u8.png",
+          "bytes": 553348,
+          "sha256": "1fbd68aa4b2efed11c2b8a98a94571fc5345997c749fd83f9b23c8d5020e5e35",
+          "crc32": "b6f15266"
+        }
       },
       "stage_digests": {
         "input": {
@@ -1092,7 +1232,8 @@
           "crc32": "eb59c165",
           "sha256": "c42e34b79e47ee2920e73b405ad958d37442e955bdce6e21af916952e4eae267"
         }
-      }
+      },
+      "order": 4
     },
     {
       "frame_id": 5,
@@ -1103,13 +1244,37 @@
         "path": "frame_005_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "fca2801f",
-        "sha256": "367b41a62345cd0e7f4366bda491c22f1d0e70d60ee7ec830168baffe56d0d0b"
+        "sha256": "367b41a62345cd0e7f4366bda491c22f1d0e70d60ee7ec830168baffe56d0d0b",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_005_input_y_u8.png",
+          "bytes": 164269,
+          "sha256": "e60896000783a4912acb40eaccb77f2e9cbb8b599509fa094506db08205aacec",
+          "crc32": "7430926e"
+        }
       },
       "golden": {
         "path": "frame_005_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "422ed207",
-        "sha256": "d64fcc2e10f89e18b012cd4945d85febb4e900dde8ea93920c57db68c981db37"
+        "sha256": "d64fcc2e10f89e18b012cd4945d85febb4e900dde8ea93920c57db68c981db37",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_005_output_y_u8.png",
+          "bytes": 566228,
+          "sha256": "806924d4366659cffe5425b01cc010027e47d6efb48e02c63d44df2fd898ef0b",
+          "crc32": "95b3196a"
+        }
       },
       "stage_digests": {
         "input": {
@@ -1280,7 +1445,8 @@
           "crc32": "422ed207",
           "sha256": "d64fcc2e10f89e18b012cd4945d85febb4e900dde8ea93920c57db68c981db37"
         }
-      }
+      },
+      "order": 5
     },
     {
       "frame_id": 6,
@@ -1291,13 +1457,37 @@
         "path": "frame_006_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "90e214a4",
-        "sha256": "4d56ea4b36c14e52ca41a4706c8545fcb62e4bb79ee761fdd56991905d3671fa"
+        "sha256": "4d56ea4b36c14e52ca41a4706c8545fcb62e4bb79ee761fdd56991905d3671fa",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_006_input_y_u8.png",
+          "bytes": 160281,
+          "sha256": "abea0efe0df8d13dd2623833821708425bce7cfc6f29f9370c0c9fb96a004267",
+          "crc32": "85c41dd6"
+        }
       },
       "golden": {
         "path": "frame_006_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "2393c476",
-        "sha256": "8a61381679eb711e6e10a2e9b798e6329048ae77b29eeb6e4681ce854c6222df"
+        "sha256": "8a61381679eb711e6e10a2e9b798e6329048ae77b29eeb6e4681ce854c6222df",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_006_output_y_u8.png",
+          "bytes": 561481,
+          "sha256": "e9698fa5be32153355d4c61e32f3ced72b95fcf5f5134e680da1337903cab562",
+          "crc32": "a2d8a9bd"
+        }
       },
       "stage_digests": {
         "input": {
@@ -1468,7 +1658,8 @@
           "crc32": "2393c476",
           "sha256": "8a61381679eb711e6e10a2e9b798e6329048ae77b29eeb6e4681ce854c6222df"
         }
-      }
+      },
+      "order": 6
     },
     {
       "frame_id": 7,
@@ -1479,13 +1670,37 @@
         "path": "frame_007_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "50f56a7a",
-        "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb"
+        "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_007_input_y_u8.png",
+          "bytes": 156504,
+          "sha256": "f77ce476dee2394d0d7294f9ae356aab6552fd00c569bc28d3b060eec227bf00",
+          "crc32": "5bcba0a6"
+        }
       },
       "golden": {
         "path": "frame_007_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "d3d06326",
-        "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+        "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_007_output_y_u8.png",
+          "bytes": 528792,
+          "sha256": "4687e0cf92fd00359a296504b1cf7573b7fc7f4b717f3e81f12f18bafa931b40",
+          "crc32": "53f54436"
+        }
       },
       "stage_digests": {
         "input": {
@@ -1656,8 +1871,26 @@
           "crc32": "d3d06326",
           "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
         }
-      }
+      },
+      "order": 7
     }
   ],
-  "boundary": "Independent network frames in listed order. No FPGA interface, clock, bitstream, board-pass or sustained-FPS claim."
+  "boundary": "Independent network frames in listed order. No FPGA interface, clock, bitstream, board-pass or sustained-FPS claim.",
+  "sequence_id": "bbb_clip_01",
+  "preprocessing": {
+    "crop": "none",
+    "resize": "1280x720 to 960x540, Lanczos via pinned FFmpeg/libswscale",
+    "color_input": "Decoded Theora planar YUV420P; consume luma, no RGB/BGR conversion",
+    "range": "Interpret source Y as limited [16,235], output full [0,255]; explicit tv to pc",
+    "range_formula": "clip(floor((Y-16)*255/219 + 0.5),0,255); scale/range conversion fused by libswscale",
+    "rounding": "Pinned FFmpeg/libswscale integer filtering and quantization; no Python/OpenCV gray conversion",
+    "authority": "Exact exported .bin SHA-256 is authoritative; same bytes for Golden and PC input",
+    "range_lut_256_codes_verified": true
+  },
+  "metadata_revision": {
+    "source_commit": "c6459bc07abb01f943a5376a9cf6fcb0cefc8619",
+    "worktree_dirty": true,
+    "raw_input_and_golden_changed": false,
+    "original_generation_time": "Not recorded in initial delivery; recomputation report records current verification time"
+  }
 }

@@ -105,7 +105,8 @@
       }
     },
     "reference": "src/member_a/fixed_reference.py",
-    "reference_sha256_lf": "91e0e4561abcec7f1c47a33c8a130c7487e8ee6207808e9204fa5678a3a258c0"
+    "reference_sha256_lf": "91e0e4561abcec7f1c47a33c8a130c7487e8ee6207808e9204fa5678a3a258c0",
+    "quant_assets_repository_path": "artifacts/quant"
   },
   "source": {
     "title": "Big Buck Bunny (2008)",
@@ -130,6 +131,21 @@
       1512,
       1524
     ],
+    "source_shape_wh": [
+      1280,
+      720
+    ],
+    "source_pixel_format": "yuv420p",
+    "preprocessing": {
+      "crop": "none",
+      "resize": "1280x720 to 960x540, Lanczos via pinned FFmpeg/libswscale",
+      "color_input": "Decoded Theora planar YUV420P; consume luma, no RGB/BGR conversion",
+      "range": "Interpret source Y as limited [16,235], output full [0,255]; explicit tv to pc",
+      "range_formula": "clip(floor((Y-16)*255/219 + 0.5),0,255); scale/range conversion fused by libswscale",
+      "rounding": "Pinned FFmpeg/libswscale integer filtering and quantization; no Python/OpenCV gray conversion",
+      "authority": "Exact exported .bin SHA-256 is authoritative; same bytes for Golden and PC input",
+      "range_lut_256_codes_verified": true
+    },
     "sequence_sampling_fps": 2,
     "source_timestamps_seconds": [
       60.0,
@@ -144,7 +160,7 @@
     "transform": "Select frames; Lanczos resize to 960x540; FFmpeg gray uint8 full-range luma; no audio",
     "decode_note": "The original OGG reports a keyframe-flag warning. Frames are decoded sequentially from the beginning (no keyframe seek); archive CRC and source/input hashes are verified.",
     "ffmpeg_version": "ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers",
-    "ffmpeg_filter": "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos,format=gray",
+    "ffmpeg_filter": "select=gte(n\\,1440)*not(mod(n-1440\\,12)),scale=960:540:flags=lanczos:in_range=tv:out_range=pc,format=gray",
     "extracted_raw_sha256": "f3b867edb9e17faf3ed60b223427674366470435c025e636a6e837096b3928ae",
     "frame_count": 8,
     "notice": "These frames are a sampled prerecorded sequence, not a 30fps throughput test."
@@ -163,13 +179,37 @@
         "path": "frame_000_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "1a10d1b3",
-        "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf"
+        "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_000_input_y_u8.png",
+          "bytes": 155151,
+          "sha256": "7b3538ae49ca14980954dcfb2d35ff4319c707af2943e91bd777c77f98e838d8",
+          "crc32": "02808d36"
+        }
       },
       "golden": {
         "path": "frame_000_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "b943791d",
-        "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+        "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_000_output_y_u8.png",
+          "bytes": 605014,
+          "sha256": "11920a13fff5dc4503227e45ad5c534a0110c83eddcf8435f6fac5fd889f5083",
+          "crc32": "67e43c53"
+        }
       },
       "stage_digests": {
         "input": {
@@ -340,7 +380,8 @@
           "crc32": "b943791d",
           "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
         }
-      }
+      },
+      "order": 0
     },
     {
       "frame_id": 7,
@@ -351,13 +392,37 @@
         "path": "frame_007_input_y_u8.bin",
         "bytes": 518400,
         "crc32": "50f56a7a",
-        "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb"
+        "sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+        "shape_hwc": [
+          540,
+          960,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_007_input_y_u8.png",
+          "bytes": 156504,
+          "sha256": "f77ce476dee2394d0d7294f9ae356aab6552fd00c569bc28d3b060eec227bf00",
+          "crc32": "5bcba0a6"
+        }
       },
       "golden": {
         "path": "frame_007_output_y_u8.bin",
         "bytes": 2073600,
         "crc32": "d3d06326",
-        "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
+        "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406",
+        "shape_hwc": [
+          1080,
+          1920,
+          1
+        ],
+        "dtype": "uint8",
+        "preview": {
+          "path": "frame_007_output_y_u8.png",
+          "bytes": 528792,
+          "sha256": "4687e0cf92fd00359a296504b1cf7573b7fc7f4b717f3e81f12f18bafa931b40",
+          "crc32": "53f54436"
+        }
       },
       "stage_digests": {
         "input": {
@@ -528,9 +593,26 @@
           "crc32": "d3d06326",
           "sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406"
         }
-      }
+      },
+      "order": 1
     }
   ],
   "boundary": "Independent network frames in listed order. No FPGA interface, clock, bitstream, board-pass or sustained-FPS claim.",
-  "purpose": "Initial two-image check using distinct source timestamps, then proceed to all eight frames."
+  "sequence_id": "bbb_two_image_probe",
+  "preprocessing": {
+    "crop": "none",
+    "resize": "1280x720 to 960x540, Lanczos via pinned FFmpeg/libswscale",
+    "color_input": "Decoded Theora planar YUV420P; consume luma, no RGB/BGR conversion",
+    "range": "Interpret source Y as limited [16,235], output full [0,255]; explicit tv to pc",
+    "range_formula": "clip(floor((Y-16)*255/219 + 0.5),0,255); scale/range conversion fused by libswscale",
+    "rounding": "Pinned FFmpeg/libswscale integer filtering and quantization; no Python/OpenCV gray conversion",
+    "authority": "Exact exported .bin SHA-256 is authoritative; same bytes for Golden and PC input",
+    "range_lut_256_codes_verified": true
+  },
+  "metadata_revision": {
+    "source_commit": "c6459bc07abb01f943a5376a9cf6fcb0cefc8619",
+    "worktree_dirty": true,
+    "raw_input_and_golden_changed": false,
+    "original_generation_time": "Not recorded in initial delivery; recomputation report records current verification time"
+  }
 }

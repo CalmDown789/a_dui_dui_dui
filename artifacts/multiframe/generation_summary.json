@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "all_frames": 8,
+  "all_stage_digests_match": true,
+  "final_bytes_identical": true,
+  "generation": {
+    "source_commit": "c6459bc07abb01f943a5376a9cf6fcb0cefc8619",
+    "worktree_dirty": true,
+    "started_utc": "2026-10-03T10:18:33.506951+00:00",
+    "elapsed_seconds": 15.90136210003402,
+    "environment": {
+      "python": "3.14.6",
+      "torch": "2.11.0+cu128",
+      "numpy": "2.5.1"
+    }
+  },
+  "board_capture_tested": false,
+  "command": [
+    "python",
+    "scripts/generate_video_sequence.py",
+    "--output-dir",
+    ".data\\repro_sequence_20261003_final"
+  ],
+  "verification_command": [
+    "python",
+    "scripts/check_sequence_reproduction.py",
+    "--regenerated",
+    ".data\\repro_sequence_20261003_final\\manifest.json"
+  ]
+}

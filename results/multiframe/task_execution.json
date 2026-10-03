@@ -1,0 +1,125 @@
+{
+  "schema": "member-a-task-execution-ledger-v1",
+  "status": "PASS",
+  "python": "3.14.6",
+  "executions": [
+    {
+      "name": "original_authority_recompute",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import sys,json,torch; sys.path.insert(0,'scripts'); import verify_full_integer_golden as v; torch.set_num_threads(4); print(json.dumps(v.verify(True),indent=2))"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:20:37.320553+00:00",
+      "elapsed_seconds": 5.829566100030206,
+      "log": "results/multiframe/logs/original_authority_recompute.txt"
+    },
+    {
+      "name": "eight_frames_recompute",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/verify_video_sequence.py",
+        "--recompute",
+        "--report",
+        "artifacts/multiframe/verification.json"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:20:43.151815+00:00",
+      "elapsed_seconds": 18.66949460003525,
+      "log": "results/multiframe/logs/eight_frames_recompute.txt"
+    },
+    {
+      "name": "authority_pair_recompute",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/verify_video_sequence.py",
+        "--manifest",
+        "artifacts/authority_pair/manifest.json",
+        "--recompute",
+        "--report",
+        "artifacts/authority_pair/verification.json"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:01.822320+00:00",
+      "elapsed_seconds": 7.8358788000186905,
+      "log": "results/multiframe/logs/authority_pair_recompute.txt"
+    },
+    {
+      "name": "safe_directory_reproduction",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/check_sequence_reproduction.py",
+        "--regenerated",
+        ".data/repro_sequence_20261003_final/manifest.json"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:09.659343+00:00",
+      "elapsed_seconds": 0.3504030000185594,
+      "log": "results/multiframe/logs/safe_directory_reproduction.txt"
+    },
+    {
+      "name": "player_controller",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/verify_pc_player.py",
+        "--node",
+        "D:\\Nodejs\\node.exe"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:10.012331+00:00",
+      "elapsed_seconds": 14.73223260010127,
+      "log": "results/multiframe/logs/player_controller.txt"
+    },
+    {
+      "name": "receive_manifest_faults",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/selftest_received_delivery.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:24.745842+00:00",
+      "elapsed_seconds": 7.1644281999906525,
+      "log": "results/multiframe/logs/receive_manifest_faults.txt"
+    },
+    {
+      "name": "package_build",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/package_video_sequence.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:31.911078+00:00",
+      "elapsed_seconds": 1.0402121000224724,
+      "log": "results/multiframe/logs/package_build.txt"
+    },
+    {
+      "name": "portable_software_tests",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "scripts/selftest_video_delivery.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:32.952098+00:00",
+      "elapsed_seconds": 10.409583700005896,
+      "log": "results/multiframe/logs/portable_software_tests.txt"
+    },
+    {
+      "name": "python_test_suite",
+      "command": [
+        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--basetemp",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\pytest_task_temp"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-10-03T10:21:43.362603+00:00",
+      "elapsed_seconds": 9.008681499981321,
+      "log": "results/multiframe/logs/python_test_suite.txt"
+    }
+  ],
+  "board_capture_tested": false,
+  "live_io_tested": false,
+  "browser_visual_verified": false
+}
