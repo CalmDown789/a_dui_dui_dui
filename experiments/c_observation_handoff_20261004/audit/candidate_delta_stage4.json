@@ -1,0 +1,95 @@
+{
+  "status": "PASS_ISOLATED_CANDIDATE",
+  "candidate": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c_b_remaining_20261004_01\\observe_candidate01",
+  "frozen_C_baseline": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02",
+  "fixed_B_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "fixed_A_commit": "98c82f394bdfba85bc2959bede9760edc4d6862f",
+  "changed_or_added_source_file_count": 12,
+  "changed_or_added_source_files": [
+    {
+      "path": "overlay/multiframe/rtl/b_core_if.v",
+      "change": "modified",
+      "before_sha256": "59155e799fb5fd054ad32ba472cdc799312a319a0e2f4b8882e8f728e9dbf9e1",
+      "after_sha256": "6cf3ff1e6c33fbc1356be78b4ba30490acaf89a1fdb20cc3f76f23f127802520",
+      "bytes": 7265
+    },
+    {
+      "path": "overlay/multiframe/rtl/b_core_stub.v",
+      "change": "modified",
+      "before_sha256": "839351859a2722084b248ce99aac056e364db6a59c607baefeeb2393ea3d4284",
+      "after_sha256": "eccac56807bbde5c5536eae3d07386d420eb3d9b577fadaa651ecccad31db566",
+      "bytes": 11182
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_core.v",
+      "change": "modified",
+      "before_sha256": "b9b32039459e50324c2e8800aa05eb2b3aae3d198a1795d6e7ab605b8050b0d4",
+      "after_sha256": "6cbb3c0d1d676d964a046014e4238d6201558eec9cc0affdcd8dd18f6ec06de6",
+      "bytes": 16937
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_multiframe_synth_top.v",
+      "change": "modified",
+      "before_sha256": "0517535e716b4c8f7624558159b02df0d3af9e1ee61b2a85ebd6b212cecd4be8",
+      "after_sha256": "8b2e24a52547067cd5529895f3c1033d6ef72319bae856838a5afc39b2473597",
+      "bytes": 3763
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_multiframe_top.v",
+      "change": "modified",
+      "before_sha256": "6e7e178d9f2fdff6d2a4613a67a763e97d076aeabb5e6f0d049d90d2ffe34079",
+      "after_sha256": "f5b38fc4042e248c5ec4a657ef74e4855d9ce9c65a45fa02cdbecfe4f0b12cfa",
+      "bytes": 10439
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_observation.v",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "09587a35a134bf6d91579e494f00078bc1d9203ae2b31833a865770f1d2e9a99",
+      "bytes": 11310
+    },
+    {
+      "path": "overlay/multiframe/tb/tb_c_controlled_pause.v",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "0b9e58716e3d6df112e86a4fbda2e260d40fd3b78d5302e73ab80e667f137e8b",
+      "bytes": 17269
+    },
+    {
+      "path": "overlay/multiframe/tb/tb_c_multiframe_uart.v",
+      "change": "modified",
+      "before_sha256": "afb349c4689dc53a6e4f33e4caad67d5278f1664bb4793eaf8d1d2e7ad88756f",
+      "after_sha256": "bc1a2954ad6aa34e42b5c1f906d696b43096ebf9f33ce8c2e2812ce9d6f69424",
+      "bytes": 11773
+    },
+    {
+      "path": "overlay/multiframe/tb/tb_c_observation.v",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "8857a2d97602f1db51e5f4d5034a49c76ae891e6af3685a920d37e3d2a278e40",
+      "bytes": 9187
+    },
+    {
+      "path": "overlay/multiframe/tb/tb_c_uart_param_probe.v",
+      "change": "modified",
+      "before_sha256": "dcb58c45e4ae3e58fe8d77c7952c647fa19672e67a451f7cdf0368a483bf468e",
+      "after_sha256": "6e8a96b23f68dc65f5659b5648ef07874a043e3d9cbe7b9c668886d4112b84cc",
+      "bytes": 1318
+    },
+    {
+      "path": "scripts/configure_observation_debug_ip.tcl",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "e22dbe344e665771e5e7f9d0f7cb28089c2c6caef72373e714d3ee2754b6b070",
+      "bytes": 2926
+    },
+    {
+      "path": "scripts/run_alignment_sim.py",
+      "change": "modified",
+      "before_sha256": "0c79dfff185c200255ff3db6774d226473e1a55464bb9fa0ac7270facbcb9a7d",
+      "after_sha256": "90a45376a02148042bfe3b8e92efa29dd64d07f1ae6bc9151b6992dc786b367b",
+      "bytes": 5514
+    }
+  ],
+  "note": "This is the intended telemetry candidate delta; original C and the frozen baseline remain outside the write set."
+}

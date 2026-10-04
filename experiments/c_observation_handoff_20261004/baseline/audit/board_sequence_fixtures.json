@@ -1,0 +1,35 @@
+{
+  "status": "PASS_FIXED_FIXTURES",
+  "frame_count": 4,
+  "scope": "Four distinct full-size inputs; official A Golden for frame0, pinned A-derived CPU references for frames1-3. Old board PASS is not inherited.",
+  "frames": [
+    {
+      "frame_id": 0,
+      "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+      "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+      "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+      "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+    },
+    {
+      "frame_id": 1,
+      "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+      "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+      "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+      "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+    },
+    {
+      "frame_id": 2,
+      "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+      "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+      "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+      "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+    },
+    {
+      "frame_id": 3,
+      "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+      "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+      "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+      "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+    }
+  ]
+}

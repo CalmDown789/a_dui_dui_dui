@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "tool": "Vivado 2025.2",
+  "part": "xc7a200tfbg484-2",
+  "ila": {
+    "vlnv": "xilinx.com:ip:ila:6.2",
+    "sample_depth": 1024,
+    "probe_widths": [
+      1,
+      934,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "clock_properties": {
+      "requested_period_ns": "6.666667",
+      "configured_frequency_MHz": "150",
+      "generated_metadata": {
+        "C_CLK_FREQ_MHz": 150,
+        "C_CLK_PERIOD_ns": 6.667
+      }
+    },
+    "xci": "observe_candidate01\\ipgen_attempt06\\ip\\ila_obs_snapshot\\ila_obs_snapshot\\ila_obs_snapshot.xci",
+    "instantiation_template": "observe_candidate01\\ipgen_attempt06\\ip\\ila_obs_snapshot\\ila_obs_snapshot\\ila_obs_snapshot.veo"
+  },
+  "vio": {
+    "vlnv": "xilinx.com:ip:vio:3.0",
+    "input_widths": [
+      256,
+      256,
+      256,
+      166,
+      1,
+      5
+    ],
+    "output_widths": [
+      5
+    ],
+    "control_output_init": "0x00",
+    "snapshot_slices_lsb_to_msb": [
+      "[255:0]",
+      "[511:256]",
+      "[767:512]",
+      "[933:768]"
+    ],
+    "xci": "observe_candidate01\\ipgen_attempt06\\ip\\vio_obs_snapshot_ctrl\\vio_obs_snapshot_ctrl\\vio_obs_snapshot_ctrl.xci",
+    "instantiation_template": "observe_candidate01\\ipgen_attempt06\\ip\\vio_obs_snapshot_ctrl\\vio_obs_snapshot_ctrl\\vio_obs_snapshot_ctrl.veo"
+  },
+  "wrapper_missing_connections": [],
+  "vivado_log": "observe_candidate01\\ipgen_attempt06\\vivado.log",
+  "vivado_log_sha256": "7cf683a96307073b35a145b818c6f786ee95545eaa849fc45938cae479c0a2f0",
+  "evidence_hashes": {
+    "ila_xci": "b3ddddc2ac3315c7c64c03e89066f7266492ea62401c4e55e58862a35da365f6",
+    "ila_veo": "edb7507bb448297c0b730373e98922fc215f6f27366cf548010721d23ccca9e9",
+    "vio_xci": "7ab36db216eece2ace3b3dd146f1037d335c18e4914c737ecfea462b571929da",
+    "vio_veo": "8a0f1d2321cf3ca8c0615fffdd9311500cbc5fcdea2026cdce3b32208520555a"
+  },
+  "attempt_history": [
+    {
+      "attempt": "ipgen_attempt01",
+      "status": "FAIL_HARNESS",
+      "reason": "The output directory was pre-created and the no-overwrite guard correctly stopped the run."
+    },
+    {
+      "attempt": "ipgen_attempt02",
+      "status": "FAIL_TOOL_LIMIT",
+      "reason": "ILA C_DATA_DEPTH=16 rejected; Vivado listed the legal minimum as 1024."
+    },
+    {
+      "attempt": "ipgen_attempt03",
+      "status": "FAIL_TOOL_LIMIT",
+      "reason": "VIO 934-bit input probe rejected; Vivado limit is 1..256 per probe."
+    },
+    {
+      "attempt": "ipgen_attempt04",
+      "status": "PASS_CONFIG_PRELIMINARY",
+      "reason": "Generated split VIO and 934-bit ILA; later configuration aligned clock metadata."
+    },
+    {
+      "attempt": "ipgen_attempt05",
+      "status": "PASS_CONFIG_METADATA_OPEN",
+      "reason": "Period set, but generated C_CLK_FREQ remained 200 MHz."
+    },
+    {
+      "attempt": "ipgen_attempt06",
+      "status": "PASS_FINAL",
+      "reason": "Generated core metadata now reports 150 MHz and 6.667 ns, with matching ports."
+    }
+  ]
+}

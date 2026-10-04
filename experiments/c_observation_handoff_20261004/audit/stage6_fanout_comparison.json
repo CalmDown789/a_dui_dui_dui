@@ -1,0 +1,48 @@
+{
+  "status": "READ_ONLY_PATH_COMPARISON",
+  "fixed_B_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "tool_version": "Vivado 2025.2 build 6299465",
+  "same_B_window_stream_frontend_source_sha256": "94778afc21a3ea1ef1b5bb5adb33435b13745bf23fc4eef909cd6d1402c84660",
+  "comparison": {
+    "isolated_B_c_synth_top_route_setup030": {
+      "clock_period_ns": 6.667,
+      "overall_WNS_ns": 0.492,
+      "path_source": "u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pending1_reg_replica_7/C",
+      "path_destination": "u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/shift_reg[22][131]/CE",
+      "replicated_control_net": "u_top/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/pending1_repN_7_alias",
+      "replica_net_fanout": 228,
+      "replica_path_slack_ns": 0.526,
+      "replica_path_data_delay_ns": 5.655,
+      "replica_path_logic_delay_ns": 0.379,
+      "replica_path_route_delay_ns": 5.276,
+      "clock_net_fanout": 60897,
+      "lut_count": 28100,
+      "ff_count": 48498,
+      "report": "b_repro_reference/_synth_bc/margin0926_route_setup030/reports/timing_summary_postroute.rpt",
+      "source_script": "b_repro_reference/experiments/timing_margin_20260926/synth_setup030.tcl"
+    },
+    "integrated_C_candidate_100mhz": {
+      "clock_period_ns": 10.0,
+      "overall_WNS_ns": -3.79,
+      "path_source": "u_multiframe/u_core/u_b/u_b_core/core/core/l5/gk.frontend/pending1_reg/C",
+      "path_destination": "u_multiframe/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/shift_reg[3][229]/CE",
+      "control_net": "u_multiframe/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/E[0]",
+      "control_net_fanout": 6406,
+      "control_path_slack_ns": -2.754,
+      "control_path_data_delay_ns": 12.522,
+      "control_path_logic_delay_ns": 0.433,
+      "control_path_route_delay_ns": 12.089,
+      "clock_net_fanout": 87891,
+      "lut_count": 39231,
+      "ff_count": 73691,
+      "report": "observe_candidate01/impl/board100_candidate_attempt01/reports/setup_paths_postroute.rpt",
+      "flow_directives": {
+        "place": "ExtraNetDelay_high",
+        "phys_opt": "AggressiveExplore",
+        "route": "NoTimingRelaxation"
+      }
+    }
+  },
+  "interpretation": "The exact B source contains the pending1 control logic in both builds. In the isolated B result the physical flow replicated this register and the observed replica net had 228 loads; in the integrated C candidate the corresponding single net has 6406 loads. The C flow completed normally and used the same named placement/physical-optimization/route directives, but it adds the C UART/frame shell and observation/ILA/VIO hierarchy, has a different top and complete C board constraints, and routes a larger clocked design. This is direct evidence of an integration/physical-implementation difference around a B high-fanout structure, not evidence that the B source changed or that Vivado failed to execute. It does not prove which added load or constraint prevented the same degree of replication. The ILA-internal path remains a separate and worse 100 MHz path.",
+  "evidence_scope": "Read-only comparison of preserved Vivado reports, build manifests, Tcl, and source hashes; no RTL, XDC, DCP, or board contents were changed."
+}

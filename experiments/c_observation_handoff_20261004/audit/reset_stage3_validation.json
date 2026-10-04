@@ -1,0 +1,43 @@
+{
+  "schema": "reset_stage3_validation.v1",
+  "created_at_utc": "2026-10-04T07:34:24.008021+00:00",
+  "status": "PASS_ASSESSMENT_STRUCTURE_OPEN",
+  "checks": {
+    "all_required_artifacts_present": true,
+    "both_dcps_rehashed_and_match_frozen_inventory": true,
+    "both_dcps_report_same_capped_drc_object_counts": true,
+    "all_reported_reqp_objects_match_async_q_fanout": true,
+    "official_full_reqp1839_count_claimed": false,
+    "drc_severity_or_acceptance_changed": false,
+    "reset_structure_closed": false,
+    "uart_physical_bit_period_measured": false
+  },
+  "required_artifacts": [
+    "audit\\reset_disposition.md",
+    "audit\\io_uart_assessment.md",
+    "audit\\reset_ram_inventory.json",
+    "audit\\reset100_inventory_attempt01\\reset_drc_initial.rpt",
+    "audit\\reset150_inventory_attempt01\\reset_drc_initial.rpt",
+    "audit\\reset100_inventory_attempt01\\ram_control_fanin.tsv",
+    "audit\\reset150_inventory_attempt01\\ram_control_fanin.tsv",
+    "audit\\reset100_ram_fanin_timing_attempt01\\async_ff_to_ram_controls.tsv",
+    "audit\\reset150_ram_fanin_timing_attempt02\\async_ff_to_ram_controls.tsv",
+    "audit\\reset_fanin_arc_probe_attempt02\\fanin_arc_comparison.txt"
+  ],
+  "evidence_sha256": {
+    "audit\\reset_disposition.md": "0255710b57e80ba2bf1f7519ad673d23623da93e887c520d36334147f6148be5",
+    "audit\\io_uart_assessment.md": "5a09c0772456404ad7e46acda5b4dffe9b6fe7a15b26336580eda86c0286d446",
+    "audit\\reset_ram_inventory.json": "47d0d507a69dfe1f23797e3f7e6a0a41036c9ac46e1e841a0c69a150c1b5e647",
+    "audit\\reset100_inventory_attempt01\\reset_drc_initial.rpt": "1229779246a70d9c5151b66fae09b4cf04cdf2d100e17487a02250732e8be32b",
+    "audit\\reset150_inventory_attempt01\\reset_drc_initial.rpt": "5e83f46adb6c7b497382e1d333afc64994e661046c580c4cad65f420b4ee345f",
+    "audit\\reset100_inventory_attempt01\\ram_control_fanin.tsv": "da4c02bb47b1b3d3127c27b70da17eeae5677128c30cce85ea0206fe9d0b6f66",
+    "audit\\reset150_inventory_attempt01\\ram_control_fanin.tsv": "9538d86e154111a263de7dcc2c610d5fd9fe80b79c110bdacff3ad15e0d260f3",
+    "audit\\reset100_ram_fanin_timing_attempt01\\async_ff_to_ram_controls.tsv": "97b4f989f1f407b710059eb7ff15ca5b027628047220428f3812d7e64ab57ac5",
+    "audit\\reset150_ram_fanin_timing_attempt02\\async_ff_to_ram_controls.tsv": "f9ce9e9e1132116c9b969b51820d31066b5065da9bf30f42a12e96ebd562e711",
+    "audit\\reset_fanin_arc_probe_attempt02\\fanin_arc_comparison.txt": "1d996fb9b7b3c1676df03bc96eebe0e37a0a41350f862d12ec48fb9101ebf3a1"
+  },
+  "limitations": [
+    "REQP-1839 remains capped by CHECK-3 at 20 in each DCP; candidate async-Q fanout is not the official DRC violation count.",
+    "Reset structure and UART physical bit-time measurement remain open."
+  ]
+}

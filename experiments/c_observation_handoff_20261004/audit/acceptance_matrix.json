@@ -1,0 +1,131 @@
+[
+  {
+    "stage": 0,
+    "name": "freeze_and_protect",
+    "status": "PASS",
+    "evidence": [
+      "audit/job_context.json",
+      "audit/original_c_preservation_check.json",
+      "audit/baseline_frozen_check.txt",
+      "audit/tool_version.txt",
+      "audit/vivado_phase0_smoke.log",
+      "audit/a_pinned_blob_verification.json"
+    ]
+  },
+  {
+    "stage": 1,
+    "name": "offline_reuse_and_playback",
+    "status": "PASS",
+    "evidence": [
+      "audit/sequence_validation.json",
+      "audit/reused_evidence_manifest.json",
+      "audit/host_timing.csv",
+      "playback/four_frame_reuse_manifest.json",
+      "playback/150_16frames/playback_manifest.json"
+    ]
+  },
+  {
+    "stage": 2,
+    "name": "B_experiment_reproduction",
+    "status": "PASS",
+    "evidence": [
+      "audit/b_experiment_reuse.json",
+      "audit/b_setup030_step1_check.json",
+      "audit/b_experiment_comparison.json",
+      "audit/b_setup030.log",
+      "audit/b_setup030.jou",
+      "audit/b_route_setup030.log",
+      "audit/b_route_setup030.jou"
+    ]
+  },
+  {
+    "stage": 3,
+    "name": "reset_warning_assessment",
+    "status": "PASS",
+    "evidence": [
+      "audit/reset_ram_inventory.json",
+      "audit/reset_disposition.md",
+      "audit/io_uart_assessment.md",
+      "audit/reset_stage3_validation.json",
+      "audit/reset100_inventory_attempt01/",
+      "audit/reset150_inventory_attempt01/",
+      "audit/reset100_ram_fanin_timing_attempt01/",
+      "audit/reset150_ram_fanin_timing_attempt02/",
+      "audit/reset_fanin_arc_probe_attempt02/"
+    ],
+    "disposition": "Assessment complete; reset structure remains OPEN and DRC report limit remains."
+  },
+  {
+    "stage": 4,
+    "name": "internal_handshake_sideband_error_evidence",
+    "status": "PASS",
+    "evidence": [
+      "contracts/OBSERVATION_SPEC.md",
+      "contracts/signal_map.json",
+      "audit/candidate_delta_stage4.json",
+      "audit/stage4_preservation_postcheck.json",
+      "audit/debug_ip_capability.json",
+      "audit/STAGE4_REPORT.md",
+      "observe_candidate01/overlay/multiframe/tb/tb_c_observation.v",
+      "observe_candidate01/sim/observe_selfcheck_attempt02/result.json",
+      "observe_candidate01/sim/observe_selfcheck_attempt02/xsim_stdout.txt",
+      "observe_candidate01/sim/synth_wrapper_compile_attempt02/result.json",
+      "observe_candidate01/ipgen_attempt06/result.json",
+      "observe_candidate01/ipgen_attempt06/vivado.log"
+    ]
+  },
+  {
+    "stage": 5,
+    "name": "controlled_backpressure",
+    "status": "PASS",
+    "evidence": [
+      "audit/STAGE5_REPORT.md",
+      "audit/stage5_preservation_postcheck.json",
+      "observe_candidate01/overlay/multiframe/tb/tb_c_controlled_pause.v",
+      "observe_candidate01/scripts/create_controlled_pause_tb.py",
+      "observe_candidate01/sim/controlled_observe03/result.json",
+      "observe_candidate01/sim/controlled_observe03/source_manifest.json",
+      "observe_candidate01/sim/controlled_observe03/xvlog_b_stdout.txt",
+      "observe_candidate01/sim/controlled_observe03/xvlog_c_stdout.txt",
+      "observe_candidate01/sim/controlled_observe03/xelab_stdout.txt",
+      "observe_candidate01/sim/controlled_observe03/xsim_stdout.txt",
+      "observe_candidate01/sim/controlled_observe01_prelaunch_failure/",
+      "observe_candidate01/sim/controlled_observe02/"
+    ]
+  },
+  {
+    "stage": 6,
+    "name": "end_to_end_timing",
+    "status": "FAIL_SETUP_TIMING_AT_150_AND_100_MHZ",
+    "evidence": [
+      "audit/STAGE6_150_REPORT.md",
+      "audit/STAGE6_100_REPORT.md",
+      "audit/STAGE6_FAILURE_ANALYSIS.md",
+      "audit/stage6_150_result.json",
+      "audit/stage6_100_result.json",
+      "audit/stage6_fanout_comparison.json",
+      "audit/stage6_preservation_postcheck.json",
+      "observe_candidate01/impl/board150_candidate_attempt06/reports/timing_summary_postroute.rpt",
+      "observe_candidate01/impl/board150_candidate_attempt06/reports/setup_paths_postroute.rpt",
+      "observe_candidate01/impl/board150_candidate_attempt06/reports/route_status_postroute.rpt",
+      "observe_candidate01/impl/board100_candidate_attempt01/reports/timing_summary_postroute.rpt",
+      "observe_candidate01/impl/board100_candidate_attempt01/reports/setup_paths_postroute.rpt",
+      "observe_candidate01/impl/board100_candidate_attempt01/reports/route_status_postroute.rpt",
+      "observe_candidate01/impl/board100_candidate_attempt01/reports/drc_postroute.rpt",
+      "observe_candidate01/impl/board100_candidate_attempt01/reports/check_timing_postroute.rpt"
+    ],
+    "disposition": "Fresh 150 MHz and 100 MHz implementations both route completely but fail setup timing; no candidate bitstream is eligible for board programming."
+  },
+  {
+    "stage": 7,
+    "name": "board_followups",
+    "status": "PENDING",
+    "evidence": []
+  },
+  {
+    "stage": 8,
+    "name": "delivery_and_handoff",
+    "status": "PENDING",
+    "evidence": []
+  }
+]

@@ -1,0 +1,265 @@
+{
+  "snapshot_name": "snapshot_selected_data",
+  "width_bits": 934,
+  "bit_order": "field list is least-significant first",
+  "slot_count": 16,
+  "slot_select_width": 4,
+  "count_width": 5,
+  "fields": [
+    {
+      "name": "valid",
+      "width": 1,
+      "lsb": 0,
+      "msb": 0,
+      "semantic": "snapshot slot contains a completed record"
+    },
+    {
+      "name": "slot_index",
+      "width": 4,
+      "lsb": 1,
+      "msb": 4,
+      "semantic": "zero-based slot index 0..15"
+    },
+    {
+      "name": "frame_id",
+      "width": 32,
+      "lsb": 5,
+      "msb": 36,
+      "semantic": "expected_frame_id latched at frame_start"
+    },
+    {
+      "name": "frame_start_seen",
+      "width": 1,
+      "lsb": 37,
+      "msb": 37,
+      "semantic": "one because capture requires frame_active_q"
+    },
+    {
+      "name": "core_busy_at_session_done",
+      "width": 1,
+      "lsb": 38,
+      "msb": 38,
+      "semantic": "core_busy sampled at session_done"
+    },
+    {
+      "name": "core_done_seen",
+      "width": 1,
+      "lsb": 39,
+      "msb": 39,
+      "semantic": "core_done observed since frame_start"
+    },
+    {
+      "name": "session_done",
+      "width": 1,
+      "lsb": 40,
+      "msb": 40,
+      "semantic": "session_done sampled at capture edge"
+    },
+    {
+      "name": "uart_final_idle",
+      "width": 1,
+      "lsb": 41,
+      "msb": 41,
+      "semantic": "UART transmit and readback both idle at sample"
+    },
+    {
+      "name": "input_accept_count",
+      "width": 32,
+      "lsb": 42,
+      "msb": 73,
+      "semantic": "C-to-B valid && ready handshakes including frame_start edge"
+    },
+    {
+      "name": "output_accept_count",
+      "width": 32,
+      "lsb": 74,
+      "msb": 105,
+      "semantic": "B-to-C valid && ready handshakes including frame_start edge"
+    },
+    {
+      "name": "stripe_last_accept_count",
+      "width": 16,
+      "lsb": 106,
+      "msb": 121,
+      "semantic": "accepted B output stripe_last beats"
+    },
+    {
+      "name": "frame_last_accept_count",
+      "width": 8,
+      "lsb": 122,
+      "msb": 129,
+      "semantic": "accepted B output frame_last beats"
+    },
+    {
+      "name": "uart_bytes_delta",
+      "width": 32,
+      "lsb": 130,
+      "msb": 161,
+      "semantic": "UART byte count at session_done minus count latched at frame_start"
+    },
+    {
+      "name": "core_proto_error",
+      "width": 1,
+      "lsb": 162,
+      "msb": 162,
+      "semantic": "sticky source status sampled at completion"
+    },
+    {
+      "name": "core_overflow_error",
+      "width": 1,
+      "lsb": 163,
+      "msb": 163,
+      "semantic": "sticky source status sampled at completion"
+    },
+    {
+      "name": "loader_protocol_error",
+      "width": 1,
+      "lsb": 164,
+      "msb": 164,
+      "semantic": "sticky source status sampled at completion"
+    },
+    {
+      "name": "loader_frame_error_count",
+      "width": 32,
+      "lsb": 165,
+      "msb": 196,
+      "semantic": "cumulative loader frame error count since reset"
+    },
+    {
+      "name": "uart_framing_error_count",
+      "width": 32,
+      "lsb": 197,
+      "msb": 228,
+      "semantic": "cumulative UART framing error count since reset"
+    },
+    {
+      "name": "core_span_cycles",
+      "width": 64,
+      "lsb": 229,
+      "msb": 292,
+      "semantic": "frame_start through first observed core_done, inclusive"
+    },
+    {
+      "name": "last_input_cycle",
+      "width": 64,
+      "lsb": 293,
+      "msb": 356,
+      "semantic": "frame-relative cycle of expected final input handshake, else zero"
+    },
+    {
+      "name": "last_output_cycle",
+      "width": 64,
+      "lsb": 357,
+      "msb": 420,
+      "semantic": "frame-relative cycle of expected final output handshake, else zero"
+    },
+    {
+      "name": "session_done_cycle",
+      "width": 64,
+      "lsb": 421,
+      "msb": 484,
+      "semantic": "frame-relative cycle number at session_done including capture edge"
+    },
+    {
+      "name": "output_blocked_cycles",
+      "width": 64,
+      "lsb": 485,
+      "msb": 548,
+      "semantic": "frame_active cycles with B out_valid && !out_ready"
+    },
+    {
+      "name": "b_input_wait_cycles",
+      "width": 64,
+      "lsb": 549,
+      "msb": 612,
+      "semantic": "busy cycles below expected input count with c2b_valid low"
+    },
+    {
+      "name": "c2b_stall_cycles",
+      "width": 64,
+      "lsb": 613,
+      "msb": 676,
+      "semantic": "frame_active cycles with c2b_valid && !c2b_ready"
+    },
+    {
+      "name": "joint_stall_cycles",
+      "width": 64,
+      "lsb": 677,
+      "msb": 740,
+      "semantic": "intersection of output blocked and B input wait cycles"
+    },
+    {
+      "name": "c2b_hold_violation_count",
+      "width": 32,
+      "lsb": 741,
+      "msb": 772,
+      "semantic": "C-to-B payload instability after a sampled stall"
+    },
+    {
+      "name": "b_output_hold_violation_count",
+      "width": 32,
+      "lsb": 773,
+      "msb": 804,
+      "semantic": "B-to-C data or sideband instability after a sampled stall"
+    },
+    {
+      "name": "pause_request_cycles",
+      "width": 64,
+      "lsb": 805,
+      "msb": 868,
+      "semantic": "frame_active cycles with pause_active"
+    },
+    {
+      "name": "pause_forced_block_cycles",
+      "width": 64,
+      "lsb": 869,
+      "msb": 932,
+      "semantic": "frame_active cycles with pause_forced_block"
+    },
+    {
+      "name": "pause_active_at_done",
+      "width": 1,
+      "lsb": 933,
+      "msb": 933,
+      "semantic": "pause_active sampled at session_done"
+    }
+  ],
+  "sources": [
+    {
+      "path": "overlay/multiframe/rtl/c_observation.v",
+      "sha256": "09587a35a134bf6d91579e494f00078bc1d9203ae2b31833a865770f1d2e9a99",
+      "anchor": "module c_observation",
+      "line": 6
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_observation.v",
+      "sha256": "09587a35a134bf6d91579e494f00078bc1d9203ae2b31833a865770f1d2e9a99",
+      "anchor": "snapshot_memory[snapshot_count[3:0]] <=",
+      "line": 217
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_core.v",
+      "sha256": "6cbb3c0d1d676d964a046014e4238d6201558eec9cc0affdcd8dd18f6ec06de6",
+      "anchor": "assign out_ready_base",
+      "line": 172
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_multiframe_top.v",
+      "sha256": "f5b38fc4042e248c5ec4a657ef74e4855d9ce9c65a45fa02cdbecfe4f0b12cfa",
+      "anchor": "c_observation #",
+      "line": 192
+    },
+    {
+      "path": "overlay/multiframe/rtl/c_multiframe_synth_top.v",
+      "sha256": "8b2e24a52547067cd5529895f3c1033d6ef72319bae856838a5afc39b2473597",
+      "anchor": "vio_obs_snapshot_ctrl",
+      "line": 74
+    },
+    {
+      "path": "overlay/multiframe/tb/tb_c_observation.v",
+      "sha256": "8857a2d97602f1db51e5f4d5034a49c76ae891e6af3685a920d37e3d2a278e40",
+      "anchor": "module tb_c_observation",
+      "line": 2
+    }
+  ]
+}

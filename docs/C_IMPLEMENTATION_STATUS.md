@@ -1,6 +1,10 @@
 # C 侧 RTL 实现状态（C_IMPLEMENTATION_STATUS）
 
-> **当前状态（2026-09-24）**：C+真实 B 的完整回归 9/9 PASS；96×54 四组和
+> **最新状态（2026-10-04）**：Vivado 2025.2 冻结 C 基线的 100 MHz 四帧、150 MHz 四帧和
+> 150 MHz 连续 16 帧上板通过。新观测候选的 100/150 MHz 时序失败，尚未生成 BIT。
+> 最新证据与后续责任分工见 `PROJECT_STATUS_SYNC_2026-10-04.md`、`C_TO_B_OBSERVATION_HANDOFF_2026-10-04.md`。
+>
+> **下文 2026-09-24 状态是历史记录**：C+真实 B 的完整回归 9/9 PASS；96×54 四组和
 > 960×540→1920×1080 全帧逐字节匹配 A 整数 Golden。真实 B+C 综合与 route 已完成，
 > post-route 为 394 DSP、32,152 LUT、41,932 FF、230 RAMB36 + 8 RAMB18，峰值约 4.13 GB；
 > 但 WNS=-2.208 ns，200 MHz 未闭合，尚无 bitstream 或板测。当前权威快照见

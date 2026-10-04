@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-04",
+  "workspace": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02",
+  "tool": "Vivado 2025.2 SW Build 6299465",
+  "B_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "source_validation": "PASS_FROZEN_INPUTS",
+  "simulations": [
+    {
+      "path": "sim/bank16_v2025_2_probe01/result.json",
+      "status": "PASS",
+      "elapsed_s": 7.951
+    },
+    {
+      "path": "sim/multiframe_attempt01/result.json",
+      "status": "PASS",
+      "elapsed_s": 54.324
+    },
+    {
+      "status": "TIMEOUT_900S_EVIDENCE_PRESERVED",
+      "path": "sim/fullframe_attempt01/result.json"
+    },
+    {
+      "path": "sim/fullframe_attempt02/result.json",
+      "status": "PASS",
+      "elapsed_s": 3398.97
+    }
+  ],
+  "implementation": [
+    {
+      "status": "COMMAND_COMPLETED_NOT_BOARD_SIGNOFF",
+      "whs_ns": 0.014,
+      "path": "audit/build100_execution.json",
+      "tns_ns": 0,
+      "ths_ns": 0,
+      "wns_ns": 0.517
+    },
+    {
+      "status": "COMMAND_COMPLETED_NOT_BOARD_SIGNOFF",
+      "whs_ns": 0.036,
+      "path": "audit/build150_execution.json",
+      "tns_ns": 0,
+      "ths_ns": 0,
+      "wns_ns": 0.139
+    },
+    {
+      "status": "COMMAND_COMPLETED_NOT_BOARD_SIGNOFF",
+      "whs_ns": 0.036,
+      "path": "audit/route150_execution.json",
+      "restored_wns_ns": 0.4,
+      "route_errors": 0,
+      "pressure_wns_ns": 0.1
+    }
+  ],
+  "bitgen": [
+    {
+      "status": "COMMAND_COMPLETED_NOT_BOARD_SIGNOFF",
+      "sha256": "524f72bc8ca01388f7305dbb02c48d5f1c68e1abe51900ce6c3738e667b80c3c",
+      "path": "audit/gate100_execution.json",
+      "whs_ns": 0.014,
+      "wpws_ns": 3.87,
+      "wns_ns": 0.517
+    },
+    {
+      "status": "COMMAND_COMPLETED_NOT_BOARD_SIGNOFF",
+      "sha256": "93dd60cffbefa43f6ab9f49697ff1d3f1ab6657445d01552c88842b6bc0760f6",
+      "path": "audit/gate150_execution.json",
+      "whs_ns": 0.036,
+      "wpws_ns": 2.203,
+      "wns_ns": 0.4
+    }
+  ],
+  "board": [
+    {
+      "path": "board/100_attempt01/capture/session.json",
+      "frames": 4,
+      "status": "PASS_BIT_EXACT",
+      "elapsed_s": 113.742205
+    },
+    {
+      "path": "board/150_attempt01/capture/session.json",
+      "frames": 4,
+      "status": "PASS_BIT_EXACT",
+      "elapsed_s": 113.68406
+    },
+    {
+      "status": "PASS_BIT_EXACT",
+      "first_id": 0,
+      "frames": 16,
+      "path": "board/150_attempt02/capture/session.json",
+      "elapsed_s": 453.929424,
+      "last_id": 15
+    },
+    {
+      "path": "board/150_coldpower_attempt01/capture/session.json",
+      "frames": 4,
+      "status": "PASS_POWER_CYCLE_JTAG_RECOVERY_FOUR_FRAME_BIT_EXACT",
+      "elapsed_s": 113.689695,
+      "result_path": "board/150_coldpower_attempt01/result.json",
+      "physical_event_source": "USER_REPORTED",
+      "scope": "Power cycle followed by JTAG reconfiguration; not autonomous Flash boot"
+    },
+    {
+      "path": "board/150_buttonreset_attempt01/capture/session.json",
+      "frames": 4,
+      "first_id": 0,
+      "last_id": 3,
+      "status": "PASS_IDLE_S0_RESET_RECOVERY_FOUR_FRAME_BIT_EXACT",
+      "elapsed_s": 113.806587,
+      "result_path": "board/150_buttonreset_attempt01/result.json",
+      "physical_event_source": "USER_REPORTED",
+      "reprogramming_performed": false,
+      "scope": "Idle S0 reset recovery; no reset during active-frame test"
+    }
+  ],
+  "pending": [
+    "REQP-1839/REQP-1840 assessment recorded, but full reset/RAM structural disposition remains open; report REQP-1839 is capped at 20 violations.",
+    "Cloud handoff requested internal board handshake/sideband/error-count evidence; the present UART capture does not measure those counters.",
+    "200 MHz remains non-blocking and was not run."
+  ],
+  "updated_at_utc": "2026-10-04T04:57:29.8479091Z",
+  "reset_warning_review": {
+    "path": "audit/RESET_WARNING_REVIEW_2026-10-04.md",
+    "status": "ASSESSMENT_RECORDED_RESET_STRUCTURE_NOT_CLOSED"
+  }
+}

@@ -1,0 +1,19 @@
+# Stage 6: fresh 150 MHz C-candidate implementation
+
+Status: **FAIL_SETUP_TIMING**. The candidate was fully routed on the requested C board pin constraints, but the restored-constraint setup result is negative. No bitstream was generated and the board was not programmed.
+
+The build used Vivado 2025.2, part `xc7a200tfbg484-2`, top `c_multiframe_synth_top`, the pinned B commit `6cc8ea4173d2a720f741e80b7cbd9279558ee93a`, 18 C candidate RTL files, 15 fixed-B RTL files, the complete C board XDC, and fresh ILA/VIO IP products. The 50 MHz board input generated a verified 150 MHz MMCM clock. The synthesis and implementation directives were `ExtraNetDelay_high`, `AggressiveExplore`, and `NoTimingRelaxation`; the L5 phase fanout rule was applied to 49 nets, with 46 nets over its 48-load bound. NSTD-1 and UCIO-1 remained Error severity.
+
+On the same routed physical design, the +0.300 ns setup-pressure report was WNS/TNS `-7.284/-38957.883 ns`, WHS/THS `+0.016/0 ns`. After restoring user setup uncertainty to its original 0.000 ns, WNS/TNS were `-6.984/-27871.592 ns`, WHS/THS `+0.016/0 ns`; 33,451 setup endpoints failed. Pulse-width slack was +2.203 ns with zero failing endpoints. The route completed with 107,867/107,867 routable nets fully routed and zero routing errors. DRC reported zero errors; the existing REQP-1839/1840, CHECK-3, DSP, and other warnings remain visible and were not suppressed.
+
+The post-route check found zero unconstrained internal endpoints and zero registers without clocks. It lists the two asynchronous inputs (`rst_n`, `uart_rx`) as false-pathed and nine external outputs (`led[7:0]`, `uart_tx`) without output delay; these interfaces are explained in the candidate XDC and remain explicit rather than being assigned invented delays.
+
+Primary evidence is under `observe_candidate01/impl/board150_candidate_attempt06/`: `stage6_build_manifest.json`, `placed_setup030.dcp`, `postroute.dcp`, `reports/timing_summary_route_setup030.rpt`, `reports/timing_summary_postroute.rpt`, `reports/setup_paths_postroute.rpt`, `reports/hold_paths_postroute.rpt`, `reports/clocks_postroute.rpt`, `reports/route_status_postroute.rpt`, `reports/drc_postroute.rpt`, `reports/check_timing_postroute.rpt`, `reports/utilization_postroute.rpt`, and `reports/constraints_restored.xdc`. The post-route DCP SHA-256 is `F0B6873F946FD4305E55A4950B53F96C281C66E7BCA7A7E573A531E917BEDAFC`.
+
+The build was continued from a fresh synthesis checkpoint after attempt05 failed solely because Vivado's `.Xil` debug-hub path exceeded the host's 146-character limit. The attempt05 failure and same-hash DCP transfer are recorded in `board150_candidate_attempt05/reports/synth_setup_attempt05_result.json` and `board150_candidate_attempt06/continuation_input.json`. The continuation used a temporary short `R:` SUBST path, which was removed after Vivado exited.
+
+## Timing failure analysis
+
+See `STAGE6_FAILURE_ANALYSIS.md` for the evidence separating confirmed path facts from the likely cause. The leading path is inside `ila_obs_snapshot`, with 117 CARRY4 levels and 12.507 ns of logic delay; additional failing paths run from the frame-start register to 64-bit observer counters and contain long carry chains plus about 10 ns of routed delay. This is not the L5 FIFO-to-RAMD32 path that limited B's `c_synth_top` experiment. The top-level, UART multi-frame shell, observer, and debug IP differ, so B's +0.492 ns result is not transferable to this instrumented candidate.
+
+The independent fresh 100 MHz fallback implementation also completed routing and failed setup timing (`WNS/TNS -3.790/-3293.397 ns`, 2,862 failing endpoints). See `STAGE6_100_REPORT.md`. Stage 6 therefore has no timing-passing C candidate at either frequency. Neither failure is converted to a pass by the other frequency, and no bitstream was generated.

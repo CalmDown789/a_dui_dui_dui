@@ -1,0 +1,53 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sun Oct  4 17:23:51 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_c_controlled_pause/xsim_script.tcl
+# xsim {tb_c_controlled_pause} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+HOST_SEND frame_id=0 payload=5184 payload_crc=273e63a5 header_crc=15328e07
+PROGRESS t=999995000 cycles=100000 accepted_inputs=0 frame_done=0 uart_bytes=0 active=0 busy=0
+PROGRESS t=1999995000 cycles=200000 accepted_inputs=0 frame_done=0 uart_bytes=0 active=0 busy=0
+CONTROLLED_PAUSE_START frame=0
+PROGRESS t=2999995000 cycles=300000 accepted_inputs=5184 frame_done=0 uart_bytes=1438 active=1 busy=0
+PROGRESS t=3999995000 cycles=400000 accepted_inputs=5184 frame_done=0 uart_bytes=3819 active=1 busy=0
+PROGRESS t=4999995000 cycles=500000 accepted_inputs=5184 frame_done=0 uart_bytes=6200 active=1 busy=0
+PROGRESS t=5999995000 cycles=600000 accepted_inputs=5184 frame_done=0 uart_bytes=8581 active=1 busy=0
+PROGRESS t=6999995000 cycles=700000 accepted_inputs=5184 frame_done=0 uart_bytes=10962 active=1 busy=0
+PROGRESS t=7999995000 cycles=800000 accepted_inputs=5184 frame_done=0 uart_bytes=13343 active=1 busy=0
+PROGRESS t=8999995000 cycles=900000 accepted_inputs=5184 frame_done=0 uart_bytes=15723 active=1 busy=0
+PROGRESS t=9999995000 cycles=1000000 accepted_inputs=5184 frame_done=0 uart_bytes=18104 active=1 busy=0
+PROGRESS t=10999995000 cycles=1100000 accepted_inputs=5184 frame_done=0 uart_bytes=20485 active=1 busy=0
+FRAME_DONE count=1 expected_id=1 uart_bytes=20736 errors=0
+UART_CAPTURE frame=0 bytes=20736
+FRAME_BIT_EXACT frame=0 bytes=20736 mismatches=0
+HOST_SEND frame_id=1 payload=5184 payload_crc=0787e127 header_crc=251f460f
+PROGRESS t=11999995000 cycles=1200000 accepted_inputs=5184 frame_done=1 uart_bytes=20736 active=0 busy=0
+PROGRESS t=12999995000 cycles=1300000 accepted_inputs=5184 frame_done=1 uart_bytes=20736 active=0 busy=0
+CONTROLLED_PAUSE_START frame=1
+PROGRESS t=13999995000 cycles=1400000 accepted_inputs=10368 frame_done=1 uart_bytes=21924 active=1 busy=0
+PROGRESS t=14999995000 cycles=1500000 accepted_inputs=10368 frame_done=1 uart_bytes=24305 active=1 busy=0
+PROGRESS t=15999995000 cycles=1600000 accepted_inputs=10368 frame_done=1 uart_bytes=26686 active=1 busy=0
+PROGRESS t=16999995000 cycles=1700000 accepted_inputs=10368 frame_done=1 uart_bytes=29067 active=1 busy=0
+PROGRESS t=17999995000 cycles=1800000 accepted_inputs=10368 frame_done=1 uart_bytes=31448 active=1 busy=0
+PROGRESS t=18999995000 cycles=1900000 accepted_inputs=10368 frame_done=1 uart_bytes=33829 active=1 busy=0
+PROGRESS t=19999995000 cycles=2000000 accepted_inputs=10368 frame_done=1 uart_bytes=36210 active=1 busy=0
+PROGRESS t=20999995000 cycles=2100000 accepted_inputs=10368 frame_done=1 uart_bytes=38591 active=1 busy=0
+PROGRESS t=21999995000 cycles=2200000 accepted_inputs=10368 frame_done=1 uart_bytes=40972 active=1 busy=0
+FRAME_DONE count=2 expected_id=2 uart_bytes=41472 errors=0
+UART_CAPTURE frame=1 bytes=20736
+FRAME_BIT_EXACT frame=1 bytes=20736 mismatches=0
+OBSERVATION_FRAME slot=0 frame_id=0 input=5184 output=20736 pause=16 forced=16 hold=0/0
+OBSERVATION_FRAME slot=1 frame_id=1 input=5184 output=20736 pause=16 forced=16 hold=0/0
+RESULT: PASS controlled pause with two consecutive byte-exact UART frames; forced_block_cycles=32
+$finish called at time : 22209972 ns : File "C:/Users/Administrator/WorkBuddy/srtp/_c_b_remaining_20261004_01/observe_candidate01/overlay/multiframe/tb/tb_c_controlled_pause.v" Line 401
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:54 . Memory (MB): peak = 222.648 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 18464 KB (Peak: 18464 KB), Simulation CPU Usage: 53124 ms
+INFO: [Common 17-206] Exiting xsim at Sun Oct  4 17:24:48 2026...

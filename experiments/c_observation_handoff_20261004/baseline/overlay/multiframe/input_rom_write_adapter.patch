@@ -1,0 +1,50 @@
+--- C:\Users\Administrator\WorkBuddy\srtp\_c150_alignment_20261003_01\b_reference\experiments\l5_splitmem_20260924\rtl\c\input_rom.v
++++ C:\Users\Administrator\WorkBuddy\srtp\_c150_alignment_20261003_01\overlay\multiframe\rtl\input_rom.v
+@@ -13,6 +13,9 @@
+     input wire clk,
+     input wire en,
+     input wire [ADDR_W-1:0] addr,
++    input wire wr_en,
++    input wire [ADDR_W-1:0] wr_addr,
++    input wire [DATA_W-1:0] wr_data,
+     output reg [DATA_W-1:0] dout
+ );
+     (* ram_style = "block" *) reg [DATA_W-1:0] mem [0:BANK_DEPTH-1];
+@@ -52,6 +55,7 @@
+     end
+ 
+     always @(posedge clk) begin
++        if (wr_en) mem[wr_addr] <= wr_data;
+         if (en)
+             dout <= mem[addr];
+     end
+@@ -68,6 +72,9 @@
+     input wire clk,
+     input wire en,
+     input wire [ADDR_W-1:0] addr,
++    input wire wr_en,
++    input wire [ADDR_W-1:0] wr_addr,
++    input wire [DATA_W-1:0] wr_data,
+     output wire [DATA_W-1:0] dout
+ );
+     localparam integer BANK_ADDR_W = (ADDR_W < 15) ? ADDR_W : 15;
+@@ -84,7 +91,9 @@
+                 .BANK_ID(0), .BANK_DEPTH(BANK_DEPTH), .ADDR_W(BANK_ADDR_W),
+                 .DATA_W(DATA_W), .INIT_MODE(INIT_MODE), .INIT_EN(INIT_EN)
+             ) u_bank (
+-                .clk(clk), .en(en), .addr(addr[BANK_ADDR_W-1:0]), .dout(bank_dout[0])
++                .clk(clk), .en(en), .addr(addr[BANK_ADDR_W-1:0]),
++                .wr_en(wr_en), .wr_addr(wr_addr[BANK_ADDR_W-1:0]), .wr_data(wr_data),
++                .dout(bank_dout[0])
+             );
+             assign dout = bank_dout[0];
+         end else begin : g_multi_bank
+@@ -96,6 +105,8 @@
+                     .clk(clk),
+                     .en(en && (addr[ADDR_W-1:BANK_ADDR_W] == b)),
+                     .addr(addr[BANK_ADDR_W-1:0]),
++                    .wr_en(wr_en && (wr_addr[ADDR_W-1:BANK_ADDR_W] == b)),
++                    .wr_addr(wr_addr[BANK_ADDR_W-1:0]), .wr_data(wr_data),
+                     .dout(bank_dout[b])
+                 );
+             end

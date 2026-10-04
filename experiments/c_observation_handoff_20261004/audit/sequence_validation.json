@@ -1,0 +1,881 @@
+{
+  "status": "PASS_OFFLINE_REUSE_VALIDATED",
+  "created_at_utc": "2026-10-04T06:05:23.752420+00:00",
+  "fixture_count": 4,
+  "distinct_fixture_inputs": 4,
+  "sessions": [
+    {
+      "name": "100_mhz_four",
+      "session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\session.json",
+      "session_sha256": "b31e02b6c8d50f27a346570984d1da6dd35566eb8a056907ec150e58e0a9b140",
+      "status": "PASS_BIT_EXACT",
+      "frame_count": 4,
+      "port": "COM3",
+      "nominal_baud": 921600,
+      "total_host_elapsed_seconds": 113.742205,
+      "frames": [
+        {
+          "frame_id": 0,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\frame_0000_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 1,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\frame_0001_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 2,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\frame_0002_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 3,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\frame_0003_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        }
+      ]
+    },
+    {
+      "name": "150_mhz_four",
+      "session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\session.json",
+      "session_sha256": "255e93f38147ed153d6c268700b28d94129eaf64fcb744c8d846e51661cf6a77",
+      "status": "PASS_BIT_EXACT",
+      "frame_count": 4,
+      "port": "COM3",
+      "nominal_baud": 921600,
+      "total_host_elapsed_seconds": 113.68406,
+      "frames": [
+        {
+          "frame_id": 0,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\frame_0000_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 1,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\frame_0001_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 2,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\frame_0002_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 3,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\frame_0003_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        }
+      ]
+    },
+    {
+      "name": "150_mhz_continuous_16",
+      "session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\session.json",
+      "session_sha256": "e22a1a8e774891fa3dbae55aac74bd2f84d1778febec2c83077f9c93f5e62e54",
+      "status": "PASS_BIT_EXACT",
+      "frame_count": 16,
+      "port": "COM3",
+      "nominal_baud": 921600,
+      "total_host_elapsed_seconds": 453.929424,
+      "frames": [
+        {
+          "frame_id": 0,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0000_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 1,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0001_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 2,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0002_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 3,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0003_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 4,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0004_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 5,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0005_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 6,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0006_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 7,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0007_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 8,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0008_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 9,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0009_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 10,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0010_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 11,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0011_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 12,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0012_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 13,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0013_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 14,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0014_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 15,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0015_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        }
+      ]
+    },
+    {
+      "name": "150_mhz_cold_power_jtag_recovery",
+      "session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\session.json",
+      "session_sha256": "0a1f04ab7e3ab8e1eca8c8877c33493fbc92bcbe677adb76e07597664fd4a9ad",
+      "status": "PASS_BIT_EXACT",
+      "frame_count": 4,
+      "port": "COM3",
+      "nominal_baud": 921600,
+      "total_host_elapsed_seconds": 113.689695,
+      "frames": [
+        {
+          "frame_id": 0,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\frame_0000_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 1,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\frame_0001_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 2,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\frame_0002_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 3,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\frame_0003_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        }
+      ],
+      "result_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\result.json",
+      "result_sha256": "8759692ec99e69304e7932d28c0db46ccc06609a9d8a5bd40fb0cb8773dddb14",
+      "result_status": "PASS_POWER_CYCLE_JTAG_RECOVERY_FOUR_FRAME_BIT_EXACT",
+      "result_scope": "Recovery after user-reported power cycle and JTAG reconfiguration; not autonomous Flash boot."
+    },
+    {
+      "name": "150_mhz_idle_s0_reset_recovery",
+      "session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\session.json",
+      "session_sha256": "6f275252713eabc73296dea12cbe468133125b34e38744d6b4a195b5fbd7f7ad",
+      "status": "PASS_BIT_EXACT",
+      "frame_count": 4,
+      "port": "COM3",
+      "nominal_baud": 921600,
+      "total_host_elapsed_seconds": 113.806587,
+      "frames": [
+        {
+          "frame_id": 0,
+          "fixture_frame_id": 0,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame0_y_960x540.bin",
+          "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\frame_0000_y.bin",
+          "output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\output_1920x1080_y_u8.bin",
+          "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 1,
+          "fixture_frame_id": 1,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame1_pattern_y_960x540.bin",
+          "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\frame_0001_y.bin",
+          "output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame1_y_1920x1080.bin",
+          "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 2,
+          "fixture_frame_id": 2,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame2_pattern_y_960x540.bin",
+          "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\frame_0002_y.bin",
+          "output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame2_y_1920x1080.bin",
+          "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        },
+        {
+          "frame_id": 3,
+          "fixture_frame_id": 3,
+          "input_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\input_frame3_pattern_y_960x540.bin",
+          "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+          "input_bytes": 518400,
+          "output_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\frame_0003_y.bin",
+          "output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "output_bytes": 2073600,
+          "expected_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\fixtures\\board\\reference_expected_frame3_y_1920x1080.bin",
+          "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+          "mismatch_bytes": 0,
+          "bit_exact": true
+        }
+      ],
+      "result_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\result.json",
+      "result_sha256": "0b366761254635a33d44eb6e239ef78683b447800dcbc209a0c7a4bf67ebae63",
+      "result_status": "PASS_IDLE_S0_RESET_RECOVERY_FOUR_FRAME_BIT_EXACT",
+      "result_scope": "Idle button-reset recovery after a completed four-frame session."
+    }
+  ],
+  "continuous_16_frame_sequence": {
+    "status": "PASS_FIXED_16_FRAME_SEQUENCE",
+    "frame_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "fixture_frame_ids": [
+      0,
+      1,
+      2,
+      3,
+      0,
+      1,
+      2,
+      3,
+      0,
+      1,
+      2,
+      3,
+      0,
+      1,
+      2,
+      3
+    ],
+    "is_four_distinct_inputs_repeated_four_times": true,
+    "missing_or_duplicate_or_reordered_frames": false,
+    "bit_exact_output_frames": 16
+  },
+  "four_frame_replay": {
+    "status": "REUSED_AND_REVALIDATED",
+    "playback_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c_b_remaining_20261004_01\\playback\\four_frame_reused.gif",
+    "playback_sha256": "67295958a37babf5f1aabe137e27167d52597f720161ab689c76f445a0f24784",
+    "playback_bytes": 9567445,
+    "historical_manifest_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c_side_execution_evidence_20261003\\phase_9_board100_four_frame_replay.gif.json",
+    "historical_manifest_sha256": "cbf7e8252272b7f02cc50aa3334d3d7f999e0a884736edda3f6996c1b3d8bf15",
+    "historical_source_session": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c150_multiframe_uart_20261003\\experiments\\c_multiframe_uart_20261003\\capture\\board100_full_4frames_attempt01\\session.json",
+    "current_session": "150_attempt01/capture/session.json",
+    "current_session_sha256": "255e93f38147ed153d6c268700b28d94129eaf64fcb744c8d846e51661cf6a77",
+    "display": "grayscale Y; animation delay is for viewing only and is not FPGA FPS",
+    "geometry": {
+      "width": 1920,
+      "height": 1080
+    },
+    "frame_duration_ms": 500,
+    "frame_count": 4,
+    "frames": [
+      {
+        "frame_id": 0,
+        "source_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c150_multiframe_uart_20261003\\experiments\\c_multiframe_uart_20261003\\capture\\board100_full_4frames_attempt01\\frame_0000_y.bin",
+        "source_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "current_150_output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "matches_current_150_output": true
+      },
+      {
+        "frame_id": 1,
+        "source_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c150_multiframe_uart_20261003\\experiments\\c_multiframe_uart_20261003\\capture\\board100_full_4frames_attempt01\\frame_0001_y.bin",
+        "source_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "current_150_output_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "matches_current_150_output": true
+      },
+      {
+        "frame_id": 2,
+        "source_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c150_multiframe_uart_20261003\\experiments\\c_multiframe_uart_20261003\\capture\\board100_full_4frames_attempt01\\frame_0002_y.bin",
+        "source_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "current_150_output_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "matches_current_150_output": true
+      },
+      {
+        "frame_id": 3,
+        "source_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c150_multiframe_uart_20261003\\experiments\\c_multiframe_uart_20261003\\capture\\board100_full_4frames_attempt01\\frame_0003_y.bin",
+        "source_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "current_150_output_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "matches_current_150_output": true
+      }
+    ]
+  },
+  "continuous_16_frame_replay": {
+    "status": "GENERATED_FROM_VERIFIED_UART_RETURNS",
+    "capture_session_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\session.json",
+    "capture_session_sha256": "e22a1a8e774891fa3dbae55aac74bd2f84d1778febec2c83077f9c93f5e62e54",
+    "input_sequence_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\input_sequence.json",
+    "input_sequence_sha256": "6a9081d4f55b67cd7d99fb1eaa6220213eebd9abe1156194ac57c34cddce577a",
+    "playback_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c_b_remaining_20261004_01\\playback\\150_16frames\\150mhz_continuous_16frames_offline.gif",
+    "playback_sha256": "c44324e4f28e8b568accdd2e4f7ee70264e7a4d793425f5fc68b2884ff93240b",
+    "playback_bytes": 38278897,
+    "source_geometry": {
+      "width": 1920,
+      "height": 1080,
+      "format": "uint8 grayscale Y row-major",
+      "raw_bytes_per_frame": 2073600
+    },
+    "display_geometry": {
+      "width": 1920,
+      "height": 1080,
+      "palette_colors": 256
+    },
+    "animation_delay_ms": 500,
+    "display_delay_is_fpga_fps": false,
+    "playback_mode": "offline after complete capture; does not represent real-time FPGA throughput",
+    "frame_order": [
+      {
+        "frame_id": 0,
+        "fixture_frame_id": 0,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0000_y.bin",
+        "source_return_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 1,
+        "fixture_frame_id": 1,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0001_y.bin",
+        "source_return_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 2,
+        "fixture_frame_id": 2,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0002_y.bin",
+        "source_return_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 3,
+        "fixture_frame_id": 3,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0003_y.bin",
+        "source_return_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 4,
+        "fixture_frame_id": 0,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0004_y.bin",
+        "source_return_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 5,
+        "fixture_frame_id": 1,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0005_y.bin",
+        "source_return_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 6,
+        "fixture_frame_id": 2,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0006_y.bin",
+        "source_return_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 7,
+        "fixture_frame_id": 3,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0007_y.bin",
+        "source_return_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 8,
+        "fixture_frame_id": 0,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0008_y.bin",
+        "source_return_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 9,
+        "fixture_frame_id": 1,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0009_y.bin",
+        "source_return_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 10,
+        "fixture_frame_id": 2,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0010_y.bin",
+        "source_return_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 11,
+        "fixture_frame_id": 3,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0011_y.bin",
+        "source_return_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 12,
+        "fixture_frame_id": 0,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0012_y.bin",
+        "source_return_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "expected_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 13,
+        "fixture_frame_id": 1,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0013_y.bin",
+        "source_return_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "expected_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 14,
+        "fixture_frame_id": 2,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0014_y.bin",
+        "source_return_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "expected_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+        "bit_exact": true
+      },
+      {
+        "frame_id": 15,
+        "fixture_frame_id": 3,
+        "source_return_path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\frame_0015_y.bin",
+        "source_return_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "expected_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+        "bit_exact": true
+      }
+    ],
+    "verified_gif": {
+      "frame_count": 16,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "duration_ms": [
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500,
+        500
+      ]
+    },
+    "raw_uart_returns_preserved": true
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\session.json",
+      "sha256": "b31e02b6c8d50f27a346570984d1da6dd35566eb8a056907ec150e58e0a9b140",
+      "kind": "board_session"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\session.json",
+      "sha256": "255e93f38147ed153d6c268700b28d94129eaf64fcb744c8d846e51661cf6a77",
+      "kind": "board_session"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\session.json",
+      "sha256": "e22a1a8e774891fa3dbae55aac74bd2f84d1778febec2c83077f9c93f5e62e54",
+      "kind": "board_session"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\input_sequence.json",
+      "sha256": "6a9081d4f55b67cd7d99fb1eaa6220213eebd9abe1156194ac57c34cddce577a",
+      "kind": "board_result_or_sequence"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\session.json",
+      "sha256": "0a1f04ab7e3ab8e1eca8c8877c33493fbc92bcbe677adb76e07597664fd4a9ad",
+      "kind": "board_session"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\result.json",
+      "sha256": "8759692ec99e69304e7932d28c0db46ccc06609a9d8a5bd40fb0cb8773dddb14",
+      "kind": "board_result_or_sequence"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\session.json",
+      "sha256": "6f275252713eabc73296dea12cbe468133125b34e38744d6b4a195b5fbd7f7ad",
+      "kind": "board_session"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\result.json",
+      "sha256": "0b366761254635a33d44eb6e239ef78683b447800dcbc209a0c7a4bf67ebae63",
+      "kind": "board_result_or_sequence"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\audit\\board_sequence_fixtures.json",
+      "sha256": "0bb0b2b1ed830791b9a97298a1f1245d9900bfa6c27e5a181657d69d34eaf695",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\100_attempt01\\capture\\session.json",
+      "sha256": "b31e02b6c8d50f27a346570984d1da6dd35566eb8a056907ec150e58e0a9b140",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt01\\capture\\session.json",
+      "sha256": "255e93f38147ed153d6c268700b28d94129eaf64fcb744c8d846e51661cf6a77",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\capture\\session.json",
+      "sha256": "e22a1a8e774891fa3dbae55aac74bd2f84d1778febec2c83077f9c93f5e62e54",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_attempt02\\input_sequence.json",
+      "sha256": "6a9081d4f55b67cd7d99fb1eaa6220213eebd9abe1156194ac57c34cddce577a",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\capture\\session.json",
+      "sha256": "0a1f04ab7e3ab8e1eca8c8877c33493fbc92bcbe677adb76e07597664fd4a9ad",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_coldpower_attempt01\\result.json",
+      "sha256": "8759692ec99e69304e7932d28c0db46ccc06609a9d8a5bd40fb0cb8773dddb14",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\capture\\session.json",
+      "sha256": "6f275252713eabc73296dea12cbe468133125b34e38744d6b4a195b5fbd7f7ad",
+      "kind": "evidence_json"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\_c2025_2_validation_20261004_02\\board\\150_buttonreset_attempt01\\result.json",
+      "sha256": "0b366761254635a33d44eb6e239ef78683b447800dcbc209a0c7a4bf67ebae63",
+      "kind": "evidence_json"
+    }
+  ]
+}

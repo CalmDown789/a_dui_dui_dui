@@ -1,0 +1,31 @@
+{
+  "updated_at_utc": "2026-10-04T12:26:04Z",
+  "current_stage": 6,
+  "stage_0": "PASS",
+  "notes": [
+    "C snapshot and original index revalidated byte-for-byte; original C remains unchanged.",
+    "Frozen B input verification PASS; pinned A commit and all 9 source blob hashes match its SHA256SUMS; available C frame0 input/output fixtures match A blobs. Other raw A files are omitted by the baseline .gitignore.",
+    "Vivado v2025.2 verified with a successful batch Tcl smoke test; standalone -version prints correctly but returns process code 1, recorded as a wrapper quirk.",
+    "Stage 3 assessment passed on frozen 100/150 MHz DCPs; DRC remains capped at 20 REQP-1839 per DCP, full RAM fan-in evidence preserved, structure disposition and UART physical bit-time remain open.",
+    "Stage 4 passed: 934-bit map, observer selfcheck, Vivado 2025.2 ILA/VIO generation at legal settings, wrapper elaboration, and frozen/original C preservation rehash all verified.",
+    "Stage 5 passed: fixed real B + two consecutive byte-exact UART frames under 16-cycle controlled forced backpressure per frame; snapshot metrics and hold checks passed; original/frozen C rehash passed.",
+    "Stage 6 fresh 150 MHz candidate routed with zero route/DRC errors but failed setup (WNS -6.984 ns); no bitstream generated.",
+    "Stage 6 fresh 100 MHz fallback routed with zero route/DRC errors but failed setup (WNS -3.790 ns; 2862 failing endpoints); no bitstream generated.",
+    "Stage 6 post-run read-only preservation rehash: PASS, original C 333 files and frozen overlay 22 files checked."
+  ],
+  "stage_1": "PASS",
+  "stage_2": "PASS",
+  "stage_2_step_1": "PASS",
+  "stage_2_step_2": "PASS",
+  "stage_3": "PASS_ASSESSMENT_STRUCTURE_OPEN",
+  "stage_4_started": "2026-10-04T07:47:58.912Z",
+  "stage_4": "PASS",
+  "stage_5": "PASS",
+  "stage_5_started": "2026-10-04T09:15:55Z",
+  "stage_5_closed_at": "2026-10-04T09:27:41Z",
+  "stage_6": "FAIL_SETUP_TIMING_AT_150_AND_100_MHZ",
+  "stage_6_started": "2026-10-04T09:27:41Z",
+  "stage_6_150mhz": "FAIL_SETUP_TIMING_WNS_MINUS_6_984_NS",
+  "stage_6_100mhz": "FAIL_SETUP_TIMING_WNS_MINUS_3_790_NS",
+  "stage_6_closed_at": "2026-10-04T12:26:04Z"
+}
