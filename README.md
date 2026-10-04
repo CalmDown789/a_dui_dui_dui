@@ -86,6 +86,24 @@ python scripts\verify_integer_delivery.py
 
 清单包含帧编号、顺序、源视频时间、哈希和冻结模型来源。抽样序列是 2 fps 展示素材，不是持续帧率指标；软件 Golden 已完成整数重算，C 的该组多帧板测仍需回传数据验证。
 
+## 彩色演示与实际整数画质评测（2026-10-04）
+
+新增 PC 彩色视频示范：冻结整数 Golden 的 Y 与源视频放大的 Cb/Cr 合成，4 秒 1080p、2 fps。视频、逐帧输入/输出哈希和颜色转换假设见 `artifacts/color_demo/`；Big Buck Bunny 按 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 署名。
+
+新增 20 个样本的双三次、FP32 和实际整数对比，详见[画质方法与解释](docs/成员A彩色演示与整数画质评测_2026-10-04.md)、[HTML 报告](artifacts/evaluation/actual_integer_quality_report.html)、[JSON](artifacts/evaluation/actual_integer_quality_report.json)及[逐图 CSV](artifacts/evaluation/actual_integer_quality_per_image.csv)。Set5 曾用于权重选择，不属于独立留出集；BBB 的 8 张 640×360→1280×720 配对是软件评测；文字/建筑/人物/运动为合成压力图。BBB 样本整数平均 46.366 dB，低于双三次 46.604 dB；这提示当前模型对该类内容未能稳定胜过插值。
+
+导师审阅包：`artifacts/member_a_color_quality_evaluation.zip`，包括彩色视频、画质报告、图表、逐图数据和复现脚本；不包含原始视频或 Set5 图片。
+
+复现命令：
+
+```powershell
+python scripts/evaluate_integer_quality.py
+python scripts/create_color_video_demo.py
+python scripts/package_color_quality_report.py
+```
+
+生成指标时，脚本核对 checkpoint、量化参数、Set5 和源视频摘要，并确认 960×540 权威整数 Golden 重算一致。报告只记录软件结果；尚无相应板卡视频采集证据。
+
 实时 PC 上传与回传适配尚未完成，等待 A/C 确认接口、帧头/编号、流控、CRC 和超时恢复，见[协议确认清单](docs/成员A_PC收发协议确认清单_2026-10-03.md)。离线播放器和对拍工具不等于实时收发链路。
 
 已补充已知 UART TX 的[PC 接收保存工具](docs/成员A_UART接收工具_2026-10-03.md)：`capture_raw_uart.py` 支持短读、超时、断连和尾部额外数据，输出同一套接收清单与原始字节。不上传输入、不发送未知命令；打开实际端口前必须核验完整帧起点与 RTS/DTR 接线安全。软件读取器的验证记录位于 `artifacts/uart_capture_selftest.json`，不等于实体串口或 A4 双向通路已通过。

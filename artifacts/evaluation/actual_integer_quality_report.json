@@ -1,0 +1,963 @@
+{
+  "schema": "member-a-actual-integer-quality-v1",
+  "status": "PASS",
+  "created_utc": "2026-10-04T15:08:59.806357+00:00",
+  "model": {
+    "config": "FSRCNNSubpixel d16/s8/m1/c16 x2",
+    "checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+    "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+    "integer_engine": "src/member_a/fixed_reference.py",
+    "full_960x540_golden_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+    "full_golden_reproduced": true
+  },
+  "execution": {
+    "python": "3.14.6",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.5.1",
+    "pillow": "12.3.0",
+    "device": "cuda:0",
+    "device_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "script_sha256": "8ad60a87658a313e2ddab58c7cb48144073cd13461c9b74f92747c161406ebef",
+    "git_head": "56e6b6cdf83bf736a5bf63d199eed27acc07647b",
+    "working_tree_dirty": true
+  },
+  "metrics": {
+    "range": "uint8 Y / normalized [0,1], PSNR peak=1",
+    "border_crop_px": 2,
+    "ssim": "src/member_a/metrics.py Gaussian 11x11, sigma=1.5, constants 0.01^2/0.03^2",
+    "bicubic": "PyTorch F.interpolate(mode=bicubic, align_corners=False), clipped [0,1]",
+    "rounding_for_png": "floor(value*255+0.5); metrics use unrounded FP32 and exact integer u8/255",
+    "Set5_limit": "Set5 was used for checkpoint selection during training; these scores are not a held-out test.",
+    "synthetic_limit": "Text, facade, portrait and motion charts are generated stress tests, not natural-scene evidence.",
+    "video_limit": "Big Buck Bunny samples are licensed animation; paired half-size bicubic input and original decoded 720p Y are used. This is a 2x software metric, not 960x540 board evidence."
+  },
+  "dataset": {
+    "set5_collection_sha256": "b9cbe9ec0e9b09f440d75f73870598005439f54d4b9dc8a33e801fd2ecb3d79e",
+    "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28",
+    "video_source_frames": [
+      1440,
+      1452,
+      1464,
+      1476,
+      1488,
+      1500,
+      1512,
+      1524
+    ],
+    "video_source_timestamps_s": [
+      60.0,
+      60.5,
+      61.0,
+      61.5,
+      62.0,
+      62.5,
+      63.0,
+      63.5
+    ],
+    "video_source_frame_size": [
+      1280,
+      720
+    ],
+    "video_input_frame_size": [
+      640,
+      360
+    ]
+  },
+  "summary_by_group": {
+    "licensed_video_2x_pair": {
+      "bicubic_psnr_db": 46.604099955972046,
+      "bicubic_ssim": 0.9938938502601022,
+      "fp32_psnr_db": 48.34520186988834,
+      "fp32_ssim": 0.9945487965799316,
+      "integer_psnr_db": 46.36580108311546,
+      "integer_ssim": 0.9886165926374195,
+      "integer_vs_fp32_psnr_db": 50.23304753212962,
+      "integer_vs_fp32_ssim": 0.992780066331168
+    },
+    "set5_validation": {
+      "bicubic_psnr_db": 32.639829579221576,
+      "bicubic_ssim": 0.9278165385771036,
+      "fp32_psnr_db": 34.12018133707968,
+      "fp32_ssim": 0.940540755388494,
+      "integer_psnr_db": 34.01841759904047,
+      "integer_ssim": 0.9378369779463357,
+      "integer_vs_fp32_psnr_db": 50.102839755801746,
+      "integer_vs_fp32_ssim": 0.9965248544479529
+    },
+    "synthetic_stress": {
+      "bicubic_psnr_db": 35.389580483356355,
+      "bicubic_ssim": 0.9847234103345307,
+      "fp32_psnr_db": 36.43298481077911,
+      "fp32_ssim": 0.9839653792883213,
+      "integer_psnr_db": 36.237251699810194,
+      "integer_ssim": 0.9795503480046556,
+      "integer_vs_fp32_psnr_db": 50.60014723731739,
+      "integer_vs_fp32_ssim": 0.9947608979660946
+    }
+  },
+  "sample_count": 20,
+  "samples": [
+    {
+      "frame_id": "baby",
+      "group": "set5_validation",
+      "scenario": "set5_validation",
+      "input_shape_hw": [
+        256,
+        256
+      ],
+      "output_shape_hw": [
+        512,
+        512
+      ],
+      "input_sha256": "6242dd85d3e92071407a6e910cfb5f93971a93068df5f0d8610737757c905265",
+      "reference_sha256": "e0f2db075748b324f5b6aa3e2c0504b06e9804754f9aa5a8fbf77518dde2231b",
+      "reference_kind": "Set5 validation HR",
+      "source": {
+        "source_path": "baby.png",
+        "source_sha256": "cb85956d68f708a1030c790d143cbcd108f5ac5988d3349180cdcb54dd80597d"
+      },
+      "bicubic_psnr_db": 35.97166223922197,
+      "bicubic_ssim": 0.9505944206447552,
+      "fp32_psnr_db": 37.05174332407104,
+      "fp32_ssim": 0.9606793361761579,
+      "integer_psnr_db": 36.9185424537454,
+      "integer_ssim": 0.9564334846300286,
+      "integer_vs_fp32_psnr_db": 50.80736604940094,
+      "integer_vs_fp32_ssim": 0.9947157335069632,
+      "integer_vs_fp32_max_abs_u8": 6,
+      "integer_vs_fp32_mismatched_u8": 133955,
+      "worst_integer_detail_crop_xy": [
+        260,
+        0
+      ],
+      "worst_integer_detail_crop_mae_u8": 4.2374609375,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "baby/reference.png",
+        "bicubic": "baby/bicubic.png",
+        "fp32": "baby/fp32.png",
+        "integer": "baby/integer.png"
+      }
+    },
+    {
+      "frame_id": "bird",
+      "group": "set5_validation",
+      "scenario": "set5_validation",
+      "input_shape_hw": [
+        144,
+        144
+      ],
+      "output_shape_hw": [
+        288,
+        288
+      ],
+      "input_sha256": "19306bf1ac598fc8170ec0fdf0cc08576bd3d41c691817ecf439519d6f7008a6",
+      "reference_sha256": "6a2c28872650ae0364a96d7d0afca3e4204b9eba6e5245c8dd54aa2c17588730",
+      "reference_kind": "Set5 validation HR",
+      "source": {
+        "source_path": "bird.png",
+        "source_sha256": "5dcf863f7c3802e68fbb0fca2ec351052a1f97a4db613e510dbd105cee9a6a32"
+      },
+      "bicubic_psnr_db": 35.940509039014785,
+      "bicubic_ssim": 0.9727066958672793,
+      "fp32_psnr_db": 38.12408521693756,
+      "fp32_ssim": 0.9798694240678575,
+      "integer_psnr_db": 37.97163866864481,
+      "integer_ssim": 0.9772129399339825,
+      "integer_vs_fp32_psnr_db": 51.399975096054405,
+      "integer_vs_fp32_ssim": 0.9972262480976009,
+      "integer_vs_fp32_max_abs_u8": 6,
+      "integer_vs_fp32_mismatched_u8": 35279,
+      "worst_integer_detail_crop_xy": [
+        128,
+        0
+      ],
+      "worst_integer_detail_crop_mae_u8": 2.3812109375,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bird/reference.png",
+        "bicubic": "bird/bicubic.png",
+        "fp32": "bird/fp32.png",
+        "integer": "bird/integer.png"
+      }
+    },
+    {
+      "frame_id": "butterfly",
+      "group": "set5_validation",
+      "scenario": "set5_validation",
+      "input_shape_hw": [
+        128,
+        128
+      ],
+      "output_shape_hw": [
+        256,
+        256
+      ],
+      "input_sha256": "f73bf147e25eaa2395276358751e1f5becf3dc15856f0008c15bafb0ba7be4ed",
+      "reference_sha256": "57ca3a0284f23365336454e3c9d43dfd5d1be1f9e87c1ef437c1a9a6c49380f6",
+      "reference_kind": "Set5 validation HR",
+      "source": {
+        "source_path": "butterfly.png",
+        "source_sha256": "487d841c9dbc46c7ab496c319ec1f13268de7ea7e02f94ae18781ca86a5abd0d"
+      },
+      "bicubic_psnr_db": 26.42120855792306,
+      "bicubic_ssim": 0.9144366281384527,
+      "fp32_psnr_db": 28.46766834605836,
+      "fp32_ssim": 0.9312953660188226,
+      "integer_psnr_db": 28.337738975370183,
+      "integer_ssim": 0.928669396331535,
+      "integer_vs_fp32_psnr_db": 47.71653507133302,
+      "integer_vs_fp32_ssim": 0.9976389236521372,
+      "integer_vs_fp32_max_abs_u8": 9,
+      "integer_vs_fp32_mismatched_u8": 38280,
+      "worst_integer_detail_crop_xy": [
+        96,
+        96
+      ],
+      "worst_integer_detail_crop_mae_u8": 6.89671875,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "butterfly/reference.png",
+        "bicubic": "butterfly/bicubic.png",
+        "fp32": "butterfly/fp32.png",
+        "integer": "butterfly/integer.png"
+      }
+    },
+    {
+      "frame_id": "head",
+      "group": "set5_validation",
+      "scenario": "set5_validation",
+      "input_shape_hw": [
+        140,
+        140
+      ],
+      "output_shape_hw": [
+        280,
+        280
+      ],
+      "input_sha256": "d6e0d75cb7a51c61e03d5700e0cdff75c37ba0139fbd2b3f0874599a8a095da0",
+      "reference_sha256": "2e71eb5d5a7d38777eaebff320dbf8f0f38e3092d8f4d0ea362e054177c94b58",
+      "reference_kind": "Set5 validation HR",
+      "source": {
+        "source_path": "head.png",
+        "source_sha256": "f524c1ce41641c1cf269a20c4dfbe965e07e471d609abc19dfadfb71037cc873"
+      },
+      "bicubic_psnr_db": 33.71576489249523,
+      "bicubic_ssim": 0.8540169247181505,
+      "fp32_psnr_db": 34.27399591451533,
+      "fp32_ssim": 0.8727838760478606,
+      "integer_psnr_db": 34.2562799259716,
+      "integer_ssim": 0.871325403988615,
+      "integer_vs_fp32_psnr_db": 51.675292324341264,
+      "integer_vs_fp32_ssim": 0.9966698834033233,
+      "integer_vs_fp32_max_abs_u8": 17,
+      "integer_vs_fp32_mismatched_u8": 35218,
+      "worst_integer_detail_crop_xy": [
+        60,
+        120
+      ],
+      "worst_integer_detail_crop_mae_u8": 4.3787890625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "head/reference.png",
+        "bicubic": "head/bicubic.png",
+        "fp32": "head/fp32.png",
+        "integer": "head/integer.png"
+      }
+    },
+    {
+      "frame_id": "woman",
+      "group": "set5_validation",
+      "scenario": "set5_validation",
+      "input_shape_hw": [
+        172,
+        114
+      ],
+      "output_shape_hw": [
+        344,
+        228
+      ],
+      "input_sha256": "a4f1f373ba26b761c7605d48ea82a11175ece1e99e79c081ddc1032eb2dfd075",
+      "reference_sha256": "ef7ef6886ce7e7f8c5fbbd4d55053bd0ba3c841730c041e0b11b5cd4e991c2eb",
+      "reference_kind": "Set5 validation HR",
+      "source": {
+        "source_path": "woman.png",
+        "source_sha256": "f276625a222b9ce18d18d86e1ec603fea50427b7c0a2927b3750b1bb86a07b83"
+      },
+      "bicubic_psnr_db": 31.150003167452827,
+      "bicubic_ssim": 0.9473280235168798,
+      "fp32_psnr_db": 32.6834138838161,
+      "fp32_ssim": 0.9580757746317717,
+      "integer_psnr_db": 32.60788797147033,
+      "integer_ssim": 0.9555436648475177,
+      "integer_vs_fp32_psnr_db": 48.91503023787911,
+      "integer_vs_fp32_ssim": 0.99637348357974,
+      "integer_vs_fp32_max_abs_u8": 9,
+      "integer_vs_fp32_mismatched_u8": 42526,
+      "worst_integer_detail_crop_xy": [
+        0,
+        0
+      ],
+      "worst_integer_detail_crop_mae_u8": 5.207265625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "woman/reference.png",
+        "bicubic": "woman/bicubic.png",
+        "fp32": "woman/fp32.png",
+        "integer": "woman/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1440",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "2a2d326efd61c1731529ad66c0b3825bb6dd72aebddfaa80ecc33b0a68c31ec1",
+      "reference_sha256": "2eccb79fa98ed2f8aedc35fedfbb04bb35b97c2bfea12cc8418b6a0d2115643f",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1440,
+        "source_timestamp_seconds": 60.0,
+        "decoded_rgb_sha256": "1f4250afe8f7ffdd7ea235c18aff127193433732bd3a3416b731c1714b731cca",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 41.14800905047761,
+      "bicubic_ssim": 0.9919667481852642,
+      "fp32_psnr_db": 43.80657578508646,
+      "fp32_ssim": 0.9936685437799584,
+      "integer_psnr_db": 43.05496885075406,
+      "integer_ssim": 0.9875376928847363,
+      "integer_vs_fp32_psnr_db": 50.179783510272536,
+      "integer_vs_fp32_ssim": 0.9927191724439356,
+      "integer_vs_fp32_max_abs_u8": 13,
+      "integer_vs_fp32_mismatched_u8": 534673,
+      "worst_integer_detail_crop_xy": [
+        1120,
+        40
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.797890625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1440/reference.png",
+        "bicubic": "bbb_1440/bicubic.png",
+        "fp32": "bbb_1440/fp32.png",
+        "integer": "bbb_1440/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1452",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "9af45a4bdc8eea3d2868b56e54d9556a857720ae9ccb827d117264d40dec3b2e",
+      "reference_sha256": "372475c94ca221046154bd03b5732b38a83930bdb3065049f4118cb9e98cc0e5",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1452,
+        "source_timestamp_seconds": 60.5,
+        "decoded_rgb_sha256": "7ea24bb6e71cb4fdc8e57015cb433e128d02b6bf0e7fbd39d7e7a86dc874c6c9",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 41.1337777089939,
+      "bicubic_ssim": 0.9918712387392179,
+      "fp32_psnr_db": 43.80616399839704,
+      "fp32_ssim": 0.9935969723365025,
+      "integer_psnr_db": 43.055946863713075,
+      "integer_ssim": 0.9874981406316082,
+      "integer_vs_fp32_psnr_db": 50.17213985568083,
+      "integer_vs_fp32_ssim": 0.9927269273420511,
+      "integer_vs_fp32_max_abs_u8": 13,
+      "integer_vs_fp32_mismatched_u8": 535019,
+      "worst_integer_detail_crop_xy": [
+        1120,
+        40
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.7980078125,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1452/reference.png",
+        "bicubic": "bbb_1452/bicubic.png",
+        "fp32": "bbb_1452/fp32.png",
+        "integer": "bbb_1452/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1464",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "56aebea37b55da0221532bb71b1a74cd1d06675839e5388473f714810901100f",
+      "reference_sha256": "94e65d735120f4280e6ee05391a9072467045b54d6586e6fd840972789d58da5",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1464,
+        "source_timestamp_seconds": 61.0,
+        "decoded_rgb_sha256": "d6352cf3bcb85587da2b84b8559fe5941a72373055cb91244af5153bf8fca0bd",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 48.82479109474501,
+      "bicubic_ssim": 0.9949594732969703,
+      "fp32_psnr_db": 50.18635798896592,
+      "fp32_ssim": 0.9951598709430362,
+      "integer_psnr_db": 47.66545335474574,
+      "integer_ssim": 0.9893082936644646,
+      "integer_vs_fp32_psnr_db": 50.275985310644906,
+      "integer_vs_fp32_ssim": 0.9928217787016543,
+      "integer_vs_fp32_max_abs_u8": 4,
+      "integer_vs_fp32_mismatched_u8": 506217,
+      "worst_integer_detail_crop_xy": [
+        720,
+        240
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.0959765625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1464/reference.png",
+        "bicubic": "bbb_1464/bicubic.png",
+        "fp32": "bbb_1464/fp32.png",
+        "integer": "bbb_1464/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1476",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "fbe0d0aca6f29954f0561b05709c83490242444cec274d8ec61991499cfffdaf",
+      "reference_sha256": "940568e730eabf3eee492f074e9b62f8bedfdb4295d15abc6682c2ab5b0edccf",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1476,
+        "source_timestamp_seconds": 61.5,
+        "decoded_rgb_sha256": "8457eba569b034327047887680a4ba8288ff29f60cb75f55e21fa65a8fe7ce6e",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 48.0972313367564,
+      "bicubic_ssim": 0.9941376608209936,
+      "fp32_psnr_db": 49.56027875617178,
+      "fp32_ssim": 0.9945138629211296,
+      "integer_psnr_db": 47.31354018365978,
+      "integer_ssim": 0.9887270061023058,
+      "integer_vs_fp32_psnr_db": 50.27014948239086,
+      "integer_vs_fp32_ssim": 0.992835986791875,
+      "integer_vs_fp32_max_abs_u8": 5,
+      "integer_vs_fp32_mismatched_u8": 505601,
+      "worst_integer_detail_crop_xy": [
+        720,
+        220
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.3014453125,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1476/reference.png",
+        "bicubic": "bbb_1476/bicubic.png",
+        "fp32": "bbb_1476/fp32.png",
+        "integer": "bbb_1476/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1488",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "1542e87fa929161fec5ff171cf92df8ee4c2bf68d577b8940cd57fb7adaf2ba0",
+      "reference_sha256": "17114a9dd377ba7d5c11d3adc0d139e26c5dc446ef816e54c1a810ea9b3e703a",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1488,
+        "source_timestamp_seconds": 62.0,
+        "decoded_rgb_sha256": "02c74e8450e540655b7b9cb70ab6c02eefb9facae776a72bd6c644e881252037",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 48.53980266991889,
+      "bicubic_ssim": 0.9944579177750951,
+      "fp32_psnr_db": 49.95269100466783,
+      "fp32_ssim": 0.994761369661181,
+      "integer_psnr_db": 47.52718485636963,
+      "integer_ssim": 0.9888678972939156,
+      "integer_vs_fp32_psnr_db": 50.2505041541471,
+      "integer_vs_fp32_ssim": 0.9927382698775706,
+      "integer_vs_fp32_max_abs_u8": 5,
+      "integer_vs_fp32_mismatched_u8": 507530,
+      "worst_integer_detail_crop_xy": [
+        720,
+        200
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.1213671875,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1488/reference.png",
+        "bicubic": "bbb_1488/bicubic.png",
+        "fp32": "bbb_1488/fp32.png",
+        "integer": "bbb_1488/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1500",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "22d656ebc15a116ba6926b54e4b44f042f307819088ad17d59fe2a111f4c06d5",
+      "reference_sha256": "d26dc1624c6e1813c88eadbf7a6f07452b5e5f4d3cbbcef8e8e7e6a1ce9a6783",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1500,
+        "source_timestamp_seconds": 62.5,
+        "decoded_rgb_sha256": "8378d211ffa3eb78741c1576e8a2ac6d787eae4b6fa25761e985e69daaa0ba92",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 48.262870662800154,
+      "bicubic_ssim": 0.9941122790441047,
+      "fp32_psnr_db": 49.65267471752603,
+      "fp32_ssim": 0.9944922572917194,
+      "integer_psnr_db": 47.3497128466591,
+      "integer_ssim": 0.9886403245193612,
+      "integer_vs_fp32_psnr_db": 50.260658902452164,
+      "integer_vs_fp32_ssim": 0.9927885128457148,
+      "integer_vs_fp32_max_abs_u8": 6,
+      "integer_vs_fp32_mismatched_u8": 507383,
+      "worst_integer_detail_crop_xy": [
+        720,
+        200
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.1155078125,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1500/reference.png",
+        "bicubic": "bbb_1500/bicubic.png",
+        "fp32": "bbb_1500/fp32.png",
+        "integer": "bbb_1500/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1512",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "acb412732201e30657ac84b28afb0f8e5c8358c9098a0bd37f3e745f3b0c2858",
+      "reference_sha256": "50bbeb255a2c7941197294aab067d333881507d3af42fdedd04d8793baaee50d",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1512,
+        "source_timestamp_seconds": 63.0,
+        "decoded_rgb_sha256": "a4a7482e9baaa69ab6a312888096b6d0243efda667e2e412252b6d7ebb7799f2",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 48.86982099201646,
+      "bicubic_ssim": 0.9952059681323769,
+      "fp32_psnr_db": 50.124166426846855,
+      "fp32_ssim": 0.9952920412032277,
+      "integer_psnr_db": 47.60253609878238,
+      "integer_ssim": 0.9893730129108556,
+      "integer_vs_fp32_psnr_db": 50.22167534267148,
+      "integer_vs_fp32_ssim": 0.9927520584697662,
+      "integer_vs_fp32_max_abs_u8": 4,
+      "integer_vs_fp32_mismatched_u8": 510330,
+      "worst_integer_detail_crop_xy": [
+        620,
+        240
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.0826171875,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1512/reference.png",
+        "bicubic": "bbb_1512/bicubic.png",
+        "fp32": "bbb_1512/fp32.png",
+        "integer": "bbb_1512/integer.png"
+      }
+    },
+    {
+      "frame_id": "bbb_1524",
+      "group": "licensed_video_2x_pair",
+      "scenario": "licensed_video_2x_pair",
+      "input_shape_hw": [
+        360,
+        640
+      ],
+      "output_shape_hw": [
+        720,
+        1280
+      ],
+      "input_sha256": "211a5c11dc944764accf627ed4997dc959dcfc04922620a34d9501c63686631d",
+      "reference_sha256": "dd484aac35240f8184353ad604619bd8cfb1c373dc21f52cc6cdeb2a713f891e",
+      "reference_kind": "paired_hr",
+      "source": {
+        "source_frame_index": 1524,
+        "source_timestamp_seconds": 63.5,
+        "decoded_rgb_sha256": "374d680ab93f2b41d17d9da98df371c3d1774c387e9310a2ede2c3a1014f3c4b",
+        "source_video_sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+      },
+      "bicubic_psnr_db": 47.95649613206791,
+      "bicubic_ssim": 0.9944395160867954,
+      "fp32_psnr_db": 49.67270628144479,
+      "fp32_ssim": 0.9949054545026974,
+      "integer_psnr_db": 47.35706561023988,
+      "integer_ssim": 0.9889803730921095,
+      "integer_vs_fp32_psnr_db": 50.233483698777036,
+      "integer_vs_fp32_ssim": 0.9928578241767763,
+      "integer_vs_fp32_max_abs_u8": 7,
+      "integer_vs_fp32_mismatched_u8": 507248,
+      "worst_integer_detail_crop_xy": [
+        560,
+        100
+      ],
+      "worst_integer_detail_crop_mae_u8": 1.2175390625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "bbb_1524/reference.png",
+        "bicubic": "bbb_1524/bicubic.png",
+        "fp32": "bbb_1524/fp32.png",
+        "integer": "bbb_1524/integer.png"
+      }
+    },
+    {
+      "frame_id": "text_small_strokes",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_text",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "5b95a394b93bb90c72a93e1aace4a8a0c98752b1979201d0fadb41f60a9f490b",
+      "reference_sha256": "3e4a494d7d6da0afd33b89028a48d89c93038af9eca47dc3cf5af2ddb6372163",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 28.722923925090356,
+      "bicubic_ssim": 0.9800058480963554,
+      "fp32_psnr_db": 30.112580605316992,
+      "fp32_ssim": 0.9761116414033769,
+      "integer_psnr_db": 30.001781434309954,
+      "integer_ssim": 0.9672734783984934,
+      "integer_vs_fp32_psnr_db": 46.2461609590703,
+      "integer_vs_fp32_ssim": 0.988777432886364,
+      "integer_vs_fp32_max_abs_u8": 27,
+      "integer_vs_fp32_mismatched_u8": 1432517,
+      "worst_integer_detail_crop_xy": [
+        180,
+        220
+      ],
+      "worst_integer_detail_crop_mae_u8": 8.1725390625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "text_small_strokes/reference.png",
+        "bicubic": "text_small_strokes/bicubic.png",
+        "fp32": "text_small_strokes/fp32.png",
+        "integer": "text_small_strokes/integer.png"
+      }
+    },
+    {
+      "frame_id": "building_facade",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_architecture",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "85c98f31205665d6e6b173b9999254051c81bc85ee9430f75fdbc9409f257457",
+      "reference_sha256": "7f1ed0fec9837bb4cda96e48b68c11e7e48559587270e2b11b7ccf0888cefa00",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 29.92177239364718,
+      "bicubic_ssim": 0.9707235775368422,
+      "fp32_psnr_db": 31.087794002599626,
+      "fp32_ssim": 0.9699868394995794,
+      "integer_psnr_db": 30.99149052588034,
+      "integer_ssim": 0.9662856871156865,
+      "integer_vs_fp32_psnr_db": 49.260560307236986,
+      "integer_vs_fp32_ssim": 0.9955710078959743,
+      "integer_vs_fp32_max_abs_u8": 10,
+      "integer_vs_fp32_mismatched_u8": 900710,
+      "worst_integer_detail_crop_xy": [
+        1040,
+        720
+      ],
+      "worst_integer_detail_crop_mae_u8": 6.3208203125,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "building_facade/reference.png",
+        "bicubic": "building_facade/bicubic.png",
+        "fp32": "building_facade/fp32.png",
+        "integer": "building_facade/integer.png"
+      }
+    },
+    {
+      "frame_id": "portrait_face",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_person",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "d7fc59ad6ce4330f23a7aa6198665bb2055bde5963d041cd38f7c19988ac29e2",
+      "reference_sha256": "fb0cdbacd9c245b78be4a8776f7fbefa1412eb4179a20107a550fac9b19c2cd3",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 34.85459409359204,
+      "bicubic_ssim": 0.9878609527855602,
+      "fp32_psnr_db": 35.737394811556875,
+      "fp32_ssim": 0.9873040011008577,
+      "integer_psnr_db": 35.5776733139114,
+      "integer_ssim": 0.9830391167897178,
+      "integer_vs_fp32_psnr_db": 50.74629605426907,
+      "integer_vs_fp32_ssim": 0.9950561717051291,
+      "integer_vs_fp32_max_abs_u8": 10,
+      "integer_vs_fp32_mismatched_u8": 843841,
+      "worst_integer_detail_crop_xy": [
+        780,
+        740
+      ],
+      "worst_integer_detail_crop_mae_u8": 4.1069140625,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "portrait_face/reference.png",
+        "bicubic": "portrait_face/bicubic.png",
+        "fp32": "portrait_face/fp32.png",
+        "integer": "portrait_face/integer.png"
+      }
+    },
+    {
+      "frame_id": "motion_00",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_motion",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "fe29e84c7aba6e3af47887424cd6c558131b4e88b3a6357a1f1b7966a8de2271",
+      "reference_sha256": "409dbd4c20301a2c35a95a6fc090374638c6345cd81979fde22dd0fd14d91fce",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 38.55094412093165,
+      "bicubic_ssim": 0.9885441807784103,
+      "fp32_psnr_db": 39.52388348699027,
+      "fp32_ssim": 0.9885132715673798,
+      "integer_psnr_db": 39.27263052558382,
+      "integer_ssim": 0.984986577456874,
+      "integer_vs_fp32_psnr_db": 51.97637225325494,
+      "integer_vs_fp32_ssim": 0.9959803926070929,
+      "integer_vs_fp32_max_abs_u8": 11,
+      "integer_vs_fp32_mismatched_u8": 705227,
+      "worst_integer_detail_crop_xy": [
+        380,
+        440
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.3115234375,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "motion_00/reference.png",
+        "bicubic": "motion_00/bicubic.png",
+        "fp32": "motion_00/fp32.png",
+        "integer": "motion_00/integer.png"
+      }
+    },
+    {
+      "frame_id": "motion_01",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_motion",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "91e4ef9c4aedb4c42860309bd233779ee9ea0210d745a08da1f6973c49905987",
+      "reference_sha256": "cfa026e820661f583f8ffd9dc5e87211b1ff2809ec18e0347b184865d82d69de",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 38.694092093842954,
+      "bicubic_ssim": 0.9888410722248614,
+      "fp32_psnr_db": 39.66097333695201,
+      "fp32_ssim": 0.9888411046613296,
+      "integer_psnr_db": 39.40488906665144,
+      "integer_ssim": 0.9853186517129523,
+      "integer_vs_fp32_psnr_db": 51.99546934274156,
+      "integer_vs_fp32_ssim": 0.9959761265145665,
+      "integer_vs_fp32_max_abs_u8": 11,
+      "integer_vs_fp32_mismatched_u8": 705060,
+      "worst_integer_detail_crop_xy": [
+        700,
+        440
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.487734375,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "motion_01/reference.png",
+        "bicubic": "motion_01/bicubic.png",
+        "fp32": "motion_01/fp32.png",
+        "integer": "motion_01/integer.png"
+      }
+    },
+    {
+      "frame_id": "motion_02",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_motion",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "de37e483fdefd9706d1c7ce5fed261ba0925a904550cd73edcaf653e8e6693bb",
+      "reference_sha256": "f2a48025ca6dc749b3e029a87e05326e431f9314090d9ab9a8fa0cf4084833c2",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 38.49225964383181,
+      "bicubic_ssim": 0.9886189737464497,
+      "fp32_psnr_db": 39.45511353873457,
+      "fp32_ssim": 0.9885535859898925,
+      "integer_psnr_db": 39.209071865247076,
+      "integer_ssim": 0.9850270456755333,
+      "integer_vs_fp32_psnr_db": 51.98516324411595,
+      "integer_vs_fp32_ssim": 0.9959805708925984,
+      "integer_vs_fp32_max_abs_u8": 11,
+      "integer_vs_fp32_mismatched_u8": 705055,
+      "worst_integer_detail_crop_xy": [
+        980,
+        440
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.2826171875,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "motion_02/reference.png",
+        "bicubic": "motion_02/bicubic.png",
+        "fp32": "motion_02/fp32.png",
+        "integer": "motion_02/integer.png"
+      }
+    },
+    {
+      "frame_id": "motion_03",
+      "group": "synthetic_stress",
+      "scenario": "synthetic_motion",
+      "input_shape_hw": [
+        540,
+        960
+      ],
+      "output_shape_hw": [
+        1080,
+        1920
+      ],
+      "input_sha256": "ad6067e69702639e0d17c057a538c04c7d9ec93206ece8a4289e7dabb18f3276",
+      "reference_sha256": "1fde912a0ee3f96d4fd4fde0e1492f36d0f5cde04afef19ce0984df6b7db00e4",
+      "reference_kind": "paired_hr",
+      "source": {
+        "reference": "Deterministic synthetic 1920x1080 scene; downsampled with Pillow BICUBIC"
+      },
+      "bicubic_psnr_db": 38.49047711255849,
+      "bicubic_ssim": 0.9884692671732359,
+      "fp32_psnr_db": 39.45315389330344,
+      "fp32_ssim": 0.9884472107958332,
+      "integer_psnr_db": 39.203225167087325,
+      "integer_ssim": 0.9849218788833313,
+      "integer_vs_fp32_psnr_db": 51.99100850053284,
+      "integer_vs_fp32_ssim": 0.9959845832609364,
+      "integer_vs_fp32_max_abs_u8": 11,
+      "integer_vs_fp32_mismatched_u8": 704948,
+      "worst_integer_detail_crop_xy": [
+        1280,
+        440
+      ],
+      "worst_integer_detail_crop_mae_u8": 3.50171875,
+      "metric_border_crop_px": 2,
+      "local_artifacts": {
+        "reference": "motion_03/reference.png",
+        "bicubic": "motion_03/bicubic.png",
+        "fp32": "motion_03/fp32.png",
+        "integer": "motion_03/integer.png"
+      }
+    }
+  ],
+  "worst_synthetic_integer_case": {
+    "frame_id": "text_small_strokes",
+    "integer_psnr_db": 30.001781434309954,
+    "integer_ssim": 0.9672734783984934,
+    "detail_crop_xy": [
+      180,
+      220
+    ],
+    "detail_crop_mae_u8": 8.1725390625,
+    "image": "actual_integer_worst_case_detail.png"
+  },
+  "visual_review": "actual_integer_visual_review.png",
+  "physical_board_tested": false
+}

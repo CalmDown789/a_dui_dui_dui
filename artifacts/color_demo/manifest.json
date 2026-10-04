@@ -1,0 +1,117 @@
+{
+  "schema": "member-a-color-video-software-demo-v1",
+  "status": "PASS",
+  "source": {
+    "title": "Big Buck Bunny (2008)",
+    "credit": "(c) copyright 2008, Blender Foundation / www.bigbuckbunny.org",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "official_source": "https://peach.blender.org/about/",
+    "bytes": 196898674,
+    "sha256": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28"
+  },
+  "model": {
+    "config": "FSRCNNSubpixel d16/s8/m1/c16 x2",
+    "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+    "integer_output_source": "artifacts/multiframe/*.bin frozen integer Golden"
+  },
+  "conversion": {
+    "input_y": "Existing frozen 960x540 full-range uint8 Y; unchanged model inputs",
+    "output_y": "Frozen integer Golden 1920x1080 uint8 Y replaces decoded source luma",
+    "cb_cr": "Original source Cb/Cr software-upsampled 1280x720 to 1920x1080 using FFmpeg/libswscale Lanczos",
+    "source_range_conversion": "FFmpeg scale in_range=tv, out_range=pc for all planar YUV channels",
+    "source_color_tags": "Original Theora tags report unknown; BT.709 matrix is explicitly assumed for this demonstration",
+    "composition": "full-range YUV444; encode H.264 yuv420p full-range, BT.709, CRF18",
+    "audio": "omitted",
+    "frame_rate_fps": 2,
+    "scope": "Software visual demonstration only; not FPGA capture or performance measurement"
+  },
+  "frames": [
+    {
+      "frame_id": 0,
+      "source_frame_index": 1440,
+      "source_timestamp_seconds": 60.0,
+      "input_y_sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf",
+      "integer_y_sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae",
+      "upsampled_cb_sha256": "35db40fd906a41a215ec9cdccb9e1b721c6bac80b8608b083de17ffd36a22a72",
+      "upsampled_cr_sha256": "bd851352d7acabfacbe02a3a2c21acebb3906443c1a48ffbbd95f27d786a2528"
+    },
+    {
+      "frame_id": 1,
+      "source_frame_index": 1452,
+      "source_timestamp_seconds": 60.5,
+      "input_y_sha256": "2bf06bb7cc2564c53b17253b4b8aad5ada3c3bc916531889ed6a49bd92160dc4",
+      "integer_y_sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f",
+      "upsampled_cb_sha256": "79f54da8a8b893ac235e0d969de40165ef8964406e77dcb7f359998ef76141db",
+      "upsampled_cr_sha256": "2ca451d26f978a3dcf24b5425ab717b6a5d219ae71d06cf0e5533e3b88e821c0"
+    },
+    {
+      "frame_id": 2,
+      "source_frame_index": 1464,
+      "source_timestamp_seconds": 61.0,
+      "input_y_sha256": "405e4e16d6c62f6b0b9113a4ef6f7f4a37dd92ef4a1f9cd990e15fa93801b436",
+      "integer_y_sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a",
+      "upsampled_cb_sha256": "d5e7b813b1f610a73908ec9e5a6d55ab314dd880dd87b0ac1933731720038b3a",
+      "upsampled_cr_sha256": "d02d866a9c9d3b63faa7c288209ca34684d0e277b496f39f707ac1afafdcce4e"
+    },
+    {
+      "frame_id": 3,
+      "source_frame_index": 1476,
+      "source_timestamp_seconds": 61.5,
+      "input_y_sha256": "4d323600308a0c527b149ebda1eaa1a4b8ad974de2e80387a962a38717676d23",
+      "integer_y_sha256": "910b3ef6ef5f88c17df6e1741a2ca745a61d617784ff9b851ed4b3de7c7d0e93",
+      "upsampled_cb_sha256": "19e6aeef277ad21ee7f7c78eec72719210aa107efcb78e64ac259c01f3fa6ffd",
+      "upsampled_cr_sha256": "ea09518bbbb3b782f6ca25cb5f246b69d3dc3cf3267549e7b068b93621469857"
+    },
+    {
+      "frame_id": 4,
+      "source_frame_index": 1488,
+      "source_timestamp_seconds": 62.0,
+      "input_y_sha256": "b246177fbe457af4cab34df110c522d6a7a0b796c5dc308577343d83c0127d4f",
+      "integer_y_sha256": "c42e34b79e47ee2920e73b405ad958d37442e955bdce6e21af916952e4eae267",
+      "upsampled_cb_sha256": "6596b88ba6880a76262fcd6907ef1db8c0a79924af902e39d6b75a3ba88cf7ec",
+      "upsampled_cr_sha256": "b73dd579788d76222309bf83156082902fab6409fe34f04baf97bed4c56ec63b"
+    },
+    {
+      "frame_id": 5,
+      "source_frame_index": 1500,
+      "source_timestamp_seconds": 62.5,
+      "input_y_sha256": "367b41a62345cd0e7f4366bda491c22f1d0e70d60ee7ec830168baffe56d0d0b",
+      "integer_y_sha256": "d64fcc2e10f89e18b012cd4945d85febb4e900dde8ea93920c57db68c981db37",
+      "upsampled_cb_sha256": "6f78bcf8209dd28b9673667eb6e3d2b8e7d2e6527168481081c5eec3166c62b0",
+      "upsampled_cr_sha256": "3fc3c9ae2f86ba328275a2067de3d96f1bf911415948b0599db5af8803885a0d"
+    },
+    {
+      "frame_id": 6,
+      "source_frame_index": 1512,
+      "source_timestamp_seconds": 63.0,
+      "input_y_sha256": "4d56ea4b36c14e52ca41a4706c8545fcb62e4bb79ee761fdd56991905d3671fa",
+      "integer_y_sha256": "8a61381679eb711e6e10a2e9b798e6329048ae77b29eeb6e4681ce854c6222df",
+      "upsampled_cb_sha256": "5f74a45c837d56a74d3dcc48820362b4083a1b1dac94ab75eeb0ea3d84211443",
+      "upsampled_cr_sha256": "1036b7e3e60ce9b87399b0a16179ab64621bf4cee032f28630287a095bc7649a"
+    },
+    {
+      "frame_id": 7,
+      "source_frame_index": 1524,
+      "source_timestamp_seconds": 63.5,
+      "input_y_sha256": "995c580ce82db7ed6d30b290d0772ce08b032a4dc92cfda6ff00fa0236d754cb",
+      "integer_y_sha256": "8e3b1098392dd87f9e548ea747df59a370959fadf0f851cc3e1e01c7b880f406",
+      "upsampled_cb_sha256": "d0e684f2c3d34824e5b853dba07ff8dd2b0bf7a1b1aab60f31c660f6350f1553",
+      "upsampled_cr_sha256": "6a3108d2941b8df218518b353993c6715ad87b229f133f7431f3b254437c5ba0"
+    }
+  ],
+  "output": {
+    "path": "bbb_fsrcnn_integer_960x540_to_1920x1080.mp4",
+    "bytes": 1390813,
+    "sha256": "f7fb484eea92a8a00c1a46daf7cdf0addca5e69dcb674bb7fdb09efbdbf579f2",
+    "codec_probe": [
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 2779 kb/s, 2 fps, 2 tbr, 16384 tbn (default)"
+    ],
+    "decode_exit_code": 0,
+    "video_frame_count": 8,
+    "duration_seconds": 4.0
+  },
+  "tool": {
+    "ffmpeg_version": "ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers"
+  }
+}
