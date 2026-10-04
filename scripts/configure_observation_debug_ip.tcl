@@ -33,6 +33,9 @@ set ila_cfg [list \
     CONFIG.C_PROBE8_WIDTH {1} \
     CONFIG.C_PROBE9_WIDTH {1}]
 set_property -dict $ila_cfg $ila
+# Full 934-bit snapshot is captured as data. Trigger on the nine small probes.
+# TYPE=1 is DATA in the installed ILA 6.2 component.xml.
+set_property CONFIG.C_PROBE1_TYPE 1 $ila
 
 create_ip -name vio -vendor xilinx.com -library ip -version $vio_version \
     -module_name vio_obs_snapshot_ctrl -dir "$ip_dir/vio_obs_snapshot_ctrl"

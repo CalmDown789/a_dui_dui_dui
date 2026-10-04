@@ -38,6 +38,18 @@ module c_observation #(
     output reg  [4:0]   snapshot_count,
     output reg          snapshot_overflow
 );
+    // Exact modulo-2^64 increment, with four independent 16-bit sums.
+    // Carry predicates use the OLD value; no cycle latency or range change.
+    function [63:0] inc64;
+        input [63:0] value;
+        begin
+            inc64[15:0]  = value[15:0]  + 16'd1;
+            inc64[31:16] = value[31:16] + (&value[15:0]);
+            inc64[47:32] = value[47:32] + (&value[31:0]);
+            inc64[63:48] = value[63:48] + (&value[47:0]);
+        end
+    endfunction
+
     localparam [31:0] EXPECTED_INPUTS_U32 = EXPECTED_INPUTS;
     localparam [31:0] EXPECTED_OUTPUTS_U32 = EXPECTED_OUTPUTS;
 
@@ -157,16 +169,16 @@ module c_observation #(
                     b_stall_frame_last_q <= b_frame_last;
                 end
             end else if (frame_active_q) begin
-                elapsed_cycles_q <= elapsed_cycles_q + 64'd1;
+                elapsed_cycles_q <= inc64(elapsed_cycles_q);
                 if (core_done)
                     core_done_seen_q <= 1'b1;
                 if (core_done && !core_done_seen_q)
-                    core_span_cycles_q <= elapsed_cycles_q + 64'd1;
+                    core_span_cycles_q <= inc64(elapsed_cycles_q);
 
                 if (input_accept) begin
                     input_accept_count_q <= input_accept_count_q + 32'd1;
                     if (input_accept_count_q + 32'd1 == EXPECTED_INPUTS_U32)
-                        last_input_cycle_q <= elapsed_cycles_q + 64'd1;
+                        last_input_cycle_q <= inc64(elapsed_cycles_q);
                 end
                 if (output_accept) begin
                     output_accept_count_q <= output_accept_count_q + 32'd1;
@@ -175,21 +187,21 @@ module c_observation #(
                     if (b_frame_last)
                         frame_last_accept_count_q <= frame_last_accept_count_q + 8'd1;
                     if (output_accept_count_q + 32'd1 == EXPECTED_OUTPUTS_U32)
-                        last_output_cycle_q <= elapsed_cycles_q + 64'd1;
+                        last_output_cycle_q <= inc64(elapsed_cycles_q);
                 end
 
                 if (output_blocked)
-                    output_blocked_cycles_q <= output_blocked_cycles_q + 64'd1;
+                    output_blocked_cycles_q <= inc64(output_blocked_cycles_q);
                 if (b_waiting_for_input)
-                    b_input_wait_cycles_q <= b_input_wait_cycles_q + 64'd1;
+                    b_input_wait_cycles_q <= inc64(b_input_wait_cycles_q);
                 if (c2b_stalled)
-                    c2b_stall_cycles_q <= c2b_stall_cycles_q + 64'd1;
+                    c2b_stall_cycles_q <= inc64(c2b_stall_cycles_q);
                 if (joint_stall)
-                    joint_stall_cycles_q <= joint_stall_cycles_q + 64'd1;
+                    joint_stall_cycles_q <= inc64(joint_stall_cycles_q);
                 if (pause_active)
-                    pause_request_cycles_q <= pause_request_cycles_q + 64'd1;
+                    pause_request_cycles_q <= inc64(pause_request_cycles_q);
                 if (pause_forced_block)
-                    pause_forced_block_cycles_q <= pause_forced_block_cycles_q + 64'd1;
+                    pause_forced_block_cycles_q <= inc64(pause_forced_block_cycles_q);
 
                 if (c2b_previous_stall_q &&
                     (!c2b_valid || c2b_data !== c2b_stall_data_q))
@@ -224,7 +236,7 @@ module c_observation #(
                         c2b_stall_cycles_q,
                         b_input_wait_cycles_q,
                         output_blocked_cycles_q,
-                        elapsed_cycles_q + 64'd1,
+                        inc64(elapsed_cycles_q),
                         last_output_cycle_q,
                         last_input_cycle_q,
                         core_span_cycles_q,
