@@ -1,0 +1,269 @@
+{
+  "schema": "member-a-pc-transport-fault-simulation-v1",
+  "suite_verdict": "PASS",
+  "protocol_status": "PROTOTYPE_UNCONFIRMED",
+  "manifest": "artifacts/authority_pair/manifest.json",
+  "manifest_is_repository_relative": true,
+  "manifest_sha256": "8dbaeba52800c8db2111d3e5ab085dae71fc033ed30efcc22559bc64652d1d7d",
+  "sequence_id": "authority_plus_second_frame",
+  "physical_port_opened": false,
+  "rtl_executed": false,
+  "board_tested": false,
+  "c_compatibility_verified": false,
+  "endpoint_behavior": "Validates the prototype input and returns frozen A Golden output bytes; fault cases deliberately alter delivery.",
+  "output_frame_id_on_wire": false,
+  "wrong_frame_case_limit": "Output has no wire frame ID; a shifted Golden is detected by byte comparison, not diagnosed as an observed ID field.",
+  "wrong_input_id_case_limit": "The fake receiver starts with an out-of-sync expected ID and sends no output; with no ACK/status response, the PC observes timeout rather than a decoded ID error.",
+  "scenarios": [
+    {
+      "scenario": "normal",
+      "expected": {
+        "expected_capture": "COMPLETE",
+        "expected_comparison": "PASS"
+      },
+      "actual": {
+        "capture": "COMPLETE",
+        "comparison": "PASS"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [
+        0,
+        1
+      ],
+      "received_frame_count": 2,
+      "received_bytes": 4147200,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": null,
+      "virtual_elapsed_seconds": 1.38416,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.01016,
+        "host_wait_to_first_payload_virtual_seconds": 0.002,
+        "host_return_read_span_virtual_seconds": 1.35,
+        "host_session_virtual_seconds": 1.3841599999999352,
+        "local_byte_compare_seconds": 0.185352,
+        "local_byte_compare_status": "PASS",
+        "player_nominal_seconds_at_2fps": 1.0,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/normal"
+    },
+    {
+      "scenario": "delayed",
+      "expected": {
+        "expected_capture": "COMPLETE",
+        "expected_comparison": "PASS"
+      },
+      "actual": {
+        "capture": "COMPLETE",
+        "comparison": "PASS"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [
+        0,
+        1
+      ],
+      "received_frame_count": 2,
+      "received_bytes": 4147200,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": null,
+      "virtual_elapsed_seconds": 1.88316,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.01016,
+        "host_wait_to_first_payload_virtual_seconds": 0.501,
+        "host_return_read_span_virtual_seconds": 1.35,
+        "host_session_virtual_seconds": 1.8831599999998803,
+        "local_byte_compare_seconds": 0.187892,
+        "local_byte_compare_status": "PASS",
+        "player_nominal_seconds_at_2fps": 1.0,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/delayed"
+    },
+    {
+      "scenario": "truncated",
+      "expected": {
+        "expected_capture": "FAIL",
+        "expected_comparison": "FAIL"
+      },
+      "actual": {
+        "capture": "FAIL",
+        "comparison": "FAIL"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [
+        0
+      ],
+      "received_frame_count": 1,
+      "received_bytes": 2073599,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": "Receive failed: idle_timeout; session stopped, external reset required; no retry performed",
+      "virtual_elapsed_seconds": 1.68308,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.00508,
+        "host_wait_to_first_payload_virtual_seconds": 0.001,
+        "host_return_read_span_virtual_seconds": 0.675,
+        "host_session_virtual_seconds": 1.6830799999999255,
+        "local_byte_compare_seconds": 0.025787,
+        "local_byte_compare_status": "FAIL",
+        "player_nominal_seconds_at_2fps": 0.5,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [
+        "truncated_output_by_one_byte"
+      ],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/truncated"
+    },
+    {
+      "scenario": "wrong_frame",
+      "expected": {
+        "expected_capture": "COMPLETE",
+        "expected_comparison": "FAIL"
+      },
+      "actual": {
+        "capture": "COMPLETE",
+        "comparison": "FAIL"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [
+        0,
+        1
+      ],
+      "received_frame_count": 2,
+      "received_bytes": 4147200,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": null,
+      "virtual_elapsed_seconds": 1.38416,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.01016,
+        "host_wait_to_first_payload_virtual_seconds": 0.002,
+        "host_return_read_span_virtual_seconds": 1.35,
+        "host_session_virtual_seconds": 1.3841599999999352,
+        "local_byte_compare_seconds": 0.310538,
+        "local_byte_compare_status": "FAIL",
+        "player_nominal_seconds_at_2fps": 1.0,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [
+        "returned_frame_1_for_input_0",
+        "returned_frame_0_for_input_1"
+      ],
+      "comparison_mismatch_bytes": 4136352,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/wrong_frame"
+    },
+    {
+      "scenario": "wrong_frame_id",
+      "expected": {
+        "expected_capture": "FAIL",
+        "expected_comparison": "FAIL"
+      },
+      "actual": {
+        "capture": "FAIL",
+        "comparison": "FAIL"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [],
+      "received_frame_count": 0,
+      "received_bytes": 0,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": "Receive failed: idle_timeout; session stopped, external reset required; no retry performed",
+      "virtual_elapsed_seconds": 1.00608,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.00508,
+        "host_wait_to_first_payload_virtual_seconds": null,
+        "host_return_read_span_virtual_seconds": null,
+        "host_session_virtual_seconds": 1.00608,
+        "local_byte_compare_seconds": 0.014798,
+        "local_byte_compare_status": "FAIL",
+        "player_nominal_seconds_at_2fps": 0.0,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [
+        "reject_unexpected_frame_id:got_0_expected_1"
+      ],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/wrong_frame_id"
+    },
+    {
+      "scenario": "disconnect",
+      "expected": {
+        "expected_capture": "FAIL",
+        "expected_comparison": "FAIL"
+      },
+      "actual": {
+        "capture": "FAIL",
+        "comparison": "FAIL"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [
+        0
+      ],
+      "received_frame_count": 1,
+      "received_bytes": 33781,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": "Receive failed: read_error: simulated cable/device disconnect; session stopped, external reset required; no retry performed",
+      "virtual_elapsed_seconds": 0.01808,
+      "stage_timings": {
+        "host_send_virtual_seconds": 0.00508,
+        "host_wait_to_first_payload_virtual_seconds": 0.001,
+        "host_return_read_span_virtual_seconds": 0.01,
+        "host_session_virtual_seconds": 0.018079999999999926,
+        "local_byte_compare_seconds": 0.020927,
+        "local_byte_compare_status": "FAIL",
+        "player_nominal_seconds_at_2fps": 0.5,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [
+        "disconnect_after_32768_output_bytes",
+        "serial_disconnect"
+      ],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/disconnect"
+    },
+    {
+      "scenario": "reset_required",
+      "expected": {
+        "expected_capture": "FAIL",
+        "expected_comparison": "FAIL"
+      },
+      "actual": {
+        "capture": "FAIL",
+        "comparison": "FAIL"
+      },
+      "test_verdict": "PASS",
+      "input_frame_ids_accepted": [],
+      "received_frame_count": 0,
+      "received_bytes": 1,
+      "unexpected_tail_bytes": 0,
+      "failure_reason": "Preexisting output: no known frame boundary; external reset required; session stopped, external reset required; no retry performed",
+      "virtual_elapsed_seconds": 0.001,
+      "stage_timings": {
+        "host_send_virtual_seconds": null,
+        "host_wait_to_first_payload_virtual_seconds": null,
+        "host_return_read_span_virtual_seconds": null,
+        "host_session_virtual_seconds": 0.001,
+        "local_byte_compare_seconds": 0.014911,
+        "local_byte_compare_status": "FAIL",
+        "player_nominal_seconds_at_2fps": 0.0,
+        "player_observed_seconds": null,
+        "timing_basis": "software_fixture; virtual transport clock; host compare timer; playback is nominal only"
+      },
+      "events": [
+        "stale_rx_before_first_input_reset_required"
+      ],
+      "comparison_mismatch_bytes": 0,
+      "session_dir": ".data/pc_transport_simulator/run_20261005_06/reset_required"
+    }
+  ],
+  "simulator_output_root": ".data/pc_transport_simulator/run_20261005_06"
+}
