@@ -19,6 +19,16 @@ def test_fault_simulation_detects_transport_failures_and_keeps_provenance(tmp_pa
     assert report["board_tested"] is False
     assert report["c_compatibility_verified"] is False
     assert report["raw_session_files_committed"] is False
+    c_tx = report["current_c_uart_tx_simulation"]
+    assert c_tx["suite_verdict"] == "PASS"
+    assert c_tx["physical_port_opened"] is False and c_tx["input_bytes_sent"] == 0
+    assert c_tx["wire_frame_id_available"] is False
+    c_cases = {case["scenario"]: case for case in c_tx["scenarios"]}
+    assert len(c_cases) == 7
+    assert c_cases["wrong_frame_order"]["capture_status"] == "COMPLETE"
+    assert c_cases["wrong_frame_order"]["comparison_status"] == "FAIL"
+    assert c_cases["stale_byte_requires_reset"]["unexpected_tail_bytes"] == 1
+    assert c_cases["recovery_after_external_reset"]["comparison_status"] == "PASS"
     by_name = {case["scenario"]: case for case in report["scenarios"]}
     assert set(by_name) == set(simulator.SCENARIOS)
     assert by_name["normal"]["actual"] == {"capture": "COMPLETE", "comparison": "PASS"}

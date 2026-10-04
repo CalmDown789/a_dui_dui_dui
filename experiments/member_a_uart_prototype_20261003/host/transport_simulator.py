@@ -14,6 +14,7 @@ import sys
 import time
 
 from stop_wait_client import ROOT, decode_input, digest, load_manifest, run_sequence
+from capture_raw_uart import capture as capture_raw_uart
 from received_frames import compare_received
 
 
@@ -127,6 +128,106 @@ class SimulatedEndpoint:
         return raw
 
 
+class RawTxEndpoint:
+    """Read-only fake peer for the current C headerless UART TX path."""
+
+    def __init__(self, payload: bytes, scenario: str, clock: VirtualClock,
+                 *, delay_seconds: float = 0.25, chunk_size: int = 4093) -> None:
+        self.payload = payload
+        self.scenario = scenario
+        self.clock = clock
+        self.delay_seconds = delay_seconds
+        self.chunk_size = chunk_size
+        self.offset = 0
+        self.ready_at = delay_seconds if scenario == "delayed" else 0.0
+        self.events: list[str] = []
+
+    def read(self, requested: int) -> bytes:
+        self.clock.advance(0.001)
+        if self.clock.seconds < self.ready_at:
+            return b""
+        if self.scenario == "disconnect" and self.offset >= 32768:
+            self.events.append("simulated_uart_disconnect")
+            raise OSError("simulated cable/device disconnect")
+        count = min(requested, self.chunk_size, len(self.payload) - self.offset)
+        raw = self.payload[self.offset:self.offset + count]
+        self.offset += len(raw)
+        return raw
+
+
+def run_c_tx_suite(output_root: Path, *, delay_seconds: float = 0.25) -> dict:
+    single_path = ROOT / "artifacts/authority_pair/single_authority_manifest.json"
+    pair_path = ROOT / "artifacts/authority_pair/manifest.json"
+    single = load_manifest(single_path)
+    single_golden = (single_path.parent / single["frames"][0]["golden"]["path"]).read_bytes()
+    pair = load_manifest(pair_path)
+    pair_golden = [(pair_path.parent / frame["golden"]["path"]).read_bytes()
+                   for frame in pair["frames"]]
+    cases = [
+        ("normal", single_path, single_golden, "COMPLETE", "PASS", 0),
+        ("delayed", single_path, single_golden, "COMPLETE", "PASS", 0),
+        ("truncated", single_path, single_golden[:-1], "FAIL", "FAIL", 0),
+        ("wrong_frame_order", pair_path, b"".join(reversed(pair_golden)), "COMPLETE", "FAIL", 0),
+        ("disconnect", single_path, single_golden, "FAIL", "FAIL", 0),
+        ("stale_byte_requires_reset", single_path, b"\xA5" + single_golden,
+         "FAIL", "FAIL", 1),
+        # A new reader/session models operator action after a real external reset;
+        # it is not an automatic retry of the failed unframed stream.
+        ("recovery_after_external_reset", single_path, single_golden,
+         "COMPLETE", "PASS", 0),
+    ]
+    results = []
+    for name, manifest_path, payload, expected_capture, expected_compare, expected_tail in cases:
+        clock = VirtualClock()
+        endpoint = RawTxEndpoint(payload, name, clock, delay_seconds=delay_seconds)
+        session_dir = output_root / f"c_tx_{name}"
+        received = capture_raw_uart(
+            endpoint.read, manifest_path, session_dir,
+            total_timeout=5, idle_timeout=1, tail_watch=0.01,
+            clock=lambda: clock.seconds, utc=clock.utc,
+            evidence_source="software_fixture",
+            transport={"kind": "fake_current_c_uart_tx", "scenario": name,
+                       "physical_port_opened": False, "input_bytes_sent": 0},
+        )
+        comparison = compare_received(manifest_path, session_dir / "received_manifest.json")
+        status_ok = (received["capture_status"] == expected_capture
+                     and comparison["status"] == expected_compare
+                     and received["unexpected_tail_bytes"] == expected_tail)
+        results.append({
+            "scenario": name,
+            "expected_capture": expected_capture,
+            "expected_comparison": expected_compare,
+            "capture_status": received["capture_status"],
+            "comparison_status": comparison["status"],
+            "test_verdict": "PASS" if status_ok else "FAIL",
+            "received_frames": received["frame_count"],
+            "received_bytes": received["bytes_received"],
+            "unexpected_tail_bytes": received["unexpected_tail_bytes"],
+            "failure_reason": received["failure_reason"],
+            "wire_rx_sha256": received["raw_stream"]["sha256"],
+            "virtual_elapsed_seconds": round(clock.seconds, 6),
+            "input_bytes_sent": 0,
+            "events": endpoint.events,
+            "raw_session_files_committed": False,
+        })
+    suite_ok = all(case["test_verdict"] == "PASS" for case in results)
+    return {
+        "suite_verdict": "PASS" if suite_ok else "FAIL",
+        "mode": "current_C_headerless_UART_TX_receive_only",
+        "protocol_basis": "C top streams raw Y output without frame header, wire frame ID, CRC or ACK; no PC bytes are sent.",
+        "physical_port_opened": False,
+        "rtl_executed": False,
+        "board_tested": False,
+        "input_bytes_sent": 0,
+        "wire_frame_id_available": False,
+        "wrong_frame_test_limit": "Frame order/content errors are found by Golden comparison; the raw output has no wire frame ID to decode.",
+        "automatic_recovery_claimed": False,
+        "recovery_rule": "Stop and preserve the failed capture; begin a new receive session only after an operator-arranged external reset and known frame boundary.",
+        "raw_session_files_committed": False,
+        "scenarios": results,
+    }
+
+
 def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 0.25) -> dict:
     manifest_path = manifest_path.resolve()
     if output_root.exists():
@@ -201,7 +302,9 @@ def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 
             ),
             "raw_session_files_committed": False,
         })
-    suite_ok = all(item["test_verdict"] == "PASS" for item in results)
+    c_tx_results = run_c_tx_suite(output_root, delay_seconds=delay_seconds)
+    suite_ok = (all(item["test_verdict"] == "PASS" for item in results)
+                and c_tx_results["suite_verdict"] == "PASS")
     manifest_label = (manifest_path.relative_to(ROOT).as_posix()
                       if manifest_path.is_relative_to(ROOT) else manifest_path.name)
     return {
@@ -222,6 +325,7 @@ def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 
         "wrong_frame_case_limit": "Output has no wire frame ID; a shifted Golden is detected by byte comparison, not diagnosed as an observed ID field.",
         "wrong_input_id_case_limit": "The fake receiver starts with an out-of-sync expected ID and sends no output; with no ACK/status response, the PC observes timeout rather than a decoded ID error.",
         "scenarios": results,
+        "current_c_uart_tx_simulation": c_tx_results,
     }
 
 
@@ -250,7 +354,8 @@ def main() -> int:
         print(json.dumps({"suite_verdict": "FAIL", "error": str(error)}, ensure_ascii=False))
         return 1
     print(json.dumps({"suite_verdict": result["suite_verdict"],
-                      "scenarios": len(result["scenarios"]),
+                      "prototype_scenarios": len(result["scenarios"]),
+                      "current_c_uart_tx_scenarios": len(result["current_c_uart_tx_simulation"]["scenarios"]),
                       "summary": str(summary)}, ensure_ascii=False))
     return 0 if result["suite_verdict"] == "PASS" else 1
 

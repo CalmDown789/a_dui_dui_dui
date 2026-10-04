@@ -112,7 +112,7 @@ python scripts/package_color_quality_report.py
 
 ## PC 通信故障模拟、链路预算与板卡接口资料（2026-10-05）
 
-成员 A 新增纯软件 UART 故障模拟器，复用实验 PC 客户端，覆盖正常/延迟、截断、错误帧内容、帧号不同步、断线以及帧前残留数据需要复位等场景。模拟端返回冻结 Golden，不连接串口、不执行 RTL、不证明 C/板卡兼容。[逐场景结果](artifacts/pc_transport_simulator_selftest.json)和复现边界见[PC 通信与性能预算报告](docs/成员A_PC通信故障模拟与带宽预算_2026-10-05.md)。
+成员 A 新增纯软件 UART 故障模拟器，分别覆盖当前 C 裸 Y TX 接收路径和未确认的双向原型，各 7 种正常/延迟/截断/错序/断线/复位场景。模拟端回传冻结 Golden，不连接串口、不执行 RTL、不向 FPGA 发送输入。[逐场景结果](artifacts/pc_transport_simulator_selftest.json)和复现边界见[PC 通信与性能预算报告](docs/成员A_PC通信故障模拟与带宽预算_2026-10-05.md)。
 
 同一报告包含可参数化的 `scripts/pc_performance_budget.py`，可调整分辨率、倍率、FPS、Y8/YUV420P/RGB24、UART 波特率和以太网线速；能读取保存的接收会话并拆分 PC 发送、首字节等待、回传读返回跨度和本机对拍时间。当前预算表可看 [CSV](artifacts/pc_performance/pc_bandwidth_budget.csv)、[JSON](artifacts/pc_performance/pc_performance_budget.json) 和 [Markdown](artifacts/pc_performance/pc_performance_budget.md)。无实测输入时不会填造实测值。
 
