@@ -2,6 +2,8 @@
 
 本页更新 `c-side-latest` 上 2026-10-03 快照；完整工作交接和可复核文件见 [`C→B 内部观测候选交接书`](C_TO_B_OBSERVATION_HANDOFF_2026-10-04.md) 和 [`观测候选交接包`](../experiments/c_observation_handoff_20261004/README.md)。本次只同步进度、源码、约束和文本证据，不发布或声称已发布新的 RTL 修复或 bitstream。
 
+**B 请求附件的补交：**初次交接 `86df150` 后，已另提供 100/150 MHz 两份失败 post-route DCP、完整 Vivado 日志链、两档成功基线 bitstream 和五个历史板测会话的 32 帧原始返回。下载位置、文件长度/SHA、基线 ZIP 分片合并方式见[补交说明](C_TO_B_EVIDENCE_SUPPLEMENT_2026-10-04.md)。补交是原件导出与重核，没有改变阶段 6 的时序失败状态，也没有新运行或新板测。
+
 ## 已通过的冻结 C 基线
 
 - 工具 Vivado/XSim 2025.2 build 6299465，器件 `xc7a200tfbg484-2`，B 固定来源 `6cc8ea4173d2a720f741e80b7cbd9279558ee93a`。

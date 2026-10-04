@@ -1,5 +1,7 @@
 # C 内部观测候选交接包（2026-10-04）
 
+> B 请求的失败 DCP、完整 Vivado 日志和原始基线板测附件现已在 [`supplement_20261004/`](supplement_20261004/) 补齐。下载和长度/SHA 见[补交说明](../../docs/C_TO_B_EVIDENCE_SUPPLEMENT_2026-10-04.md)。下文原件省略范围描述对应初次交接包，补交文件使用独立 manifest。
+
 请先读仓库根目录 [`docs/C_TO_B_OBSERVATION_HANDOFF_2026-10-04.md`](../../docs/C_TO_B_OBSERVATION_HANDOFF_2026-10-04.md)，再用本目录中的文件分析和复跑。可把该文档第 8 节原样发送给负责的 B 模型。
 
 ## 包内内容
