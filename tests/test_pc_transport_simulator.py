@@ -18,9 +18,12 @@ def test_fault_simulation_detects_transport_failures_and_keeps_provenance(tmp_pa
     assert report["rtl_executed"] is False
     assert report["board_tested"] is False
     assert report["c_compatibility_verified"] is False
+    assert report["raw_session_files_committed"] is False
     by_name = {case["scenario"]: case for case in report["scenarios"]}
     assert set(by_name) == set(simulator.SCENARIOS)
     assert by_name["normal"]["actual"] == {"capture": "COMPLETE", "comparison": "PASS"}
+    assert len(by_name["normal"]["wire_rx_sha256"]) == 64
+    assert "session_dir" not in by_name["normal"]
     assert by_name["delayed"]["actual"] == {"capture": "COMPLETE", "comparison": "PASS"}
     assert by_name["truncated"]["received_bytes"] == 2_073_599
     assert by_name["wrong_frame"]["comparison_mismatch_bytes"] > 0

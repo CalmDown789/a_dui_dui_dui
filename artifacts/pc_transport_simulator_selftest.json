@@ -10,6 +10,7 @@
   "rtl_executed": false,
   "board_tested": false,
   "c_compatibility_verified": false,
+  "raw_session_files_committed": false,
   "endpoint_behavior": "Validates the prototype input and returns frozen A Golden output bytes; fault cases deliberately alter delivery.",
   "output_frame_id_on_wire": false,
   "wrong_frame_case_limit": "Output has no wire frame ID; a shifted Golden is detected by byte comparison, not diagnosed as an observed ID field.",
@@ -32,6 +33,7 @@
       ],
       "received_frame_count": 2,
       "received_bytes": 4147200,
+      "wire_rx_sha256": "67c19a8b2e6df3c9725a6c4be1b8f137266b748db6e2538e86dc9fe79a181dd8",
       "unexpected_tail_bytes": 0,
       "failure_reason": null,
       "virtual_elapsed_seconds": 1.38416,
@@ -40,7 +42,7 @@
         "host_wait_to_first_payload_virtual_seconds": 0.002,
         "host_return_read_span_virtual_seconds": 1.35,
         "host_session_virtual_seconds": 1.3841599999999352,
-        "local_byte_compare_seconds": 0.185352,
+        "local_byte_compare_seconds": 0.187431,
         "local_byte_compare_status": "PASS",
         "player_nominal_seconds_at_2fps": 1.0,
         "player_observed_seconds": null,
@@ -48,7 +50,7 @@
       },
       "events": [],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/normal"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "delayed",
@@ -67,6 +69,7 @@
       ],
       "received_frame_count": 2,
       "received_bytes": 4147200,
+      "wire_rx_sha256": "67c19a8b2e6df3c9725a6c4be1b8f137266b748db6e2538e86dc9fe79a181dd8",
       "unexpected_tail_bytes": 0,
       "failure_reason": null,
       "virtual_elapsed_seconds": 1.88316,
@@ -75,7 +78,7 @@
         "host_wait_to_first_payload_virtual_seconds": 0.501,
         "host_return_read_span_virtual_seconds": 1.35,
         "host_session_virtual_seconds": 1.8831599999998803,
-        "local_byte_compare_seconds": 0.187892,
+        "local_byte_compare_seconds": 0.191621,
         "local_byte_compare_status": "PASS",
         "player_nominal_seconds_at_2fps": 1.0,
         "player_observed_seconds": null,
@@ -83,7 +86,7 @@
       },
       "events": [],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/delayed"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "truncated",
@@ -101,6 +104,7 @@
       ],
       "received_frame_count": 1,
       "received_bytes": 2073599,
+      "wire_rx_sha256": "bfc47142d810c5565f7363dce483aa85ce7b2c8eade9a20adfaf9955e5b07e56",
       "unexpected_tail_bytes": 0,
       "failure_reason": "Receive failed: idle_timeout; session stopped, external reset required; no retry performed",
       "virtual_elapsed_seconds": 1.68308,
@@ -109,7 +113,7 @@
         "host_wait_to_first_payload_virtual_seconds": 0.001,
         "host_return_read_span_virtual_seconds": 0.675,
         "host_session_virtual_seconds": 1.6830799999999255,
-        "local_byte_compare_seconds": 0.025787,
+        "local_byte_compare_seconds": 0.025841,
         "local_byte_compare_status": "FAIL",
         "player_nominal_seconds_at_2fps": 0.5,
         "player_observed_seconds": null,
@@ -119,7 +123,7 @@
         "truncated_output_by_one_byte"
       ],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/truncated"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "wrong_frame",
@@ -138,6 +142,7 @@
       ],
       "received_frame_count": 2,
       "received_bytes": 4147200,
+      "wire_rx_sha256": "5a0a1e481fc32e02b1c0048f49d0c95c6560735f9c1270d3a8b696ed82ea14f0",
       "unexpected_tail_bytes": 0,
       "failure_reason": null,
       "virtual_elapsed_seconds": 1.38416,
@@ -146,7 +151,7 @@
         "host_wait_to_first_payload_virtual_seconds": 0.002,
         "host_return_read_span_virtual_seconds": 1.35,
         "host_session_virtual_seconds": 1.3841599999999352,
-        "local_byte_compare_seconds": 0.310538,
+        "local_byte_compare_seconds": 0.315153,
         "local_byte_compare_status": "FAIL",
         "player_nominal_seconds_at_2fps": 1.0,
         "player_observed_seconds": null,
@@ -157,7 +162,7 @@
         "returned_frame_0_for_input_1"
       ],
       "comparison_mismatch_bytes": 4136352,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/wrong_frame"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "wrong_frame_id",
@@ -173,6 +178,7 @@
       "input_frame_ids_accepted": [],
       "received_frame_count": 0,
       "received_bytes": 0,
+      "wire_rx_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "unexpected_tail_bytes": 0,
       "failure_reason": "Receive failed: idle_timeout; session stopped, external reset required; no retry performed",
       "virtual_elapsed_seconds": 1.00608,
@@ -181,7 +187,7 @@
         "host_wait_to_first_payload_virtual_seconds": null,
         "host_return_read_span_virtual_seconds": null,
         "host_session_virtual_seconds": 1.00608,
-        "local_byte_compare_seconds": 0.014798,
+        "local_byte_compare_seconds": 0.01473,
         "local_byte_compare_status": "FAIL",
         "player_nominal_seconds_at_2fps": 0.0,
         "player_observed_seconds": null,
@@ -191,7 +197,7 @@
         "reject_unexpected_frame_id:got_0_expected_1"
       ],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/wrong_frame_id"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "disconnect",
@@ -209,6 +215,7 @@
       ],
       "received_frame_count": 1,
       "received_bytes": 33781,
+      "wire_rx_sha256": "9a28f0cf5388bcc466728f42038181dd0387d80831949f0f85ccf590f77eceb6",
       "unexpected_tail_bytes": 0,
       "failure_reason": "Receive failed: read_error: simulated cable/device disconnect; session stopped, external reset required; no retry performed",
       "virtual_elapsed_seconds": 0.01808,
@@ -217,7 +224,7 @@
         "host_wait_to_first_payload_virtual_seconds": 0.001,
         "host_return_read_span_virtual_seconds": 0.01,
         "host_session_virtual_seconds": 0.018079999999999926,
-        "local_byte_compare_seconds": 0.020927,
+        "local_byte_compare_seconds": 0.023314,
         "local_byte_compare_status": "FAIL",
         "player_nominal_seconds_at_2fps": 0.5,
         "player_observed_seconds": null,
@@ -228,7 +235,7 @@
         "serial_disconnect"
       ],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/disconnect"
+      "raw_session_files_committed": false
     },
     {
       "scenario": "reset_required",
@@ -244,6 +251,7 @@
       "input_frame_ids_accepted": [],
       "received_frame_count": 0,
       "received_bytes": 1,
+      "wire_rx_sha256": "6922e93e3827642ce4b883c756b31abf80036649d3614bf5fcb3adda43b8ea32",
       "unexpected_tail_bytes": 0,
       "failure_reason": "Preexisting output: no known frame boundary; external reset required; session stopped, external reset required; no retry performed",
       "virtual_elapsed_seconds": 0.001,
@@ -252,7 +260,7 @@
         "host_wait_to_first_payload_virtual_seconds": null,
         "host_return_read_span_virtual_seconds": null,
         "host_session_virtual_seconds": 0.001,
-        "local_byte_compare_seconds": 0.014911,
+        "local_byte_compare_seconds": 0.014589,
         "local_byte_compare_status": "FAIL",
         "player_nominal_seconds_at_2fps": 0.0,
         "player_observed_seconds": null,
@@ -262,8 +270,7 @@
         "stale_rx_before_first_input_reset_required"
       ],
       "comparison_mismatch_bytes": 0,
-      "session_dir": ".data/pc_transport_simulator/run_20261005_06/reset_required"
+      "raw_session_files_committed": false
     }
-  ],
-  "simulator_output_root": ".data/pc_transport_simulator/run_20261005_06"
+  ]
 }

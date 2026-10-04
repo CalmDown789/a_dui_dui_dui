@@ -179,6 +179,7 @@ def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 
             "input_frame_ids_accepted": device.accepted_frame_ids,
             "received_frame_count": received["frame_count"],
             "received_bytes": received.get("bytes_received", received.get("raw_stream", {}).get("bytes", 0)),
+            "wire_rx_sha256": received.get("raw_stream", {}).get("sha256"),
             "unexpected_tail_bytes": received["unexpected_tail_bytes"],
             "failure_reason": received["failure_reason"],
             "virtual_elapsed_seconds": round(clock.seconds, 6),
@@ -198,8 +199,7 @@ def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 
                 value for value in (f.get("byte_mismatch") for f in comparison["frames"])
                 if isinstance(value, int)
             ),
-            "session_dir": session_dir.relative_to(ROOT).as_posix()
-            if session_dir.is_relative_to(ROOT) else str(session_dir),
+            "raw_session_files_committed": False,
         })
     suite_ok = all(item["test_verdict"] == "PASS" for item in results)
     manifest_label = (manifest_path.relative_to(ROOT).as_posix()
@@ -216,6 +216,7 @@ def run_suite(manifest_path: Path, output_root: Path, *, delay_seconds: float = 
         "rtl_executed": False,
         "board_tested": False,
         "c_compatibility_verified": False,
+        "raw_session_files_committed": False,
         "endpoint_behavior": "Validates the prototype input and returns frozen A Golden output bytes; fault cases deliberately alter delivery.",
         "output_frame_id_on_wire": False,
         "wrong_frame_case_limit": "Output has no wire frame ID; a shifted Golden is detected by byte comparison, not diagnosed as an observed ID field.",
@@ -243,7 +244,6 @@ def main() -> int:
         parser.error("Simulator session files and reports must remain under D:/Codex File/dialogue file")
     try:
         result = run_suite(args.manifest, output, delay_seconds=args.delay_ms / 1000.0)
-        result["simulator_output_root"] = output.relative_to(ROOT).as_posix() if output.is_relative_to(ROOT) else str(output)
         summary.parent.mkdir(parents=True, exist_ok=True)
         summary.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     except (OSError, ValueError, KeyError, TypeError) as error:
