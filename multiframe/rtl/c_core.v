@@ -206,6 +206,10 @@ module c_core #(
                 out_pipe_stripe_last_q <= b_stripe_last;
                 out_pipe_frame_last_q <= b_frame_last;
             end
+        end else if (out_pipe_valid_q && out_stream_ready) begin
+            // A pause blocks new B beats, but the buffered beat may still be
+            // consumed downstream. Clear valid after that single pop.
+            out_pipe_valid_q <= 1'b0;
         end
     end
 
