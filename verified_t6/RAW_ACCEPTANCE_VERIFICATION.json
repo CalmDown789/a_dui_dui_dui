@@ -1,0 +1,973 @@
+{
+  "status": "PARTIAL_PASS_MISSING_C_ARCHIVE_MEMBERS",
+  "scope": "Independent raw-evidence audit, not a new board run",
+  "checked_at": "2026-10-05T21:27:45.113011+08:00",
+  "C_commit": "2e185be7308190a7c83dfee787bc7fca25a9ff0e",
+  "archive": {
+    "path": "F:\\FPGA预选\\.artifacts\\c_t6_handoff_audit_20261005\\T6_EVIDENCE_20261005.zip",
+    "bytes": 206066607,
+    "sha256": "54a00085a31d641e5aadecd22b97742ab2119ee9baf806cfe05752cb73c19949"
+  },
+  "combinations": [
+    {
+      "combination": "100MHz_pause0",
+      "status": "BOARD_PASS",
+      "sessions": [
+        {
+          "case": "S04",
+          "frames": 4,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 4,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.csv",
+              "samples": 1024,
+              "signal": null,
+              "high_samples": null
+            }
+          ]
+        },
+        {
+          "case": "S16",
+          "frames": 16,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 16,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.csv",
+              "samples": 1024,
+              "signal": null,
+              "high_samples": null
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "name": "c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p0_delivery01/artifact/c_board_100mhz.bit"
+        },
+        {
+          "name": "c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p0_delivery01/artifact/c_board_100mhz.ltx"
+        }
+      ],
+      "missing_required_raw": [],
+      "JTAG_device": "xc7a200t_0",
+      "JTAG_IDCODE": "13636093",
+      "idle_raw_verified": true,
+      "build": {
+        "name": "original T5 100MHz_pause0",
+        "previous_offline_gates_reused": true
+      }
+    },
+    {
+      "combination": "100MHz_pause1",
+      "status": "BOARD_PASS",
+      "sessions": [
+        {
+          "case": "P04",
+          "frames": 4,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 4,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [
+            {
+              "frame_id": 0,
+              "pause_request_cycles": 51719265,
+              "pause_forced_block_cycles": 27554737
+            },
+            {
+              "frame_id": 1,
+              "pause_request_cycles": 50548841,
+              "pause_forced_block_cycles": 27685680
+            },
+            {
+              "frame_id": 2,
+              "pause_request_cycles": 51477526,
+              "pause_forced_block_cycles": 28067649
+            },
+            {
+              "frame_id": 3,
+              "pause_request_cycles": 52012544,
+              "pause_forced_block_cycles": 28936980
+            }
+          ],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_forced.csv",
+              "samples": 1024,
+              "signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_done.csv",
+              "samples": 1024,
+              "signal": "dbg_frame_done",
+              "high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_forced.csv",
+              "samples": 1024,
+              "signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_done.csv",
+              "samples": 1024,
+              "signal": "dbg_frame_done",
+              "high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_forced.csv",
+              "samples": 1024,
+              "signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_done.csv",
+              "samples": 1024,
+              "signal": "dbg_frame_done",
+              "high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_forced.csv",
+              "samples": 1024,
+              "signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_done.csv",
+              "samples": 1024,
+              "signal": "dbg_frame_done",
+              "high_samples": 1
+            }
+          ]
+        },
+        {
+          "case": "P16",
+          "frames": 16,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 16,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.csv",
+              "samples": 1024,
+              "signal": null,
+              "high_samples": null
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "name": "c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p1_cfix01/artifact/c_board_100mhz.bit"
+        },
+        {
+          "name": "c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p1_cfix01/artifact/c_board_100mhz.ltx"
+        }
+      ],
+      "missing_required_raw": [],
+      "JTAG_device": "xc7a200t_0",
+      "JTAG_IDCODE": "13636093",
+      "idle_raw_verified": true,
+      "build": {
+        "name": "f100_p1_quick02",
+        "frozen_non_DCP_inputs_verified": 89,
+        "optional_DCP_inputs": [],
+        "fixed_B_inputs": 42,
+        "nominal": {
+          "WNS": 0.551,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 228702,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 228686,
+          "WPWS": 3.87,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 88621
+        },
+        "pressure": {
+          "WNS": 0.251,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 228702,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 228686,
+          "WPWS": 3.87,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 88621
+        },
+        "DCP_not_in_archive": true
+      }
+    },
+    {
+      "combination": "150MHz_pause0",
+      "status": "BOARD_PASS",
+      "sessions": [
+        {
+          "case": "S04",
+          "frames": 4,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 4,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.csv",
+              "samples": 1024,
+              "signal": null,
+              "high_samples": null
+            }
+          ]
+        },
+        {
+          "case": "S16",
+          "frames": 16,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": true,
+          "snapshot_count": 16,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.csv",
+              "samples": 1024,
+              "signal": null,
+              "high_samples": null
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "name": "c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd",
+          "archive_member": "t6fix/sourcekit/impl/f150_p0_physfix01/bitgen01/c_board_150mhz.bit"
+        },
+        {
+          "name": "c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "archive_member": "t6fix/sourcekit/impl/f150_p0_physfix01/bitgen01/c_board_150mhz.ltx"
+        }
+      ],
+      "missing_required_raw": [],
+      "JTAG_device": "xc7a200t_0",
+      "JTAG_IDCODE": "13636093",
+      "idle_raw_verified": true,
+      "build": {
+        "name": "f150_p0_physfix01",
+        "frozen_non_DCP_inputs_verified": 91,
+        "optional_DCP_inputs": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\frozen_inputs\\089_placed_setup030.dcp",
+            "sha256": "149d0fb4d5979f6b508195576acd4b4e240511e3bf11f6ce912b38d3908f3b56",
+            "verification": "Recorded only; optional DCP excluded by C archive contract"
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\frozen_inputs\\091_source_postroute.dcp",
+            "sha256": "27af6b1e14fe4b1b750264b1127e1c73f52bc06594c90cd5b22914c2d5234a1d",
+            "verification": "Recorded only; optional DCP excluded by C archive contract"
+          }
+        ],
+        "fixed_B_inputs": 42,
+        "nominal": {
+          "WNS": 0.455,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 224352,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 224336,
+          "WPWS": 2.203,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 86618
+        },
+        "pressure": {
+          "WNS": 0.155,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 224352,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 224336,
+          "WPWS": 2.203,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 86618
+        },
+        "DCP_not_in_archive": true
+      }
+    },
+    {
+      "combination": "150MHz_pause1",
+      "status": "BOARD_PASS_REPORTED_RAW_AUDIT_INCOMPLETE",
+      "sessions": [
+        {
+          "case": "P04",
+          "frames": 4,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": false,
+          "snapshot_count": 4,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": []
+        },
+        {
+          "case": "P16",
+          "frames": 16,
+          "UART_bit_exact": true,
+          "VIO_raw_redecoded": false,
+          "snapshot_count": 16,
+          "frame_checks": [
+            {
+              "frame_id": 0,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input_sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4",
+              "UART_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input_sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31",
+              "UART_sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input_sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e",
+              "UART_sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091",
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input_sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e",
+              "UART_sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee",
+              "mismatch_bytes": 0
+            }
+          ],
+          "pause_checks": [],
+          "ILA": []
+        }
+      ],
+      "images": [
+        {
+          "name": "c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+          "archive_member": "t6fix/sourcekit/impl/f150_p1_physfix01/bitgen01/c_board_150mhz.bit"
+        },
+        {
+          "name": "c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "archive_member": "t6fix/sourcekit/impl/f150_p1_physfix01/bitgen01/c_board_150mhz.ltx"
+        }
+      ],
+      "missing_required_raw": [
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program_image.tcl",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.log",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.jou",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\command.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\idle_check.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset_raw.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\session.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_raw.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_decoded.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\field_checks.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\host_console.txt",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller.log",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller.jou",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller_command.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\command.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\session.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_raw.csv",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_decoded.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\field_checks.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset_check.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\host_console.txt",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset.log",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset.jou",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation.log",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation.jou",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\command.json",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.ila",
+        "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.csv"
+      ],
+      "JTAG_device": "xc7a200t_0",
+      "JTAG_IDCODE": "13636093",
+      "idle_raw_verified": false,
+      "build": {
+        "name": "f150_p1_physfix01",
+        "frozen_non_DCP_inputs_verified": 91,
+        "optional_DCP_inputs": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\frozen_inputs\\089_placed_setup030.dcp",
+            "sha256": "95ece52e98fbf5d4f58bcfda2681211d4275b2fa77c96f0b11186e3f90d3d2cb",
+            "verification": "Recorded only; optional DCP excluded by C archive contract"
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\frozen_inputs\\091_source_postroute.dcp",
+            "sha256": "464d85d6e501997f6dfe5b66e6312b075d9cfb7c984df354d9dbe0650746e091",
+            "verification": "Recorded only; optional DCP excluded by C archive contract"
+          }
+        ],
+        "fixed_B_inputs": 42,
+        "nominal": {
+          "WNS": 0.314,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 228923,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 228907,
+          "WPWS": 2.203,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 88743
+        },
+        "pressure": {
+          "WNS": 0.014,
+          "TNS": 0.0,
+          "setup_failing": 0,
+          "setup_total": 228923,
+          "WHS": 0.036,
+          "THS": 0.0,
+          "hold_failing": 0,
+          "hold_total": 228907,
+          "WPWS": 2.203,
+          "TPWS": 0.0,
+          "pulse_failing": 0,
+          "pulse_total": 88743
+        },
+        "DCP_not_in_archive": true
+      }
+    }
+  ],
+  "natural_video": "NOT_RUN",
+  "200MHz": "PAUSED",
+  "physical_event_limit": "Cold-power and button actions remain operator-confirmed; raw idle state is verified",
+  "archive_verification": {
+    "CRC_members": 892,
+    "SHA_length_data_files": 890,
+    "data_bytes": 405267182,
+    "Git_manifest_binding": true
+  },
+  "UART_frames_compared": 80,
+  "effective_pause_frames": 4,
+  "VIO_slots_redecoded": 96,
+  "ILA_exports_checked": 13
+}

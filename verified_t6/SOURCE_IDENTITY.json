@@ -1,0 +1,82 @@
+{
+  "source_commit": "303b51d21b3004ddf5780c502ae5c1f3b81cefb6",
+  "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "current_c_core_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3",
+  "current_pause_tb_sha256": "f0ddf6fd136b3ba1131bd68540e8ae0dc78e04e653e8e368349e4d6fb2b7bf53",
+  "preferred_video_combination": "150MHz_pause0",
+  "independent_T6_status": "PARTIAL_PASS_MISSING_C_ARCHIVE_MEMBERS",
+  "board_images": [
+    {
+      "combination": "100MHz_pause0",
+      "status": "BOARD_PASS",
+      "images": [
+        {
+          "name": "c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p0_delivery01/artifact/c_board_100mhz.bit"
+        },
+        {
+          "name": "c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p0_delivery01/artifact/c_board_100mhz.ltx"
+        }
+      ]
+    },
+    {
+      "combination": "100MHz_pause1",
+      "status": "BOARD_PASS",
+      "images": [
+        {
+          "name": "c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p1_cfix01/artifact/c_board_100mhz.bit"
+        },
+        {
+          "name": "c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "archive_member": "t6fix/runs/20261005_100quick01/100_p1_cfix01/artifact/c_board_100mhz.ltx"
+        }
+      ]
+    },
+    {
+      "combination": "150MHz_pause0",
+      "status": "BOARD_PASS",
+      "images": [
+        {
+          "name": "c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd",
+          "archive_member": "t6fix/sourcekit/impl/f150_p0_physfix01/bitgen01/c_board_150mhz.bit"
+        },
+        {
+          "name": "c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "archive_member": "t6fix/sourcekit/impl/f150_p0_physfix01/bitgen01/c_board_150mhz.ltx"
+        }
+      ]
+    },
+    {
+      "combination": "150MHz_pause1",
+      "status": "BOARD_PASS_REPORTED_RAW_AUDIT_INCOMPLETE",
+      "images": [
+        {
+          "name": "c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+          "archive_member": "t6fix/sourcekit/impl/f150_p1_physfix01/bitgen01/c_board_150mhz.bit"
+        },
+        {
+          "name": "c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "archive_member": "t6fix/sourcekit/impl/f150_p1_physfix01/bitgen01/c_board_150mhz.ltx"
+        }
+      ]
+    }
+  ]
+}
