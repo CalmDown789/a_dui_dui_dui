@@ -1,0 +1,120 @@
+{
+  "status": "PASS_SOFTWARE_TOOLS_ONLY",
+  "board_status": "NOT_RUN",
+  "simulated_fixture": "All host fixture files are synthetic copies of software Golden, never board evidence",
+  "kit_files_verified": 54,
+  "protocol_selftest": "PowerShell original SRTP self-test passed",
+  "negative_cases": [
+    {
+      "case": "single_output_byte_changed",
+      "rejected": true,
+      "reason": "UART differs from Golden at frame 7"
+    },
+    {
+      "case": "missing_frame",
+      "rejected": true,
+      "reason": "[Errno 2] No such file or directory: 'F:\\\\FPGA预选\\\\.artifacts\\\\c_natural_video_20261005\\\\host_fixture_NOT_BOARD_RUN\\\\capture\\\\frame_0007_y.bin'"
+    },
+    {
+      "case": "wrong_input_frame_identity",
+      "rejected": true,
+      "reason": "UART input identity"
+    },
+    {
+      "case": "wrong_frame_id_order",
+      "rejected": true,
+      "reason": "UART frame order"
+    },
+    {
+      "case": "VIO_sticky_protocol_error",
+      "rejected": true,
+      "reason": "VIO frame 0 core_proto_error: 1 != 0"
+    },
+    {
+      "case": "unexpected_pause_in_ordinary_image",
+      "rejected": true,
+      "reason": "VIO frame 0 pause_forced_block_cycles: 1 != 0"
+    },
+    {
+      "case": "ILA_snapshot_overflow",
+      "rejected": true,
+      "reason": "ILA snapshot overflow"
+    }
+  ],
+  "png_lossless_roundtrips": [
+    {
+      "frame_id": 0,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 1,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 2,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 3,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 4,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 5,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 6,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 7,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 8,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 9,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 10,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 11,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 12,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 13,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 14,
+      "lossless_roundtrip": true
+    },
+    {
+      "frame_id": 15,
+      "lossless_roundtrip": true
+    }
+  ],
+  "hardware_Tcl": "Derived from original C-passed commands; not executed locally without hardware",
+  "playback_browser_test": "NOT_RUN; exact PNG decoded and inspected; headless control logic checked; actual C playback confirmation pending",
+  "playback_control_logic": {
+    "status": "PASS_HEADLESS_CONTROL_LOGIC",
+    "scope": "DOM/Image substitutes; no physical board or browser rendering claim",
+    "frames_loaded": 16,
+    "next_slider_play_pause_loop": true
+  },
+  "PowerShell_scripts": "Parser syntax checks passed; original transport self-test passed",
+  "portable_stdlib_check": "Kit verification passed on bundled stdlib-only Python runtime"
+}
