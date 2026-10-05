@@ -1,0 +1,2201 @@
+{
+  "created_at": "2026-10-05T20:35:52.354156+08:00",
+  "status": "PASS",
+  "delivery_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+  "scope": "T6 four-combination board acceptance only",
+  "natural_video_acceptance": "NOT_RUN",
+  "200MHz": "PAUSED",
+  "raw_artifact_location": "LOCAL_ONLY_NOT_UPLOADED_TO_GITHUB",
+  "combinations": [
+    {
+      "combination": "100MHz_pause0",
+      "T6": "PASS",
+      "status": "BOARD_PASS",
+      "attempt": "100_p0_delivery01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "sessions": [
+        {
+          "case": "S04",
+          "status": "PASS",
+          "session_id": "100_p0_delivery01-S04-2026-10-05T19:27:25.7324709+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 4,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        },
+        {
+          "case": "S16",
+          "status": "PASS",
+          "session_id": "100_p0_delivery01-S16-2026-10-05T19:32:36.729047+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0004_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0005_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0006_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0007_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0008_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0009_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0010_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0011_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0012_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0013_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0014_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0015_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 16,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        }
+      ],
+      "nominal_WNS_ns": 0.717,
+      "pressure_WNS_ns": null,
+      "source_build": null,
+      "program_log": {
+        "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\program.log",
+        "bytes": 35896,
+        "sha256": "cc7e00375c3ea7069f1054572312cabff3440797ecfdac2ed7ce71a5e55f3fb4"
+      },
+      "JTAG_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "user confirmed label check; exact text not transcribed"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\idle_check.json"
+      },
+      "evidence_root": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01"
+    },
+    {
+      "combination": "100MHz_pause1",
+      "T6": "PASS",
+      "status": "BOARD_PASS",
+      "attempt": "100_p1_cfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "sessions": [
+        {
+          "case": "P04",
+          "status": "PASS",
+          "session_id": "100_p1_cfix01-P04-2026-10-05T19:48:50.9955539+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 4,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\reset\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            }
+          ],
+          "pause_counts": [
+            {
+              "frame_id": 0,
+              "pause_request_cycles": 51719265,
+              "pause_forced_block_cycles": 27554737
+            },
+            {
+              "frame_id": 1,
+              "pause_request_cycles": 50548841,
+              "pause_forced_block_cycles": 27685680
+            },
+            {
+              "frame_id": 2,
+              "pause_request_cycles": 51477526,
+              "pause_forced_block_cycles": 28067649
+            },
+            {
+              "frame_id": 3,
+              "pause_request_cycles": 52012544,
+              "pause_forced_block_cycles": 28936980
+            }
+          ]
+        },
+        {
+          "case": "P16",
+          "status": "PASS",
+          "session_id": "100_p1_cfix01-P16-2026-10-05T19:53:18.9053472+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0004_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0005_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0006_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0007_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0008_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0009_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0010_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0011_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0012_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0013_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0014_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0015_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 16,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        }
+      ],
+      "nominal_WNS_ns": 0.551,
+      "pressure_WNS_ns": 0.251,
+      "source_build": "f100_p1_quick02",
+      "program_log": {
+        "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\program.log",
+        "bytes": 35840,
+        "sha256": "d997326763ac119f299db58684c402936eab2f8e9aed8dd8a282e2c363a065ec"
+      },
+      "JTAG_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "user confirmed label check; exact text not transcribed"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+        "P04_idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\reset\\idle_check.json"
+      },
+      "evidence_root": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01"
+    },
+    {
+      "combination": "150MHz_pause0",
+      "T6": "PASS",
+      "status": "BOARD_PASS",
+      "attempt": "150_p0_physfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "sessions": [
+        {
+          "case": "S04",
+          "status": "PASS",
+          "session_id": "150_p0_physfix01-S04-2026-10-05T17:01:35.0571722+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 4,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        },
+        {
+          "case": "S16",
+          "status": "PASS",
+          "session_id": "150_p0_physfix01-S16-2026-10-05T17:09:05.5772756+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0004_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0005_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0006_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0007_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0008_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0009_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0010_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0011_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0012_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0013_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0014_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0015_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 16,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        }
+      ],
+      "nominal_WNS_ns": 0.455,
+      "pressure_WNS_ns": 0.155,
+      "source_build": "f150_p0_physfix01",
+      "program_log": {
+        "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\program.log",
+        "bytes": 35786,
+        "sha256": "8598faab44496b138f2c1759e4e0c75d1ed6139e4c7c15fb3dc4fb64beff91b3"
+      },
+      "JTAG_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "operator reported completion; exact string not captured",
+        "board_label_check": "Operator confirmed the requested physical label check; exact printed string was not transcribed."
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\idle_check.json"
+      },
+      "evidence_root": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01"
+    },
+    {
+      "combination": "150MHz_pause1",
+      "T6": "PASS",
+      "status": "BOARD_PASS",
+      "attempt": "150_p1_physfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "sessions": [
+        {
+          "case": "P04",
+          "status": "PASS",
+          "session_id": "150_p1_physfix01-P04_retry04-2026-10-05T18:16:19.7997564+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 4,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\reset\\physical_event.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\reset\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_obs_pause_forced_block",
+              "signal_high_samples": 512
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": "dbg_frame_done",
+              "signal_high_samples": 1
+            },
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": [
+            {
+              "frame_id": 0,
+              "pause_request_cycles": 77768391,
+              "pause_forced_block_cycles": 43593482
+            },
+            {
+              "frame_id": 1,
+              "pause_request_cycles": 76161905,
+              "pause_forced_block_cycles": 42588200
+            },
+            {
+              "frame_id": 2,
+              "pause_request_cycles": 77615599,
+              "pause_forced_block_cycles": 44040710
+            },
+            {
+              "frame_id": 3,
+              "pause_request_cycles": 77812827,
+              "pause_forced_block_cycles": 43433314
+            }
+          ]
+        },
+        {
+          "case": "P16",
+          "status": "PASS",
+          "session_id": "150_p1_physfix01-P16_attempt01-2026-10-05T18:27:37.399726+08:00",
+          "frames": [
+            {
+              "frame_id": 0,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0000_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 1,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0001_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 2,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0002_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 3,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0003_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 4,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0004_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 5,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0005_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 6,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0006_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 7,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0007_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 8,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0008_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 9,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0009_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 10,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0010_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 11,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0011_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 12,
+              "input": {
+                "path": "C:\\t6c\\data\\f0_in.bin",
+                "bytes": 518400,
+                "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f0_golden.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0012_y.bin",
+                "bytes": 2073600,
+                "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 13,
+              "input": {
+                "path": "C:\\t6c\\data\\f1_in.bin",
+                "bytes": 518400,
+                "sha256": "cf866e66e94c66ccec2ac7c95d446d35f4a3b4144cdad89f5db0f270c0969c31"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f1_golden.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0013_y.bin",
+                "bytes": 2073600,
+                "sha256": "bfa7ccc2e75e5bd8031449cfe76754897e9dde400db98700359ad2ef6acbd54d"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 14,
+              "input": {
+                "path": "C:\\t6c\\data\\f2_in.bin",
+                "bytes": 518400,
+                "sha256": "1ac4c1ac0f02f9ab67b6f422d2947993303e01aeca885e72085f173f1c257b2e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f2_golden.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0014_y.bin",
+                "bytes": 2073600,
+                "sha256": "c2f26db59bb7eb53546cccdbdab6b6453ed58613614f16430d2fab5f7a079091"
+              },
+              "mismatch_bytes": 0
+            },
+            {
+              "frame_id": 15,
+              "input": {
+                "path": "C:\\t6c\\data\\f3_in.bin",
+                "bytes": 518400,
+                "sha256": "ef97a827a45f4961554828e96c97eacf71f1bd40af4f32f45fc156a51b3cd61e"
+              },
+              "golden": {
+                "path": "C:\\t6c\\data\\f3_golden.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "UART": {
+                "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0015_y.bin",
+                "bytes": 2073600,
+                "sha256": "5e7d106cfc37a900255fde5be5f9ce9312b5f791748e1edf740e79e264f1a0ee"
+              },
+              "mismatch_bytes": 0
+            }
+          ],
+          "snapshot_count": 16,
+          "decoded_fields_per_record": 31,
+          "overflow": 0,
+          "reset": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\p16_reset_event.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_raw.csv",
+          "decoded_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\field_checks.json",
+          "ILA": [
+            {
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.csv",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.ila",
+              "samples": 1024,
+              "overflow_high_samples": 0,
+              "trigger_signal": null,
+              "signal_high_samples": null
+            }
+          ],
+          "pause_counts": []
+        }
+      ],
+      "nominal_WNS_ns": 0.314,
+      "pressure_WNS_ns": 0.014,
+      "source_build": "f150_p1_physfix01",
+      "program_log": {
+        "path": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.log",
+        "bytes": 35786,
+        "sha256": "2d7514a56bf7fc9f69da2414d1686babecd2648664e0a84f6108ee07f8ac7fce"
+      },
+      "JTAG_identity": {
+        "part_reported_by_JTAG": "xc7a200t",
+        "cable_serial": "250520092545",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "operator previously confirmed requested physical label check; exact string not transcribed",
+        "device": "xc7a200t_0",
+        "cable": "Digilent JTAG-SMT2"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\idle_check.json"
+      },
+      "evidence_root": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\reset"
+    }
+  ],
+  "execution_report_errata": [
+    {
+      "field": "150MHz_pause1/cold_power_jtag_idle_reset/status",
+      "original": "P04_PASS; AWAITING_P16",
+      "corrected": "PASS",
+      "reason": "Idle check PASS and independent P16 reset/session PASS are present; this nested label was not finalized."
+    },
+    {
+      "field": "150MHz_pause1/P04/complete_logs",
+      "original": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\post_session_command.json",
+      "corrected": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller_command.json",
+      "reason": "VIO/ILA exports were performed by the coordinated controller; its receipt is controller_command.json."
+    },
+    {
+      "field": "100MHz_pause1/P04/complete_logs",
+      "original": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_retry01.log",
+      "corrected": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\controller.log",
+      "reason": "The coordinated controller performed VIO/ILA export; the combined report carried a nonexistent retry log name."
+    }
+  ],
+  "total_byte_exact_frames": 80,
+  "controlled_pause_frames": 8,
+  "record_limitations": [
+    "Physical label check was operator-confirmed; exact printed label and button press/release times were not transcribed.",
+    "The old 150MHz pause0 manifest predates a physical_events.json update; 150MHz pause1 lacks a standalone old file manifest. A fresh acceptance-wide file index is supplied, with old records preserved.",
+    "Three accepted BIT images are local C-overlay rebuilds, not the corresponding original T5 ZIP BIT images."
+  ],
+  "source_provenance": {
+    "base_observation_fix_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+    "local_pause_fix_committed": false,
+    "local_pause_fix_identification": "c_core.v delta patch + SHA256, not the inherited observation-fix commit",
+    "local_c_core_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3",
+    "delivery_archive_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+    "fixed_B_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+    "note": "Generated board_ready.json source_commit is inherited base observation-fix metadata; it does not identify the local uncommitted c_core overlay.",
+    "local_overlay_changes": [
+      {
+        "path": "candidate/multiframe/rtl/c_core.v",
+        "base_sha256": "6cbb3c0d1d676d964a046014e4238d6201558eec9cc0affdcd8dd18f6ec06de6",
+        "candidate_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3"
+      },
+      {
+        "path": "candidate/multiframe/tb/tb_c_controlled_pause.v",
+        "base_sha256": "0b9e58716e3d6df112e86a4fbda2e260d40fd3b78d5302e73ab80e667f137e8b",
+        "candidate_sha256": "f0ddf6fd136b3ba1131bd68540e8ae0dc78e04e653e8e368349e4d6fb2b7bf53"
+      }
+    ],
+    "local_c_core_patch_sha256": "7d29c969da665ec4a0caad2a8cb0d081d204d15aad4459b0a669b89ad402ece3",
+    "recorded_at": "2026-10-05T16:49:45.228996+08:00",
+    "verified_builds": [
+      {
+        "stage": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01",
+        "manifest_sha256": "67d59908d7b23d6f857082774bb08a83bcf9387d4ed5771957bb89cf7e5fc1d6",
+        "dcp": {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\postroute.dcp",
+          "bytes": 42968954,
+          "sha256": "cd46a18385ee2c42373655f9c62e21d00916241dfdbc9de1e96323b99ac291c5"
+        },
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+            "bytes": 9730787,
+            "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+            "bytes": 358912,
+            "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+          }
+        ]
+      },
+      {
+        "stage": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01",
+        "manifest_sha256": "37b1f0204586f49d84a3e98d4f940b28ad9087c6fd3e285ee91c76f77576571b",
+        "dcp": {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\postroute.dcp",
+          "bytes": 43751914,
+          "sha256": "69da68b2f0145dd200fdf41a16897b0256ae72b4f066f8950e185bcf20d239d3"
+        },
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+            "bytes": 9730787,
+            "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+            "bytes": 358912,
+            "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+          }
+        ]
+      }
+    ]
+  }
+}

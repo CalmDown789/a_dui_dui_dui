@@ -1,0 +1,106 @@
+{
+  "updated_at": "2026-10-05T20:37:49.444850+08:00",
+  "delivery_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+  "T6": "PASS_FOUR_SELECTED_IMAGES",
+  "B_T6_board_checklist": "COMPLETE",
+  "complete_project_acceptance": false,
+  "natural_video_continuous_FPGA_PC_playback": "NOT_RUN",
+  "200MHz": "PAUSED",
+  "raw_evidence_upload": "LOCAL_ONLY",
+  "report": "T6_ACCEPTANCE_REPORT.md",
+  "audit": "T6_ACCEPTANCE_AUDIT.json",
+  "evidence_manifest": "T6_EVIDENCE_MANIFEST.json",
+  "evidence_archive": {
+    "path": "C:\\t6fix\\acceptance_20261005\\T6_EVIDENCE_20261005.zip",
+    "bytes": 206066607,
+    "sha256": "54a00085a31d641e5aadecd22b97742ab2119ee9baf806cfe05752cb73c19949"
+  },
+  "combinations": [
+    {
+      "combination": "100MHz_pause0",
+      "status": "BOARD_PASS",
+      "T6": "PASS",
+      "attempt": "100_p0_delivery01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "source_build": null
+    },
+    {
+      "combination": "100MHz_pause1",
+      "status": "BOARD_PASS",
+      "T6": "PASS",
+      "attempt": "100_p1_cfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "source_build": "f100_p1_quick02"
+    },
+    {
+      "combination": "150MHz_pause0",
+      "status": "BOARD_PASS",
+      "T6": "PASS",
+      "attempt": "150_p0_physfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "source_build": "f150_p0_physfix01"
+    },
+    {
+      "combination": "150MHz_pause1",
+      "status": "BOARD_PASS",
+      "T6": "PASS",
+      "attempt": "150_p1_physfix01",
+      "images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "source_build": "f150_p1_physfix01"
+    }
+  ],
+  "scope_rule": "BOARD_PASS applies only to the exact accepted BIT/LTX hashes, not other T5 images.",
+  "remaining": [
+    "Pre-recorded natural-video continuous FPGA upscaling and PC playback acceptance",
+    "Full binary evidence archive is local; not uploaded to GitHub"
+  ],
+  "record_limitations": [
+    "Physical label check was operator-confirmed; exact printed label and button press/release times were not transcribed.",
+    "The old 150MHz pause0 manifest predates a physical_events.json update; 150MHz pause1 lacks a standalone old file manifest. A fresh acceptance-wide file index is supplied, with old records preserved.",
+    "Three accepted BIT images are local C-overlay rebuilds, not the corresponding original T5 ZIP BIT images."
+  ]
+}

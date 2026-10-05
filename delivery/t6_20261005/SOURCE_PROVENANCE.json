@@ -1,0 +1,67 @@
+{
+  "base_observation_fix_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+  "local_pause_fix_committed": false,
+  "local_pause_fix_identification": "c_core.v delta patch + SHA256, not the inherited observation-fix commit",
+  "local_c_core_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3",
+  "delivery_archive_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+  "fixed_B_commit": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "note": "Generated board_ready.json source_commit is inherited base observation-fix metadata; it does not identify the local uncommitted c_core overlay.",
+  "local_overlay_changes": [
+    {
+      "path": "candidate/multiframe/rtl/c_core.v",
+      "base_sha256": "6cbb3c0d1d676d964a046014e4238d6201558eec9cc0affdcd8dd18f6ec06de6",
+      "candidate_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3"
+    },
+    {
+      "path": "candidate/multiframe/tb/tb_c_controlled_pause.v",
+      "base_sha256": "0b9e58716e3d6df112e86a4fbda2e260d40fd3b78d5302e73ab80e667f137e8b",
+      "candidate_sha256": "f0ddf6fd136b3ba1131bd68540e8ae0dc78e04e653e8e368349e4d6fb2b7bf53"
+    }
+  ],
+  "local_c_core_patch_sha256": "7d29c969da665ec4a0caad2a8cb0d081d204d15aad4459b0a669b89ad402ece3",
+  "recorded_at": "2026-10-05T16:49:45.228996+08:00",
+  "verified_builds": [
+    {
+      "stage": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01",
+      "manifest_sha256": "67d59908d7b23d6f857082774bb08a83bcf9387d4ed5771957bb89cf7e5fc1d6",
+      "dcp": {
+        "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\postroute.dcp",
+        "bytes": 42968954,
+        "sha256": "cd46a18385ee2c42373655f9c62e21d00916241dfdbc9de1e96323b99ac291c5"
+      },
+      "artifacts": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ]
+    },
+    {
+      "stage": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01",
+      "manifest_sha256": "37b1f0204586f49d84a3e98d4f940b28ad9087c6fd3e285ee91c76f77576571b",
+      "dcp": {
+        "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\postroute.dcp",
+        "bytes": 43751914,
+        "sha256": "69da68b2f0145dd200fdf41a16897b0256ae72b4f066f8950e185bcf20d239d3"
+      },
+      "artifacts": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ]
+    }
+  ]
+}

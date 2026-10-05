@@ -1,0 +1,1551 @@
+{
+  "delivery_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+  "report_kind": "FINAL_COMBINED_T6_EXECUTION_REPORT",
+  "created_for": "100MHz T6 completion combined with the previously completed 150MHz T6 runs",
+  "actual_operator": null,
+  "actual_start_at": null,
+  "actual_end_at": "2026-10-05T20:16:11+08:00",
+  "timestamp_timezone": "Asia/Shanghai",
+  "200MHz": "PAUSED",
+  "natural_video_acceptance": "NOT_RUN_SEPARATE_FROM_PATTERN_T6",
+  "combinations": [
+    {
+      "combination": "150MHz_pause0",
+      "freq_MHz": 150,
+      "pause": 0,
+      "delivery_status": "BOARD_PASS",
+      "T6": "PASS",
+      "not_run_or_failure_reason": null,
+      "selected_pass_attempt": "150_p0_physfix01",
+      "nominal_WNS_ns_offline": 0.455,
+      "pressure_WNS_ns_offline": 0.155,
+      "pressure_setup_pass_offline": true,
+      "expected_images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "expected_bytes": 9730787,
+          "expected_sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd",
+          "actual_sha256_at_programming": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "expected_bytes": 358912,
+          "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "actual_sha256_at_programming": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "actual_program_records": [
+        {
+          "status": "PROGRAMMED_AND_REFRESHED",
+          "attempt": "150_p0_physfix01",
+          "target": "localhost:3121/xilinx_tcf/Digilent/250520092545",
+          "cable": "Digilent JTAG-SMT2",
+          "cable_serial": "250520092545",
+          "device_name": "xc7a200t_0",
+          "device_part_reported_by_JTAG": "xc7a200t",
+          "idcode_hex": "13636093",
+          "program_tcl": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\program_image.tcl",
+          "command_receipt": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\command.json",
+          "vivado_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\program.log",
+          "vivado_journal": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\program.jou",
+          "hw_attribute_probe_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\hw_probe.log",
+          "BIT": {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+            "bytes": 9730787,
+            "sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd"
+          },
+          "LTX": {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+            "bytes": 358912,
+            "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+          },
+          "ILA_detected": "hw_ila_1 / u_obs_ila",
+          "VIO_detected": "hw_vio_1 / u_obs_vio",
+          "programmed_at": "2026-10-05T16:57:37.3267952+08:00",
+          "refreshed_at": "2026-10-05T16:57:58.9786471+08:00",
+          "cold_power": "user confirmed completed before JTAG program",
+          "physical_board_label": "confirmation requested and user replied completed; exact printed string not captured",
+          "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\idle_check.json"
+        }
+      ],
+      "actual_device_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "operator reported completion; exact string not captured",
+        "board_label_check": "Operator confirmed the requested physical label check; exact printed string was not transcribed."
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\idle_check.json"
+      },
+      "sessions": [
+        {
+          "case": "S04",
+          "status": "PASS",
+          "required_frame_count": 4,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "150_p0_physfix01-S04-2026-10-05T17:01:35.0571722+08:00",
+          "program_record": null,
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\idle\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\capture\\frame_0003_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\field_checks.json",
+          "actual_snapshot_count": 4,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.csv",
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true
+            }
+          ],
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S04\\observation.log"
+          ],
+          "missing_evidence": []
+        },
+        {
+          "case": "S16",
+          "status": "PASS",
+          "required_frame_count": 16,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "150_p0_physfix01-S16-2026-10-05T17:09:05.5772756+08:00",
+          "program_record": null,
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0003_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0004_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0005_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0006_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0007_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0008_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0009_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0010_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0011_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0012_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0013_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0014_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\capture\\frame_0015_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\field_checks.json",
+          "actual_snapshot_count": 16,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.csv",
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true
+            }
+          ],
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\S16\\observation.log"
+          ],
+          "missing_evidence": []
+        }
+      ],
+      "failed_or_incomplete_attempts": [
+        {
+          "stage": "S04 PowerShell wrapper receipt finalization",
+          "status": "WRAPPER_ERROR_AFTER_CAPTURE_PASS",
+          "error": "PowerShell wrapper failed after successful capture while assigning exit_code/end properties absent from JSON object; session.json and transcript prove four-frame comparison PASS.",
+          "functional_or_serial_failure": false,
+          "resolved_by": "session.json PASS, all four raw files and Host transcript independently verified; no recapture required"
+        }
+      ],
+      "artifact_manifest": {
+        "status": "BOARD_PASS_EVIDENCE_CLOSED",
+        "build_attempt": "f150_p0_physfix01",
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.bit",
+            "expected_bytes": 9730787,
+            "expected_sha256": "a907a50af0528d2149b369a404eb0eade3b282a14e1e9b1e7419acf66b43c0cd",
+            "actual_sha256_at_programming": null
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen01\\c_board_150mhz.ltx",
+            "expected_bytes": 358912,
+            "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+            "actual_sha256_at_programming": null
+          }
+        ],
+        "implementation_result": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\implementation_result.json",
+        "bitgen_log": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\bitgen.log",
+        "bitgen_gates": "PASS",
+        "program_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\program.log",
+        "program_receipt": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\program\\command.json",
+        "attempt_root": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01",
+        "artifact_manifest": "C:\\t6fix\\runs\\20261005_150fix01\\150_p0_physfix01\\artifact_manifest.json"
+      },
+      "reviewer": null,
+      "pressure_setup_failing_endpoints": 0,
+      "implementation_status": "IMPLEMENTATION_PASS",
+      "implementation_gates": {
+        "setup": true,
+        "hold": true,
+        "pulse": true,
+        "route": true,
+        "drc_no_error": true,
+        "internal_coverage": true,
+        "source_unchanged": true,
+        "frozen_copies_match": true,
+        "real_hierarchy": true,
+        "observer_retained": true,
+        "original_board_XDC": true
+      },
+      "build_attempt": "f150_p0_physfix01",
+      "candidate_board_ready_json": "C:\\t6fix\\sourcekit\\impl\\f150_p0_physfix01\\board_ready.json",
+      "source_postroute_sha256": "cd46a18385ee2c42373655f9c62e21d00916241dfdbc9de1e96323b99ac291c5",
+      "execution_hold": "HOLD_BEFORE_PROGRAMMING",
+      "previous_candidate_builds": [
+        {
+          "attempt": "f150_p0_routefix01",
+          "nominal_WNS_ns": 0.161,
+          "pressure_WNS_ns": -0.139,
+          "pressure_setup_pass": false,
+          "expected_images": [
+            {
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_routefix01\\bitgen01\\c_board_150mhz.bit",
+              "expected_bytes": 9730787,
+              "expected_sha256": "f66729119dc4b4860a8aef604703119ccc311af754d07fb60a9e1fabb4f51a52",
+              "actual_sha256_at_programming": null
+            },
+            {
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p0_routefix01\\bitgen01\\c_board_150mhz.ltx",
+              "expected_bytes": 358912,
+              "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+              "actual_sha256_at_programming": null
+            }
+          ],
+          "status": "SUPERSEDED_BUILD_ORIGINAL_EVIDENCE_PRESERVED"
+        }
+      ],
+      "selected_build_attempt": "f150_p0_physfix01",
+      "source_provenance": "C:\\t6fix\\analysis\\integrated01\\SOURCE_PROVENANCE.json",
+      "successful_attempt": "150_p0_physfix01",
+      "observation_summary": {
+        "S04_valid_snapshots": 4,
+        "S16_valid_snapshots": 16,
+        "S04_snapshot_overflow": false,
+        "S16_snapshot_overflow": false,
+        "S04_fields_pass": true,
+        "S16_fields_pass": true,
+        "pause_request_cycles_all_zero": true,
+        "pause_forced_block_cycles_all_zero": true
+      }
+    },
+    {
+      "combination": "150MHz_pause1",
+      "freq_MHz": 150,
+      "pause": 1,
+      "delivery_status": "BOARD_PASS",
+      "T6": "PASS",
+      "not_run_or_failure_reason": null,
+      "selected_pass_attempt": "150_p1_physfix01",
+      "nominal_WNS_ns_offline": 0.314,
+      "pressure_WNS_ns_offline": 0.014,
+      "pressure_setup_pass_offline": true,
+      "expected_images": [
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+          "expected_bytes": 9730787,
+          "expected_sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+          "actual_sha256_at_programming": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+        },
+        {
+          "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+          "expected_bytes": 358912,
+          "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+          "actual_sha256_at_programming": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "actual_program_records": [
+        {
+          "idcode_hex": "13636093",
+          "LTX": {
+            "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+            "bytes": 358912,
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx"
+          },
+          "cable_serial": "250520092545",
+          "programmed_at": "2026-10-05T17:23:45.2301884+08:00",
+          "ILA_detected": "hw_ila_1 / u_obs_ila",
+          "cold_power": "user confirmed completed before JTAG program",
+          "program_tcl": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program_image.tcl",
+          "VIO_detected": "hw_vio_1 / u_obs_vio",
+          "BIT": {
+            "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+            "bytes": 9730787,
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit"
+          },
+          "refreshed_at": "2026-10-05T17:24:06.2533659+08:00",
+          "status": "PROGRAMMED_AND_REFRESHED",
+          "target": "localhost:3121/xilinx_tcf/Digilent/250520092545",
+          "vivado_journal": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.jou",
+          "device_name": "xc7a200t_0",
+          "attempt": "150_p1_physfix01",
+          "hw_attribute_probe_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\hw_probe.log",
+          "physical_board_label": "confirmation requested; exact printed string not captured",
+          "device_part_reported_by_JTAG": "xc7a200t",
+          "command_receipt": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\command.json",
+          "cable": "Digilent JTAG-SMT2",
+          "vivado_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.log",
+          "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\idle_check.json"
+        }
+      ],
+      "actual_device_identity": {
+        "part_reported_by_JTAG": "xc7a200t",
+        "cable_serial": "250520092545",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "operator previously confirmed requested physical label check; exact string not transcribed",
+        "device": "xc7a200t_0",
+        "cable": "Digilent JTAG-SMT2"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\idle_check.json"
+      },
+      "sessions": [
+        {
+          "case": "P04",
+          "status": "PASS",
+          "required_frame_count": 4,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_session_id": "150_p1_physfix01-P04_retry04-2026-10-05T18:16:19.7997564+08:00",
+          "program_record": {
+            "idcode_hex": "13636093",
+            "LTX": {
+              "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+              "bytes": 358912,
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx"
+            },
+            "cable_serial": "250520092545",
+            "programmed_at": "2026-10-05T17:23:45.2301884+08:00",
+            "ILA_detected": "hw_ila_1 / u_obs_ila",
+            "cold_power": "user confirmed completed before JTAG program",
+            "program_tcl": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program_image.tcl",
+            "VIO_detected": "hw_vio_1 / u_obs_vio",
+            "BIT": {
+              "sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+              "bytes": 9730787,
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit"
+            },
+            "refreshed_at": "2026-10-05T17:24:06.2533659+08:00",
+            "status": "PROGRAMMED_AND_REFRESHED",
+            "target": "localhost:3121/xilinx_tcf/Digilent/250520092545",
+            "vivado_journal": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.jou",
+            "device_name": "xc7a200t_0",
+            "attempt": "150_p1_physfix01",
+            "hw_attribute_probe_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\hw_probe.log",
+            "physical_board_label": "confirmation requested; exact printed string not captured",
+            "device_part_reported_by_JTAG": "xc7a200t",
+            "command_receipt": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\command.json",
+            "cable": "Digilent JTAG-SMT2",
+            "vivado_log": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\program\\program.log",
+            "idle_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\idle\\idle_check.json"
+          },
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\reset\\physical_event.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\reset\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\capture\\frame_0003_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\field_checks.json",
+          "actual_snapshot_count": 4,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.csv",
+          "pause_events": [
+            {
+              "frame_id": "0",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791195380479",
+              "submit_seen_epoch_ms": "1791195386107",
+              "pause_assert_epoch_ms": "1791195396492",
+              "pause_release_epoch_ms": "1791195397020",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "1",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791195409424",
+              "submit_seen_epoch_ms": "1791195415091",
+              "pause_assert_epoch_ms": "1791195425435",
+              "pause_release_epoch_ms": "1791195425964",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "2",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791195438575",
+              "submit_seen_epoch_ms": "1791195444221",
+              "pause_assert_epoch_ms": "1791195454583",
+              "pause_release_epoch_ms": "1791195455113",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "3",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791195467752",
+              "submit_seen_epoch_ms": "1791195473378",
+              "pause_assert_epoch_ms": "1791195483759",
+              "pause_release_epoch_ms": "1791195484288",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            }
+          ],
+          "ila_exports": [
+            {
+              "type": "controlled_pause_forced_block",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "frame_done",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f00_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "high_samples": 1,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "controlled_pause_forced_block",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "frame_done",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f01_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "high_samples": 1,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "controlled_pause_forced_block",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "frame_done",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f02_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "high_samples": 1,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "controlled_pause_forced_block",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "high_samples": 512,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "frame_done",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\f03_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "high_samples": 1,
+              "data_samples": 1024,
+              "signal_valid": true,
+              "overflow_probe_zero_all_samples": true
+            },
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\ila\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true,
+              "data_samples": 1024
+            }
+          ],
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller.log",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller.jou",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller_command.json"
+          ],
+          "missing_evidence": []
+        },
+        {
+          "case": "P16",
+          "status": "PASS",
+          "required_frame_count": 16,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "150_p1_physfix01-P16_attempt01-2026-10-05T18:27:37.399726+08:00",
+          "program_record": null,
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\p16_reset_event.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0003_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0004_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0005_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0006_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0007_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0008_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0009_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0010_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0011_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0012_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0013_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0014_y.bin",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\capture\\frame_0015_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\field_checks.json",
+          "actual_snapshot_count": 16,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.csv",
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true,
+              "native_sha256": "5f298f8974f141e8342b5915ef4a32ebda3dcc1238331b8fece16e7a0af32365",
+              "csv_sha256": "f5d28434d3063cf13f82c111800bc87143b60e1315d9172a9643f768cd156477"
+            }
+          ],
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset.log",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\pre_session_reset.jou",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation.log",
+            "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\observation.jou"
+          ],
+          "missing_evidence": []
+        }
+      ],
+      "failed_or_incomplete_attempts": [
+        {
+          "attempt": "150_p1_physfix01/P04",
+          "subattempt": "P04_hostwrap01",
+          "status": "TOOL_FAILURE_BEFORE_FRAME",
+          "frames_sent": 0,
+          "classification": "Windows PowerShell 5.1 could not load System.IO.Ports; no UART activity, no DUT result",
+          "evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04\\command.json; host_console.txt; capture\\session.json"
+        },
+        {
+          "attempt": "150_p1_physfix01/P04_retry01",
+          "subattempt": "host_wrapper_path_preflight",
+          "status": "TOOL_FAILURE_BEFORE_FRAME",
+          "frames_sent": 0,
+          "classification": "Copied host wrapper still referenced parent P04 directory; it exited on existing capture-path guard before COM3 open",
+          "evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\host_startup_error02.txt"
+        },
+        {
+          "attempt": "150_p1_physfix01/P04_retry01",
+          "subattempt": "P04_retry01",
+          "status": "INCOMPLETE_CONTROLLER_TIMEOUT_NO_DUT_FUNCTIONAL_FAILURE_OBSERVED",
+          "frames_sent": 2,
+          "classification": "frame0 UART bit-exact but forced pause count 0; ILA forced/done exports had headers only (334 bytes, two lines); frame1 was sent without controlled pause after controller had advanced during timeout; frames2-3 not sent. Not P04 pass and not classified as DUT functional failure.",
+          "evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\attempt_validation.json; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\controller.log; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\host_console.txt; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\observation_decoded.json; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry01\\coord\\controller_failure_correction.txt"
+        },
+        {
+          "attempt": "150_p1_physfix01/P04_retry02",
+          "subattempt": "run_host_preflight",
+          "status": "TOOL_FAILURE_BEFORE_FRAME",
+          "frames_sent": 0,
+          "classification": "The wrapper correctly blocked because an empty capture directory had been pre-created; failure occurred before COM3 open, no UART frame or pause, and no DUT result. P04_retry03 prepared with no capture directory.",
+          "evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry02\\attempt_validation.json; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry02\\host_startup_error01.txt; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry02\\controller.log"
+        },
+        {
+          "attempt": "150_p1_physfix01/P04_retry03",
+          "subattempt": "P04_pause_windows_500ms",
+          "status": "INCOMPLETE_REQUIRED_PAUSE_NOT_MET",
+          "frames_sent": 3,
+          "classification": "Frames0-2 UART bit-exact; frame0 and frame1 pause_forced_block_cycles positive (41,555,155 and 42,556,275); frame2 pause_request_cycles 75,869,898 but forced cycles 0. Frame3 not sent after safe-gate stop. No protocol/hold/error counts observed.",
+          "evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry03\\attempt_validation.json; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry03\\controller.log; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry03\\observation_decoded.json; C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry03\\capture\\session.json"
+        }
+      ],
+      "artifact_manifest": {
+        "status": "BOARD_PASS_T6_COMPLETE",
+        "build_attempt": "f150_p1_physfix01",
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.bit",
+            "expected_bytes": 9730787,
+            "expected_sha256": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96",
+            "actual_sha256_at_programming": "667988e18f3b466f9caecf71a3be5e1321bd8fb4f38693205e4f96ebf544fa96"
+          },
+          {
+            "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen01\\c_board_150mhz.ltx",
+            "expected_bytes": 358912,
+            "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+            "actual_sha256_at_programming": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+          }
+        ],
+        "implementation_result": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\implementation_result.json",
+        "bitgen_log": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\bitgen.log",
+        "bitgen_gates": "PASS"
+      },
+      "reviewer": null,
+      "pressure_setup_failing_endpoints": 0,
+      "implementation_status": "IMPLEMENTATION_PASS",
+      "implementation_gates": {
+        "setup": true,
+        "hold": true,
+        "pulse": true,
+        "route": true,
+        "drc_no_error": true,
+        "internal_coverage": true,
+        "source_unchanged": true,
+        "frozen_copies_match": true,
+        "real_hierarchy": true,
+        "observer_retained": true,
+        "original_board_XDC": true
+      },
+      "build_attempt": "f150_p1_physfix01",
+      "candidate_board_ready_json": "C:\\t6fix\\sourcekit\\impl\\f150_p1_physfix01\\board_ready.json",
+      "source_postroute_sha256": "69da68b2f0145dd200fdf41a16897b0256ae72b4f066f8950e185bcf20d239d3",
+      "execution_hold": null,
+      "previous_candidate_builds": [
+        {
+          "attempt": "f150_p1_routefix01",
+          "nominal_WNS_ns": 0.283,
+          "pressure_WNS_ns": -0.017,
+          "pressure_setup_pass": false,
+          "expected_images": [
+            {
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_routefix01\\bitgen01\\c_board_150mhz.bit",
+              "expected_bytes": 9730787,
+              "expected_sha256": "1625899a178e41993f77f481c8df5d9ae28473b86edab60508fbbd67f38f9d9d",
+              "actual_sha256_at_programming": null
+            },
+            {
+              "path": "C:\\t6fix\\sourcekit\\impl\\f150_p1_routefix01\\bitgen01\\c_board_150mhz.ltx",
+              "expected_bytes": 358912,
+              "expected_sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66",
+              "actual_sha256_at_programming": null
+            }
+          ],
+          "status": "SUPERSEDED_BUILD_ORIGINAL_EVIDENCE_PRESERVED"
+        }
+      ],
+      "selected_build_attempt": "f150_p1_physfix01",
+      "source_provenance": "C:\\t6fix\\analysis\\integrated01\\SOURCE_PROVENANCE.json"
+    },
+    {
+      "combination": "100MHz_pause0",
+      "freq_MHz": 100,
+      "pause": 0,
+      "delivery_status": "BOARD_PASS",
+      "T6": "PASS",
+      "selected_pass_attempt": "100_p0_delivery01",
+      "nominal_WNS_ns_offline": 0.717,
+      "pressure_WNS_ns_offline": null,
+      "pressure_setup_pass_offline": null,
+      "expected_images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.bit",
+          "expected_bytes": 9730787,
+          "expected_sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5",
+          "actual_sha256_at_programming": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.ltx",
+          "expected_bytes": 358912,
+          "expected_sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "actual_sha256_at_programming": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "actual_program_records": [
+        {
+          "status": "PROGRAMMED_AND_REFRESHED",
+          "attempt": "100_p0_delivery01",
+          "target": "localhost:3121/xilinx_tcf/Digilent/250520092545",
+          "cable": "Digilent JTAG-SMT2",
+          "cable_serial": "250520092545",
+          "device_name": "xc7a200t_0",
+          "device_part_reported_by_JTAG": "xc7a200t",
+          "idcode_hex": "13636093",
+          "program_tcl": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\program_image.tcl",
+          "command_receipt": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\command.json",
+          "vivado_log": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\program.log",
+          "vivado_journal": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\program.jou",
+          "BIT": {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.bit",
+            "bytes": 9730787,
+            "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+          },
+          "LTX": {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.ltx",
+            "bytes": 358912,
+            "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+          },
+          "ILA_detected": "hw_ila_1 / u_obs_ila",
+          "VIO_detected": "hw_vio_1 / u_obs_vio",
+          "cold_power": "user confirmed completed before JTAG program",
+          "physical_board_label": "user reported label check completed; exact printed string not transcribed",
+          "idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\idle_check.json"
+        }
+      ],
+      "actual_device_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "user confirmed label check; exact text not transcribed"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+        "idle_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset_raw.csv",
+        "idle_decoded": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset_decoded.json",
+        "idle_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\reset.ila",
+        "idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\idle_check.json"
+      },
+      "sessions": [
+        {
+          "case": "S04",
+          "status": "PASS",
+          "required_frame_count": 4,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "100_p0_delivery01-S04-2026-10-05T19:27:25.7324709+08:00",
+          "program_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\command.json",
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\idle\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\capture\\frame_0003_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\field_checks.json",
+          "actual_snapshot_count": 4,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.csv",
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\observation.log"
+          ],
+          "missing_evidence": [],
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true
+            }
+          ]
+        },
+        {
+          "case": "S16",
+          "status": "PASS",
+          "required_frame_count": 16,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "100_p0_delivery01-S16-2026-10-05T19:32:36.729047+08:00",
+          "program_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\program\\command.json",
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0003_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0004_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0005_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0006_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0007_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0008_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0009_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0010_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0011_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0012_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0013_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0014_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\capture\\frame_0015_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\field_checks.json",
+          "actual_snapshot_count": 16,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.csv",
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\observation.log"
+          ],
+          "missing_evidence": [],
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S16\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true
+            }
+          ]
+        }
+      ],
+      "failed_or_incomplete_attempts": [
+        {
+          "stage": "S04 wrapper exit-code receipt finalization",
+          "status": "WRAPPER_ERROR_AFTER_CAPTURE_PASS",
+          "functional_or_serial_failure": false,
+          "detail": "The in-process capture produced PASS_BIT_EXACT and all four files; wrapper then treated unset $LASTEXITCODE as failure. Receipt records the wrapper issue; no recapture was needed.",
+          "evidence": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\S04\\command.json"
+        }
+      ],
+      "artifact_manifest": {
+        "status": "BOARD_PASS_EVIDENCE_CLOSED",
+        "build_attempt": "delivery 100MHz_pause0",
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.bit",
+            "expected_bytes": 9730787,
+            "expected_sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5",
+            "actual_sha256_at_programming": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+          },
+          {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact\\c_board_100mhz.ltx",
+            "expected_bytes": 358912,
+            "expected_sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+            "actual_sha256_at_programming": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+          }
+        ],
+        "attempt_root": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01",
+        "manifest": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact_manifest.json"
+      },
+      "implementation_status": "DELIVERY_BOARD_READY",
+      "execution_hold": null,
+      "reviewer": null,
+      "not_run_or_failure_reason": null
+    },
+    {
+      "combination": "100MHz_pause1",
+      "freq_MHz": 100,
+      "pause": 1,
+      "delivery_status": "BOARD_PASS",
+      "T6": "PASS",
+      "selected_pass_attempt": "100_p1_cfix01",
+      "nominal_WNS_ns_offline": 0.551,
+      "pressure_WNS_ns_offline": 0.251,
+      "pressure_setup_pass_offline": true,
+      "expected_images": [
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.bit",
+          "expected_bytes": 9730787,
+          "expected_sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32",
+          "actual_sha256_at_programming": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32"
+        },
+        {
+          "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.ltx",
+          "expected_bytes": 358912,
+          "expected_sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+          "actual_sha256_at_programming": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "actual_program_records": [
+        {
+          "status": "PROGRAMMED_AND_REFRESHED",
+          "attempt": "100_p1_cfix01",
+          "target": "localhost:3121/xilinx_tcf/Digilent/250520092545",
+          "cable": "Digilent JTAG-SMT2",
+          "cable_serial": "250520092545",
+          "device_name": "xc7a200t_0",
+          "device_part_reported_by_JTAG": "xc7a200t",
+          "idcode_hex": "13636093",
+          "program_tcl": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\program_image.tcl",
+          "command_receipt": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\command.json",
+          "vivado_log": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\program.log",
+          "vivado_journal": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\program.jou",
+          "BIT": {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.bit",
+            "bytes": 9730787,
+            "sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32"
+          },
+          "LTX": {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.ltx",
+            "bytes": 358912,
+            "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+          },
+          "ILA_detected": "hw_ila_1 / u_obs_ila",
+          "VIO_detected": "hw_vio_1 / u_obs_vio",
+          "cold_power": "user confirmed completed before JTAG program",
+          "physical_board_label": "user reported label check completed; exact printed string not transcribed",
+          "idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\reset\\idle_check.json"
+        }
+      ],
+      "actual_device_identity": {
+        "cable": "Digilent JTAG-SMT2",
+        "cable_serial": "250520092545",
+        "device": "xc7a200t_0",
+        "part_reported_by_JTAG": "xc7a200t",
+        "idcode_hex": "13636093",
+        "physical_label_text": null,
+        "physical_label_check": "user confirmed label check; exact text not transcribed"
+      },
+      "cold_power_jtag_idle_reset": {
+        "status": "PASS",
+        "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+        "P04_idle_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\reset\\idle_check.json"
+      },
+      "sessions": [
+        {
+          "case": "P04",
+          "status": "PASS",
+          "required_frame_count": 4,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_session_id": "100_p1_cfix01-P04-2026-10-05T19:48:50.9955539+08:00",
+          "program_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\command.json",
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\reset\\idle_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\capture\\frame_0003_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\field_checks.json",
+          "actual_snapshot_count": 4,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\post_session_overflow.csv",
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\controller.log"
+          ],
+          "missing_evidence": [],
+          "pause_events": [
+            {
+              "frame_id": "0",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791200931712",
+              "submit_seen_epoch_ms": "1791200937356",
+              "pause_assert_epoch_ms": "1791200947718",
+              "pause_release_epoch_ms": "1791200948246",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "1",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791200960632",
+              "submit_seen_epoch_ms": "1791200966241",
+              "pause_assert_epoch_ms": "1791200976644",
+              "pause_release_epoch_ms": "1791200977160",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "2",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791200989835",
+              "submit_seen_epoch_ms": "1791200995500",
+              "pause_assert_epoch_ms": "1791201005841",
+              "pause_release_epoch_ms": "1791201006369",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            },
+            {
+              "frame_id": "3",
+              "target_offset_ms": "16000",
+              "frame_start_epoch_ms": "1791201018803",
+              "submit_seen_epoch_ms": "1791201024431",
+              "pause_assert_epoch_ms": "1791201034815",
+              "pause_release_epoch_ms": "1791201035347",
+              "requested_ms": "500",
+              "control_before": "00",
+              "control_after": "00"
+            }
+          ],
+          "ila_exports": [
+            {
+              "type": "f00_forced",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "samples": 1024,
+              "expected_signal_high_samples": 512,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f00_done",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f00_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "samples": 1024,
+              "expected_signal_high_samples": 1,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f01_forced",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "samples": 1024,
+              "expected_signal_high_samples": 512,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f01_done",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f01_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "samples": 1024,
+              "expected_signal_high_samples": 1,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f02_forced",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "samples": 1024,
+              "expected_signal_high_samples": 512,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f02_done",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f02_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "samples": 1024,
+              "expected_signal_high_samples": 1,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f03_forced",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_forced.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_forced.csv",
+              "expected_signal": "dbg_obs_pause_forced_block",
+              "samples": 1024,
+              "expected_signal_high_samples": 512,
+              "overflow_high_samples": 0,
+              "valid": true
+            },
+            {
+              "type": "f03_done",
+              "native_ila": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_done.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\ila\\f03_done.csv",
+              "expected_signal": "dbg_frame_done",
+              "samples": 1024,
+              "expected_signal_high_samples": 1,
+              "overflow_high_samples": 0,
+              "valid": true
+            }
+          ],
+          "pause_cycle_counts": [
+            {
+              "frame_id": 0,
+              "pause_request_cycles": 51719265,
+              "pause_forced_block_cycles": 27554737
+            },
+            {
+              "frame_id": 1,
+              "pause_request_cycles": 50548841,
+              "pause_forced_block_cycles": 27685680
+            },
+            {
+              "frame_id": 2,
+              "pause_request_cycles": 51477526,
+              "pause_forced_block_cycles": 28067649
+            },
+            {
+              "frame_id": 3,
+              "pause_request_cycles": 52012544,
+              "pause_forced_block_cycles": 28936980
+            }
+          ]
+        },
+        {
+          "case": "P16",
+          "status": "PASS",
+          "required_frame_count": 16,
+          "required_frame_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "input_pattern_order": [
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3,
+            0,
+            1,
+            2,
+            3
+          ],
+          "required_controlled_pause_frame_ids": [],
+          "actual_session_id": "100_p1_cfix01-P16-2026-10-05T19:53:18.9053472+08:00",
+          "program_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\program\\command.json",
+          "reset_event": {
+            "physical_events": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\physical_events.json",
+            "baseline_check": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\pre_session_reset_check.json",
+            "S0_user_confirmed": true
+          },
+          "capture_session_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\session.json",
+          "actual_uart_files": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0000_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0001_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0002_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0003_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0004_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0005_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0006_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0007_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0008_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0009_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0010_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0011_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0012_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0013_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0014_y.bin",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\capture\\frame_0015_y.bin"
+          ],
+          "byte_comparison_report": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\field_checks.json",
+          "vio_raw_csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_raw.csv",
+          "decoded_31_fields_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_decoded.json",
+          "field_checks_json": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\field_checks.json",
+          "actual_snapshot_count": 16,
+          "actual_snapshot_overflow": false,
+          "snapshot_overflow_evidence": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.csv",
+          "complete_command_record": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\command.json",
+          "complete_logs": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\host_console.txt",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation.log"
+          ],
+          "missing_evidence": [],
+          "pause_events": [],
+          "ila_exports": [
+            {
+              "type": "post_session_immediate_overflow",
+              "native": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.ila",
+              "csv": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\post_session_overflow.csv",
+              "overflow_probe_zero_all_samples": true
+            }
+          ]
+        }
+      ],
+      "failed_or_incomplete_attempts": [
+        {
+          "stage": "P16 observation export after PC restart",
+          "status": "INTERRUPTED_THEN_RESUMED",
+          "functional_or_serial_failure": false,
+          "detail": "PC restart interrupted the first VIO/ILA export after P16 UART capture had passed. Reconnected to the same programmed FPGA, exported all 16 snapshots and ILA, and the validator passed without recapturing UART.",
+          "evidence": [
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_command.json",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_command_retry01.json",
+            "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P16\\observation_retry01.log"
+          ]
+        }
+      ],
+      "artifact_manifest": {
+        "status": "BOARD_PASS_EVIDENCE_CLOSED",
+        "build_attempt": "f100_p1_quick02",
+        "artifacts": [
+          {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.bit",
+            "expected_bytes": 9730787,
+            "expected_sha256": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32",
+            "actual_sha256_at_programming": "0a7064123ae699ea2182fb1f783e8f0ca632d95c8a35bf3a898e206291147c32"
+          },
+          {
+            "path": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact\\c_board_100mhz.ltx",
+            "expected_bytes": 358912,
+            "expected_sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5",
+            "actual_sha256_at_programming": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+          }
+        ],
+        "implementation_result": "C:\\t6fix\\sourcekit\\impl\\f100_p1_quick02\\implementation_result.json",
+        "board_ready": "C:\\t6fix\\sourcekit\\impl\\f100_p1_quick02\\board_ready.json",
+        "bitgen_log": "C:\\t6fix\\sourcekit\\impl\\f100_p1_quick02\\bitgen.log",
+        "bitgen_gates": "PASS",
+        "attempt_root": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01",
+        "manifest": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact_manifest.json"
+      },
+      "implementation_status": "IMPLEMENTATION_PASS",
+      "implementation_gates": {
+        "setup": true,
+        "hold": true,
+        "pulse": true,
+        "route": true,
+        "drc_no_error": true,
+        "internal_coverage": true,
+        "source_unchanged": true,
+        "frozen_copies_match": true,
+        "real_hierarchy": true,
+        "observer_retained": true,
+        "original_board_XDC": true
+      },
+      "build_attempt": "f100_p1_quick02",
+      "candidate_board_ready_json": "C:\\t6fix\\sourcekit\\impl\\f100_p1_quick02\\board_ready.json",
+      "source_postroute_sha256": "b8a0833d5bcea4755f6ff69d6c9b4848b440798cd8f3bc73bac8db90e9af8581",
+      "execution_hold": null,
+      "reviewer": null,
+      "not_run_or_failure_reason": null
+    }
+  ],
+  "scope": {
+    "requested": "100MHz_pause0, 100MHz_pause1, 150MHz_pause0, and 150MHz_pause1 T6; 200MHz remains paused; natural-video playback remains separate acceptance.",
+    "delivery_commit": "b828e7a8f2aab47fee8b07ce3b446377c14c2997",
+    "rtl_sha256": "8f708588ae719c85abcfa5b392444e644a015b40eefb003b1e9ad165694125e3",
+    "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+    "base_observation_fix_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+    "local_pause_fix_committed": false,
+    "candidate_source_identity": "Base observation-fix commit plus uncommitted C overlay; identified by c_core SHA256 and SOURCE_PROVENANCE.json",
+    "100MHz_completion_run": "C:\\t6fix\\runs\\20261005_100quick01",
+    "100MHz_pause1_build": "f100_p1_quick02 local C-fix sourcekit build; repository source was not edited."
+  },
+  "skipped_combinations": [],
+  "execution_status": "ALL_100_AND_150_T6_COMBINATIONS_BOARD_PASS_200_PAUSED_VIDEO_NOT_RUN",
+  "hold_reason": null,
+  "hold_evidence": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P16_attempt01\\preparation.json",
+  "integrated_analysis": "C:\\t6fix\\analysis\\integrated01\\INTEGRATED_EVIDENCE.json",
+  "analysis_completed_at": "2026-10-05T16:49:45.228996+08:00",
+  "latest_progress_recorded_at": "2026-10-05T20:16:11+08:00",
+  "execution_hold": null,
+  "overall_result_scope": {
+    "100MHz_pause0": "BOARD_PASS",
+    "100MHz_pause1": "BOARD_PASS",
+    "150MHz_pause0": "BOARD_PASS",
+    "150MHz_pause1": "BOARD_PASS",
+    "200MHz": "PAUSED",
+    "natural_video_continuous_fpga_and_pc_playback": "NOT_RUN_SEPARATE_ACCEPTANCE"
+  },
+  "supplemental_evidence": {
+    "100MHz_run": "C:\\t6fix\\runs\\20261005_100quick01",
+    "100MHz_pause0_manifest": "C:\\t6fix\\runs\\20261005_100quick01\\100_p0_delivery01\\artifact_manifest.json",
+    "100MHz_pause1_manifest": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\artifact_manifest.json",
+    "source_150MHz_report": "C:\\t6fix\\runs\\20261005_150fix01\\T6_RESULTS.json"
+  },
+  "acceptance_index_errata": [
+    {
+      "field": "150MHz_pause1/cold_power_jtag_idle_reset/status",
+      "original": "P04_PASS; AWAITING_P16",
+      "corrected": "PASS",
+      "reason": "Idle check PASS and independent P16 reset/session PASS are present; this nested label was not finalized."
+    },
+    {
+      "field": "150MHz_pause1/P04/complete_logs",
+      "original": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\post_session_command.json",
+      "corrected": "C:\\t6fix\\runs\\20261005_150fix01\\150_p1_physfix01\\P04_retry04\\controller_command.json",
+      "reason": "VIO/ILA exports were performed by the coordinated controller; its receipt is controller_command.json."
+    },
+    {
+      "field": "100MHz_pause1/P04/complete_logs",
+      "original": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\observation_retry01.log",
+      "corrected": "C:\\t6fix\\runs\\20261005_100quick01\\100_p1_cfix01\\P04\\controller.log",
+      "reason": "The coordinated controller performed VIO/ILA export; the combined report carried a nonexistent retry log name."
+    }
+  ]
+}

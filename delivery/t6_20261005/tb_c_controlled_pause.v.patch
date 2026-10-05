@@ -1,0 +1,29 @@
+--- base/candidate/multiframe/tb/tb_c_controlled_pause.v
++++ local/candidate/multiframe/tb/tb_c_controlled_pause.v
+@@ -115,8 +115,8 @@
+             forced_block_cycles = forced_block_cycles + 1;
+     end
+ 
+-    // Inject one short pause per frame only when B presents a beat that C
+-    // could otherwise accept. This makes the forced block causally observable.
++    // Inject one short pause per frame only when the elastic register is full
++    // and the downstream is ready. This exercises the pop-during-pause case.
+     always @(negedge clk) begin
+         if (!rst_n) begin
+             obs_control = 5'd0;
+@@ -132,12 +132,13 @@
+                     obs_control[4] = 1'b0;
+             end
+             if (dbg_frame_active && !pause_injected_this_frame &&
+-                dut.obs_b_out_valid && dut.u_core.out_ready_base && !obs_control[4]) begin
++                dut.u_core.out_pipe_valid_q && dut.u_core.out_stream_ready &&
++                dut.obs_b_out_valid && !obs_control[4]) begin
+                 obs_control[4] = 1'b1;
+                 pause_countdown = 16;
+                 pause_injected_this_frame = 1'b1;
+                 pause_injections = pause_injections + 1;
+-                $display("CONTROLLED_PAUSE_START frame=%0d", dbg_expected_frame_id);
++                $display("CONTROLLED_PAUSE_START frame=%0d slot_full=1 sink_ready=1", dbg_expected_frame_id);
+             end
+         end
+     end

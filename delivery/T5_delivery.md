@@ -1,5 +1,7 @@
 # T5 C板测交付索引
 
+> 2026-10-05 补充：本文件保存原 T5 离线交付身份。当前四个实测镜像的 T6 已通过，详见 [阶段验收报告](t6_20261005/T6_ACCEPTANCE_REPORT.md) 与 [T6状态](t6_20261005/T6_STATUS.json)。其中三组合为 C 覆盖修复重建，不能把这里的旧 BIT 哈希直接升级为 BOARD_PASS。自然视频验收未运行，200MHz继续暂停。
+
 T0–T5离线完成，四组合仅 **BOARD_READY**；实体T6 **NOT_RUN**。先读C_BOARD_GUIDE.md，按每组合独立BIT/LTX及哈希配置；不能继承历史基线板测PASS。
 
 | MHz | pause | 本轮最终attempt | WNS/WHS/WPWS(ns) | 压力WNS(ns) |
