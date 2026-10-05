@@ -1,0 +1,345 @@
+{
+  "status": "BOARD_READY",
+  "T0_T5": "COMPLETE_OFFLINE",
+  "T6": "NOT_RUN",
+  "created": "2026-10-05T02:36:46.930452+08:00",
+  "source": {
+    "base": "29af5f7d22722c67f5f373cb1513a57534914433",
+    "fix_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+    "pinned_C": "86df150d45ff8f98b976053ce293688133bc12e9",
+    "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+    "repo": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\source_review",
+    "patch_sha256": "e884b6165d6c0993e1e185b641bc555f94591086c83c507635bcea039263144a",
+    "pushed": false,
+    "changed_paths": [
+      "multiframe/rtl/c_observation.v",
+      "scripts/configure_observation_debug_ip.tcl"
+    ]
+  },
+  "images": [
+    {
+      "status": "BOARD_READY",
+      "T6": "NOT_RUN",
+      "freq_MHz": 100,
+      "pause": 0,
+      "source_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+      "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+      "artifacts": [
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p0_a01\\bitgen01\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "d9b97465ce259d23fd4879c927feaa11366605dfa9dd008e09cfdcf6d3adb5d5"
+        },
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p0_a01\\bitgen01\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "ILA_uuid": "F965FFB8C14853F9928969F0B32C7F39",
+      "VIO_uuid": "36E787058A5D5F8DA3A996B8F9D5F3E4",
+      "ILA_probe1": "934-bit DATA",
+      "VIO_widths": [
+        256,
+        256,
+        256,
+        166,
+        1,
+        5
+      ],
+      "implementation": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p0_a01\\implementation_result.json",
+      "source_postroute_sha256": "05ed951d999c0aa2974394620675a190cefa23b214a07d049ddfe142aae8e493",
+      "bitgen_gates": "PASS; same postroute DCP",
+      "bus_skew": "PASS; see bitgen01/bus_skew.rpt",
+      "VIO_output_initial_value": 0,
+      "attempt": "f100_p0_a01",
+      "nominal": {
+        "WNS": 0.717,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 224036,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 224020,
+        "WPWS": 3.87,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 86419
+      },
+      "pressure": {
+        "WNS": 0.417,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 224036,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 224020,
+        "WPWS": 3.87,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 86419
+      },
+      "pressure_setup_pass": true,
+      "route": {
+        "routable": 105000,
+        "fully_routed": 105000,
+        "errors": 0
+      },
+      "board_zip_directory": "100mhz_pause0",
+      "top": "c_multiframe_synth_top",
+      "tool": "Vivado/XSim2025.2 SW6299465",
+      "part": "xc7a200tfbg484-2"
+    },
+    {
+      "status": "BOARD_READY",
+      "T6": "NOT_RUN",
+      "freq_MHz": 100,
+      "pause": 1,
+      "source_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+      "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+      "artifacts": [
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p1_a03\\bitgen01\\c_board_100mhz.bit",
+          "bytes": 9730787,
+          "sha256": "6718bcc859d76c8b33b00227e8d9f96839dc6abf10c4f69bc07c7f1f7df425af"
+        },
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p1_a03\\bitgen01\\c_board_100mhz.ltx",
+          "bytes": 358912,
+          "sha256": "e8bb272f5d498fc2418cabc0ad18dfa795552aa933b1c90a4c735591e7cefbe5"
+        }
+      ],
+      "ILA_uuid": "F965FFB8C14853F9928969F0B32C7F39",
+      "VIO_uuid": "36E787058A5D5F8DA3A996B8F9D5F3E4",
+      "ILA_probe1": "934-bit DATA",
+      "VIO_widths": [
+        256,
+        256,
+        256,
+        166,
+        1,
+        5
+      ],
+      "implementation": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f100_p1_a03\\implementation_result.json",
+      "source_postroute_sha256": "ad2ba9afd150f3a133146de358eda3271b8c67024420f46a393220180caf5e71",
+      "bitgen_gates": "PASS; same postroute DCP",
+      "bus_skew": "PASS; see bitgen01/bus_skew.rpt",
+      "VIO_output_initial_value": 0,
+      "attempt": "f100_p1_a03",
+      "nominal": {
+        "WNS": 1.088,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 228702,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 228686,
+        "WPWS": 3.87,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 88621
+      },
+      "pressure": {
+        "WNS": 0.788,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 228702,
+        "WHS": 0.036,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 228686,
+        "WPWS": 3.87,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 88621
+      },
+      "pressure_setup_pass": true,
+      "route": {
+        "routable": 107654,
+        "fully_routed": 107654,
+        "errors": 0
+      },
+      "board_zip_directory": "100mhz_pause1",
+      "top": "c_multiframe_synth_top",
+      "tool": "Vivado/XSim2025.2 SW6299465",
+      "part": "xc7a200tfbg484-2"
+    },
+    {
+      "status": "BOARD_READY",
+      "T6": "NOT_RUN",
+      "freq_MHz": 150,
+      "pause": 0,
+      "source_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+      "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+      "artifacts": [
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p0_a02\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "fb53260d6ece72c35f33d81e9602b911b180b09ca4bc7810f1890552cb8b44a7"
+        },
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p0_a02\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "ILA_uuid": "F965FFB8C14853F9928969F0B32C7F39",
+      "VIO_uuid": "36E787058A5D5F8DA3A996B8F9D5F3E4",
+      "ILA_probe1": "934-bit DATA",
+      "VIO_widths": [
+        256,
+        256,
+        256,
+        166,
+        1,
+        5
+      ],
+      "implementation": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p0_a02\\implementation_result.json",
+      "source_postroute_sha256": "5c8284e200ff2aea6cc7b47b4634ae35d1cf6429cc976927f3d93de0e52a012d",
+      "bitgen_gates": "PASS; same postroute DCP",
+      "bus_skew": "PASS; see bitgen01/bus_skew.rpt",
+      "VIO_output_initial_value": 0,
+      "attempt": "f150_p0_a02",
+      "nominal": {
+        "WNS": 0.404,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 224261,
+        "WHS": 0.022,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 224245,
+        "WPWS": 2.203,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 86547
+      },
+      "pressure": {
+        "WNS": 0.104,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 224261,
+        "WHS": 0.022,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 224245,
+        "WPWS": 2.203,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 86547
+      },
+      "pressure_setup_pass": true,
+      "route": {
+        "routable": 105363,
+        "fully_routed": 105363,
+        "errors": 0
+      },
+      "board_zip_directory": "150mhz_pause0",
+      "top": "c_multiframe_synth_top",
+      "tool": "Vivado/XSim2025.2 SW6299465",
+      "part": "xc7a200tfbg484-2"
+    },
+    {
+      "status": "BOARD_READY",
+      "T6": "NOT_RUN",
+      "freq_MHz": 150,
+      "pause": 1,
+      "source_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+      "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+      "artifacts": [
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p1_a01\\bitgen01\\c_board_150mhz.bit",
+          "bytes": 9730787,
+          "sha256": "87b0a97ce25d10acd8683311f20f5b4a4817ca238404dbdcd3fbeac91b3184f4"
+        },
+        {
+          "path": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p1_a01\\bitgen01\\c_board_150mhz.ltx",
+          "bytes": 358912,
+          "sha256": "1aa99107dbfbf3ee5ef7edebe88d7f581427ff38c15410fe132c96a67445bb66"
+        }
+      ],
+      "ILA_uuid": "F965FFB8C14853F9928969F0B32C7F39",
+      "VIO_uuid": "36E787058A5D5F8DA3A996B8F9D5F3E4",
+      "ILA_probe1": "934-bit DATA",
+      "VIO_widths": [
+        256,
+        256,
+        256,
+        166,
+        1,
+        5
+      ],
+      "implementation": "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\impl\\f150_p1_a01\\implementation_result.json",
+      "source_postroute_sha256": "f6caed31eb364a5010db50063dccfa4530df8f4746fa32286f74791f5b43b1e3",
+      "bitgen_gates": "PASS; same postroute DCP",
+      "bus_skew": "PASS; see bitgen01/bus_skew.rpt",
+      "VIO_output_initial_value": 0,
+      "attempt": "f150_p1_a01",
+      "nominal": {
+        "WNS": 0.252,
+        "TNS": 0.0,
+        "setup_failing": 0,
+        "setup_total": 229097,
+        "WHS": 0.014,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 229081,
+        "WPWS": 2.203,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 88854
+      },
+      "pressure": {
+        "WNS": -0.048,
+        "TNS": -0.397,
+        "setup_failing": 10,
+        "setup_total": 229097,
+        "WHS": 0.014,
+        "THS": 0.0,
+        "hold_failing": 0,
+        "hold_total": 229081,
+        "WPWS": 2.203,
+        "TPWS": 0.0,
+        "pulse_failing": 0,
+        "pulse_total": 88854
+      },
+      "pressure_setup_pass": false,
+      "route": {
+        "routable": 108090,
+        "fully_routed": 108090,
+        "errors": 0
+      },
+      "board_zip_directory": "150mhz_pause1",
+      "top": "c_multiframe_synth_top",
+      "tool": "Vivado/XSim2025.2 SW6299465",
+      "part": "xc7a200tfbg484-2"
+    }
+  ],
+  "regressions": {
+    "observer": "31fields/16slots/overflow/injected errors + 10000cycle old/new equivalence PASS",
+    "UART": "100/150MHz pause0/1 two different96x54 frames each; 8 actual serial outputs all20736bytes byte-exact",
+    "full_size": "existing verified baseline fullframe evidence reused, not new candidate full-size run"
+  },
+  "OPEN": [
+    "C T6 physical JTAG/VIO/ILA and UART4/16frames + bounded pause",
+    "REQP-1839/1840 and BRAM asynchronous reset structure",
+    "Flash autonomous startup and busy-time reset not verified",
+    "camera/HDMI/30fps outside this task",
+    "200MHz task PAUSED_AT_USER_REQUEST"
+  ],
+  "guides": [
+    "C_BOARD_GUIDE.md",
+    "REBUILD_GUIDE.md"
+  ],
+  "archives": [
+    "obsfix_board_images.zip",
+    "obsfix_sourcekit.zip",
+    "obsfix_evidence.zip",
+    "obsfix_checkpoints.zip"
+  ],
+  "no_publication": true,
+  "sourcekit_preflight": "PASS relocated sourcekit four frozen build preparations, observer selftest/equivalence and separate2 actual byte-exact UART frames; see PREFLIGHT_SOURCEKIT_CHECK.json"
+}

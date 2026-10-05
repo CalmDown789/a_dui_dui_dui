@@ -1,0 +1,80 @@
+{
+  "status": "T0_T5_COMPLETE_OFFLINE",
+  "board_status": "BOARD_READY",
+  "T6": "NOT_RUN",
+  "finished": "2026-10-05T02:46:14.034043+08:00",
+  "source_commit": "659a86183aa84174d4aad0a5aae99ee482e0a6e4",
+  "fixed_B": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "images": [
+    {
+      "MHz": 100,
+      "pause": 0,
+      "WNS": 0.717,
+      "WHS": 0.036,
+      "WPWS": 3.87,
+      "pressure_WNS": 0.417,
+      "pressure_setup_pass": true
+    },
+    {
+      "MHz": 100,
+      "pause": 1,
+      "WNS": 1.088,
+      "WHS": 0.036,
+      "WPWS": 3.87,
+      "pressure_WNS": 0.788,
+      "pressure_setup_pass": true
+    },
+    {
+      "MHz": 150,
+      "pause": 0,
+      "WNS": 0.404,
+      "WHS": 0.022,
+      "WPWS": 2.203,
+      "pressure_WNS": 0.104,
+      "pressure_setup_pass": true
+    },
+    {
+      "MHz": 150,
+      "pause": 1,
+      "WNS": 0.252,
+      "WHS": 0.014,
+      "WPWS": 2.203,
+      "pressure_WNS": -0.048,
+      "pressure_setup_pass": false
+    }
+  ],
+  "archive_members_verified": 862,
+  "proofs": [
+    {
+      "path": "DELIVERY_MANIFEST.json",
+      "sha256": "0ec6febac36844beddc017e938a5d9e46d15fc926fb217dd35f29c13b19754ed"
+    },
+    {
+      "path": "PORTABLE_CHECK.json",
+      "sha256": "aa31d2061684f1bbfebc133525aa4b11f35ba1bcb89b951bd3b78ee1825d7a17"
+    },
+    {
+      "path": "T5_delivery.json",
+      "sha256": "dd09d49c1cc2054f15839fd2d61e204f4037bf6738d4f71d62a929ddaf42567c"
+    },
+    {
+      "path": "T5_delivery.md",
+      "sha256": "fd9b370cc7ed209b661c73aba36a63435412cff70c84630134b351ed98dbfbf9"
+    },
+    {
+      "path": "C_BOARD_GUIDE.md",
+      "sha256": "a57d2f262e681e488ae3f2b7f54b10a7a9914177034a0c7663505feaa0acc5b6"
+    },
+    {
+      "path": "REBUILD_GUIDE.md",
+      "sha256": "30413926d3efd0b9d9204b36ba2d383f7ef02d54a7f25ffb9ed0973dd22025a4"
+    },
+    {
+      "path": "MORNING_REVIEW.md",
+      "sha256": "ceaa3f87e89cf4bb2028bbbe9b7e01e3651a1cffc0c525e5ccd4554e68d3c3d7"
+    }
+  ],
+  "publication": "local package only; no remote push or peer message",
+  "other_200MHz": "PAUSED_AT_USER_REQUEST",
+  "user_understanding": "not upgraded"
+}

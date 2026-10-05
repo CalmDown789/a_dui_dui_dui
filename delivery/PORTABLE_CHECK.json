@@ -1,0 +1,113 @@
+{
+  "status": "PASS_SOURCEKIT_MIGRATION_CHECK",
+  "T6": "NOT_RUN",
+  "created": "2026-10-05T02:40:12.889535+08:00",
+  "archive_sha256": "ed58ebd9c65431e0432bd902683c02463135a79ac6194fa779c9404b7e9c2422",
+  "archive_members_verified": 126,
+  "four_build_preparations": "PASS fresh extracted root, fixed42B files, IP/source/ROM closure and frozen input checks",
+  "observer_simulation": "PASS standalone extracted sourcekit 16slot selftest and10000cycle equivalence",
+  "full_physical_rebuild": "NOT_RUN in extracted kit; real four source builds are separate original measured evidence",
+  "commands": [
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\prepare_impl.py",
+        "100",
+        "0",
+        "portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "Q:/impl/f100_p0_portable01\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\freeze_attempt.py",
+        "f100_p0_portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "FROZEN 89\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\prepare_impl.py",
+        "100",
+        "1",
+        "portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "Q:/impl/f100_p1_portable01\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\freeze_attempt.py",
+        "f100_p1_portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "FROZEN 89\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\prepare_impl.py",
+        "150",
+        "0",
+        "portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "Q:/impl/f150_p0_portable01\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\freeze_attempt.py",
+        "f150_p0_portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "FROZEN 89\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\prepare_impl.py",
+        "150",
+        "1",
+        "portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "Q:/impl/f150_p1_portable01\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\freeze_attempt.py",
+        "f150_p1_portable01"
+      ],
+      "exit_code": 0,
+      "stdout": "FROZEN 89\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "F:\\Xilinx\\2025.2\\tps\\win64\\python-3.13.0\\python.exe",
+        "F:\\FPGA\u9884\u9009\\c_obs_fix_20261005\\portable_check\\sourcekit\\scripts\\run_observer_tests.py",
+        "--attempt",
+        "portable_selftest01"
+      ],
+      "exit_code": 0,
+      "stdout": "OBSERVER_TESTS_PASS\n",
+      "stderr": ""
+    }
+  ],
+  "T5": "see gated final four image delivery index",
+  "UART_portable_preview": "prior source-only preview relocation run; final kit raw hashes and selftest newly checked"
+}
