@@ -26,6 +26,13 @@ from experiments.r0_4k_quality_20261006.evaluate import (
     temporal_difference_mae,
     validate_frame_plan,
 )
+from experiments.r0_4k_quality_20261006.diagnose_failures import (
+    classify,
+    _error_rgb,
+    _feature_correlations,
+    _tile_with_largest_regression,
+)
+from experiments.r0_4k_quality_20261006.color_demo import resize_plane, ycbcr709_full_to_rgb
 
 
 def test_frame_plan_has_twenty_stills_and_ten_disjoint_clips() -> None:
@@ -173,3 +180,61 @@ def test_error_contact_thumb_maxpools_local_pixel_differences() -> None:
     result = _error_maxpool_thumbnail(reference, candidate, size=(2, 2), gain=8)
     expected = np.array([[8, 0], [0, 0]], dtype=np.uint8)
     np.testing.assert_array_equal(result, expected)
+
+
+def test_failure_classifier_separates_metric_regressions() -> None:
+    assert classify(-0.1, -0.01) == "psnr_and_ssim_down"
+    assert classify(-0.1, 0.01) == "psnr_only_down"
+    assert classify(0.1, -0.01) == "ssim_only_down"
+    assert classify(0.0, 0.0) == "no_regression"
+
+
+def test_regression_roi_finds_tile_where_integer_output_is_worse() -> None:
+    reference = np.zeros((HEIGHT, WIDTH), dtype=np.uint8)
+    bicubic = np.zeros_like(reference)
+    hybrid = np.zeros_like(reference)
+    hybrid[1080:, 1920:] = 10
+    x, y, excess = _tile_with_largest_regression(reference, bicubic, hybrid, tile_width=1920, tile_height=1080)
+    assert (x, y) == (1920, 1080)
+    assert excess == 100.0
+
+
+def test_chroma_resize_and_bt709_neutral_grays() -> None:
+    plane = np.array([[16, 240], [80, 160]], dtype=np.uint8)
+    enlarged = resize_plane(plane, 8, 8)
+    assert enlarged.shape == (8, 8)
+    y = np.full((4, 4), 123, dtype=np.uint8)
+    neutral = np.full((4, 4), 128, dtype=np.uint8)
+    rgb = ycbcr709_full_to_rgb(y, neutral, neutral)
+    np.testing.assert_array_equal(rgb, np.full((4, 4, 3), 123, dtype=np.uint8))
+
+
+def test_bt709_conversion_saturates_without_integer_wrap() -> None:
+    y = np.array([[128]], dtype=np.uint8)
+    cb = np.array([[255]], dtype=np.uint8)
+    cr = np.array([[128]], dtype=np.uint8)
+    rgb = ycbcr709_full_to_rgb(y, cb, cr)
+    assert rgb.dtype == np.uint8
+    assert tuple(rgb[0, 0]) == (128, 104, 255)
+
+
+def test_zoom_residual_supports_non_integer_thumbnail_ratio() -> None:
+    reference = np.zeros((270, 480), dtype=np.uint8)
+    hybrid = reference.copy()
+    hybrid[135, 240] = 12
+    thumb_image = _error_rgb(reference, hybrid)
+    assert thumb_image.size == (320, 180)
+
+
+def test_feature_correlations_are_reported_for_a_single_sequence() -> None:
+    rows = [
+        {"reference_gradient_l1_960x540": float(index),
+         "reference_high_frequency_l1_960x540": float(index * 2),
+         "reference_motion_mae_960x540": float(10 - index),
+         "hybrid_gain_vs_bicubic_db_shave8": float(index * 0.25)}
+        for index in range(5)
+    ]
+    correlations = _feature_correlations(rows)
+    assert np.isclose(correlations["reference_gradient_l1_960x540"], 1.0)
+    assert np.isclose(correlations["reference_high_frequency_l1_960x540"], 1.0)
+    assert np.isclose(correlations["reference_motion_mae_960x540"], -1.0)

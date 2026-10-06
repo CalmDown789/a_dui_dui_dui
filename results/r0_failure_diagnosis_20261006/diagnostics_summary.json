@@ -1,0 +1,104 @@
+{
+  "schema": "member-a-r0-4k-failure-diagnosis-v1",
+  "status": "SOFTWARE_DIAGNOSTIC_ONLY",
+  "scope": "All 100 sampled frames from Beauty and Jockey; all 64 frames with a negative shave-8 PSNR gain or SSIM delta are visually regenerated and hash-checked.",
+  "sequences": {
+    "Beauty": {
+      "frame_count": 50,
+      "regression_categories": {
+        "psnr_and_ssim_down": 8,
+        "psnr_only_down": 0,
+        "ssim_only_down": 16,
+        "no_regression": 26
+      },
+      "mean_shave8_psnr_gain_db": 0.15405156167623488,
+      "mean_shave8_ssim_delta": 0.001107029088597129
+    },
+    "Jockey": {
+      "frame_count": 50,
+      "regression_categories": {
+        "psnr_and_ssim_down": 9,
+        "psnr_only_down": 0,
+        "ssim_only_down": 31,
+        "no_regression": 10
+      },
+      "mean_shave8_psnr_gain_db": 0.5181528734856083,
+      "mean_shave8_ssim_delta": -0.0006629185661965087
+    }
+  },
+  "regression_categories": {
+    "no_regression": {
+      "count": 36,
+      "mean_hybrid_gain_vs_bicubic_db_shave8": 0.35565673398081327,
+      "median_hybrid_gain_vs_bicubic_db_shave8": 0.18254272656972503,
+      "mean_hybrid_ssim_delta_vs_bicubic_shave8": 0.0021700630922025016,
+      "median_hybrid_ssim_delta_vs_bicubic_shave8": 0.0022599036044937404,
+      "mean_reference_gradient_l1_960x540": 2.541574947780504,
+      "median_reference_gradient_l1_960x540": 2.37232180200197,
+      "mean_reference_high_frequency_l1_960x540": 1.4115641006522792,
+      "median_reference_high_frequency_l1_960x540": 1.2977445827268155,
+      "mean_reference_motion_mae_960x540": 15.00750289351852,
+      "median_reference_motion_mae_960x540": 11.110617283950617
+    },
+    "psnr_and_ssim_down": {
+      "count": 17,
+      "mean_hybrid_gain_vs_bicubic_db_shave8": -0.40957616171488015,
+      "median_hybrid_gain_vs_bicubic_db_shave8": -0.3785086897968384,
+      "mean_hybrid_ssim_delta_vs_bicubic_shave8": -0.0012758996643020433,
+      "median_hybrid_ssim_delta_vs_bicubic_shave8": -0.0011402441160638377,
+      "mean_reference_gradient_l1_960x540": 1.4428021653806402,
+      "median_reference_gradient_l1_960x540": 1.458844566406154,
+      "mean_reference_high_frequency_l1_960x540": 0.7555229457129624,
+      "median_reference_high_frequency_l1_960x540": 0.7971571917758312,
+      "mean_reference_motion_mae_960x540": 13.571757443718228,
+      "median_reference_motion_mae_960x540": 13.045625
+    },
+    "ssim_only_down": {
+      "count": 47,
+      "mean_hybrid_gain_vs_bicubic_db_shave8": 0.59083774646672,
+      "median_hybrid_gain_vs_bicubic_db_shave8": 0.4586671551600219,
+      "mean_hybrid_ssim_delta_vs_bicubic_shave8": -0.0007282223597047724,
+      "median_hybrid_ssim_delta_vs_bicubic_shave8": -0.0006251260599307029,
+      "mean_reference_gradient_l1_960x540": 2.3764013745966976,
+      "median_reference_gradient_l1_960x540": 2.1552216647644826,
+      "mean_reference_high_frequency_l1_960x540": 1.2679221371127014,
+      "median_reference_high_frequency_l1_960x540": 1.164484152322934,
+      "mean_reference_motion_mae_960x540": 23.048807829327554,
+      "median_reference_motion_mae_960x540": 23.747264660493826
+    }
+  },
+  "content_feature_gain_correlations": {
+    "reference_gradient_l1_960x540": 0.7377791846369439,
+    "reference_high_frequency_l1_960x540": 0.7294498353376888,
+    "reference_motion_mae_960x540": 0.5444251957813402
+  },
+  "interpretation": "Correlations are descriptive, not causal. The pooled value combines two different sequences and may be confounded by sequence identity; use the within-sequence correlations and category means for interpretation.",
+  "sources": {
+    "Beauty": {
+      "source_file": "Beauty_3840x2160_120fps_420_8bit_HEVC_RAW.hevc",
+      "sha256": "88af90a616635b1a8b726d0260d724da9f662aaf321e5c376eab9ed8ce1eed7f"
+    },
+    "Jockey": {
+      "source_file": "Jockey_3840x2160_120fps_420_8bit_HEVC_RAW.hevc",
+      "sha256": "51a89f7aea782dd4ef0d59c08337c383a1e9190870d40a2f64862c1b3f8d7fe4"
+    }
+  },
+  "model_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "artifacts": {
+    "per_frame_features": "per_frame_features.csv",
+    "all_regression_frames": "visuals/all_regression_frames.jpg",
+    "worst_case_rois": "visuals/worst_case_rois.jpg"
+  },
+  "content_feature_gain_correlations_by_sequence": {
+    "Beauty": {
+      "reference_gradient_l1_960x540": 0.19444333559275231,
+      "reference_high_frequency_l1_960x540": 0.20079727896704574,
+      "reference_motion_mae_960x540": 0.2616810359840227
+    },
+    "Jockey": {
+      "reference_gradient_l1_960x540": 0.7815635354340413,
+      "reference_high_frequency_l1_960x540": 0.7834029951345586,
+      "reference_motion_mae_960x540": 0.5072356922078194
+    }
+  }
+}

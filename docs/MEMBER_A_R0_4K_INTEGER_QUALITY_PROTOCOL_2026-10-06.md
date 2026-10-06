@@ -49,4 +49,16 @@ python -m venv --system-site-packages .venv
 
 结果包含 `evaluation_manifest.json`（原始源、抽样帧、哈希、版本及限制）、20 张 `per_image_metrics.csv`、500 行 `per_clip_frame_metrics.csv`、10 行 `per_clip_summary.csv`、失败/最差案例 CSV、低增益案例接触表和一段 10 fps 软件演示。复跑时使用同一 source file 哈希、模型量化目录哈希和脚本版本。
 
+## 退化帧检查和彩色预览
+
+完成主评测后，可从 Beauty/Jockey 两条 10 fps 采样片段分析 100 帧，其中所有退化帧都会按已存哈希重新计算 R0 输出。彩色视频复用 Beauty 的 50 个帧样本；Y 由冻结整数链路重建，Cb/Cr 用软件插值，输出只是彩色对照预览，不是色彩指标或板级结果。
+
+```powershell
+python -m experiments.r0_4k_quality_20261006.diagnose_failures
+python -m experiments.r0_4k_quality_20261006.color_demo
+python -m pytest tests\test_r0_4k_quality_eval.py
+```
+
+诊断报告和可视化位于 `results/r0_failure_diagnosis_20261006/`；彩色视频、素材/模型哈希及逐帧记录位于 `results/r0_color_demo_20261006/`。默认不覆盖既有输出。已有诊断结果可用 `diagnose_failures --finalize-existing` 更新分组统计，或用 `--refresh-visuals` 对比已验证源与模型后重绘图表。UVG 原始视频仍只存于 `.data/`，遵循 CC BY-NC 非商业许可。
+
 公开来源： [UVG Dataset](https://ultravideo.fi/dataset.html)。论文：A. Mercat, M. Viitanen, J. Vanne, “UVG dataset: 50/120fps 4K sequences for video codec analysis and development,” ACM MMSys, 2020。

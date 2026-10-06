@@ -4,6 +4,8 @@
 
 已完成 20 张静态 4K 图和 10 段视频（500 个采样帧）的离线 Y 通道对比：冻结 R0 整数 FSRCNN×2 + 定点双三次×2 对比直接双三次×4。shave-8 平均增益为静态图 +1.268 dB PSNR / +0.006122 SSIM，视频 +1.105 dB / +0.004133。视频仍有 17 帧 PSNR 下降、64 帧 SSIM 下降，主要集中在 Beauty 与 Jockey；具体边界、退化帧及复现步骤见[评测报告](docs/MEMBER_A_R0_4K_INTEGER_QUALITY_REPORT_2026-10-06.md)。逐图、逐帧 CSV、数据/模型哈希、演示视频和接触表位于 `results/r0_4k_quality_20261006/`。公开 UVG 原始素材为 CC BY-NC，仅供非商业用途，且不提交至仓库。
 
+追加完成 Beauty/Jockey 共 100 帧的退化特征检查，以及基于冻结模型的[5 秒彩色视频软件演示](results/r0_color_demo_20261006/demo_beauty_color_5s_10fps.mp4)。诊断观察到 Jockey 的 SSIM 回退较集中；相关统计不能证明根因。演示中 R0 仅增强 Y，Cb/Cr 使用软件插值；[诊断报告](docs/MEMBER_A_R0_FAILURE_CASE_AND_COLOR_DEMO_2026-10-06.md)和[诊断结果](results/r0_failure_diagnosis_20261006/)记录逐帧分析、哈希与复现命令。没有修改模型或 B/C 文件，也不代表板级验收。
+
 已完成成员 A 的算法与数据交付，用于小梅哥 ACX750-200T 上的 540p 到 1080p 超分项目。模型为 `d=16 / s=8 / m=1 / c=16` 的 FSRCNN 主干，输出层直接训练为稠密 `5×5 Conv 16→4 + PixelShuffle×2`。它不是 9×9 反卷积的逐权重等价变换。
 
 ## 冻结规格

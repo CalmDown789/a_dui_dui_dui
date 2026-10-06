@@ -1,0 +1,50 @@
+{
+  "schema": "member-a-r0-color-video-demo-v1",
+  "status": "SOFTWARE_COLOR_DEMO_NOT_BOARD_VALIDATION",
+  "dataset": {
+    "name": "UVG 4K test sequences",
+    "url": "https://ultravideo.fi/dataset.html",
+    "license": "CC BY-NC; non-commercial use only; cite Mercat et al., ACM MMSys 2020",
+    "citation": "A. Mercat, M. Viitanen, J. Vanne, UVG dataset: 50/120fps 4K sequences for video codec analysis and development, ACM MMSys, 2020."
+  },
+  "source": {
+    "sequence": "Beauty",
+    "source_file": "Beauty_3840x2160_120fps_420_8bit_HEVC_RAW.hevc",
+    "source_url": "https://ultravideo.fi/video/Beauty_3840x2160_120fps_420_8bit_HEVC_RAW.hevc",
+    "sha256": "88af90a616635b1a8b726d0260d724da9f662aaf321e5c376eab9ed8ce1eed7f",
+    "license": "CC BY-NC; non-commercial use only; cite Mercat et al., ACM MMSys 2020"
+  },
+  "model": {
+    "name": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+    "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+    "quant_asset_tree_sha256": "cf3e12fb529000d12dbc958d2cf5b9e0243cc2d9cbdfc1bd97e0680553689dfe",
+    "rounding": "nearest_ties_away_from_zero",
+    "quantization": "per-output-channel symmetric INT8 weights; symmetric per-layer INT16 activations; INT32 bias/accumulator; Q1.15 PReLU"
+  },
+  "color_path": {
+    "input": "synthetic 960x540 Y with 480x270 Cb/Cr, software-only",
+    "y": "frozen R0 INT8/INT16/INT32 FSRCNN x2 followed by frozen Q14 Keys bicubic x2; per-frame hashes equal the prior 4K quality evaluation",
+    "cbcr": "source 4K 4:2:0 Cb/Cr downsampled to 480x270 with Pillow BICUBIC and enlarged to the 4K 4:2:0 chroma grid 1920x1080 with Pillow BICUBIC; same chroma path for baseline and R0",
+    "display_conversion": "full-range YCbCr to RGB using fixed-point BT.709 coefficients; panels resized to 640x360",
+    "baseline": "direct Pillow BICUBIC x4 for Y and the same interpolated Cb/Cr path",
+    "reference_panel": "decoded 4K Y with decoded 4K Cb/Cr for visual context; not a quality score"
+  },
+  "video": {
+    "file": "demo_beauty_color_5s_10fps.mp4",
+    "bytes": 1692671,
+    "sha256": "0bfdd6911c9409d3b2c946a46cfb34cf08a3550ef4cd7bf99292e8d2225959af",
+    "width": 1920,
+    "height": 396,
+    "fps": 10,
+    "frame_count": 50,
+    "duration_seconds": 5.0,
+    "codec": "H.264, yuv420p, BT.709 tags, no audio"
+  },
+  "per_frame_hashes": "per_frame_color_hashes.csv",
+  "quant_asset_tree_sha256": "cf3e12fb529000d12dbc958d2cf5b9e0243cc2d9cbdfc1bd97e0680553689dfe",
+  "limitations": [
+    "The side-by-side video is a software preview, not a full-resolution color-quality measurement.",
+    "The current FPGA model enhances Y only; Cb/Cr interpolation is a software placeholder and is not verified on board.",
+    "UVG source is CC BY-NC and may only be used non-commercially; the raw source is not included in this repository."
+  ]
+}
