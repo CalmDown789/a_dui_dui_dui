@@ -40,8 +40,10 @@ The evaluator is `experiments/r0_4k_quality_20261006/evaluate_color_quality.py`.
 Run from the repository root after the local UVG sources are present:
 
 ```powershell
-.\.venv\Scripts\python.exe -m experiments.r0_4k_quality_20261006.evaluate_color_quality --resume
+.\.venv\Scripts\python.exe -m experiments.r0_4k_quality_20261006.evaluate_color_quality --resume --min-available-memory-mib 1536
 ```
+
+The evaluator starts only when at least 2304 MiB is available after imports and pauses at a frame boundary below 1536 MiB by default. These guards can be overridden explicitly for a controlled rerun; they do not alter image arithmetic.
 
 The intended published outputs are:
 
