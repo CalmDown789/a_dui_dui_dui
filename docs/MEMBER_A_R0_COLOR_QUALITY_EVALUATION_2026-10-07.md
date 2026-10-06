@@ -8,7 +8,7 @@ Status: Evaluation in progress; numerical conclusions will be added after the fu
 
 This evaluation checks the frozen R0 grayscale super-resolution path inside a software color-video pipeline. It does not retrain or replace the released model, and it does not modify Member B or Member C files. The chroma path is software interpolation only; the result is not FPGA, HDMI, throughput, or board-validation evidence.
 
-The test uses 30 uniformly sampled frames from each of the existing five-second, 10 fps UVG clips for Beauty, Jockey, and Bosphorus. This gives 90 paired frames and includes the previously noted Jockey sample ordinals 17 and 35. Source videos remain local under the ignored `.data/` directory and are not redistributed.
+The test uses 30 uniformly sampled frames from each of the existing five-second, 10 fps UVG clips for Beauty, Jockey, and Bosphorus. This gives 90 paired frames and includes the previously noted Jockey sample ordinals 17 and 35. Source videos remain local under the ignored `.data/` directory and are not redistributed. The UVG dataset is licensed CC BY-NC for non-commercial use; cite A. Mercat, M. Viitanen, and J. Vanne, “UVG dataset: 50/120fps 4K sequences for video codec analysis and development,” ACM MMSys 2020 ([dataset page](https://ultravideo.fi/dataset.html)).
 
 ## Compared paths
 
