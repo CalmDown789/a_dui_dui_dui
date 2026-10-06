@@ -2,7 +2,7 @@
 
 Date: 2026-10-07
 
-Status: Evaluation in progress; numerical conclusions will be added after the full 90-frame run.
+Status: Complete; 90 of 90 frames passed the source and frozen-luma hash checks.
 
 ## Scope
 
@@ -41,11 +41,12 @@ Run from the repository root after the local UVG sources are present:
 
 ```powershell
 .\.venv\Scripts\python.exe -m experiments.r0_4k_quality_20261006.evaluate_color_quality --resume --min-available-memory-mib 1536
+.\.venv\Scripts\python.exe -m experiments.r0_4k_quality_20261006.render_color_contact_sheets
 ```
 
 The evaluator starts only when at least 2304 MiB is available after imports and pauses at a frame boundary below 1536 MiB by default. These guards can be overridden explicitly for a controlled rerun; they do not alter image arithmetic.
 
-The intended published outputs are:
+The published outputs are:
 
 - `results/r0_color_quality_20261007/per_frame_color_metrics.csv` — all 90 frame-level metrics and luma/chroma hashes;
 - `results/r0_color_quality_20261007/summary.json` — overall and per-sequence means and regression counts;
@@ -53,6 +54,27 @@ The intended published outputs are:
 - `results/r0_color_quality_20261007/evaluation_manifest.json` — source, model, software, metric, hash, and limitation metadata.
 
 Only derived metrics and contact sheets are committed. The licensed raw UVG sources and resumable intermediate checkpoint remain local and ignored.
+
+## Results
+
+All 90 RGB comparisons use the same decoded reference and the same chroma path for the bicubic-Y and R0-Y alternatives. The table reports arithmetic means across frames; PSNR uses shave-8 and SSIM uses shave-8.
+
+| Chroma enlargement to 1920x1080 | Baseline PSNR | R0 PSNR | PSNR gain | Baseline SSIM | R0 SSIM | SSIM delta | Frames with negative PSNR / SSIM delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Bicubic | 41.984 dB | 42.384 dB | +0.400 dB | 0.958950 | 0.959641 | +0.000691 | 9 / 40 of 90 |
+| Bilinear | 41.670 dB | 42.029 dB | +0.359 dB | 0.958465 | 0.959160 | +0.000695 | 9 / 40 of 90 |
+
+The sequence-specific shave-8 results show why the overall average is not a universal guarantee:
+
+| Sequence | Frames | Bicubic-chroma PSNR gain / SSIM delta | Bicubic negative PSNR / SSIM frames | Bilinear-chroma PSNR gain / SSIM delta | Bilinear negative PSNR / SSIM frames |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Beauty | 30 | +0.066 dB / +0.000954 | 4 / 15 | +0.066 dB / +0.000977 | 4 / 15 |
+| Jockey | 30 | +0.285 dB / −0.000695 | 5 / 25 | +0.249 dB / −0.000701 | 5 / 25 |
+| Bosphorus | 30 | +0.849 dB / +0.001813 | 0 / 0 | +0.762 dB / +0.001810 | 0 / 0 |
+
+Under the tested resize and color contract, bicubic chroma scored higher than bilinear against decoded source chroma: mean Cb PSNR was 48.854 versus 48.156 dB, and mean Cr PSNR was 49.861 versus 49.081 dB. Bicubic chroma also produced higher absolute RGB PSNR than bilinear for both the baseline and R0 paths. This supports bicubic as the current software reference, not as a board-validated choice.
+
+The result is mixed: average RGB PSNR and SSIM improve slightly overall, but Jockey's mean SSIM decreases, and 40 of 90 frames have negative SSIM deltas under either chroma method. This is evidence for these three sampled UVG clips and the specified synthetic degradation only; it does not establish that R0 improves every scene or native camera input.
 
 ## Interpretation boundary
 

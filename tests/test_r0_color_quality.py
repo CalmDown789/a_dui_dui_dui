@@ -18,6 +18,13 @@ from experiments.r0_4k_quality_20261006.evaluate_color_quality import (
     ssim_rgb,
     ycbcr709_full_to_rgb,
 )
+from experiments.r0_4k_quality_20261006.render_color_contact_sheets import (
+    HEADER_HEIGHT,
+    LABELS,
+    PANEL_HEIGHT,
+    PANEL_WIDTH,
+    _render_row,
+)
 
 
 def test_bt709_full_range_neutral_chroma_preserves_gray() -> None:
@@ -125,6 +132,25 @@ def test_contact_rows_are_independently_persistable(tmp_path) -> None:
     _write_contact_sheet(sheet_path, [row_path])
     with Image.open(sheet_path) as saved:
         assert saved.size == (384 * 5, 216 + 30)
+
+
+def test_contact_sheet_renderer_keeps_column_titles_visible_and_panels_in_order(tmp_path) -> None:
+    source = Image.new("RGB", (PANEL_WIDTH * len(LABELS), PANEL_HEIGHT + 30), "black")
+    colors = ("red", "green", "blue", "yellow", "magenta")
+    for column, color in enumerate(colors):
+        source.paste(color, (column * PANEL_WIDTH, 30, (column + 1) * PANEL_WIDTH, 30 + PANEL_HEIGHT))
+    source_path = tmp_path / "checkpoint_row.jpg"
+    source.save(source_path, quality=100, subsampling=0)
+
+    rendered = _render_row(source_path, "Beauty", 0)
+    assert rendered.size == (PANEL_WIDTH * len(LABELS), PANEL_HEIGHT + HEADER_HEIGHT)
+    for column, color in enumerate(colors):
+        x = column * PANEL_WIDTH
+        label_area = rendered.crop((x + 4, 27, x + 300, HEADER_HEIGHT - 2))
+        assert int(np.asarray(label_area).max()) > 240
+        panel_pixel = rendered.getpixel((x + 100, HEADER_HEIGHT + 100))
+        expected = Image.new("RGB", (1, 1), color).getpixel((0, 0))
+        assert max(abs(actual - target) for actual, target in zip(panel_pixel, expected, strict=True)) < 6
 
 
 def test_available_memory_probe_returns_none_or_nonnegative_integer() -> None:
