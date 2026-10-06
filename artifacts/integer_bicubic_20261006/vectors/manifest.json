@@ -1,0 +1,322 @@
+{
+  "schema": "member-a-bicubic-stage-vectors-v1",
+  "status": "A_SIDE_SOFTWARE_REFERENCE_VECTORS",
+  "arithmetic": "horizontal Q14 signed integer; vertical Q28 signed integer; final ties-away round and uint8 saturation",
+  "vectors": [
+    {
+      "name": "zero",
+      "input_shape_hw": [
+        6,
+        8
+      ],
+      "output_shape_hw": [
+        12,
+        16
+      ],
+      "input_min_max": [
+        0,
+        0
+      ],
+      "horizontal_q14_min_max": [
+        0,
+        0
+      ],
+      "vertical_q28_min_max": [
+        0,
+        0
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 48,
+          "crc32": "f288b395",
+          "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 384,
+          "crc32": "88bad147",
+          "sha256": "a1a4f5721c1c4610af7f71078f3a68c330536d679803b0e0507ee8dc10c5dfca"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 1536,
+          "crc32": "6c1ce17e",
+          "sha256": "80422bc3d307b4a25bdafcc84ac7fb01cb55a09810e8b0f37bb12e0edb5c48ca"
+        },
+        "output_y_u8.bin": {
+          "bytes": 192,
+          "crc32": "8bff08f2",
+          "sha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5"
+        }
+      }
+    },
+    {
+      "name": "constant_1x1",
+      "input_shape_hw": [
+        1,
+        1
+      ],
+      "output_shape_hw": [
+        2,
+        2
+      ],
+      "input_min_max": [
+        137,
+        137
+      ],
+      "horizontal_q14_min_max": [
+        2244608,
+        2244608
+      ],
+      "vertical_q28_min_max": [
+        36775657472,
+        36775657472
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 1,
+          "crc32": "4666d409",
+          "sha256": "e9b0c031f0493d3fd6b0b668260c79e7efe734bfd4b4115f9d82bc3be609c294"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 8,
+          "crc32": "bc65c5cd",
+          "sha256": "d7d7abc5371e13b686413a91b8eb05ef95d82253b9e208613adbac1f18654b1b"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 32,
+          "crc32": "9d50eedf",
+          "sha256": "9793c2d9712ccce482a79120f865a983164c9acef4cff006e0729738f5caa2f7"
+        },
+        "output_y_u8.bin": {
+          "bytes": 4,
+          "crc32": "21d41e24",
+          "sha256": "8a73d1c6611448ce09047e0ccb29b23880872624a58ea09c78b43d15795f4034"
+        }
+      }
+    },
+    {
+      "name": "impulse",
+      "input_shape_hw": [
+        7,
+        9
+      ],
+      "output_shape_hw": [
+        14,
+        18
+      ],
+      "input_min_max": [
+        0,
+        255
+      ],
+      "horizontal_q14_min_max": [
+        -293760,
+        3623040
+      ],
+      "vertical_q28_min_max": [
+        -4173742080,
+        51476152320
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 63,
+          "crc32": "0b6e83f2",
+          "sha256": "a0cc3c87347c30e42975d4af5bdf1fbe345758f0e5692bdb05bc78f3545f2d6c"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 504,
+          "crc32": "c3b8b32d",
+          "sha256": "f029076ba968ff234b82cc1919bc4068467fe9246db99e4642243402f78610d7"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 2016,
+          "crc32": "0d0b50d6",
+          "sha256": "c3bdd067e9506e7b81b89605b89f6911829ed37d1917bd54fcd2f6260e7e71a0"
+        },
+        "output_y_u8.bin": {
+          "bytes": 252,
+          "crc32": "828fa38c",
+          "sha256": "7126ba29c37efc776df92a6c0afabdfd4fdb661f81cbd7e496103342f42851ed"
+        }
+      }
+    },
+    {
+      "name": "ramp",
+      "input_shape_hw": [
+        7,
+        9
+      ],
+      "output_shape_hw": [
+        14,
+        18
+      ],
+      "input_min_max": [
+        0,
+        62
+      ],
+      "horizontal_q14_min_max": [
+        -1152,
+        1016960
+      ],
+      "vertical_q28_min_max": [
+        -188743680,
+        16831741952
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 63,
+          "crc32": "dbdea683",
+          "sha256": "29af2686fd53374a36b0846694cc342177e428d1647515f078784d69cdb9e488"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 504,
+          "crc32": "baa66f68",
+          "sha256": "2155d949625f50a74922135770ec0dff3ac19f2dbcf3b96af033ede7c770aba9"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 2016,
+          "crc32": "c5b3a411",
+          "sha256": "8665fa6ba140e3afd0f25e12910dd07724c37f4df78eb31a6cca4f7459038ee8"
+        },
+        "output_y_u8.bin": {
+          "bytes": 252,
+          "crc32": "02cfee3d",
+          "sha256": "85b5c6a7065f6cd16b84b14185bdf6bebfade1fe09e61d5fea72385d65252265"
+        }
+      }
+    },
+    {
+      "name": "checkerboard",
+      "input_shape_hw": [
+        8,
+        10
+      ],
+      "output_shape_hw": [
+        16,
+        20
+      ],
+      "input_min_max": [
+        0,
+        255
+      ],
+      "horizontal_q14_min_max": [
+        -293760,
+        4471680
+      ],
+      "vertical_q28_min_max": [
+        -10302750720,
+        78753792000
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 80,
+          "crc32": "53330d60",
+          "sha256": "7303262f55f8baaf94405b5b391d2569882b3642b88b5358b8487e418fc858b1"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 640,
+          "crc32": "2d9de283",
+          "sha256": "ce3a786a14eebac0cf670af70de87405aef92ad22b2ccac95d8f4960d89f286e"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 2560,
+          "crc32": "902f9d95",
+          "sha256": "2db152dbf968cc32fed49f595ce75c17dc9078407f2e4cca33401d80c211f018"
+        },
+        "output_y_u8.bin": {
+          "bytes": 320,
+          "crc32": "42a2eaea",
+          "sha256": "5b4ef95db14b268db78030d00fe3db737cc00a65f3130bff3ba13ad3e1897e2b"
+        }
+      }
+    },
+    {
+      "name": "random_seed_20261006",
+      "input_shape_hw": [
+        9,
+        11
+      ],
+      "output_shape_hw": [
+        18,
+        22
+      ],
+      "input_min_max": [
+        4,
+        255
+      ],
+      "horizontal_q14_min_max": [
+        53120,
+        4079616
+      ],
+      "vertical_q28_min_max": [
+        -4187979776,
+        66234613760
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 99,
+          "crc32": "5bc832e3",
+          "sha256": "b92322866c9ec7031ebaaa570180c2e92f3b39ccbb7e7ee680936b4092233b58"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 792,
+          "crc32": "669d6547",
+          "sha256": "7f3eb06c463592138a0f489ed343a5f6df85d4a9b3fd7914ba328e4f75ee9335"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 3168,
+          "crc32": "bb8e9db1",
+          "sha256": "22278c55ce96ef4a162a385718ae199c13bbfc815df873c0aba56f22e02b0e80"
+        },
+        "output_y_u8.bin": {
+          "bytes": 396,
+          "crc32": "0c00fbe6",
+          "sha256": "55a5c6ce870cc6135316e02dd2bf2c7cea306dd5ca643f7ba4106cacc02406ad"
+        }
+      }
+    },
+    {
+      "name": "high_contrast_corners",
+      "input_shape_hw": [
+        9,
+        11
+      ],
+      "output_shape_hw": [
+        18,
+        22
+      ],
+      "input_min_max": [
+        0,
+        255
+      ],
+      "horizontal_q14_min_max": [
+        -293760,
+        4471680
+      ],
+      "vertical_q28_min_max": [
+        -6400475136,
+        78497660928
+      ],
+      "files": {
+        "input_y_u8.bin": {
+          "bytes": 99,
+          "crc32": "82b362c5",
+          "sha256": "c80aec7232a805697b154f2e9d74f3fee34f8f0075bed79f635b89badf5cc3b5"
+        },
+        "horizontal_q14_int32.bin": {
+          "bytes": 792,
+          "crc32": "3d7c95e0",
+          "sha256": "4118d21a5b015fbe50fcb535799ae49d2c86f5e6e694fa3a41cff2e05259f4fc"
+        },
+        "vertical_accum_q28_int64.bin": {
+          "bytes": 3168,
+          "crc32": "e4f998ff",
+          "sha256": "551932cbf972144ef2fe7f0a8e3a76f8082ff58f0a1e4c84b0c167b609203a17"
+        },
+        "output_y_u8.bin": {
+          "bytes": 396,
+          "crc32": "525cc3ae",
+          "sha256": "346a2e9e236423462301e5029c6000245aaa718cf89e449d1ec02aea81a0ab71"
+        }
+      }
+    }
+  ]
+}

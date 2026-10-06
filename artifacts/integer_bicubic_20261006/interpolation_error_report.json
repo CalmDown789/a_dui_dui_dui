@@ -1,0 +1,110 @@
+{
+  "schema": "member-a-bicubic-integer-float-parity-v1",
+  "status": "PASS",
+  "comparison": "same Keys a=-0.5, half-pixel coordinates, edge replication and final Y8 conversion; only float64 versus Q14 integer arithmetic differs",
+  "meaning": "This measures arithmetic parity between two implementations, not 4K reconstruction quality against a true 4K reference.",
+  "coefficient_quantization": "all four phase taps are exactly representable in Q14; no coefficient approximation error",
+  "rounding": "fixed point retains horizontal Q14 and vertical Q28 exactly; rounds once at Q28 using nearest ties away from zero; float reference rounds final values by the same rule",
+  "single_full_frame": {
+    "id": "frozen_full_integer_golden",
+    "float64_vs_integer_final_y8": {
+      "full_frame": {
+        "pixels": 8294400,
+        "mismatch_pixels": 0,
+        "max_absolute_difference": 0,
+        "rmse": 0.0,
+        "psnr_db": null
+      },
+      "shave_8": {
+        "pixels": 8198656,
+        "mismatch_pixels": 0,
+        "max_absolute_difference": 0,
+        "rmse": 0.0,
+        "psnr_db": null
+      }
+    },
+    "integer_stage_ranges": {
+      "horizontal_q14_min": -41472,
+      "horizontal_q14_max": 4219392,
+      "vertical_q28_min": -846446592,
+      "vertical_q28_max": 69198053376
+    }
+  },
+  "three_contiguous_frames": [
+    {
+      "id": "sequence_frame_000",
+      "float64_vs_integer_final_y8": {
+        "full_frame": {
+          "pixels": 8294400,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        },
+        "shave_8": {
+          "pixels": 8198656,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        }
+      },
+      "integer_stage_ranges": {
+        "horizontal_q14_min": 452736,
+        "horizontal_q14_max": 4264064,
+        "vertical_q28_min": 7368572928,
+        "vertical_q28_max": 70130368512
+      }
+    },
+    {
+      "id": "sequence_frame_001",
+      "float64_vs_integer_final_y8": {
+        "full_frame": {
+          "pixels": 8294400,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        },
+        "shave_8": {
+          "pixels": 8198656,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        }
+      },
+      "integer_stage_ranges": {
+        "horizontal_q14_min": 368256,
+        "horizontal_q14_max": 4264064,
+        "vertical_q28_min": 6008373248,
+        "vertical_q28_max": 70130368512
+      }
+    },
+    {
+      "id": "sequence_frame_002",
+      "float64_vs_integer_final_y8": {
+        "full_frame": {
+          "pixels": 8294400,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        },
+        "shave_8": {
+          "pixels": 8198656,
+          "mismatch_pixels": 0,
+          "max_absolute_difference": 0,
+          "rmse": 0.0,
+          "psnr_db": null
+        }
+      },
+      "integer_stage_ranges": {
+        "horizontal_q14_min": -6144,
+        "horizontal_q14_max": 4202112,
+        "vertical_q28_min": -137854976,
+        "vertical_q28_max": 69004640256
+      }
+    }
+  ]
+}

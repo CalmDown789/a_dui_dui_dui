@@ -1,0 +1,215 @@
+{
+  "schema": "member-a-integer-bicubic-golden-v1",
+  "status": "A_SIDE_SOFTWARE_GOLDEN_FOR_B_REVIEW",
+  "pipeline": "960x540 Y8 input -> frozen A integer FSRCNN x2 -> 1920x1080 Y8 -> fixed Keys bicubic x2 -> 3840x2160 Y8",
+  "model": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+  "frozen_model_provenance": {
+    "source_commit": "98c82f394bdfba85bc2959bede9760edc4d6862f",
+    "frozen_full_integer_manifest_sha256": "ea54aa814efb4a71223e691c01780808df72c363b6cc0382c7b5d29e567a6c2a",
+    "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+    "network_output_sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+  },
+  "interpolation_contract_sha256": "311a6c7e8a159cf3688b4a01bc13eafbec9241bc01b2138163b1eb617ac0ff99",
+  "coefficient_files": {
+    "coefficients_q14.coe": {
+      "bytes": 110,
+      "crc32": "568e12aa",
+      "sha256": "d7399b45f16b4cadd806e45f3fcb1fc030949504dd561eb318f290e1dff74f94"
+    },
+    "coefficients_q14.json": {
+      "bytes": 404,
+      "crc32": "7b9a3cdf",
+      "sha256": "041801e536d4923b5b552f3a961ee25a905c4fff6d4ad7eb0b9fb30f9e052a26"
+    },
+    "coefficients_q14.mem": {
+      "bytes": 40,
+      "crc32": "affd8fd9",
+      "sha256": "f0eaa8ca9e60b797dfd8f076c9ba3e4293a45de52c7f80fed22b7d86529f3ea5"
+    },
+    "coefficients_q14_int16.bin": {
+      "bytes": 16,
+      "crc32": "41f9557e",
+      "sha256": "a2d8b4ce5450e2a2ea05d5287d26f1cda660e7c5f0fe6e7938ec301fcc2890d6"
+    },
+    "coefficients_q14_int16.npy": {
+      "bytes": 144,
+      "crc32": "ddf119e7",
+      "sha256": "5e4b3600470deb98d6c90b21feb9e90fdcde4f5f00524adfd5fb56e169b8ac70"
+    }
+  },
+  "single_full_frame": {
+    "id": "frozen_full_integer_golden",
+    "pipeline_stage_input": {
+      "path_from_repository_root": "artifacts/full_integer_golden/output_1920x1080_y_u8.bin",
+      "shape_hw": [
+        1080,
+        1920
+      ],
+      "dtype": "uint8",
+      "layout": "row_major_Y",
+      "bytes": 2073600,
+      "crc32": "87d353f1",
+      "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+    },
+    "original_540p_input": {
+      "path_from_repository_root": "artifacts/full_integer_golden/input_960x540_y_u8.bin",
+      "shape_hw": [
+        540,
+        960
+      ],
+      "dtype": "uint8",
+      "layout": "row_major_Y",
+      "bytes": 518400,
+      "crc32": "21798a8a",
+      "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+    },
+    "output_4k": {
+      "path_from_repository_root": "artifacts/integer_bicubic_20261006/mixed_golden/frozen_full_integer_golden_3840x2160_y_u8.bin",
+      "shape_hwc": [
+        2160,
+        3840,
+        1
+      ],
+      "dtype": "uint8",
+      "layout": "HWC_row_major",
+      "bytes": 8294400,
+      "crc32": "1bd4a22a",
+      "sha256": "3f9df8f8b938a414877c916cbf2c84e0a85adb5d4c49697356b921fc987687ec"
+    }
+  },
+  "contiguous_three_frame_software_sequence": {
+    "source_manifest_sha256": "6a237f8ed5628d456188c0a711bc05aa7d373c33819e429b4459bab3852772ad",
+    "frame_count": 3,
+    "frames": [
+      {
+        "id": "sequence_frame_000",
+        "pipeline_stage_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_000_output_y_u8.bin",
+          "shape_hw": [
+            1080,
+            1920
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 2073600,
+          "crc32": "b943791d",
+          "sha256": "77eee8b7472a8b895ddbe5f0c3cb856b4c32f075d3debed64ac851ad681dc6ae"
+        },
+        "original_540p_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_000_input_y_u8.bin",
+          "shape_hw": [
+            540,
+            960
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 518400,
+          "crc32": "1a10d1b3",
+          "sha256": "17216a8f64715183710c6f50311b488c8742a9aaf80b4e9f50b68e8495704dbf"
+        },
+        "output_4k": {
+          "path_from_repository_root": "artifacts/integer_bicubic_20261006/mixed_golden/sequence_frame_000_3840x2160_y_u8.bin",
+          "shape_hwc": [
+            2160,
+            3840,
+            1
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "bytes": 8294400,
+          "crc32": "b6c86668",
+          "sha256": "463a2fe5200f0f72c26af38f61a4d269a4dc03a0192264b58b5ab39db03dcdbe"
+        },
+        "source_frame_id": "frame_000"
+      },
+      {
+        "id": "sequence_frame_001",
+        "pipeline_stage_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_001_output_y_u8.bin",
+          "shape_hw": [
+            1080,
+            1920
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 2073600,
+          "crc32": "ba7ef1cb",
+          "sha256": "b7e7a80e1ea5a46cd4c0fa1901fca2acb59442040ff562400ae79946603bbb7f"
+        },
+        "original_540p_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_001_input_y_u8.bin",
+          "shape_hw": [
+            540,
+            960
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 518400,
+          "crc32": "3e0ad241",
+          "sha256": "2bf06bb7cc2564c53b17253b4b8aad5ada3c3bc916531889ed6a49bd92160dc4"
+        },
+        "output_4k": {
+          "path_from_repository_root": "artifacts/integer_bicubic_20261006/mixed_golden/sequence_frame_001_3840x2160_y_u8.bin",
+          "shape_hwc": [
+            2160,
+            3840,
+            1
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "bytes": 8294400,
+          "crc32": "f71a553f",
+          "sha256": "c9ec7ef8f360bf1de1f0f59467150ff6cf03c9d6f8eb1f051c21c3d04e57303a"
+        },
+        "source_frame_id": "frame_001"
+      },
+      {
+        "id": "sequence_frame_002",
+        "pipeline_stage_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_002_output_y_u8.bin",
+          "shape_hw": [
+            1080,
+            1920
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 2073600,
+          "crc32": "2da1ba08",
+          "sha256": "b5e97af560aaf4675c2ccaad046c5a2a3833c5398d0865c2750747ba62c1305a"
+        },
+        "original_540p_input": {
+          "path_from_repository_root": "artifacts/multiframe/frame_002_input_y_u8.bin",
+          "shape_hw": [
+            540,
+            960
+          ],
+          "dtype": "uint8",
+          "layout": "row_major_Y",
+          "bytes": 518400,
+          "crc32": "97c97290",
+          "sha256": "405e4e16d6c62f6b0b9113a4ef6f7f4a37dd92ef4a1f9cd990e15fa93801b436"
+        },
+        "output_4k": {
+          "path_from_repository_root": "artifacts/integer_bicubic_20261006/mixed_golden/sequence_frame_002_3840x2160_y_u8.bin",
+          "shape_hwc": [
+            2160,
+            3840,
+            1
+          ],
+          "dtype": "uint8",
+          "layout": "HWC_row_major",
+          "bytes": 8294400,
+          "crc32": "5ef12479",
+          "sha256": "916b0b19a542e0cda2e1df42e4fee6d3b5796da8f130ccc2e2264fe1316ac33e"
+        },
+        "source_frame_id": "frame_002"
+      }
+    ],
+    "cross_frame_state": "Each call is stateless; input arrays are read-only and every output is independently hashed."
+  },
+  "test_vectors_manifest_sha256": "526de82b688ac070c041d4b97310678f54b7b01983fa05d3c6ace22d99a090a1",
+  "source_manifest_sha256": "48e0113d27cc1d254f24181fced8e755b955963bbd5391ce71e4fc625f37873a",
+  "error_report_sha256": "dba5d04671ce2d1705de8d50f937b85cb0a367b4c88c39bc7f807c2b39234df4",
+  "data_scope": "The full-size input and three-frame sequence are existing CC-BY source-derived member-A Y8 assets; no new source video is copied.",
+  "hardware_boundary": "No B RTL, synthesis, timing, board or sustained frame-rate claim is made by this software Golden."
+}

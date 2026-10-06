@@ -1,0 +1,94 @@
+{
+  "schema": "member-a-integer-bicubic-source-manifest-v1",
+  "status": "SOURCE_HASHES_RECORDED",
+  "repository_base_commit": "976776c7d7da6d848dfbba43f7e3c007afb41c6b",
+  "frozen_a_model_source_commit": "98c82f394bdfba85bc2959bede9760edc4d6862f",
+  "task_plan": {
+    "path": "docs/MEMBER_A_PARALLEL_INTEGER_BICUBIC_4K_2026-10-06.md",
+    "bytes": 8544,
+    "crc32": "05a21402",
+    "sha256": "128e469e6ca42592b5086656d7b13725270a01a58c22c61ae95ea0a1d417b30e"
+  },
+  "implementation": {
+    "generate_assets.py": {
+      "path": "experiments/integer_bicubic_20261006/generate_assets.py",
+      "bytes": 14790,
+      "crc32": "f2d586ee",
+      "sha256": "58fa9a3a61b590576c547154d7f2c7768739823d226ae5746b3f0c7f2a61a035"
+    },
+    "integer_bicubic.py": {
+      "path": "experiments/integer_bicubic_20261006/integer_bicubic.py",
+      "bytes": 9530,
+      "crc32": "23f3cb04",
+      "sha256": "dca83010960f502c84d695561bc7aacda8ef461091745564ed86e5846faaad9a"
+    },
+    "assets.py": {
+      "path": "experiments/integer_bicubic_20261006/assets.py",
+      "bytes": 5720,
+      "crc32": "7e51b2fb",
+      "sha256": "bba0d30c04de8919649ccc2cbd4a491c863fa04649c2e2f9c53ffb6c6f042fed"
+    }
+  },
+  "frozen_full_integer_golden_manifest": {
+    "path": "artifacts/full_integer_golden/manifest.json",
+    "bytes": 6774,
+    "crc32": "effdcc35",
+    "sha256": "ea54aa814efb4a71223e691c01780808df72c363b6cc0382c7b5d29e567a6c2a"
+  },
+  "frozen_full_frame_input_540p": {
+    "path": "artifacts/full_integer_golden/input_960x540_y_u8.bin",
+    "bytes": 518400,
+    "crc32": "21798a8a",
+    "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+  },
+  "frozen_full_frame_integer_cnn_output_1080p": {
+    "path": "artifacts/full_integer_golden/output_1920x1080_y_u8.bin",
+    "bytes": 2073600,
+    "crc32": "87d353f1",
+    "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+  },
+  "multi_frame_source_manifest": {
+    "path": "artifacts/multiframe/manifest.json",
+    "bytes": 54848,
+    "crc32": "a7dfb72f",
+    "sha256": "6a237f8ed5628d456188c0a711bc05aa7d373c33819e429b4459bab3852772ad"
+  },
+  "quant_params": {
+    "path": "artifacts/quant/quant_params.json",
+    "bytes": 13029,
+    "crc32": "0a1303ff",
+    "sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a"
+  },
+  "interpolation_contract_sha256": "311a6c7e8a159cf3688b4a01bc13eafbec9241bc01b2138163b1eb617ac0ff99",
+  "coefficient_files": {
+    "coefficients_q14.coe": {
+      "bytes": 110,
+      "crc32": "568e12aa",
+      "sha256": "d7399b45f16b4cadd806e45f3fcb1fc030949504dd561eb318f290e1dff74f94"
+    },
+    "coefficients_q14.json": {
+      "bytes": 404,
+      "crc32": "7b9a3cdf",
+      "sha256": "041801e536d4923b5b552f3a961ee25a905c4fff6d4ad7eb0b9fb30f9e052a26"
+    },
+    "coefficients_q14.mem": {
+      "bytes": 40,
+      "crc32": "affd8fd9",
+      "sha256": "f0eaa8ca9e60b797dfd8f076c9ba3e4293a45de52c7f80fed22b7d86529f3ea5"
+    },
+    "coefficients_q14_int16.bin": {
+      "bytes": 16,
+      "crc32": "41f9557e",
+      "sha256": "a2d8b4ce5450e2a2ea05d5287d26f1cda660e7c5f0fe6e7938ec301fcc2890d6"
+    },
+    "coefficients_q14_int16.npy": {
+      "bytes": 144,
+      "crc32": "ddf119e7",
+      "sha256": "5e4b3600470deb98d6c90b21feb9e90fdcde4f5f00524adfd5fb56e169b8ac70"
+    }
+  },
+  "limitations": [
+    "The source frames and frozen CNN outputs are inherited from the A-side member-a branch; no CNN or source-video data is modified.",
+    "This manifest does not provide FPGA or board evidence."
+  ]
+}
