@@ -9,6 +9,10 @@ __pycache__/
 .data/
 data/
 
+# Large derived pixel assets stay local; publish their metrics and hashes only
+/artifacts/member_a_4k_postprocess_golden/*.bin
+/artifacts/member_a_4k_postprocess_golden/*.png
+
 # Temporary rebuild outputs
 .artifacts/
 .review/

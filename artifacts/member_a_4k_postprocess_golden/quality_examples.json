@@ -1,0 +1,66 @@
+{
+  "schema": "member-a-4k-quality-visual-examples-v1",
+  "status": "PC_SOFTWARE_VISUAL_COMPARISON_NOT_BOARD_CAPTURE",
+  "evaluation_summary_sha256": "e5f0f2c7534973913f1a98a11fde427c814556e7ef05ecb6ea2550d12e592f2c",
+  "checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+  "quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "metric_scope": "The shown image is a crop selected around the maximum local absolute error of the integer output against the decoded 4K reference. Rows are chosen for the smallest integer PSNR gain over bicubic per sequence.",
+  "columns": [
+    "Decoded 4K reference",
+    "Direct bicubic x4",
+    "Frozen R0 FP32",
+    "Frozen R0 integer"
+  ],
+  "frames": [
+    {
+      "frame_id": "ffmpeg_Bosphorus_test_pairs:frame_009.png",
+      "source_file": "frame_009.png",
+      "crop_xywh": [
+        1216,
+        1216,
+        256,
+        256
+      ],
+      "selection": "least integer PSNR gain over bicubic among this sequence's evaluated frames",
+      "r0_int_psnr_db": 45.7649449203047,
+      "bicubic_psnr_db": 44.3063997222545,
+      "integer_gain_db": 1.4585451980502029,
+      "r0_fp32_psnr_db": 46.30876511790626,
+      "int_vs_fp32_delta_db": -0.543820197601562
+    },
+    {
+      "frame_id": "ffmpeg_ReadySetGo_test_pairs:frame_000.png",
+      "source_file": "frame_000.png",
+      "crop_xywh": [
+        1728,
+        832,
+        256,
+        256
+      ],
+      "selection": "least integer PSNR gain over bicubic among this sequence's evaluated frames",
+      "r0_int_psnr_db": 34.75153833774886,
+      "bicubic_psnr_db": 33.129588359166725,
+      "integer_gain_db": 1.621949978582137,
+      "r0_fp32_psnr_db": 34.84282359943308,
+      "int_vs_fp32_delta_db": -0.09128526168422013
+    },
+    {
+      "frame_id": "ffmpeg_ShakeNDry_test_pairs:frame_004.png",
+      "source_file": "frame_004.png",
+      "crop_xywh": [
+        3328,
+        1904,
+        256,
+        256
+      ],
+      "selection": "least integer PSNR gain over bicubic among this sequence's evaluated frames",
+      "r0_int_psnr_db": 44.05162447936722,
+      "bicubic_psnr_db": 42.9329169511395,
+      "integer_gain_db": 1.1187075282277235,
+      "r0_fp32_psnr_db": 44.14462465905088,
+      "int_vs_fp32_delta_db": -0.09300017968366348
+    }
+  ],
+  "image": "quality_examples.png",
+  "image_sha256": "96a572e3df740f21e20e49ae37a58d5b64a4855982a4e1003e53e40987b23715"
+}

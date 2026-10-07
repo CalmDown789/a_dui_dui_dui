@@ -1,0 +1,70 @@
+{
+  "schema": "member-a-pc-path-benchmark-v1",
+  "status": "LOCAL_SOFTWARE_ONLY_NOT_FPGA_OR_LIVE_PIPELINE",
+  "sample": "ffmpeg_Bosphorus_test_pairs:frame_000.png",
+  "input": "960x540 Y8 518400 bytes",
+  "output": "3840x2160 Y8 8294400 bytes",
+  "warmup": 1,
+  "iterations": 5,
+  "host": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_device": "NVIDIA GeForce RTX 5060 Laptop GPU"
+  },
+  "checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+  "formal_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "pair_manifest_sha256": "6031ce546a24c6b82a73dca37a293b2d944a3f2cb4358c8b751a54d34894dd70",
+  "measurement_boundary": "One complete in-memory 540p input to 4K Y8 output; includes model input tensor creation and host/device copies for FP32, plus CPU bicubic post-processing; excludes file/video/network I/O and display queue.",
+  "paths": {
+    "fp32_cpu": {
+      "model": "frozen R0 FSRCNN d16/s8/m1/c16 FP32",
+      "full_540p_to_4k_ms_p50": 446.0459,
+      "full_540p_to_4k_ms_p90": 455.49284,
+      "full_540p_to_4k_ms_mean": 445.31146,
+      "cnn_and_cpu_copy_ms_mean": 90.0892,
+      "1080p_to_4k_postprocess_ms_mean": 351.32788,
+      "output_sha256_last_iteration": "d9c0f38e94084858d974fdeff44e29d7b76f0e549a8789cf9301eace57d5eb49",
+      "fps_from_median_single_frame_only": 2.2419217394443036
+    },
+    "fp32_cuda": {
+      "model": "frozen R0 FSRCNN d16/s8/m1/c16 FP32",
+      "full_540p_to_4k_ms_p50": 379.7531,
+      "full_540p_to_4k_ms_p90": 389.60776,
+      "full_540p_to_4k_ms_mean": 381.3509,
+      "cnn_and_cpu_copy_ms_mean": 32.80576,
+      "1080p_to_4k_postprocess_ms_mean": 346.82624,
+      "output_sha256_last_iteration": "c1d62d5d948116102d03e2ad2a296db5a4e04853f32b3702098c843e1edeaef8",
+      "fps_from_median_single_frame_only": 2.6332898928277344
+    },
+    "fp32_cpu_vs_cuda_output_delta": {
+      "changed_pixels": 301557,
+      "total_pixels": 8294400,
+      "mean_absolute_difference_y": 0.03636200327932099,
+      "max_absolute_difference_y": 2,
+      "note": "Same FP32 checkpoint and input; small differences can arise from CPU/GPU floating-point accumulation order."
+    },
+    "integer_cpu": {
+      "model": "frozen formal INT8/INT16/INT32 R0 FixedReference",
+      "full_540p_to_4k_ms_p50": 1914.2075,
+      "full_540p_to_4k_ms_p90": 1995.00832,
+      "full_540p_to_4k_ms_mean": 1919.82642,
+      "integer_cnn_ms_mean": 1561.47138,
+      "1080p_to_4k_postprocess_ms_mean": 358.0088,
+      "output_sha256_last_iteration": "4809773e52a8b23595f0232b6d7e36073ed609e33432495fe0490f57c4c9aeed",
+      "fps_from_median_single_frame_only": 0.5224094044140982
+    },
+    "bicubic4x_cpu": {
+      "model": "direct Keys bicubic x4 from 540p to 4K",
+      "full_540p_to_4k_ms_p50": 256.1648,
+      "full_540p_to_4k_ms_p90": 269.84299999999996,
+      "full_540p_to_4k_ms_mean": 260.13588,
+      "output_sha256_last_iteration": "db48d9a94b18f5575c4620ad05895182ce486cc0201e21ff713ee03db7ff7cb5",
+      "fps_from_median_single_frame_only": 3.9037369693259962
+    }
+  },
+  "limits": [
+    "Single-frame measurements are not sustained throughput or frame-pacing measurements.",
+    "CPU integer reference is algorithmically exact for A contract, but not optimized host software.",
+    "The synthetic FFmpeg LR sample comes from a lossy decoded UVG 4K reference."
+  ]
+}

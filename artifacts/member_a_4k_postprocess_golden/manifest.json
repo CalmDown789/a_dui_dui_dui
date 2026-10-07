@@ -1,0 +1,71 @@
+{
+  "schema": "member-a-pc-postprocess-4k-golden-v1",
+  "status": "FROZEN_R0_INTEGER_REFERENCE_PLUS_PC_BICUBIC_SOFTWARE",
+  "pixel_assets_published": false,
+  "pixel_asset_note": "Full-resolution Y8 binaries and PNG previews are retained in the local D-drive workspace only. This Git package publishes reproducible scripts, metrics, and hashes; pixel assets are not committed.",
+  "source_evaluation_summary_sha256": "e5f0f2c7534973913f1a98a11fde427c814556e7ef05ecb6ea2550d12e592f2c",
+  "checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+  "formal_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "input_contract": "960x540 Y8 synthetic FFmpeg bicubic downsample of the listed lossy decoded 4K UVG source frame; integer R0 produces 1920x1080 Y8",
+  "output_contract": "1920x1080 integer R0 Y8; then Keys bicubic a=-0.5 to 3840x2160 Y8, row-major",
+  "interpolation": "half-pixel coordinates, edge replication, separable float64 accumulation, nearest ties away from zero, uint8 saturation",
+  "output_bytes_each": 8294400,
+  "evaluated_pairs": 25,
+  "per_frame_metrics_csv": "per_frame_metrics.csv",
+  "per_frame_metrics_csv_sha256": "0aa1da429b8613adc03c86bda508ad48c7dd0c09783275ff3422f9a2fb7c89f4",
+  "evaluation_summary": "evaluation_summary.json",
+  "evaluation_summary_sha256": "e5f0f2c7534973913f1a98a11fde427c814556e7ef05ecb6ea2550d12e592f2c",
+  "pc_benchmark": {
+    "path": "pc_path_benchmark.json",
+    "sha256": "51fced91803e4ed59c61d159cd58834cd1db7f2ee2846af4d8fd7ad4de7f83d2"
+  },
+  "license_note": "Derived Y-only outputs for non-commercial academic work from UVG CC BY-NC source sequences; cite the source dataset and do not redistribute the original source video.",
+  "frames": [
+    {
+      "sequence": "Bosphorus",
+      "frame_id": "ffmpeg_Bosphorus_test_pairs:frame_000.png",
+      "source_file": "frame_000.png",
+      "input_lr_sha256": "8af4eb5a8711552614e624ac9cf9d3a7127d4e0638b7a853a481e3eeebdb241f",
+      "hr_reference_sha256": "4d54e214efd24d1df1a634661121ca66db148fe960059f3e0ead7d3bf1505a5f",
+      "output_bin": "Bosphorus_frame_000_3840x2160_y_u8.bin",
+      "output_bytes": 8294400,
+      "output_crc32": "251042c9",
+      "output_sha256": "4809773e52a8b23595f0232b6d7e36073ed609e33432495fe0490f57c4c9aeed",
+      "preview_png": "Bosphorus_frame_000_3840x2160_y_u8.png",
+      "preview_sha256": "693dcf39774f3b984161f46b9c7c35b5c0dc32ea09f22684f8154316cad0cf36"
+    },
+    {
+      "sequence": "ReadySetGo",
+      "frame_id": "ffmpeg_ReadySetGo_test_pairs:frame_000.png",
+      "source_file": "frame_000.png",
+      "input_lr_sha256": "3868a5af1838c974e278dd09a1dafb7e5c2346ec25b9a6134c78cfd328056019",
+      "hr_reference_sha256": "0600a01223a00028b0950ac19c631af263c4ce13c4fc12fcc8f2c782d4e9356b",
+      "output_bin": "ReadySetGo_frame_000_3840x2160_y_u8.bin",
+      "output_bytes": 8294400,
+      "output_crc32": "e33f4419",
+      "output_sha256": "72e86b982b5c674625b5972dcee55035b65ea4b7adaa3dfc9a36499161b762d6",
+      "preview_png": "ReadySetGo_frame_000_3840x2160_y_u8.png",
+      "preview_sha256": "83b43ebdb5c6d367d33ede824438b560e0b04add2574511e4133bc37023ee310"
+    },
+    {
+      "sequence": "ShakeNDry",
+      "frame_id": "ffmpeg_ShakeNDry_test_pairs:frame_000.png",
+      "source_file": "frame_000.png",
+      "input_lr_sha256": "05519d45209b8fb79f26edb5b20cab51a2c8783a8537bd44820fc5e03b582384",
+      "hr_reference_sha256": "a2cf0523afc6ee760fcc1bd356f1285c600ee65ed0d31ed2385d10c603201a3f",
+      "output_bin": "ShakeNDry_frame_000_3840x2160_y_u8.bin",
+      "output_bytes": 8294400,
+      "output_crc32": "1940c13c",
+      "output_sha256": "b04dac4745d7138b070e44195cb1e0ef91fc514e924b28ea9b1ff0fd224d9c8b",
+      "preview_png": "ShakeNDry_frame_000_3840x2160_y_u8.png",
+      "preview_sha256": "bfb8209a76cef78175c80ca85da36d6f708199e97b3b346319bac57d42166c93"
+    }
+  ],
+  "quality_examples": {
+    "image": "quality_examples.png",
+    "image_sha256": "96a572e3df740f21e20e49ae37a58d5b64a4855982a4e1003e53e40987b23715",
+    "report": "quality_examples.json",
+    "report_sha256": "06dd5a3ab03b5d9b39ad138a0f76df83e719476bb644ee42993604ba1cc8fa0f",
+    "status": "PC_SOFTWARE_VISUAL_COMPARISON_NOT_BOARD_CAPTURE"
+  }
+}

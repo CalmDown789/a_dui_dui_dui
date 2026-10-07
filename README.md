@@ -121,3 +121,19 @@ python scripts/package_color_quality_report.py
 ## 职责边界
 
 本交付不包含 RTL、板级约束、Vivado 工程或 bitstream。成员 B 可直接读取 `artifacts/quant/quant_params.json`、各层 `.mem/.coe` 权重以及 `artifacts/test_vectors/` 完成 RTL 对拍；成员 C 负责板卡工程、ILA、时序收敛和上板结果导出。
+
+## 模型优化阶段状态（2026-10-08）
+
+正式 A 交付继续冻结为 R0：INT8 权重、INT16 隐藏激活、INT32 偏置/累加、Q1.15 PReLU。下述候选均为软件实验，不覆盖 `artifacts/quant/`、全尺寸 Golden 或冻结标签。
+
+- 4K 混合链路中，R0 在 65 帧初筛相对同输入双三次平均增加 1.425 dB PSNR 和 0.00369 SSIM；内容间有差异，不能外推到所有视频。
+- QAT seed456 在 10 段、1,240 帧的 PC 整数参考上相对 R0 增加 0.1034 dB PSNR、0.001088 SSIM。独立候选包位于 `experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/`，仍标记为 `EXPERIMENTAL_NOT_FORMAL_A_DELIVERY`，需候选专用 B 位精确对拍后才可讨论升版。
+- 结构缩算候选 R1 减少 36.2% MAC；25 帧留出测试相对 R0T 低 0.267 dB PSNR、0.00092 SSIM。它仅达到软件筛选线，不是现有 ROM 的直接替换项；GPU 延迟不代表 FPGA 性能。更激进的 R4 虽减少约 67.2% MAC，但画质低约 0.786 dB，不建议升格。
+- 2026-10-07 隐藏激活 INT8 扫描的 5 个 PTQ 候选和 2 个 QAT 复测均未达到相对匹配 INT16 损失不超过 0.10 dB 的门槛；当前保持 INT16 激活。详情见[扫描报告](experiments/hybrid_4k_20261006/ACTIVATION_INT8_SWEEP_20261007.md)。
+- 混合数据 QAT/EMA 的 100 张 DIV2K 软件评估提升 0.0664 dB，但交付状态为 `EXPERIMENTAL_NOT_RELEASED`，候选权重包仍在本机忽略目录，不能作为仓库内可部署资产。详情见[实验报告](experiments/model_optimization_20261005/REPORT.md)。
+
+以上结果完成了软件侧候选比较，不证明 ACX750 的吞吐、时序、资源、bitstream 或板卡画面；30 fps 仍需 B/C 在目标工程和实板验证。
+
+## PLD竞赛成员 A 交付（2026-10-08）
+
+已按三人分工细化表整理 A01–A08 的模型、数据、整数 Golden、画质、PC 4K 后处理和软件计时交付。25 组配对软件评测、局部对照指标、三帧 4K 整数参考的生成脚本与哈希、CPU/GPU 计时和复现/交接说明见[成员 A 执行与阶段结果](docs/成员A竞赛分工执行与阶段结果_20261008.md)与[4K Golden 指标及哈希清单](artifacts/member_a_4k_postprocess_golden/manifest.json)。完整 4K 像素文件保留在本机 D 盘工作区，未提交仓库。A08 的 8K 后续项另完成同一原生序列四帧软件评估，详见[8K 扩展评估](docs/成员A_8K扩展评估_20261008.md)。另独立复核 C 历史 32 帧基线回传与 A 整数参考逐字节一致，详见[历史板测数值复核](docs/成员A历史板测回传数值复核_20261008.md)。这些结果不等于新版本板测或整机实时验收；成员 A 的本人讲解/复跑需按[自测核对表](docs/成员A答辩与自测核对表_20261008.md)留档。

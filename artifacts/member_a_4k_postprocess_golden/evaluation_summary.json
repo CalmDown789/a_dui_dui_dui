@@ -1,0 +1,55 @@
+{
+  "schema": "member-a-4k-frozen-r0-software-evaluation-v1",
+  "status": "A_SIDE_PC_SOFTWARE_EVALUATION_NOT_BOARD_ACCEPTANCE",
+  "dataset_scope": "paired decoded public 4K Y references with synthetic 4x bicubic LR degradation",
+  "pairs": 25,
+  "sequences": [
+    "ffmpeg_Bosphorus_test_pairs",
+    "ffmpeg_ReadySetGo_test_pairs",
+    "ffmpeg_ShakeNDry_test_pairs"
+  ],
+  "pair_manifest_sha256": {
+    "ffmpeg_Bosphorus_test_pairs": "6031ce546a24c6b82a73dca37a293b2d944a3f2cb4358c8b751a54d34894dd70",
+    "ffmpeg_ReadySetGo_test_pairs": "8c9d82cbd7e6284805e48d4d087b1234a92522b252598acb2b744d4bf3a9ea9b",
+    "ffmpeg_ShakeNDry_test_pairs": "de36c0bcab8884da4c90b6ee4a1c1202fcdcfa8106ff386b36597e209ea19a19"
+  },
+  "frozen_checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+  "frozen_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "integer_reference": "formal artifacts/quant; no recalibration or weight changes",
+  "float_device": "cuda",
+  "postprocess": {
+    "contract": "Keys cubic a=-0.5; half-pixel centers; edge replication; float64 separable accumulation; nearest ties away from zero; saturate to uint8",
+    "input": "1920x1080 Y8, row-major",
+    "output": "3840x2160 Y8, row-major, 8294400 bytes",
+    "sample_integer_goldens_saved_per_sequence": 1
+  },
+  "metric": "Y PSNR/SSIM against decoded 4K Y reference; center shave 8 reported separately from full frame; arithmetic mean by frame",
+  "means": {
+    "bicubic_y_psnr_db": 41.27661590020287,
+    "r0_fp32_y_psnr_db": 43.44198376553806,
+    "r0_int_y_psnr_db": 43.15377760635478,
+    "bicubic_y_ssim": 0.9743525753809252,
+    "r0_fp32_y_ssim": 0.9796420286329516,
+    "r0_int_y_ssim": 0.9778706979112672,
+    "bicubic_psnr_full_db": 41.279592444556386,
+    "r0_fp32_psnr_full_db": 43.4356796472239,
+    "r0_int_psnr_full_db": 43.13994036946611,
+    "bicubic_ssim_full": 0.9743996764040592,
+    "r0_fp32_ssim_full": 0.9796514709067394,
+    "r0_int_ssim_full": 0.977847769038312
+  },
+  "mean_stage_ms": {
+    "bicubic_4x_ms": 268.109904,
+    "r0_fp32_cnn_ms": 38.739584,
+    "r0_int_cpu_cnn_ms": 1624.1600279999998,
+    "r0_fp32_postprocess_ms": 362.999812,
+    "r0_int_postprocess_ms": 365.598432
+  },
+  "per_frame_csv": "per_frame.csv",
+  "derived_golden_directory": "derived_4k_integer_golden",
+  "limitations": [
+    "UVG source videos are lossy decoded references; LR was synthetically downsampled, so this is not camera-native ground truth.",
+    "CPU/GPU reference results do not establish FPGA resources, timing, complete host-to-board latency, live preview, or sustained frame rate.",
+    "PC bicubic details are specified by this software module; C must confirm the display/integration contract."
+  ]
+}

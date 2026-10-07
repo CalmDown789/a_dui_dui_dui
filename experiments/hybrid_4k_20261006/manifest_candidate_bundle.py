@@ -50,7 +50,7 @@ def main() -> None:
         "files": files,
     }
     output = root / "bundle_manifest.json"
-    output.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
+    output.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8", newline="\r\n")
     print(json.dumps({"manifest": str(output), "file_count": len(files), "manifest_sha256": hashlib.sha256(output.read_bytes()).hexdigest()}, indent=2))
 
 
