@@ -25,17 +25,46 @@ WIDTH_LR = 960
 HEIGHT_LR = 540
 Y10_BYTES = WIDTH_8K * HEIGHT_8K * 2
 SOURCE_FRAME_BYTES = WIDTH_8K * HEIGHT_8K * 3
-SOURCE_URL = "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/BodeMuseum/BodeMuseum.yuv"
 SOURCE_PAGE = "https://www.hhi.fraunhofer.de/en/departments/vca/research-groups/video-coding-systems/8k-sequences.html"
 SOURCE_TOTAL_BYTES = 59_719_680_000
 DOWNLOAD_CHUNK_BYTES = 8 * 1024 * 1024
+SEQUENCES = {
+    "BodeMuseum": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/BodeMuseum/BodeMuseum.yuv",
+        "md5": "fba9f8c929d8496ecf80d83645e61706",
+    },
+    "NeptuneFountain2": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/NeptuneFountain2/NeptuneFountain2.yuv",
+        "md5": "9d0921de4a44ad1aa433ebe1e975af2d",
+    },
+    "NeptuneFountain3": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/NeptuneFountain3/NeptuneFountain3.yuv",
+        "md5": "c4b40d6cde3e3ac7f6fafdf7c352003e",
+    },
+    "OberbaumSpree": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/OberbaumSpree/OberbaumSpree.yuv",
+        "md5": "e5ef295f1159edc522cbef7e3b9365d7",
+    },
+    "QuadrigaTree": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/QuadrigaTree/QuadrigaTree.yuv",
+        "md5": "91438ec12195f9448b7d398d50b848f8",
+    },
+    "SubwayTree": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/SubwayTree/SubwayTree.yuv",
+        "md5": "2904011204f537bdd27ee1142fdd2502",
+    },
+    "TiergartenParkway": {
+        "url": "https://dash-large-files.akamaized.net/WAVE/3GPP/5GVideo/ReferenceSequences/TiergartenParkway/TiergartenParkway.yuv",
+        "md5": "83bcd41a8702854c72e93af4dcb19157",
+    },
+}
 
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def download_y_plane(frame_index: int, output_path: Path) -> tuple[bytes, list[list[int]]]:
+def download_y_plane(frame_index: int, output_path: Path, source_url: str) -> tuple[bytes, list[list[int]]]:
     frame_offset = frame_index * SOURCE_FRAME_BYTES
     ranges: list[list[int]] = []
     with output_path.open("wb") as stream:
@@ -44,7 +73,7 @@ def download_y_plane(frame_index: int, output_path: Path) -> tuple[bytes, list[l
             range_start = frame_offset + offset
             range_end = range_start + count - 1
             request = Request(
-                SOURCE_URL,
+                source_url,
                 headers={"Range": f"bytes={range_start}-{range_end}", "User-Agent": "member-a-8k-evaluation/1.0"},
             )
             last_error: Exception | None = None
@@ -86,6 +115,7 @@ def main() -> int:
         help="Download only the selected Y-plane byte range from the official HHI raw sequence",
     )
     parser.add_argument("--frame-index", type=int, required=True)
+    parser.add_argument("--sequence", choices=tuple(SEQUENCES), default="BodeMuseum")
     parser.add_argument("--output-dir", type=Path, required=True, help="New directory under the repository .data/")
     args = parser.parse_args()
 
@@ -101,10 +131,11 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     downloaded_ranges: list[list[int]] = []
+    sequence = SEQUENCES[args.sequence]
     if args.download_official:
-        source_temp = output_dir / f"BodeMuseum_frame_{args.frame_index:03d}_source_y10le.tmp"
+        source_temp = output_dir / f"{args.sequence}_frame_{args.frame_index:03d}_source_y10le.tmp"
         try:
-            raw, downloaded_ranges = download_y_plane(args.frame_index, source_temp)
+            raw, downloaded_ranges = download_y_plane(args.frame_index, source_temp, sequence["url"])
         finally:
             source_temp.unlink(missing_ok=True)
     else:
@@ -152,8 +183,8 @@ def main() -> int:
     if len(result.stdout) != expected_lr_bytes:
         raise RuntimeError(f"Expected {expected_lr_bytes} LR bytes, got {len(result.stdout)}")
 
-    hr_path = output_dir / f"BodeMuseum_frame_{args.frame_index:03d}_7680x4320_y8.bin"
-    lr_path = output_dir / f"BodeMuseum_frame_{args.frame_index:03d}_960x540_y8.bin"
+    hr_path = output_dir / f"{args.sequence}_frame_{args.frame_index:03d}_7680x4320_y8.bin"
+    lr_path = output_dir / f"{args.sequence}_frame_{args.frame_index:03d}_960x540_y8.bin"
     hr_bytes = y8.tobytes(order="C")
     hr_path.write_bytes(hr_bytes)
     lr_path.write_bytes(result.stdout)
@@ -164,15 +195,16 @@ def main() -> int:
         "schema": "member-a-hhi-8k-sample-preparation-v1",
         "status": "LOCAL_NONCOMMERCIAL_EVALUATION_INPUTS_ONLY",
         "source": {
-            "title": "8K Berlin Test Sequences - BodeMuseum SDR",
+            "title": f"8K Berlin Test Sequences - {args.sequence} SDR",
+            "sequence_name": args.sequence,
             "creator": "Björn Kowalewsky; Fraunhofer HHI",
             "copyright": "Copyright (C) 2019 Fraunhofer HHI",
             "source_page": SOURCE_PAGE,
-            "raw_sequence_url": SOURCE_URL,
+            "raw_sequence_url": sequence["url"],
             "license": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International",
             "sequence_format": "7680x4320 YCbCr 4:2:0, BT.2020 SDR, 10-bit, limited range, 60 fps, 600 frames",
             "frame_index": args.frame_index,
-            "raw_file_etag_md5": "fba9f8c929d8496ecf80d83645e61706",
+            "raw_sequence_md5": sequence["md5"],
             "requested_byte_range_inclusive": [frame_offset, frame_offset + Y10_BYTES - 1],
             "downloaded_byte_ranges_inclusive": downloaded_ranges,
             "requested_bytes": Y10_BYTES,

@@ -30,20 +30,22 @@ def main() -> int:
         raise ValueError("Provide at least two distinct per-frame reports")
     first = reports[0]
     identity = (
-        first["source_attribution"]["title"],
+        first["source_attribution"]["creator"],
+        first["source_attribution"]["copyright"],
         first["source_attribution"]["source_page"],
         first["source_attribution"]["license"],
         first["model"]["checkpoint_sha256"],
         first["model"]["quant_params_sha256"],
         first["protocol"],
     )
-    seen_frames: set[int] = set()
+    seen_frames: set[tuple[str, int]] = set()
     rows: list[dict[str, object]] = []
     for report in reports:
         if report.get("schema") != "member-a-8k-single-frame-software-study-v1":
             raise ValueError("Unexpected per-frame report schema")
         current_identity = (
-            report["source_attribution"]["title"],
+            report["source_attribution"]["creator"],
+            report["source_attribution"]["copyright"],
             report["source_attribution"]["source_page"],
             report["source_attribution"]["license"],
             report["model"]["checkpoint_sha256"],
@@ -53,12 +55,20 @@ def main() -> int:
         if current_identity != identity:
             raise ValueError("Reports mix different sources, models, quantization, or evaluation protocols")
         frame_index = int(report["source_attribution"]["frame_index"])
-        if frame_index in seen_frames:
-            raise ValueError(f"Duplicate 8K source frame index: {frame_index}")
-        seen_frames.add(frame_index)
+        source_title = report["source_attribution"].get("title", "")
+        sequence_name = report["source_attribution"].get("sequence_name")
+        if not sequence_name:
+            sequence_name = source_title.removeprefix("8K Berlin Test Sequences - ").removesuffix(" SDR")
+        if not sequence_name or sequence_name == source_title:
+            raise ValueError("Each frame report must identify its HHI sequence")
+        frame_key = (sequence_name, frame_index)
+        if frame_key in seen_frames:
+            raise ValueError(f"Duplicate 8K source frame: {sequence_name}/{frame_index}")
+        seen_frames.add(frame_key)
         if set(report["scores"]) != set(METHODS):
             raise ValueError("A report is missing an expected comparison method")
         rows.append({
+            "sequence_name": sequence_name,
             "frame_index": frame_index,
             "source_y_plane_sha256": report["source_attribution"]["source_y_plane_sha256"],
             "preparation_manifest_sha256": report["pair"]["preparation_manifest_sha256"],
@@ -68,7 +78,7 @@ def main() -> int:
             "output_sha256": report["output_sha256"],
             "stage_times_ms": report["stage_times_ms"],
         })
-    rows.sort(key=lambda row: int(row["frame_index"]))
+    rows.sort(key=lambda row: (str(row["sequence_name"]), int(row["frame_index"])))
 
     means: dict[str, dict[str, dict[str, float]]] = {}
     gains: dict[str, dict[str, dict[str, float]]] = {}
@@ -100,23 +110,59 @@ def main() -> int:
             if any(key in row["stage_times_ms"].get(method, {}) for row in rows)
         }
 
+    sequence_counts: dict[str, int] = {}
+    sequence_frame_indices: dict[str, list[int]] = {}
+    sequence_means: dict[str, dict[str, dict[str, float]]] = {}
+    sequence_gains: dict[str, dict[str, dict[str, float]]] = {}
+    for sequence_name in sorted({str(row["sequence_name"]) for row in rows}):
+        sequence_rows = [row for row in rows if row["sequence_name"] == sequence_name]
+        sequence_counts[sequence_name] = len(sequence_rows)
+        sequence_frame_indices[sequence_name] = [int(row["frame_index"]) for row in sequence_rows]
+        sequence_means[sequence_name] = {
+            border: {
+                method: {
+                    key: statistics.fmean(float(row["scores"][method][border][key]) for row in sequence_rows)
+                    for key in METRIC_KEYS
+                }
+                for method in METHODS
+            }
+            for border in ("full", "shave16")
+        }
+        sequence_gains[sequence_name] = {
+            border: {
+                method: {
+                    key: sequence_means[sequence_name][border][method][key]
+                    - sequence_means[sequence_name][border]["direct_bicubic_x8"][key]
+                    for key in METRIC_KEYS
+                }
+                for method in ("r0_fp32", "r0_integer")
+            }
+            for border in ("full", "shave16")
+        }
+
     source_attribution = dict(first["source_attribution"])
     source_attribution.pop("frame_index", None)
     source_attribution.pop("source_y_plane_sha256", None)
+    source_attribution.pop("sequence_name", None)
+    source_attribution["title"] = "8K Berlin Test Sequences (SDR)"
+    source_attribution["sequences"] = sorted(sequence_counts)
     result = {
-        "schema": "member-a-8k-multiframe-aggregate-v1",
-        "status": "A_SIDE_FOUR_FRAME_SOFTWARE_STUDY_NOT_BOARD_OR_VIDEO_ACCEPTANCE",
+        "schema": "member-a-8k-multisequence-aggregate-v1",
+        "status": "A_SIDE_MULTI_SEQUENCE_SOFTWARE_STUDY_NOT_BOARD_OR_VIDEO_ACCEPTANCE",
         "source_attribution": source_attribution,
         "model": first["model"],
         "protocol": first["protocol"],
         "frames": len(rows),
-        "frame_indices": [row["frame_index"] for row in rows],
+        "sequence_counts": sequence_counts,
+        "frame_indices_by_sequence": sequence_frame_indices,
         "mean_scores": means,
         "mean_gains_vs_direct_bicubic_x8": gains,
+        "per_sequence_mean_scores": sequence_means,
+        "per_sequence_gains_vs_direct_bicubic_x8": sequence_gains,
         "median_stage_times_ms": timing_medians,
         "per_frame": rows,
         "limitations": [
-            "Four frames from one 8K sequence are a small spatial sample, not a broad content or temporal-stability evaluation.",
+            "The sampled frames cover several sequences but remain a limited spatial sample and do not establish temporal stability.",
             "The 540p input is synthetically downsampled; scores apply only to the documented FFmpeg bicubic degradation.",
             "The HHI source is CC BY-NC-ND. The repository publishes no source or derived images, only metrics and hashes.",
             "Software reference results do not establish FPGA resources, timing, bitstream, board output, or 8K real-time capability.",

@@ -174,6 +174,7 @@ def main() -> int:
         "status": "A_SIDE_SINGLE_FRAME_SOFTWARE_STUDY_NOT_BOARD_OR_VIDEO_ACCEPTANCE",
         "source_attribution": {
             "title": source.get("title"),
+            "sequence_name": source.get("sequence_name"),
             "creator": source.get("creator"),
             "copyright": source.get("copyright"),
             "source_page": source.get("source_page"),
