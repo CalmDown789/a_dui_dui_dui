@@ -1,0 +1,41 @@
+{
+  "schema": "member-a-r0-fusion-manifest-v1",
+  "status": "COMPLETED_SOFTWARE_CROSS_VALIDATION_NOT_HARDWARE_VALIDATION",
+  "generated_utc": "2026-10-07T13:30:01.055035+08:00",
+  "script_sha256": "3674e34ecd7f2d42776f8216ed81bee344a2e49382a6da05e95a4c19ef2bb44f",
+  "source_evaluation_manifest_sha256": "905dcc71a82528c86ba86d3d66f84a46d3c978b86e677c4169a35a42d6d6c890",
+  "quant_assets_sha256": "cf3e12fb529000d12dbc958d2cf5b9e0243cc2d9cbdfc1bd97e0680553689dfe",
+  "software": {
+    "python": "3.14.6",
+    "numpy": "2.5.1",
+    "pytorch": "2.11.0+cu128"
+  },
+  "summary_sha256": "9eb9f8b5de81b85aff748391f529e78ceaec2986df2a407873f1785f7e07d2e8",
+  "outputs": [
+    {
+      "path": "candidate_frame_psnr.csv",
+      "bytes": 125703,
+      "sha256": "7d923f56982470237e04a9104a1f27c36f93e2a413316632aed74867794c00ad"
+    },
+    {
+      "path": "leave_one_sequence_out_metrics.csv",
+      "bytes": 48557,
+      "sha256": "2cdd2b080a68be5dd729b0dd78459c823ba6b402d6a1ecaac6f3d58040ca40fe"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 10134,
+      "sha256": "9eb9f8b5de81b85aff748391f529e78ceaec2986df2a407873f1785f7e07d2e8"
+    },
+    {
+      "path": "visuals/worst_regression_error_maps.jpg",
+      "bytes": 179660,
+      "sha256": "03d2654a153ef109560345d78b70656c39b5aff892d12dcc296b4c7d883fcf41"
+    },
+    {
+      "path": "R0_FUSION_DIAGNOSTIC_REPORT_2026-10-07.md",
+      "bytes": 1840,
+      "sha256": "dbf945d24ec5b832a110ccdd003a39ab03163bfbe120436534edc47567720234"
+    }
+  ]
+}

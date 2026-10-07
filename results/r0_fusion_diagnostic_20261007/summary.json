@@ -1,0 +1,299 @@
+{
+  "schema": "member-a-r0-fusion-diagnostic-v1",
+  "status": "COMPLETED_SOFTWARE_CROSS_VALIDATION_NOT_HARDWARE_VALIDATION",
+  "generated_utc": "2026-10-07T05:30:01.055035+00:00",
+  "frozen_baseline": {
+    "color_evaluation_manifest_sha256": "905dcc71a82528c86ba86d3d66f84a46d3c978b86e677c4169a35a42d6d6c890",
+    "quality_evaluation_manifest_sha256": "867035f193a8f6f2109649907435909061f070b34c5cb28f088b483d6ef414ea",
+    "quant_assets_sha256": "cf3e12fb529000d12dbc958d2cf5b9e0243cc2d9cbdfc1bd97e0680553689dfe",
+    "sequence_count": 3,
+    "frames_per_sequence": 30,
+    "total_frames": 90,
+    "regression_frames_any": 40,
+    "negative_r0_psnr_gain_shave8_frames": 9,
+    "negative_r0_ssim_delta_shave8_frames": 40,
+    "mean_r0_gain_psnr_db_shave8": 0.4003156284370825,
+    "mean_r0_delta_ssim_shave8": 0.000690926331964122
+  },
+  "selection_protocol": {
+    "split": "Leave one complete video sequence out; select on the other two; evaluate once on the held-out sequence.",
+    "selection_metric": "Mean per-frame RGB PSNR, shave-8, on training sequences only; deterministic ties prefer lexical candidate id.",
+    "candidate_grid": [
+      {
+        "candidate_id": "global_a0.00",
+        "kind": "global",
+        "alpha": 0.0
+      },
+      {
+        "candidate_id": "global_a0.25",
+        "kind": "global",
+        "alpha": 0.25
+      },
+      {
+        "candidate_id": "global_a0.50",
+        "kind": "global",
+        "alpha": 0.5
+      },
+      {
+        "candidate_id": "global_a0.75",
+        "kind": "global",
+        "alpha": 0.75
+      },
+      {
+        "candidate_id": "global_a1.00",
+        "kind": "global",
+        "alpha": 1.0
+      },
+      {
+        "candidate_id": "tile_q50_a0.00_0.50",
+        "kind": "edge_tile",
+        "quantile": 50.0,
+        "alpha_low": 0.0,
+        "alpha_high": 0.5
+      },
+      {
+        "candidate_id": "tile_q50_a0.00_0.75",
+        "kind": "edge_tile",
+        "quantile": 50.0,
+        "alpha_low": 0.0,
+        "alpha_high": 0.75
+      },
+      {
+        "candidate_id": "tile_q50_a0.25_0.50",
+        "kind": "edge_tile",
+        "quantile": 50.0,
+        "alpha_low": 0.25,
+        "alpha_high": 0.5
+      },
+      {
+        "candidate_id": "tile_q50_a0.25_0.75",
+        "kind": "edge_tile",
+        "quantile": 50.0,
+        "alpha_low": 0.25,
+        "alpha_high": 0.75
+      },
+      {
+        "candidate_id": "tile_q75_a0.00_0.50",
+        "kind": "edge_tile",
+        "quantile": 75.0,
+        "alpha_low": 0.0,
+        "alpha_high": 0.5
+      },
+      {
+        "candidate_id": "tile_q75_a0.00_0.75",
+        "kind": "edge_tile",
+        "quantile": 75.0,
+        "alpha_low": 0.0,
+        "alpha_high": 0.75
+      },
+      {
+        "candidate_id": "tile_q75_a0.25_0.50",
+        "kind": "edge_tile",
+        "quantile": 75.0,
+        "alpha_low": 0.25,
+        "alpha_high": 0.5
+      },
+      {
+        "candidate_id": "tile_q75_a0.25_0.75",
+        "kind": "edge_tile",
+        "quantile": 75.0,
+        "alpha_low": 0.25,
+        "alpha_high": 0.75
+      }
+    ],
+    "tile_grid_lr": {
+      "columns": 16,
+      "rows": 9,
+      "tile_size_pixels": [
+        60,
+        60
+      ]
+    },
+    "tile_policy": "Compute Gaussian-smoothed LR gradient magnitude; threshold tile means at each frame's 50th or 75th percentile; bilinearly upsample tile weights to 4K; mix Y with half-up uint8 rounding.",
+    "no_reference_at_inference": true,
+    "weights_changed": false
+  },
+  "folds": {
+    "Beauty": {
+      "train_sequences": [
+        "Jockey",
+        "Bosphorus"
+      ],
+      "selected_global": {
+        "candidate_id": "global_a1.00",
+        "spec": {
+          "candidate_id": "global_a1.00",
+          "kind": "global",
+          "alpha": 1.0
+        },
+        "mean_train_psnr_db_shave8": 42.97178216972159
+      },
+      "selected_edge_tile": {
+        "candidate_id": "tile_q50_a0.25_0.75",
+        "spec": {
+          "candidate_id": "tile_q50_a0.25_0.75",
+          "kind": "edge_tile",
+          "quantile": 50.0,
+          "alpha_low": 0.25,
+          "alpha_high": 0.75
+        },
+        "mean_train_psnr_db_shave8": 43.06380925896209
+      }
+    },
+    "Jockey": {
+      "train_sequences": [
+        "Beauty",
+        "Bosphorus"
+      ],
+      "selected_global": {
+        "candidate_id": "global_a1.00",
+        "spec": {
+          "candidate_id": "global_a1.00",
+          "kind": "global",
+          "alpha": 1.0
+        },
+        "mean_train_psnr_db_shave8": 41.66290734376245
+      },
+      "selected_edge_tile": {
+        "candidate_id": "tile_q50_a0.25_0.75",
+        "spec": {
+          "candidate_id": "tile_q50_a0.25_0.75",
+          "kind": "edge_tile",
+          "quantile": 50.0,
+          "alpha_low": 0.25,
+          "alpha_high": 0.75
+        },
+        "mean_train_psnr_db_shave8": 41.74682100240249
+      }
+    },
+    "Bosphorus": {
+      "train_sequences": [
+        "Beauty",
+        "Jockey"
+      ],
+      "selected_global": {
+        "candidate_id": "global_a0.50",
+        "spec": {
+          "candidate_id": "global_a0.50",
+          "kind": "global",
+          "alpha": 0.5
+        },
+        "mean_train_psnr_db_shave8": 42.541350753877424
+      },
+      "selected_edge_tile": {
+        "candidate_id": "tile_q75_a0.25_0.75",
+        "spec": {
+          "candidate_id": "tile_q75_a0.25_0.75",
+          "kind": "edge_tile",
+          "quantile": 75.0,
+          "alpha_low": 0.25,
+          "alpha_high": 0.75
+        },
+        "mean_train_psnr_db_shave8": 42.61694071852787
+      }
+    }
+  },
+  "cross_validated": {
+    "global": {
+      "cross_validated": {
+        "frames": 90,
+        "mean_delta_psnr_db_full": 0.3378928326546133,
+        "mean_delta_psnr_db_shave8": 0.34515702029309586,
+        "mean_delta_ssim_full": 0.000977868078042485,
+        "mean_delta_ssim_shave8": 0.0010267211581060389,
+        "negative_psnr_gain_frames_shave8": 9,
+        "negative_ssim_delta_frames_shave8": 40
+      },
+      "by_heldout_sequence": {
+        "Beauty": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.057262446723458996,
+          "mean_delta_psnr_db_shave8": 0.06627093786474465,
+          "mean_delta_ssim_full": 0.0008883068727730037,
+          "mean_delta_ssim_shave8": 0.0009543417839191252,
+          "negative_psnr_gain_frames_shave8": 4,
+          "negative_ssim_delta_frames_shave8": 15
+        },
+        "Jockey": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.2771769728526704,
+          "mean_delta_psnr_db_shave8": 0.2854961550099188,
+          "mean_delta_ssim_full": -0.0007309343029033706,
+          "mean_delta_ssim_shave8": -0.0006950510036781155,
+          "negative_psnr_gain_frames_shave8": 5,
+          "negative_ssim_delta_frames_shave8": 25
+        },
+        "Bosphorus": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.6792390783877106,
+          "mean_delta_psnr_db_shave8": 0.6837039680046241,
+          "mean_delta_ssim_full": 0.002776231664257822,
+          "mean_delta_ssim_shave8": 0.0028208726940771073,
+          "negative_psnr_gain_frames_shave8": 0,
+          "negative_ssim_delta_frames_shave8": 0
+        }
+      }
+    },
+    "edge_tile": {
+      "cross_validated": {
+        "frames": 90,
+        "mean_delta_psnr_db_full": 0.44676089321306584,
+        "mean_delta_psnr_db_shave8": 0.44942139018412686,
+        "mean_delta_ssim_full": 0.0014517288444322342,
+        "mean_delta_ssim_shave8": 0.0014693068809056445,
+        "negative_psnr_gain_frames_shave8": 6,
+        "negative_ssim_delta_frames_shave8": 17
+      },
+      "by_heldout_sequence": {
+        "Beauty": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.13962439935019996,
+          "mean_delta_psnr_db_shave8": 0.1415716893541223,
+          "mean_delta_ssim_full": 0.0010137137319146488,
+          "mean_delta_ssim_shave8": 0.0010225099333286748,
+          "negative_psnr_gain_frames_shave8": 2,
+          "negative_ssim_delta_frames_shave8": 7
+        },
+        "Jockey": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.3744552172892251,
+          "mean_delta_psnr_db_shave8": 0.37702376770018114,
+          "mean_delta_ssim_full": 0.0002107322975554086,
+          "mean_delta_ssim_shave8": 0.00022294179024335837,
+          "negative_psnr_gain_frames_shave8": 4,
+          "negative_ssim_delta_frames_shave8": 10
+        },
+        "Bosphorus": {
+          "frames": 30,
+          "mean_delta_psnr_db_full": 0.8262030629997724,
+          "mean_delta_psnr_db_shave8": 0.8296687134980771,
+          "mean_delta_ssim_full": 0.0031307405038266457,
+          "mean_delta_ssim_shave8": 0.0031624689191449007,
+          "negative_psnr_gain_frames_shave8": 0,
+          "negative_ssim_delta_frames_shave8": 0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Software post-processing candidates only; no R0 weights, quantization assets, or B/C files were modified.",
+    "The 90 source frames are three UVG sequences and are not independent samples; this is a small cross-sequence check, not a broad generalization claim.",
+    "Inputs are synthetically downsampled from decoded 4K references. Results depend on the frozen FFmpeg range handling, BT.709 RGB conversion, chroma path, and shave-8 metric contract.",
+    "Edge-tile fusion is a PC feasibility experiment. Its mask generation, storage, quality, and resource cost have not been implemented or validated in FPGA hardware.",
+    "This evaluation does not establish board output quality, timing, throughput, or real-time frame rate. UVG source content is CC BY-NC and must remain non-commercial."
+  ],
+  "outputs": {
+    "candidate_frame_psnr_csv": {
+      "path": "candidate_frame_psnr.csv",
+      "sha256": "42a19ce3a45514862022ad7c585342d4586f2d487f19b041ce72ba5712a7fd4a"
+    },
+    "leave_one_sequence_out_csv": {
+      "path": "leave_one_sequence_out_metrics.csv",
+      "sha256": "7c88006d4e51b6af18fc30fcb8e0f5f026e2ee7e5d99d2443f99db3df8ae2de4"
+    },
+    "worst_regression_error_maps": {
+      "path": "visuals/worst_regression_error_maps.jpg",
+      "sha256": "03d2654a153ef109560345d78b70656c39b5aff892d12dcc296b4c7d883fcf41"
+    }
+  }
+}
