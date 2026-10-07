@@ -137,6 +137,15 @@ python scripts/package_color_quality_report.py
 
 以上结果完成了软件侧候选比较，不证明 ACX750 的吞吐、时序、资源、bitstream 或板卡画面；30 fps 仍需 B/C 在目标工程和实板验证。
 
+## 其他已发布的 A 侧并行实验
+
+长期计划中的定点 ×2 插值与扩展画质评估分别保存在独立分支，没有混入正式 R0 交付，也没有合入 `main`：
+
+- [整数双三次 4K 软件 Golden 分支](https://github.com/CalmDown789/a_dui_dui_dui/tree/codex/member-a-integer-bicubic-20261006)：Q14 系数与接口契约、7 组逐阶段向量、全尺寸 4K Golden、3 帧连续软件结果；交付校验和 20 项测试通过。硬件接口仍需 B 确认。
+- [R0 4K 与 RGB 画质评测分支](https://github.com/CalmDown789/a_dui_dui_dui/tree/codex/member-a-r0-4k-quality-20261006)：静态图、500 帧视频、90 帧 RGB/色度及留一视频融合软件评测；相关 34 项测试通过。结果包含回退帧，不代表 FPGA/HDMI 或原生摄像头验证。
+
+逐项指标、评测边界及待办见[成员 A 阶段总报告](docs/成员A竞赛分工执行与阶段结果_20261008.md)。
+
 ## PLD竞赛成员 A 交付（2026-10-08）
 
 已按三人分工细化表整理 A01–A08 的模型、数据、整数 Golden、画质、PC 4K 后处理和软件计时交付。25 组配对软件评测、局部对照指标、三帧 4K 整数参考的生成脚本与哈希、CPU/GPU 计时和复现/交接说明见[成员 A 执行与阶段结果](docs/成员A竞赛分工执行与阶段结果_20261008.md)与[4K Golden 指标及哈希清单](artifacts/member_a_4k_postprocess_golden/manifest.json)。另用正式全尺寸 1080p Golden 完整跑通 PC 插值命令行文件接口，见[冒烟记录](artifacts/pc_postprocess_cli_selftest.json)。完整 4K 像素文件保留在本机 D 盘工作区，未提交仓库。A08 的 8K 软件对比已扩展至 HHI 四个 SDR 序列、共 16 帧，详见[8K 扩展评估](docs/成员A_8K扩展评估_20261008.md)。另独立复核 C 历史 32 帧基线回传与 A 整数参考逐字节一致，详见[历史板测数值复核](docs/成员A历史板测回传数值复核_20261008.md)。这些结果不等于新版本板测或整机实时验收；成员 A 本人讲解与复跑状态见[自测核对表](docs/成员A答辩与自测核对表_20261008.md)，口头准备可参考[答辩速记](docs/成员A答辩速记_20261008.md)。
