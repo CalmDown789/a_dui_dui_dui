@@ -1,0 +1,21 @@
+{
+  "schema": "member-a-pc-postprocess-cli-selftest-v1",
+  "status": "PASS_LOCAL_FILE_IO_1080P_TO_4K",
+  "frame_id": "A_full_integer_golden_smoke",
+  "input": {
+    "path": "artifacts/full_integer_golden/output_1920x1080_y_u8.bin",
+    "bytes": 2073600,
+    "sha256": "be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e"
+  },
+  "output": {
+    "local_path": ".data/member_a_task_20261008/pc_postprocess/a_full_integer_golden_4k_y8.bin",
+    "bytes": 8294400,
+    "sha256": "3f9df8f8b938a414877c916cbf2c84e0a85adb5d4c49697356b921fc987687ec"
+  },
+  "single_run_duration_ms": 374.5523,
+  "runtime": {
+    "python": "3.14.6",
+    "numpy": "2.5.3"
+  },
+  "scope": "One local 1080p Y8 file through the A PC post-process CLI. This single sample is not sustained throughput, FPGA timing, network latency, or display presentation time."
+}
