@@ -65,6 +65,29 @@ def main() -> int:
     summary = json.loads((delivery / "candidate_delivery_manifest.json").read_text(encoding="utf-8"))
     if summary.get("status") != "EXPERIMENTAL_NOT_RELEASED":
         raise AssertionError("Candidate delivery must remain explicitly unreleased")
+    bundle_manifest_path = delivery / "bundle_manifest.json"
+    bundle_verified = False
+    if bundle_manifest_path.is_file():
+        bundle = json.loads(bundle_manifest_path.read_text(encoding="utf-8"))
+        if bundle.get("schema") != "member-a-experimental-candidate-bundle-v1":
+            raise AssertionError("Unexpected candidate bundle manifest schema")
+        if bundle.get("status") != "EXPERIMENTAL_NOT_RELEASED":
+            raise AssertionError("Candidate bundle must remain explicitly experimental")
+        expected_files = bundle.get("files", {})
+        actual_files = {
+            path.relative_to(delivery).as_posix()
+            for path in delivery.rglob("*")
+            if path.is_file() and path.name != "bundle_manifest.json"
+        }
+        if actual_files != set(expected_files):
+            raise AssertionError("Candidate bundle file inventory mismatch")
+        for name, metadata in expected_files.items():
+            size, _, sha256 = digest(delivery / name)
+            if size != metadata["bytes"] or sha256 != metadata["sha256"]:
+                raise AssertionError(f"Candidate bundle file digest mismatch: {name}")
+        if bundle.get("file_count") != len(expected_files):
+            raise AssertionError("Candidate bundle file count mismatch")
+        bundle_verified = True
     frozen_checkpoint = ROOT / "artifacts/model/fsrcnn_d16_s8_m1_c16_x2_fp32.pth"
     frozen_quant = ROOT / "artifacts/quant/quant_params.json"
     if hashlib.sha256(frozen_checkpoint.read_bytes()).hexdigest() != FROZEN_CHECKPOINT_SHA256:
@@ -117,6 +140,7 @@ def main() -> int:
     print(json.dumps({
         "status": "PASS",
         "release_status": summary["status"],
+        "portable_bundle_verified": bundle_verified,
         "frozen_assets_unchanged": True,
         "candidate_quant_sha256": summary["candidate_quant_params_sha256"],
         "candidate_checkpoint_sha256": summary["candidate_checkpoint_sha256"],

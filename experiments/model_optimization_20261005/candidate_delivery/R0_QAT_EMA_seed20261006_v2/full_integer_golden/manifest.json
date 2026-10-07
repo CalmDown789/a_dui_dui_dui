@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "status": "EXPERIMENTAL_MEMBER_A_CANDIDATE",
+  "golden_class": "experimental_candidate_full_frame_integer_golden",
+  "model": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+  "input": {
+    "shape_hwc": [
+      540,
+      960,
+      1
+    ],
+    "dtype": "uint8",
+    "layout": "HWC_row_major",
+    "rom_depth": 524288,
+    "padding_bytes": 5888,
+    "padding_value": 0
+  },
+  "integer_semantics": {
+    "weight": "signed_int8_per_output_channel",
+    "activation": "signed_int16_per_tensor",
+    "bias_accumulator": "signed_int32_saturating",
+    "prelu": "signed_Q1.15_before_requantization",
+    "requantization": "signed_Q31",
+    "rounding": "nearest_ties_away_from_zero",
+    "output": "uint8_saturating"
+  },
+  "convolution_padding": {
+    "feature_5x5": 2,
+    "shrink_1x1": 0,
+    "mapping0_3x3": 1,
+    "expand_1x1": 0,
+    "subpixel_5x5": 2,
+    "value": 0
+  },
+  "pixel_shuffle": {
+    "scale": 2,
+    "channel_order": [
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right"
+    ]
+  },
+  "authoritative_output": "output_1920x1080_y_u8.bin",
+  "diagnostic_phase_output": "subpixel_phases_540x960x4_hwc_u8.bin",
+  "quant_params": {
+    "path": "../quant/quant_params.json",
+    "bytes": 13558,
+    "crc32": "45358512",
+    "sha256": "12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809"
+  },
+  "stage_digests": {
+    "input": {
+      "shape_hwc": [
+        540,
+        960,
+        1
+      ],
+      "dtype": "int16",
+      "layout": "HWC_row_major",
+      "minimum": 0,
+      "maximum": 255,
+      "bytes": 1036800,
+      "crc32": "514d49bc",
+      "sha256": "f0e94294c47e3bc86ed921fc18d9e21501772f1b7f9a9084b1ec9b993f3b77c6"
+    },
+    "feature_accum": {
+      "shape_hwc": [
+        540,
+        960,
+        16
+      ],
+      "dtype": "int32",
+      "layout": "HWC_row_major",
+      "minimum": -25578,
+      "maximum": 200793,
+      "bytes": 33177600,
+      "crc32": "50b32de0",
+      "sha256": "44d96ecb5cbeb043456e4a3cb9f6548d271c6e0b492323a9266693560e6f49c7"
+    },
+    "feature": {
+      "shape_hwc": [
+        540,
+        960,
+        16
+      ],
+      "dtype": "int16",
+      "layout": "HWC_row_major",
+      "minimum": -4613,
+      "maximum": 32767,
+      "bytes": 16588800,
+      "crc32": "8533b3e8",
+      "sha256": "a8233015f82722c9e5f3839a6c56d4d0289486682b11d1b4df3599e8b7c3a496"
+    },
+    "shrink_accum": {
+      "shape_hwc": [
+        540,
+        960,
+        8
+      ],
+      "dtype": "int32",
+      "layout": "HWC_row_major",
+      "minimum": -2179069,
+      "maximum": 3693834,
+      "bytes": 16588800,
+      "crc32": "b195fc13",
+      "sha256": "3ef9903071c47984eae93fe96d84c615a9720ea80d4510953a9607d2f7ae94af"
+    },
+    "shrink": {
+      "shape_hwc": [
+        540,
+        960,
+        8
+      ],
+      "dtype": "int16",
+      "layout": "HWC_row_major",
+      "minimum": -13639,
+      "maximum": 30623,
+      "bytes": 8294400,
+      "crc32": "e01a1f5f",
+      "sha256": "31e4b79e5bf3ef86a7ecc5195524be68756bb5084f7f78dc9a144572bf0c68c5"
+    },
+    "mapping0_accum": {
+      "shape_hwc": [
+        540,
+        960,
+        8
+      ],
+      "dtype": "int32",
+      "layout": "HWC_row_major",
+      "minimum": -3559896,
+      "maximum": 11376923,
+      "bytes": 16588800,
+      "crc32": "e878a8d5",
+      "sha256": "3b43e6060ce53a49d33373a85a713f43fa0a98f39bbd4292baba1d47fa1454a4"
+    },
+    "mapping0": {
+      "shape_hwc": [
+        540,
+        960,
+        8
+      ],
+      "dtype": "int16",
+      "layout": "HWC_row_major",
+      "minimum": -5999,
+      "maximum": 29411,
+      "bytes": 8294400,
+      "crc32": "9c96250a",
+      "sha256": "dd2bf29371a5f566eb0757b2357a68748f623d49fea075065b8877759fcbccc6"
+    },
+    "expand_accum": {
+      "shape_hwc": [
+        540,
+        960,
+        16
+      ],
+      "dtype": "int32",
+      "layout": "HWC_row_major",
+      "minimum": -1538022,
+      "maximum": 6584312,
+      "bytes": 33177600,
+      "crc32": "23a0b01c",
+      "sha256": "410b3c93513ffe5a577824168932b34230731968b356271856f61681ce9ab01f"
+    },
+    "expand": {
+      "shape_hwc": [
+        540,
+        960,
+        16
+      ],
+      "dtype": "int16",
+      "layout": "HWC_row_major",
+      "minimum": -7137,
+      "maximum": 27997,
+      "bytes": 16588800,
+      "crc32": "79f1172e",
+      "sha256": "f23e7b117e96308ead9427ba94040b3e56b33a035dd202abb1d6eea0672f2fbe"
+    },
+    "subpixel_accum": {
+      "shape_hwc": [
+        540,
+        960,
+        4
+      ],
+      "dtype": "int32",
+      "layout": "HWC_row_major",
+      "minimum": -559183,
+      "maximum": 11088614,
+      "bytes": 8294400,
+      "crc32": "edefd517",
+      "sha256": "ada873af0a4511f9f6064df1bcc6dbd4c1146ec2d32435dabd4a2a56893efa69"
+    },
+    "subpixel_phases": {
+      "shape_hwc": [
+        540,
+        960,
+        4
+      ],
+      "dtype": "uint8",
+      "layout": "HWC_row_major",
+      "minimum": 0,
+      "maximum": 255,
+      "bytes": 2073600,
+      "crc32": "8a3241fa",
+      "sha256": "cfa3b6d404590530cf1e6ae831324df00484593587c3cd2b9ff724a54a886c1e"
+    },
+    "output": {
+      "shape_hwc": [
+        1080,
+        1920,
+        1
+      ],
+      "dtype": "uint8",
+      "layout": "HWC_row_major",
+      "minimum": 0,
+      "maximum": 255,
+      "bytes": 2073600,
+      "crc32": "001c57dc",
+      "sha256": "d1d9a6fb09d3fe84a6538df2a68107a216d79586ae3c296fa5d8706c616dbef1"
+    }
+  },
+  "files": {
+    "input_960x540_y_u8.bin": {
+      "bytes": 518400,
+      "crc32": "21798a8a",
+      "sha256": "aca4fb6f89accc388cede8f5fddaea79026a1fd507cdad6a844236941807e0f4"
+    },
+    "input_960x540_y_u8.png": {
+      "bytes": 279707,
+      "crc32": "daa8f4de",
+      "sha256": "d949c79887beda7db85f6778c12917a3664da8ca628a41e0892a6d43152313c1"
+    },
+    "input_rom_2p19_u8.bin": {
+      "bytes": 524288,
+      "crc32": "45296b92",
+      "sha256": "a754715b08e88fa9734069e6090ccceae13594bba248b09a4c154addb21efefc"
+    },
+    "input_rom_2p19_u8.mem": {
+      "bytes": 1572864,
+      "crc32": "e7be2440",
+      "sha256": "f15e360bd0d5c3fb1ebd5e85cec32cafaf125c723890c39cf514301c064634c9"
+    },
+    "output_1920x1080_y_u8.bin": {
+      "bytes": 2073600,
+      "crc32": "001c57dc",
+      "sha256": "d1d9a6fb09d3fe84a6538df2a68107a216d79586ae3c296fa5d8706c616dbef1"
+    },
+    "output_1920x1080_y_u8.npy": {
+      "bytes": 2073728,
+      "crc32": "2b380d90",
+      "sha256": "5bf725eeff1d8a2bc2138f60dde48d32e347e5e076d65230f7f667a9d3878dbd"
+    },
+    "output_1920x1080_y_u8.png": {
+      "bytes": 998196,
+      "crc32": "c6e2bdf5",
+      "sha256": "4f1894ee88c0dcd8a6c2c57a185014d70ba045e1751527b1d3e0f8704b582655"
+    },
+    "subpixel_phases_540x960x4_hwc_u8.bin": {
+      "bytes": 2073600,
+      "crc32": "8a3241fa",
+      "sha256": "cfa3b6d404590530cf1e6ae831324df00484593587c3cd2b9ff724a54a886c1e"
+    }
+  },
+  "candidate_checkpoint_sha256": "10867199deba770b8903e268bb4aa6775f0ad2036bab695790b6593cc01eeb6a",
+  "quant_params_sha256": "12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809",
+  "acceptance_boundary": "Experimental PC integer reference only; not the frozen A release, not B RTL revalidated, and not board accepted"
+}

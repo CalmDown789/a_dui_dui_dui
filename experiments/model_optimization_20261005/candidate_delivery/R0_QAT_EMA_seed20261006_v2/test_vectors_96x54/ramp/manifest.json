@@ -1,0 +1,163 @@
+{
+  "case": "ramp",
+  "layout": "HWC_row_major",
+  "input_spec": {
+    "shape_hw": [
+      54,
+      96
+    ],
+    "dtype": "uint8",
+    "minimum": 0,
+    "maximum": 255,
+    "description": "Horizontal 0..255 ramp repeated on every row."
+  },
+  "files": {
+    "input_hwc_int16.bin": {
+      "shape": [
+        54,
+        96,
+        1
+      ],
+      "dtype": "int16",
+      "bytes": 10368,
+      "crc32": "ebe27413",
+      "sha256": "4f25b28b068d5ae2796f054c62f802f8a543bdc4c03f5f136835cf8c33bd317e"
+    },
+    "feature_accum_hwc_int32.bin": {
+      "shape": [
+        54,
+        96,
+        16
+      ],
+      "dtype": "int32",
+      "bytes": 331776,
+      "crc32": "dc1082e3",
+      "sha256": "cd109f807e44b76ec18f1403f62211fc08fee86797bd01a43842f91d3aac89e8"
+    },
+    "feature_hwc_int16.bin": {
+      "shape": [
+        54,
+        96,
+        16
+      ],
+      "dtype": "int16",
+      "bytes": 165888,
+      "crc32": "7fd9147f",
+      "sha256": "330080d2882e71e10cce9b1ca23a107c8346efda18865a98c16d161b647de624"
+    },
+    "shrink_accum_hwc_int32.bin": {
+      "shape": [
+        54,
+        96,
+        8
+      ],
+      "dtype": "int32",
+      "bytes": 165888,
+      "crc32": "66c66319",
+      "sha256": "bb6cf059a551ff188864e51e4f768f0afc4447c068b41d7c03af44829303c471"
+    },
+    "shrink_hwc_int16.bin": {
+      "shape": [
+        54,
+        96,
+        8
+      ],
+      "dtype": "int16",
+      "bytes": 82944,
+      "crc32": "e0e68157",
+      "sha256": "29ef5dd5b18dc891f0539f663bd821f04eeae0d9518fe3dd360b1cae9d393d9f"
+    },
+    "mapping0_accum_hwc_int32.bin": {
+      "shape": [
+        54,
+        96,
+        8
+      ],
+      "dtype": "int32",
+      "bytes": 165888,
+      "crc32": "a70a8485",
+      "sha256": "5771240dd874b7ea66a7d7f55bd47430fac4c4ef6494e520f983c8b6e0aa3e95"
+    },
+    "mapping0_hwc_int16.bin": {
+      "shape": [
+        54,
+        96,
+        8
+      ],
+      "dtype": "int16",
+      "bytes": 82944,
+      "crc32": "7c61002b",
+      "sha256": "61c583495c8ff8024ffd7263cb660b5c0d0c151f4976b33f25b68861bfdfb3d4"
+    },
+    "expand_accum_hwc_int32.bin": {
+      "shape": [
+        54,
+        96,
+        16
+      ],
+      "dtype": "int32",
+      "bytes": 331776,
+      "crc32": "26db8506",
+      "sha256": "fdac8f580c8ce4c67713b52959ea8bc81643fe3a0cc0504012bb3b06d7e85c62"
+    },
+    "expand_hwc_int16.bin": {
+      "shape": [
+        54,
+        96,
+        16
+      ],
+      "dtype": "int16",
+      "bytes": 165888,
+      "crc32": "104961f0",
+      "sha256": "0fde03620950827af6de87a3e9d6824c8e368db61af8f4f1c83c1564f4481f43"
+    },
+    "subpixel_accum_hwc_int32.bin": {
+      "shape": [
+        54,
+        96,
+        4
+      ],
+      "dtype": "int32",
+      "bytes": 82944,
+      "crc32": "be29816b",
+      "sha256": "f822ab1ca6e9cea7c2efc4382f400a6d0cb4a968e4e4ab743f8a2b67b70920c1"
+    },
+    "subpixel_phases_hwc_uint8.bin": {
+      "shape": [
+        54,
+        96,
+        4
+      ],
+      "dtype": "uint8",
+      "bytes": 20736,
+      "crc32": "988694f9",
+      "sha256": "0a6452f3fa951ab438bc77771682b2c258e94413913100035decbf0e5b811805"
+    },
+    "output_hwc_uint8.bin": {
+      "shape": [
+        108,
+        192,
+        1
+      ],
+      "dtype": "uint8",
+      "bytes": 20736,
+      "crc32": "83ca98fe",
+      "sha256": "42cf89a432473ba93bccabf801046dac0920049f5089e2a2169d6d70eade2454"
+    },
+    "input.png": {
+      "bytes": 130,
+      "crc32": "f7a60d5e",
+      "sha256": "9135f0dc7136426e69873ec58f8d610f8cb9dfa0215fb6889c76ab11407a3deb"
+    },
+    "input_y_u8.bin": {
+      "bytes": 5184,
+      "crc32": "0787e127",
+      "sha256": "5e63c1371eda6204727d900916c4dd0d302e667fb0df6b42a36864edce841661"
+    },
+    "output.png": {
+      "bytes": 1106,
+      "crc32": "3c3030f4",
+      "sha256": "ca4fb82b00d24cdb54a037a938090caeea18877b65ab797a185301d48605a36b"
+    }
+  }
+}

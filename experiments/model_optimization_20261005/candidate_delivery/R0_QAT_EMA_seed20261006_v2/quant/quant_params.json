@@ -1,0 +1,529 @@
+{
+  "schema_version": 1,
+  "model": "FSRCNNSubpixel-d16-s8-m1-c16-x2",
+  "input": {
+    "dtype": "uint8",
+    "shape_hwc": [
+      540,
+      960,
+      1
+    ],
+    "scale": 0.00392156862745098,
+    "zero_point": 0,
+    "layout": "HWC_row_major"
+  },
+  "hidden_activation": {
+    "dtype": "int16",
+    "quantization": "symmetric_per_tensor",
+    "zero_point": 0
+  },
+  "weight": {
+    "dtype": "int8",
+    "layout": "OIHW",
+    "quantization": "symmetric_per_output_channel",
+    "zero_point": 0
+  },
+  "bias_accumulator": {
+    "dtype": "int32",
+    "overflow": "saturate"
+  },
+  "rounding": "nearest_ties_away_from_zero",
+  "prelu": "per_channel_Q1.15_before_requantization",
+  "pixel_shuffle": {
+    "scale": 2,
+    "channel_order": [
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right"
+    ]
+  },
+  "output": {
+    "dtype": "uint8",
+    "shape_hwc": [
+      1080,
+      1920,
+      1
+    ],
+    "scale": 0.00392156862745098,
+    "zero_point": 0
+  },
+  "layers": [
+    {
+      "name": "feature",
+      "type": "conv2d",
+      "kernel": [
+        5,
+        5
+      ],
+      "padding": [
+        2,
+        2
+      ],
+      "weight_shape_oihw": [
+        16,
+        1,
+        5,
+        5
+      ],
+      "weight_scale_per_output": [
+        0.0010072134845838772,
+        0.004497556235846572,
+        0.0012898486195586799,
+        0.006117660698928233,
+        0.00210881514812079,
+        0.0023429813816791445,
+        0.0014218727904041922,
+        0.001378765960377971,
+        0.0022622543995774636,
+        0.0019236357193293534,
+        0.001994573225186566,
+        0.0025431736717073934,
+        0.0015408320455100593,
+        0.003258051600043229,
+        0.0021070753495524247,
+        0.0015529865824331448
+      ],
+      "input_scale": 0.00392156862745098,
+      "output_scale": 4.77786008412413e-05,
+      "bias_scale_per_output": [
+        3.949856802289715e-06,
+        1.763747543469244e-05,
+        5.058229880622274e-06,
+        2.3990826270306793e-05,
+        8.269863325963881e-06,
+        9.188162281094684e-06,
+        5.575971727075263e-06,
+        5.406925334815573e-06,
+        8.871585880695936e-06,
+        7.543669487566092e-06,
+        7.821855785045356e-06,
+        9.973230085127033e-06,
+        6.0424786098433695e-06,
+        1.2776672941345996e-05,
+        8.263040586480097e-06,
+        6.0901434605221366e-06
+      ],
+      "requant_multiplier_real": [
+        0.08266999729469467,
+        0.36915010327109055,
+        0.10586810395368748,
+        0.5021249230387363,
+        0.17308718087921782,
+        0.1923070604688719,
+        0.1167043745295744,
+        0.1131662551773272,
+        0.18568115692994935,
+        0.1578880367935468,
+        0.16371044039225452,
+        0.20873842911947285,
+        0.12646830387355446,
+        0.26741412926260266,
+        0.1729443818151252,
+        0.12746592309721377
+      ],
+      "requant_multiplier_q31": [
+        177532467,
+        792743810,
+        227350022,
+        1078305061,
+        371701891,
+        412976268,
+        250620736,
+        243022682,
+        398747248,
+        339061977,
+        351565494,
+        448262363,
+        271588615,
+        574267470,
+        371395232,
+        273730986
+      ],
+      "prelu_q15": [
+        32767,
+        25479,
+        10286,
+        18203,
+        -2998,
+        8226,
+        4323,
+        26148,
+        25962,
+        19387,
+        32767,
+        11004,
+        7947,
+        31703,
+        31946,
+        8406
+      ],
+      "output_dtype": "int16",
+      "files": {
+        "weight_npy": "feature_weight_oihw_int8.npy",
+        "weight_bin": "feature_weight_oihw_int8.bin",
+        "weight_mem": "feature_weight_oihw_int8.mem",
+        "weight_coe": "feature_weight_oihw_int8.coe",
+        "bias_npy": "feature_bias_int32.npy",
+        "bias_bin": "feature_bias_int32.bin",
+        "bias_mem": "feature_bias_int32.mem",
+        "bias_coe": "feature_bias_int32.coe",
+        "prelu_npy": "feature_prelu_q15.npy",
+        "prelu_bin": "feature_prelu_q15.bin",
+        "prelu_mem": "feature_prelu_q15.mem",
+        "prelu_coe": "feature_prelu_q15.coe"
+      }
+    },
+    {
+      "name": "shrink",
+      "type": "conv2d",
+      "kernel": [
+        1,
+        1
+      ],
+      "padding": [
+        0,
+        0
+      ],
+      "weight_shape_oihw": [
+        8,
+        16,
+        1,
+        1
+      ],
+      "weight_scale_per_output": [
+        0.00988889679195374,
+        0.011866768514077494,
+        0.009787445931922732,
+        0.012737990364315003,
+        0.008115160183643732,
+        0.013267251450245775,
+        0.009442603494238666,
+        0.00920619833187794
+      ],
+      "input_scale": 4.77786008412413e-05,
+      "output_scale": 7.207760292933582e-05,
+      "bias_scale_per_output": [
+        4.7247765258298934e-07,
+        5.669775961095187e-07,
+        4.6763047243656716e-07,
+        6.086033571361844e-07,
+        3.877309991770483e-07,
+        6.338907113016726e-07,
+        4.511543832533396e-07,
+        4.3985927536409763e-07
+      ],
+      "requant_multiplier_real": [
+        0.006555124385118659,
+        0.007866210487956682,
+        0.006487874921354246,
+        0.008443723603472956,
+        0.0053793547984271346,
+        0.008794558719206199,
+        0.006259286725942411,
+        0.006102579129821109
+      ],
+      "requant_multiplier_q31": [
+        14077022,
+        16892558,
+        13932605,
+        18132758,
+        11552076,
+        18886171,
+        13441716,
+        13105189
+      ],
+      "prelu_q15": [
+        32767,
+        32767,
+        27297,
+        23040,
+        9792,
+        32767,
+        12793,
+        21223
+      ],
+      "output_dtype": "int16",
+      "files": {
+        "weight_npy": "shrink_weight_oihw_int8.npy",
+        "weight_bin": "shrink_weight_oihw_int8.bin",
+        "weight_mem": "shrink_weight_oihw_int8.mem",
+        "weight_coe": "shrink_weight_oihw_int8.coe",
+        "bias_npy": "shrink_bias_int32.npy",
+        "bias_bin": "shrink_bias_int32.bin",
+        "bias_mem": "shrink_bias_int32.mem",
+        "bias_coe": "shrink_bias_int32.coe",
+        "prelu_npy": "shrink_prelu_q15.npy",
+        "prelu_bin": "shrink_prelu_q15.bin",
+        "prelu_mem": "shrink_prelu_q15.mem",
+        "prelu_coe": "shrink_prelu_q15.coe"
+      }
+    },
+    {
+      "name": "mapping0",
+      "type": "conv2d",
+      "kernel": [
+        3,
+        3
+      ],
+      "padding": [
+        1,
+        1
+      ],
+      "weight_shape_oihw": [
+        8,
+        8,
+        3,
+        3
+      ],
+      "weight_scale_per_output": [
+        0.0037871993432833455,
+        0.003447909993449534,
+        0.008901069483419103,
+        0.004066102148041012,
+        0.005257094938923994,
+        0.006727446721294734,
+        0.004105775844393753,
+        0.005538674320761613
+      ],
+      "input_scale": 7.207760292933582e-05,
+      "output_scale": 0.0001619893987137983,
+      "bias_scale_per_output": [
+        2.7297225047941837e-07,
+        2.485170874439444e-07,
+        6.415677518723104e-07,
+        2.930748960966195e-07,
+        3.7891880156958455e-07,
+        4.84898233505744e-07,
+        2.959344810290714e-07,
+        3.992143684467643e-07
+      ],
+      "requant_multiplier_real": [
+        0.0016851241664382233,
+        0.0015341564905924652,
+        0.0039605539434455685,
+        0.0018092226924949707,
+        0.002339158022550942,
+        0.002993394860131919,
+        0.0018268756065446376,
+        0.0024644474985186736
+      ],
+      "requant_multiplier_q31": [
+        3618777,
+        3294576,
+        8505225,
+        3885276,
+        5023304,
+        6428267,
+        3923185,
+        5292361
+      ],
+      "prelu_q15": [
+        9045,
+        32767,
+        32767,
+        32767,
+        31280,
+        32767,
+        -8762,
+        32065
+      ],
+      "output_dtype": "int16",
+      "files": {
+        "weight_npy": "mapping0_weight_oihw_int8.npy",
+        "weight_bin": "mapping0_weight_oihw_int8.bin",
+        "weight_mem": "mapping0_weight_oihw_int8.mem",
+        "weight_coe": "mapping0_weight_oihw_int8.coe",
+        "bias_npy": "mapping0_bias_int32.npy",
+        "bias_bin": "mapping0_bias_int32.bin",
+        "bias_mem": "mapping0_bias_int32.mem",
+        "bias_coe": "mapping0_bias_int32.coe",
+        "prelu_npy": "mapping0_prelu_q15.npy",
+        "prelu_bin": "mapping0_prelu_q15.bin",
+        "prelu_mem": "mapping0_prelu_q15.mem",
+        "prelu_coe": "mapping0_prelu_q15.coe"
+      }
+    },
+    {
+      "name": "expand",
+      "type": "conv2d",
+      "kernel": [
+        1,
+        1
+      ],
+      "padding": [
+        0,
+        0
+      ],
+      "weight_shape_oihw": [
+        16,
+        8,
+        1,
+        1
+      ],
+      "weight_scale_per_output": [
+        0.007132509092646321,
+        0.006350574530954436,
+        0.004129547772445078,
+        0.0069303268522728145,
+        0.005931020252347931,
+        0.004158142983444094,
+        0.006881164753530908,
+        0.008362731595677653,
+        0.005259951737922008,
+        0.008155830263152836,
+        0.004797553922247699,
+        0.008562920600410522,
+        0.0042363851089177165,
+        0.008685370129863108,
+        0.0038239458414513297,
+        0.0067776741943960115
+      ],
+      "input_scale": 0.0001619893987137983,
+      "output_scale": 0.00024193611718964584,
+      "bias_scale_per_output": [
+        1.1553908592384766e-06,
+        1.0287257497564708e-06,
+        6.689429606182834e-07,
+        1.1226394796897637e-06,
+        9.607624044372017e-07,
+        6.735750816541081e-07,
+        1.1146757408750538e-06,
+        1.354673862788706e-06,
+        8.520564192895844e-07,
+        1.3211580403399272e-06,
+        7.771528751619294e-07,
+        1.387102359294497e-06,
+        6.862494765136698e-07,
+        1.406937884943309e-06,
+        6.194386875708304e-07,
+        1.0979113674282371e-06
+      ],
+      "requant_multiplier_real": [
+        0.004775603050340778,
+        0.004252055301648436,
+        0.002764956999346736,
+        0.004640231035905083,
+        0.00397114087634998,
+        0.0027841030495091997,
+        0.004607314334970896,
+        0.005599303975465645,
+        0.003521823980591063,
+        0.0054607722719808485,
+        0.0032122234753099907,
+        0.0057333414101508155,
+        0.002836490411126757,
+        0.0058153280348814404,
+        0.002560339873047035,
+        0.004538021772779052
+      ],
+      "requant_multiplier_q31": [
+        10255529,
+        9131219,
+        5937700,
+        9964820,
+        8527960,
+        5978816,
+        9894132,
+        12024414,
+        7563059,
+        11726919,
+        6898197,
+        12312257,
+        6091317,
+        12488322,
+        5498288,
+        9745328
+      ],
+      "prelu_q15": [
+        24334,
+        32767,
+        20196,
+        10117,
+        21428,
+        8288,
+        -1235,
+        -2911,
+        9003,
+        1906,
+        9544,
+        9439,
+        8022,
+        32767,
+        -32768,
+        24706
+      ],
+      "output_dtype": "int16",
+      "files": {
+        "weight_npy": "expand_weight_oihw_int8.npy",
+        "weight_bin": "expand_weight_oihw_int8.bin",
+        "weight_mem": "expand_weight_oihw_int8.mem",
+        "weight_coe": "expand_weight_oihw_int8.coe",
+        "bias_npy": "expand_bias_int32.npy",
+        "bias_bin": "expand_bias_int32.bin",
+        "bias_mem": "expand_bias_int32.mem",
+        "bias_coe": "expand_bias_int32.coe",
+        "prelu_npy": "expand_prelu_q15.npy",
+        "prelu_bin": "expand_prelu_q15.bin",
+        "prelu_mem": "expand_prelu_q15.mem",
+        "prelu_coe": "expand_prelu_q15.coe"
+      }
+    },
+    {
+      "name": "subpixel",
+      "type": "conv2d",
+      "kernel": [
+        5,
+        5
+      ],
+      "padding": [
+        2,
+        2
+      ],
+      "weight_shape_oihw": [
+        4,
+        16,
+        5,
+        5
+      ],
+      "weight_scale_per_output": [
+        0.00039629001669057713,
+        0.0003867312444476631,
+        0.00041333533178164266,
+        0.000545435475082848
+      ],
+      "input_scale": 0.00024193611718964584,
+      "output_scale": 0.00392156862745098,
+      "bias_scale_per_output": [
+        9.587686791913817e-08,
+        9.356425567758738e-08,
+        1.0000074526854465e-07,
+        1.3196054101903408e-07
+      ],
+      "requant_multiplier_real": [
+        2.4448601319380235e-05,
+        2.3858885197784784e-05,
+        2.5500190043478885e-05,
+        3.364993795985369e-05
+      ],
+      "requant_multiplier_q31": [
+        52503,
+        51237,
+        54761,
+        72263
+      ],
+      "prelu_q15": null,
+      "output_dtype": "uint8",
+      "files": {
+        "weight_npy": "subpixel_weight_oihw_int8.npy",
+        "weight_bin": "subpixel_weight_oihw_int8.bin",
+        "weight_mem": "subpixel_weight_oihw_int8.mem",
+        "weight_coe": "subpixel_weight_oihw_int8.coe",
+        "bias_npy": "subpixel_bias_int32.npy",
+        "bias_bin": "subpixel_bias_int32.bin",
+        "bias_mem": "subpixel_bias_int32.mem",
+        "bias_coe": "subpixel_bias_int32.coe"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # Member A 量化模型优化实验报告
 
 实验记录日期：2026-10-05
-状态：PC 软件侧实验候选，未发布，未替换冻结 A 交付
+状态：PC 软件侧实验候选，已作为独立实验包发布；未替换冻结 A 交付
 
 ## 结论
 
@@ -49,9 +49,9 @@
 - 候选量化参数 SHA-256：`12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809`
 - 全尺寸合成输入的候选整数输出：`1920×1080`、2,073,600 字节，SHA-256 `d1d9a6fb09d3fe84a6538df2a68107a216d79586ae3c296fa5d8706c616dbef1`。
 - 候选 QDQ 与整数全尺寸输出逐字节匹配 2,032,785 / 2,073,600；其余字节最大差异 1，MAE 为 0.01968。
-- `verify_candidate_delivery.py --recompute-full` 已通过：复算小尺寸逐层测试向量和全尺寸逐层摘要/哈希；正式冻结资产未变。
-- 2026-10-08 再将验收包扩展到边界脉冲与 0/255 棋盘格两类输入；同一候选权重的六组 96×54 逐层输出及 960×540 全尺寸逐层摘要均复算通过。新版包仍只留在 `.data/model_optimization/qat_ema_refine_20261006/candidate_delivery_v2/`，没有替换旧包或正式 R0。
-- 所有模型与 Golden 均在本机忽略目录 `.data/model_optimization/qat_ema_refine_20261006/`，尚未进入 Git。交付清单状态为 `EXPERIMENTAL_NOT_RELEASED`。
+- `verify_candidate_delivery.py --recompute-full` 已通过：六组小尺寸逐层测试向量和全尺寸逐层输出/哈希均复算一致；正式冻结资产未变。
+- 2026-10-08 已将 checkpoint、训练日志、完整量化权重包、六组 96×54 向量、全尺寸 Golden 和逐文件哈希整理至 [`candidate_delivery/R0_QAT_EMA_seed20261006_v2/`](candidate_delivery/R0_QAT_EMA_seed20261006_v2/)。该包状态为 `EXPERIMENTAL_NOT_RELEASED`，是给 B 做候选验证的交接材料，不替换旧包或正式 R0。
+- 候选包自身哈希清单为 `bundle_manifest.json`。该文件不包含自身哈希；验证时先校验清单中的文件，再运行 `verify_candidate_delivery.py --recompute-full` 复算整数向量和全帧阶段输出。
 
 ## 下一步验收门槛
 
@@ -68,6 +68,6 @@
 - 官方 DIV2K 100 张最终评测：`.data/model_optimization/qat_ema_refine_20261006/official_valid_eval/`
 - Set5、Sintel：`.data/model_optimization/qat_ema_refine_20261006/independent_eval_final/`
 - DIV2K 内部集、BBB：`.data/model_optimization/qat_ema_refine_20261006/evaluation_div2k_bbb/`
-- 整数权重、96×54 逐层向量、全尺寸 Golden 与校验清单：`.data/model_optimization/qat_ema_refine_20261006/candidate_delivery/`
+- 可供 B 取用的实验候选包（权重、checkpoint、训练日志、向量和全尺寸 Golden）：[`candidate_delivery/R0_QAT_EMA_seed20261006_v2/`](candidate_delivery/R0_QAT_EMA_seed20261006_v2/)
 
 数据来源：[DIV2K 官方数据页](https://data.vision.ee.ethz.ch/cvl/DIV2K/)；[Sintel 下载页](https://durian.blender.org/download/)；[Sintel 授权与署名](https://durian.blender.org/sharing/)。如对外使用 Sintel 派生评测材料，应保留 Blender Foundation 署名。
