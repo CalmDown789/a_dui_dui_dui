@@ -15,7 +15,12 @@ import torch
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from member_a.artifacts import generate_fixed_vectors, generate_full_integer_golden, generate_full_reference
+from member_a.artifacts import (
+    MEMBER_A_ACCEPTANCE_VECTOR_CASES,
+    generate_fixed_vectors,
+    generate_full_integer_golden,
+    generate_full_reference,
+)
 from member_a.fixed_reference import FixedReference
 from member_a.model import FSRCNNSubpixel
 
@@ -69,7 +74,11 @@ def main() -> int:
     scales = {layer["name"]: float(layer["output_scale"])
               for layer in quant_spec["layers"] if layer["name"] != "subpixel"}
 
-    generate_fixed_vectors(quant_dir, vectors_dir)
+    generate_fixed_vectors(
+        quant_dir,
+        vectors_dir,
+        case_names=MEMBER_A_ACCEPTANCE_VECTOR_CASES,
+    )
     generate_full_reference(model, scales, full_ref_dir, device)
     official_input = root / "artifacts/full_reference/input_960x540_y_u8.bin"
     if file_sha(official_input) != file_sha(full_ref_dir / "input_960x540_y_u8.bin"):

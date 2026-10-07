@@ -35,6 +35,8 @@ python experiments\model_optimization_20261005\generate_candidate_delivery.py --
 python experiments\model_optimization_20261005\verify_candidate_delivery.py --delivery-dir .data\model_optimization\div2k_qat_mix_rerun\candidate_delivery --quant-dir .data\model_optimization\div2k_qat_mix_rerun\evaluation\candidate_quantized --recompute-full
 ```
 
+The candidate generator uses the same six acceptance vectors as the frozen A bundle: zero, center impulse, ramp, deterministic random, edge impulses, and an extreme-value checkerboard. The 2026-10-08 local candidate verification was regenerated into `candidate_delivery_v2/`; it remains ignored and unreleased until B/C acceptance.
+
 The official [DIV2K page](https://data.vision.ee.ethz.ch/cvl/DIV2K/) limits use to academic research and notes that the images retain their original copyrights. The raw archive is kept locally and is not redistributed. Sintel is [CC BY 3.0](https://durian.blender.org/sharing/); preserve the Blender Foundation attribution if evaluation material is redistributed.
 
 ## Low-rate refinement and final holdout

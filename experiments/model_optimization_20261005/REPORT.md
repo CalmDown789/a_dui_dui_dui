@@ -50,6 +50,7 @@
 - 全尺寸合成输入的候选整数输出：`1920×1080`、2,073,600 字节，SHA-256 `d1d9a6fb09d3fe84a6538df2a68107a216d79586ae3c296fa5d8706c616dbef1`。
 - 候选 QDQ 与整数全尺寸输出逐字节匹配 2,032,785 / 2,073,600；其余字节最大差异 1，MAE 为 0.01968。
 - `verify_candidate_delivery.py --recompute-full` 已通过：复算小尺寸逐层测试向量和全尺寸逐层摘要/哈希；正式冻结资产未变。
+- 2026-10-08 再将验收包扩展到边界脉冲与 0/255 棋盘格两类输入；同一候选权重的六组 96×54 逐层输出及 960×540 全尺寸逐层摘要均复算通过。新版包仍只留在 `.data/model_optimization/qat_ema_refine_20261006/candidate_delivery_v2/`，没有替换旧包或正式 R0。
 - 所有模型与 Golden 均在本机忽略目录 `.data/model_optimization/qat_ema_refine_20261006/`，尚未进入 Git。交付清单状态为 `EXPERIMENTAL_NOT_RELEASED`。
 
 ## 下一步验收门槛

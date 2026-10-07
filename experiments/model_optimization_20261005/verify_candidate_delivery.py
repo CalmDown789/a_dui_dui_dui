@@ -13,6 +13,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
+from member_a.artifacts import MEMBER_A_ACCEPTANCE_VECTOR_CASES
 from member_a.fixed_reference import FixedReference
 
 
@@ -78,7 +79,7 @@ def main() -> int:
     reference = FixedReference(quant_dir)
     vector_root = delivery / "test_vectors_96x54"
     vector_cases = {}
-    for case in ("zero", "impulse", "ramp", "random"):
+    for case in MEMBER_A_ACCEPTANCE_VECTOR_CASES:
         case_dir = vector_root / case
         manifest = json.loads((case_dir / "manifest.json").read_text(encoding="utf-8"))
         check_files(case_dir, manifest["files"])
