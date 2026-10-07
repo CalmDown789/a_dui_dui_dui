@@ -129,10 +129,10 @@ python scripts/package_color_quality_report.py
 正式 A 交付继续冻结为 R0：INT8 权重、INT16 隐藏激活、INT32 偏置/累加、Q1.15 PReLU。下述候选均为软件实验，不覆盖 `artifacts/quant/`、全尺寸 Golden 或冻结标签。
 
 - 4K 混合链路中，R0 在 65 帧初筛相对同输入双三次平均增加 1.425 dB PSNR 和 0.00369 SSIM；内容间有差异，不能外推到所有视频。
-- QAT seed456 在 10 段、1,240 帧的 PC 整数参考上相对 R0 增加 0.1034 dB PSNR、0.001088 SSIM。独立候选包位于 `experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/`，仍标记为 `EXPERIMENTAL_NOT_FORMAL_A_DELIVERY`，需候选专用 B 位精确对拍后才可讨论升版。
+- QAT seed456 在 10 段、1,240 帧的 PC 整数参考上相对 R0 增加 0.1034 dB PSNR、0.001088 SSIM。独立候选包位于 `experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/`；2026-10-08 文件、训练记录、导出视图、六组向量和全尺寸参考复核通过，仍标记为 `EXPERIMENTAL_NOT_FORMAL_A_DELIVERY`，需候选专用 B 位精确对拍后才可讨论升版。
 - 结构缩算候选 R1 减少 36.2% MAC；25 帧留出测试相对 R0T 低 0.267 dB PSNR、0.00092 SSIM。它仅达到软件筛选线，不是现有 ROM 的直接替换项；GPU 延迟不代表 FPGA 性能。更激进的 R4 虽减少约 67.2% MAC，但画质低约 0.786 dB，不建议升格。
 - 2026-10-07 隐藏激活 INT8 扫描的 5 个 PTQ 候选和 2 个 QAT 复测均未达到相对匹配 INT16 损失不超过 0.10 dB 的门槛；当前保持 INT16 激活。详情见[扫描报告](experiments/hybrid_4k_20261006/ACTIVATION_INT8_SWEEP_20261007.md)。
-- 混合数据 QAT/EMA 的 100 张 DIV2K 软件评估提升 0.0664 dB；独立包 [`R0_QAT_EMA_seed20261006_v2`](experiments/model_optimization_20261005/candidate_delivery/R0_QAT_EMA_seed20261006_v2/README.md) 含候选权重、checkpoint、训练日志、量化参数、逐层向量和全尺寸 Golden，仍标记 `EXPERIMENTAL_NOT_RELEASED`，不是正式模型。详情见[实验报告](experiments/model_optimization_20261005/REPORT.md)。
+- 混合数据 QAT/EMA 的 100 张 DIV2K 软件评估提升 0.0664 dB；独立包 [`R0_QAT_EMA_seed20261006_v2`](experiments/model_optimization_20261005/candidate_delivery/R0_QAT_EMA_seed20261006_v2/README.md) 含候选权重、checkpoint、训练日志、量化参数、逐层向量和全尺寸 Golden，2026-10-08 文件哈希、六组向量与全尺寸复算通过；仍标记 `EXPERIMENTAL_NOT_RELEASED`，不是正式模型。详情见[实验报告](experiments/model_optimization_20261005/REPORT.md)。
 - 2026-10-08 六组 96×54 逐层向量（含边界脉冲和 0/255 棋盘格）及 960×540 全尺寸整数 Golden 均复算通过；R0 冻结资产哈希保持不变。该候选仍需 B 专用 RTL 位精确对拍、C/团队资源与实现评估后才可讨论升版。
 
 以上结果完成了软件侧候选比较，不证明 ACX750 的吞吐、时序、资源、bitstream 或板卡画面；30 fps 仍需 B/C 在目标工程和实板验证。
