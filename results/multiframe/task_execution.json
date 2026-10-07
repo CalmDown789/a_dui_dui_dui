@@ -1,38 +1,38 @@
 {
   "schema": "member-a-task-execution-ledger-v1",
   "status": "PASS",
-  "python": "3.14.6",
+  "python": "3.12.10",
   "executions": [
     {
       "name": "original_authority_recompute",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "-c",
         "import sys,json,torch; sys.path.insert(0,'scripts'); import verify_full_integer_golden as v; torch.set_num_threads(4); print(json.dumps(v.verify(True),indent=2))"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:09:46.930876+00:00",
-      "elapsed_seconds": 5.436537200002931,
+      "started_utc": "2026-10-07T19:48:33.530682+00:00",
+      "elapsed_seconds": 4.250198499998078,
       "log": "results/multiframe/logs/original_authority_recompute.txt"
     },
     {
       "name": "eight_frames_recompute",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/verify_video_sequence.py",
         "--recompute",
         "--report",
         "artifacts/multiframe/verification.json"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:09:52.368298+00:00",
-      "elapsed_seconds": 16.555195900029503,
+      "started_utc": "2026-10-07T19:48:37.782016+00:00",
+      "elapsed_seconds": 15.910603300002549,
       "log": "results/multiframe/logs/eight_frames_recompute.txt"
     },
     {
       "name": "authority_pair_recompute",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/verify_video_sequence.py",
         "--manifest",
         "artifacts/authority_pair/manifest.json",
@@ -41,103 +41,103 @@
         "artifacts/authority_pair/verification.json"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:08.924534+00:00",
-      "elapsed_seconds": 6.947652800008655,
+      "started_utc": "2026-10-07T19:48:53.693556+00:00",
+      "elapsed_seconds": 5.881955199998629,
       "log": "results/multiframe/logs/authority_pair_recompute.txt"
     },
     {
       "name": "safe_directory_reproduction",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/check_sequence_reproduction.py",
         "--regenerated",
         ".data/repro_sequence_20261003_final/manifest.json"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:15.873346+00:00",
-      "elapsed_seconds": 0.3224725000327453,
+      "started_utc": "2026-10-07T19:48:59.576993+00:00",
+      "elapsed_seconds": 0.5233643999999913,
       "log": "results/multiframe/logs/safe_directory_reproduction.txt"
     },
     {
       "name": "player_controller",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/verify_pc_player.py",
         "--node",
-        "D:\\Nodejs\\node.exe"
+        "C:\\Users\\33728\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:16.196724+00:00",
-      "elapsed_seconds": 14.10664079990238,
+      "started_utc": "2026-10-07T19:49:00.100849+00:00",
+      "elapsed_seconds": 14.462915500000236,
       "log": "results/multiframe/logs/player_controller.txt"
     },
     {
       "name": "receive_manifest_faults",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/selftest_received_delivery.py"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:30.304341+00:00",
-      "elapsed_seconds": 6.8843266000039876,
+      "started_utc": "2026-10-07T19:49:14.564462+00:00",
+      "elapsed_seconds": 7.288886400001502,
       "log": "results/multiframe/logs/receive_manifest_faults.txt"
     },
     {
       "name": "raw_uart_receive_fixture",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/selftest_raw_uart_capture.py"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:37.189524+00:00",
-      "elapsed_seconds": 13.181514700059779,
+      "started_utc": "2026-10-07T19:49:21.854640+00:00",
+      "elapsed_seconds": 13.700871000000916,
       "log": "results/multiframe/logs/raw_uart_receive_fixture.txt"
     },
     {
       "name": "prototype_uart_stop_wait_fixture",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "experiments/member_a_uart_prototype_20261003/host/selftest.py"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:50.372040+00:00",
-      "elapsed_seconds": 7.948531300062314,
+      "started_utc": "2026-10-07T19:49:35.556467+00:00",
+      "elapsed_seconds": 8.176302200001373,
       "log": "results/multiframe/logs/prototype_uart_stop_wait_fixture.txt"
     },
     {
       "name": "package_build",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/package_video_sequence.py"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:58.321352+00:00",
-      "elapsed_seconds": 1.0113606000086293,
+      "started_utc": "2026-10-07T19:49:43.733759+00:00",
+      "elapsed_seconds": 1.642657300002611,
       "log": "results/multiframe/logs/package_build.txt"
     },
     {
       "name": "portable_software_tests",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "scripts/selftest_video_delivery.py"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:10:59.333471+00:00",
-      "elapsed_seconds": 9.625704300007783,
+      "started_utc": "2026-10-07T19:49:45.376949+00:00",
+      "elapsed_seconds": 10.555885599998874,
       "log": "results/multiframe/logs/portable_software_tests.txt"
     },
     {
       "name": "python_test_suite",
       "command": [
-        "D:\\Codex File\\dialogue file\\github\\a_dui_dui_dui\\.venv\\Scripts\\python.exe",
+        "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\member_a_task_20261008\\r0_audit_env\\Scripts\\python.exe",
         "-m",
         "pytest",
         "--basetemp",
         "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\pytest_task_temp"
       ],
       "exit_code": 0,
-      "started_utc": "2026-10-03T11:11:08.960029+00:00",
-      "elapsed_seconds": 11.448839299962856,
+      "started_utc": "2026-10-07T19:49:55.934098+00:00",
+      "elapsed_seconds": 14.967363799998566,
       "log": "results/multiframe/logs/python_test_suite.txt"
     }
   ],
