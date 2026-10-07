@@ -26,6 +26,8 @@ REQUIRED = [
     "artifacts/test_vectors/impulse/manifest.json",
     "artifacts/test_vectors/ramp/manifest.json",
     "artifacts/test_vectors/random/manifest.json",
+    "artifacts/test_vectors/edge_impulses/manifest.json",
+    "artifacts/test_vectors/checkerboard_extremes/manifest.json",
     "delivery_manifest.json",
 ]
 
@@ -55,7 +57,7 @@ def verify_delivery(root: Path) -> dict:
     quant_dir = root / "artifacts" / "quant"
     reference = FixedReference(quant_dir)
     vector_checks: dict[str, str] = {}
-    for case in ["zero", "impulse", "ramp", "random"]:
+    for case in ["zero", "impulse", "ramp", "random", "edge_impulses", "checkerboard_extremes"]:
         case_dir = root / "artifacts" / "test_vectors" / case
         image = np.fromfile(case_dir / "input_y_u8.bin", dtype=np.uint8).reshape(54, 96)
         outputs = reference.run(image)

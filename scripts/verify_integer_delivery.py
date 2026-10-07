@@ -44,7 +44,7 @@ def verify() -> dict:
 
     reference = FixedReference(quant_dir)
     cases: dict[str, str] = {}
-    for case in ("zero", "impulse", "ramp", "random"):
+    for case in ("zero", "impulse", "ramp", "random", "edge_impulses", "checkerboard_extremes"):
         case_dir = vectors_dir / case
         manifest = json.loads((case_dir / "manifest.json").read_text(encoding="utf-8"))
         for filename, metadata in manifest["files"].items():

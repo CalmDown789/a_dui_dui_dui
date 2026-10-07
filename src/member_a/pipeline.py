@@ -6,6 +6,7 @@ import json
 import torch
 
 from .artifacts import (
+    MEMBER_A_ACCEPTANCE_VECTOR_CASES,
     generate_fixed_vectors,
     generate_full_integer_golden,
     generate_full_reference,
@@ -75,7 +76,7 @@ def run_pipeline(
     model.eval()
     write_model_contract(model, model_dir)
     export_quantized_bundle(model, scales, quant_dir)
-    generate_fixed_vectors(quant_dir, vectors_dir)
+    generate_fixed_vectors(quant_dir, vectors_dir, case_names=MEMBER_A_ACCEPTANCE_VECTOR_CASES)
     generate_full_reference(model, scales, full_reference_dir, device)
     generate_full_integer_golden(
         quant_dir,

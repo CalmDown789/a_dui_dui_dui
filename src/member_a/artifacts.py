@@ -17,6 +17,12 @@ from .quantization import quantized_forward_float
 
 
 TEXT_SUFFIXES = {".coe", ".csv", ".json", ".md", ".mem", ".py", ".toml", ".txt"}
+DEFAULT_VECTOR_CASES = ("zero", "impulse", "ramp", "random")
+MEMBER_A_ACCEPTANCE_VECTOR_CASES = (
+    *DEFAULT_VECTOR_CASES,
+    "edge_impulses",
+    "checkerboard_extremes",
+)
 
 
 def _digest(path: Path, normalize_text: bool = False) -> dict[str, str | int]:
@@ -54,12 +60,47 @@ def _vector_inputs(width: int = 96, height: int = 54) -> dict[str, np.ndarray]:
     impulse[height // 2, width // 2] = 255
     ramp = np.tile(np.linspace(0, 255, width, dtype=np.uint8), (height, 1))
     random = np.random.default_rng(123).integers(0, 256, size=(height, width), dtype=np.uint8)
-    return {"zero": zero, "impulse": impulse, "ramp": ramp, "random": random}
+    edge_impulses = zero.copy()
+    edge_points = (
+        (0, 0), (0, width - 1), (height - 1, 0), (height - 1, width - 1),
+        (0, width // 2), (height - 1, width // 2),
+        (height // 2, 0), (height // 2, width - 1),
+    )
+    for y, x in edge_points:
+        edge_impulses[y, x] = 255
+    yy, xx = np.indices((height, width))
+    checkerboard_extremes = (((xx + yy) & 1) * 255).astype(np.uint8)
+    return {
+        "zero": zero,
+        "impulse": impulse,
+        "ramp": ramp,
+        "random": random,
+        "edge_impulses": edge_impulses,
+        "checkerboard_extremes": checkerboard_extremes,
+    }
 
 
-def generate_fixed_vectors(quant_dir: Path, vectors_dir: Path) -> None:
+def generate_fixed_vectors(
+    quant_dir: Path,
+    vectors_dir: Path,
+    *,
+    case_names: tuple[str, ...] = DEFAULT_VECTOR_CASES,
+) -> None:
     reference = FixedReference(quant_dir)
-    for case, image in _vector_inputs().items():
+    all_inputs = _vector_inputs()
+    unknown = sorted(set(case_names) - set(all_inputs))
+    if unknown:
+        raise ValueError(f"Unknown fixed-vector cases: {unknown}")
+    descriptions = {
+        "zero": "All-zero uint8 input.",
+        "impulse": "One 255-valued center pixel on a zero background.",
+        "ramp": "Horizontal 0..255 ramp repeated on every row.",
+        "random": "Deterministic uint8 random input using NumPy seed 123.",
+        "edge_impulses": "Eight isolated 255-valued impulses at the four corners and four edge midpoints; all other pixels are zero.",
+        "checkerboard_extremes": "Alternating 0/255 checkerboard including every image boundary.",
+    }
+    for case in case_names:
+        image = all_inputs[case]
         case_dir = vectors_dir / case
         case_dir.mkdir(parents=True, exist_ok=True)
         Image.fromarray(image, mode="L").save(case_dir / "input.png")
@@ -74,8 +115,24 @@ def generate_fixed_vectors(quant_dir: Path, vectors_dir: Path) -> None:
         for extra in [case_dir / "input.png", case_dir / "input_y_u8.bin", case_dir / "output.png"]:
             files[extra.name] = _digest(extra)
         (case_dir / "manifest.json").write_text(
-            json.dumps({"case": case, "layout": "HWC_row_major", "files": files}, indent=2, ensure_ascii=False),
+            json.dumps(
+                {
+                    "case": case,
+                    "layout": "HWC_row_major",
+                    "input_spec": {
+                        "shape_hw": list(image.shape),
+                        "dtype": "uint8",
+                        "minimum": int(image.min()),
+                        "maximum": int(image.max()),
+                        "description": descriptions[case],
+                    },
+                    "files": files,
+                },
+                indent=2,
+                ensure_ascii=False,
+            ),
             encoding="utf-8",
+            newline="\n",
         )
 
 
@@ -253,12 +310,14 @@ def write_metrics(path: Path, rows: list[dict], summary: dict) -> None:
 def write_delivery_manifest(root: Path) -> None:
     files: dict[str, dict[str, str | int]] = {}
     for path in sorted(root.rglob("*")):
-        excluded_parts = {".git", ".venv", ".data", ".pytest_cache", "__pycache__"}
+        excluded_parts = {".git", ".venv", ".data", ".pytest_cache", "__pycache__", "tmp"}
         if not path.is_file() or excluded_parts.intersection(path.parts):
             continue
         if path.name == "delivery_manifest.json":
             continue
         files[path.relative_to(root).as_posix()] = _digest(path, normalize_text=True)
     (root / "delivery_manifest.json").write_text(
-        json.dumps({"schema_version": 1, "files": files}, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps({"schema_version": 1, "files": files}, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+        newline="\n",
     )

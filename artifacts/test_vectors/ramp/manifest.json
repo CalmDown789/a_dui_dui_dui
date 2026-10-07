@@ -1,6 +1,16 @@
 {
   "case": "ramp",
   "layout": "HWC_row_major",
+  "input_spec": {
+    "shape_hw": [
+      54,
+      96
+    ],
+    "dtype": "uint8",
+    "minimum": 0,
+    "maximum": 255,
+    "description": "Horizontal 0..255 ramp repeated on every row."
+  },
   "files": {
     "input_hwc_int16.bin": {
       "shape": [

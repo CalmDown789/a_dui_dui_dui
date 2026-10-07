@@ -57,11 +57,13 @@ C:\Python314\python.exe -m venv --system-site-packages .venv
 
 最终输出固定为 `2073600` 字节，CRC32 为 `87d353f1`，SHA-256 为 `be8e576beea1632e6ee8257ba39a92c9c7950e9ae90b202bd240677e2d85504e`。
 
-只交接小尺寸逐层整数实现时，可直接下载 `artifacts/member_a_integer_delivery_d16_s8_m1_c16.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数和四组 96×54 逐层向量；全尺寸最终 Golden 以仓库中的 `artifacts/full_integer_golden/` 为准。解压小尺寸包后运行：
+只交接小尺寸逐层整数实现时，请下载当前版 `artifacts/member_a_integer_delivery_d16_s8_m1_c16_v2.zip`。压缩包包含 `quant_params.json`、INT8/INT32/Q1.15 权重参数和六组 96×54 逐层向量；新增的 `edge_impulses` 与 `checkerboard_extremes` 专门覆盖卷积边缘和 0/255 极值。无后缀旧 ZIP 是四向量历史版本，不应替代当前版。全尺寸最终 Golden 以仓库中的 `artifacts/full_integer_golden/` 为准。解压小尺寸包后运行：
 
 ```powershell
 python scripts\verify_integer_delivery.py
 ```
+
+在冻结量化资产不变时，使用 `python scripts\package_member_a_integer_delivery.py` 重新生成六组小尺寸逐层 Golden 包及总交付哈希清单；脚本会检查 ZIP 内每个文件与仓库源文件逐字节相同。
 
 审核模型质量证据时，可直接下载 `artifacts/member_a_weights_and_logs.zip`，其中集中提供 FP32 checkpoint、模型契约、50轮训练日志、Set5逐图指标、汇总指标及量化参数。
 
