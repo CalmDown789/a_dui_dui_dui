@@ -51,10 +51,14 @@
 seed456 候选包位于忽略数据目录：
 `.data/hybrid_4k_20261006/quant_candidate_acceptance_20261006_samecal_r0f_r0t_r0qat/R0QAT/`
 
+与 1,240 帧 R0/QAT seed456 视频评测对应的同一候选现已镜像发布到独立目录：
+`experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/`。
+候选 `quant_params.json` SHA-256 为 `f2d6c4865b295f6a02c67a43ab2fb00cd36ede723ee8743575f6746f52d924ac`；原始来源 bundle manifest SHA-256 为 `13cdb3b35cf6bf11f44afa9a7bafb390e63e7b4e6609ff75cd6a08a52e096984`。发布包新增了交接说明和来源记录，当前 manifest 覆盖 136 个文件；发布副本已通过 136 个文件摘要、48 组小向量阶段和 12 个全尺寸阶段复核。它仍是实验候选，不是 R0 正式更新。
+
 seed123 候选包位于：
 `.data/hybrid_4k_20261006/quant_candidate_acceptance_20261006_samecal_r0qat123/R0QAT123/`
 
-候选评测、量化包与全尺寸 Golden 均不纳入 Git 跟踪，也不覆盖 `artifacts/quant` 或 `artifacts/full_integer_golden`。
+seed123 包和训练数据仍留在忽略目录。seed456 发布副本只用于团队审阅/独立对拍，不覆盖 `artifacts/quant` 或 `artifacts/full_integer_golden`；原始 UVG 视频未纳入 Git。
 
 ## 连续视频评测与视觉检查
 

@@ -24,3 +24,6 @@
 *.h text
 *.mem text eol=lf
 *.coe text eol=lf
+
+# Candidate bundle manifests hash exact file bytes; do not normalize its payload.
+/experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/** -text !eol

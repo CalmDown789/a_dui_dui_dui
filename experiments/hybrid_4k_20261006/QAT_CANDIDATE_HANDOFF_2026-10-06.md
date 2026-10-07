@@ -2,6 +2,8 @@
 
 日期：2026-10-06
 
+版本提示：本文描述较早的 `quant_cross_eval_adapt456qat5/R0adapt456_QAT5` seed456 包，`quant_params.json` SHA-256 以 `13f912c9` 开头。它不是 1,240 帧 R0/QAT seed456 视频报告使用的候选；后者的量化参数 SHA-256 以 `f2d6c486` 开头，独立发布目录见 `candidate_delivery/R0_QAT456_seed456_20261007/README.md`。
+
 ## 交付状态
 
 此包是成员 A 的**实验候选**，不是正式 R0 更新，也未经过成员 B RTL、Vivado 综合、实现或 FPGA 板卡验收。它保留冻结 R0 的网络形状和整数接口，目的是供团队评审是否安排独立的 B 侧候选分支验证。

@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 import zlib
 
+from .candidate_bundle_paths import resolve_candidate_bundle_root
+
 
 def _file_digest(path: Path) -> dict[str, str | int]:
     digest = hashlib.sha256()
@@ -20,16 +22,19 @@ def _file_digest(path: Path) -> dict[str, str | int]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Create an integrity manifest for an experimental ignored-data candidate bundle")
+    parser = argparse.ArgumentParser(description="Create an integrity manifest for an experimental integer candidate bundle")
     parser.add_argument("--bundle-dir", type=Path, required=True)
+    parser.add_argument(
+        "--allow-published",
+        action="store_true",
+        help="allow bundles under experiments/hybrid_4k_20261006/candidate_delivery",
+    )
     args = parser.parse_args()
 
-    root = args.bundle_dir.resolve()
     repo_root = Path(__file__).resolve().parents[2]
-    try:
-        root.relative_to(repo_root / ".data")
-    except ValueError as exc:
-        raise ValueError(f"Candidate bundle must remain under ignored .data/: {root}") from exc
+    root = resolve_candidate_bundle_root(
+        args.bundle_dir, repo_root, allow_published=args.allow_published
+    )
     if not root.is_dir():
         raise FileNotFoundError(root)
     files = {
@@ -40,7 +45,7 @@ def main() -> None:
     manifest = {
         "schema": "member-a-experimental-candidate-bundle-manifest-v1",
         "status": "EXPERIMENTAL_NOT_FORMAL_A_DELIVERY",
-        "bundle": str(root),
+        "bundle": root.relative_to(repo_root).as_posix() if args.allow_published else str(root),
         "file_count": len(files),
         "files": files,
     }

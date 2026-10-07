@@ -2,6 +2,8 @@
 
 状态：R0 多序列基线、R0T/R1/R2/R3/R4/R5 训练试验、留出测试、FFmpeg 降质交叉评测、FP32 与 QAT 整数彩色视频软件原型、QAT 候选复核，以及 10 段连续视频整数评测（1,240 帧）已完成。10 段逐段平均 PSNR 均高于同输入双三次，帧加权平均提高 1.113 dB；FlowerFocus 增益较小，显示结果依赖内容。完整指标见 `CANDIDATE_ACCEPTANCE_REPORT_2026-10-06.md`，逐段结果与本地播放器在 `.data/hybrid_4k_20261006/video_acceptance_20261006/`。所有候选仍是实验方案，未冻结或替换正式模型；没有据此宣称时域稳定、RTL/FPGA 或实时性能。实验不修改正式 A 模型、量化包、Golden 或 B/C 文件。
 
+10 段 R0/QAT seed456 对比所用的精确候选（`quant_params.json` SHA-256 `f2d6c4865b295f6a02c67a43ab2fb00cd36ede723ee8743575f6746f52d924ac`）单独发布在 `candidate_delivery/R0_QAT456_seed456_20261007/`。不要与较早 `quant_cross_eval_adapt456qat5/R0adapt456_QAT5` 候选混淆；后者的量化参数 SHA-256 为 `13f912c9…`，并非 1,240 帧报告使用的数值包。发布候选仍标记为实验状态，不覆盖正式 R0。
+
 ## 目标和边界
 
 实验链路固定为 `960×540 Y8 → FSRCNN×2 → 1920×1080 → 双三次×2 → 3840×2160`。R0–R5 只在本目录定义，不改 `src/member_a/model.py` 的冻结模型。结构 MAC 仅作候选初筛；帧率、DSP、存储和时序必须由 B/C 的硬件结果证明。
