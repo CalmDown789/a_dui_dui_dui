@@ -1,0 +1,122 @@
+{
+  "schema": "member-a-r0-qat456-output-delta-v1",
+  "status": "FULL_10_CLIP_OUTPUT_DELTA_AUDIT",
+  "scope": "A-side PC integer-reference output difference only; not FPGA or board acceptance",
+  "comparison": "Per-pixel absolute difference between the final uint8 Y frames from frozen R0 integer and experimental QAT seed456 integer, same input frame and same Keys x2 post-resize.",
+  "source_comparison_manifest_sha256": "9464961a8500752ebe225c9dac558f356949478a3bbf3b9f25a47e487463b04f",
+  "candidate_quant_params_sha256": "f2d6c4865b295f6a02c67a43ab2fb00cd36ede723ee8743575f6746f52d924ac",
+  "frozen_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "full_frame_counts": {
+    "Bosphorus_5s": 120,
+    "ReadySetGo_5s": 120,
+    "CityAlley_0_5s": 125,
+    "CityAlley_6_11s": 125,
+    "FlowerFocus_0_5s": 125,
+    "FlowerFocus_6_11s": 125,
+    "FlowerKids_0_5s": 125,
+    "FlowerKids_6_11s": 125,
+    "FlowerPan_0_5s": 125,
+    "FlowerPan_6_11s": 125
+  },
+  "overall": {
+    "frames": 1240,
+    "clips": 10,
+    "mean_changed_pixel_fraction": 0.3333783160733398,
+    "mean_absolute_difference": 0.33987960648925974,
+    "mean_p95_absolute_difference": 1.0,
+    "mean_p99_absolute_difference": 1.1927419354838709,
+    "max_absolute_difference": 9
+  },
+  "clips": [
+    {
+      "clip": "Bosphorus_5s",
+      "frames": 120,
+      "mean_changed_pixel_fraction": 0.4791853037390689,
+      "mean_absolute_difference": 0.49117092958301184,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 2.0,
+      "max_absolute_difference": 4
+    },
+    {
+      "clip": "CityAlley_0_5s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.27931464699074077,
+      "mean_absolute_difference": 0.28273946180555554,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 9
+    },
+    {
+      "clip": "CityAlley_6_11s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.27309105420524693,
+      "mean_absolute_difference": 0.27670560860339505,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 8
+    },
+    {
+      "clip": "FlowerFocus_0_5s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.29708163483796296,
+      "mean_absolute_difference": 0.2981465740740741,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 4
+    },
+    {
+      "clip": "FlowerFocus_6_11s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.35924079861111113,
+      "mean_absolute_difference": 0.36069832658179013,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 4
+    },
+    {
+      "clip": "FlowerKids_0_5s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.3076425954861111,
+      "mean_absolute_difference": 0.31595455246913584,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 5
+    },
+    {
+      "clip": "FlowerKids_6_11s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.3015232388117284,
+      "mean_absolute_difference": 0.3091990152391975,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 5
+    },
+    {
+      "clip": "FlowerPan_0_5s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.31940860050154324,
+      "mean_absolute_difference": 0.3233527874228395,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 4
+    },
+    {
+      "clip": "FlowerPan_6_11s",
+      "frames": 125,
+      "mean_changed_pixel_fraction": 0.3233547791280864,
+      "mean_absolute_difference": 0.3274853751929012,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.0,
+      "max_absolute_difference": 3
+    },
+    {
+      "clip": "ReadySetGo_5s",
+      "frames": 120,
+      "mean_changed_pixel_fraction": 0.4025392242557227,
+      "mean_absolute_difference": 0.4227082318592464,
+      "mean_p95_absolute_difference": 1.0,
+      "mean_p99_absolute_difference": 1.9916666666666667,
+      "max_absolute_difference": 9
+    }
+  ]
+}
