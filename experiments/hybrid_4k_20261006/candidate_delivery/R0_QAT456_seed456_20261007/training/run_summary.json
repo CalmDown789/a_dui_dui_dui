@@ -1,0 +1,31 @@
+{
+  "schema": "member-a-qatrun-portable-v1",
+  "status": "EXPERIMENTAL_NOT_FORMAL_A_DELIVERY",
+  "variant": "R0 FSRCNNSubpixel d16/s8/m1/c16",
+  "seed": 456,
+  "train_frames": 180,
+  "validation_frames": 10,
+  "epochs_completed": 5,
+  "learning_rate": 0.00001,
+  "patch_size_lr": 64,
+  "patches_per_frame": 2,
+  "batch_size": 4,
+  "best_epoch": 2,
+  "best_validation_fake_quant_mse": 0.000026988439640263095,
+  "initial_checkpoint_sha256": "956a6916d7fe059b4f0d2493a7196c3c2db03d72906e9f832b6ca33fde3363bf",
+  "final_checkpoint": {
+    "file": "r0_qat_best.pth",
+    "sha256": "123ba381d852a3eb5821a41ee417697bcbc50ece764506d3836b49567a267d02"
+  },
+  "training_log": {
+    "file": "qat_training_log.csv",
+    "sha256": "54458b4a5729b2cd75a2130794f0a494788d7778869a0bb98330c7435b141bc4"
+  },
+  "source_summary_sha256": "eed23bf670302c51fb68b3012e550f2e83086c9eb53ddf6cdff98879f0a36e30",
+  "limitations": [
+    "The base checkpoint and training/validation data are not included.",
+    "Training used synthetic FFmpeg bicubic pairs derived from lossy UVG HEVC material.",
+    "Fake-quant validation MSE is not a substitute for integer-reference PSNR/SSIM evaluation.",
+    "This remains an A-side experimental candidate; it is not an RTL, FPGA, or board acceptance result."
+  ]
+}

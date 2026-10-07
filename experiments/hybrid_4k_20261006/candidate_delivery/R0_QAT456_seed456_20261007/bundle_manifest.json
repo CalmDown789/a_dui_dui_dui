@@ -2,7 +2,7 @@
   "schema": "member-a-experimental-candidate-bundle-manifest-v1",
   "status": "EXPERIMENTAL_NOT_FORMAL_A_DELIVERY",
   "bundle": "experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007",
-  "file_count": 136,
+  "file_count": 140,
   "files": {
     "evaluation/per_image_metrics.csv": {
       "bytes": 17293,
@@ -350,19 +350,24 @@
       "sha256": "135838784b1eb897c22f485793a099adeee045c2d3b3f6694477e62809a7dbf8"
     },
     "README.md": {
-      "bytes": 3148,
-      "crc32": "366504e4",
-      "sha256": "b3c86b85a215ffe5497a5a707c23c281b04a924a042525022a9c6c4d048e8478"
+      "bytes": 3721,
+      "crc32": "5b8e0cb5",
+      "sha256": "50b0e58b6a73cc9d0e7dc4ccc6c53c63a05b18ac22ab4d267b39915ce4785003"
     },
     "source_provenance/source_bundle_manifest.json": {
       "bytes": 25693,
       "crc32": "158641dc",
       "sha256": "13cdb3b35cf6bf11f44afa9a7bafb390e63e7b4e6609ff75cd6a08a52e096984"
     },
+    "source_provenance/source_training_summary.json": {
+      "bytes": 1418,
+      "crc32": "9c97c492",
+      "sha256": "eed23bf670302c51fb68b3012e550f2e83086c9eb53ddf6cdff98879f0a36e30"
+    },
     "source_provenance.json": {
-      "bytes": 807,
-      "crc32": "7fbbf8f8",
-      "sha256": "166d45d507ab627a4551670ad18996ff3158e7bdfab226cb76e263e08ce58d12"
+      "bytes": 1285,
+      "crc32": "bca36048",
+      "sha256": "4c25de76dc2b16a8038acf0ac86f1e82d7ff49dd55c34b0282ee504b3e82ee14"
     },
     "test_vectors/impulse/expand_accum_hwc_int32.bin": {
       "bytes": 331776,
@@ -683,6 +688,21 @@
       "bytes": 20736,
       "crc32": "ff090ca9",
       "sha256": "9a97746c52efe7a1c59b69a0a41ce6ac39e113a869366d3c37e7515e64f08277"
+    },
+    "training/qat_training_log.csv": {
+      "bytes": 327,
+      "crc32": "3158516b",
+      "sha256": "54458b4a5729b2cd75a2130794f0a494788d7778869a0bb98330c7435b141bc4"
+    },
+    "training/r0_qat_best.pth": {
+      "bytes": 18633,
+      "crc32": "9c0a3942",
+      "sha256": "123ba381d852a3eb5821a41ee417697bcbc50ece764506d3836b49567a267d02"
+    },
+    "training/run_summary.json": {
+      "bytes": 1277,
+      "crc32": "376c8c41",
+      "sha256": "5aac49c7392628e2915660f2fee18b392d76b431d4a8c585663a77ebe55566d1"
     }
   }
 }

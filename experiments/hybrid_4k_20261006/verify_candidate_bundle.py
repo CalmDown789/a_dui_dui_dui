@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -116,6 +117,57 @@ def _verify_manifest_coverage(bundle_root: Path, manifest: dict[str, object]) ->
         raise AssertionError(
             f"Bundle manifest coverage mismatch: unlisted={unlisted}, missing={missing}"
         )
+
+
+def _verify_training_artifacts(bundle_root: Path) -> int:
+    training_root = bundle_root / "training"
+    provenance = json.loads((bundle_root / "source_provenance.json").read_text(encoding="utf-8"))
+    run_summary = json.loads((training_root / "run_summary.json").read_text(encoding="utf-8"))
+    source_summary_path = bundle_root / "source_provenance" / "source_training_summary.json"
+    source_summary_bytes = source_summary_path.read_bytes()
+    source_summary_sha = hashlib.sha256(source_summary_bytes).hexdigest()
+    source_summary = json.loads(source_summary_bytes)
+
+    checkpoint_path = training_root / run_summary["final_checkpoint"]["file"]
+    log_path = training_root / run_summary["training_log"]["file"]
+    checkpoint_sha = hashlib.sha256(checkpoint_path.read_bytes()).hexdigest()
+    log_sha = hashlib.sha256(log_path.read_bytes()).hexdigest()
+    expected_hashes = (
+        ("qat_checkpoint_sha256", run_summary["final_checkpoint"]["sha256"], checkpoint_sha),
+        ("qat_training_log_sha256", run_summary["training_log"]["sha256"], log_sha),
+        ("qat_source_summary_sha256", run_summary["source_summary_sha256"], source_summary_sha),
+    )
+    for provenance_key, portable_hash, actual_hash in expected_hashes:
+        if portable_hash != actual_hash or provenance.get(provenance_key) != actual_hash:
+            raise AssertionError(f"Training artifact hash mismatch: {provenance_key}")
+
+    evaluation_summary = json.loads(
+        (bundle_root / "evaluation" / "summary.json").read_text(encoding="utf-8")
+    )
+    if evaluation_summary.get("checkpoint_sha256") != checkpoint_sha:
+        raise AssertionError("Evaluated checkpoint differs from the published QAT checkpoint")
+    for key in (
+        "seed",
+        "train_frames",
+        "validation_frames",
+        "epochs_completed",
+        "best_epoch",
+        "best_validation_fake_quant_mse",
+    ):
+        if run_summary.get(key) != source_summary.get(key):
+            raise AssertionError(f"Portable and source training summaries differ: {key}")
+
+    with log_path.open("r", newline="", encoding="utf-8") as stream:
+        rows = list(csv.DictReader(stream))
+    epochs = [int(row["epoch"]) for row in rows]
+    if epochs != list(range(1, run_summary["epochs_completed"] + 1)):
+        raise AssertionError("QAT training log does not contain the expected contiguous epochs")
+    best_row = min(rows, key=lambda row: float(row["validation_fake_quant_mse"]))
+    if int(best_row["epoch"]) != run_summary["best_epoch"]:
+        raise AssertionError("QAT best epoch does not match the training log")
+    if float(best_row["validation_fake_quant_mse"]) != run_summary["best_validation_fake_quant_mse"]:
+        raise AssertionError("QAT best validation metric does not match the training log")
+    return len(rows)
 
 
 def _stage_metadata(values: np.ndarray) -> dict[str, object]:
@@ -249,6 +301,7 @@ def main() -> None:
         checked_files += 1
 
     checked_export_tensors, checked_export_files = _verify_quant_export_views(root)
+    checked_training_epochs = _verify_training_artifacts(root)
     reference = FixedReference(root / "quant")
     vectors_root = root / "test_vectors"
     vector_count = 0
@@ -275,6 +328,7 @@ def main() -> None:
         "checked_package_files": checked_files,
         "checked_quant_tensors": checked_export_tensors,
         "checked_quant_export_views": checked_export_files,
+        "checked_training_epochs": checked_training_epochs,
         "checked_vector_stages": vector_count,
         "checked_full_frame_stages": stage_count,
         "limitations": "This validates A-side files and Python integer reference only; not B RTL, synthesis, FPGA, or board.",

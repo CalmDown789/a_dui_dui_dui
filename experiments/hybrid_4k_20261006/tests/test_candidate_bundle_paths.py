@@ -13,6 +13,7 @@ from experiments.hybrid_4k_20261006.verify_candidate_bundle import (
     _hex_words,
     _verify_manifest_coverage,
     _verify_model_contract,
+    _verify_training_artifacts,
 )
 
 
@@ -94,3 +95,16 @@ def test_published_candidate_matches_frozen_architecture_contract() -> None:
     changed["layers"][0]["padding"] = [0, 0]
     with pytest.raises(AssertionError, match="Candidate layer contract mismatch for feature"):
         _verify_model_contract(changed)
+
+
+def test_qat_training_log_and_checkpoint_match_evaluation() -> None:
+    repo = Path(__file__).resolve().parents[3]
+    bundle = (
+        repo
+        / "experiments"
+        / "hybrid_4k_20261006"
+        / "candidate_delivery"
+        / "R0_QAT456_seed456_20261007"
+    )
+
+    assert _verify_training_artifacts(bundle) == 5

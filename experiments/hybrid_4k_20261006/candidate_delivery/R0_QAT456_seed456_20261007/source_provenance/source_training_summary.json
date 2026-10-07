@@ -1,0 +1,26 @@
+{
+  "schema": "member-a-candidate-qat-run-v1",
+  "status": "EXPERIMENTAL_NOT_FORMAL_A_DELIVERY",
+  "variant": "R0 d16/s8/m1/c16",
+  "initial_checkpoint": "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\hybrid_4k_20261006\\train_ffmpeg_R0_adapt_seed456\\r0_best.pth",
+  "initial_checkpoint_sha256": "956a6916d7fe059b4f0d2493a7196c3c2db03d72906e9f832b6ca33fde3363bf",
+  "train_frames": 180,
+  "validation_frames": 10,
+  "epochs_completed": 5,
+  "seed": 456,
+  "learning_rate": 1e-05,
+  "patch_size_lr": 64,
+  "patches_per_frame": 2,
+  "batch_size": 4,
+  "best_epoch": 2,
+  "best_validation_fake_quant_mse": 2.6988439640263095e-05,
+  "checkpoint": "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\hybrid_4k_20261006\\train_ffmpeg_R0_adapt456_qat5\\r0_qat_best.pth",
+  "checkpoint_sha256": "123ba381d852a3eb5821a41ee417697bcbc50ece764506d3836b49567a267d02",
+  "training_log": "D:\\Codex File\\dialogue file\\member_a_full_integer_golden\\.data\\hybrid_4k_20261006\\train_ffmpeg_R0_adapt456_qat5\\qat_training_log.csv",
+  "device": "cuda:0",
+  "limitations": [
+    "QAT candidate is a separate experimental model and does not alter frozen A assets.",
+    "Validation and training use synthetic FFmpeg bicubic pairs derived from lossy UVG HEVC.",
+    "QAT validation MSE is not a substitute for exact integer-reference full-frame PSNR/SSIM evaluation."
+  ]
+}

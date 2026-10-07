@@ -53,7 +53,7 @@ seed456 候选包位于忽略数据目录：
 
 与 1,240 帧 R0/QAT seed456 视频评测对应的同一候选现已镜像发布到独立目录：
 `experiments/hybrid_4k_20261006/candidate_delivery/R0_QAT456_seed456_20261007/`。
-候选 `quant_params.json` SHA-256 为 `f2d6c4865b295f6a02c67a43ab2fb00cd36ede723ee8743575f6746f52d924ac`；原始来源 bundle manifest SHA-256 为 `13cdb3b35cf6bf11f44afa9a7bafb390e63e7b4e6609ff75cd6a08a52e096984`。发布包新增了交接说明和来源记录，当前 manifest 覆盖 136 个文件；发布副本已通过 136 个文件摘要、48 组小向量阶段和 12 个全尺寸阶段复核。它仍是实验候选，不是 R0 正式更新。
+候选 `quant_params.json` SHA-256 为 `f2d6c4865b295f6a02c67a43ab2fb00cd36ede723ee8743575f6746f52d924ac`；原始来源 bundle manifest SHA-256 为 `13cdb3b35cf6bf11f44afa9a7bafb390e63e7b4e6609ff75cd6a08a52e096984`。发布包另含 seed456 的 QAT checkpoint（SHA-256 `123ba381d852a3eb5821a41ee417697bcbc50ece764506d3836b49567a267d02`）、逐 epoch 训练日志及便携训练摘要，方便追溯权重来源。它仍是实验候选，不是 R0 正式更新。
 
 seed123 候选包位于：
 `.data/hybrid_4k_20261006/quant_candidate_acceptance_20261006_samecal_r0qat123/R0QAT123/`
