@@ -44,6 +44,58 @@ def test_exact_directory(bundle):
     assert all(frame["byte_mismatch"] == 0 and frame["first_error"] is None for frame in report["frames"])
 
 
+def test_c_natural_video_manifest_and_capture(tmp_path):
+    frames = []
+    capture = tmp_path / "capture"
+    capture.mkdir()
+    (tmp_path / "input").mkdir()
+    (tmp_path / "golden").mkdir()
+    for frame_id in range(2):
+        input_bytes = bytes([10 + frame_id] * 4)
+        golden_bytes = bytes([30 + frame_id] * 16)
+        input_name = f"input/frame_{frame_id:04d}_y.bin"
+        golden_name = f"golden/frame_{frame_id:04d}_y.bin"
+        (tmp_path / input_name).write_bytes(input_bytes)
+        (tmp_path / golden_name).write_bytes(golden_bytes)
+        (capture / f"frame_{frame_id:04d}_y.bin").write_bytes(golden_bytes)
+        frames.append({
+            "frame_id": frame_id,
+            "input": input_name,
+            "input_bytes": len(input_bytes),
+            "input_sha256": compare.digest(input_bytes)["sha256"],
+            "golden": golden_name,
+            "golden_bytes": len(golden_bytes),
+            "golden_sha256": compare.digest(golden_bytes)["sha256"],
+        })
+    manifest = {
+        "schema": 1,
+        "kind": "NATURAL_VIDEO_KIT_NOT_BOARD_TESTED",
+        "frame_count": 2,
+        "input_geometry": [2, 2],
+        "output_geometry": [4, 4],
+        "frames": frames,
+    }
+    path = tmp_path / "SEQUENCE_MANIFEST.json"
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = compare.compare_capture(path, capture_dir=capture)
+    assert report["status"] == "PASS"
+    assert [frame["frame_id"] for frame in report["frames"]] == [0, 1]
+    assert report["capture_mode"] == "named_frame_files"
+    assert report["source_manifest"] == {"schema": 1, "kind": "NATURAL_VIDEO_KIT_NOT_BOARD_TESTED"}
+    command = [sys.executable, str(ROOT / "scripts/compare_board_sequence.py"), "--manifest", str(path), "--capture-dir", str(capture)]
+    cli = subprocess.run(command, capture_output=True, text=True)
+    assert cli.returncode == 0 and json.loads(cli.stdout)["status"] == "PASS"
+
+    changed = bytearray((capture / "frame_0001_y.bin").read_bytes())
+    changed[7] ^= 1
+    (capture / "frame_0001_y.bin").write_bytes(changed)
+    failed = compare.compare_capture(path, capture_dir=capture)
+    assert failed["status"] == "FAIL"
+    assert failed["frames"][1]["byte_mismatch"] == 1
+    assert failed["frames"][1]["first_error"]["byte_offset"] == 7
+
+
 @pytest.mark.parametrize("mutation", ["byte", "short", "long", "missing", "wrong_order", "repeat", "extra_file"])
 def test_capture_errors(bundle, mutation):
     path, capture = bundle

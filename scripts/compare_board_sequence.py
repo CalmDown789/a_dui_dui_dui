@@ -23,6 +23,8 @@ def safe_path(root, relative):
 
 def load_manifest(path):
     manifest = json.loads(path.read_text(encoding="utf-8"))
+    if manifest.get("schema") == 1 and manifest.get("kind") == "NATURAL_VIDEO_KIT_NOT_BOARD_TESTED":
+        manifest = normalize_c_natural_video_manifest(path, manifest)
     frames = manifest["frames"]
     if manifest["schema"] != "member-a-prerecorded-integer-sequence-v1":
         raise ValueError("Unsupported manifest schema")
@@ -59,6 +61,54 @@ def load_manifest(path):
     if len(set(names)) != len(names):
         raise ValueError("Golden file paths must be unique")
     return manifest
+
+
+def normalize_c_natural_video_manifest(path, source):
+    """Adapt C's frozen natural-video manifest without changing its evidence."""
+    frame_count = source.get("frame_count")
+    frames = source.get("frames")
+    input_geometry = source.get("input_geometry")
+    output_geometry = source.get("output_geometry")
+    if type(frame_count) is not int or frame_count <= 0 or not isinstance(frames, list) or len(frames) != frame_count:
+        raise ValueError("Invalid C natural-video frame_count")
+    if (not isinstance(input_geometry, list) or len(input_geometry) != 2
+            or not isinstance(output_geometry, list) or len(output_geometry) != 2):
+        raise ValueError("Invalid C natural-video geometry")
+    in_w, in_h = input_geometry
+    out_w, out_h = output_geometry
+    if any(type(value) is not int or value <= 0 for value in (in_w, in_h, out_w, out_h)):
+        raise ValueError("C natural-video geometry must contain positive integers")
+
+    def verified_file(relative, expected_bytes, expected_sha256, label):
+        if not isinstance(relative, str) or not relative:
+            raise ValueError(f"Missing C natural-video {label} path")
+        actual_data = safe_path(path.parent, relative).read_bytes()
+        actual = digest(actual_data)
+        if actual["bytes"] != expected_bytes or actual["sha256"] != expected_sha256:
+            raise ValueError(f"C natural-video {label} integrity mismatch: {relative}")
+        return {"path": relative, **actual}
+
+    normalized_frames = []
+    for index, frame in enumerate(frames):
+        frame_id = frame.get("frame_id")
+        if type(frame_id) is not int or frame_id != index:
+            raise ValueError("C natural-video frame IDs must be contiguous from zero")
+        input_meta = verified_file(frame.get("input"), frame.get("input_bytes"), frame.get("input_sha256"), "input")
+        golden_meta = verified_file(frame.get("golden"), frame.get("golden_bytes"), frame.get("golden_sha256"), "Golden")
+        normalized_frames.append({
+            "frame_id": frame_id,
+            "input": input_meta,
+            "golden": golden_meta,
+            "capture_path": f"frame_{frame_id:04d}_y.bin",
+        })
+    return {
+        "schema": "member-a-prerecorded-integer-sequence-v1",
+        "frame_count": frame_count,
+        "input": {"shape_hwc": [in_h, in_w, 1], "dtype": "uint8", "layout": "HWC_row_major", "bytes_per_frame": in_w * in_h},
+        "output": {"shape_hwc": [out_h, out_w, 1], "dtype": "uint8", "layout": "HWC_row_major", "bytes_per_frame": out_w * out_h},
+        "frames": normalized_frames,
+        "source_manifest": {"schema": source["schema"], "kind": source["kind"]},
+    }
 
 
 def compare_bytes(expected, received, width):
@@ -100,7 +150,7 @@ def compare_capture(manifest_path, *, capture_dir=None, stream=None, capture_fil
         elif capture_file is not None:
             received = capture_file.read_bytes()
         else:
-            path = safe_path(capture_dir,frame["golden"]["path"])
+            path = safe_path(capture_dir, frame.get("capture_path", frame["golden"]["path"]))
             missing_file = not path.is_file()
             received = b"" if missing_file else path.read_bytes()
         result = {"frame_id": frame["frame_id"], "missing_file": missing_file,
@@ -111,13 +161,14 @@ def compare_capture(manifest_path, *, capture_dir=None, stream=None, capture_fil
             if other["frame_id"] != frame["frame_id"] and other["golden"]["sha256"] == result["received"]["sha256"]
         ]
         results.append(result)
-    expected_names = {safe_path(capture_dir,frame["golden"]["path"]) for frame in frames} if capture_dir else set()
+    expected_names = {safe_path(capture_dir, frame.get("capture_path", frame["golden"]["path"])) for frame in frames} if capture_dir else set()
     unexpected_files = sorted(path.relative_to(capture_dir).as_posix() for path in capture_dir.rglob("*.bin") if path.resolve() not in expected_names) if capture_dir else []
     extra_stream_bytes = max(0, len(payload) - frame_bytes * len(frames)) if payload is not None else 0
     return {
         "schema": "member-a-board-sequence-comparison-v1",
         "status": "PASS" if all(result["status"] == "PASS" for result in results) and not extra_stream_bytes and not unexpected_files else "FAIL",
         "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+        "source_manifest": manifest.get("source_manifest", {"schema": manifest["schema"]}),
         "frame_count": len(frames), "frames": results,
         "extra_stream_bytes": extra_stream_bytes, "unexpected_files": unexpected_files,
         "capture_mode": "headerless_stream" if stream else "single_frame" if capture_file else "named_frame_files",
@@ -159,7 +210,7 @@ def main():
         for index, frame_result in enumerate(report["frames"]):
             frame = next(frame for frame in manifest["frames"] if frame["frame_id"] == frame_result["frame_id"])
             data = payload[index * height * width:(index + 1) * height * width] if payload is not None else (
-                args.capture_file.read_bytes() if args.capture_file else safe_path(args.capture_dir,frame["golden"]["path"]).read_bytes())
+                args.capture_file.read_bytes() if args.capture_file else safe_path(args.capture_dir, frame.get("capture_path", frame["golden"]["path"])).read_bytes())
             image = Image.frombytes("L", (width, height), data)
             image.save(args.preview_dir / f"frame_{frame['frame_id']:03d}_capture.png")
             previews.append(image.resize((480, 270)))
