@@ -1,0 +1,16 @@
+{
+  "attempts": [
+    {
+      "case": "window128_normal_old_injected_sender",
+      "status": "FAIL",
+      "error": "FrameDeadlineError: frame deadline",
+      "frame_timeout_seconds": 30,
+      "raw_prefix": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP02_CODEC_TIMING_20261009\\main\\proof\\host_runs\\pld_host_window128_mhl7dc8g\\normal\\datagrams.bin",
+      "raw_prefix_bytes": 882003521,
+      "complete_journal": false,
+      "root_cause": "Old fixture burst() resent all outstanding window slots after each ACK, including packets already in the in-memory queue.",
+      "resolution": "Use next_q for new packets and a separate retry() path. Preserve timeout and production candidate source."
+    }
+  ],
+  "board_io": false
+}

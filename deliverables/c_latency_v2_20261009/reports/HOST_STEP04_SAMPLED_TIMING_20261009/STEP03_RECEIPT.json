@@ -1,0 +1,80 @@
+{
+  "status": "STEP03_COMPLETE_FOR_USER_REVIEW_NOT_RELEASE",
+  "changed_functional_files": [
+    "streaming/streaming_client.py",
+    "streaming/nonblocking_io.py"
+  ],
+  "source_identities_verified": true,
+  "step01_and_step02_candidates_unchanged": true,
+  "paired_release_modified": false,
+  "mode_results": [
+    {
+      "io_mode": "timeout",
+      "status": "PASS",
+      "host_fault_cases": 26,
+      "window128_cases": 7,
+      "host_results": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\host_regression_runs\\pld_stream_host_n8eceigb\\RESULTS.json",
+      "window128_results": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\main\\proof\\host_runs\\pld_host_window128_1omiuk1y\\RESULTS.json",
+      "host_results_sha256": "f96e1b644b6ebb582d81f78e8f53a2f344b855ae802c46fa9e98724a9d9779f9",
+      "window128_results_sha256": "9b18fb303b7683d6f75e3de17e3e66894c3148a5cbdede6e5108ee82d75f867d"
+    },
+    {
+      "io_mode": "nonblocking",
+      "status": "PASS",
+      "host_fault_cases": 26,
+      "window128_cases": 7,
+      "host_results": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\host_regression_runs\\pld_stream_host_yffcrdf3\\RESULTS.json",
+      "window128_results": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\main\\proof\\host_runs\\pld_host_window128_ntdp8w6h\\RESULTS.json",
+      "host_results_sha256": "039c452122b306e9c997536a42e40ba6a4c36458dab9d6ad56f5ed3aec1e15b2",
+      "window128_results_sha256": "19b0d1e6c15016fcda5ca899eb66c8cd7f1603e8b2d3ff28914446b7053eb1fd"
+    }
+  ],
+  "scheduler_checks": 21,
+  "transfer_write_backpressure_checks": 5,
+  "protocol_edge_checks": 6,
+  "nonblocking_receive_cache_capacity": 32,
+  "nonblocking_pending_tx_capacity": 1,
+  "batch_budget_ns": 200000,
+  "performance_comparison": {
+    "step02_timeout": 124662400.0,
+    "step03_nonblocking": 125309550.0
+  },
+  "relative_offline_wall_change_percent": 0.519122044818654,
+  "overall_performance_gain_proven": false,
+  "scope": "INJECTED_MEMORY_TRANSPORT_AND_MODEL_CLOCK_NO_BOARD_OR_REAL_SOCKET",
+  "real_windows_select_exercised": false,
+  "low_perturbation_timing_mode_implemented": false,
+  "input_window_or_credit_changed": false,
+  "cross_frame_prefetch_implemented": false,
+  "board_io": false,
+  "socket_created": false,
+  "RTL_changed": false,
+  "BIT_generated": false,
+  "next_step_started": false,
+  "early_prefetch_fixture_attempt_preserved": true,
+  "artifact_sha256": {
+    "SOURCE_MANIFEST.json": "5cc8c7e1c1d73ec620f2752db233384a2b0ca06555d9d22571cb681a16caec9a",
+    "STEP02_BASELINE.json": "c0eb1a14356e19ecf42c8c86bedb27ef3cf3749600eaebea7f2d47b474fea074",
+    "STEP02_RECEIPT.json": "0afab128794465f746507d7fe89f2ad33dcd80b02f1d1ba453053e0ccba1693e",
+    "MODE_COMPARISON.json": "99ba35c2063629633b2bca7fee30bd1908c843fef136f538db9c9eee63244721",
+    "NONBLOCKING_CHECKS.json": "9dc6aad8eb5e80d110fee13fd8503d151e575a49d8514ab6909caaf5c0de1d23",
+    "TRANSFER_BACKPRESSURE.json": "3d72ad932c9972831b53c308d5266e4964bfc1c391f9a29c6c81af5021c459cf",
+    "REPLAY_COMPARISON.json": "a0a54a1ec05715b70a5334df16ea823cab9371a78b0e304903a833212a69341e",
+    "EARLY_FIXTURE_ATTEMPT.json": "ed38566d0a6675367186cb76ce6fd4900a5844b63782067d23bfac5717c58b0e",
+    "nonblocking_changes.patch": "ab847e63fc98a8dbeb0fbf790b18cc5df0ba839e3dcffb38566b015f73d44682",
+    "\u7b2c3\u6b65\u68c0\u67e5\u8bf4\u660e.md": "0057398bb5a7943be6cc7d9f01a87905d62e37fd7290d7e1075a8d75c2b8eda8",
+    "finalize_step03.py": "052a28404be07f45e0d01bd3775f947753da3d2cde50cf4dfa4a01564f2abb72",
+    "validation/protocol_edge_regression.json": "1e40c75fae400525c21ca288f17a82a7565bff85feac0f020927253ce02cce33",
+    "validation\\benchmark_replay.py": "a228dead6cfdc5e0bc84dca7cc1a02249dd457e043ab457017c233eb54a707d0",
+    "validation\\check_nonblocking.py": "f7feef32de7b40c953836f9cc4968b35ead0602626357cb33cdb70e780bfba81",
+    "validation\\check_transfer_backpressure.py": "92a5e83ca20c96fa0fafbf56b02e982bf29bfe12541bfe4b92411d757bcb3017",
+    "validation\\host_regression_adapted.py": "4fc0dc38b89bbb8d3a51efdb69843ff97b8953b34615fdd0b93114214e5dbc31",
+    "validation\\injected_sender.py": "e1069a1cffbc9244e879f59449261313c38fae0cbabba2794c3605d46e51d82b",
+    "validation\\protocol_edge_regression.py": "9eede2b9fe0212fa4d90f98ffd1aa4b70a1b1447b91f1980c54167eb7bc35fa5",
+    "validation\\run_host_regression.py": "cbfabd8cdc317cf297a5c92a766587d114c61fe0cebca6bdcb6b6d0472e7a956",
+    "validation\\run_mode_comparison.py": "e92c5e217223c321566bb566dfb4ec3bd8422e74f5ead8ca391ef08da24fc19b",
+    "validation\\run_window128.py": "771955cb3027cf04435886184c094cfef0e25965bbba2e2f82ac22c7df68ba42",
+    "validation\\transport_fixture.py": "2bfbb83857ebf6a8c80aa6fe547bc3191d90f56ae86b5e0675984b0867fb42dd",
+    "validation\\window128_adapted.py": "fb1f84c98aff842ef5831130b52d6ab3f4489445675f6517d852f7d1282143d4"
+  }
+}

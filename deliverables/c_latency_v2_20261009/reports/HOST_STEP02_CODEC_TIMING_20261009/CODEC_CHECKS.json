@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "OFFLINE_ORIGINAL_JOURNAL_AND_LOCAL_DECODE_BENCHMARK_NOT_BOARD_OR_SOCKET_FPS",
+  "original_valid_records_equal": 466354,
+  "mutated_and_boundary_cases": 10390,
+  "acceptance_fields_error_reason_and_error_packet_equal": true,
+  "rejected_cases": 9490,
+  "accepted_cases": 900,
+  "journal_sha256": "4fe2c411af88a22d404f2dd8a8815fc7a7f1a66f66a4ee3d2073da0653b190ca",
+  "median_ns_per_packet": {
+    "baseline": 2318.8777777777777,
+    "candidate": 1688.5098765432099
+  },
+  "laps_ns_per_packet": {
+    "baseline": [
+      1934.1827160493826,
+      2549.7506172839508,
+      2450.9975308641974,
+      2465.9950617283953,
+      2173.748148148148,
+      2293.3432098765434,
+      2136.3703703703704,
+      2344.4123456790126
+    ],
+    "candidate": [
+      1465.879012345679,
+      1677.437037037037,
+      1645.125925925926,
+      1723.8987654320988,
+      1849.3604938271606,
+      1785.8444444444444,
+      1624.0740740740741,
+      1699.5827160493827
+    ]
+  },
+  "speedup": 1.3733279325111702,
+  "decode_time_reduction_percent": 27.184179661192008
+}

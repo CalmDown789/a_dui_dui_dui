@@ -1,0 +1,820 @@
+--- original/rtl/evf2_result_window.sv
++++ integrated/rtl/evf2_result_window.sv
+@@ -196,7 +196,13 @@
+                     desc_action_q<=reply_release_q?2:1;
+                 end else if(active)begin
+                     if(scan_q<base_q)scan_q<=base_q;
+-                    else if(scan_q>=next_q)begin scan_q<=base_q;retry_pass_q<=retry_requested_q;retry_requested_q<=0;end
++                    else if(scan_q>=next_q)begin
++                        scan_q<=base_q;
++                        // Consume both a queued retry and expiry on this edge.
++                        // Clearing the queue must not discard a same-edge expiry.
++                        retry_pass_q<=retry_requested_q||(retry_timer_q==RETRY_CYCLES-1);
++                        retry_requested_q<=0;
++                    end
+                     else if(retry_pass_q&&ready_q[scan_bank]&&!acked_q[scan_bank]&&
+                         sent_q[scan_bank]&&!unsent_ready&&scan_age_sequence_q!=scan_q)begin
+                         // Hold this scan position for its registered age.
+--- original/streaming/streaming_client.py
++++ integrated/streaming/streaming_client.py
+@@ -12,18 +12,29 @@
+ HERE=Path(__file__).resolve().parent
+ sys.path.insert(0,str(HERE.parent/'sources/host'))
+ sys.path.insert(0,str(HERE.parent/'optimization_20261007'))
+-from video_protocol import Packet,decode,InvalidPacket
++from video_protocol import Packet,decode,InvalidPacket,HEADER,CHUNK_BYTES
+ from stream_receiver import OutputReceiver
+ from binary_journal import BinaryJournal
+ from timing_diagnostics import BoundedTiming
++from nonblocking_io import NonblockingDatagramIO
+ 
+ def encode2(p):
+     raw=p.encode();head=b'EVF2\x02'+raw[5:60];return head+struct.pack('!I',zlib.crc32(head))+raw[64:]
+ def decode_any(raw):
+     if raw[:5]==b'EVF1\x01':return 1,decode(raw)
+-    if raw[:5]!=b'EVF2\x02' or len(raw)<64 or zlib.crc32(raw[:60])!=int.from_bytes(raw[60:64],'big'):
++    if raw[:5]!=b'EVF2\x02' or len(raw)<64:
+         raise InvalidPacket('version/header CRC')
+-    h=b'EVF1\x01'+raw[5:60];return 2,decode(h+struct.pack('!I',zlib.crc32(h))+raw[64:])
++    (magic,version,kind,flags,session,frame_id,sequence,offset,frame_bytes,frame_crc,
++     count,status,next_offset,reserved,payload_crc,header_crc)=HEADER.unpack_from(raw)
++    if zlib.crc32(raw[:60])!=header_crc:
++        raise InvalidPacket('version/header CRC')
++    if len(raw)>64+CHUNK_BYTES:raise InvalidPacket('LENGTH')
++    # Validate the original EVF2 bytes once; avoid constructing an EVF1 surrogate.
++    packet=Packet(kind,session,frame_id,sequence,offset,frame_bytes,frame_crc,
++                  raw[64:],status,next_offset,flags,reserved)
++    if count!=len(raw)-64:raise InvalidPacket('LENGTH',packet)
++    if zlib.crc32(packet.payload)!=payload_crc:raise InvalidPacket('PAYLOAD_CRC',packet)
++    return version,packet
+ 
+ class FrameDeadlineError(RuntimeError):
+     """Distinct from socket.timeout (which aliases TimeoutError in Python)."""
+@@ -39,7 +50,11 @@
+ 
+ class StreamingClient:
+     def __init__(self,transport,peer,session,out,input_bytes=518400,output_bytes=2073600,
+-                 input_window=16,output_window=16,timeout=.02,attempts=4,frame_timeout=10,output_ack_batch=None,output_ack_delay=.001,frame_log_mode='snapshot'):
++                 input_window=16,output_window=16,timeout=.02,attempts=4,frame_timeout=10,output_ack_batch=None,output_ack_delay=.001,frame_log_mode='snapshot',
++                 io_mode='timeout',readiness_waiter=None,receive_batch_packets=32,receive_batch_budget_ns=200_000,timing_mode='full',timing_sample_every=16):
++        if io_mode not in ('timeout','nonblocking'):raise ValueError('explicit IO mode')
++        if not 1<=receive_batch_packets<=128 or not 1<=receive_batch_budget_ns<=10_000_000:raise ValueError('bounded receive batch')
++        if io_mode=='nonblocking' and not callable(getattr(transport,'setblocking',None)):raise TypeError('nonblocking transport required')
+         if len(session)!=16 or not 1<=input_window<=16 or not 1<=output_window<=128:raise ValueError('bounded explicit configuration')
+         if timeout<=0 or frame_timeout<=0 or not 1<=attempts<=10:raise ValueError('deadlines')
+         self.transport,self.peer,self.session=transport,peer,session
+@@ -50,26 +65,44 @@
+         if output_ack_delay<=0:raise ValueError('positive ACK flush deadline required')
+         if frame_log_mode not in ('snapshot','jsonl'):raise ValueError('frame log mode')
+         self.ack_delay=output_ack_delay;self.ack_started=None
+-        self.timing=BoundedTiming()
++        self.timing=BoundedTiming(mode=timing_mode,sample_every=timing_sample_every)
+         self.journal=BinaryJournal(out,timing=self.timing);self.out=Path(out);self.receiver=None;self.golden=None
+         self.frame_log_mode=frame_log_mode
+         self.frame_event_file=(self.out/'FRAMES.jsonl').open('x',encoding='utf-8') if frame_log_mode=='jsonl' else None
+         self.inbox=deque();self.frames=[];self.serial=self.received=self.ignored=self.retries=self.max_retained=0
+         self.deadline=None;self.negotiated=False;self.max_inbox=0;self._last_recv_return_ns=None;self._timing_saved=False
++        self.io_mode=io_mode;self.io=None
++        if io_mode=='nonblocking':
++            try:
++                self.io=NonblockingDatagramIO(transport,self.journal,self.timing,self._capture_rx,
++                    waiter=readiness_waiter,batch_packets=receive_batch_packets,
++                    batch_budget_ns=receive_batch_budget_ns,check_deadline=self.check_deadline)
++            except BaseException:
++                self.abort();raise
++    def _capture_rx(self,raw,source,stamp):
++        self.journal.append(1,raw,source,stamp=stamp);self.received+=1
+     def send(self,raw):
+-        self.journal.append(0,raw,self.peer)
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
+-        try:self.transport.sendto(raw,self.peer)
++        self.check_deadline()
++        if self.io is None:self.journal.append(0,raw,self.peer)
++        send_stage='scheduled_send' if self.io is not None else 'sendto'
++        sample=self.timing.begin(send_stage)
++        try:
++            if self.io is None:
++                if self.transport.sendto(raw,self.peer)!=len(raw):raise OSError('partial datagram send')
++            else:
++                until=time.perf_counter()+self.timeout
++                if self.deadline is not None:until=min(until,self.deadline)
++                self.io.send(raw,self.peer,until)
+         finally:
+-            self.timing.record('sendto',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                               {'wire_version':raw[4] if len(raw)>4 else None,'packet_type':raw[5] if len(raw)>5 else None,
+-                                'raw_bytes':len(raw)})
++            if sample is not None:
++                self.timing.end(send_stage,sample,{'wire_version':raw[4] if len(raw)>4 else None,
++                    'packet_type':raw[5] if len(raw)>5 else None,'raw_bytes':len(raw)})
+         self.serial+=1;self.timing.increment('sendto_datagrams')
+         if len(raw)>5 and raw[:4]==b'EVF2' and raw[5]==0x97:
+             self.timing.increment('proof_ack_datagrams')
+             self.timing.increment('proof_ack_entries',max(0,(len(raw)-64)//8))
+     def check_deadline(self):
+-        if self.deadline is not None and time.perf_counter()>self.deadline:raise FrameDeadlineError('frame deadline')
++        if self.deadline is not None and time.perf_counter()>=self.deadline:raise FrameDeadlineError('frame deadline')
+     def output_acks(self):
+         if self.receiver is None or not self.receiver.ack_pending:
+             # A frame may finish while a delayed ACK timer is still armed. Once
+@@ -78,16 +111,14 @@
+             # through its retries without waiting on the socket.
+             self.ack_started=None
+             return
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('proof_batch_take')
+         body=self.receiver.take_proofs()
+-        self.timing.record('proof_batch_take',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                           {'entries':len(body)//8})
++        if sample is not None:self.timing.end('proof_batch_take',sample,{'entries':len(body)//8})
+         self.ack_started=None
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('proof_packet_build')
+         raw=encode2(Packet(0x97,self.session,self.receiver.frame,frame_bytes=self.output_bytes,
+             payload=body,status=1,next_offset=min(self.receiver.contiguous*1024,self.output_bytes)))
+-        self.timing.record('proof_packet_build',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                           {'entries':len(body)//8,'raw_bytes':len(raw)})
++        if sample is not None:self.timing.end('proof_packet_build',sample,{'entries':len(body)//8,'raw_bytes':len(raw)})
+         self.send(raw)
+     # QPC/perf_counter is monotonic and high resolution on Windows; Python
+     # 3.11/3.12 monotonic may use a 15.625ms GetTickCount64 clock.
+@@ -107,62 +138,71 @@
+             ack_wakeup=ack_wait<=wait
+             wait=min(wait,ack_wait)
+         if wait<=0:self.check_deadline();raise socket.timeout('receive deadline')
+-        set_began=time.perf_counter_ns();set_cpu=time.thread_time_ns()
+-        try:self.transport.settimeout(wait)
+-        finally:self.timing.record('settimeout',time.perf_counter_ns()-set_began,time.thread_time_ns()-set_cpu,
+-                                   {'requested_timeout_ns':int(wait*1e9)})
+-        recv_began=time.perf_counter_ns();recv_cpu=time.thread_time_ns()
+-        if self._last_recv_return_ns is not None:
+-            self.timing.record('receive_service_interval',recv_began-self._last_recv_return_ns)
+-        try:raw,source=self.transport.recvfrom(65535)
++        if getattr(self,'io',None) is None:
++            sample=self.timing.begin('settimeout')
++            try:self.transport.settimeout(wait)
++            finally:
++                if sample is not None:self.timing.end('settimeout',sample,{'requested_timeout_ns':int(wait*1e9)})
++        recv_stage='scheduled_receive' if getattr(self,'io',None) is not None else 'recvfrom'
++        sample=self.timing.begin(recv_stage)
++        if self.timing.mode=='full' and self._last_recv_return_ns is not None:
++            self.timing.record('receive_service_interval',sample[0]-self._last_recv_return_ns)
++        try:
++            if getattr(self,'io',None) is None:raw,source=self.transport.recvfrom(65535)
++            else:
++                item=self.io.receive(now+wait)
++                if item is None:
++                    if sample is not None:self.timing.end(recv_stage,sample,{'result':'early_wakeup'})
++                    if self.timing.mode=='full':self._last_recv_return_ns=time.perf_counter_ns()
++                    return None
++                raw,source=item
+         except socket.timeout:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,{'result':'timeout'})
+-            self._last_recv_return_ns=recv_end
++            recv_end=time.perf_counter_ns() if sample is not None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'timeout'},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
+             self.check_deadline()
+             if self.ack_started is not None and time.perf_counter()-self.ack_started>=self.ack_delay:
+                 self.output_acks()
+-                # An ACK timer wakeup is not a failed input/control attempt.
+                 return None
+-            if ack_wakeup:
+-                # A transport may wake slightly before the requested deadline.
+-                # Continue servicing its pending ACK, without a control/input retry.
+-                return None
++            if ack_wakeup:return None
+             raise
+         except BaseException as exc:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,
+-                               {'result':'error','error_type':type(exc).__name__})
+-            self._last_recv_return_ns=recv_end
++            recv_end=time.perf_counter_ns() if sample is not None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'error','error_type':type(exc).__name__},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
+             raise
+         else:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,
+-                               {'result':'packet','raw_bytes':len(raw)})
+-            self._last_recv_return_ns=recv_end
+-        self.journal.append(1,raw,source);self.received+=1
+-        decode_began=time.perf_counter_ns();decode_cpu=time.thread_time_ns()
++            # Legacy recvfrom needs its raw journal timestamp on every packet;
++            # nonblocking RX already captured that timestamp before buffering.
++            recv_end=time.perf_counter_ns() if sample is not None or getattr(self,'io',None) is None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'packet','raw_bytes':len(raw)},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
++        if getattr(self,'io',None) is None:self._capture_rx(raw,source,recv_end)
++        sample=self.timing.begin('decode_header_payload_crc')
+         try:version,p=decode_any(raw)
+         except (ValueError,InvalidPacket):
+-            self.timing.record('decode_header_payload_crc',time.perf_counter_ns()-decode_began,
+-                               time.thread_time_ns()-decode_cpu,{'raw_bytes':len(raw),'result':'invalid'})
+-            self.ignored+=1;return None
+-        self.timing.record('decode_header_payload_crc',time.perf_counter_ns()-decode_began,
+-                           time.thread_time_ns()-decode_cpu,{'raw_bytes':len(raw),'result':'decoded'})
+-        if source!=self.peer or p.session!=self.session or p.reserved:self.ignored+=1;return None
++            if sample is not None:self.timing.end('decode_header_payload_crc',sample,{'raw_bytes':len(raw),'result':'invalid'})
++            self.timing.increment('rx_decode_rejected');self.ignored+=1;return None
++        if sample is not None:self.timing.end('decode_header_payload_crc',sample,{'raw_bytes':len(raw),'result':'decoded'})
++        if source!=self.peer or p.session!=self.session or p.reserved:
++            self.timing.increment('rx_identity_rejected');self.ignored+=1;return None
+         if version==2 and p.type==0x17:
+-            if self.receiver is None or p.frame_id!=self.receiver.frame:self.ignored+=1;return None
++            if self.receiver is None or p.frame_id!=self.receiver.frame:
++                self.timing.increment('rx_output_wrong_frame');self.ignored+=1;return None
+             duplicates_before=self.receiver.duplicates
+-            receive_began=time.perf_counter_ns();receive_cpu=time.thread_time_ns()
++            sample=self.timing.begin('output_receiver_validate_store_deduplicate')
+             accepted=self.receiver.receive_packet(p,source,int.from_bytes(raw[56:60],'big'))
+-            self.timing.record('output_receiver_validate_store_deduplicate',time.perf_counter_ns()-receive_began,
+-                               time.thread_time_ns()-receive_cpu,{'result':'accepted' if accepted else 'rejected'})
+-            if not accepted:self.ignored+=1;return None
++            if sample is not None:self.timing.end('output_receiver_validate_store_deduplicate',sample,{'result':'accepted' if accepted else 'rejected'})
++            if not accepted:
++                self.timing.increment('rx_output_rejected');self.ignored+=1;return None
+             duplicate=self.receiver.duplicates>duplicates_before
++            self.timing.increment('rx_output_accepted')
++            if duplicate:self.timing.increment('rx_output_duplicates')
+             if self.receiver.ack_pending and self.ack_started is None:self.ack_started=time.perf_counter()
+             if not self.receiver.ack_pending:self.ack_started=None
+             if len(self.receiver.ack_pending)>=self.ack_batch or (p.flags&1 and not duplicate):self.output_acks()
+             return None
++        self.timing.increment('rx_control_delivered')
+         return version,p
+     @staticmethod
+     def matching(p,r):
+@@ -191,8 +231,9 @@
+         for attempt in range(self.attempts):
+             self.send(raw);self.retries+=attempt!=0
+             try:
+-                for _ in range(64):
+-                    item=self.receive()
++                until=time.perf_counter()+self.timeout
++                while time.perf_counter()<until:
++                    item=self.receive(until)
+                     if item is None:continue
+                     version,r=item
+                     if version==2 and r.type==0x81 and r.session==self.session and r.frame_id==0 and r.sequence==0 and r.offset==0 and r.frame_bytes==self.output_bytes and r.frame_crc==0 and r.status==0 and r.next_offset==0 and not r.flags and not r.reserved and r.payload==cap:
+@@ -201,18 +242,20 @@
+             except socket.timeout:pass
+         raise TimeoutError('explicit EVF2 negotiation failed; no BEGIN/core start sent')
+     def input_packets(self,pixels,frame,crc):
+-        total=(len(pixels)+1023)//1024;base=next_q=0;retained={};tries={}
++        total=(len(pixels)+1023)//1024;base=next_q=0;retained={};tries={};retry_at=None
+         while base<total:
+             self.check_deadline()
+             while next_q<total and next_q<base+self.iw:
+                 at=next_q*1024;p=Packet(3,self.session,frame,next_q,at,len(pixels),crc,pixels[at:at+1024])
+                 retained[next_q]=p;tries[next_q]=1;self.send(p.encode());next_q+=1
+             self.max_retained=max(self.max_retained,len(retained));assert len(retained)<=self.iw
+-            try:item=self.receive()
++            if retry_at is None:retry_at=time.perf_counter()+self.timeout
++            try:item=self.receive(retry_at)
+             except socket.timeout:
+                 for q,p in retained.items():
+                     if tries[q]>=self.attempts:raise TimeoutError('bounded input retries exhausted')
+                     tries[q]+=1;self.retries+=1;self.send(p.encode())
++                retry_at=time.perf_counter()+self.timeout
+                 continue
+             if item is None:continue
+             version,r=item;p=retained.get(r.sequence)
+@@ -228,6 +271,7 @@
+             for q in list(retained):
+                 if q<=r.sequence:del retained[q]
+             base=max(base,r.sequence+1)
++            retry_at=time.perf_counter()+self.timeout
+     def transfer(self,pixels,golden,frame,on_frame=None):
+         began=time.perf_counter_ns();thread_cpu_began=time.thread_time_ns()
+         packets_began=self.received
+@@ -294,7 +338,20 @@
+         if self._timing_saved:return
+         path=self.out/'TIMING_DIAGNOSTICS.json'
+         report=self.timing.snapshot('LIVE_STREAMING_CLIENT_CALL_BOUNDARIES_NOT_NIC_OR_WIRE_TIMESTAMPS',
+-            status=status,session_sha256=hashlib.sha256(self.session).hexdigest(),
++            status=status,io_mode=self.io_mode,timing_mode=self.timing.mode,
++            sampled_disabled_stages=['receive_service_interval'] if self.timing.mode=='sampled' else [],
++            received_datagrams=self.received,ignored_protocol_items=self.ignored,network_retries=self.retries,
++            rx_prefetched_unprocessed=len(self.io.ready) if self.io is not None else 0,
++            active_output_unique_chunks=sum(self.receiver.coverage) if self.receiver is not None else None,
++            active_output_rejected_packets=self.receiver.rejected if self.receiver is not None else None,
++            active_output_duplicate_packets=self.receiver.duplicates if self.receiver is not None else None,
++
++            max_rx_buffer=self.io.max_rx_buffer if self.io is not None else 0,
++            max_pending_tx=self.io.max_pending_tx if self.io is not None else 0,
++            receive_batch_packets=self.io.batch_packets if self.io is not None else 1,
++            receive_batch_budget_ns=self.io.batch_budget_ns if self.io is not None else None,
++            tx_journal_scope="BEFORE_FIRST_SEND_ATTEMPT_NOT_WIRE_COMPLETION",
++            rx_journal_scope="RECVFROM_RETURN_BEFORE_BUFFERING_AND_VALIDATION",session_sha256=hashlib.sha256(self.session).hexdigest(),
+             output_window=self.ow,ack_batch=self.ack_batch,ack_delay_seconds=self.ack_delay,
+             raw_journal_records=self.journal.records,raw_journal_record_bytes=self.journal.bytes)
+         with path.open('x',encoding='utf-8') as f:json.dump(report,f,ensure_ascii=False,indent=2);f.write('\n')
+--- original/streaming/timing_diagnostics.py
++++ integrated/streaming/timing_diagnostics.py
+@@ -6,9 +6,15 @@
+ 
+ 
+ class BoundedTiming:
+-    def __init__(self, slow_threshold_ns=2_000_000, max_slow_events=64):
++    def __init__(self, slow_threshold_ns=2_000_000, max_slow_events=64,
++                 mode='full', sample_every=16):
+         if slow_threshold_ns < 1 or max_slow_events < 0:
+             raise ValueError('bounded timing configuration')
++        if mode not in ('full', 'sampled') or not isinstance(sample_every,int) or not 1 <= sample_every <= 1024:
++            raise ValueError('explicit timing mode and bounded sample interval')
++        self.mode, self.sample_every = mode, sample_every
++        self.observations = {}
++        self.selected = {}
+         self.slow_threshold_ns = slow_threshold_ns
+         self.max_slow_events = max_slow_events
+         self.stages = {}
+@@ -18,6 +24,20 @@
+ 
+     def increment(self, name, amount=1):
+         self.counters[name] = self.counters.get(name, 0) + amount
++
++    def begin(self, stage, *, always=False):
++        count = self.observations.get(stage, 0) + 1
++        self.observations[stage] = count
++        if self.mode == 'full' or always or (count-1) % self.sample_every == 0:
++            self.selected[stage] = self.selected.get(stage, 0) + 1
++            return time.perf_counter_ns(), time.thread_time_ns()
++        return None
++
++    def end(self, stage, token, detail=None, *, end_ns=None):
++        if token is None:
++            return
++        wall_end = time.perf_counter_ns() if end_ns is None else end_ns
++        self.record(stage, wall_end-token[0], time.thread_time_ns()-token[1], detail)
+ 
+     def record(self, stage, wall_ns, cpu_ns=None, detail=None):
+         wall_ns = max(0, int(wall_ns))
+@@ -29,7 +49,7 @@
+         row[0] += 1
+         row[1] += wall_ns
+         row[2] = max(row[2], wall_ns)
+-        bucket = min(31, wall_ns.bit_length() - 1)
++        bucket = min(31, max(0, wall_ns.bit_length() - 1))
+         row[5][bucket] += 1
+         if cpu_ns is not None:
+             cpu_ns = max(0, int(cpu_ns))
+@@ -43,11 +63,11 @@
+                  'thread_ident': threading.get_ident()}
+         if detail:
+             event['detail'] = dict(detail)
+-        item = (-wall_ns, self._sequence, event)
++        item = (wall_ns, self._sequence, event)
+         self._sequence += 1
+         if len(self._slow) < self.max_slow_events:
+             heapq.heappush(self._slow, item)
+-        elif wall_ns > -self._slow[0][0]:
++        elif wall_ns > self._slow[0][0]:
+             heapq.heapreplace(self._slow, item)
+ 
+     @staticmethod
+@@ -78,6 +98,10 @@
+                 'thread_cpu_max_ns': cpu_maximum,
+                 'log2_histogram': [{'upper_bound_ns': 1 << (i + 1), 'count': n}
+                                    for i, n in enumerate(histogram) if n],
++                'observed_calls': self.observations.get(name, count),
++                'recorded_samples': count,
++                'population_scope': ('ALL_OBSERVED_CALLS' if count == self.observations.get(name,count)
++                                     else 'RECORDED_SAMPLES_ONLY'),
+             }
+         return {
+             'scope': scope,
+@@ -87,7 +111,15 @@
+             'slow_event_limit': self.max_slow_events,
+             'counters': dict(sorted(self.counters.items())),
+             'stages': stages,
+-            'slowest_events': [row[2] for row in sorted(self._slow)],
++            'slowest_events': [row[2] for row in sorted(self._slow, reverse=True)],
+             'metadata': metadata,
+             'hardware_timestamp_claim': False,
++            'profiling': {
++                'mode': self.mode, 'sample_every': self.sample_every if self.mode == 'sampled' else 1,
++                'selection': 'FIRST_AND_EVERY_NTH_CALL_PER_STAGE_NO_EXTRAPOLATION',
++                'observed_calls': dict(sorted(self.observations.items())),
++                'selected_calls': dict(sorted(self.selected.items())),
++                'fine_stage_totals_and_quantiles_scope': 'RECORDED_CALLS_ONLY',
++                'slowest_events_scope': 'RECORDED_CALLS_ONLY_UNSAMPLED_SLOW_EVENTS_MAY_BE_MISSED',
++            },
+         }
+--- original/streaming/binary_journal.py
++++ integrated/streaming/binary_journal.py
+@@ -19,7 +19,7 @@
+         if self.failed is not None:raise RuntimeError('journal poisoned; final ACK forbidden') from self.failed
+         if self.closed:raise RuntimeError('journal closed')
+     def append(self,direction,raw,source,stamp=None):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('journal_append') if self.timing is not None else None
+         self.check()
+         try:
+             if direction not in (0,1) or not 0<len(raw)<=65535 or not 1<=source[1]<=65535:raise ValueError('journal record')
+@@ -34,39 +34,32 @@
+             if len(self.buffer)>=self.threshold:self.flush_block()
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_append',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,
+-                                   {'direction':direction,'raw_bytes':len(raw)})
++            if sample is not None:self.timing.end('journal_append',sample,{'direction':direction,'raw_bytes':len(raw)})
+     def flush_block(self):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns();pending_bytes=len(self.buffer)
++        sample=self.timing.begin('journal_flush_block',always=True) if self.timing is not None else None
++        pending_bytes=len(self.buffer)
+         self.check()
+         try:
+             if self.buffer:
+-                write_began=time.perf_counter_ns();write_cpu=time.thread_time_ns();write_bytes=len(self.buffer)
++                write_sample=self.timing.begin('journal_file_write',always=True) if self.timing is not None else None
++                write_bytes=len(self.buffer)
+                 try:
+                     if self.file.write(self.buffer)!=write_bytes:raise OSError('short journal write')
+                 finally:
+-                    if self.timing is not None:
+-                        self.timing.record('journal_file_write',time.perf_counter_ns()-write_began,
+-                                           time.thread_time_ns()-write_cpu,{'bytes':write_bytes})
++                    if write_sample is not None:self.timing.end('journal_file_write',write_sample,{'bytes':write_bytes})
+                 self.buffer.clear()
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_flush_block',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,{'buffer_bytes':pending_bytes})
++            if sample is not None:self.timing.end('journal_flush_block',sample,{'buffer_bytes':pending_bytes})
+     def checkpoint(self,durable=False):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('journal_checkpoint',always=True) if self.timing is not None else None
+         self.check()
+         try:
+             self.flush_block();self.file.flush()
+             if durable:os.fsync(self.file.fileno())
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_checkpoint',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,{'durable':bool(durable)})
++            if sample is not None:self.timing.end('journal_checkpoint',sample,{'durable':bool(durable)})
+     def finalize(self):
+         self.checkpoint(True);self.file.close();self.closed=True
+         p=self.out/'datagrams.bin';result={'format':'EVFJ_V2','status':'CAPTURE_ONLY_PENDING_PROTOCOL_AUDIT',
+--- original/streaming/nonblocking_io.py
++++ integrated/streaming/nonblocking_io.py
+@@ -0,0 +1,194 @@
++"""Bounded single-owner datagram service; accepts an existing transport only.
++
++TX journal time is before the first syscall attempt (not wire completion).
++RX journal time is immediately after recvfrom returns, before buffering.
++One send stays pending until complete; a stalled send may buffer at most one
++bounded receive batch. No sockets, threads, or background writers are created.
++"""
++from collections import deque
++import errno
++import select
++import socket
++import time
++
++
++class TransportSendDeadlineError(RuntimeError):
++    """Local TX stall is fatal, distinct from a lost-response socket.timeout."""
++
++
++class TransportProgressError(RuntimeError):
++    """Repeated false readiness or reentrant use must not cause busy polling."""
++
++
++def would_block(exc):
++    return (isinstance(exc, BlockingIOError) or
++            getattr(exc, 'errno', None) in (errno.EAGAIN, errno.EWOULDBLOCK, 10035) or
++            getattr(exc, 'winerror', None) == 10035)
++
++
++class NonblockingDatagramIO:
++    def __init__(self, transport, journal, timing, capture_rx, *, waiter=None,
++                 batch_packets=32, batch_budget_ns=200_000, clock=None,
++                 check_deadline=None):
++        if not 1 <= batch_packets <= 128 or not 1 <= batch_budget_ns <= 10_000_000:
++            raise ValueError('bounded receive batch')
++        self.transport, self.journal, self.timing = transport, journal, timing
++        self.capture_rx = capture_rx
++        self.batch_packets, self.batch_budget_ns = batch_packets, batch_budget_ns
++        self.clock = time.perf_counter if clock is None else clock
++        self.check_deadline = check_deadline or (lambda: None)
++        self.waiter = self._select if waiter is None else waiter
++        self.ready = deque()
++        self.pending = None
++        self.failed = None
++        self.max_rx_buffer = self.max_pending_tx = self.max_batch = 0
++        self._false_ready = 0
++        transport.setblocking(False)
++        timing.increment('io_setblocking_calls')
++
++    def _select(self, read, write, timeout):
++        readable, writable, _ = select.select(
++            [self.transport] if read else [], [self.transport] if write else [], [], timeout)
++        return bool(readable), bool(writable)
++
++    def _check(self):
++        if self.failed is not None:
++            raise RuntimeError('nonblocking transport poisoned') from self.failed
++        self.check_deadline()
++
++    def _wait(self, read, write, until):
++        self._check()
++        remaining = until - self.clock()
++        if remaining <= 0:
++            return False, False
++        sample = self.timing.begin('readiness_wait', always=True)
++        self.timing.increment('io_readiness_wait_calls')
++        try:
++            result = self.waiter(read, write, remaining)
++        finally:
++            self.timing.end('readiness_wait',sample,{'read':read,'write':write})
++        self._check()
++        return result
++
++    def _false_wakeup(self, ready, progress):
++        if progress:
++            self._false_ready = 0
++        elif any(ready):
++            self._false_ready += 1
++            self.timing.increment('io_false_readiness')
++            if self._false_ready >= 8:
++                raise TransportProgressError('eight readiness wakeups without transport progress')
++        else:
++            self._false_ready = 0
++
++    def _drain_rx(self, until):
++        self._check()
++        began = self.clock()
++        count = 0
++        try:
++            while len(self.ready) < self.batch_packets and count < self.batch_packets:
++                self._check()
++                now = self.clock()
++                if now >= until or (count and (now-began)*1e9 >= self.batch_budget_ns):
++                    break
++                self.timing.increment('io_recvfrom_attempts')
++                try:
++                    raw, source = self.transport.recvfrom(65535)
++                except OSError as exc:
++                    if not would_block(exc):
++                        raise
++                    self.timing.increment('io_rx_would_block')
++                    break
++                stamp = time.perf_counter_ns()
++                raw = bytes(raw)
++                self.capture_rx(raw, source, stamp)
++                self.ready.append((raw, source))
++                count += 1
++                self.timing.increment('io_rx_captured')
++                self.max_rx_buffer = max(self.max_rx_buffer, len(self.ready))
++            self.max_batch = max(self.max_batch, count)
++            return count
++        except BaseException as exc:
++            self.failed = exc
++            raise
++
++    def _try_send(self, until):
++        self._check()
++        if self.clock() >= until:
++            raise TransportSendDeadlineError('nonblocking send deadline; response retry forbidden')
++        raw, address, logged = self.pending
++        if not logged:
++            self.journal.append(0, raw, address)
++            self.pending = (raw, address, True)
++        self._check()
++        if self.clock() >= until:
++            raise TransportSendDeadlineError('send deadline reached during journal append')
++        self.timing.increment('io_sendto_attempts')
++        try:
++            sent = self.transport.sendto(raw, address)
++        except OSError as exc:
++            if not would_block(exc):
++                raise
++            self.timing.increment('io_tx_would_block')
++            return False
++        if sent != len(raw):
++            raise OSError('partial datagram send; frame release forbidden')
++        self.pending = None
++        self.timing.increment('io_tx_completed')
++        self._false_ready = 0
++        return True
++
++    def send(self, raw, address, until):
++        self._check()
++        if self.pending is not None:
++            raise TransportProgressError('single pending TX slot occupied')
++        if not isinstance(raw, bytes):
++            raise TypeError('immutable datagram required')
++        self.pending = (raw, address, False)
++        self.max_pending_tx = 1
++        self.timing.increment('io_tx_submitted')
++        try:
++            if self._try_send(until):
++                return
++            while True:
++                # On write backpressure, retain returned datagrams in bounded
++                # FIFO order. A full FIFO disables read interest, never drops RX.
++                read_count = self._drain_rx(until)
++                if self.clock() >= until:
++                    raise TransportSendDeadlineError('nonblocking send deadline')
++                ready = self._wait(len(self.ready) < self.batch_packets, True, until)
++                if self.clock() >= until:
++                    raise TransportSendDeadlineError('nonblocking send deadline')
++                read_count += self._drain_rx(until) if ready[0] else 0
++                sent = self._try_send(until) if ready[1] else False
++                self._false_wakeup(ready, sent or read_count)
++                if sent:
++                    return
++        except BaseException as exc:
++            self.failed = exc
++            raise
++
++    def receive(self, until):
++        self._check()
++        if self.clock() >= until:
++            raise socket.timeout('absolute receive deadline')
++        if self.ready:
++            return self.ready.popleft()
++        try:
++            if self._drain_rx(until):
++                return self.ready.popleft()
++            ready = self._wait(True, False, until)
++            count = self._drain_rx(until) if ready[0] else 0
++            self._false_wakeup(ready, count)
++            if count:
++                return self.ready.popleft()
++            if self.clock() >= until:
++                raise socket.timeout('absolute receive deadline')
++            # Early/spurious wait completion is neither a lost response nor
++            # an input retry. The owner services timers before calling again.
++            return None
++        except socket.timeout:
++            raise
++        except BaseException as exc:
++            self.failed = exc
++            raise
+--- original/scripts/board_characterization_identity.py
++++ integrated/scripts/board_characterization_identity.py
+@@ -5,8 +5,8 @@
+ 
+ SCOPE = 'ACX750_BOARD_CHARACTERIZATION_IMAGE'
+ STAGE = 'BOARD_CHARACTERIZATION_ONLY'
+-SOURCE_DCP_SHA = '18444d98ed1538ea9dbc1d316e29805c4f9943ad14bd3a31eca7da09604752ee'
+-C_SOURCE = 'C_DUPLICATE_AGE20MS_WINDOW128_20261009_86932586c1f71f0e'
++SOURCE_DCP_SHA = '47e5a1ece0b669fa45597ab3ae4b7ca826fc1857cd8c3d43d4a7d009a84b68da'
++C_SOURCE = 'C_INTEGRATED_STEPS01_04_RETRY_EDGE_20261009_a4bc4b7c3f0a8438'
+ B_SOURCE = 'B_THREE_SLOT_20261007_b8042e6673892647'
+ MARKER = b'CHARACTERIZATION_ONLY_JTAG_CONFIG_STATUS=YES'
+ TOOLS = {'board_characterization_identity.py', 'preflight_board_characterization.py',
+@@ -72,6 +72,15 @@
+     bit_path, bit_data = file_item(path.parent, m.get('BIT'))
+     if bit_path.suffix.lower() != '.bit' or sha(bit_data) in HISTORICAL_BITS:
+         raise ValueError('Historical/non-BIT file is not the root candidate')
++    _, routed_data = file_item(path.parent, m.get('routed_DCP'))
++    if sha(routed_data) != SOURCE_DCP_SHA:
++        raise ValueError('Actual routed checkpoint differs')
++    source_base = path.parent.parent / 'rtl'
++    sources = m.get('COMM_source_manifest')
++    if not isinstance(sources, dict) or not sources:
++        raise ValueError('Source manifest required')
++    for name, digest in sources.items():
++        file_item(source_base, {'file': name, 'sha256': digest})
+     review_path, review_data = file_item(path.parent, m.get('digital_review'))
+     review = json.loads(review_data.decode('utf-8-sig'))
+     if (not isinstance(review, dict) or review.get('source_routed_DCP_sha256') != SOURCE_DCP_SHA
+--- original/lab/board_lab_functional.py
++++ integrated/lab/board_lab_functional.py
+@@ -23,7 +23,7 @@
+ SCOPE = 'ACX750_ROOT_BOARD_LAB_FUNCTIONAL_SELECTION_V1'
+ MODES = {'Smoke','Probe','Natural2','Natural16'}
+ LABEL = 'BOARD_LAB_FUNCTIONAL_OBSERVATIONS_ONLY_NO_ELECTRICAL_OR_FORMAL_ACCEPTANCE'
+-DCP_SHA = '18444d98ed1538ea9dbc1d316e29805c4f9943ad14bd3a31eca7da09604752ee'
++DCP_SHA = '47e5a1ece0b669fa45597ab3ae4b7ca826fc1857cd8c3d43d4a7d009a84b68da'
+ EXPECTED_HOST = {'startup_status_identity.py','capture_video_phy_startup.py','parse_phy_startup_status.py',
+     'video_image_identity.py','video_sequence_identity.py','video_protocol.py','ethernet_video_client.py',
+     'ethernet_input_protocol_probe.py','audit_input_protocol_probe.py','audit_ethernet_video_run.py'}
+--- original/lab/streaming_board_lab.py
++++ integrated/lab/streaming_board_lab.py
+@@ -21,7 +21,7 @@
+ SOURCE_FILES = {
+     'streaming/streaming_client.py', 'streaming/stream_receiver.py',
+     'streaming/binary_journal.py', 'streaming/audit_protocol.py',
+-    'streaming/timing_diagnostics.py',
++    'streaming/timing_diagnostics.py', 'streaming/nonblocking_io.py',
+     'lab/streaming_board_lab.py', 'lab/audit_streaming_run.py', 'lab/run_c_streaming.ps1',
+     'diagnostics/lab_bootstrap.py', 'diagnostics/lab_diagnostics.py',
+     'diagnostics/Invoke-DiagnosticPython.ps1',
+@@ -66,6 +66,9 @@
+     ap.add_argument('--files-only', action='store_true')
+     ap.add_argument('--out-dir', type=Path, required=True)
+     ap.add_argument('--output-window', type=int, choices=(1, 2, 4, 8, 16, 32, 64, 128), default=128)
++    ap.add_argument('--io-mode', choices=('timeout','nonblocking'), default='nonblocking')
++    ap.add_argument('--timing-mode', choices=('full','sampled'), default='sampled')
++    ap.add_argument('--timing-sample-every', type=int, default=16)
+     ap.add_argument('--timeout', type=float, default=.02)
+     ap.add_argument('--attempts', type=int, default=4)
+     ap.add_argument('--frame-timeout', type=float, default=10.)
+@@ -121,7 +124,8 @@
+         transport.settimeout(a.timeout)  # Bound the first send as well as receives.
+         report['actual_socket_receive_buffer_bytes'] = transport.getsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF)
+         client = StreamingClient(diag.ObservedSocket(transport), peer, session, a.out_dir / 'traffic', output_window=a.output_window,
+-                                 timeout=a.timeout, attempts=a.attempts, frame_timeout=a.frame_timeout)
++                                 timeout=a.timeout, attempts=a.attempts, frame_timeout=a.frame_timeout,
++                                 io_mode=a.io_mode, timing_mode=a.timing_mode, timing_sample_every=a.timing_sample_every)
+         report['output_ack_batch'] = client.ack_batch
+         report['output_ack_flush_max_delay_ms'] = client.ack_delay*1000
+         event_file = (a.out_dir / 'frame_events.jsonl').open('x', encoding='utf-8')
+@@ -139,14 +143,16 @@
+         print(json.dumps(dict(event='EVF2_HELLO_BEGIN', monotonic_ns=time.perf_counter_ns(), socket_timeout=a.timeout)), flush=True)
+         client.hello()
+         print(json.dumps(dict(event='EVF2_NEGOTIATED', monotonic_ns=time.perf_counter_ns(), output_window=a.output_window)), flush=True)
+-        began = time.perf_counter_ns()
++        began = time.perf_counter_ns(); cpu_began = time.thread_time_ns()
+         for f, (pixels, golden) in enumerate(prepared):
+             returned = client.transfer(pixels, golden, f, accept_frame)
+             assert returned is actual[f]
+-        end = time.perf_counter_ns()
++        end = time.perf_counter_ns(); cpu_end = time.thread_time_ns()
+         client.finish()
+         report.update(status='COMPLETE_PROTOCOL_BYTES_PENDING_INDEPENDENT_RAW_AUDIT', success=True,
+-                      protocol_loop_wall_ns=end-began, completed_frames=len(actual),
++                      protocol_loop_wall_ns=end-began, calling_thread_cpu_ns=cpu_end-cpu_began,
++                      frames=client.frames, io_mode=a.io_mode, timing_mode=a.timing_mode,
++                      timing_sample_every=a.timing_sample_every, completed_frames=len(actual),
+                       protocol_loop_frames_per_second=len(actual)*1e9/(end-began),
+                       timing_scope='BEGIN_TO_LAST_FRAME_DONE_INCLUDES_HOST_PROTOCOL_AND_JOURNAL_CHECKPOINTS_NO_PC4K_OR_DISPLAY',
+                       ignored=client.ignored, retries=client.retries, max_input_retained=client.max_retained,
+--- original/run_integrated.ps1
++++ integrated/run_integrated.ps1
+@@ -0,0 +1,44 @@
++[CmdletBinding()]
++param(
++    [ValidateSet('Preflight','Run')][string]$Mode='Run',
++    [string]$Python='C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe',
++    [string]$Vivado='E:\AMDTools2025\2025.2\Vivado\bin\vivado.bat',
++    [string]$HardwareServer='E:\AMDTools2025\2025.2\Vivado\bin\unwrapped\win64.o\hw_server.exe'
++)
++$ErrorActionPreference='Stop'
++$taskOwnedServer=$null
++$taskExit=1
++$taskPackage=[IO.Path]::GetFullPath($PSScriptRoot)
++$taskLogs=Join-Path $taskPackage ('attempts\launcher_'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffffffZ'))
++New-Item -ItemType Directory -Path $taskLogs -Force | Out-Null
++try {
++    if ($Mode -eq 'Run') {
++        $taskListener=@(Get-NetTCPConnection -State Listen -LocalPort 3121 -ErrorAction SilentlyContinue)
++        if (!$taskListener.Count) {
++            $taskOwnedServer=Start-Process -FilePath $HardwareServer -WindowStyle Hidden -RedirectStandardOutput (Join-Path $taskLogs 'hw_server_stdout.log') -RedirectStandardError (Join-Path $taskLogs 'hw_server_stderr.log') -PassThru
++            $taskServerStartTicks=$taskOwnedServer.StartTime.Ticks
++            $taskServerPath=$taskOwnedServer.Path
++            @{pid=$taskOwnedServer.Id; start_ticks=$taskServerStartTicks; executable=$taskServerPath} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskLogs 'owned_server.json') -Encoding utf8
++            for ($taskPoll=0; $taskPoll -lt 30; $taskPoll++) {
++                if (Get-NetTCPConnection -State Listen -LocalPort 3121 -ErrorAction SilentlyContinue) { break }
++                if ($taskOwnedServer.HasExited) { throw 'Owned hardware server exited; inspect launcher logs.' }
++                Start-Sleep -Milliseconds 200
++            }
++            if (!(Get-NetTCPConnection -State Listen -LocalPort 3121 -ErrorAction SilentlyContinue)) { throw 'Hardware server did not listen on port 3121.' }
++        }
++    }
++    $taskShell=(Get-Process -Id $PID).Path
++    & $taskShell -NoLogo -NoProfile -ExecutionPolicy Bypass -File (Join-Path $taskPackage 'lab\run_c_streaming.ps1') -Mode $Mode -Python $Python -Vivado $Vivado -OutputWindow 128
++    $taskExit=$LASTEXITCODE
++} finally {
++    $taskStopped=$false
++    if ($null -ne $taskOwnedServer) {
++        $taskCurrent=Get-Process -Id $taskOwnedServer.Id -ErrorAction SilentlyContinue
++        if ($null -ne $taskCurrent -and $taskCurrent.Path -eq $taskServerPath -and $taskCurrent.StartTime.Ticks -eq $taskServerStartTicks) {
++            Stop-Process -Id $taskCurrent.Id
++            $taskStopped=$true
++        }
++    }
++    @{mode=$Mode; child_exit_code=$taskExit; stopped_owned_server=$taskStopped; reused_server_left_running=($null -eq $taskOwnedServer)} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskLogs 'LAUNCHER_RESULT.json') -Encoding utf8
++}
++exit $taskExit
+--- original/README.md
++++ integrated/README.md
+@@ -0,0 +1,18 @@
++四步整合候选包
++
++此包将第1步的RTL重试到期修补与第2～4步主机优化一起启用：直接解码EVF2、非阻塞IO、每16次采样一次细粒度计时。原始报文、CRC验证、逐帧计时和释放前日志检查仍完整执行。
++
++运行入口：
++
++```powershell
++& C:\t6int09\main\run_integrated.ps1 -Mode Preflight
++& C:\t6int09\main\run_integrated.ps1 -Mode Run
++```
++
++Run会加载本包新BIT至FPGA配置RAM，依次执行Smoke、Probe、Natural2和Natural16，并对实际原始报文独立审计。程序创建的硬件服务器在结束时停止；已有服务器保持运行。结果保存到本包attempts目录，每次使用新目录。
++
++默认设置为150 MHz、输入窗口16、输出窗口128、非阻塞IO、sampled计时模式、采样间隔16。streaming/streaming_client.py保持已有API默认值，整合方案由lab/streaming_board_lab.py入口显式启用。
++
++主机代码来自已检查的第4步候选，RTL来自已检查的第1步候选。implementation目录保存首次综合及增量布局失败证据，implementation_full保存完整布局布线及首轮时序检查，implementation_refine保存最终布线优化、时序、DRC和新BIT生成日志；provenance保存原包及分步候选的源身份。image与PACKAGE_MANIFEST.json绑定本包真实BIT和源文件。
++
++测试结论见工作区output/INTEGRATED_STEPS01_04_20261009。此包用于当前用户授权的上板试验；本次结果只覆盖实际运行的协议与Golden字节验证，未计入PC4K和显示链路。

@@ -1,0 +1,1324 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 21:05:14 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_methodology -file methodology_route.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : xc7a200tfbg484-2
+| Speed File   : -2
+| Design State : Fully Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: checkpoint_input_routed
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 257
++-----------+----------+------------------------------------------------------+--------+
+| Rule      | Severity | Description                                          | Checks |
++-----------+----------+------------------------------------------------------+--------+
+| LUTAR-1   | Warning  | LUT drives async reset alert                         | 2      |
+| SYNTH-6   | Warning  | Timing of a RAM block might be sub-optimal           | 209    |
+| SYNTH-10  | Warning  | Wide multiplier                                      | 28     |
+| TIMING-18 | Warning  | Missing input or output delay                        | 9      |
+| TIMING-28 | Warning  | Auto-derived clock referenced by a timing constraint | 9      |
++-----------+----------+------------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell u_clocks/bad_sync[1]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_clocks/bad_sync_reg[0]/PRE, u_clocks/bad_sync_reg[1]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell u_management/u_startup/u_sys_mmcm_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_clocks/u_ref_mmcm/RST, u_clocks/u_sys_mmcm/RST. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_v1/u_input/payload_mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_v1/u_result/result_mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_1_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_application/u_window/retained_mem_reg_3_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/gk.frontend/win/bank_gen[0].mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/gk.frontend/win/bank_gen[1].mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/gk.frontend/win/bank_gen[2].mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/gk.frontend/win/bank_gen[3].mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[0].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[0].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#25 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[0].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#26 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[0].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#27 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[1].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#28 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[1].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#29 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[1].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#30 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/gk.frontend/win/bank_gen[1].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#31 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#32 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#33 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#34 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#35 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#36 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#37 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#38 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[0].mem_reg_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#39 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#40 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#41 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#42 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#43 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#44 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#45 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#46 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[1].mem_reg_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#47 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#48 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#49 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#50 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#51 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#52 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#53 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#54 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[2].mem_reg_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#55 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#56 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#57 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#58 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#59 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#60 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#61 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#62 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/gk.frontend/win/bank_gen[3].mem_reg_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#63 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/shuffle/bank0_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#64 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_b/u_b_core/core/core/shuffle/bank1_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#65 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#66 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#67 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#68 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#69 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#70 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#71 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#72 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank0/mem_reg_bram_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#73 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#74 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#75 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#76 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#77 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#78 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#79 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#80 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_pp/u_bank1/mem_reg_bram_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#81 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#82 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#83 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#84 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#85 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#86 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#87 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#88 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[0].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#89 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#90 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#91 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#92 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#93 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#94 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#95 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#96 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[10].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#97 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#98 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#99 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#100 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#101 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#102 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#103 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#104 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[11].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#105 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#106 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#107 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#108 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#109 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#110 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#111 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#112 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[12].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#113 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#114 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#115 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#116 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#117 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#118 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#119 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#120 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[13].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#121 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#122 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#123 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#124 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#125 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#126 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#127 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#128 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[14].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#129 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#130 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#131 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#132 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#133 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#134 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#135 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#136 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[15].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#137 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#138 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#139 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#140 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#141 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#142 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#143 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#144 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[1].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#145 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#146 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#147 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#148 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#149 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#150 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#151 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#152 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[2].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#153 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#154 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#155 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#156 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#157 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#158 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#159 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#160 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[3].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#161 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#162 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#163 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#164 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#165 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#166 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#167 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#168 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[4].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#169 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#170 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#171 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#172 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#173 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#174 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#175 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#176 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[5].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#177 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#178 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#179 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#180 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#181 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#182 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#183 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#184 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[6].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#185 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#186 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#187 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#188 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#189 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#190 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#191 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#192 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[7].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#193 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#194 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#195 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#196 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#197 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#198 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#199 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#200 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[8].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#201 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#202 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#203 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#204 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#205 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#206 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#207 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#208 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_pipeline/u_core/u_rom/g_multi_bank.g_bank[9].u_bank/mem_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#209 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_video/u_receive/u_commit/packet_mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-10#1 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[0].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#2 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[0].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#3 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[0].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#4 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[0].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#5 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#6 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#7 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#8 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l1/post/units[1].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#9 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l2/post/units[0].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#10 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l2/post/units[0].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#11 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l2/post/units[0].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#12 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l2/post/units[0].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#13 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/post/units[0].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#14 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/post/units[0].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#15 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/post/units[0].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#16 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l3/post/units[0].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#17 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#18 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#19 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#20 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[0].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#21 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#22 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#23 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#24 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l4/post/units[1].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#25 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/post/units[0].post/requant_product_s50 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#26 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/post/units[0].post/requant_product_s50__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#27 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/post/units[0].post/requant_product_s5_reg of size 15x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#28 Warning
+Wide multiplier  
+Detected multiplier at u_video/u_pipeline/u_core/u_b/u_b_core/core/core/l5/post/units[0].post/requant_product_s5_reg__0 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An output delay is missing on led[0] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An output delay is missing on led[1] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An output delay is missing on led[2] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An output delay is missing on led[3] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An output delay is missing on led[4] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An output delay is missing on led[5] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An output delay is missing on led[6] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An output delay is missing on led[7] relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An output delay is missing on mdio relative to the rising and/or falling clock edge(s) of sys50.
+Related violations: <none>
+
+TIMING-28#1 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock core_raw is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_sys_mmcm/CLKOUT0]
+Related violations: <none>
+
+TIMING-28#2 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock ref_feedback is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_ref_mmcm/CLKFBOUT]
+Related violations: <none>
+
+TIMING-28#3 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock ref_raw is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_ref_mmcm/CLKOUT0]
+Related violations: <none>
+
+TIMING-28#4 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock rfb is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_rx_pll/CLKFBOUT]
+Related violations: <none>
+
+TIMING-28#5 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock rx_raw is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_rx_pll/CLKOUT0]
+Related violations: <none>
+
+TIMING-28#6 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock serialize_raw is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_sys_mmcm/CLKOUT3]
+Related violations: <none>
+
+TIMING-28#7 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock serialize_raw is referenced by name inside timing constraint (see constraint position 58 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_sys_mmcm/CLKOUT3]
+Related violations: <none>
+
+TIMING-28#8 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock sfb is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_sys_mmcm/CLKFBOUT]
+Related violations: <none>
+
+TIMING-28#9 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock tx_raw is referenced by name inside timing constraint (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins u_clocks/u_sys_mmcm/CLKOUT1]
+Related violations: <none>
+
+

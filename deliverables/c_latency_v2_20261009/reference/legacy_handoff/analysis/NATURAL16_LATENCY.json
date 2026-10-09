@@ -1,0 +1,744 @@
+{
+  "scope": "OFFLINE_HOST_JOURNAL_TIMESTAMPS_NOT_WIRE_RTT_OR_FPGA_APPLY_TIMESTAMPS",
+  "journal_sha256": "ad0d3ee676b458ba951f88e260564706fd20ea10709a0eacb51f9a1403344789",
+  "journal_bytes": 45860308,
+  "records": 49748,
+  "frame_count": 16,
+  "packet_kinds": {
+    "0:1:01": 1,
+    "1:1:81": 1,
+    "0:2:01": 1,
+    "1:2:81": 1,
+    "0:1:02": 16,
+    "1:1:82": 16,
+    "0:1:03": 8112,
+    "1:1:83": 8112,
+    "0:1:04": 16,
+    "1:1:84": 16,
+    "1:2:17": 32400,
+    "0:2:97": 1024,
+    "0:2:09": 16,
+    "1:2:89": 16
+  },
+  "interpretation": "TX stamps precede sendto; RX stamps follow recvfrom. Pending-window inference follows cumulative EVF1 ACK retirement. Gaps do not locate USB/NIC/OS/FPGA delay.",
+  "stages_ms": {
+    "input": {
+      "count": 16,
+      "median": 43.8176,
+      "p95": 44.7737,
+      "max": 44.7737,
+      "min": 43.0411
+    },
+    "commit": {
+      "count": 16,
+      "median": 1.45175,
+      "p95": 1.5033,
+      "max": 1.5033,
+      "min": 1.3857
+    },
+    "output_until_verified": {
+      "count": 16,
+      "median": 29.808300000000003,
+      "p95": 31.5329,
+      "max": 31.5329,
+      "min": 29.2816
+    },
+    "release": {
+      "count": 16,
+      "median": 1.5323,
+      "p95": 2.3513,
+      "max": 2.3513,
+      "min": 1.4518
+    },
+    "whole": {
+      "count": 16,
+      "median": 76.75015,
+      "p95": 79.3723,
+      "max": 79.3723,
+      "min": 75.4692
+    }
+  },
+  "input_ack_record_rtt_ms": {
+    "count": 8112,
+    "median": 1.30065,
+    "p95": 1.4617,
+    "max": 1.9022,
+    "min": 0.7994
+  },
+  "input_ack_gaps_above_0_5ms": 495,
+  "input_ack_long_gaps_window_full": 479,
+  "input_ack_long_gap_sum_per_frame_ms": {
+    "count": 16,
+    "median": 28.62835,
+    "p95": 29.0536,
+    "max": 29.0536,
+    "min": 27.2638
+  },
+  "output_first_last_host_record_ms": {
+    "count": 16,
+    "median": 29.018700000000003,
+    "p95": 30.7138,
+    "max": 30.7138,
+    "min": 28.5053
+  },
+  "input_retransmits": 0,
+  "output_duplicates": 0,
+  "frames": [
+    {
+      "frame": 0,
+      "stages_ms": {
+        "input": 43.7091,
+        "commit": 1.4069,
+        "output_until_verified": 30.3387,
+        "release": 1.5979,
+        "whole": 77.0526
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3032,
+        "p95": 1.4262,
+        "max": 1.9022,
+        "min": 1.0833
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0234,
+        "p95": 0.8509,
+        "max": 1.0219,
+        "min": 0.0094
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 27.7452,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 29.5576,
+      "commit_request_to_first_output_host_record_ms": 0.9924,
+      "commit_ack_to_first_output_host_record_ms": 0.0249,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0126,
+        "p95": 0.023,
+        "max": 0.4742,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 1,
+      "stages_ms": {
+        "input": 43.4819,
+        "commit": 1.3857,
+        "output_until_verified": 29.2816,
+        "release": 2.3513,
+        "whole": 76.5005
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2918,
+        "p95": 1.4554,
+        "max": 1.5226,
+        "min": 1.095
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0226,
+        "p95": 0.8852,
+        "max": 1.0005,
+        "min": 0.0094
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.4845,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.5053,
+      "commit_request_to_first_output_host_record_ms": 0.9631,
+      "commit_ack_to_first_output_host_record_ms": 0.0159,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0123,
+        "p95": 0.0185,
+        "max": 0.3483,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 2,
+      "stages_ms": {
+        "input": 43.3217,
+        "commit": 1.454,
+        "output_until_verified": 31.0538,
+        "release": 1.4518,
+        "whole": 77.2813
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2867,
+        "p95": 1.4145,
+        "max": 1.4707,
+        "min": 1.1813
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0226,
+        "p95": 0.8889,
+        "max": 1.0802,
+        "min": 0.0097
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.8517,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 30.2862,
+      "commit_request_to_first_output_host_record_ms": 1.0302,
+      "commit_ack_to_first_output_host_record_ms": 0.0329,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0127,
+        "p95": 0.0242,
+        "max": 0.4252,
+        "min": 0.0117
+      }
+    },
+    {
+      "frame": 3,
+      "stages_ms": {
+        "input": 43.9875,
+        "commit": 1.4882,
+        "output_until_verified": 29.6407,
+        "release": 1.5348,
+        "whole": 76.6512
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3076,
+        "p95": 1.445,
+        "max": 1.5806,
+        "min": 1.1467
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0234,
+        "p95": 0.8834,
+        "max": 1.0706,
+        "min": 0.0091
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.9043,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.8751,
+      "commit_request_to_first_output_host_record_ms": 1.0819,
+      "commit_ack_to_first_output_host_record_ms": 0.0227,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0193,
+        "max": 0.3526,
+        "min": 0.0117
+      }
+    },
+    {
+      "frame": 4,
+      "stages_ms": {
+        "input": 44.0945,
+        "commit": 1.4679,
+        "output_until_verified": 29.5067,
+        "release": 1.4689,
+        "whole": 76.538
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3189,
+        "p95": 1.4765,
+        "max": 1.8158,
+        "min": 0.7994
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.024050000000000002,
+        "p95": 0.8606,
+        "max": 0.9949,
+        "min": 0.0094
+      },
+      "input_ack_gaps_above_0_5ms": 30,
+      "input_ack_long_gap_sum_ms": 27.2638,
+      "input_ack_long_gaps_window_full": 29,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.703,
+      "commit_request_to_first_output_host_record_ms": 1.0514,
+      "commit_ack_to_first_output_host_record_ms": 0.0389,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0204,
+        "max": 0.2973,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 5,
+      "stages_ms": {
+        "input": 43.0411,
+        "commit": 1.5033,
+        "output_until_verified": 29.395,
+        "release": 1.5298,
+        "whole": 75.4692
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2623,
+        "p95": 1.4585,
+        "max": 1.62,
+        "min": 1.1198
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0228,
+        "p95": 0.8823,
+        "max": 1.0434,
+        "min": 0.0091
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.467200000000002,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.6071,
+      "commit_request_to_first_output_host_record_ms": 1.0857,
+      "commit_ack_to_first_output_host_record_ms": 0.0172,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0192,
+        "max": 0.3264,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 6,
+      "stages_ms": {
+        "input": 43.3892,
+        "commit": 1.4208,
+        "output_until_verified": 29.9326,
+        "release": 1.4947,
+        "whole": 76.2373
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2781,
+        "p95": 1.4686,
+        "max": 1.5817,
+        "min": 1.0556
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0229,
+        "p95": 0.8527,
+        "max": 1.0249,
+        "min": 0.0095
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 27.8995,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 29.1503,
+      "commit_request_to_first_output_host_record_ms": 1.0079,
+      "commit_ack_to_first_output_host_record_ms": 0.0305,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0128,
+        "p95": 0.0191,
+        "max": 0.2842,
+        "min": 0.0118
+      }
+    },
+    {
+      "frame": 7,
+      "stages_ms": {
+        "input": 43.6548,
+        "commit": 1.3985,
+        "output_until_verified": 29.7363,
+        "release": 1.7131,
+        "whole": 76.5027
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2924,
+        "p95": 1.4379,
+        "max": 1.5561,
+        "min": 1.1092
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.02305,
+        "p95": 0.8833,
+        "max": 1.0043,
+        "min": 0.009
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.4077,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.9616,
+      "commit_request_to_first_output_host_record_ms": 0.9918,
+      "commit_ack_to_first_output_host_record_ms": 0.0382,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0126,
+        "p95": 0.0189,
+        "max": 0.2687,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 8,
+      "stages_ms": {
+        "input": 44.572,
+        "commit": 1.4942,
+        "output_until_verified": 29.5884,
+        "release": 1.6224,
+        "whole": 77.277
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3112,
+        "p95": 1.5081,
+        "max": 1.559,
+        "min": 1.2079
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.02465,
+        "p95": 0.8996,
+        "max": 1.09,
+        "min": 0.0095
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 29.0489,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.753,
+      "commit_request_to_first_output_host_record_ms": 1.0859,
+      "commit_ack_to_first_output_host_record_ms": 0.0423,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0202,
+        "max": 0.3265,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 9,
+      "stages_ms": {
+        "input": 43.1581,
+        "commit": 1.4397,
+        "output_until_verified": 29.5392,
+        "release": 1.5137,
+        "whole": 75.6507
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2914,
+        "p95": 1.3828,
+        "max": 1.5359,
+        "min": 1.0602
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.023,
+        "p95": 0.8896,
+        "max": 0.9962,
+        "min": 0.0091
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.2345,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.7437,
+      "commit_request_to_first_output_host_record_ms": 1.0228,
+      "commit_ack_to_first_output_host_record_ms": 0.0223,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0123,
+        "p95": 0.0202,
+        "max": 0.3093,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 10,
+      "stages_ms": {
+        "input": 43.7934,
+        "commit": 1.4694,
+        "output_until_verified": 30.0894,
+        "release": 1.4969,
+        "whole": 76.8491
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2992,
+        "p95": 1.4412,
+        "max": 1.5295,
+        "min": 1.1269
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0235,
+        "p95": 0.8885,
+        "max": 1.0934,
+        "min": 0.0102
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.7637,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 29.3323,
+      "commit_request_to_first_output_host_record_ms": 0.994,
+      "commit_ack_to_first_output_host_record_ms": 0.0254,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0124,
+        "p95": 0.0208,
+        "max": 0.441,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 11,
+      "stages_ms": {
+        "input": 44.6134,
+        "commit": 1.4791,
+        "output_until_verified": 29.9992,
+        "release": 1.5499,
+        "whole": 77.6416
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3333,
+        "p95": 1.5188,
+        "max": 1.5438,
+        "min": 1.1491
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.02435,
+        "p95": 0.8776,
+        "max": 1.1063,
+        "min": 0.0098
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.8097,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 29.2219,
+      "commit_request_to_first_output_host_record_ms": 1.0686,
+      "commit_ack_to_first_output_host_record_ms": 0.0157,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0126,
+        "p95": 0.0203,
+        "max": 0.3121,
+        "min": 0.0117
+      }
+    },
+    {
+      "frame": 12,
+      "stages_ms": {
+        "input": 44.7737,
+        "commit": 1.4986,
+        "output_until_verified": 31.5329,
+        "release": 1.5671,
+        "whole": 79.3723
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3388,
+        "p95": 1.4687,
+        "max": 1.553,
+        "min": 1.19
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.02435,
+        "p95": 0.8874,
+        "max": 1.0864,
+        "min": 0.0099
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.9045,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 30.7138,
+      "commit_request_to_first_output_host_record_ms": 1.0622,
+      "commit_ack_to_first_output_host_record_ms": 0.0157,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0265,
+        "max": 0.543,
+        "min": 0.0116
+      }
+    },
+    {
+      "frame": 13,
+      "stages_ms": {
+        "input": 43.8418,
+        "commit": 1.4469,
+        "output_until_verified": 31.163,
+        "release": 1.5106,
+        "whole": 77.9623
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.2759,
+        "p95": 1.5588,
+        "max": 1.6726,
+        "min": 1.126
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0228,
+        "p95": 0.8894,
+        "max": 1.1823,
+        "min": 0.0092
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 29.0536,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 30.3888,
+      "commit_request_to_first_output_host_record_ms": 1.0122,
+      "commit_ack_to_first_output_host_record_ms": 0.015,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0126,
+        "p95": 0.0272,
+        "max": 0.5185,
+        "min": 0.0117
+      }
+    },
+    {
+      "frame": 14,
+      "stages_ms": {
+        "input": 44.3423,
+        "commit": 1.4495,
+        "output_until_verified": 29.8657,
+        "release": 1.5834,
+        "whole": 77.2409
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.309,
+        "p95": 1.5078,
+        "max": 1.6132,
+        "min": 1.141
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0245,
+        "p95": 0.8667,
+        "max": 1.1265,
+        "min": 0.0095
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.6476,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 29.0716,
+      "commit_request_to_first_output_host_record_ms": 1.0081,
+      "commit_ack_to_first_output_host_record_ms": 0.0363,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0126,
+        "p95": 0.0199,
+        "max": 0.3509,
+        "min": 0.0117
+      }
+    },
+    {
+      "frame": 15,
+      "stages_ms": {
+        "input": 43.9226,
+        "commit": 1.4253,
+        "output_until_verified": 29.7509,
+        "release": 1.5255,
+        "whole": 76.6243
+      },
+      "input_packets": 507,
+      "input_retransmits": 0,
+      "input_ack_record_rtt_ms": {
+        "count": 507,
+        "median": 1.3184,
+        "p95": 1.4051,
+        "max": 1.5728,
+        "min": 1.0923
+      },
+      "input_ack_record_gaps_ms": {
+        "count": 506,
+        "median": 0.0243,
+        "p95": 0.8731,
+        "max": 0.9885,
+        "min": 0.0097
+      },
+      "input_ack_gaps_above_0_5ms": 31,
+      "input_ack_long_gap_sum_ms": 28.6091,
+      "input_ack_long_gaps_window_full": 30,
+      "output_unique": 2025,
+      "output_duplicates": 0,
+      "output_first_last_host_record_ms": 28.9658,
+      "commit_request_to_first_output_host_record_ms": 1.0211,
+      "commit_ack_to_first_output_host_record_ms": 0.0386,
+      "output_record_gaps_ms": {
+        "count": 2024,
+        "median": 0.0125,
+        "p95": 0.0178,
+        "max": 0.3362,
+        "min": 0.0117
+      }
+    }
+  ]
+}

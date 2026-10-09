@@ -22,3 +22,7 @@
 *.h text
 *.mem text eol=lf
 *.coe text eol=lf
+
+# Preserve frozen delivery bytes and identity hashes.
+deliverables/** -text
+workspace/** -text

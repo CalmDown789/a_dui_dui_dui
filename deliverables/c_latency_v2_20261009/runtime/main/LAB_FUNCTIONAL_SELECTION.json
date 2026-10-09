@@ -1,0 +1,55 @@
+{
+  "scope": "ACX750_ROOT_BOARD_LAB_FUNCTIONAL_SELECTION_V1",
+  "root_issued_lab_observation_tests": true,
+  "allowed_operations": [
+    "Smoke",
+    "Probe",
+    "Natural2",
+    "Natural16"
+  ],
+  "physical_IO_signoff": false,
+  "formal_video_permission": false,
+  "complete_stage_acceptance": false,
+  "electrical_status": "UNVERIFIED",
+  "source_routed_DCP_sha256": "47e5a1ece0b669fa45597ab3ae4b7ca826fc1857cd8c3d43d4a7d009a84b68da",
+  "characterization_manifest": {
+    "file": "image/BOARD_CHARACTERIZATION_MANIFEST.json",
+    "sha256": "875e7ae5527568d5536427241863bedda75331d69ddc2d1b7348a9a9b8bd890d"
+  },
+  "candidate_BIT_sha256": "cefe3ba044bb208a08969714f48144870f5c00efc6879edb063ac1f358ef1ea5",
+  "formal_host_sha256": {
+    "startup_status_identity.py": "883d74614c05859840ecd5eba1b4c3dabcdc118bab8a0c52b30580b61939bd19",
+    "capture_video_phy_startup.py": "3f8bd7d3a1042ceb5914351c5ff3231a5ac3b01c95dc7bc84dc62b48333a31d1",
+    "parse_phy_startup_status.py": "f904fb44bb395db42a0ef1b3441b0eb3a11361fea1316dbd1f9df4e886064e34",
+    "video_image_identity.py": "0335c98542eccbd97ec0aecd515e665b8922c4a2c85c90070cd2e73958aef0f5",
+    "video_sequence_identity.py": "e048597d1b1df4921c59d2b304a73b89e8ea506972379e1e36890fd2ce69e510",
+    "video_protocol.py": "2302658b57a6b79f6c9ec0546edf983d01b73ada9bcd37d1e2418f412080c326",
+    "ethernet_video_client.py": "c528feecff9d36bfe48165312f66c9603f461efbb6a84fa9cc727e4f3944e85b",
+    "ethernet_input_protocol_probe.py": "e4e29d6d3130f4f6d27bafff845c8e6a67a2b8ef27c02d831d6fb9fcf98663e2",
+    "audit_input_protocol_probe.py": "f437096f27eb37e5d6747926b277a8ee7427cc0aeedadf5412f8756c7597da42",
+    "audit_ethernet_video_run.py": "b70b825d76254dcc9369a0379c9edf8a04cf54f3815225e4adce429deec42e72"
+  },
+  "lab_tools_sha256": {
+    "board_lab_functional.py": "be10d7cd454bba86f1470f9efe78d47ab2316f678b06e2f12bdf02efff5e2bc5",
+    "run_c_lab_functional.ps1": "db48eff29393475b998b2ec987dae4eacc21e315f180560e0bcb4c0d833658fc"
+  },
+  "peer": [
+    "192.168.0.2",
+    5000
+  ],
+  "local": [
+    "192.168.0.3",
+    6102
+  ],
+  "sequence_manifests": {
+    "Natural2": {
+      "file": "data/first2/ETHERNET_SEQUENCE_FIRST2.json",
+      "sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c"
+    },
+    "Natural16": {
+      "file": "data/ETHERNET_SEQUENCE_MANIFEST.json",
+      "sha256": "950e3b928973dfeffa2b7c4e3d8090e19d72c3c8c4e1fabc6569d4031330da5a"
+    }
+  },
+  "scope_note": "Experimental network observations on the real candidate only. This selection does not change formal guard semantics or mark unknown electrical conditions PASS."
+}

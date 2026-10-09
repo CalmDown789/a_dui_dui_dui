@@ -1,0 +1,6351 @@
+{
+  "status": "COMPLETE",
+  "audited_cases": 32,
+  "audited_frames": 512,
+  "groups": {
+    "io_timing": {
+      "timeout_full": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 78.76575,
+          "mean": 78.818328125,
+          "p95_nearest_rank": 81.1727,
+          "minimum": 76.5519,
+          "maximum": 82.8006
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 79.1265,
+          "mean": 79.1865,
+          "p95_nearest_rank": 80.4554,
+          "minimum": 78.0376,
+          "maximum": 80.4554
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 78.7274,
+          "mean": 78.79378333333334,
+          "p95_nearest_rank": 81.1727,
+          "minimum": 76.5519,
+          "maximum": 82.8006
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 44.46595,
+            "mean": 44.474115625,
+            "p95_nearest_rank": 45.7292,
+            "minimum": 43.3472,
+            "maximum": 46.8822
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.4475500000000001,
+            "mean": 1.459965625,
+            "p95_nearest_rank": 1.6095,
+            "minimum": 1.3718,
+            "maximum": 1.7515
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 31.15485,
+            "mean": 31.2947125,
+            "p95_nearest_rank": 32.4043,
+            "minimum": 30.0477,
+            "maximum": 33.5987
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5335,
+            "mean": 1.589534375,
+            "p95_nearest_rank": 1.797,
+            "minimum": 1.4399,
+            "maximum": 2.4446
+          },
+          "whole": {
+            "n": 64,
+            "median": 78.76575,
+            "mean": 78.818328125,
+            "p95_nearest_rank": 81.1727,
+            "minimum": 76.5519,
+            "maximum": 82.8006
+          }
+        },
+        "round_mean_ms": [
+          78.8068125,
+          78.75450000000001,
+          78.96281875,
+          78.74918124999999
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 0.0,
+          "mean": 0.0,
+          "p95_nearest_rank": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.31345,
+          "mean": 1.311975,
+          "p95_nearest_rank": 1.315,
+          "minimum": 1.306,
+          "maximum": 1.315
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.00995,
+          "mean": 0.009975000000000001,
+          "p95_nearest_rank": 0.0101,
+          "minimum": 0.0099,
+          "maximum": 0.0101
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 1.0,
+          "mean": 1.0,
+          "p95_nearest_rank": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31.0625,
+        "long_ack_gap_total_ms_per_frame_mean": 27.3671578125,
+        "retries": 0,
+        "ignored": 0,
+        "repeated_host_request_types": {},
+        "late_previously_missing_output_chunks": 0,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.556481112089863
+      },
+      "timeout_sampled": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 76.71695,
+          "mean": 78.0801859375,
+          "p95_nearest_rank": 79.371,
+          "minimum": 75.1038,
+          "maximum": 119.8866
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 76.68055,
+          "mean": 77.075225,
+          "p95_nearest_rank": 78.3233,
+          "minimum": 76.6165,
+          "maximum": 78.3233
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 76.75545,
+          "mean": 78.14718333333333,
+          "p95_nearest_rank": 79.371,
+          "minimum": 75.1038,
+          "maximum": 119.8866
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 44.42659999999999,
+            "mean": 44.4667171875,
+            "p95_nearest_rank": 45.9371,
+            "minimum": 43.0363,
+            "maximum": 47.2064
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.46155,
+            "mean": 1.5179015625,
+            "p95_nearest_rank": 1.7994,
+            "minimum": 1.3696,
+            "maximum": 2.3192
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.2027,
+            "mean": 30.456203125,
+            "p95_nearest_rank": 29.7937,
+            "minimum": 28.5415,
+            "maximum": 72.1734
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5428,
+            "mean": 1.6393640624999999,
+            "p95_nearest_rank": 2.3041,
+            "minimum": 1.4258,
+            "maximum": 2.7388
+          },
+          "whole": {
+            "n": 64,
+            "median": 76.71695,
+            "mean": 78.0801859375,
+            "p95_nearest_rank": 79.371,
+            "minimum": 75.1038,
+            "maximum": 119.8866
+          }
+        },
+        "round_mean_ms": [
+          76.82708124999999,
+          76.79678125,
+          80.48119375,
+          78.2156875
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 0.0,
+          "mean": 0.0,
+          "p95_nearest_rank": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.309325,
+          "mean": 1.3147125,
+          "p95_nearest_rank": 1.341,
+          "minimum": 1.2992,
+          "maximum": 1.341
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.00685,
+          "mean": 0.00685,
+          "p95_nearest_rank": 0.007,
+          "minimum": 0.0067,
+          "maximum": 0.007
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 1.0,
+          "mean": 1.0,
+          "p95_nearest_rank": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31,
+        "long_ack_gap_total_ms_per_frame_mean": 30.54478125,
+        "retries": 1,
+        "ignored": 0,
+        "repeated_host_request_types": {
+          "1:1": 1
+        },
+        "late_previously_missing_output_chunks": 19,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.676130877248468
+      },
+      "nonblocking_sampled": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 78.9627,
+          "mean": 79.002984375,
+          "p95_nearest_rank": 80.2611,
+          "minimum": 76.9431,
+          "maximum": 81.1736
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 79.38329999999999,
+          "mean": 79.174775,
+          "p95_nearest_rank": 80.2611,
+          "minimum": 77.6714,
+          "maximum": 80.2611
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 78.9627,
+          "mean": 78.99153166666667,
+          "p95_nearest_rank": 80.2096,
+          "minimum": 76.9431,
+          "maximum": 81.1736
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 46.626599999999996,
+            "mean": 46.6875515625,
+            "p95_nearest_rank": 47.928,
+            "minimum": 44.8747,
+            "maximum": 48.1239
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.52855,
+            "mean": 1.5398953125,
+            "p95_nearest_rank": 1.7176,
+            "minimum": 1.4261,
+            "maximum": 1.7641
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.126849999999997,
+            "mean": 29.1290203125,
+            "p95_nearest_rank": 29.3031,
+            "minimum": 28.758,
+            "maximum": 29.3947
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5617,
+            "mean": 1.6465171875,
+            "p95_nearest_rank": 2.4253,
+            "minimum": 1.4621,
+            "maximum": 2.7465
+          },
+          "whole": {
+            "n": 64,
+            "median": 78.9627,
+            "mean": 79.002984375,
+            "p95_nearest_rank": 80.2611,
+            "minimum": 76.9431,
+            "maximum": 81.1736
+          }
+        },
+        "round_mean_ms": [
+          78.51036875,
+          78.6120125,
+          79.48500625,
+          79.40455
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 42.825509374999996,
+          "mean": 43.366609374999996,
+          "p95_nearest_rank": 45.343975,
+          "minimum": 42.47144375,
+          "maximum": 45.343975
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.211275,
+          "mean": 1.212925,
+          "p95_nearest_rank": 1.2237,
+          "minimum": 1.20545,
+          "maximum": 1.2237
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.078475,
+          "mean": 0.0773625,
+          "p95_nearest_rank": 0.07935,
+          "minimum": 0.07314999999999999,
+          "maximum": 0.07935
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 16.0,
+          "mean": 16.0,
+          "p95_nearest_rank": 16.0,
+          "minimum": 16.0,
+          "maximum": 16.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31,
+        "long_ack_gap_total_ms_per_frame_mean": 42.1234109375,
+        "retries": 1,
+        "ignored": 0,
+        "repeated_host_request_types": {
+          "1:1": 1
+        },
+        "late_previously_missing_output_chunks": 0,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.530575338038211
+      },
+      "nonblocking_full": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 79.42715,
+          "mean": 80.805115625,
+          "p95_nearest_rank": 81.6894,
+          "minimum": 77.9032,
+          "maximum": 120.7888
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 79.97245000000001,
+          "mean": 80.01195,
+          "p95_nearest_rank": 80.4637,
+          "minimum": 79.6392,
+          "maximum": 80.4637
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 79.40979999999999,
+          "mean": 80.85799333333334,
+          "p95_nearest_rank": 81.6894,
+          "minimum": 77.9032,
+          "maximum": 120.7888
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 47.0757,
+            "mean": 47.08138125,
+            "p95_nearest_rank": 48.2421,
+            "minimum": 45.8968,
+            "maximum": 49.3995
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.5178,
+            "mean": 1.541825,
+            "p95_nearest_rank": 1.7183,
+            "minimum": 1.4346,
+            "maximum": 2.0085
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.2409,
+            "mean": 30.409993749999998,
+            "p95_nearest_rank": 30.0005,
+            "minimum": 28.908,
+            "maximum": 70.7315
+          },
+          "release": {
+            "n": 64,
+            "median": 1.55505,
+            "mean": 1.771915625,
+            "p95_nearest_rank": 1.8491,
+            "minimum": 1.455,
+            "maximum": 12.1252
+          },
+          "whole": {
+            "n": 64,
+            "median": 79.42715,
+            "mean": 80.805115625,
+            "p95_nearest_rank": 81.6894,
+            "minimum": 77.9032,
+            "maximum": 120.7888
+          }
+        },
+        "round_mean_ms": [
+          81.17774375,
+          80.4516375,
+          82.16215,
+          79.42893125
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 36.606899999999996,
+          "mean": 36.56735,
+          "p95_nearest_rank": 38.4485625,
+          "minimum": 34.6070375,
+          "maximum": 38.4485625
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.178,
+          "mean": 1.1794,
+          "p95_nearest_rank": 1.1877,
+          "minimum": 1.1739,
+          "maximum": 1.1877
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.09212500000000001,
+          "mean": 0.0932875,
+          "p95_nearest_rank": 0.09839999999999999,
+          "minimum": 0.0905,
+          "maximum": 0.09839999999999999
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 16.0,
+          "mean": 16.0,
+          "p95_nearest_rank": 16.0,
+          "minimum": 16,
+          "maximum": 16.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31.03125,
+        "long_ack_gap_total_ms_per_frame_mean": 42.1602546875,
+        "retries": 1,
+        "ignored": 0,
+        "repeated_host_request_types": {
+          "1:1": 1
+        },
+        "late_previously_missing_output_chunks": 22,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.254136546541536
+      }
+    },
+    "input_batch": {
+      "batch1": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 77.1354,
+          "mean": 77.47901093750001,
+          "p95_nearest_rank": 78.0903,
+          "minimum": 75.1716,
+          "maximum": 100.2341
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 76.69375,
+          "mean": 76.5671,
+          "p95_nearest_rank": 76.9416,
+          "minimum": 75.9393,
+          "maximum": 76.9416
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 77.1603,
+          "mean": 77.539805,
+          "p95_nearest_rank": 78.0903,
+          "minimum": 75.1716,
+          "maximum": 100.2341
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 44.8454,
+            "mean": 44.7925109375,
+            "p95_nearest_rank": 45.6366,
+            "minimum": 43.0861,
+            "maximum": 46.0616
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.5606,
+            "mean": 1.5707421875,
+            "p95_nearest_rank": 1.7908,
+            "minimum": 1.4272,
+            "maximum": 1.9588
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.12375,
+            "mean": 29.1074828125,
+            "p95_nearest_rank": 29.2561,
+            "minimum": 28.6898,
+            "maximum": 29.4378
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5731000000000002,
+            "mean": 2.008275,
+            "p95_nearest_rank": 2.4098,
+            "minimum": 1.4542,
+            "maximum": 25.2667
+          },
+          "whole": {
+            "n": 64,
+            "median": 77.1354,
+            "mean": 77.47901093750001,
+            "p95_nearest_rank": 78.0903,
+            "minimum": 75.1716,
+            "maximum": 100.2341
+          }
+        },
+        "round_mean_ms": [
+          77.10705,
+          78.70025,
+          77.258425,
+          76.85031875
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 40.908503124999996,
+          "mean": 40.7055984375,
+          "p95_nearest_rank": 41.12408125,
+          "minimum": 39.88130625,
+          "maximum": 41.12408125
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.32905,
+          "mean": 1.3283749999999999,
+          "p95_nearest_rank": 1.3303,
+          "minimum": 1.3251,
+          "maximum": 1.3303
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.0085,
+          "mean": 0.008475,
+          "p95_nearest_rank": 0.0086,
+          "minimum": 0.0083,
+          "maximum": 0.0086
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 1.0,
+          "mean": 1.0,
+          "p95_nearest_rank": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31.015625,
+        "long_ack_gap_total_ms_per_frame_mean": 31.1252171875,
+        "retries": 0,
+        "ignored": 0,
+        "repeated_host_request_types": {},
+        "late_previously_missing_output_chunks": 0,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.774463591790738
+      },
+      "batch4": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 77.30369999999999,
+          "mean": 78.1980375,
+          "p95_nearest_rank": 79.2012,
+          "minimum": 75.4724,
+          "maximum": 105.0285
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 77.3638,
+          "mean": 77.498125,
+          "p95_nearest_rank": 78.5853,
+          "minimum": 76.6796,
+          "maximum": 78.5853
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 77.30369999999999,
+          "mean": 78.24469833333333,
+          "p95_nearest_rank": 79.2012,
+          "minimum": 75.4724,
+          "maximum": 105.0285
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 45.0646,
+            "mean": 45.0977453125,
+            "p95_nearest_rank": 46.2762,
+            "minimum": 43.4944,
+            "maximum": 46.4848
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.4959,
+            "mean": 1.5352796875,
+            "p95_nearest_rank": 1.7906,
+            "minimum": 1.4071,
+            "maximum": 2.041
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.1179,
+            "mean": 29.9421265625,
+            "p95_nearest_rank": 29.2563,
+            "minimum": 28.8048,
+            "maximum": 56.0933
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5481,
+            "mean": 1.6228859375,
+            "p95_nearest_rank": 2.3601,
+            "minimum": 1.4176,
+            "maximum": 2.5147
+          },
+          "whole": {
+            "n": 64,
+            "median": 77.30369999999999,
+            "mean": 78.1980375,
+            "p95_nearest_rank": 79.2012,
+            "minimum": 75.4724,
+            "maximum": 105.0285
+          }
+        },
+        "round_mean_ms": [
+          77.6830125,
+          76.7497125,
+          80.96648125,
+          77.39294375
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 41.574121875,
+          "mean": 42.202559375,
+          "p95_nearest_rank": 44.405575,
+          "minimum": 41.25641875,
+          "maximum": 44.405575
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.3015750000000001,
+          "mean": 1.2989875,
+          "p95_nearest_rank": 1.3103,
+          "minimum": 1.2825,
+          "maximum": 1.3103
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.017750000000000002,
+          "mean": 0.01785,
+          "p95_nearest_rank": 0.0183,
+          "minimum": 0.0176,
+          "maximum": 0.0183
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 4.0,
+          "mean": 4.0,
+          "p95_nearest_rank": 4.0,
+          "minimum": 4.0,
+          "maximum": 4.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31.1875,
+        "long_ack_gap_total_ms_per_frame_mean": 33.198246875,
+        "retries": 0,
+        "ignored": 0,
+        "repeated_host_request_types": {},
+        "late_previously_missing_output_chunks": 18,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.656172221394737
+      },
+      "batch32": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 78.67475,
+          "mean": 78.7749734375,
+          "p95_nearest_rank": 79.9053,
+          "minimum": 77.3282,
+          "maximum": 80.6487
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 78.7373,
+          "mean": 78.9033,
+          "p95_nearest_rank": 79.577,
+          "minimum": 78.5616,
+          "maximum": 79.577
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 78.66585,
+          "mean": 78.76641833333333,
+          "p95_nearest_rank": 79.9053,
+          "minimum": 77.3282,
+          "maximum": 80.6487
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 46.462900000000005,
+            "mean": 46.4770296875,
+            "p95_nearest_rank": 47.5521,
+            "minimum": 45.1609,
+            "maximum": 48.5148
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.4988000000000001,
+            "mean": 1.5269421875,
+            "p95_nearest_rank": 1.6339,
+            "minimum": 1.3942,
+            "maximum": 2.377
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.145,
+            "mean": 29.143618749999998,
+            "p95_nearest_rank": 29.2881,
+            "minimum": 28.7974,
+            "maximum": 29.3952
+          },
+          "release": {
+            "n": 64,
+            "median": 1.5502,
+            "mean": 1.6273828125,
+            "p95_nearest_rank": 2.3525,
+            "minimum": 1.4596,
+            "maximum": 2.6947
+          },
+          "whole": {
+            "n": 64,
+            "median": 78.67475,
+            "mean": 78.7749734375,
+            "p95_nearest_rank": 79.9053,
+            "minimum": 77.3282,
+            "maximum": 80.6487
+          }
+        },
+        "round_mean_ms": [
+          79.119175,
+          78.6744,
+          78.84575,
+          78.46056875000001
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 42.826921875,
+          "mean": 42.7051578125,
+          "p95_nearest_rank": 43.0931375,
+          "minimum": 42.07365,
+          "maximum": 43.0931375
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.206575,
+          "mean": 1.2057375000000001,
+          "p95_nearest_rank": 1.2110500000000002,
+          "minimum": 1.19875,
+          "maximum": 1.2110500000000002
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.078825,
+          "mean": 0.07821249999999999,
+          "p95_nearest_rank": 0.0802,
+          "minimum": 0.075,
+          "maximum": 0.0802
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 16.0,
+          "mean": 16.0,
+          "p95_nearest_rank": 16.0,
+          "minimum": 16.0,
+          "maximum": 16.0
+        },
+        "long_ack_gap_count_per_frame_mean": 31,
+        "long_ack_gap_total_ms_per_frame_mean": 41.9065203125,
+        "retries": 0,
+        "ignored": 0,
+        "repeated_host_request_types": {},
+        "late_previously_missing_output_chunks": 0,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.564958627419626
+      },
+      "batch8": {
+        "runs": 4,
+        "frames": 64,
+        "whole_ms": {
+          "n": 64,
+          "median": 77.57679999999999,
+          "mean": 77.7574765625,
+          "p95_nearest_rank": 79.2315,
+          "minimum": 76.2293,
+          "maximum": 82.7959
+        },
+        "first_frame_ms": {
+          "n": 4,
+          "median": 78.05225,
+          "mean": 77.937525,
+          "p95_nearest_rank": 78.3035,
+          "minimum": 77.3421,
+          "maximum": 78.3035
+        },
+        "subsequent_frame_ms": {
+          "n": 60,
+          "median": 77.56145000000001,
+          "mean": 77.74547333333334,
+          "p95_nearest_rank": 79.2315,
+          "minimum": 76.2293,
+          "maximum": 82.7959
+        },
+        "phase_ms": {
+          "input": {
+            "n": 64,
+            "median": 45.32055,
+            "mean": 45.3972546875,
+            "p95_nearest_rank": 46.749,
+            "minimum": 44.0412,
+            "maximum": 49.8438
+          },
+          "commit": {
+            "n": 64,
+            "median": 1.4906,
+            "mean": 1.523753125,
+            "p95_nearest_rank": 1.6979,
+            "minimum": 1.4304,
+            "maximum": 1.8888
+          },
+          "output_until_verified": {
+            "n": 64,
+            "median": 29.14585,
+            "mean": 29.1769078125,
+            "p95_nearest_rank": 29.4609,
+            "minimum": 28.7497,
+            "maximum": 29.844
+          },
+          "release": {
+            "n": 64,
+            "median": 1.55975,
+            "mean": 1.6595609375,
+            "p95_nearest_rank": 2.4389,
+            "minimum": 1.4443,
+            "maximum": 2.8816
+          },
+          "whole": {
+            "n": 64,
+            "median": 77.57679999999999,
+            "mean": 77.7574765625,
+            "p95_nearest_rank": 79.2315,
+            "minimum": 76.2293,
+            "maximum": 82.7959
+          }
+        },
+        "round_mean_ms": [
+          77.1807125,
+          78.8614,
+          77.3646625,
+          77.62313125
+        ],
+        "readiness_wait_ms_per_frame": {
+          "n": 4,
+          "median": 41.855478125000005,
+          "mean": 41.628718750000004,
+          "p95_nearest_rank": 42.51279375,
+          "minimum": 40.291125,
+          "maximum": 42.51279375
+        },
+        "input_ack_lag_median_ms": {
+          "n": 4,
+          "median": 1.2619500000000001,
+          "mean": 1.263125,
+          "p95_nearest_rank": 1.2782,
+          "minimum": 1.2504,
+          "maximum": 1.2782
+        },
+        "ack_capture_to_next_data_median_ms": {
+          "n": 4,
+          "median": 0.0304,
+          "mean": 0.0324,
+          "p95_nearest_rank": 0.0394,
+          "minimum": 0.0294,
+          "maximum": 0.0394
+        },
+        "ack_capture_batch_median": {
+          "n": 4,
+          "median": 8.0,
+          "mean": 8.0,
+          "p95_nearest_rank": 8,
+          "minimum": 8.0,
+          "maximum": 8
+        },
+        "long_ack_gap_count_per_frame_mean": 31.84375,
+        "long_ack_gap_total_ms_per_frame_mean": 35.891078125,
+        "retries": 0,
+        "ignored": 0,
+        "repeated_host_request_types": {},
+        "late_previously_missing_output_chunks": 0,
+        "duplicates": 0,
+        "rejected": 0,
+        "Golden_mismatches": 0,
+        "protocol_loop_fps": 12.731771708590832
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "stage": "io_timing",
+      "baseline": "timeout_full",
+      "candidate": "timeout_sampled",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        1.9797312500000146,
+        1.9577187500000122,
+        -1.518375000000006,
+        0.533493749999991
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": 1.2456062500000016,
+        "mean": 0.7381421875000029,
+        "p95_nearest_rank": 1.9797312500000146,
+        "minimum": -1.518375000000006,
+        "maximum": 1.9797312500000146
+      },
+      "elapsed_reduction_percent": 0.9365108408914288,
+      "round_median_saved_ms": [
+        2.468500000000006,
+        2.1163999999999987,
+        0.678750000000008,
+        2.7296499999999924
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": 2.2924500000000023,
+        "mean": 1.9983250000000012,
+        "p95_nearest_rank": 2.7296499999999924,
+        "minimum": 0.678750000000008,
+        "maximum": 2.7296499999999924
+      },
+      "positive_median_gain_rounds": 4,
+      "positive_gain_rounds": 3,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": 0.17597499999999755,
+          "mean": 0.0073984375000009095,
+          "p95_nearest_rank": 0.5905125000000027,
+          "minimum": -0.9128687499999941,
+          "maximum": 0.5905125000000027
+        },
+        "commit": {
+          "n": 4,
+          "median": -0.06508124999999998,
+          "mean": -0.05793593749999998,
+          "p95_nearest_rank": -0.016293749999999996,
+          "minimum": -0.08528749999999996,
+          "maximum": -0.016293749999999996
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 0.879900000000001,
+          "mean": 0.838509375000001,
+          "p95_nearest_rank": 2.0393749999999997,
+          "minimum": -0.44513749999999774,
+          "maximum": 2.0393749999999997
+        },
+        "release": {
+          "n": 4,
+          "median": -0.03460312499999996,
+          "mean": -0.04982968749999994,
+          "p95_nearest_rank": 0.016137500000000138,
+          "minimum": -0.14625,
+          "maximum": 0.016137500000000138
+        },
+        "whole": {
+          "n": 4,
+          "median": 1.2456062500000016,
+          "mean": 0.7381421875000029,
+          "p95_nearest_rank": 1.9797312500000146,
+          "minimum": -1.518375000000006,
+          "maximum": 1.9797312500000146
+        }
+      }
+    },
+    {
+      "stage": "io_timing",
+      "baseline": "nonblocking_full",
+      "candidate": "nonblocking_sampled",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        2.667375000000007,
+        1.839624999999998,
+        2.677143749999999,
+        0.024381250000004684
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": 2.2535000000000025,
+        "mean": 1.8021312500000022,
+        "p95_nearest_rank": 2.677143749999999,
+        "minimum": 0.024381250000004684,
+        "maximum": 2.677143749999999
+      },
+      "elapsed_reduction_percent": 2.230219257854075,
+      "round_median_saved_ms": [
+        0.4945499999999896,
+        1.4520499999999998,
+        -0.24935000000000684,
+        -0.189549999999997
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": 0.1524999999999963,
+        "mean": 0.3769249999999964,
+        "p95_nearest_rank": 1.4520499999999998,
+        "minimum": -0.24935000000000684,
+        "maximum": 1.4520499999999998
+      },
+      "positive_median_gain_rounds": 2,
+      "positive_gain_rounds": 4,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": 0.279296875,
+          "mean": 0.39382968749999847,
+          "p95_nearest_rank": 1.0374062499999965,
+          "minimum": -0.02068125000000265,
+          "maximum": 1.0374062499999965
+        },
+        "commit": {
+          "n": 4,
+          "median": 0.00010625000000008544,
+          "mean": 0.0019296874999999991,
+          "p95_nearest_rank": 0.051606249999999854,
+          "minimum": -0.04410000000000003,
+          "maximum": 0.051606249999999854
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 1.1673656250000004,
+          "mean": 1.280973437500001,
+          "p95_nearest_rank": 2.7422375000000017,
+          "minimum": 0.04692500000000166,
+          "maximum": 2.7422375000000017
+        },
+        "release": {
+          "n": 4,
+          "median": -0.03744999999999998,
+          "mean": 0.1253984374999999,
+          "p95_nearest_rank": 0.6526437499999997,
+          "minimum": -0.07615000000000016,
+          "maximum": 0.6526437499999997
+        },
+        "whole": {
+          "n": 4,
+          "median": 2.2535000000000025,
+          "mean": 1.8021312500000022,
+          "p95_nearest_rank": 2.677143749999999,
+          "minimum": 0.024381250000004684,
+          "maximum": 2.677143749999999
+        }
+      }
+    },
+    {
+      "stage": "io_timing",
+      "baseline": "timeout_full",
+      "candidate": "nonblocking_full",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        -2.370931249999998,
+        -1.6971374999999966,
+        -3.19933125,
+        -0.6797500000000127
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": -2.0340343749999974,
+        "mean": -1.986787500000002,
+        "p95_nearest_rank": -0.6797500000000127,
+        "minimum": -3.19933125,
+        "maximum": -0.6797500000000127
+      },
+      "elapsed_reduction_percent": -2.520717639238814,
+      "round_median_saved_ms": [
+        -0.276449999999997,
+        -1.1113,
+        -1.17349999999999,
+        -0.5673500000000047
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": -0.8393250000000023,
+        "mean": -0.7821499999999979,
+        "p95_nearest_rank": -0.276449999999997,
+        "minimum": -1.17349999999999,
+        "maximum": -0.276449999999997
+      },
+      "positive_median_gain_rounds": 0,
+      "positive_gain_rounds": 0,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": -2.621299999999998,
+          "mean": -2.6072656249999984,
+          "p95_nearest_rank": -2.232612499999995,
+          "minimum": -2.9538500000000028,
+          "maximum": -2.232612499999995
+        },
+        "commit": {
+          "n": 4,
+          "median": -0.07662812499999994,
+          "mean": -0.08185937500000001,
+          "p95_nearest_rank": -0.05155625000000019,
+          "minimum": -0.12262499999999998,
+          "maximum": -0.05155625000000019
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 0.9592000000000009,
+          "mean": 0.8847187500000011,
+          "p95_nearest_rank": 2.0249875000000017,
+          "minimum": -0.40451249999999916,
+          "maximum": 2.0249875000000017
+        },
+        "release": {
+          "n": 4,
+          "median": -0.03055312499999996,
+          "mean": -0.18238124999999994,
+          "p95_nearest_rank": 0.01761250000000003,
+          "minimum": -0.6860312499999999,
+          "maximum": 0.01761250000000003
+        },
+        "whole": {
+          "n": 4,
+          "median": -2.0340343749999974,
+          "mean": -1.986787500000002,
+          "p95_nearest_rank": -0.6797500000000127,
+          "minimum": -3.19933125,
+          "maximum": -0.6797500000000127
+        }
+      }
+    },
+    {
+      "stage": "io_timing",
+      "baseline": "timeout_sampled",
+      "candidate": "nonblocking_sampled",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        -1.6832875000000058,
+        -1.8152312500000107,
+        0.9961875000000049,
+        -1.188862499999999
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": -1.4360750000000024,
+        "mean": -0.9227984375000027,
+        "p95_nearest_rank": 0.9961875000000049,
+        "minimum": -1.8152312500000107,
+        "maximum": 0.9961875000000049
+      },
+      "elapsed_reduction_percent": -1.1818599384979245,
+      "round_median_saved_ms": [
+        -2.2504000000000133,
+        -1.7756499999999988,
+        -2.101600000000005,
+        -3.486549999999994
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": -2.176000000000009,
+        "mean": -2.4035500000000027,
+        "p95_nearest_rank": -1.7756499999999988,
+        "minimum": -3.486549999999994,
+        "maximum": -1.7756499999999988
+      },
+      "positive_median_gain_rounds": 0,
+      "positive_gain_rounds": 1,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": -2.1460437500000005,
+          "mean": -2.220834375000001,
+          "p95_nearest_rank": -1.7558500000000024,
+          "minimum": -2.8354,
+          "maximum": -1.7558500000000024
+        },
+        "commit": {
+          "n": 4,
+          "median": -0.03230312499999999,
+          "mean": -0.021993750000000034,
+          "p95_nearest_rank": 0.013062499999999977,
+          "minimum": -0.03643125000000014,
+          "maximum": 0.013062499999999977
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 1.197137500000002,
+          "mean": 1.3271828125000011,
+          "p95_nearest_rank": 2.7828625000000002,
+          "minimum": 0.1315937500000004,
+          "maximum": 2.7828625000000002
+        },
+        "release": {
+          "n": 4,
+          "median": -0.03160000000000007,
+          "mean": -0.0071531250000000934,
+          "p95_nearest_rank": 0.11286249999999987,
+          "minimum": -0.0782750000000001,
+          "maximum": 0.11286249999999987
+        },
+        "whole": {
+          "n": 4,
+          "median": -1.4360750000000024,
+          "mean": -0.9227984375000027,
+          "p95_nearest_rank": 0.9961875000000049,
+          "minimum": -1.8152312500000107,
+          "maximum": 0.9961875000000049
+        }
+      }
+    },
+    {
+      "stage": "input_batch",
+      "baseline": "batch32",
+      "candidate": "batch1",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        2.0121249999999975,
+        -0.02584999999999127,
+        1.5873249999999928,
+        1.6102500000000077
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": 1.5987875000000003,
+        "mean": 1.2959625000000017,
+        "p95_nearest_rank": 2.0121249999999975,
+        "minimum": -0.02584999999999127,
+        "maximum": 2.0121249999999975
+      },
+      "elapsed_reduction_percent": 1.6451449533375182,
+      "round_median_saved_ms": [
+        1.9621999999999957,
+        1.262200000000007,
+        1.451750000000004,
+        1.5257000000000005
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": 1.4887250000000023,
+        "mean": 1.5504625000000019,
+        "p95_nearest_rank": 1.9621999999999957,
+        "minimum": 1.262200000000007,
+        "maximum": 1.9621999999999957
+      },
+      "positive_median_gain_rounds": 4,
+      "positive_gain_rounds": 3,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": 1.6696562500000027,
+          "mean": 1.6845187500000023,
+          "p95_nearest_rank": 2.0697125000000014,
+          "minimum": 1.3290500000000023,
+          "maximum": 2.0697125000000014
+        },
+        "commit": {
+          "n": 4,
+          "median": -0.057568749999999946,
+          "mean": -0.043800000000000006,
+          "p95_nearest_rank": 0.040068749999999875,
+          "minimum": -0.10013125,
+          "maximum": 0.040068749999999875
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 0.037200000000000344,
+          "mean": 0.036135937500000104,
+          "p95_nearest_rank": 0.0661562499999988,
+          "minimum": 0.003987500000000921,
+          "maximum": 0.0661562499999988
+        },
+        "release": {
+          "n": 4,
+          "median": -0.05342812499999994,
+          "mean": -0.38089218750000003,
+          "p95_nearest_rank": -0.006393749999999976,
+          "minimum": -1.4103187500000003,
+          "maximum": -0.006393749999999976
+        },
+        "whole": {
+          "n": 4,
+          "median": 1.5987875000000003,
+          "mean": 1.2959625000000017,
+          "p95_nearest_rank": 2.0121249999999975,
+          "minimum": -0.02584999999999127,
+          "maximum": 2.0121249999999975
+        }
+      }
+    },
+    {
+      "stage": "input_batch",
+      "baseline": "batch32",
+      "candidate": "batch4",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        1.4361624999999947,
+        1.9246875000000045,
+        -2.1207312500000057,
+        1.0676250000000067
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": 1.2518937500000007,
+        "mean": 0.5769359375,
+        "p95_nearest_rank": 1.9246875000000045,
+        "minimum": -2.1207312500000057,
+        "maximum": 1.9246875000000045
+      },
+      "elapsed_reduction_percent": 0.7323848074131571,
+      "round_median_saved_ms": [
+        1.3861499999999864,
+        2.046050000000008,
+        0.9055000000000177,
+        1.094450000000009
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": 1.2402999999999977,
+        "mean": 1.3580375000000053,
+        "p95_nearest_rank": 2.046050000000008,
+        "minimum": 0.9055000000000177,
+        "maximum": 2.046050000000008
+      },
+      "positive_median_gain_rounds": 4,
+      "positive_gain_rounds": 3,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": 1.3190531250000035,
+          "mean": 1.379284375000001,
+          "p95_nearest_rank": 1.7784499999999994,
+          "minimum": 1.1005812499999976,
+          "maximum": 1.7784499999999994
+        },
+        "commit": {
+          "n": 4,
+          "median": -0.01948749999999999,
+          "mean": -0.008337499999999998,
+          "p95_nearest_rank": 0.06118749999999995,
+          "minimum": -0.05556249999999996,
+          "maximum": 0.06118749999999995
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": 0.026037500000001046,
+          "mean": -0.7985078124999996,
+          "p95_nearest_rank": 0.05295625000000115,
+          "minimum": -3.2990625000000016,
+          "maximum": 0.05295625000000115
+        },
+        "release": {
+          "n": 4,
+          "median": 0.012950000000000017,
+          "mean": 0.004496875000000011,
+          "p95_nearest_rank": 0.05685624999999983,
+          "minimum": -0.06476874999999982,
+          "maximum": 0.05685624999999983
+        },
+        "whole": {
+          "n": 4,
+          "median": 1.2518937500000007,
+          "mean": 0.5769359375,
+          "p95_nearest_rank": 1.9246875000000045,
+          "minimum": -2.1207312500000057,
+          "maximum": 1.9246875000000045
+        }
+      }
+    },
+    {
+      "stage": "input_batch",
+      "baseline": "batch32",
+      "candidate": "batch8",
+      "matched_rounds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "round_mean_saved_ms": [
+        1.9384625,
+        -0.1869999999999976,
+        1.481087500000001,
+        0.8374375000000072
+      ],
+      "saved_ms_stats": {
+        "n": 4,
+        "median": 1.159262500000004,
+        "mean": 1.0174968750000026,
+        "p95_nearest_rank": 1.9384625,
+        "minimum": -0.1869999999999976,
+        "maximum": 1.9384625
+      },
+      "elapsed_reduction_percent": 1.2916499118940152,
+      "round_median_saved_ms": [
+        1.9027999999999992,
+        0.2281499999999994,
+        1.4362000000000137,
+        0.8674000000000035
+      ],
+      "median_saved_ms_stats": {
+        "n": 4,
+        "median": 1.1518000000000086,
+        "mean": 1.108637500000004,
+        "p95_nearest_rank": 1.9027999999999992,
+        "minimum": 0.2281499999999994,
+        "maximum": 1.9027999999999992
+      },
+      "positive_median_gain_rounds": 4,
+      "positive_gain_rounds": 3,
+      "phase_saved_ms": {
+        "input": {
+          "n": 4,
+          "median": 1.1733562500000012,
+          "mean": 1.0797750000000015,
+          "p95_nearest_rank": 1.9639187500000048,
+          "minimum": 0.008468749999998693,
+          "maximum": 1.9639187500000048
+        },
+        "commit": {
+          "n": 4,
+          "median": 0.006112499999999965,
+          "mean": 0.003189062500000006,
+          "p95_nearest_rank": 0.023781250000000087,
+          "minimum": -0.023249999999999993,
+          "maximum": 0.023781250000000087
+        },
+        "output_until_verified": {
+          "n": 4,
+          "median": -0.007318750000001373,
+          "mean": -0.03328906250000063,
+          "p95_nearest_rank": 0.027406249999998522,
+          "minimum": -0.1459249999999983,
+          "maximum": 0.027406249999998522
+        },
+        "release": {
+          "n": 4,
+          "median": -0.04178750000000009,
+          "mean": -0.03217812500000006,
+          "p95_nearest_rank": 0.04312499999999986,
+          "minimum": -0.08826249999999991,
+          "maximum": 0.04312499999999986
+        },
+        "whole": {
+          "n": 4,
+          "median": 1.159262500000004,
+          "mean": 1.0174968750000026,
+          "p95_nearest_rank": 1.9384625,
+          "minimum": -0.1869999999999976,
+          "maximum": 1.9384625
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "stage": "io_timing",
+      "round": 0,
+      "position": 0,
+      "variant": "timeout_full",
+      "io_mode": "timeout",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r0_0_timeout_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.8244,
+        "mean": 78.8068125,
+        "p95_nearest_rank": 82.8006,
+        "minimum": 76.5519,
+        "maximum": 82.8006
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.7913,
+          "mean": 44.540125,
+          "p95_nearest_rank": 45.3608,
+          "minimum": 43.5014,
+          "maximum": 45.3608
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4489999999999998,
+          "mean": 1.464875,
+          "p95_nearest_rank": 1.6095,
+          "minimum": 1.387,
+          "maximum": 1.6095
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 31.073,
+          "mean": 31.215475,
+          "p95_nearest_rank": 33.5109,
+          "minimum": 30.0477,
+          "maximum": 33.5109
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5142,
+          "mean": 1.5863375,
+          "p95_nearest_rank": 2.4446,
+          "minimum": 1.464,
+          "maximum": 2.4446
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.8244,
+          "mean": 78.8068125,
+          "p95_nearest_rank": 82.8006,
+          "minimum": 76.5519,
+          "maximum": 82.8006
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.315,
+          "mean": 1.328791481755424,
+          "p95_nearest_rank": 1.4923,
+          "minimum": 1.073,
+          "maximum": 1.9268
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3146499999999999,
+          "mean": 1.3137125,
+          "p95_nearest_rank": 1.345,
+          "minimum": 1.2802,
+          "maximum": 1.345
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.01,
+          "mean": 0.011745901221995926,
+          "p95_nearest_rank": 0.0204,
+          "minimum": 0.0084,
+          "maximum": 0.1561
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0268,
+          "mean": 0.08236404397233202,
+          "p95_nearest_rank": 0.8429,
+          "minimum": 0.0101,
+          "maximum": 1.403
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 27.3465,
+          "mean": 27.32015625,
+          "p95_nearest_rank": 28.3202,
+          "minimum": 26.4215,
+          "maximum": 28.3202
+        }
+      },
+      "raw_journal_sha256": "5a0ca5df2dd7d576793eb507cbc28a1a30368b5d1baa05e4ef578495361f5566"
+    },
+    {
+      "stage": "io_timing",
+      "round": 0,
+      "position": 1,
+      "variant": "timeout_sampled",
+      "io_mode": "timeout",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r0_1_timeout_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 76.35589999999999,
+        "mean": 76.82708124999999,
+        "p95_nearest_rank": 86.4292,
+        "minimum": 75.1038,
+        "maximum": 86.4292
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 43.9039,
+          "mean": 43.9496125,
+          "p95_nearest_rank": 44.8811,
+          "minimum": 43.0363,
+          "maximum": 44.8811
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4301,
+          "mean": 1.48116875,
+          "p95_nearest_rank": 1.7994,
+          "minimum": 1.3696,
+          "maximum": 1.7994
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.19245,
+          "mean": 29.8158375,
+          "p95_nearest_rank": 39.5586,
+          "minimum": 28.7893,
+          "maximum": 39.5586
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5247,
+          "mean": 1.5804624999999999,
+          "p95_nearest_rank": 2.3041,
+          "minimum": 1.4536,
+          "maximum": 2.3041
+        },
+        "whole": {
+          "n": 16,
+          "median": 76.35589999999999,
+          "mean": 76.82708124999999,
+          "p95_nearest_rank": 86.4292,
+          "minimum": 75.1038,
+          "maximum": 86.4292
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.30505,
+          "mean": 1.3189854783037476,
+          "p95_nearest_rank": 1.4628,
+          "minimum": 1.0271,
+          "maximum": 2.0188
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.30555,
+          "mean": 1.3041625,
+          "p95_nearest_rank": 1.3309,
+          "minimum": 1.2835,
+          "maximum": 1.3309
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.007,
+          "mean": 0.008581186354378819,
+          "p95_nearest_rank": 0.0179,
+          "minimum": 0.0054,
+          "maximum": 0.1493
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0203,
+          "mean": 0.08148636363636363,
+          "p95_nearest_rank": 0.9341,
+          "minimum": 0.0061,
+          "maximum": 1.3211
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 30.25085,
+          "mean": 30.11036875,
+          "p95_nearest_rank": 30.7271,
+          "minimum": 29.1333,
+          "maximum": 30.7271
+        }
+      },
+      "raw_journal_sha256": "09d15d5bd92380b8c6b29fddd1ba483ce3bef8aae69062e21052f547ff9e37dd"
+    },
+    {
+      "stage": "io_timing",
+      "round": 0,
+      "position": 2,
+      "variant": "nonblocking_sampled",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r0_2_nonblocking_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.6063,
+        "mean": 78.51036875,
+        "p95_nearest_rank": 79.7963,
+        "minimum": 77.4653,
+        "maximum": 79.7963
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.2363,
+          "mean": 46.21458125,
+          "p95_nearest_rank": 47.1906,
+          "minimum": 45.3162,
+          "maximum": 47.1906
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.47255,
+          "mean": 1.5176,
+          "p95_nearest_rank": 1.7314,
+          "minimum": 1.4377,
+          "maximum": 1.7314
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1338,
+          "mean": 29.1333125,
+          "p95_nearest_rank": 29.3947,
+          "minimum": 28.9903,
+          "maximum": 29.3947
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5407000000000002,
+          "mean": 1.644875,
+          "p95_nearest_rank": 2.4253,
+          "minimum": 1.4648,
+          "maximum": 2.4253
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.6063,
+          "mean": 78.51036875,
+          "p95_nearest_rank": 79.7963,
+          "minimum": 77.4653,
+          "maximum": 79.7963
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.98913125,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 15,
+        "io_readiness_wait_calls": 1494,
+        "io_recvfrom_attempts": 44664,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4102,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1026,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.20655,
+          "mean": 1.2113696375739644,
+          "p95_nearest_rank": 1.3512,
+          "minimum": 0.8684,
+          "maximum": 1.8839
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2063000000000001,
+          "mean": 1.20610625,
+          "p95_nearest_rank": 1.2307,
+          "minimum": 1.1813,
+          "maximum": 1.2307
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.07314999999999999,
+          "mean": 0.0763921370967742,
+          "p95_nearest_rank": 0.1183,
+          "minimum": 0.0451,
+          "maximum": 0.198
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0025,
+          "mean": 0.08571698369565217,
+          "p95_nearest_rank": 1.2975,
+          "minimum": 0.0018,
+          "maximum": 1.916
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.713300000000004,
+          "mean": 41.7493,
+          "p95_nearest_rank": 42.6669,
+          "minimum": 40.9045,
+          "maximum": 42.6669
+        }
+      },
+      "raw_journal_sha256": "bd9c676c02f58910958f6b5a155e1c6f668583e7d604df58f44f4d1345bc0123"
+    },
+    {
+      "stage": "io_timing",
+      "round": 0,
+      "position": 3,
+      "variant": "nonblocking_full",
+      "io_mode": "nonblocking",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r0_3_nonblocking_full",
+      "retries": 1,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.10085,
+        "mean": 81.17774375,
+        "p95_nearest_rank": 110.5244,
+        "minimum": 78.2391,
+        "maximum": 110.5244
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.656499999999994,
+          "mean": 46.7727375,
+          "p95_nearest_rank": 48.1714,
+          "minimum": 45.967,
+          "maximum": 48.1714
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5021499999999999,
+          "mean": 1.5164312500000001,
+          "p95_nearest_rank": 1.6322,
+          "minimum": 1.4346,
+          "maximum": 1.6322
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.27225,
+          "mean": 31.31985,
+          "p95_nearest_rank": 61.4516,
+          "minimum": 29.0055,
+          "maximum": 61.4516
+        },
+        "release": {
+          "n": 16,
+          "median": 1.54575,
+          "mean": 1.568725,
+          "p95_nearest_rank": 1.8491,
+          "minimum": 1.455,
+          "maximum": 1.8491
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.10085,
+          "mean": 81.17774375,
+          "p95_nearest_rank": 110.5244,
+          "minimum": 78.2391,
+          "maximum": 110.5244
+        }
+      },
+      "readiness_wait_ms_per_frame": 38.4485625,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 5,
+        "io_readiness_wait_calls": 687,
+        "io_recvfrom_attempts": 42797,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 2235,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [
+          {
+            "version": 1,
+            "packet_type": 1,
+            "frame": 0,
+            "sequence": 0,
+            "interval_ms": 26.9224
+          }
+        ],
+        "late_previously_missing_output_chunks": [
+          {
+            "frame": 13,
+            "sequence": 499,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 500,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 501,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 502,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 503,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 504,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 505,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 506,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 507,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 508,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 509,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 510,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 511,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 512,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 513,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 514,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 515,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 516,
+            "prior_highest_sequence": 626
+          },
+          {
+            "frame": 13,
+            "sequence": 517,
+            "prior_highest_sequence": 626
+          }
+        ],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.1739,
+          "mean": 1.1744949457593687,
+          "p95_nearest_rank": 1.336,
+          "minimum": 0.5347,
+          "maximum": 1.7295
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.1724,
+          "mean": 1.17326875,
+          "p95_nearest_rank": 1.1935,
+          "minimum": 1.1527,
+          "maximum": 1.1935
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 497,
+          "median": 0.0905,
+          "mean": 0.09192897384305836,
+          "p95_nearest_rank": 0.1198,
+          "minimum": 0.0461,
+          "maximum": 0.2313
+        },
+        "ack_capture_batch_size": {
+          "n": 497,
+          "median": 16,
+          "mean": 15.967806841046277,
+          "p95_nearest_rank": 16,
+          "minimum": 5,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0034,
+          "mean": 0.08671767539525692,
+          "p95_nearest_rank": 1.3087,
+          "minimum": 0.0028,
+          "maximum": 1.7771
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.0625,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.812349999999995,
+          "mean": 41.9403625,
+          "p95_nearest_rank": 43.1363,
+          "minimum": 40.8959,
+          "maximum": 43.1363
+        }
+      },
+      "raw_journal_sha256": "d2b0623d2a9bcb0acb2ff51d7428878ac6b3aee897bad0d500f06ae017ba89d0"
+    },
+    {
+      "stage": "io_timing",
+      "round": 1,
+      "position": 0,
+      "variant": "timeout_sampled",
+      "io_mode": "timeout",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r1_0_timeout_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 76.71805,
+        "mean": 76.79678125,
+        "p95_nearest_rank": 78.7668,
+        "minimum": 75.3181,
+        "maximum": 78.7668
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.005700000000004,
+          "mean": 44.3173875,
+          "p95_nearest_rank": 45.5733,
+          "minimum": 43.276,
+          "maximum": 45.5733
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.48865,
+          "mean": 1.50383125,
+          "p95_nearest_rank": 1.7148,
+          "minimum": 1.3922,
+          "maximum": 1.7148
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.20785,
+          "mean": 29.22886875,
+          "p95_nearest_rank": 29.5495,
+          "minimum": 29.0893,
+          "maximum": 29.5495
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5625499999999999,
+          "mean": 1.74669375,
+          "p95_nearest_rank": 2.4819,
+          "minimum": 1.466,
+          "maximum": 2.4819
+        },
+        "whole": {
+          "n": 16,
+          "median": 76.71805,
+          "mean": 76.79678125,
+          "p95_nearest_rank": 78.7668,
+          "minimum": 75.3181,
+          "maximum": 78.7668
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3136,
+          "mean": 1.3288111686390534,
+          "p95_nearest_rank": 1.4782,
+          "minimum": 0.9703,
+          "maximum": 2.4301
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3082,
+          "mean": 1.3148,
+          "p95_nearest_rank": 1.356,
+          "minimum": 1.2863,
+          "maximum": 1.356
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0068,
+          "mean": 0.008417171588594705,
+          "p95_nearest_rank": 0.016,
+          "minimum": 0.0054,
+          "maximum": 0.1662
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0202,
+          "mean": 0.08215785573122529,
+          "p95_nearest_rank": 0.9327,
+          "minimum": 0.0062,
+          "maximum": 2.0402
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 30.43735,
+          "mean": 30.52993125,
+          "p95_nearest_rank": 31.73,
+          "minimum": 29.3567,
+          "maximum": 31.73
+        }
+      },
+      "raw_journal_sha256": "24086cf23a43953b3a736550d1558275ef114e1a2837a088fcc0d88f5cc13c0b"
+    },
+    {
+      "stage": "io_timing",
+      "round": 1,
+      "position": 1,
+      "variant": "nonblocking_full",
+      "io_mode": "nonblocking",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r1_1_nonblocking_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.94575,
+        "mean": 80.4516375,
+        "p95_nearest_rank": 90.1939,
+        "minimum": 78.2717,
+        "maximum": 90.1939
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 47.459050000000005,
+          "mean": 47.3819125,
+          "p95_nearest_rank": 48.2607,
+          "minimum": 46.0967,
+          "maximum": 48.2607
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.53025,
+          "mean": 1.53778125,
+          "p95_nearest_rank": 1.6515,
+          "minimum": 1.4566,
+          "maximum": 1.6515
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.2121,
+          "mean": 29.24546875,
+          "p95_nearest_rank": 29.8437,
+          "minimum": 29.0815,
+          "maximum": 29.8437
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5771000000000002,
+          "mean": 2.286475,
+          "p95_nearest_rank": 12.1252,
+          "minimum": 1.4951,
+          "maximum": 12.1252
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.94575,
+          "mean": 80.4516375,
+          "p95_nearest_rank": 90.1939,
+          "minimum": 78.2717,
+          "maximum": 90.1939
+        }
+      },
+      "readiness_wait_ms_per_frame": 35.3440125,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 1,
+        "io_readiness_wait_calls": 666,
+        "io_recvfrom_attempts": 42507,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 1945,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.1877,
+          "mean": 1.1953995808678501,
+          "p95_nearest_rank": 1.372,
+          "minimum": 0.77,
+          "maximum": 2.0221
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.1888999999999998,
+          "mean": 1.1881875,
+          "p95_nearest_rank": 1.2108,
+          "minimum": 1.1674,
+          "maximum": 1.2108
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.09839999999999999,
+          "mean": 0.09954354838709678,
+          "p95_nearest_rank": 0.1447,
+          "minimum": 0.0628,
+          "maximum": 0.1713
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0037,
+          "mean": 0.08792687747035573,
+          "p95_nearest_rank": 1.3029,
+          "minimum": 0.0028,
+          "maximum": 2.0689
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.2965,
+          "mean": 42.2618,
+          "p95_nearest_rank": 43.1457,
+          "minimum": 41.2594,
+          "maximum": 43.1457
+        }
+      },
+      "raw_journal_sha256": "d929d71ba58dec6eef45e12a65fc1d52d9d08ba820394c1c87b9d1762adf97f5"
+    },
+    {
+      "stage": "io_timing",
+      "round": 1,
+      "position": 2,
+      "variant": "timeout_full",
+      "io_mode": "timeout",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r1_2_timeout_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.83445,
+        "mean": 78.75450000000001,
+        "p95_nearest_rank": 80.2861,
+        "minimum": 77.3448,
+        "maximum": 80.2861
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.2976,
+          "mean": 44.428062499999996,
+          "p95_nearest_rank": 46.0943,
+          "minimum": 43.3472,
+          "maximum": 46.0943
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4558,
+          "mean": 1.45775,
+          "p95_nearest_rank": 1.6798,
+          "minimum": 1.3855,
+          "maximum": 1.6798
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 31.100099999999998,
+          "mean": 31.26824375,
+          "p95_nearest_rank": 32.0675,
+          "minimum": 30.569,
+          "maximum": 32.0675
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5342,
+          "mean": 1.60044375,
+          "p95_nearest_rank": 2.4117,
+          "minimum": 1.441,
+          "maximum": 2.4117
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.83445,
+          "mean": 78.75450000000001,
+          "p95_nearest_rank": 80.2861,
+          "minimum": 77.3448,
+          "maximum": 80.2861
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.306,
+          "mean": 1.3278146696252466,
+          "p95_nearest_rank": 1.5057,
+          "minimum": 0.9651,
+          "maximum": 2.0688
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3045499999999999,
+          "mean": 1.30605625,
+          "p95_nearest_rank": 1.3453,
+          "minimum": 1.2766,
+          "maximum": 1.3453
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0099,
+          "mean": 0.011447925152749491,
+          "p95_nearest_rank": 0.0193,
+          "minimum": 0.0083,
+          "maximum": 0.09
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0265,
+          "mean": 0.08223290513833992,
+          "p95_nearest_rank": 0.8406,
+          "minimum": 0.0102,
+          "maximum": 1.4152
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 27.52185,
+          "mean": 27.488575,
+          "p95_nearest_rank": 28.4736,
+          "minimum": 26.4703,
+          "maximum": 28.4736
+        }
+      },
+      "raw_journal_sha256": "ea0eff22853d680dc119b20f44dddb22329483da71bd38c9057fd1d330b86777"
+    },
+    {
+      "stage": "io_timing",
+      "round": 1,
+      "position": 3,
+      "variant": "nonblocking_sampled",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r1_3_nonblocking_sampled",
+      "retries": 1,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.4937,
+        "mean": 78.6120125,
+        "p95_nearest_rank": 80.2611,
+        "minimum": 76.9431,
+        "maximum": 80.2611
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.30225,
+          "mean": 46.34450625,
+          "p95_nearest_rank": 47.996,
+          "minimum": 44.8747,
+          "maximum": 47.996
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.52855,
+          "mean": 1.5364,
+          "p95_nearest_rank": 1.7641,
+          "minimum": 1.4261,
+          "maximum": 1.7641
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.080750000000002,
+          "mean": 29.097275,
+          "p95_nearest_rank": 29.2642,
+          "minimum": 28.9885,
+          "maximum": 29.2642
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5438,
+          "mean": 1.63383125,
+          "p95_nearest_rank": 2.7465,
+          "minimum": 1.4621,
+          "maximum": 2.7465
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.4937,
+          "mean": 78.6120125,
+          "p95_nearest_rank": 80.2611,
+          "minimum": 76.9431,
+          "maximum": 80.2611
+        }
+      },
+      "readiness_wait_ms_per_frame": 45.343975,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 16,
+        "io_readiness_wait_calls": 1509,
+        "io_recvfrom_attempts": 44630,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4068,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [
+          {
+            "version": 1,
+            "packet_type": 1,
+            "frame": 0,
+            "sequence": 0,
+            "interval_ms": 35.1284
+          }
+        ],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.20545,
+          "mean": 1.2120972633136096,
+          "p95_nearest_rank": 1.3678,
+          "minimum": 0.7737,
+          "maximum": 2.1825
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2027,
+          "mean": 1.20554375,
+          "p95_nearest_rank": 1.248,
+          "minimum": 1.1809,
+          "maximum": 1.248
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.07875,
+          "mean": 0.08020685483870968,
+          "p95_nearest_rank": 0.1236,
+          "minimum": 0.047,
+          "maximum": 0.2025
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 15.997983870967742,
+          "p95_nearest_rank": 16,
+          "minimum": 15,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0026,
+          "mean": 0.08596592144268775,
+          "p95_nearest_rank": 1.2914,
+          "minimum": 0.0018,
+          "maximum": 2.2053
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.70305,
+          "mean": 41.749075,
+          "p95_nearest_rank": 43.1414,
+          "minimum": 40.5976,
+          "maximum": 43.1414
+        }
+      },
+      "raw_journal_sha256": "0c2f0690563c1f2245985af6d0a83643b2145b12da5b06bc0f88b715045d8916"
+    },
+    {
+      "stage": "io_timing",
+      "round": 2,
+      "position": 0,
+      "variant": "nonblocking_full",
+      "io_mode": "nonblocking",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r2_0_nonblocking_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.5452,
+        "mean": 82.16215,
+        "p95_nearest_rank": 120.7888,
+        "minimum": 77.9032,
+        "maximum": 120.7888
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 47.02105,
+          "mean": 47.10653125,
+          "p95_nearest_rank": 49.3995,
+          "minimum": 45.8968,
+          "maximum": 49.3995
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.51425,
+          "mean": 1.52700625,
+          "p95_nearest_rank": 1.773,
+          "minimum": 1.4494,
+          "maximum": 1.773
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.2514,
+          "mean": 31.8732,
+          "p95_nearest_rank": 70.7315,
+          "minimum": 28.9593,
+          "maximum": 70.7315
+        },
+        "release": {
+          "n": 16,
+          "median": 1.56035,
+          "mean": 1.6554125,
+          "p95_nearest_rank": 2.8987,
+          "minimum": 1.4603,
+          "maximum": 2.8987
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.5452,
+          "mean": 82.16215,
+          "p95_nearest_rank": 120.7888,
+          "minimum": 77.9032,
+          "maximum": 120.7888
+        }
+      },
+      "readiness_wait_ms_per_frame": 37.8697875,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 6,
+        "io_readiness_wait_calls": 679,
+        "io_recvfrom_attempts": 42585,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 2023,
+        "io_sendto_attempts": 9189,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9189,
+        "io_tx_submitted": 9189,
+        "proof_ack_datagrams": 1027,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9189
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [
+          {
+            "frame": 12,
+            "sequence": 447,
+            "prior_highest_sequence": 574
+          },
+          {
+            "frame": 12,
+            "sequence": 448,
+            "prior_highest_sequence": 574
+          },
+          {
+            "frame": 12,
+            "sequence": 449,
+            "prior_highest_sequence": 574
+          }
+        ],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.1767,
+          "mean": 1.1868224482248522,
+          "p95_nearest_rank": 1.3715,
+          "minimum": 0.7532,
+          "maximum": 2.6073
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.17445,
+          "mean": 1.17765625,
+          "p95_nearest_rank": 1.2303,
+          "minimum": 1.1522,
+          "maximum": 1.2303
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 497,
+          "median": 0.0906,
+          "mean": 0.09338329979879276,
+          "p95_nearest_rank": 0.1337,
+          "minimum": 0.0614,
+          "maximum": 0.3925
+        },
+        "ack_capture_batch_size": {
+          "n": 497,
+          "median": 16,
+          "mean": 15.967806841046277,
+          "p95_nearest_rank": 16,
+          "minimum": 5,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0034,
+          "mean": 0.08741023962450593,
+          "p95_nearest_rank": 1.3047,
+          "minimum": 0.0027,
+          "maximum": 2.6598
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.0625,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.186949999999996,
+          "mean": 42.2529375,
+          "p95_nearest_rank": 44.4572,
+          "minimum": 41.2049,
+          "maximum": 44.4572
+        }
+      },
+      "raw_journal_sha256": "3a6149ef1ce3f39b757f5591034510b655023da3fb5a6aaaf8f96021e5dded88"
+    },
+    {
+      "stage": "io_timing",
+      "round": 2,
+      "position": 1,
+      "variant": "nonblocking_sampled",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r2_1_nonblocking_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.79455,
+        "mean": 79.48500625,
+        "p95_nearest_rank": 81.1736,
+        "minimum": 77.6062,
+        "maximum": 81.1736
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 47.5248,
+          "mean": 47.10609375,
+          "p95_nearest_rank": 48.1239,
+          "minimum": 45.4019,
+          "maximum": 48.1239
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5345499999999999,
+          "mean": 1.57110625,
+          "p95_nearest_rank": 1.7176,
+          "minimum": 1.477,
+          "maximum": 1.7176
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1418,
+          "mean": 29.1309625,
+          "p95_nearest_rank": 29.3413,
+          "minimum": 28.758,
+          "maximum": 29.3413
+        },
+        "release": {
+          "n": 16,
+          "median": 1.58405,
+          "mean": 1.67684375,
+          "p95_nearest_rank": 2.6687,
+          "minimum": 1.4914,
+          "maximum": 2.6687
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.79455,
+          "mean": 79.48500625,
+          "p95_nearest_rank": 81.1736,
+          "minimum": 77.6062,
+          "maximum": 81.1736
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.6618875,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 11,
+        "io_readiness_wait_calls": 1417,
+        "io_recvfrom_attempts": 44465,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3903,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2237,
+          "mean": 1.2278047460552268,
+          "p95_nearest_rank": 1.3787,
+          "minimum": 0.8867,
+          "maximum": 1.8763
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.22615,
+          "mean": 1.2239125,
+          "p95_nearest_rank": 1.2591,
+          "minimum": 1.1836,
+          "maximum": 1.2591
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.07935,
+          "mean": 0.08258387096774193,
+          "p95_nearest_rank": 0.1216,
+          "minimum": 0.0475,
+          "maximum": 0.2042
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0026,
+          "mean": 0.08733079298418972,
+          "p95_nearest_rank": 1.3159,
+          "minimum": 0.0018,
+          "maximum": 1.9167
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.59935,
+          "mean": 42.43409375,
+          "p95_nearest_rank": 43.3861,
+          "minimum": 40.905,
+          "maximum": 43.3861
+        }
+      },
+      "raw_journal_sha256": "7da9913fe11781347ee67c4f91fcb01ed31688d52623c987f4aac234a0a4a514"
+    },
+    {
+      "stage": "io_timing",
+      "round": 2,
+      "position": 2,
+      "variant": "timeout_sampled",
+      "io_mode": "timeout",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r2_2_timeout_sampled",
+      "retries": 1,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.69295,
+        "mean": 80.48119375,
+        "p95_nearest_rank": 119.8866,
+        "minimum": 76.6634,
+        "maximum": 119.8866
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.33710000000001,
+          "mean": 45.35024375,
+          "p95_nearest_rank": 47.2064,
+          "minimum": 44.2427,
+          "maximum": 47.2064
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.46405,
+          "mean": 1.53906875,
+          "p95_nearest_rank": 2.1503,
+          "minimum": 1.429,
+          "maximum": 2.1503
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.2297,
+          "mean": 31.913825,
+          "p95_nearest_rank": 72.1734,
+          "minimum": 28.6682,
+          "maximum": 72.1734
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5624500000000001,
+          "mean": 1.67805625,
+          "p95_nearest_rank": 2.7388,
+          "minimum": 1.467,
+          "maximum": 2.7388
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.69295,
+          "mean": 80.48119375,
+          "p95_nearest_rank": 119.8866,
+          "minimum": 76.6634,
+          "maximum": 119.8866
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1026,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9189
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [
+          {
+            "version": 1,
+            "packet_type": 1,
+            "frame": 0,
+            "sequence": 0,
+            "interval_ms": 30.0724
+          }
+        ],
+        "late_previously_missing_output_chunks": [
+          {
+            "frame": 15,
+            "sequence": 889,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 890,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 891,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 892,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 893,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 894,
+            "prior_highest_sequence": 1016
+          },
+          {
+            "frame": 15,
+            "sequence": 895,
+            "prior_highest_sequence": 1016
+          }
+        ],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.341,
+          "mean": 1.3597357371794871,
+          "p95_nearest_rank": 1.5266,
+          "minimum": 0.9994,
+          "maximum": 2.3321
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3369,
+          "mean": 1.3420875,
+          "p95_nearest_rank": 1.3934,
+          "minimum": 1.3076,
+          "maximum": 1.3934
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0069,
+          "mean": 0.008807128309572301,
+          "p95_nearest_rank": 0.0198,
+          "minimum": 0.0054,
+          "maximum": 0.0975
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0208,
+          "mean": 0.08407737154150198,
+          "p95_nearest_rank": 0.9475,
+          "minimum": 0.0062,
+          "maximum": 1.9356
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 30.89875,
+          "mean": 30.9572125,
+          "p95_nearest_rank": 32.4277,
+          "minimum": 30.1758,
+          "maximum": 32.4277
+        }
+      },
+      "raw_journal_sha256": "dd6ab9f97f9dc89f84df0add9c312b2059ccfd96ef9154dc9dadf994ac1f9e8e"
+    },
+    {
+      "stage": "io_timing",
+      "round": 2,
+      "position": 3,
+      "variant": "timeout_full",
+      "io_mode": "timeout",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r2_3_timeout_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.3717,
+        "mean": 78.96281875,
+        "p95_nearest_rank": 82.6387,
+        "minimum": 77.0893,
+        "maximum": 82.6387
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.3832,
+          "mean": 44.437375,
+          "p95_nearest_rank": 46.8822,
+          "minimum": 43.4251,
+          "maximum": 46.8822
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4468,
+          "mean": 1.45378125,
+          "p95_nearest_rank": 1.5562,
+          "minimum": 1.3718,
+          "maximum": 1.5562
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 31.2259,
+          "mean": 31.4686875,
+          "p95_nearest_rank": 33.5987,
+          "minimum": 30.6815,
+          "maximum": 33.5987
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5451000000000001,
+          "mean": 1.602975,
+          "p95_nearest_rank": 2.3705,
+          "minimum": 1.4399,
+          "maximum": 2.3705
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.3717,
+          "mean": 78.96281875,
+          "p95_nearest_rank": 82.6387,
+          "minimum": 77.0893,
+          "maximum": 82.6387
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3138,
+          "mean": 1.3277901380670611,
+          "p95_nearest_rank": 1.4998,
+          "minimum": 0.9199,
+          "maximum": 1.9718
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.30755,
+          "mean": 1.31144375,
+          "p95_nearest_rank": 1.3703,
+          "minimum": 1.2735,
+          "maximum": 1.3703
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0101,
+          "mean": 0.011942617107942973,
+          "p95_nearest_rank": 0.0207,
+          "minimum": 0.0085,
+          "maximum": 0.3318
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0269,
+          "mean": 0.0822267168972332,
+          "p95_nearest_rank": 0.8335,
+          "minimum": 0.0102,
+          "maximum": 1.3102
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.0625,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 27.0871,
+          "mean": 27.0741875,
+          "p95_nearest_rank": 27.6976,
+          "minimum": 25.9652,
+          "maximum": 27.6976
+        }
+      },
+      "raw_journal_sha256": "cd83417a20e8a589019f573f060642f1e9f37fa764e145547528a448421e2b70"
+    },
+    {
+      "stage": "io_timing",
+      "round": 3,
+      "position": 0,
+      "variant": "nonblocking_sampled",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r3_0_nonblocking_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.56975,
+        "mean": 79.40455,
+        "p95_nearest_rank": 80.1702,
+        "minimum": 78.2703,
+        "maximum": 80.1702
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 47.25375,
+          "mean": 47.085025,
+          "p95_nearest_rank": 47.928,
+          "minimum": 45.9101,
+          "maximum": 47.928
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5275500000000002,
+          "mean": 1.534475,
+          "p95_nearest_rank": 1.7349,
+          "minimum": 1.447,
+          "maximum": 1.7349
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.15235,
+          "mean": 29.154531249999998,
+          "p95_nearest_rank": 29.2579,
+          "minimum": 29.0891,
+          "maximum": 29.2579
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5714000000000001,
+          "mean": 1.63051875,
+          "p95_nearest_rank": 2.4675,
+          "minimum": 1.5024,
+          "maximum": 2.4675
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.56975,
+          "mean": 79.40455,
+          "p95_nearest_rank": 80.1702,
+          "minimum": 78.2703,
+          "maximum": 80.1702
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.47144375,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1451,
+        "io_recvfrom_attempts": 44518,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3956,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.216,
+          "mean": 1.2235086045364891,
+          "p95_nearest_rank": 1.3807,
+          "minimum": 0.7536,
+          "maximum": 2.066
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.21905,
+          "mean": 1.215575,
+          "p95_nearest_rank": 1.2353,
+          "minimum": 1.1955,
+          "maximum": 1.2353
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.0782,
+          "mean": 0.08027520161290323,
+          "p95_nearest_rank": 0.1093,
+          "minimum": 0.0513,
+          "maximum": 0.2171
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0027,
+          "mean": 0.08739486166007905,
+          "p95_nearest_rank": 1.3189,
+          "minimum": 0.0019,
+          "maximum": 2.104
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.56745,
+          "mean": 42.561175,
+          "p95_nearest_rank": 43.4306,
+          "minimum": 41.5556,
+          "maximum": 43.4306
+        }
+      },
+      "raw_journal_sha256": "128bd89ecbd0bf73606719a9111f5d11e68c3ca6266efddf954991d7e2211417"
+    },
+    {
+      "stage": "io_timing",
+      "round": 3,
+      "position": 1,
+      "variant": "timeout_full",
+      "io_mode": "timeout",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r3_1_timeout_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.81285,
+        "mean": 78.74918124999999,
+        "p95_nearest_rank": 81.1727,
+        "minimum": 77.3482,
+        "maximum": 81.1727
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.46595,
+          "mean": 44.4909,
+          "p95_nearest_rank": 45.7122,
+          "minimum": 43.5415,
+          "maximum": 45.7122
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4308,
+          "mean": 1.46345625,
+          "p95_nearest_rank": 1.7515,
+          "minimum": 1.3915,
+          "maximum": 1.7515
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 31.34405,
+          "mean": 31.22644375,
+          "p95_nearest_rank": 32.291,
+          "minimum": 30.168,
+          "maximum": 32.291
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5272000000000001,
+          "mean": 1.56838125,
+          "p95_nearest_rank": 1.797,
+          "minimum": 1.4553,
+          "maximum": 1.797
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.81285,
+          "mean": 78.74918124999999,
+          "p95_nearest_rank": 81.1727,
+          "minimum": 77.3482,
+          "maximum": 81.1727
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3131,
+          "mean": 1.3307686390532545,
+          "p95_nearest_rank": 1.5136,
+          "minimum": 0.7959,
+          "maximum": 2.0402
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3147,
+          "mean": 1.31396875,
+          "p95_nearest_rank": 1.3354,
+          "minimum": 1.2943,
+          "maximum": 1.3354
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0099,
+          "mean": 0.011621754073319756,
+          "p95_nearest_rank": 0.021,
+          "minimum": 0.0084,
+          "maximum": 0.3129
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0263,
+          "mean": 0.08247036808300395,
+          "p95_nearest_rank": 0.839,
+          "minimum": 0.01,
+          "maximum": 1.5361
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.1875,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 27.48975,
+          "mean": 27.5857125,
+          "p95_nearest_rank": 28.3997,
+          "minimum": 26.8109,
+          "maximum": 28.3997
+        }
+      },
+      "raw_journal_sha256": "664a2c981030448231d455a86a97e0cbcf929eb257219054413f556d5590492a"
+    },
+    {
+      "stage": "io_timing",
+      "round": 3,
+      "position": 2,
+      "variant": "nonblocking_full",
+      "io_mode": "nonblocking",
+      "timing_mode": "full",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r3_2_nonblocking_full",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.3802,
+        "mean": 79.42893125,
+        "p95_nearest_rank": 80.4637,
+        "minimum": 78.5234,
+        "maximum": 80.4637
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 47.1267,
+          "mean": 47.06434375,
+          "p95_nearest_rank": 47.8489,
+          "minimum": 45.976,
+          "maximum": 47.8489
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5403,
+          "mean": 1.5860812499999999,
+          "p95_nearest_rank": 2.0085,
+          "minimum": 1.457,
+          "maximum": 2.0085
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.2275,
+          "mean": 29.20145625,
+          "p95_nearest_rank": 29.5052,
+          "minimum": 28.908,
+          "maximum": 29.5052
+        },
+        "release": {
+          "n": 16,
+          "median": 1.55515,
+          "mean": 1.57705,
+          "p95_nearest_rank": 1.8428,
+          "minimum": 1.4656,
+          "maximum": 1.8428
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.3802,
+          "mean": 79.42893125,
+          "p95_nearest_rank": 80.4637,
+          "minimum": 78.5234,
+          "maximum": 80.4637
+        }
+      },
+      "readiness_wait_ms_per_frame": 34.6070375,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_readiness_wait_calls": 627,
+        "io_recvfrom_attempts": 42291,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 1729,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.1793,
+          "mean": 1.1812003328402367,
+          "p95_nearest_rank": 1.3451,
+          "minimum": 0.7181,
+          "maximum": 1.8561
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.18285,
+          "mean": 1.1793625,
+          "p95_nearest_rank": 1.1939,
+          "minimum": 1.15,
+          "maximum": 1.1939
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.09365000000000001,
+          "mean": 0.09539092741935484,
+          "p95_nearest_rank": 0.1353,
+          "minimum": 0.0627,
+          "maximum": 0.2311
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0035,
+          "mean": 0.08736305583003953,
+          "p95_nearest_rank": 1.3111,
+          "minimum": 0.0027,
+          "maximum": 1.8985
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.18655,
+          "mean": 42.18591875,
+          "p95_nearest_rank": 42.8247,
+          "minimum": 41.2858,
+          "maximum": 42.8247
+        }
+      },
+      "raw_journal_sha256": "80e0666b37819b13a6914f8d207684e7dda57f8f57c9d9157a0cdace8c90b568"
+    },
+    {
+      "stage": "io_timing",
+      "round": 3,
+      "position": 3,
+      "variant": "timeout_sampled",
+      "io_mode": "timeout",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\io_timing\\r3_3_timeout_sampled",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 76.0832,
+        "mean": 78.2156875,
+        "p95_nearest_rank": 104.8859,
+        "minimum": 75.6871,
+        "maximum": 104.8859
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 43.950199999999995,
+          "mean": 44.249625,
+          "p95_nearest_rank": 46.1934,
+          "minimum": 43.3246,
+          "maximum": 46.1934
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4827,
+          "mean": 1.5475375,
+          "p95_nearest_rank": 2.3192,
+          "minimum": 1.3874,
+          "maximum": 2.3192
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.15655,
+          "mean": 30.86628125,
+          "p95_nearest_rank": 57.0526,
+          "minimum": 28.5415,
+          "maximum": 57.0526
+        },
+        "release": {
+          "n": 16,
+          "median": 1.52375,
+          "mean": 1.55224375,
+          "p95_nearest_rank": 1.7259,
+          "minimum": 1.4258,
+          "maximum": 1.7259
+        },
+        "whole": {
+          "n": 16,
+          "median": 76.0832,
+          "mean": 78.2156875,
+          "p95_nearest_rank": 104.8859,
+          "minimum": 75.6871,
+          "maximum": 104.8859
+        }
+      },
+      "readiness_wait_ms_per_frame": 0.0,
+      "io_counters": {
+        "completed_frames": 16,
+        "proof_ack_datagrams": 1027,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9189
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [
+          {
+            "frame": 8,
+            "sequence": 1045,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1046,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1047,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1048,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1049,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1050,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1051,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1052,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1053,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1054,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1055,
+            "prior_highest_sequence": 1172
+          },
+          {
+            "frame": 8,
+            "sequence": 1056,
+            "prior_highest_sequence": 1172
+          }
+        ],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2992,
+          "mean": 1.3234049432938857,
+          "p95_nearest_rank": 1.4882,
+          "minimum": 1.0994,
+          "maximum": 2.3757
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.292,
+          "mean": 1.2985,
+          "p95_nearest_rank": 1.3567,
+          "minimum": 1.2702,
+          "maximum": 1.3567
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0067,
+          "mean": 0.008271639511201629,
+          "p95_nearest_rank": 0.0156,
+          "minimum": 0.0054,
+          "maximum": 0.0848
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0198,
+          "mean": 0.08171457509881423,
+          "p95_nearest_rank": 0.9375,
+          "minimum": 0.0059,
+          "maximum": 1.9677
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 30.4559,
+          "mean": 30.5816125,
+          "p95_nearest_rank": 31.301199999999998,
+          "minimum": 29.8394,
+          "maximum": 31.301199999999998
+        }
+      },
+      "raw_journal_sha256": "455aa4f23c4a53c518351fb58378b8b93199ac77a771be810cb6292a63daf4a2"
+    },
+    {
+      "stage": "input_batch",
+      "round": 0,
+      "position": 0,
+      "variant": "batch1",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 1,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r0_0_batch1",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.11345,
+        "mean": 77.10705,
+        "p95_nearest_rank": 78.4257,
+        "minimum": 76.3097,
+        "maximum": 78.4257
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.77005,
+          "mean": 44.74835,
+          "p95_nearest_rank": 45.238,
+          "minimum": 44.1185,
+          "maximum": 45.238
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5957,
+          "mean": 1.6243125,
+          "p95_nearest_rank": 1.9588,
+          "minimum": 1.4272,
+          "maximum": 1.9588
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.11505,
+          "mean": 29.059293750000002,
+          "p95_nearest_rank": 29.3172,
+          "minimum": 28.6898,
+          "maximum": 29.3172
+        },
+        "release": {
+          "n": 16,
+          "median": 1.56745,
+          "mean": 1.67509375,
+          "p95_nearest_rank": 2.6116,
+          "minimum": 1.4777,
+          "maximum": 2.6116
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.11345,
+          "mean": 77.10705,
+          "p95_nearest_rank": 78.4257,
+          "minimum": 76.3097,
+          "maximum": 78.4257
+        }
+      },
+      "readiness_wait_ms_per_frame": 40.78678125,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 15,
+        "io_readiness_wait_calls": 1466,
+        "io_recvfrom_attempts": 44076,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3514,
+        "io_sendto_attempts": 9187,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9187,
+        "io_tx_submitted": 9187,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3289,
+          "mean": 1.3404097016765286,
+          "p95_nearest_rank": 1.4889,
+          "minimum": 0.8698,
+          "maximum": 1.9389
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3310499999999998,
+          "mean": 1.3292,
+          "p95_nearest_rank": 1.3507,
+          "minimum": 1.3097,
+          "maximum": 1.3507
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0085,
+          "mean": 0.01017941700610998,
+          "p95_nearest_rank": 0.0205,
+          "minimum": 0.0065,
+          "maximum": 0.1596
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0199,
+          "mean": 0.08291352519762846,
+          "p95_nearest_rank": 0.9639,
+          "minimum": 0.0057,
+          "maximum": 1.5766
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 31.106650000000002,
+          "mean": 31.16604375,
+          "p95_nearest_rank": 31.7793,
+          "minimum": 30.6755,
+          "maximum": 31.7793
+        }
+      },
+      "raw_journal_sha256": "1ed1b7eb011f129992e98dd7cf8c34b08cb857573e1d7c3c65ff73fe60c94488"
+    },
+    {
+      "stage": "input_batch",
+      "round": 0,
+      "position": 1,
+      "variant": "batch4",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 4,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r0_1_batch4",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.68950000000001,
+        "mean": 77.6830125,
+        "p95_nearest_rank": 79.2012,
+        "minimum": 75.4724,
+        "maximum": 79.2012
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.4755,
+          "mean": 45.4308875,
+          "p95_nearest_rank": 46.4848,
+          "minimum": 43.4944,
+          "maximum": 46.4848
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.54075,
+          "mean": 1.5420125,
+          "p95_nearest_rank": 1.6301,
+          "minimum": 1.4427,
+          "maximum": 1.6301
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.11155,
+          "mean": 29.10156875,
+          "p95_nearest_rank": 29.2411,
+          "minimum": 28.9033,
+          "maximum": 29.2411
+        },
+        "release": {
+          "n": 16,
+          "median": 1.572,
+          "mean": 1.60854375,
+          "p95_nearest_rank": 2.4743,
+          "minimum": 1.4176,
+          "maximum": 2.4743
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.68950000000001,
+          "mean": 77.6830125,
+          "p95_nearest_rank": 79.2012,
+          "minimum": 75.4724,
+          "maximum": 79.2012
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.60185625,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 15,
+        "io_readiness_wait_calls": 1479,
+        "io_recvfrom_attempts": 44123,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3561,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3103,
+          "mean": 1.3258610946745562,
+          "p95_nearest_rank": 1.483,
+          "minimum": 1.041,
+          "maximum": 1.9508
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3084500000000001,
+          "mean": 1.30921875,
+          "p95_nearest_rank": 1.3483,
+          "minimum": 1.2579,
+          "maximum": 1.3483
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 1968,
+          "median": 0.0179,
+          "mean": 0.022585924796747966,
+          "p95_nearest_rank": 0.0473,
+          "minimum": 0.0137,
+          "maximum": 0.2883
+        },
+        "ack_capture_batch_size": {
+          "n": 1968,
+          "median": 4.0,
+          "mean": 4,
+          "p95_nearest_rank": 4,
+          "minimum": 4,
+          "maximum": 4
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0031,
+          "mean": 0.0841661314229249,
+          "p95_nearest_rank": 1.0285,
+          "minimum": 0.0018,
+          "maximum": 1.5683
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.0625,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 33.3878,
+          "mean": 33.4972,
+          "p95_nearest_rank": 34.8156,
+          "minimum": 32.2907,
+          "maximum": 34.8156
+        }
+      },
+      "raw_journal_sha256": "4534fb58c5dde7b2408cd32bd11bc46cb6efe54af86093d5ff79129e6dbc442d"
+    },
+    {
+      "stage": "input_batch",
+      "round": 0,
+      "position": 2,
+      "variant": "batch32",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r0_2_batch32",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 79.07565,
+        "mean": 79.119175,
+        "p95_nearest_rank": 80.6487,
+        "minimum": 77.3282,
+        "maximum": 80.6487
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.8166,
+          "mean": 46.8180625,
+          "p95_nearest_rank": 48.5148,
+          "minimum": 45.1609,
+          "maximum": 48.5148
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.52215,
+          "mean": 1.52418125,
+          "p95_nearest_rank": 1.6173,
+          "minimum": 1.4419,
+          "maximum": 1.6173
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.11835,
+          "mean": 29.12545,
+          "p95_nearest_rank": 29.2144,
+          "minimum": 29.0704,
+          "maximum": 29.2144
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5827,
+          "mean": 1.65148125,
+          "p95_nearest_rank": 2.6947,
+          "minimum": 1.4694,
+          "maximum": 2.6947
+        },
+        "whole": {
+          "n": 16,
+          "median": 79.07565,
+          "mean": 79.119175,
+          "p95_nearest_rank": 80.6487,
+          "minimum": 77.3282,
+          "maximum": 80.6487
+        }
+      },
+      "readiness_wait_ms_per_frame": 43.01661875,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1484,
+        "io_recvfrom_attempts": 44643,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4081,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2110500000000002,
+          "mean": 1.2236512820512822,
+          "p95_nearest_rank": 1.3894,
+          "minimum": 0.7007,
+          "maximum": 2.1256
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2124000000000001,
+          "mean": 1.212,
+          "p95_nearest_rank": 1.2442,
+          "minimum": 1.1871,
+          "maximum": 1.2442
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.0802,
+          "mean": 0.0815921370967742,
+          "p95_nearest_rank": 0.1254,
+          "minimum": 0.0466,
+          "maximum": 0.1557
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0027,
+          "mean": 0.08682697628458498,
+          "p95_nearest_rank": 1.2961,
+          "minimum": 0.0018,
+          "maximum": 2.1603
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 42.19245,
+          "mean": 42.15041875,
+          "p95_nearest_rank": 43.6366,
+          "minimum": 40.8728,
+          "maximum": 43.6366
+        }
+      },
+      "raw_journal_sha256": "489256d43ff4c3ec7470f2bce50e10b0269f877ce46522246f70014c5e4ef8e7"
+    },
+    {
+      "stage": "input_batch",
+      "round": 0,
+      "position": 3,
+      "variant": "batch8",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 8,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r0_3_batch8",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.17285,
+        "mean": 77.1807125,
+        "p95_nearest_rank": 78.3035,
+        "minimum": 76.2293,
+        "maximum": 78.3035
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.9587,
+          "mean": 44.85414375,
+          "p95_nearest_rank": 45.654,
+          "minimum": 44.0412,
+          "maximum": 45.654
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4816500000000001,
+          "mean": 1.5004,
+          "p95_nearest_rank": 1.6979,
+          "minimum": 1.4321,
+          "maximum": 1.6979
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.14585,
+          "mean": 29.16051875,
+          "p95_nearest_rank": 29.4162,
+          "minimum": 29.0171,
+          "maximum": 29.4162
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5453999999999999,
+          "mean": 1.66565,
+          "p95_nearest_rank": 2.6534,
+          "minimum": 1.4443,
+          "maximum": 2.6534
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.17285,
+          "mean": 77.1807125,
+          "p95_nearest_rank": 78.3035,
+          "minimum": 76.2293,
+          "maximum": 78.3035
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.51279375,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 12,
+        "io_readiness_wait_calls": 1656,
+        "io_recvfrom_attempts": 44413,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3851,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2504,
+          "mean": 1.2636641642011834,
+          "p95_nearest_rank": 1.4028,
+          "minimum": 1.0111,
+          "maximum": 2.1459
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.24795,
+          "mean": 1.2502625,
+          "p95_nearest_rank": 1.2773,
+          "minimum": 1.2379,
+          "maximum": 1.2773
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 992,
+          "median": 0.0312,
+          "mean": 0.03777288306451613,
+          "p95_nearest_rank": 0.0708,
+          "minimum": 0.0227,
+          "maximum": 0.1544
+        },
+        "ack_capture_batch_size": {
+          "n": 992,
+          "median": 8.0,
+          "mean": 8,
+          "p95_nearest_rank": 8,
+          "minimum": 8,
+          "maximum": 8
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0026,
+          "mean": 0.08309040266798419,
+          "p95_nearest_rank": 1.103,
+          "minimum": 0.0019,
+          "maximum": 1.9746
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.625,
+          "p95_nearest_rank": 33,
+          "minimum": 31,
+          "maximum": 33
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 35.5375,
+          "mean": 35.55829375,
+          "p95_nearest_rank": 36.376,
+          "minimum": 34.8249,
+          "maximum": 36.376
+        }
+      },
+      "raw_journal_sha256": "d708f95a5a2d6129b388e9c800104ae2f233064cf3b48f77fd0d30fe99121fe1"
+    },
+    {
+      "stage": "input_batch",
+      "round": 1,
+      "position": 0,
+      "variant": "batch4",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 4,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r1_0_batch4",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 76.56375,
+        "mean": 76.7497125,
+        "p95_nearest_rank": 79.1933,
+        "minimum": 76.0803,
+        "maximum": 79.1933
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.4709,
+          "mean": 44.55436875,
+          "p95_nearest_rank": 46.0422,
+          "minimum": 43.8981,
+          "maximum": 46.0422
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4897,
+          "mean": 1.51383125,
+          "p95_nearest_rank": 1.7319,
+          "minimum": 1.4071,
+          "maximum": 1.7319
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1141,
+          "mean": 29.1,
+          "p95_nearest_rank": 29.2239,
+          "minimum": 28.8074,
+          "maximum": 29.2239
+        },
+        "release": {
+          "n": 16,
+          "median": 1.50235,
+          "mean": 1.5815125,
+          "p95_nearest_rank": 2.5147,
+          "minimum": 1.4535,
+          "maximum": 2.5147
+        },
+        "whole": {
+          "n": 16,
+          "median": 76.56375,
+          "mean": 76.7497125,
+          "p95_nearest_rank": 79.1933,
+          "minimum": 76.0803,
+          "maximum": 79.1933
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.5463875,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 16,
+        "io_readiness_wait_calls": 1593,
+        "io_recvfrom_attempts": 44323,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3761,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2825,
+          "mean": 1.2995719058185404,
+          "p95_nearest_rank": 1.4598,
+          "minimum": 0.9627,
+          "maximum": 2.0794
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2768,
+          "mean": 1.2825437499999999,
+          "p95_nearest_rank": 1.3227,
+          "minimum": 1.2502,
+          "maximum": 1.3227
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 1968,
+          "median": 0.0176,
+          "mean": 0.021771849593495936,
+          "p95_nearest_rank": 0.0465,
+          "minimum": 0.0132,
+          "maximum": 0.176
+        },
+        "ack_capture_batch_size": {
+          "n": 1968,
+          "median": 4.0,
+          "mean": 4,
+          "p95_nearest_rank": 4,
+          "minimum": 4,
+          "maximum": 4
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.003,
+          "mean": 0.08248577075098815,
+          "p95_nearest_rank": 1.0143,
+          "minimum": 0.0018,
+          "maximum": 1.7042
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.125,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 32.89005,
+          "mean": 32.8829125,
+          "p95_nearest_rank": 34.0843,
+          "minimum": 32.2657,
+          "maximum": 34.0843
+        }
+      },
+      "raw_journal_sha256": "320613738a86a88f7d0bb25ce5106dc1bb2b4f35fd60320c0d582cc793208073"
+    },
+    {
+      "stage": "input_batch",
+      "round": 1,
+      "position": 1,
+      "variant": "batch8",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 8,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r1_1_batch8",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.38165000000001,
+        "mean": 78.8614,
+        "p95_nearest_rank": 82.7959,
+        "minimum": 77.2188,
+        "maximum": 82.7959
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.88405,
+          "mean": 46.32435,
+          "p95_nearest_rank": 49.8438,
+          "minimum": 45.0026,
+          "maximum": 49.8438
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.53045,
+          "mean": 1.55515625,
+          "p95_nearest_rank": 1.8376,
+          "minimum": 1.4329,
+          "maximum": 1.8376
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.214750000000002,
+          "mean": 29.27411875,
+          "p95_nearest_rank": 29.844,
+          "minimum": 28.9637,
+          "maximum": 29.844
+        },
+        "release": {
+          "n": 16,
+          "median": 1.6261999999999999,
+          "mean": 1.707775,
+          "p95_nearest_rank": 2.4389,
+          "minimum": 1.5285,
+          "maximum": 2.4389
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.38165000000001,
+          "mean": 78.8614,
+          "p95_nearest_rank": 82.7959,
+          "minimum": 77.2188,
+          "maximum": 82.7959
+        }
+      },
+      "readiness_wait_ms_per_frame": 40.291125,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 10,
+        "io_readiness_wait_calls": 1278,
+        "io_recvfrom_attempts": 43632,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3070,
+        "io_sendto_attempts": 9190,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9190,
+        "io_tx_submitted": 9190,
+        "proof_ack_datagrams": 1028,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9190
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2782,
+          "mean": 1.298393885601578,
+          "p95_nearest_rank": 1.4642,
+          "minimum": 0.8832,
+          "maximum": 3.9008
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2759,
+          "mean": 1.2802125,
+          "p95_nearest_rank": 1.3322,
+          "minimum": 1.2539,
+          "maximum": 1.3322
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 993,
+          "median": 0.0394,
+          "mean": 0.0421031218529708,
+          "p95_nearest_rank": 0.0698,
+          "minimum": 0.0242,
+          "maximum": 0.1385
+        },
+        "ack_capture_batch_size": {
+          "n": 993,
+          "median": 8,
+          "mean": 7.991943605236656,
+          "p95_nearest_rank": 8,
+          "minimum": 1,
+          "maximum": 8
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0028,
+          "mean": 0.08600470602766798,
+          "p95_nearest_rank": 1.1004,
+          "minimum": 0.0019,
+          "maximum": 3.7114
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 32.0,
+          "mean": 32.9375,
+          "p95_nearest_rank": 43,
+          "minimum": 31,
+          "maximum": 43
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 36.085300000000004,
+          "mean": 36.5385125,
+          "p95_nearest_rank": 39.7695,
+          "minimum": 35.0142,
+          "maximum": 39.7695
+        }
+      },
+      "raw_journal_sha256": "d2cb09522e59d700d1b992b34a2a66dca40ecf79fe8166c8c926e7499d208510"
+    },
+    {
+      "stage": "input_batch",
+      "round": 1,
+      "position": 2,
+      "variant": "batch1",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 1,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r1_2_batch1",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.3476,
+        "mean": 78.70025,
+        "p95_nearest_rank": 100.2341,
+        "minimum": 75.1716,
+        "maximum": 100.2341
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.05755,
+          "mean": 45.00376875,
+          "p95_nearest_rank": 46.0616,
+          "minimum": 43.0861,
+          "maximum": 46.0616
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.51485,
+          "mean": 1.53495,
+          "p95_nearest_rank": 1.7278,
+          "minimum": 1.4313,
+          "maximum": 1.7278
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.11555,
+          "mean": 29.11284375,
+          "p95_nearest_rank": 29.2561,
+          "minimum": 28.9051,
+          "maximum": 29.2561
+        },
+        "release": {
+          "n": 16,
+          "median": 1.56,
+          "mean": 3.0486875,
+          "p95_nearest_rank": 25.2667,
+          "minimum": 1.4789,
+          "maximum": 25.2667
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.3476,
+          "mean": 78.70025,
+          "p95_nearest_rank": 100.2341,
+          "minimum": 75.1716,
+          "maximum": 100.2341
+        }
+      },
+      "readiness_wait_ms_per_frame": 39.88130625,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 13,
+        "io_readiness_wait_calls": 1408,
+        "io_recvfrom_attempts": 43930,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3368,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1026,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3292,
+          "mean": 1.3475288461538462,
+          "p95_nearest_rank": 1.5137,
+          "minimum": 1.0666,
+          "maximum": 2.211
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3323,
+          "mean": 1.32993125,
+          "p95_nearest_rank": 1.3754,
+          "minimum": 1.2799,
+          "maximum": 1.3754
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0086,
+          "mean": 0.010414562118126273,
+          "p95_nearest_rank": 0.0215,
+          "minimum": 0.0066,
+          "maximum": 0.1311
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0206,
+          "mean": 0.08336175889328064,
+          "p95_nearest_rank": 0.9417,
+          "minimum": 0.0057,
+          "maximum": 1.6386
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 30.918799999999997,
+          "mean": 30.89218125,
+          "p95_nearest_rank": 31.881,
+          "minimum": 29.872600000000002,
+          "maximum": 31.881
+        }
+      },
+      "raw_journal_sha256": "8b7480a0f45308f9f94b7b24f67ebe8eef71062b96393363cc5b5de7745a3d62"
+    },
+    {
+      "stage": "input_batch",
+      "round": 1,
+      "position": 3,
+      "variant": "batch32",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r1_3_batch32",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.6098,
+        "mean": 78.6744,
+        "p95_nearest_rank": 79.8292,
+        "minimum": 77.7301,
+        "maximum": 79.8292
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.205200000000005,
+          "mean": 46.33281875,
+          "p95_nearest_rank": 47.5521,
+          "minimum": 45.3161,
+          "maximum": 47.5521
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4987,
+          "mean": 1.57501875,
+          "p95_nearest_rank": 2.377,
+          "minimum": 1.3942,
+          "maximum": 2.377
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1301,
+          "mean": 29.12819375,
+          "p95_nearest_rank": 29.3952,
+          "minimum": 28.7974,
+          "maximum": 29.3952
+        },
+        "release": {
+          "n": 16,
+          "median": 1.54685,
+          "mean": 1.63836875,
+          "p95_nearest_rank": 2.536,
+          "minimum": 1.4791,
+          "maximum": 2.536
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.6098,
+          "mean": 78.6744,
+          "p95_nearest_rank": 79.8292,
+          "minimum": 77.7301,
+          "maximum": 79.8292
+        }
+      },
+      "readiness_wait_ms_per_frame": 43.0931375,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 13,
+        "io_readiness_wait_calls": 1539,
+        "io_recvfrom_attempts": 44670,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4108,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1026,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2088,
+          "mean": 1.211981385601578,
+          "p95_nearest_rank": 1.3555,
+          "minimum": 0.8598,
+          "maximum": 1.8444
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2037499999999999,
+          "mean": 1.20874375,
+          "p95_nearest_rank": 1.238,
+          "minimum": 1.1821,
+          "maximum": 1.238
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.07944999999999999,
+          "mean": 0.08071270161290323,
+          "p95_nearest_rank": 0.1247,
+          "minimum": 0.0448,
+          "maximum": 0.1629
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0025,
+          "mean": 0.08586435276679842,
+          "p95_nearest_rank": 1.2922,
+          "minimum": 0.0017,
+          "maximum": 1.8829
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.59845,
+          "mean": 41.69964375,
+          "p95_nearest_rank": 42.8067,
+          "minimum": 40.9036,
+          "maximum": 42.8067
+        }
+      },
+      "raw_journal_sha256": "d88518f6ac29264565924f9589af3d2a15d9a36928d6d235687baf1fd40ad550"
+    },
+    {
+      "stage": "input_batch",
+      "round": 2,
+      "position": 0,
+      "variant": "batch8",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 8,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r2_0_batch8",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.1813,
+        "mean": 77.3646625,
+        "p95_nearest_rank": 78.9405,
+        "minimum": 76.4564,
+        "maximum": 78.9405
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.14405,
+          "mean": 45.12156875,
+          "p95_nearest_rank": 46.3388,
+          "minimum": 44.2685,
+          "maximum": 46.3388
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4952,
+          "mean": 1.51373125,
+          "p95_nearest_rank": 1.6286,
+          "minimum": 1.4466,
+          "maximum": 1.6286
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1426,
+          "mean": 29.1309875,
+          "p95_nearest_rank": 29.4176,
+          "minimum": 28.9441,
+          "maximum": 29.4176
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5215,
+          "mean": 1.598375,
+          "p95_nearest_rank": 2.5853,
+          "minimum": 1.4476,
+          "maximum": 2.5853
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.1813,
+          "mean": 77.3646625,
+          "p95_nearest_rank": 78.9405,
+          "minimum": 76.4564,
+          "maximum": 78.9405
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.84835625,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1553,
+        "io_recvfrom_attempts": 44241,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3679,
+        "io_sendto_attempts": 9187,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9187,
+        "io_tx_submitted": 9187,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2607,
+          "mean": 1.271816617357002,
+          "p95_nearest_rank": 1.4153,
+          "minimum": 1.0071,
+          "maximum": 2.0973
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2633,
+          "mean": 1.26108125,
+          "p95_nearest_rank": 1.2929,
+          "minimum": 1.2427,
+          "maximum": 1.2929
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 992,
+          "median": 0.0296,
+          "mean": 0.035815020161290324,
+          "p95_nearest_rank": 0.0585,
+          "minimum": 0.0225,
+          "maximum": 0.1247
+        },
+        "ack_capture_batch_size": {
+          "n": 992,
+          "median": 8.0,
+          "mean": 8,
+          "p95_nearest_rank": 8,
+          "minimum": 8,
+          "maximum": 8
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0024,
+          "mean": 0.0837125,
+          "p95_nearest_rank": 1.1015,
+          "minimum": 0.0018,
+          "maximum": 1.9078
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.375,
+          "p95_nearest_rank": 34,
+          "minimum": 31,
+          "maximum": 34
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 35.6339,
+          "mean": 35.70899375,
+          "p95_nearest_rank": 36.7733,
+          "minimum": 35.007,
+          "maximum": 36.7733
+        }
+      },
+      "raw_journal_sha256": "d40789fe8cb5dbbc0ec1c03d74272c199e99d044e2555089598082b176db9c23"
+    },
+    {
+      "stage": "input_batch",
+      "round": 2,
+      "position": 1,
+      "variant": "batch32",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r2_1_batch32",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.6175,
+        "mean": 78.84575,
+        "p95_nearest_rank": 80.0646,
+        "minimum": 77.933,
+        "maximum": 80.0646
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.432249999999996,
+          "mean": 46.5397625,
+          "p95_nearest_rank": 47.7528,
+          "minimum": 45.6779,
+          "maximum": 47.7528
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.49715,
+          "mean": 1.50609375,
+          "p95_nearest_rank": 1.6037,
+          "minimum": 1.411,
+          "maximum": 1.6037
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.1679,
+          "mean": 29.15839375,
+          "p95_nearest_rank": 29.2651,
+          "minimum": 29.0449,
+          "maximum": 29.2651
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5728,
+          "mean": 1.6415,
+          "p95_nearest_rank": 2.5149,
+          "minimum": 1.4596,
+          "maximum": 2.5149
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.6175,
+          "mean": 78.84575,
+          "p95_nearest_rank": 80.0646,
+          "minimum": 77.933,
+          "maximum": 80.0646
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.07365,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 13,
+        "io_readiness_wait_calls": 1471,
+        "io_recvfrom_attempts": 44567,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4005,
+        "io_sendto_attempts": 9188,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9188,
+        "io_tx_submitted": 9188,
+        "proof_ack_datagrams": 1026,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9188
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2043499999999998,
+          "mean": 1.2089589250493096,
+          "p95_nearest_rank": 1.3633,
+          "minimum": 0.7172,
+          "maximum": 1.9135
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2014999999999998,
+          "mean": 1.204075,
+          "p95_nearest_rank": 1.235,
+          "minimum": 1.1871,
+          "maximum": 1.235
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.0782,
+          "mean": 0.07993770161290323,
+          "p95_nearest_rank": 0.1142,
+          "minimum": 0.0467,
+          "maximum": 0.1776
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0026,
+          "mean": 0.08634542984189723,
+          "p95_nearest_rank": 1.3051,
+          "minimum": 0.0018,
+          "maximum": 1.939
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.9602,
+          "mean": 42.01935,
+          "p95_nearest_rank": 43.1577,
+          "minimum": 41.2573,
+          "maximum": 43.1577
+        }
+      },
+      "raw_journal_sha256": "838d61a678b6b10911a8a8f0ba444f193125d4533afd02d59b2f724913c86adc"
+    },
+    {
+      "stage": "input_batch",
+      "round": 2,
+      "position": 2,
+      "variant": "batch4",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 4,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r2_2_batch4",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.71199999999999,
+        "mean": 80.96648125,
+        "p95_nearest_rank": 105.0285,
+        "minimum": 76.6876,
+        "maximum": 105.0285
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.244600000000005,
+          "mean": 45.28883125,
+          "p95_nearest_rank": 45.9849,
+          "minimum": 44.654,
+          "maximum": 45.9849
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4722,
+          "mean": 1.56165625,
+          "p95_nearest_rank": 2.041,
+          "minimum": 1.4327,
+          "maximum": 2.041
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.12565,
+          "mean": 32.45745625,
+          "p95_nearest_rank": 56.0933,
+          "minimum": 28.8193,
+          "maximum": 56.0933
+        },
+        "release": {
+          "n": 16,
+          "median": 1.56525,
+          "mean": 1.6585375,
+          "p95_nearest_rank": 2.3601,
+          "minimum": 1.4821,
+          "maximum": 2.3601
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.71199999999999,
+          "mean": 80.96648125,
+          "p95_nearest_rank": 105.0285,
+          "minimum": 76.6876,
+          "maximum": 105.0285
+        }
+      },
+      "readiness_wait_ms_per_frame": 44.405575,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 18,
+        "io_readiness_wait_calls": 1468,
+        "io_recvfrom_attempts": 44045,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3483,
+        "io_sendto_attempts": 9191,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9191,
+        "io_tx_submitted": 9191,
+        "proof_ack_datagrams": 1029,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9191
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [
+          {
+            "frame": 8,
+            "sequence": 1149,
+            "prior_highest_sequence": 1276
+          },
+          {
+            "frame": 8,
+            "sequence": 1150,
+            "prior_highest_sequence": 1276
+          },
+          {
+            "frame": 8,
+            "sequence": 1151,
+            "prior_highest_sequence": 1276
+          },
+          {
+            "frame": 8,
+            "sequence": 1152,
+            "prior_highest_sequence": 1276
+          },
+          {
+            "frame": 8,
+            "sequence": 1153,
+            "prior_highest_sequence": 1276
+          },
+          {
+            "frame": 14,
+            "sequence": 967,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 968,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 969,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 970,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 971,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 972,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 973,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 974,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 975,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 976,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 977,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 978,
+            "prior_highest_sequence": 1094
+          },
+          {
+            "frame": 14,
+            "sequence": 979,
+            "prior_highest_sequence": 1094
+          }
+        ],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.30125,
+          "mean": 1.3206929857001972,
+          "p95_nearest_rank": 1.5037,
+          "minimum": 0.725,
+          "maximum": 2.1185
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.2992,
+          "mean": 1.301775,
+          "p95_nearest_rank": 1.3253,
+          "minimum": 1.287,
+          "maximum": 1.3253
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 1968,
+          "median": 0.0183,
+          "mean": 0.022836280487804877,
+          "p95_nearest_rank": 0.0428,
+          "minimum": 0.0139,
+          "maximum": 0.3392
+        },
+        "ack_capture_batch_size": {
+          "n": 1968,
+          "median": 4.0,
+          "mean": 4,
+          "p95_nearest_rank": 4,
+          "minimum": 4,
+          "maximum": 4
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0031,
+          "mean": 0.08394560276679842,
+          "p95_nearest_rank": 1.0171,
+          "minimum": 0.0019,
+          "maximum": 1.7691
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.375,
+          "p95_nearest_rank": 33,
+          "minimum": 31,
+          "maximum": 33
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 33.088899999999995,
+          "mean": 33.22548125,
+          "p95_nearest_rank": 34.522,
+          "minimum": 32.8012,
+          "maximum": 34.522
+        }
+      },
+      "raw_journal_sha256": "c2961eb732f925cb3fccbc6d20f41d28d3e0f492f2792ebc5c13bfe62abc3910"
+    },
+    {
+      "stage": "input_batch",
+      "round": 2,
+      "position": 3,
+      "variant": "batch1",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 1,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r2_3_batch1",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.16575,
+        "mean": 77.258425,
+        "p95_nearest_rank": 78.0903,
+        "minimum": 76.14,
+        "maximum": 78.0903
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.8952,
+          "mean": 44.932193749999996,
+          "p95_nearest_rank": 45.8088,
+          "minimum": 44.0034,
+          "maximum": 45.8088
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.57085,
+          "mean": 1.57899375,
+          "p95_nearest_rank": 1.7908,
+          "minimum": 1.4522,
+          "maximum": 1.7908
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.128700000000002,
+          "mean": 29.09934375,
+          "p95_nearest_rank": 29.1633,
+          "minimum": 28.8299,
+          "maximum": 29.1633
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5692499999999998,
+          "mean": 1.64789375,
+          "p95_nearest_rank": 2.4098,
+          "minimum": 1.4725,
+          "maximum": 2.4098
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.16575,
+          "mean": 77.258425,
+          "p95_nearest_rank": 78.0903,
+          "minimum": 76.14,
+          "maximum": 78.0903
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.030225,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 13,
+        "io_readiness_wait_calls": 1496,
+        "io_recvfrom_attempts": 44114,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3552,
+        "io_sendto_attempts": 9189,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9189,
+        "io_tx_submitted": 9189,
+        "proof_ack_datagrams": 1027,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9189
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3303,
+          "mean": 1.346685379684418,
+          "p95_nearest_rank": 1.4872,
+          "minimum": 0.9245,
+          "maximum": 2.0662
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.33125,
+          "mean": 1.3306125,
+          "p95_nearest_rank": 1.3462,
+          "minimum": 1.3146,
+          "maximum": 1.3462
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0085,
+          "mean": 0.010204251527494908,
+          "p95_nearest_rank": 0.0218,
+          "minimum": 0.0064,
+          "maximum": 0.1486
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0198,
+          "mean": 0.08324202075098815,
+          "p95_nearest_rank": 0.966,
+          "minimum": 0.0054,
+          "maximum": 1.6964
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 31.4262,
+          "mean": 31.37733125,
+          "p95_nearest_rank": 31.9338,
+          "minimum": 30.4037,
+          "maximum": 31.9338
+        }
+      },
+      "raw_journal_sha256": "5bc368cb3c2e6bc77c81c93fafab277476e2911964939c24ac3a28d22b60e64d"
+    },
+    {
+      "stage": "input_batch",
+      "round": 3,
+      "position": 0,
+      "variant": "batch32",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 32,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r3_0_batch32",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 78.39815,
+        "mean": 78.46056875000001,
+        "p95_nearest_rank": 79.3961,
+        "minimum": 77.4806,
+        "maximum": 79.3961
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 46.19305,
+          "mean": 46.217475,
+          "p95_nearest_rank": 47.1069,
+          "minimum": 45.3939,
+          "maximum": 47.1069
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.4925000000000002,
+          "mean": 1.502475,
+          "p95_nearest_rank": 1.6339,
+          "minimum": 1.4299,
+          "maximum": 1.6339
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.165100000000002,
+          "mean": 29.1624375,
+          "p95_nearest_rank": 29.3478,
+          "minimum": 29.0274,
+          "maximum": 29.3478
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5173,
+          "mean": 1.57818125,
+          "p95_nearest_rank": 2.3525,
+          "minimum": 1.4698,
+          "maximum": 2.3525
+        },
+        "whole": {
+          "n": 16,
+          "median": 78.39815,
+          "mean": 78.46056875000001,
+          "p95_nearest_rank": 79.3961,
+          "minimum": 77.4806,
+          "maximum": 79.3961
+        }
+      },
+      "readiness_wait_ms_per_frame": 42.637225,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 12,
+        "io_readiness_wait_calls": 1518,
+        "io_recvfrom_attempts": 44675,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 4113,
+        "io_sendto_attempts": 9187,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9187,
+        "io_tx_submitted": 9187,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.19875,
+          "mean": 1.2046265162721894,
+          "p95_nearest_rank": 1.3511,
+          "minimum": 0.8647,
+          "maximum": 1.8701
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.1995,
+          "mean": 1.19808125,
+          "p95_nearest_rank": 1.2123,
+          "minimum": 1.1828,
+          "maximum": 1.2123
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 496,
+          "median": 0.075,
+          "mean": 0.07750685483870967,
+          "p95_nearest_rank": 0.1096,
+          "minimum": 0.0467,
+          "maximum": 0.1526
+        },
+        "ack_capture_batch_size": {
+          "n": 496,
+          "median": 16.0,
+          "mean": 16,
+          "p95_nearest_rank": 16,
+          "minimum": 16,
+          "maximum": 16
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0025,
+          "mean": 0.08575365612648221,
+          "p95_nearest_rank": 1.2965,
+          "minimum": 0.0018,
+          "maximum": 1.9018
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31,
+          "p95_nearest_rank": 31,
+          "minimum": 31,
+          "maximum": 31
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 41.706450000000004,
+          "mean": 41.75666875,
+          "p95_nearest_rank": 42.6555,
+          "minimum": 41.0878,
+          "maximum": 42.6555
+        }
+      },
+      "raw_journal_sha256": "a4e1dc6c8739f6bc1a1b8207e82251d44772c8d9917453fcf210126dc5c4743a"
+    },
+    {
+      "stage": "input_batch",
+      "round": 3,
+      "position": 1,
+      "variant": "batch1",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 1,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r3_1_batch1",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 76.87245,
+        "mean": 76.85031875,
+        "p95_nearest_rank": 77.6136,
+        "minimum": 75.754,
+        "maximum": 77.6136
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 44.554050000000004,
+          "mean": 44.48573125,
+          "p95_nearest_rank": 45.0423,
+          "minimum": 43.6213,
+          "maximum": 45.0423
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5279,
+          "mean": 1.5447125,
+          "p95_nearest_rank": 1.6709,
+          "minimum": 1.4319,
+          "maximum": 1.6709
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.14345,
+          "mean": 29.15845,
+          "p95_nearest_rank": 29.4378,
+          "minimum": 28.9414,
+          "maximum": 29.4378
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5874000000000001,
+          "mean": 1.661425,
+          "p95_nearest_rank": 2.4844,
+          "minimum": 1.4542,
+          "maximum": 2.4844
+        },
+        "whole": {
+          "n": 16,
+          "median": 76.87245,
+          "mean": 76.85031875,
+          "p95_nearest_rank": 77.6136,
+          "minimum": 75.754,
+          "maximum": 77.6136
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.12408125,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1559,
+        "io_recvfrom_attempts": 44163,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3601,
+        "io_sendto_attempts": 9186,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9186,
+        "io_tx_submitted": 9186,
+        "proof_ack_datagrams": 1024,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9186
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3251,
+          "mean": 1.3330157914201184,
+          "p95_nearest_rank": 1.4935,
+          "minimum": 0.9231,
+          "maximum": 1.851
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.3230499999999998,
+          "mean": 1.3230875,
+          "p95_nearest_rank": 1.3378,
+          "minimum": 1.3058,
+          "maximum": 1.3378
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 7856,
+          "median": 0.0083,
+          "mean": 0.010006975560081467,
+          "p95_nearest_rank": 0.0192,
+          "minimum": 0.0064,
+          "maximum": 0.1713
+        },
+        "ack_capture_batch_size": {
+          "n": 7856,
+          "median": 1.0,
+          "mean": 1,
+          "p95_nearest_rank": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0197,
+          "mean": 0.08245851037549407,
+          "p95_nearest_rank": 0.9552,
+          "minimum": 0.0054,
+          "maximum": 1.3804
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.0625,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 31.2277,
+          "mean": 31.0653125,
+          "p95_nearest_rank": 31.6437,
+          "minimum": 29.9977,
+          "maximum": 31.6437
+        }
+      },
+      "raw_journal_sha256": "87725de9317688db05515b37067800a86f73791398085dd7d7e6f577bf47bdf3"
+    },
+    {
+      "stage": "input_batch",
+      "round": 3,
+      "position": 2,
+      "variant": "batch8",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 8,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r3_2_batch8",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.53075,
+        "mean": 77.62313125,
+        "p95_nearest_rank": 78.6094,
+        "minimum": 76.2887,
+        "maximum": 78.6094
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.311499999999995,
+          "mean": 45.28895625,
+          "p95_nearest_rank": 45.9141,
+          "minimum": 44.1402,
+          "maximum": 45.9141
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.5018,
+          "mean": 1.525725,
+          "p95_nearest_rank": 1.8888,
+          "minimum": 1.4304,
+          "maximum": 1.8888
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.14715,
+          "mean": 29.14200625,
+          "p95_nearest_rank": 29.3098,
+          "minimum": 28.7497,
+          "maximum": 29.3098
+        },
+        "release": {
+          "n": 16,
+          "median": 1.55745,
+          "mean": 1.66644375,
+          "p95_nearest_rank": 2.8816,
+          "minimum": 1.4696,
+          "maximum": 2.8816
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.53075,
+          "mean": 77.62313125,
+          "p95_nearest_rank": 78.6094,
+          "minimum": 76.2887,
+          "maximum": 78.6094
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.8626,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1531,
+        "io_recvfrom_attempts": 44194,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3632,
+        "io_sendto_attempts": 9187,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9187,
+        "io_tx_submitted": 9187,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.2632,
+          "mean": 1.2743653229783038,
+          "p95_nearest_rank": 1.4264,
+          "minimum": 0.8738,
+          "maximum": 1.9413
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.26775,
+          "mean": 1.2632875,
+          "p95_nearest_rank": 1.281,
+          "minimum": 1.238,
+          "maximum": 1.281
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 993,
+          "median": 0.0294,
+          "mean": 0.03679436052366566,
+          "p95_nearest_rank": 0.0614,
+          "minimum": 0.0224,
+          "maximum": 0.2339
+        },
+        "ack_capture_batch_size": {
+          "n": 993,
+          "median": 8,
+          "mean": 7.991943605236656,
+          "p95_nearest_rank": 8,
+          "minimum": 4,
+          "maximum": 8
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0025,
+          "mean": 0.08396933053359684,
+          "p95_nearest_rank": 1.1049,
+          "minimum": 0.0018,
+          "maximum": 1.6868
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.4375,
+          "p95_nearest_rank": 34,
+          "minimum": 31,
+          "maximum": 34
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 35.82535,
+          "mean": 35.7585125,
+          "p95_nearest_rank": 36.2463,
+          "minimum": 35.111200000000004,
+          "maximum": 36.2463
+        }
+      },
+      "raw_journal_sha256": "0164a39bdd64995f5e3351b63124227071a2b824fde26028ca0d48967c6b4e80"
+    },
+    {
+      "stage": "input_batch",
+      "round": 3,
+      "position": 3,
+      "variant": "batch4",
+      "io_mode": "nonblocking",
+      "timing_mode": "sampled",
+      "input_batch": 4,
+      "output_batch": 32,
+      "path": "C:\\t6ab09\\cases\\input_batch\\r3_3_batch4",
+      "retries": 0,
+      "ignored": 0,
+      "whole_ms": {
+        "n": 16,
+        "median": 77.30369999999999,
+        "mean": 77.39294375,
+        "p95_nearest_rank": 78.4077,
+        "minimum": 76.6181,
+        "maximum": 78.4077
+      },
+      "phase_ms": {
+        "input": {
+          "n": 16,
+          "median": 45.1084,
+          "mean": 45.11689375,
+          "p95_nearest_rank": 46.1696,
+          "minimum": 44.4389,
+          "maximum": 46.1696
+        },
+        "commit": {
+          "n": 16,
+          "median": 1.46865,
+          "mean": 1.52361875,
+          "p95_nearest_rank": 1.8356,
+          "minimum": 1.4241,
+          "maximum": 1.8356
+        },
+        "output_until_verified": {
+          "n": 16,
+          "median": 29.12375,
+          "mean": 29.109481249999998,
+          "p95_nearest_rank": 29.2563,
+          "minimum": 28.8048,
+          "maximum": 29.2563
+        },
+        "release": {
+          "n": 16,
+          "median": 1.5847,
+          "mean": 1.64295,
+          "p95_nearest_rank": 2.4578,
+          "minimum": 1.4583,
+          "maximum": 2.4578
+        },
+        "whole": {
+          "n": 16,
+          "median": 77.30369999999999,
+          "mean": 77.39294375,
+          "p95_nearest_rank": 78.4077,
+          "minimum": 76.6181,
+          "maximum": 78.4077
+        }
+      },
+      "readiness_wait_ms_per_frame": 41.25641875,
+      "io_counters": {
+        "completed_frames": 16,
+        "io_false_readiness": 14,
+        "io_readiness_wait_calls": 1487,
+        "io_recvfrom_attempts": 44052,
+        "io_rx_captured": 40562,
+        "io_rx_would_block": 3490,
+        "io_sendto_attempts": 9187,
+        "io_setblocking_calls": 1,
+        "io_tx_completed": 9187,
+        "io_tx_submitted": 9187,
+        "proof_ack_datagrams": 1025,
+        "proof_ack_entries": 32400,
+        "rx_control_delivered": 8162,
+        "rx_output_accepted": 32400,
+        "sendto_datagrams": 9187
+      },
+      "raw_analysis": {
+        "repeated_host_control_or_data_requests": [],
+        "late_previously_missing_output_chunks": [],
+        "input_ack_host_observed_lag_ms": {
+          "n": 8112,
+          "median": 1.3019,
+          "mean": 1.315254191321499,
+          "p95_nearest_rank": 1.4613,
+          "minimum": 0.8738,
+          "maximum": 2.2501
+        },
+        "input_ack_lag_median_per_frame_ms": {
+          "n": 16,
+          "median": 1.30065,
+          "mean": 1.3027375,
+          "p95_nearest_rank": 1.3314,
+          "minimum": 1.2917,
+          "maximum": 1.3314
+        },
+        "ack_capture_to_next_data_ms": {
+          "n": 1968,
+          "median": 0.0176,
+          "mean": 0.021969258130081302,
+          "p95_nearest_rank": 0.0432,
+          "minimum": 0.0137,
+          "maximum": 0.1229
+        },
+        "ack_capture_batch_size": {
+          "n": 1968,
+          "median": 4.0,
+          "mean": 4,
+          "p95_nearest_rank": 4,
+          "minimum": 4,
+          "maximum": 4
+        },
+        "input_ack_gaps_ms": {
+          "n": 8096,
+          "median": 0.0031,
+          "mean": 0.08356162302371542,
+          "p95_nearest_rank": 1.0201,
+          "minimum": 0.0019,
+          "maximum": 1.9161
+        },
+        "long_ack_gap_count_per_frame": {
+          "n": 16,
+          "median": 31.0,
+          "mean": 31.1875,
+          "p95_nearest_rank": 32,
+          "minimum": 31,
+          "maximum": 32
+        },
+        "long_ack_gap_total_ms_per_frame": {
+          "n": 16,
+          "median": 33.2017,
+          "mean": 33.18739375,
+          "p95_nearest_rank": 34.320100000000004,
+          "minimum": 32.3402,
+          "maximum": 34.320100000000004
+        }
+      },
+      "raw_journal_sha256": "1a5445c0236273b5f2aa38477f09f81cb31a26e956d31db93e743debf247fe40"
+    }
+  ],
+  "scope": "SAME_NEW_BIT_150MHZ_INPUT_WINDOW16_OUTPUT_WINDOW128_NO_PC4K_OR_DISPLAY",
+  "p95_method": "nearest rank; four rounds are the replication units",
+  "journal_timestamp_scope": "TX before syscall; RX after recvfrom; not PHY or wire timestamps"
+}

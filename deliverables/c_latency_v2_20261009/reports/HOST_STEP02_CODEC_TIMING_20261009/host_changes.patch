@@ -1,0 +1,67 @@
+--- baseline/streaming/streaming_client.py
++++ main/streaming/streaming_client.py
+@@ -12,7 +12,7 @@
+ HERE=Path(__file__).resolve().parent
+ sys.path.insert(0,str(HERE.parent/'sources/host'))
+ sys.path.insert(0,str(HERE.parent/'optimization_20261007'))
+-from video_protocol import Packet,decode,InvalidPacket
++from video_protocol import Packet,decode,InvalidPacket,HEADER,CHUNK_BYTES
+ from stream_receiver import OutputReceiver
+ from binary_journal import BinaryJournal
+ from timing_diagnostics import BoundedTiming
+@@ -21,9 +21,19 @@
+     raw=p.encode();head=b'EVF2\x02'+raw[5:60];return head+struct.pack('!I',zlib.crc32(head))+raw[64:]
+ def decode_any(raw):
+     if raw[:5]==b'EVF1\x01':return 1,decode(raw)
+-    if raw[:5]!=b'EVF2\x02' or len(raw)<64 or zlib.crc32(raw[:60])!=int.from_bytes(raw[60:64],'big'):
++    if raw[:5]!=b'EVF2\x02' or len(raw)<64:
+         raise InvalidPacket('version/header CRC')
+-    h=b'EVF1\x01'+raw[5:60];return 2,decode(h+struct.pack('!I',zlib.crc32(h))+raw[64:])
++    (magic,version,kind,flags,session,frame_id,sequence,offset,frame_bytes,frame_crc,
++     count,status,next_offset,reserved,payload_crc,header_crc)=HEADER.unpack_from(raw)
++    if zlib.crc32(raw[:60])!=header_crc:
++        raise InvalidPacket('version/header CRC')
++    if len(raw)>64+CHUNK_BYTES:raise InvalidPacket('LENGTH')
++    # Validate the original EVF2 bytes once; avoid constructing an EVF1 surrogate.
++    packet=Packet(kind,session,frame_id,sequence,offset,frame_bytes,frame_crc,
++                  raw[64:],status,next_offset,flags,reserved)
++    if count!=len(raw)-64:raise InvalidPacket('LENGTH',packet)
++    if zlib.crc32(packet.payload)!=payload_crc:raise InvalidPacket('PAYLOAD_CRC',packet)
++    return version,packet
+ 
+ class FrameDeadlineError(RuntimeError):
+     """Distinct from socket.timeout (which aliases TimeoutError in Python)."""
+--- baseline/streaming/timing_diagnostics.py
++++ main/streaming/timing_diagnostics.py
+@@ -29,7 +29,7 @@
+         row[0] += 1
+         row[1] += wall_ns
+         row[2] = max(row[2], wall_ns)
+-        bucket = min(31, wall_ns.bit_length() - 1)
++        bucket = min(31, max(0, wall_ns.bit_length() - 1))
+         row[5][bucket] += 1
+         if cpu_ns is not None:
+             cpu_ns = max(0, int(cpu_ns))
+@@ -43,11 +43,11 @@
+                  'thread_ident': threading.get_ident()}
+         if detail:
+             event['detail'] = dict(detail)
+-        item = (-wall_ns, self._sequence, event)
++        item = (wall_ns, self._sequence, event)
+         self._sequence += 1
+         if len(self._slow) < self.max_slow_events:
+             heapq.heappush(self._slow, item)
+-        elif wall_ns > -self._slow[0][0]:
++        elif wall_ns > self._slow[0][0]:
+             heapq.heapreplace(self._slow, item)
+ 
+     @staticmethod
+@@ -87,7 +87,7 @@
+             'slow_event_limit': self.max_slow_events,
+             'counters': dict(sorted(self.counters.items())),
+             'stages': stages,
+-            'slowest_events': [row[2] for row in sorted(self._slow)],
++            'slowest_events': [row[2] for row in sorted(self._slow, reverse=True)],
+             'metadata': metadata,
+             'hardware_timestamp_claim': False,
+         }

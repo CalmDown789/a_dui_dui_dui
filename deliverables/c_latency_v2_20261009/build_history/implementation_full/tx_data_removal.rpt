@@ -1,0 +1,322 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:52:20 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_timing -to [get_pins -of_objects [get_cells -hier -filter {NAME =~ u_io/u_tx/g_iob* && REF_NAME == FDCE}] -filter {REF_PIN_NAME == CLR}] -delay_type min -max_paths 10 -file tx_data_removal.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.368ns  (arrival time - required time)
+  Source:                 u_io/u_tx/release_sync_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            u_io/u_tx/g_iob[0].u_ff/CLR
+                            (removal check against rising-edge clock serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (serialize_raw rise@0.000ns - serialize_raw rise@0.000ns)
+  Data Path Delay:        0.446ns  (logic 0.128ns (28.672%)  route 0.318ns (71.328%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.032ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.872ns
+    Source Clock Delay      (SCD):    -0.624ns
+    Clock Pessimism Removal (CPR):    -0.280ns
+  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     0.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     0.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560    -1.843 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545    -1.299    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.273 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.649    -0.624    u_io/u_tx/CLK
+    SLICE_X0Y117         FDPE                                         r  u_io/u_tx/release_sync_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y117         FDPE (Prop_fdpe_C_Q)         0.128    -0.496 f  u_io/u_tx/release_sync_reg[1]/Q
+                         net (fo=12, routed)          0.318    -0.177    u_io/u_tx/release_sync[1]
+    OLOGIC_X0Y119        FDCE                                         f  u_io/u_tx/g_iob[0].u_ff/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     0.465 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     0.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -2.410 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595    -1.815    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.786 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.915    -0.872    u_io/u_tx/CLK
+    OLOGIC_X0Y119        FDCE                                         r  u_io/u_tx/g_iob[0].u_ff/C
+                         clock pessimism              0.280    -0.592    
+                         clock uncertainty            0.100    -0.492    
+    OLOGIC_X0Y119        FDCE (Remov_fdce_C_CLR)     -0.054    -0.546    u_io/u_tx/g_iob[0].u_ff
+  -------------------------------------------------------------------
+                         required time                          0.546    
+                         arrival time                          -0.177    
+  -------------------------------------------------------------------
+                         slack                                  0.368    
+
+Slack (MET) :             0.430ns  (arrival time - required time)
+  Source:                 u_io/u_tx/release_sync_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            u_io/u_tx/g_iob[4].u_ff/CLR
+                            (removal check against rising-edge clock serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (serialize_raw rise@0.000ns - serialize_raw rise@0.000ns)
+  Data Path Delay:        0.508ns  (logic 0.128ns (25.208%)  route 0.380ns (74.792%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.032ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.872ns
+    Source Clock Delay      (SCD):    -0.624ns
+    Clock Pessimism Removal (CPR):    -0.280ns
+  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     0.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     0.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560    -1.843 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545    -1.299    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.273 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.649    -0.624    u_io/u_tx/CLK
+    SLICE_X0Y117         FDPE                                         r  u_io/u_tx/release_sync_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y117         FDPE (Prop_fdpe_C_Q)         0.128    -0.496 f  u_io/u_tx/release_sync_reg[1]/Q
+                         net (fo=12, routed)          0.380    -0.116    u_io/u_tx/release_sync[1]
+    OLOGIC_X0Y120        FDCE                                         f  u_io/u_tx/g_iob[4].u_ff/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     0.465 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     0.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -2.410 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595    -1.815    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.786 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.915    -0.872    u_io/u_tx/CLK
+    OLOGIC_X0Y120        FDCE                                         r  u_io/u_tx/g_iob[4].u_ff/C
+                         clock pessimism              0.280    -0.592    
+                         clock uncertainty            0.100    -0.492    
+    OLOGIC_X0Y120        FDCE (Remov_fdce_C_CLR)     -0.054    -0.546    u_io/u_tx/g_iob[4].u_ff
+  -------------------------------------------------------------------
+                         required time                          0.546    
+                         arrival time                          -0.116    
+  -------------------------------------------------------------------
+                         slack                                  0.430    
+
+Slack (MET) :             0.564ns  (arrival time - required time)
+  Source:                 u_io/u_tx/release_sync_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            u_io/u_tx/g_iob[1].u_ff/CLR
+                            (removal check against rising-edge clock serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (serialize_raw rise@0.000ns - serialize_raw rise@0.000ns)
+  Data Path Delay:        0.639ns  (logic 0.128ns (20.034%)  route 0.511ns (79.966%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.029ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.875ns
+    Source Clock Delay      (SCD):    -0.624ns
+    Clock Pessimism Removal (CPR):    -0.280ns
+  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     0.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     0.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560    -1.843 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545    -1.299    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.273 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.649    -0.624    u_io/u_tx/CLK
+    SLICE_X0Y117         FDPE                                         r  u_io/u_tx/release_sync_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y117         FDPE (Prop_fdpe_C_Q)         0.128    -0.496 f  u_io/u_tx/release_sync_reg[1]/Q
+                         net (fo=12, routed)          0.511     0.015    u_io/u_tx/release_sync[1]
+    OLOGIC_X0Y123        FDCE                                         f  u_io/u_tx/g_iob[1].u_ff/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     0.465 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     0.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -2.410 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595    -1.815    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.786 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.912    -0.875    u_io/u_tx/CLK
+    OLOGIC_X0Y123        FDCE                                         r  u_io/u_tx/g_iob[1].u_ff/C
+                         clock pessimism              0.280    -0.595    
+                         clock uncertainty            0.100    -0.495    
+    OLOGIC_X0Y123        FDCE (Remov_fdce_C_CLR)     -0.054    -0.549    u_io/u_tx/g_iob[1].u_ff
+  -------------------------------------------------------------------
+                         required time                          0.549    
+                         arrival time                           0.015    
+  -------------------------------------------------------------------
+                         slack                                  0.564    
+
+Slack (MET) :             0.669ns  (arrival time - required time)
+  Source:                 u_io/u_tx/release_sync_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            u_io/u_tx/g_iob[2].u_ff/CLR
+                            (removal check against rising-edge clock serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (serialize_raw rise@0.000ns - serialize_raw rise@0.000ns)
+  Data Path Delay:        0.747ns  (logic 0.128ns (17.125%)  route 0.619ns (82.875%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.032ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.872ns
+    Source Clock Delay      (SCD):    -0.624ns
+    Clock Pessimism Removal (CPR):    -0.280ns
+  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     0.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     0.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560    -1.843 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545    -1.299    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.273 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.649    -0.624    u_io/u_tx/CLK
+    SLICE_X0Y117         FDPE                                         r  u_io/u_tx/release_sync_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y117         FDPE (Prop_fdpe_C_Q)         0.128    -0.496 f  u_io/u_tx/release_sync_reg[1]/Q
+                         net (fo=12, routed)          0.619     0.124    u_io/u_tx/release_sync[1]
+    OLOGIC_X0Y129        FDCE                                         f  u_io/u_tx/g_iob[2].u_ff/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     0.465 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     0.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -2.410 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595    -1.815    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.786 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.915    -0.872    u_io/u_tx/CLK
+    OLOGIC_X0Y129        FDCE                                         r  u_io/u_tx/g_iob[2].u_ff/C
+                         clock pessimism              0.280    -0.592    
+                         clock uncertainty            0.100    -0.492    
+    OLOGIC_X0Y129        FDCE (Remov_fdce_C_CLR)     -0.054    -0.546    u_io/u_tx/g_iob[2].u_ff
+  -------------------------------------------------------------------
+                         required time                          0.546    
+                         arrival time                           0.124    
+  -------------------------------------------------------------------
+                         slack                                  0.669    
+
+Slack (MET) :             0.696ns  (arrival time - required time)
+  Source:                 u_io/u_tx/release_sync_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            u_io/u_tx/g_iob[3].u_ff/CLR
+                            (removal check against rising-edge clock serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (serialize_raw rise@0.000ns - serialize_raw rise@0.000ns)
+  Data Path Delay:        0.771ns  (logic 0.128ns (16.603%)  route 0.643ns (83.397%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.029ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.875ns
+    Source Clock Delay      (SCD):    -0.624ns
+    Clock Pessimism Removal (CPR):    -0.280ns
+  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     0.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     0.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560    -1.843 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545    -1.299    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.273 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.649    -0.624    u_io/u_tx/CLK
+    SLICE_X0Y117         FDPE                                         r  u_io/u_tx/release_sync_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y117         FDPE (Prop_fdpe_C_Q)         0.128    -0.496 f  u_io/u_tx/release_sync_reg[1]/Q
+                         net (fo=12, routed)          0.643     0.147    u_io/u_tx/release_sync[1]
+    OLOGIC_X0Y125        FDCE                                         f  u_io/u_tx/g_iob[3].u_ff/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock serialize_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     0.465 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     0.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -2.410 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595    -1.815    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.786 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.912    -0.875    u_io/u_tx/CLK
+    OLOGIC_X0Y125        FDCE                                         r  u_io/u_tx/g_iob[3].u_ff/C
+                         clock pessimism              0.280    -0.595    
+                         clock uncertainty            0.100    -0.495    
+    OLOGIC_X0Y125        FDCE (Remov_fdce_C_CLR)     -0.054    -0.549    u_io/u_tx/g_iob[3].u_ff
+  -------------------------------------------------------------------
+                         required time                          0.549    
+                         arrival time                           0.147    
+  -------------------------------------------------------------------
+                         slack                                  0.696    
+
+
+
+

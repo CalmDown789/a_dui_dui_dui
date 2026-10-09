@@ -1,0 +1,42 @@
+{
+  "status": "RUNNING",
+  "scope": "DIRECT_RETAINED_WINDOW_SYNTHETIC_DATA_NOT_FULL_CNN_PHY",
+  "cases": [
+    {
+      "name": "old_collision_fails",
+      "status": "RUNNING",
+      "expected_failure": true,
+      "run_directory": "C:\\t6int09\\validation\\rtl_tests\\cases\\old_collision_fails",
+      "dut_sha256": "86932586c1f71f0e0713643a8b58bf42a2f6f62e25acfbfb43ed95ec7118c8cc",
+      "tb_sha256": "c45a68c83d05fc226124d0c58bd689648e059a15002bb3e17e372c58b12496e1",
+      "commands": [
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xvlog.bat",
+            "-sv",
+            "evf2_result_window.sv",
+            "tb_duplicate_suppression.sv"
+          ],
+          "exit_code": 0,
+          "seconds": 1.157054600000265
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xelab.bat",
+            "--debug",
+            "typical",
+            "--mt",
+            "off",
+            "tb_duplicate_suppression",
+            "-s",
+            "snapshot"
+          ],
+          "exit_code": 0,
+          "seconds": 1.9224589000004926
+        }
+      ]
+    }
+  ],
+  "board_tested": false,
+  "BIT_generated": false
+}

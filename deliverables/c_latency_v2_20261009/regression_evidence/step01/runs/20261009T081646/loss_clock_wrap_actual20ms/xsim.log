@@ -1,0 +1,34 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Oct  9 16:17:52 2026
+# Process ID         : 21024
+# Current directory  : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/loss_clock_wrap_actual20ms
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/snapshot/xsim_script.tcl}
+# Log file           : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/loss_clock_wrap_actual20ms/xsim.log
+# Journal file       : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/loss_clock_wrap_actual20ms\xsim.jou
+# Running On         : WIN-FJ9PMA04HBP
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33752 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68112 MB
+# Available Virtual  : 45679 MB
+#-----------------------------------------------------------
+source xsim.dir/snapshot/xsim_script.tcl
+# xsim {snapshot} -autoloadwcfg -tclbatch {run.tcl}
+Time resolution is 1 ps
+source run.tcl
+## run all
+EXPIRY_COLLISION cycle=3000011 base=1 next=3 retry_requested=0 retry_pass=0
+DUPLICATE_SUPPRESSION_PASS baseline=0 lost_proof=1 wrap=1 duplicates=4 min_retry_spacing_cycles=5769366 RTO=3000000 frames=2
+$finish called at time : 80582640930 ps : File "C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/loss_clock_wrap_actual20ms/tb_duplicate_suppression.sv" Line 88
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 226.812 ; gain = 0.000
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct  9 16:18:01 2026...

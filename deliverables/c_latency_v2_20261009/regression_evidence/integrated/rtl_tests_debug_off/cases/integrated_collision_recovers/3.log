@@ -1,0 +1,20 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct  9 20:00:11 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/snapshot/xsim_script.tcl
+# xsim {snapshot} -autoloadwcfg -tclbatch {run.tcl}
+Time resolution is 1 ps
+source run.tcl
+## run all
+EXPIRY_COLLISION cycle=3000011 base=1 next=3 retry_requested=0 retry_pass=0
+DUPLICATE_SUPPRESSION_PASS baseline=0 lost_proof=1 wrap=0 duplicates=4 min_retry_spacing_cycles=5769366 RTO=3000000 frames=2
+$finish called at time : 80582640930 ps : File "C:/t6int09/validation/rtl_tests_debug_off/cases/integrated_collision_recovers/tb_duplicate_suppression.sv" Line 88
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 218.188 ; gain = 0.000
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct  9 20:00:20 2026...

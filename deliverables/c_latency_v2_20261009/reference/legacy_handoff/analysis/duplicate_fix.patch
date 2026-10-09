@@ -1,0 +1,76 @@
+--- baseline/evf2_result_window.sv
++++ candidate/evf2_result_window.sv
+@@ -3,7 +3,7 @@
+ // Bounded retained window over the existing synchronous stripe read port.
+ // ACK batches are validated in full before ANY ownership bit is changed.
+ module evf2_result_window #(
+-    parameter integer OUTPUT_BYTES=2073600,MAX_WINDOW=128,RETRY_CYCLES=150000
++    parameter integer OUTPUT_BYTES=2073600,MAX_WINDOW=128,RETRY_CYCLES=3000000
+ )(
+     input wire clk,rst_n,input wire frame_start,input wire[127:0]frame_session,
+     input wire[31:0]frame_id,input wire core_done,
+@@ -49,6 +49,12 @@
+     reg[127:0]reply_session_q;reg[31:0]reply_frame_q,reply_crc_q;
+     reg[95:0]reply_metadata_q;reg[63:0]capability_q;
+     reg[31:0]retry_timer_q;reg retry_pass_q,retry_requested_q;
++    // Retry age starts at serializer completion, never at global scan expiry.
++    // 20 ms at 150 MHz is an INITIAL DIAGNOSTIC setting, not a measured RTT.
++    reg[31:0]tx_clock_q,last_tx_q[0:MAX_WINDOW-1];
++    reg[31:0]scan_age_q;
++    reg[QW-1:0]scan_age_sequence_q;
++    wire unsent_ready=|(ready_q&~sent_q&~acked_q);
+     reg done_valid_q;reg[127:0]done_session_q;reg[31:0]done_frame_q,done_crc_q;reg[95:0]done_peer_q;
+     wire[SW-1:0]base_bank=base_q[SW-1:0],scan_bank=scan_q[SW-1:0],proof_bank=proof_sequence[SW-1:0];
+     wire read_fire=read_request_q&&rd_busy;
+@@ -97,7 +103,7 @@
+     integer i;
+     initial begin
+         if(OUTPUT_BYTES<1||OUTPUT_BYTES>2073600||MAX_WINDOW<2||MAX_WINDOW>128||
+-            (MAX_WINDOW&(MAX_WINDOW-1))!=0||RETRY_CYCLES<1)$fatal(1,"invalid EVF2 window parameters");
++            (MAX_WINDOW&(MAX_WINDOW-1))!=0||RETRY_CYCLES<1||RETRY_CYCLES>=2147483647)$fatal(1,"invalid EVF2 window parameters");
+     end
+     always @(posedge clk)begin
+         if(!rst_n)begin
+@@ -114,11 +120,17 @@
+             desc_next_offset<=0;desc_payload_crc<=0;desc_metadata<=0;
+             control_reply_q<=0;reply_release_q<=0;reply_type_q<=0;reply_status_q<=0;reply_length_q<=0;
+             reply_session_q<=0;reply_frame_q<=0;reply_crc_q<=0;reply_metadata_q<=0;capability_q<=0;
+-            retry_timer_q<=0;retry_pass_q<=0;retry_requested_q<=0;read_bytes_count<=0;release_count<=0;rejected_count<=0;retransmitted_count<=0;
++            tx_clock_q<=0;scan_age_q<=0;scan_age_sequence_q<=0;retry_timer_q<=0;retry_pass_q<=0;retry_requested_q<=0;read_bytes_count<=0;release_count<=0;rejected_count<=0;retransmitted_count<=0;
+             done_valid_q<=0;done_session_q<=0;done_frame_q<=0;done_crc_q<=0;done_peer_q<=0;
+-            for(i=0;i<MAX_WINDOW;i=i+1)begin tag_q[i]<=32'hffffffff;crc_q[i]<=0;length_q[i]<=0;end
++            for(i=0;i<MAX_WINDOW;i=i+1)begin tag_q[i]<=32'hffffffff;crc_q[i]<=0;length_q[i]<=0;last_tx_q[i]<=0;end
+         end else begin
+             frame_release<=0;control_ready<=0;read_request_q<=0;read_update_q<=0;
++            tx_clock_q<=tx_clock_q+1'b1;
++            // Pipeline the indexed age lookup before the scheduling decision.
++            // Unsigned subtraction handles one 32-bit clock wrap; the bounded
++            // frame deadline is far shorter than half the 28.6-second period.
++            scan_age_q<=tx_clock_q-last_tx_q[scan_bank];
++            scan_age_sequence_q<=scan_q;
+             if(core_done&&active)done_seen_q<=1;
+             if(frame_start)begin
+                 if(!active&&negotiated&&frame_session==session_q&&!desc_valid&&!control_reply_q)begin
+@@ -132,7 +144,7 @@
+                 desc_valid<=0;
+                 if(desc_action_q==0)begin
+                     if(sent_q[desc_bank_q])retransmitted_count<=retransmitted_count+1;
+-                    sent_q[desc_bank_q]<=1;
++                    sent_q[desc_bank_q]<=1;last_tx_q[desc_bank_q]<=tx_clock_q;
+                 end else if(desc_action_q==2)begin
+                     active<=0;frame_release<=1;release_count<=release_count+1;
+                     done_valid_q<=1;done_session_q<=session_q;done_frame_q<=frame_q;
+@@ -185,7 +197,12 @@
+                 end else if(active)begin
+                     if(scan_q<base_q)scan_q<=base_q;
+                     else if(scan_q>=next_q)begin scan_q<=base_q;retry_pass_q<=retry_requested_q;retry_requested_q<=0;end
+-                    else if(ready_q[scan_bank]&&!acked_q[scan_bank]&&(!sent_q[scan_bank]||retry_pass_q))begin
++                    else if(retry_pass_q&&ready_q[scan_bank]&&!acked_q[scan_bank]&&
++                        sent_q[scan_bank]&&!unsent_ready&&scan_age_sequence_q!=scan_q)begin
++                        // Hold this scan position for its registered age.
++                    end else if(ready_q[scan_bank]&&!acked_q[scan_bank]&&
++                        (!sent_q[scan_bank]||(retry_pass_q&&!unsent_ready&&
++                        scan_age_sequence_q==scan_q&&scan_age_q>=RETRY_CYCLES)))begin
+                         desc_valid<=1;desc_action_q<=0;desc_bank_q<=scan_bank;
+                         desc_type<=8'h17;desc_status<=1;desc_flags<=scan_q==PACKETS-1?1:0;desc_length<=length_q[scan_bank];
+                         desc_session<=session_q;desc_frame_id<=frame_q;desc_sequence<=scan_q;desc_offset<=scan_q*1024;

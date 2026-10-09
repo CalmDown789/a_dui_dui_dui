@@ -1,0 +1,486 @@
+{
+  "scope": "LIVE_STREAMING_CLIENT_CALL_BOUNDARIES_NOT_NIC_OR_WIRE_TIMESTAMPS",
+  "clock": "time.perf_counter_ns / QPC on Windows",
+  "thread_cpu_clock": "time.thread_time_ns; current calling thread only",
+  "slow_event_threshold_ns": 2000000,
+  "slow_event_limit": 64,
+  "counters": {
+    "completed_frames": 2,
+    "io_recvfrom_attempts": 5144,
+    "io_rx_captured": 5072,
+    "io_rx_would_block": 72,
+    "io_sendto_attempts": 1150,
+    "io_setblocking_calls": 1,
+    "io_tx_completed": 1150,
+    "io_tx_submitted": 1150,
+    "proof_ack_datagrams": 128,
+    "proof_ack_entries": 4050,
+    "rx_control_delivered": 1022,
+    "rx_output_accepted": 4050,
+    "sendto_datagrams": 1150
+  },
+  "stages": {
+    "decode_header_payload_crc": {
+      "count": 317,
+      "wall_total_ns": 764000,
+      "wall_mean_ns": 2410.0946372239746,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 62600,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 133
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 179
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 1
+        }
+      ],
+      "observed_calls": 5072,
+      "recorded_samples": 317,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "frame_transfer": {
+      "count": 2,
+      "wall_total_ns": 103058700,
+      "wall_mean_ns": 51529350.0,
+      "wall_p50_upper_bound_ns": 67108864,
+      "wall_p95_upper_bound_ns": 67108864,
+      "wall_max_ns": 52955400,
+      "thread_cpu_total_ns": 93750000,
+      "thread_cpu_mean_ns": 46875000.0,
+      "thread_cpu_max_ns": 46875000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 67108864,
+          "count": 2
+        }
+      ],
+      "observed_calls": 2,
+      "recorded_samples": 2,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_append": {
+      "count": 389,
+      "wall_total_ns": 903500,
+      "wall_mean_ns": 2322.622107969152,
+      "wall_p50_upper_bound_ns": 2048,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 376700,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 1024,
+          "count": 183
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 178
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 23
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 1
+        }
+      ],
+      "observed_calls": 6222,
+      "recorded_samples": 389,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "journal_checkpoint": {
+      "count": 3,
+      "wall_total_ns": 2484800,
+      "wall_mean_ns": 828266.6666666666,
+      "wall_p50_upper_bound_ns": 262144,
+      "wall_p95_upper_bound_ns": 2097152,
+      "wall_max_ns": 2047000,
+      "thread_cpu_total_ns": 15625000,
+      "thread_cpu_mean_ns": 5208333.333333333,
+      "thread_cpu_max_ns": 15625000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 2097152,
+          "count": 1
+        }
+      ],
+      "observed_calls": 3,
+      "recorded_samples": 3,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_file_write": {
+      "count": 13,
+      "wall_total_ns": 2000000,
+      "wall_mean_ns": 153846.15384615384,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 524288,
+      "wall_max_ns": 455200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        }
+      ],
+      "observed_calls": 13,
+      "recorded_samples": 13,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_flush_block": {
+      "count": 13,
+      "wall_total_ns": 2065900,
+      "wall_mean_ns": 158915.38461538462,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 524288,
+      "wall_max_ns": 460100,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        }
+      ],
+      "observed_calls": 13,
+      "recorded_samples": 13,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "output_receiver_validate_store_deduplicate": {
+      "count": 254,
+      "wall_total_ns": 788700,
+      "wall_mean_ns": 3105.1181102362207,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 8192,
+      "wall_max_ns": 45400,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 11
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 225
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 13
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 1
+        }
+      ],
+      "observed_calls": 4050,
+      "recorded_samples": 254,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "proof_batch_take": {
+      "count": 8,
+      "wall_total_ns": 63000,
+      "wall_mean_ns": 7875.0,
+      "wall_p50_upper_bound_ns": 8192,
+      "wall_p95_upper_bound_ns": 16384,
+      "wall_max_ns": 13200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 3
+        }
+      ],
+      "observed_calls": 128,
+      "recorded_samples": 8,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "proof_packet_build": {
+      "count": 8,
+      "wall_total_ns": 33200,
+      "wall_mean_ns": 4150.0,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 8192,
+      "wall_max_ns": 5600,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 4096,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 3
+        }
+      ],
+      "observed_calls": 128,
+      "recorded_samples": 8,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "scheduled_receive": {
+      "count": 317,
+      "wall_total_ns": 1659900,
+      "wall_mean_ns": 5236.277602523659,
+      "wall_p50_upper_bound_ns": 1024,
+      "wall_p95_upper_bound_ns": 1024,
+      "wall_max_ns": 219400,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 512,
+          "count": 123
+        },
+        {
+          "upper_bound_ns": 1024,
+          "count": 181
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 7
+        }
+      ],
+      "observed_calls": 5072,
+      "recorded_samples": 317,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "scheduled_send": {
+      "count": 72,
+      "wall_total_ns": 1863600,
+      "wall_mean_ns": 25883.333333333332,
+      "wall_p50_upper_bound_ns": 16384,
+      "wall_p95_upper_bound_ns": 131072,
+      "wall_max_ns": 108800,
+      "thread_cpu_total_ns": 15625000,
+      "thread_cpu_mean_ns": 217013.88888888888,
+      "thread_cpu_max_ns": 15625000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 16384,
+          "count": 55
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 9
+        }
+      ],
+      "observed_calls": 1150,
+      "recorded_samples": 72,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    }
+  },
+  "slowest_events": [
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 52955400,
+      "cpu_ns": 46875000,
+      "at_perf_counter_ns": 14670608601900,
+      "thread_name": "MainThread",
+      "thread_ident": 38776,
+      "detail": {
+        "frame": 1,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 50103300,
+      "cpu_ns": 46875000,
+      "at_perf_counter_ns": 14670554678300,
+      "thread_name": "MainThread",
+      "thread_ident": 38776,
+      "detail": {
+        "frame": 0,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "journal_checkpoint",
+      "wall_ns": 2047000,
+      "cpu_ns": 15625000,
+      "at_perf_counter_ns": 14670611406400,
+      "thread_name": "MainThread",
+      "thread_ident": 38776,
+      "detail": {
+        "durable": true
+      }
+    }
+  ],
+  "metadata": {
+    "status": "FINALIZED_CAPTURE",
+    "io_mode": "nonblocking",
+    "timing_mode": "sampled",
+    "sampled_disabled_stages": [
+      "receive_service_interval"
+    ],
+    "received_datagrams": 5072,
+    "ignored_protocol_items": 0,
+    "network_retries": 0,
+    "rx_prefetched_unprocessed": 0,
+    "active_output_unique_chunks": null,
+    "active_output_rejected_packets": null,
+    "active_output_duplicate_packets": null,
+    "max_rx_buffer": 32,
+    "max_pending_tx": 1,
+    "receive_batch_packets": 32,
+    "receive_batch_budget_ns": 200000,
+    "tx_journal_scope": "BEFORE_FIRST_SEND_ATTEMPT_NOT_WIRE_COMPLETION",
+    "rx_journal_scope": "RECVFROM_RETURN_BEFORE_BUFFERING_AND_VALIDATION",
+    "session_sha256": "be45cb2605bf36bebde684841a28f0fd43c69850a3dce5fedba69928ee3a8991",
+    "output_window": 128,
+    "ack_batch": 32,
+    "ack_delay_seconds": 0.001,
+    "raw_journal_records": 6222,
+    "raw_journal_record_bytes": 5732842
+  },
+  "hardware_timestamp_claim": false,
+  "profiling": {
+    "mode": "sampled",
+    "sample_every": 16,
+    "selection": "FIRST_AND_EVERY_NTH_CALL_PER_STAGE_NO_EXTRAPOLATION",
+    "observed_calls": {
+      "decode_header_payload_crc": 5072,
+      "journal_append": 6222,
+      "journal_checkpoint": 3,
+      "journal_file_write": 13,
+      "journal_flush_block": 13,
+      "output_receiver_validate_store_deduplicate": 4050,
+      "proof_batch_take": 128,
+      "proof_packet_build": 128,
+      "scheduled_receive": 5072,
+      "scheduled_send": 1150
+    },
+    "selected_calls": {
+      "decode_header_payload_crc": 317,
+      "journal_append": 389,
+      "journal_checkpoint": 3,
+      "journal_file_write": 13,
+      "journal_flush_block": 13,
+      "output_receiver_validate_store_deduplicate": 254,
+      "proof_batch_take": 8,
+      "proof_packet_build": 8,
+      "scheduled_receive": 317,
+      "scheduled_send": 72
+    },
+    "fine_stage_totals_and_quantiles_scope": "RECORDED_CALLS_ONLY",
+    "slowest_events_scope": "RECORDED_CALLS_ONLY_UNSAMPLED_SLOW_EVENTS_MAY_BE_MISSED"
+  }
+}

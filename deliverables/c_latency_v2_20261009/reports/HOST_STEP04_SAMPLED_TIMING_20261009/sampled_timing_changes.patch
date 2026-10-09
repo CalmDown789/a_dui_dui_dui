@@ -1,0 +1,328 @@
+--- baseline/streaming/binary_journal.py
++++ main/streaming/binary_journal.py
+@@ -19,7 +19,7 @@
+         if self.failed is not None:raise RuntimeError('journal poisoned; final ACK forbidden') from self.failed
+         if self.closed:raise RuntimeError('journal closed')
+     def append(self,direction,raw,source,stamp=None):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('journal_append') if self.timing is not None else None
+         self.check()
+         try:
+             if direction not in (0,1) or not 0<len(raw)<=65535 or not 1<=source[1]<=65535:raise ValueError('journal record')
+@@ -34,39 +34,32 @@
+             if len(self.buffer)>=self.threshold:self.flush_block()
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_append',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,
+-                                   {'direction':direction,'raw_bytes':len(raw)})
++            if sample is not None:self.timing.end('journal_append',sample,{'direction':direction,'raw_bytes':len(raw)})
+     def flush_block(self):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns();pending_bytes=len(self.buffer)
++        sample=self.timing.begin('journal_flush_block',always=True) if self.timing is not None else None
++        pending_bytes=len(self.buffer)
+         self.check()
+         try:
+             if self.buffer:
+-                write_began=time.perf_counter_ns();write_cpu=time.thread_time_ns();write_bytes=len(self.buffer)
++                write_sample=self.timing.begin('journal_file_write',always=True) if self.timing is not None else None
++                write_bytes=len(self.buffer)
+                 try:
+                     if self.file.write(self.buffer)!=write_bytes:raise OSError('short journal write')
+                 finally:
+-                    if self.timing is not None:
+-                        self.timing.record('journal_file_write',time.perf_counter_ns()-write_began,
+-                                           time.thread_time_ns()-write_cpu,{'bytes':write_bytes})
++                    if write_sample is not None:self.timing.end('journal_file_write',write_sample,{'bytes':write_bytes})
+                 self.buffer.clear()
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_flush_block',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,{'buffer_bytes':pending_bytes})
++            if sample is not None:self.timing.end('journal_flush_block',sample,{'buffer_bytes':pending_bytes})
+     def checkpoint(self,durable=False):
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('journal_checkpoint',always=True) if self.timing is not None else None
+         self.check()
+         try:
+             self.flush_block();self.file.flush()
+             if durable:os.fsync(self.file.fileno())
+         except Exception as e:self.failed=e;raise
+         finally:
+-            if self.timing is not None:
+-                self.timing.record('journal_checkpoint',time.perf_counter_ns()-began,
+-                                   time.thread_time_ns()-cpu_began,{'durable':bool(durable)})
++            if sample is not None:self.timing.end('journal_checkpoint',sample,{'durable':bool(durable)})
+     def finalize(self):
+         self.checkpoint(True);self.file.close();self.closed=True
+         p=self.out/'datagrams.bin';result={'format':'EVFJ_V2','status':'CAPTURE_ONLY_PENDING_PROTOCOL_AUDIT',
+--- baseline/streaming/streaming_client.py
++++ main/streaming/streaming_client.py
+@@ -51,7 +51,7 @@
+ class StreamingClient:
+     def __init__(self,transport,peer,session,out,input_bytes=518400,output_bytes=2073600,
+                  input_window=16,output_window=16,timeout=.02,attempts=4,frame_timeout=10,output_ack_batch=None,output_ack_delay=.001,frame_log_mode='snapshot',
+-                 io_mode='timeout',readiness_waiter=None,receive_batch_packets=32,receive_batch_budget_ns=200_000):
++                 io_mode='timeout',readiness_waiter=None,receive_batch_packets=32,receive_batch_budget_ns=200_000,timing_mode='full',timing_sample_every=16):
+         if io_mode not in ('timeout','nonblocking'):raise ValueError('explicit IO mode')
+         if not 1<=receive_batch_packets<=128 or not 1<=receive_batch_budget_ns<=10_000_000:raise ValueError('bounded receive batch')
+         if io_mode=='nonblocking' and not callable(getattr(transport,'setblocking',None)):raise TypeError('nonblocking transport required')
+@@ -65,7 +65,7 @@
+         if output_ack_delay<=0:raise ValueError('positive ACK flush deadline required')
+         if frame_log_mode not in ('snapshot','jsonl'):raise ValueError('frame log mode')
+         self.ack_delay=output_ack_delay;self.ack_started=None
+-        self.timing=BoundedTiming()
++        self.timing=BoundedTiming(mode=timing_mode,sample_every=timing_sample_every)
+         self.journal=BinaryJournal(out,timing=self.timing);self.out=Path(out);self.receiver=None;self.golden=None
+         self.frame_log_mode=frame_log_mode
+         self.frame_event_file=(self.out/'FRAMES.jsonl').open('x',encoding='utf-8') if frame_log_mode=='jsonl' else None
+@@ -84,7 +84,8 @@
+     def send(self,raw):
+         self.check_deadline()
+         if self.io is None:self.journal.append(0,raw,self.peer)
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        send_stage='scheduled_send' if self.io is not None else 'sendto'
++        sample=self.timing.begin(send_stage)
+         try:
+             if self.io is None:
+                 if self.transport.sendto(raw,self.peer)!=len(raw):raise OSError('partial datagram send')
+@@ -93,9 +94,9 @@
+                 if self.deadline is not None:until=min(until,self.deadline)
+                 self.io.send(raw,self.peer,until)
+         finally:
+-            self.timing.record('scheduled_send' if self.io is not None else 'sendto',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                               {'wire_version':raw[4] if len(raw)>4 else None,'packet_type':raw[5] if len(raw)>5 else None,
+-                                'raw_bytes':len(raw)})
++            if sample is not None:
++                self.timing.end(send_stage,sample,{'wire_version':raw[4] if len(raw)>4 else None,
++                    'packet_type':raw[5] if len(raw)>5 else None,'raw_bytes':len(raw)})
+         self.serial+=1;self.timing.increment('sendto_datagrams')
+         if len(raw)>5 and raw[:4]==b'EVF2' and raw[5]==0x97:
+             self.timing.increment('proof_ack_datagrams')
+@@ -110,16 +111,14 @@
+             # through its retries without waiting on the socket.
+             self.ack_started=None
+             return
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('proof_batch_take')
+         body=self.receiver.take_proofs()
+-        self.timing.record('proof_batch_take',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                           {'entries':len(body)//8})
++        if sample is not None:self.timing.end('proof_batch_take',sample,{'entries':len(body)//8})
+         self.ack_started=None
+-        began=time.perf_counter_ns();cpu_began=time.thread_time_ns()
++        sample=self.timing.begin('proof_packet_build')
+         raw=encode2(Packet(0x97,self.session,self.receiver.frame,frame_bytes=self.output_bytes,
+             payload=body,status=1,next_offset=min(self.receiver.contiguous*1024,self.output_bytes)))
+-        self.timing.record('proof_packet_build',time.perf_counter_ns()-began,time.thread_time_ns()-cpu_began,
+-                           {'entries':len(body)//8,'raw_bytes':len(raw)})
++        if sample is not None:self.timing.end('proof_packet_build',sample,{'entries':len(body)//8,'raw_bytes':len(raw)})
+         self.send(raw)
+     # QPC/perf_counter is monotonic and high resolution on Windows; Python
+     # 3.11/3.12 monotonic may use a 15.625ms GetTickCount64 clock.
+@@ -140,67 +139,70 @@
+             wait=min(wait,ack_wait)
+         if wait<=0:self.check_deadline();raise socket.timeout('receive deadline')
+         if getattr(self,'io',None) is None:
+-            set_began=time.perf_counter_ns();set_cpu=time.thread_time_ns()
++            sample=self.timing.begin('settimeout')
+             try:self.transport.settimeout(wait)
+-            finally:self.timing.record('settimeout',time.perf_counter_ns()-set_began,time.thread_time_ns()-set_cpu,
+-                                       {'requested_timeout_ns':int(wait*1e9)})
+-        recv_began=time.perf_counter_ns();recv_cpu=time.thread_time_ns()
+-        if self._last_recv_return_ns is not None:
+-            self.timing.record('receive_service_interval',recv_began-self._last_recv_return_ns)
++            finally:
++                if sample is not None:self.timing.end('settimeout',sample,{'requested_timeout_ns':int(wait*1e9)})
++        recv_stage='scheduled_receive' if getattr(self,'io',None) is not None else 'recvfrom'
++        sample=self.timing.begin(recv_stage)
++        if self.timing.mode=='full' and self._last_recv_return_ns is not None:
++            self.timing.record('receive_service_interval',sample[0]-self._last_recv_return_ns)
+         try:
+             if getattr(self,'io',None) is None:raw,source=self.transport.recvfrom(65535)
+             else:
+                 item=self.io.receive(now+wait)
+-                if item is None:return None
++                if item is None:
++                    if sample is not None:self.timing.end(recv_stage,sample,{'result':'early_wakeup'})
++                    if self.timing.mode=='full':self._last_recv_return_ns=time.perf_counter_ns()
++                    return None
+                 raw,source=item
+         except socket.timeout:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('scheduled_receive' if getattr(self,'io',None) is not None else 'recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,{'result':'timeout'})
+-            self._last_recv_return_ns=recv_end
++            recv_end=time.perf_counter_ns() if sample is not None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'timeout'},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
+             self.check_deadline()
+             if self.ack_started is not None and time.perf_counter()-self.ack_started>=self.ack_delay:
+                 self.output_acks()
+-                # An ACK timer wakeup is not a failed input/control attempt.
+                 return None
+-            if ack_wakeup:
+-                # A transport may wake slightly before the requested deadline.
+-                # Continue servicing its pending ACK, without a control/input retry.
+-                return None
++            if ack_wakeup:return None
+             raise
+         except BaseException as exc:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('scheduled_receive' if getattr(self,'io',None) is not None else 'recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,
+-                               {'result':'error','error_type':type(exc).__name__})
+-            self._last_recv_return_ns=recv_end
++            recv_end=time.perf_counter_ns() if sample is not None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'error','error_type':type(exc).__name__},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
+             raise
+         else:
+-            recv_end=time.perf_counter_ns()
+-            self.timing.record('scheduled_receive' if getattr(self,'io',None) is not None else 'recvfrom',recv_end-recv_began,time.thread_time_ns()-recv_cpu,
+-                               {'result':'packet','raw_bytes':len(raw)})
+-            self._last_recv_return_ns=recv_end
++            # Legacy recvfrom needs its raw journal timestamp on every packet;
++            # nonblocking RX already captured that timestamp before buffering.
++            recv_end=time.perf_counter_ns() if sample is not None or getattr(self,'io',None) is None else None
++            if sample is not None:self.timing.end(recv_stage,sample,{'result':'packet','raw_bytes':len(raw)},end_ns=recv_end)
++            if self.timing.mode=='full':self._last_recv_return_ns=recv_end
+         if getattr(self,'io',None) is None:self._capture_rx(raw,source,recv_end)
+-        decode_began=time.perf_counter_ns();decode_cpu=time.thread_time_ns()
++        sample=self.timing.begin('decode_header_payload_crc')
+         try:version,p=decode_any(raw)
+         except (ValueError,InvalidPacket):
+-            self.timing.record('decode_header_payload_crc',time.perf_counter_ns()-decode_began,
+-                               time.thread_time_ns()-decode_cpu,{'raw_bytes':len(raw),'result':'invalid'})
+-            self.ignored+=1;return None
+-        self.timing.record('decode_header_payload_crc',time.perf_counter_ns()-decode_began,
+-                           time.thread_time_ns()-decode_cpu,{'raw_bytes':len(raw),'result':'decoded'})
+-        if source!=self.peer or p.session!=self.session or p.reserved:self.ignored+=1;return None
++            if sample is not None:self.timing.end('decode_header_payload_crc',sample,{'raw_bytes':len(raw),'result':'invalid'})
++            self.timing.increment('rx_decode_rejected');self.ignored+=1;return None
++        if sample is not None:self.timing.end('decode_header_payload_crc',sample,{'raw_bytes':len(raw),'result':'decoded'})
++        if source!=self.peer or p.session!=self.session or p.reserved:
++            self.timing.increment('rx_identity_rejected');self.ignored+=1;return None
+         if version==2 and p.type==0x17:
+-            if self.receiver is None or p.frame_id!=self.receiver.frame:self.ignored+=1;return None
++            if self.receiver is None or p.frame_id!=self.receiver.frame:
++                self.timing.increment('rx_output_wrong_frame');self.ignored+=1;return None
+             duplicates_before=self.receiver.duplicates
+-            receive_began=time.perf_counter_ns();receive_cpu=time.thread_time_ns()
++            sample=self.timing.begin('output_receiver_validate_store_deduplicate')
+             accepted=self.receiver.receive_packet(p,source,int.from_bytes(raw[56:60],'big'))
+-            self.timing.record('output_receiver_validate_store_deduplicate',time.perf_counter_ns()-receive_began,
+-                               time.thread_time_ns()-receive_cpu,{'result':'accepted' if accepted else 'rejected'})
+-            if not accepted:self.ignored+=1;return None
++            if sample is not None:self.timing.end('output_receiver_validate_store_deduplicate',sample,{'result':'accepted' if accepted else 'rejected'})
++            if not accepted:
++                self.timing.increment('rx_output_rejected');self.ignored+=1;return None
+             duplicate=self.receiver.duplicates>duplicates_before
++            self.timing.increment('rx_output_accepted')
++            if duplicate:self.timing.increment('rx_output_duplicates')
+             if self.receiver.ack_pending and self.ack_started is None:self.ack_started=time.perf_counter()
+             if not self.receiver.ack_pending:self.ack_started=None
+             if len(self.receiver.ack_pending)>=self.ack_batch or (p.flags&1 and not duplicate):self.output_acks()
+             return None
++        self.timing.increment('rx_control_delivered')
+         return version,p
+     @staticmethod
+     def matching(p,r):
+@@ -336,7 +338,14 @@
+         if self._timing_saved:return
+         path=self.out/'TIMING_DIAGNOSTICS.json'
+         report=self.timing.snapshot('LIVE_STREAMING_CLIENT_CALL_BOUNDARIES_NOT_NIC_OR_WIRE_TIMESTAMPS',
+-            status=status,io_mode=self.io_mode,
++            status=status,io_mode=self.io_mode,timing_mode=self.timing.mode,
++            sampled_disabled_stages=['receive_service_interval'] if self.timing.mode=='sampled' else [],
++            received_datagrams=self.received,ignored_protocol_items=self.ignored,network_retries=self.retries,
++            rx_prefetched_unprocessed=len(self.io.ready) if self.io is not None else 0,
++            active_output_unique_chunks=sum(self.receiver.coverage) if self.receiver is not None else None,
++            active_output_rejected_packets=self.receiver.rejected if self.receiver is not None else None,
++            active_output_duplicate_packets=self.receiver.duplicates if self.receiver is not None else None,
++
+             max_rx_buffer=self.io.max_rx_buffer if self.io is not None else 0,
+             max_pending_tx=self.io.max_pending_tx if self.io is not None else 0,
+             receive_batch_packets=self.io.batch_packets if self.io is not None else 1,
+--- baseline/streaming/timing_diagnostics.py
++++ main/streaming/timing_diagnostics.py
+@@ -6,9 +6,15 @@
+ 
+ 
+ class BoundedTiming:
+-    def __init__(self, slow_threshold_ns=2_000_000, max_slow_events=64):
++    def __init__(self, slow_threshold_ns=2_000_000, max_slow_events=64,
++                 mode='full', sample_every=16):
+         if slow_threshold_ns < 1 or max_slow_events < 0:
+             raise ValueError('bounded timing configuration')
++        if mode not in ('full', 'sampled') or not isinstance(sample_every,int) or not 1 <= sample_every <= 1024:
++            raise ValueError('explicit timing mode and bounded sample interval')
++        self.mode, self.sample_every = mode, sample_every
++        self.observations = {}
++        self.selected = {}
+         self.slow_threshold_ns = slow_threshold_ns
+         self.max_slow_events = max_slow_events
+         self.stages = {}
+@@ -18,6 +24,20 @@
+ 
+     def increment(self, name, amount=1):
+         self.counters[name] = self.counters.get(name, 0) + amount
++
++    def begin(self, stage, *, always=False):
++        count = self.observations.get(stage, 0) + 1
++        self.observations[stage] = count
++        if self.mode == 'full' or always or (count-1) % self.sample_every == 0:
++            self.selected[stage] = self.selected.get(stage, 0) + 1
++            return time.perf_counter_ns(), time.thread_time_ns()
++        return None
++
++    def end(self, stage, token, detail=None, *, end_ns=None):
++        if token is None:
++            return
++        wall_end = time.perf_counter_ns() if end_ns is None else end_ns
++        self.record(stage, wall_end-token[0], time.thread_time_ns()-token[1], detail)
+ 
+     def record(self, stage, wall_ns, cpu_ns=None, detail=None):
+         wall_ns = max(0, int(wall_ns))
+@@ -78,6 +98,10 @@
+                 'thread_cpu_max_ns': cpu_maximum,
+                 'log2_histogram': [{'upper_bound_ns': 1 << (i + 1), 'count': n}
+                                    for i, n in enumerate(histogram) if n],
++                'observed_calls': self.observations.get(name, count),
++                'recorded_samples': count,
++                'population_scope': ('ALL_OBSERVED_CALLS' if count == self.observations.get(name,count)
++                                     else 'RECORDED_SAMPLES_ONLY'),
+             }
+         return {
+             'scope': scope,
+@@ -90,4 +114,12 @@
+             'slowest_events': [row[2] for row in sorted(self._slow, reverse=True)],
+             'metadata': metadata,
+             'hardware_timestamp_claim': False,
++            'profiling': {
++                'mode': self.mode, 'sample_every': self.sample_every if self.mode == 'sampled' else 1,
++                'selection': 'FIRST_AND_EVERY_NTH_CALL_PER_STAGE_NO_EXTRAPOLATION',
++                'observed_calls': dict(sorted(self.observations.items())),
++                'selected_calls': dict(sorted(self.selected.items())),
++                'fine_stage_totals_and_quantiles_scope': 'RECORDED_CALLS_ONLY',
++                'slowest_events_scope': 'RECORDED_CALLS_ONLY_UNSAMPLED_SLOW_EVENTS_MAY_BE_MISSED',
++            },
+         }
+--- baseline/streaming/nonblocking_io.py
++++ main/streaming/nonblocking_io.py
+@@ -61,13 +61,12 @@
+         remaining = until - self.clock()
+         if remaining <= 0:
+             return False, False
+-        began = time.perf_counter_ns()
++        sample = self.timing.begin('readiness_wait', always=True)
+         self.timing.increment('io_readiness_wait_calls')
+         try:
+             result = self.waiter(read, write, remaining)
+         finally:
+-            self.timing.record('readiness_wait', time.perf_counter_ns()-began,
+-                               detail={'read': read, 'write': write})
++            self.timing.end('readiness_wait',sample,{'read':read,'write':write})
+         self._check()
+         return result
+ 

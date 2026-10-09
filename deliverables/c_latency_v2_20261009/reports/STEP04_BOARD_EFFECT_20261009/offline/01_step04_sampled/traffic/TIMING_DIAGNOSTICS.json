@@ -1,0 +1,474 @@
+{
+  "scope": "LIVE_STREAMING_CLIENT_CALL_BOUNDARIES_NOT_NIC_OR_WIRE_TIMESTAMPS",
+  "clock": "time.perf_counter_ns / QPC on Windows",
+  "thread_cpu_clock": "time.thread_time_ns; current calling thread only",
+  "slow_event_threshold_ns": 2000000,
+  "slow_event_limit": 64,
+  "counters": {
+    "completed_frames": 2,
+    "io_recvfrom_attempts": 5144,
+    "io_rx_captured": 5072,
+    "io_rx_would_block": 72,
+    "io_sendto_attempts": 1150,
+    "io_setblocking_calls": 1,
+    "io_tx_completed": 1150,
+    "io_tx_submitted": 1150,
+    "proof_ack_datagrams": 128,
+    "proof_ack_entries": 4050,
+    "rx_control_delivered": 1022,
+    "rx_output_accepted": 4050,
+    "sendto_datagrams": 1150
+  },
+  "stages": {
+    "decode_header_payload_crc": {
+      "count": 317,
+      "wall_total_ns": 671800,
+      "wall_mean_ns": 2119.242902208202,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 4100,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 136
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 180
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 1
+        }
+      ],
+      "observed_calls": 5072,
+      "recorded_samples": 317,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "frame_transfer": {
+      "count": 2,
+      "wall_total_ns": 102675800,
+      "wall_mean_ns": 51337900.0,
+      "wall_p50_upper_bound_ns": 67108864,
+      "wall_p95_upper_bound_ns": 67108864,
+      "wall_max_ns": 51655900,
+      "thread_cpu_total_ns": 109375000,
+      "thread_cpu_mean_ns": 54687500.0,
+      "thread_cpu_max_ns": 62500000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 67108864,
+          "count": 2
+        }
+      ],
+      "observed_calls": 2,
+      "recorded_samples": 2,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_append": {
+      "count": 389,
+      "wall_total_ns": 999600,
+      "wall_mean_ns": 2569.6658097686377,
+      "wall_p50_upper_bound_ns": 2048,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 352600,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 1024,
+          "count": 158
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 201
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 23
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 1
+        }
+      ],
+      "observed_calls": 6222,
+      "recorded_samples": 389,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "journal_checkpoint": {
+      "count": 3,
+      "wall_total_ns": 2853200,
+      "wall_mean_ns": 951066.6666666666,
+      "wall_p50_upper_bound_ns": 262144,
+      "wall_p95_upper_bound_ns": 4194304,
+      "wall_max_ns": 2442400,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 4194304,
+          "count": 1
+        }
+      ],
+      "observed_calls": 3,
+      "recorded_samples": 3,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_file_write": {
+      "count": 13,
+      "wall_total_ns": 2064000,
+      "wall_mean_ns": 158769.23076923078,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 1048576,
+      "wall_max_ns": 533500,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 1024,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 1048576,
+          "count": 1
+        }
+      ],
+      "observed_calls": 13,
+      "recorded_samples": 13,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "journal_flush_block": {
+      "count": 13,
+      "wall_total_ns": 2132700,
+      "wall_mean_ns": 164053.84615384616,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 1048576,
+      "wall_max_ns": 540700,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 1048576,
+          "count": 1
+        }
+      ],
+      "observed_calls": 13,
+      "recorded_samples": 13,
+      "population_scope": "ALL_OBSERVED_CALLS"
+    },
+    "output_receiver_validate_store_deduplicate": {
+      "count": 254,
+      "wall_total_ns": 742000,
+      "wall_mean_ns": 2921.259842519685,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 8192,
+      "wall_max_ns": 16200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 7
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 227
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 17
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 3
+        }
+      ],
+      "observed_calls": 4050,
+      "recorded_samples": 254,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "proof_batch_take": {
+      "count": 8,
+      "wall_total_ns": 53000,
+      "wall_mean_ns": 6625.0,
+      "wall_p50_upper_bound_ns": 8192,
+      "wall_p95_upper_bound_ns": 16384,
+      "wall_max_ns": 12500,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 6
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 2
+        }
+      ],
+      "observed_calls": 128,
+      "recorded_samples": 8,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "proof_packet_build": {
+      "count": 8,
+      "wall_total_ns": 30400,
+      "wall_mean_ns": 3800.0,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 8192,
+      "wall_max_ns": 5300,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 4096,
+          "count": 6
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 2
+        }
+      ],
+      "observed_calls": 128,
+      "recorded_samples": 8,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "scheduled_receive": {
+      "count": 317,
+      "wall_total_ns": 2372000,
+      "wall_mean_ns": 7482.649842271293,
+      "wall_p50_upper_bound_ns": 1024,
+      "wall_p95_upper_bound_ns": 1024,
+      "wall_max_ns": 528000,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 512,
+          "count": 134
+        },
+        {
+          "upper_bound_ns": 1024,
+          "count": 170
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 8
+        },
+        {
+          "upper_bound_ns": 1048576,
+          "count": 1
+        }
+      ],
+      "observed_calls": 5072,
+      "recorded_samples": 317,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    },
+    "scheduled_send": {
+      "count": 72,
+      "wall_total_ns": 1870700,
+      "wall_mean_ns": 25981.944444444445,
+      "wall_p50_upper_bound_ns": 16384,
+      "wall_p95_upper_bound_ns": 131072,
+      "wall_max_ns": 109000,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 16384,
+          "count": 60
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 10
+        }
+      ],
+      "observed_calls": 1150,
+      "recorded_samples": 72,
+      "population_scope": "RECORDED_SAMPLES_ONLY"
+    }
+  },
+  "slowest_events": [
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 51655900,
+      "cpu_ns": 46875000,
+      "at_perf_counter_ns": 14669686091600,
+      "thread_name": "MainThread",
+      "thread_ident": 10340,
+      "detail": {
+        "frame": 0,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 51019900,
+      "cpu_ns": 62500000,
+      "at_perf_counter_ns": 14669738314500,
+      "thread_name": "MainThread",
+      "thread_ident": 10340,
+      "detail": {
+        "frame": 1,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "journal_checkpoint",
+      "wall_ns": 2442400,
+      "cpu_ns": 0,
+      "at_perf_counter_ns": 14669741621100,
+      "thread_name": "MainThread",
+      "thread_ident": 10340,
+      "detail": {
+        "durable": true
+      }
+    }
+  ],
+  "metadata": {
+    "status": "FINALIZED_CAPTURE",
+    "io_mode": "nonblocking",
+    "timing_mode": "sampled",
+    "sampled_disabled_stages": [
+      "receive_service_interval"
+    ],
+    "received_datagrams": 5072,
+    "ignored_protocol_items": 0,
+    "network_retries": 0,
+    "rx_prefetched_unprocessed": 0,
+    "active_output_unique_chunks": null,
+    "active_output_rejected_packets": null,
+    "active_output_duplicate_packets": null,
+    "max_rx_buffer": 32,
+    "max_pending_tx": 1,
+    "receive_batch_packets": 32,
+    "receive_batch_budget_ns": 200000,
+    "tx_journal_scope": "BEFORE_FIRST_SEND_ATTEMPT_NOT_WIRE_COMPLETION",
+    "rx_journal_scope": "RECVFROM_RETURN_BEFORE_BUFFERING_AND_VALIDATION",
+    "session_sha256": "be45cb2605bf36bebde684841a28f0fd43c69850a3dce5fedba69928ee3a8991",
+    "output_window": 128,
+    "ack_batch": 32,
+    "ack_delay_seconds": 0.001,
+    "raw_journal_records": 6222,
+    "raw_journal_record_bytes": 5732842
+  },
+  "hardware_timestamp_claim": false,
+  "profiling": {
+    "mode": "sampled",
+    "sample_every": 16,
+    "selection": "FIRST_AND_EVERY_NTH_CALL_PER_STAGE_NO_EXTRAPOLATION",
+    "observed_calls": {
+      "decode_header_payload_crc": 5072,
+      "journal_append": 6222,
+      "journal_checkpoint": 3,
+      "journal_file_write": 13,
+      "journal_flush_block": 13,
+      "output_receiver_validate_store_deduplicate": 4050,
+      "proof_batch_take": 128,
+      "proof_packet_build": 128,
+      "scheduled_receive": 5072,
+      "scheduled_send": 1150
+    },
+    "selected_calls": {
+      "decode_header_payload_crc": 317,
+      "journal_append": 389,
+      "journal_checkpoint": 3,
+      "journal_file_write": 13,
+      "journal_flush_block": 13,
+      "output_receiver_validate_store_deduplicate": 254,
+      "proof_batch_take": 8,
+      "proof_packet_build": 8,
+      "scheduled_receive": 317,
+      "scheduled_send": 72
+    },
+    "fine_stage_totals_and_quantiles_scope": "RECORDED_CALLS_ONLY",
+    "slowest_events_scope": "RECORDED_CALLS_ONLY_UNSAMPLED_SLOW_EVENTS_MAY_BE_MISSED"
+  }
+}

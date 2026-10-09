@@ -1,0 +1,1405 @@
+{
+  "status": "PASS_SHORT_BOARD_AND_OFFLINE_COMPARISON",
+  "groups": {
+    "board": {
+      "step03_full": {
+        "runs": 3,
+        "frames": 6,
+        "whole_frame_ms": {
+          "count": 6,
+          "median": 79.96995,
+          "mean": 79.88271666666667,
+          "minimum": 78.372,
+          "maximum": 81.063
+        },
+        "phase_ms": {
+          "input": {
+            "count": 6,
+            "median": 47.031800000000004,
+            "mean": 46.93318333333333,
+            "minimum": 46.0736,
+            "maximum": 48.0109
+          },
+          "commit": {
+            "count": 6,
+            "median": 1.62775,
+            "mean": 1.6263833333333333,
+            "minimum": 1.5031,
+            "maximum": 1.7287
+          },
+          "output_until_verified": {
+            "count": 6,
+            "median": 29.08835,
+            "mean": 29.2168,
+            "minimum": 29.0105,
+            "maximum": 29.5963
+          },
+          "release": {
+            "count": 6,
+            "median": 2.1146000000000003,
+            "mean": 2.10635,
+            "minimum": 1.595,
+            "maximum": 2.6731
+          }
+        },
+        "hello_and_two_frames_wall_ms": {
+          "count": 3,
+          "median": 164.5181,
+          "mean": 164.68996666666666,
+          "minimum": 163.1008,
+          "maximum": 166.451
+        },
+        "calling_thread_cpu_ms_per_two_frames": {
+          "count": 3,
+          "median": 78.125,
+          "mean": 78.125,
+          "minimum": 62.5,
+          "maximum": 93.75
+        },
+        "input_data_ack_host_observed_lag_median_ms": 1.1659,
+        "readiness_wait_calls_total": 236,
+        "readiness_wait_ms_per_two_frames": {
+          "count": 3,
+          "median": 71.5051,
+          "mean": 71.32096666666666,
+          "minimum": 69.9609,
+          "maximum": 72.4969
+        },
+        "retries_total": 0,
+        "ignored_total": 0
+      },
+      "step04_sampled": {
+        "runs": 3,
+        "frames": 6,
+        "whole_frame_ms": {
+          "count": 6,
+          "median": 78.93074999999999,
+          "mean": 79.03675,
+          "minimum": 78.3899,
+          "maximum": 80.1773
+        },
+        "phase_ms": {
+          "input": {
+            "count": 6,
+            "median": 46.20735,
+            "mean": 46.148183333333336,
+            "minimum": 45.6444,
+            "maximum": 46.5707
+          },
+          "commit": {
+            "count": 6,
+            "median": 1.47465,
+            "mean": 1.4944166666666667,
+            "minimum": 1.4496,
+            "maximum": 1.5979
+          },
+          "output_until_verified": {
+            "count": 6,
+            "median": 29.238100000000003,
+            "mean": 29.2409,
+            "minimum": 29.1566,
+            "maximum": 29.3374
+          },
+          "release": {
+            "count": 6,
+            "median": 2.0629,
+            "mean": 2.15325,
+            "minimum": 1.691,
+            "maximum": 2.8215
+          }
+        },
+        "hello_and_two_frames_wall_ms": {
+          "count": 3,
+          "median": 163.1011,
+          "mean": 163.2334,
+          "minimum": 161.7799,
+          "maximum": 164.8192
+        },
+        "calling_thread_cpu_ms_per_two_frames": {
+          "count": 3,
+          "median": 78.125,
+          "mean": 67.70833333333333,
+          "minimum": 46.875,
+          "maximum": 78.125
+        },
+        "input_data_ack_host_observed_lag_median_ms": 1.19285,
+        "readiness_wait_calls_total": 495,
+        "readiness_wait_ms_per_two_frames": {
+          "count": 3,
+          "median": 83.4466,
+          "mean": 83.95886666666667,
+          "minimum": 83.1299,
+          "maximum": 85.3001
+        },
+        "retries_total": 0,
+        "ignored_total": 0
+      },
+      "step04_full": {
+        "runs": 1,
+        "frames": 2,
+        "whole_frame_ms": {
+          "count": 2,
+          "median": 79.89675,
+          "mean": 79.89675,
+          "minimum": 79.0447,
+          "maximum": 80.7488
+        },
+        "phase_ms": {
+          "input": {
+            "count": 2,
+            "median": 46.83905,
+            "mean": 46.83905,
+            "minimum": 46.4191,
+            "maximum": 47.259
+          },
+          "commit": {
+            "count": 2,
+            "median": 1.73025,
+            "mean": 1.73025,
+            "minimum": 1.5334,
+            "maximum": 1.9271
+          },
+          "output_until_verified": {
+            "count": 2,
+            "median": 29.18005,
+            "mean": 29.18005,
+            "minimum": 28.9869,
+            "maximum": 29.3732
+          },
+          "release": {
+            "count": 2,
+            "median": 2.1474,
+            "mean": 2.1474,
+            "minimum": 1.719,
+            "maximum": 2.5758
+          }
+        },
+        "hello_and_two_frames_wall_ms": {
+          "count": 1,
+          "median": 164.3087,
+          "mean": 164.3087,
+          "minimum": 164.3087,
+          "maximum": 164.3087
+        },
+        "calling_thread_cpu_ms_per_two_frames": {
+          "count": 1,
+          "median": 78.125,
+          "mean": 78.125,
+          "minimum": 78.125,
+          "maximum": 78.125
+        },
+        "input_data_ack_host_observed_lag_median_ms": 1.17,
+        "readiness_wait_calls_total": 73,
+        "readiness_wait_ms_per_two_frames": {
+          "count": 1,
+          "median": 69.4494,
+          "mean": 69.4494,
+          "minimum": 69.4494,
+          "maximum": 69.4494
+        },
+        "retries_total": 0,
+        "ignored_total": 0
+      }
+    },
+    "offline": {
+      "step03_full": {
+        "runs": 3,
+        "frames": 6,
+        "whole_frame_ms": {
+          "count": 6,
+          "median": 58.641949999999994,
+          "mean": 58.833283333333334,
+          "minimum": 58.39,
+          "maximum": 59.8257
+        },
+        "phase_ms": {
+          "input": {
+            "count": 6,
+            "median": 15.51065,
+            "mean": 15.429983333333332,
+            "minimum": 14.9264,
+            "maximum": 15.8047
+          },
+          "commit": {
+            "count": 6,
+            "median": 1.70835,
+            "mean": 1.7781833333333334,
+            "minimum": 1.6419,
+            "maximum": 2.0777
+          },
+          "output_until_verified": {
+            "count": 6,
+            "median": 40.413399999999996,
+            "mean": 40.57983333333333,
+            "minimum": 39.8389,
+            "maximum": 41.8667
+          },
+          "release": {
+            "count": 6,
+            "median": 1.0518999999999998,
+            "mean": 1.0452833333333333,
+            "minimum": 0.6018,
+            "maximum": 1.4254
+          }
+        },
+        "hello_and_two_frames_wall_ms": {
+          "count": 3,
+          "median": 119.6857,
+          "mean": 119.8696,
+          "minimum": 119.3165,
+          "maximum": 120.6066
+        },
+        "calling_thread_cpu_ms_per_two_frames": {
+          "count": 3,
+          "median": 125.0,
+          "mean": 119.79166666666667,
+          "minimum": 109.375,
+          "maximum": 125.0
+        },
+        "input_data_ack_host_observed_lag_median_ms": 0.23285,
+        "readiness_wait_calls_total": 0,
+        "readiness_wait_ms_per_two_frames": {
+          "count": 3,
+          "median": 0.0,
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "retries_total": 0,
+        "ignored_total": 0
+      },
+      "step04_sampled": {
+        "runs": 3,
+        "frames": 6,
+        "whole_frame_ms": {
+          "count": 6,
+          "median": 50.7752,
+          "mean": 50.91673333333333,
+          "minimum": 49.2354,
+          "maximum": 52.9554
+        },
+        "phase_ms": {
+          "input": {
+            "count": 6,
+            "median": 13.38475,
+            "mean": 13.416216666666667,
+            "minimum": 12.8181,
+            "maximum": 14.1747
+          },
+          "commit": {
+            "count": 6,
+            "median": 1.6834500000000001,
+            "mean": 1.6873666666666667,
+            "minimum": 1.6032,
+            "maximum": 1.7791
+          },
+          "output_until_verified": {
+            "count": 6,
+            "median": 35.283950000000004,
+            "mean": 35.01315,
+            "minimum": 33.9078,
+            "maximum": 35.9421
+          },
+          "release": {
+            "count": 6,
+            "median": 0.68165,
+            "mean": 0.8,
+            "minimum": 0.5794,
+            "maximum": 1.4513
+          }
+        },
+        "hello_and_two_frames_wall_ms": {
+          "count": 3,
+          "median": 104.9219,
+          "mean": 103.85193333333333,
+          "minimum": 101.6873,
+          "maximum": 104.9466
+        },
+        "calling_thread_cpu_ms_per_two_frames": {
+          "count": 3,
+          "median": 93.75,
+          "mean": 98.95833333333333,
+          "minimum": 93.75,
+          "maximum": 109.375
+        },
+        "input_data_ack_host_observed_lag_median_ms": 0.20205,
+        "readiness_wait_calls_total": 0,
+        "readiness_wait_ms_per_two_frames": {
+          "count": 3,
+          "median": 0.0,
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "retries_total": 0,
+        "ignored_total": 0
+      }
+    }
+  },
+  "comparisons": {
+    "board": {
+      "saved_ms_per_frame": 1.0392000000000081,
+      "elapsed_reduction_percent": 1.2994881202251674
+    },
+    "offline": {
+      "saved_ms_per_frame": 7.866749999999996,
+      "elapsed_reduction_percent": 13.414884736950249
+    },
+    "board_vs_offline": {
+      "step03_extra_ms": 21.328000000000003,
+      "step04_extra_ms": 28.15554999999999,
+      "step04_extra_percent": 55.451381776930454
+    }
+  },
+  "board_total_frames": 14,
+  "offline_total_frames": 12,
+  "input_and_golden_identical": true,
+  "step04_frozen_receipt_unchanged": true,
+  "first_step_rtl_patch_in_bit": false,
+  "actual_30fps_proven": false,
+  "per_frame_boundary": "BEGIN through verified Golden, journal checkpoint and FRAME_DONE; HELLO excluded",
+  "offline_peer_executes_in_calling_thread": true,
+  "cpu_clock_quantum_note": "Windows thread CPU results have approximately 15.625 ms granularity; do not infer sub-ms CPU savings",
+  "sustained_throughput_tested": false,
+  "PC4K_or_display_tested": false,
+  "rows": [
+    {
+      "environment": "board",
+      "variant": "step03_full",
+      "path": "C:\\t6s4board09\\00_step03_full\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 48010900,
+            "commit": 1666200,
+            "output_until_verified": 29036700,
+            "release": 1790000,
+            "whole": 80503800
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 47298800,
+            "commit": 1728700,
+            "output_until_verified": 29596300,
+            "release": 2439200,
+            "whole": 81063000
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "491c453df0b429d4480b72c42e5d5f18244d5ee88fcc9a1afe1d0d1a72e8d4e7",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 166.451,
+      "calling_thread_cpu_ms": 93.75,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.194,
+        "mean": 1.2002197238658776,
+        "minimum": 0.8672,
+        "maximum": 1.6497
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "491c453df0b429d4480b72c42e5d5f18244d5ee88fcc9a1afe1d0d1a72e8d4e7",
+      "readiness_wait_calls": 77,
+      "readiness_wait_ms": 72.4969
+    },
+    {
+      "environment": "board",
+      "variant": "step04_sampled",
+      "path": "C:\\t6s4board09\\01_step04_sampled\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 45988600,
+            "commit": 1476200,
+            "output_until_verified": 29213000,
+            "release": 1712100,
+            "whole": 78389900
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 45764600,
+            "commit": 1473100,
+            "output_until_verified": 29337400,
+            "release": 2397000,
+            "whole": 78972100
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 65,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "06d5d2c0e7f34e778d1b38b7666aab252815d38f010e799b51b2ae4d9366da73",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 161.7799,
+      "calling_thread_cpu_ms": 78.125,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.1883,
+        "mean": 1.1881621301775147,
+        "minimum": 0.8772,
+        "maximum": 1.4661
+      },
+      "raw_journal_records": 6223,
+      "raw_journal_sha256": "06d5d2c0e7f34e778d1b38b7666aab252815d38f010e799b51b2ae4d9366da73",
+      "readiness_wait_calls": 161,
+      "readiness_wait_ms": 83.1299
+    },
+    {
+      "environment": "board",
+      "variant": "step04_full",
+      "path": "C:\\t6s4board09\\02_step04_full\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46419100,
+            "commit": 1533400,
+            "output_until_verified": 29373200,
+            "release": 1719000,
+            "whole": 79044700
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 47259000,
+            "commit": 1927100,
+            "output_until_verified": 28986900,
+            "release": 2575800,
+            "whole": 80748800
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "b1077ba0b9e355415c72c9d420de80f19bebeabaad2e1dff003f791dc9fdf583",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 164.3087,
+      "calling_thread_cpu_ms": 78.125,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.17,
+        "mean": 1.1694039447731754,
+        "minimum": 0.7418,
+        "maximum": 1.5215
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "b1077ba0b9e355415c72c9d420de80f19bebeabaad2e1dff003f791dc9fdf583",
+      "readiness_wait_calls": 73,
+      "readiness_wait_ms": 69.4494
+    },
+    {
+      "environment": "board",
+      "variant": "step04_sampled",
+      "path": "C:\\t6s4board09\\03_step04_sampled\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46570700,
+            "commit": 1499700,
+            "output_until_verified": 29185000,
+            "release": 1691000,
+            "whole": 78946400
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 45644400,
+            "commit": 1449600,
+            "output_until_verified": 29156600,
+            "release": 2569100,
+            "whole": 78819700
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "844c613ce8c72fe33b64c41132cf95ac6c192ef9604af5a23589910bdf814701",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 163.1011,
+      "calling_thread_cpu_ms": 78.125,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.1936,
+        "mean": 1.2006719921104536,
+        "minimum": 0.8818,
+        "maximum": 1.6402
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "844c613ce8c72fe33b64c41132cf95ac6c192ef9604af5a23589910bdf814701",
+      "readiness_wait_calls": 179,
+      "readiness_wait_ms": 85.3001
+    },
+    {
+      "environment": "board",
+      "variant": "step03_full",
+      "path": "C:\\t6s4board09\\04_step03_full\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46152200,
+            "commit": 1614300,
+            "output_until_verified": 29010500,
+            "release": 1595000,
+            "whole": 78372000
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 47253300,
+            "commit": 1641200,
+            "output_until_verified": 29480600,
+            "release": 2513000,
+            "whole": 80888100
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "590f0925e25ea2309a4bfae941fa9dd4def063e9d193e2c1ff06487d4a813bca",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 164.5181,
+      "calling_thread_cpu_ms": 78.125,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.1638,
+        "mean": 1.1619559171597633,
+        "minimum": 0.6158,
+        "maximum": 1.503
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "590f0925e25ea2309a4bfae941fa9dd4def063e9d193e2c1ff06487d4a813bca",
+      "readiness_wait_calls": 78,
+      "readiness_wait_ms": 69.9609
+    },
+    {
+      "environment": "board",
+      "variant": "step04_sampled",
+      "path": "C:\\t6s4board09\\05_step04_sampled\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46426100,
+            "commit": 1470000,
+            "output_until_verified": 29290200,
+            "release": 1728800,
+            "whole": 78915100
+          },
+          "thread_cpu_ns": 0,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46494700,
+            "commit": 1597900,
+            "output_until_verified": 29263200,
+            "release": 2821500,
+            "whole": 80177300
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "dbbc2022e7a5230971749a3858cc561dc11eaa8c03d701a082848afb5bc638b0",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 164.8192,
+      "calling_thread_cpu_ms": 46.875,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.19285,
+        "mean": 1.2057740631163707,
+        "minimum": 0.7913,
+        "maximum": 1.9097
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "dbbc2022e7a5230971749a3858cc561dc11eaa8c03d701a082848afb5bc638b0",
+      "readiness_wait_calls": 155,
+      "readiness_wait_ms": 83.4466
+    },
+    {
+      "environment": "board",
+      "variant": "step03_full",
+      "path": "C:\\t6s4board09\\06_step03_full\\run",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46810300,
+            "commit": 1503100,
+            "output_until_verified": 29092100,
+            "release": 1627800,
+            "whole": 79033300
+          },
+          "thread_cpu_ns": 15625000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 46073600,
+            "commit": 1604800,
+            "output_until_verified": 29084600,
+            "release": 2673100,
+            "whole": 79436100
+          },
+          "thread_cpu_ns": 31250000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS_INDEPENDENT_RAW_PROTOCOL_GOLDEN_AUDIT",
+        "frames": 2,
+        "Golden_bytes": 4147200,
+        "Golden_mismatches": 0,
+        "duplicates_checked": 0,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_requests_checked": 2,
+        "source_manifest_sha256": "ed96a7bebfcf8e8f245dc0f02d5cc241709c12beec1dfbd5b997c53fea83b85c",
+        "raw_journal_sha256": "6f187626a8828463825388f187f8789bba6ce27fbe081bc4df48b4ed87d83dfa",
+        "scope": "LAB_RAW_PROTOCOL_BYTES_NOT_CORE_TIMING_ELECTRICAL_PC4K_OR_DISPLAY_ACCEPTANCE",
+        "audit_uses_client_state": false,
+        "board_programmed_by_auditor": false,
+        "socket_created": false,
+        "actual_startup_reaudited": true,
+        "whole_system_4K30_achieved": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 163.1008,
+      "calling_thread_cpu_ms": 62.5,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 1.1659,
+        "mean": 1.1676909270216962,
+        "minimum": 0.7801,
+        "maximum": 1.3994
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "6f187626a8828463825388f187f8789bba6ce27fbe081bc4df48b4ed87d83dfa",
+      "readiness_wait_calls": 81,
+      "readiness_wait_ms": 71.5051
+    },
+    {
+      "environment": "offline",
+      "variant": "step03_full",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\00_step03_full",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 15781600,
+            "commit": 1745700,
+            "output_until_verified": 40339700,
+            "release": 763100,
+            "whole": 58630100
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 15045900,
+            "commit": 2077700,
+            "output_until_verified": 40398300,
+            "release": 1377600,
+            "whole": 58899500
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 119.6857,
+      "calling_thread_cpu_ms": 125.0,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.23135,
+        "mean": 0.236255325443787,
+        "minimum": 0.0677,
+        "maximum": 0.692
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "dd8350721f7f4ddfc193fcb891d1d023de8affffb9955d7473272e946061efa6",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    },
+    {
+      "environment": "offline",
+      "variant": "step04_sampled",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\01_step04_sampled",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 13367200,
+            "commit": 1679200,
+            "output_until_verified": 35942100,
+            "release": 667400,
+            "whole": 51655900
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 13402300,
+            "commit": 1687700,
+            "output_until_verified": 35154600,
+            "release": 775300,
+            "whole": 51019900
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 104.9219,
+      "calling_thread_cpu_ms": 109.375,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.20205,
+        "mean": 0.20883165680473373,
+        "minimum": 0.0563,
+        "maximum": 0.6133
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "9f00f30c73fcd9516f02bc7f8a5bf1e7dbf78d1bc5ec49b4ce39e63f902127ce",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    },
+    {
+      "environment": "offline",
+      "variant": "step03_full",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\02_step03_full",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 15470600,
+            "commit": 1886600,
+            "output_until_verified": 41866700,
+            "release": 601800,
+            "whole": 59825700
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 15550700,
+            "commit": 1671000,
+            "output_until_verified": 39838900,
+            "release": 1329400,
+            "whole": 58390000
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 120.6066,
+      "calling_thread_cpu_ms": 125.0,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.2334,
+        "mean": 0.23802869822485206,
+        "minimum": 0.0683,
+        "maximum": 0.6328
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "adf433d1764d460b5c1eb06a17952128a729245a734f2900d45c9ce929e7751e",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    },
+    {
+      "environment": "offline",
+      "variant": "step04_sampled",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\03_step04_sampled",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 13785700,
+            "commit": 1779100,
+            "output_until_verified": 33907800,
+            "release": 630700,
+            "whole": 50103300
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 14174700,
+            "commit": 1669900,
+            "output_until_verified": 35659500,
+            "release": 1451300,
+            "whole": 52955400
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 104.9466,
+      "calling_thread_cpu_ms": 93.75,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.2067,
+        "mean": 0.220003550295858,
+        "minimum": 0.0561,
+        "maximum": 0.693
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "e9ff5acb61eb8c119b38ad58a2367fa8ea9ada1f82918d8abc4154a57a09d8da",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    },
+    {
+      "environment": "offline",
+      "variant": "step03_full",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\04_step03_full",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 15804700,
+            "commit": 1646200,
+            "output_until_verified": 40428500,
+            "release": 774400,
+            "whole": 58653800
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 14926400,
+            "commit": 1641900,
+            "output_until_verified": 40606900,
+            "release": 1425400,
+            "whole": 58600600
+          },
+          "thread_cpu_ns": 62500000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 119.3165,
+      "calling_thread_cpu_ms": 109.375,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.23285,
+        "mean": 0.24218836291913215,
+        "minimum": 0.0679,
+        "maximum": 0.7927
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "7b79bf1cebdf434e6283cc1e94b11be025c720b200792e5b8239a6b74092ad47",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    },
+    {
+      "environment": "offline",
+      "variant": "step04_sampled",
+      "path": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\STEP04_BOARD_EFFECT_20261009\\offline\\05_step04_sampled",
+      "frames": [
+        {
+          "frame": 0,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 12949300,
+            "commit": 1705100,
+            "output_until_verified": 34001600,
+            "release": 579400,
+            "whole": 49235400
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        },
+        {
+          "frame": 1,
+          "input_bytes": 518400,
+          "output_bytes": 2073600,
+          "Golden_match": true,
+          "timing_ns": {
+            "input": 12818100,
+            "commit": 1603200,
+            "output_until_verified": 35413300,
+            "release": 695900,
+            "whole": 50530500
+          },
+          "thread_cpu_ns": 46875000,
+          "output_unique_chunks": 2025,
+          "output_duplicate_packets": 0,
+          "output_rejected_packets": 0,
+          "received_datagrams_during_frame": 2535,
+          "proof_ack_datagrams": 64,
+          "proof_ack_entries": 2025,
+          "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+          "max_input_retained": 16
+        }
+      ],
+      "audit": {
+        "status": "PASS",
+        "frames": 2,
+        "golden_bytes": 4147200,
+        "invalid_records_retained": 0,
+        "wrong_source_records_retained": 0,
+        "final_ack_requests_checked": 2,
+        "audit_uses_client_state": false
+      },
+      "retries": 0,
+      "ignored": 0,
+      "hello_and_two_frames_wall_ms": 101.6873,
+      "calling_thread_cpu_ms": 93.75,
+      "input_data_ack_host_observed_lag_ms": {
+        "count": 1014,
+        "median": 0.19605,
+        "mean": 0.20110364891518737,
+        "minimum": 0.0557,
+        "maximum": 0.4911
+      },
+      "raw_journal_records": 6222,
+      "raw_journal_sha256": "6750a5e6441241f2162260271b51ee5da011df00eac42cef95b1dddb44dba0c8",
+      "readiness_wait_calls": 0,
+      "readiness_wait_ms": 0.0
+    }
+  ]
+}

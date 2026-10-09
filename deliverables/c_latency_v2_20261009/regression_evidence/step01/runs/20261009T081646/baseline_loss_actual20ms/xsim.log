@@ -1,0 +1,41 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Oct  9 16:16:50 2026
+# Process ID         : 37828
+# Current directory  : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/baseline_loss_actual20ms
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/snapshot/xsim_script.tcl}
+# Log file           : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/baseline_loss_actual20ms/xsim.log
+# Journal file       : C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/baseline_loss_actual20ms\xsim.jou
+# Running On         : WIN-FJ9PMA04HBP
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33752 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68112 MB
+# Available Virtual  : 45285 MB
+#-----------------------------------------------------------
+source xsim.dir/snapshot/xsim_script.tcl
+# xsim {snapshot} -autoloadwcfg -tclbatch {run.tcl}
+Time resolution is 1 ps
+source run.tcl
+## run all
+EXPIRY_COLLISION cycle=3000011 base=1 next=3 retry_requested=0 retry_pass=0
+EXPIRY_COLLISION cycle=6000011 base=1 next=3 retry_requested=0 retry_pass=0
+EXPIRY_COLLISION cycle=9000011 base=1 next=3 retry_requested=0 retry_pass=0
+EXPIRY_COLLISION cycle=12000011 base=1 next=3 retry_requested=0 retry_pass=0
+EXPIRY_COLLISION cycle=15000011 base=1 next=3 retry_requested=0 retry_pass=0
+EXPIRY_COLLISION cycle=18000011 base=1 next=3 retry_requested=0 retry_pass=0
+Fatal: FIXTURE_TIMEOUT base=1 next=3 retry_requested=0 retry_pass=0 retries=0
+Time: 133320009999 ps  Iteration: 0  Process: /tb_duplicate_suppression/Always28_5  Scope: tb_duplicate_suppression  File: C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/baseline_loss_actual20ms/tb_duplicate_suppression.sv Line: 31
+$finish called at time : 133320009999 ps
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:13 . Memory (MB): peak = 228.504 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 12724 KB (Peak: 12724 KB), Simulation CPU Usage: 12749 ms
+INFO: [Common 17-206] Exiting xsim at Fri Oct  9 16:17:06 2026...

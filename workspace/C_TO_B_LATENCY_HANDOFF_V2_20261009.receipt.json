@@ -1,0 +1,36 @@
+{
+  "status": "PASS_B_V2_WORK_AND_COMPLETE_EVIDENCE_ARCHIVES",
+  "archives": {
+    "C_TO_B_LATENCY_HANDOFF_V2_20261009.zip": {
+      "status": "PASS_ALL_ARCHIVE_ENTRIES_SHA256_AND_CRC",
+      "files": 1079,
+      "bytes": 157108731,
+      "sha256": "c1d0f2237549ffb5a31f0565b4670eb3a26c932bfc0e59076396f6c9ab837b94",
+      "archive_bytes": 99025441
+    },
+    "C_TO_B_LATENCY_EVIDENCE_512_20261009.zip": {
+      "status": "PASS_ALL_ARCHIVE_ENTRIES_SHA256_AND_CRC",
+      "files": 1479,
+      "bytes": 2559347974,
+      "sha256": "428c43632c66053d3224a0bf2491b52c263c267d37342d5adc8433f5628eb7e6",
+      "archive_bytes": 1540326714
+    }
+  },
+  "runtime_package_manifest_sha256": "634ccbb76b12e7ad069c05995d12271b7239246d87090c5aab62caba9cef268c",
+  "portable_offline_validation": {
+    "status": "PASS_PORTABLE_B_HANDOFF_RUNTIME_AND_512_FRAME_REAUDIT",
+    "runtime_files_byte_identical_to_frozen_original": 166,
+    "portable_reaudit_cases": 32,
+    "portable_reaudit_frames": 512,
+    "file_precheck": "PASS_STREAMING_FILES_ONLY_NO_SOCKET_UART_JTAG",
+    "build_preparation_source_closure": {
+      "status": "PASS",
+      "sources": 53,
+      "Vivado_executed": false
+    },
+    "packaging_correction": "The earlier integrated runtime ZIP omitted LAB_FUNCTIONAL_SELECTION.json and STREAMING_SELECTION.json. V2 restores exact frozen originals; initial failures and corrected passes retained.",
+    "hardware_or_network_actions": false
+  },
+  "no_hardware_or_network_run": true,
+  "frozen_runtime_modified": false
+}

@@ -1,0 +1,12 @@
+{
+  "attempts": [
+    {
+      "status": "FAIL",
+      "case": "full_scheduler_early_ack_wake_abort_report",
+      "error": "AttributeError: Pending has no coverage",
+      "reason": "Old test stub exposed only ack_pending; new failure diagnostics also report receiver coverage/rejected/duplicates.",
+      "resolution": "Replace the partial test stub with the actual OutputReceiver; production candidate unchanged.",
+      "preserved_log": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\FAILED_full_check_nonblocking.py.log"
+    }
+  ]
+}

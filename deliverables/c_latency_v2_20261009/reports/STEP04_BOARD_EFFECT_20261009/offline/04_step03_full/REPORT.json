@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "variant": "step03_full",
+  "frames": [
+    {
+      "frame": 0,
+      "input_bytes": 518400,
+      "output_bytes": 2073600,
+      "Golden_match": true,
+      "timing_ns": {
+        "input": 15804700,
+        "commit": 1646200,
+        "output_until_verified": 40428500,
+        "release": 774400,
+        "whole": 58653800
+      },
+      "thread_cpu_ns": 46875000,
+      "output_unique_chunks": 2025,
+      "output_duplicate_packets": 0,
+      "output_rejected_packets": 0,
+      "received_datagrams_during_frame": 2535,
+      "proof_ack_datagrams": 64,
+      "proof_ack_entries": 2025,
+      "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+      "max_input_retained": 16
+    },
+    {
+      "frame": 1,
+      "input_bytes": 518400,
+      "output_bytes": 2073600,
+      "Golden_match": true,
+      "timing_ns": {
+        "input": 14926400,
+        "commit": 1641900,
+        "output_until_verified": 40606900,
+        "release": 1425400,
+        "whole": 58600600
+      },
+      "thread_cpu_ns": 62500000,
+      "output_unique_chunks": 2025,
+      "output_duplicate_packets": 0,
+      "output_rejected_packets": 0,
+      "received_datagrams_during_frame": 2535,
+      "proof_ack_datagrams": 64,
+      "proof_ack_entries": 2025,
+      "scope": "CALLER_TRANSPORT_WALL_TIME_AND_CALLING_THREAD_CPU_NOT_WIRE_TIME_OR_DISPLAY",
+      "max_input_retained": 16
+    }
+  ],
+  "audit": {
+    "status": "PASS",
+    "frames": 2,
+    "golden_bytes": 4147200,
+    "invalid_records_retained": 0,
+    "wrong_source_records_retained": 0,
+    "final_ack_requests_checked": 2,
+    "audit_uses_client_state": false
+  },
+  "hello_and_two_frames_wall_ns": 119316500,
+  "protocol_loop_wall_ns": 119115400,
+  "hello_wall_ns": 201100,
+  "calling_thread_cpu_ns": 109375000,
+  "retries": 0,
+  "ignored": 0,
+  "callback_and_prepared_golden_match_board": true,
+  "peer_simulation_executes_in_calling_thread": true,
+  "input_and_golden_sha256": [
+    {
+      "input_sha256": "3c4dc558d27d85b01271b7821385fb711caf36aedd669f78247b818c0fdfa97e",
+      "golden_sha256": "74452328b43d0834d36dfdb74359ec831b6d0f5e1e92a864ba000fafa8e8b551"
+    },
+    {
+      "input_sha256": "a17a236a9f4c1ad6dccd4e285174fd0fa3e41d29dd337781f3ff3ecc5085e723",
+      "golden_sha256": "76b09e9683d638b8decf5b6c028b50852a387f274814a34a431f1bb0f6e59337"
+    }
+  ]
+}

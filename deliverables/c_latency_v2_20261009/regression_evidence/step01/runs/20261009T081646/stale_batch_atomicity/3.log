@@ -1,0 +1,19 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct  9 16:18:19 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/snapshot/xsim_script.tcl
+# xsim {snapshot} -autoloadwcfg -tclbatch {run.tcl}
+Time resolution is 1 ps
+source run.tcl
+## run all
+ORIGINAL_RTL_RETRY_AGE first_q1_ns=1282981.689 second_q1_ns=3018801.423 age_ns=1735819.734 retry_cycles=150000
+AGE_GUARD_CAUSAL_PASS bounded_retry_and_atomic_stale_batch_reject retransmitted=2
+$finish called at time : 3035396430 ps : File "C:/Users/Administrator/WorkBuddy/srtp/output/RTL_STEP01_RETRY_20261009/runs/20261009T081646/stale_batch_atomicity/tb_retry_age_and_stale_ack.sv" Line 78
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct  9 16:18:21 2026...

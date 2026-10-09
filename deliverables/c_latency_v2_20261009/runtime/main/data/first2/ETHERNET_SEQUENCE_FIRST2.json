@@ -1,0 +1,39 @@
+{
+  "scope": "PREPARED_SOURCE_INPUT_AND_GOLDEN_ONLY_NOT_BOARD_OUTPUT_OR_NEW_ACCEPTANCE",
+  "C_source": "303b51d21b3004ddf5780c502ae5c1f3b81cefb6",
+  "B_source": "6cc8ea4173d2a720f741e80b7cbd9279558ee93a",
+  "input_dimensions": [
+    960,
+    540
+  ],
+  "output_dimensions": [
+    1920,
+    1080
+  ],
+  "dtype": "UINT8_Y_RASTER_ROW_MAJOR",
+  "source_archive_sha256": "e134f1b62d2caf98da3b5b3b284ff4814e5f95a0d3f95104fc783ace962cac4b",
+  "old_UART_test_repeated": false,
+  "strict_fps_requirement": null,
+  "board_Ethernet_test_performed": false,
+  "frames": [
+    {
+      "frame_id": 0,
+      "source_pts_seconds": 10.0,
+      "input_file": "input/frame_0000_y.bin",
+      "input_sha256": "3c4dc558d27d85b01271b7821385fb711caf36aedd669f78247b818c0fdfa97e",
+      "golden_file": "golden/frame_0000_y.bin",
+      "golden_sha256": "74452328b43d0834d36dfdb74359ec831b6d0f5e1e92a864ba000fafa8e8b551"
+    },
+    {
+      "frame_id": 1,
+      "source_pts_seconds": 10.1,
+      "input_file": "input/frame_0001_y.bin",
+      "input_sha256": "a17a236a9f4c1ad6dccd4e285174fd0fa3e41d29dd337781f3ff3ecc5085e723",
+      "golden_file": "golden/frame_0001_y.bin",
+      "golden_sha256": "76b09e9683d638b8decf5b6c028b50852a387f274814a34a431f1bb0f6e59337"
+    }
+  ],
+  "checkpoint_only": true,
+  "checkpoint_frame_count": 2,
+  "checkpoint_parent_manifest_sha256": "950e3b928973dfeffa2b7c4e3d8090e19d72c3c8c4e1fabc6569d4031330da5a"
+}

@@ -1,0 +1,47 @@
+{
+  "scope": "ACX750_EXPLICIT_EVF2_OUTPUT_LAB_V1",
+  "wire_version": 2,
+  "candidate_BIT_sha256": "cefe3ba044bb208a08969714f48144870f5c00efc6879edb063ac1f358ef1ea5",
+  "legacy_lab_selection_sha256": "f023d8513fd43014ed42aacb47626543eaec8c0be9d0edfdec6bfc9907737d77",
+  "files": {
+    "streaming/streaming_client.py": "64ec6ef03d82c55de7206952d6cd841b44c0c760246ce5113092582fea26952c",
+    "streaming/stream_receiver.py": "01ad242bafe965592663f6462fb31cb479c17c53fea9015ff1090bdd9727a23e",
+    "streaming/binary_journal.py": "dee4425087b010cca83bb81a0f465717d2d94adcf7bf6dddd2b98954e9947fae",
+    "streaming/audit_protocol.py": "f1781d12e1a96c28e0f28a03d4cdc016d6a69d7c75d9d725fd55f4354d7ae842",
+    "lab/streaming_board_lab.py": "7c3478f1caddfaf1adad10fed50af64449805813686efaf25c57a3486bc1b07e",
+    "lab/audit_streaming_run.py": "e1d78014fb4fa14d84941c0e808352507add4745b556b59fdbbb86e51121463f",
+    "lab/run_c_streaming.ps1": "1c584190bdf660f73cbb6b335fab64431d6c1f45debfca19a78a40b44acf2a05",
+    "diagnostics/lab_bootstrap.py": "891c1e64cab0e94bf0d39fe1bbdbcff6caf81247471f261baa24e9a7b89c81ec",
+    "diagnostics/lab_diagnostics.py": "d5588f712b6721606a4d8eb3b71cea44f6ed2767aba6e4192f3c784554a34f10",
+    "diagnostics/Invoke-DiagnosticPython.ps1": "852e1113f74ce17cb961288be3004299cef96c99aa440fbe9d16cef018d3d7c6",
+    "diagnostics/owned_job.cs": "c708626ec7e99b1afec222fd230aea96637b49bd422ab80f2c12e7ce484c71b2",
+    "streaming/timing_diagnostics.py": "020355f18b4ed2bb62630e69c5e7f4938309fc140b64fd1297a273a93aed92b6",
+    "streaming/nonblocking_io.py": "b6d3010ec9e2cedfe834ec9113dad4d1be17318d1a3199e77f81293e8aed653b"
+  },
+  "physical_IO_signoff": false,
+  "formal_video_permission": false,
+  "whole_system_4K30_achieved": false,
+  "electrical_status": "UNVERIFIED",
+  "model_changed": false,
+  "core_MHz": 150,
+  "pause": 0,
+  "stripe_rows": 16,
+  "allowed_output_windows": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "candidate_status": "FOUR_STEPS_INTEGRATED_NEW_BIT_DIGITAL_PASS_BOARD_PENDING",
+  "repair_revision": "20261009_STEPS01_04_INTEGRATED",
+  "runtime_defaults": {
+    "io_mode": "nonblocking",
+    "timing_mode": "sampled",
+    "timing_sample_every": 16,
+    "output_window": 128
+  }
+}

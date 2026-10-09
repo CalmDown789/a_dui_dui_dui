@@ -1,0 +1,71 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:52:21 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_pins u_management/u_startup/u_mdio/mdio_meta_q_reg/Q] -to [get_pins u_management/u_startup/u_mdio/mdio_sync_q_reg/D] -delay_type max -file mdio_stage_setup.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             18.956ns  (required time - arrival time)
+  Source:                 u_management/u_startup/u_mdio/mdio_meta_q_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys50  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            u_management/u_startup/u_mdio/mdio_sync_q_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys50  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys50
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys50 rise@20.000ns - sys50 rise@0.000ns)
+  Data Path Delay:        0.877ns  (logic 0.379ns (43.215%)  route 0.498ns (56.785%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.645ns = ( 24.645 - 20.000 ) 
+    Source Clock Delay      (SCD):    4.915ns
+    Clock Pessimism Removal (CPR):    0.270ns
+  Clock Uncertainty:      0.135ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys50 rise edge)      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.827     3.267    u_clocks/sys_in
+    BUFGCTRL_X0Y6        BUFG (Prop_bufg_I_O)         0.081     3.348 r  u_clocks/u_management_clock/O
+                         net (fo=519, routed)         1.567     4.915    u_management/u_startup/u_mdio/mc
+    SLICE_X0Y141         FDRE                                         r  u_management/u_startup/u_mdio/mdio_meta_q_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y141         FDRE (Prop_fdre_C_Q)         0.379     5.294 r  u_management/u_startup/u_mdio/mdio_meta_q_reg/Q
+                         net (fo=1, routed)           0.498     5.792    u_management/u_startup/u_mdio/mdio_meta_q
+    SLICE_X0Y141         FDRE                                         r  u_management/u_startup/u_mdio/mdio_sync_q_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys50 rise edge)     20.000    20.000 r  
+    W19                                               0.000    20.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000    20.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374    21.374 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.734    23.108    u_clocks/sys_in
+    BUFGCTRL_X0Y6        BUFG (Prop_bufg_I_O)         0.077    23.185 r  u_clocks/u_management_clock/O
+                         net (fo=519, routed)         1.460    24.645    u_management/u_startup/u_mdio/mc
+    SLICE_X0Y141         FDRE                                         r  u_management/u_startup/u_mdio/mdio_sync_q_reg/C
+                         clock pessimism              0.270    24.915    
+                         clock uncertainty           -0.135    24.780    
+    SLICE_X0Y141         FDRE (Setup_fdre_C_D)       -0.032    24.748    u_management/u_startup/u_mdio/mdio_sync_q_reg
+  -------------------------------------------------------------------
+                         required time                         24.748    
+                         arrival time                          -5.792    
+  -------------------------------------------------------------------
+                         slack                                 18.956    
+
+
+
+

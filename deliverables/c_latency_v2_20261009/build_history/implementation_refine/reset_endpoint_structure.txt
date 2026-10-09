@@ -1,0 +1,3 @@
+rr_reg ASYNC_REG=TRUE REF_NAME=FDPE CE=VCC PRE_SOURCE=u_clocks/startup_reset_reg/Q D0=GND/G D1=rr_reg[0]/Q CLOCK=u_clocks/u_rx_clock/O
+tr_reg ASYNC_REG=TRUE REF_NAME=FDPE CE=VCC PRE_SOURCE=u_clocks/startup_reset_reg/Q D0=GND/G D1=tr_reg[0]/Q CLOCK=u_clocks/u_tx_clock/O
+u_video/u_rx_bridge/rd_reset_q_reg ASYNC_REG=TRUE REF_NAME=FDPE CE=VCC PRE_SOURCE=rr_reg[1]/Q D0=u_video/u_rx_bridge/GND/G D1=u_video/u_rx_bridge/rd_reset_q_reg[0]/Q CLOCK=u_clocks/u_core_clock/O

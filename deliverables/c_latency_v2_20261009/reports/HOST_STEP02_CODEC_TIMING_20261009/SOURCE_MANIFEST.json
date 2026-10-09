@@ -1,0 +1,94 @@
+{
+  "status": "ISOLATED_STEP02_HOST_CANDIDATE_NOT_PAIRED_RELEASE",
+  "files": [
+    {
+      "file": "streaming/streaming_client.py",
+      "source": "C:\\t6dup09\\main\\streaming\\streaming_client.py",
+      "baseline_sha256": "bb3e4ae079f2fc07f22df168e56c16bcc42b97a298637bb83e45e84d23842e4b",
+      "candidate_sha256": "675ab0e04b911e9d748bca4b58b51f0f6423ad366dd27a37e065c4b7e052b7b7"
+    },
+    {
+      "file": "streaming/timing_diagnostics.py",
+      "source": "C:\\t6dup09\\main\\streaming\\timing_diagnostics.py",
+      "baseline_sha256": "d2ffa787281bd396006f29f36b4c97ed4adc10561ad4422ceb2a3a4d85ce20fb",
+      "candidate_sha256": "9db84c61db93a95a3497c629976d1c402434dd10c5ea615569c19e13e6906072"
+    },
+    {
+      "file": "streaming/stream_receiver.py",
+      "source": "C:\\t6dup09\\main\\streaming\\stream_receiver.py",
+      "baseline_sha256": "01ad242bafe965592663f6462fb31cb479c17c53fea9015ff1090bdd9727a23e",
+      "candidate_sha256": "01ad242bafe965592663f6462fb31cb479c17c53fea9015ff1090bdd9727a23e"
+    },
+    {
+      "file": "streaming/binary_journal.py",
+      "source": "C:\\t6dup09\\main\\streaming\\binary_journal.py",
+      "baseline_sha256": "0420a013959099b5a8b18ac36d731da47e377d867fb659c703ae3c80eb2e4cdc",
+      "candidate_sha256": "0420a013959099b5a8b18ac36d731da47e377d867fb659c703ae3c80eb2e4cdc"
+    },
+    {
+      "file": "streaming/audit_protocol.py",
+      "source": "C:\\t6dup09\\main\\streaming\\audit_protocol.py",
+      "baseline_sha256": "f1781d12e1a96c28e0f28a03d4cdc016d6a69d7c75d9d725fd55f4354d7ae842",
+      "candidate_sha256": "f1781d12e1a96c28e0f28a03d4cdc016d6a69d7c75d9d725fd55f4354d7ae842"
+    },
+    {
+      "file": "host/video_protocol.py",
+      "source": "C:\\t6dup09\\main\\host\\video_protocol.py",
+      "baseline_sha256": "2302658b57a6b79f6c9ec0546edf983d01b73ada9bcd37d1e2418f412080c326",
+      "candidate_sha256": "2302658b57a6b79f6c9ec0546edf983d01b73ada9bcd37d1e2418f412080c326"
+    },
+    {
+      "file": "proof/host_regression.py",
+      "source": "C:\\t6dup09\\main\\proof\\host_regression.py",
+      "baseline_sha256": "c4ac51e0171c098bbd6a59b1335a69526690e65e255996122fa36d2eeda6d665",
+      "candidate_sha256": "c4ac51e0171c098bbd6a59b1335a69526690e65e255996122fa36d2eeda6d665"
+    },
+    {
+      "file": "proof/check_host_window128.py",
+      "source": "C:\\t6dup09\\main\\proof\\check_host_window128.py",
+      "baseline_sha256": "f00e118f70de683577ed6414851c3305043fcce83091c6272d208d36de9f164d",
+      "candidate_sha256": "f00e118f70de683577ed6414851c3305043fcce83091c6272d208d36de9f164d"
+    }
+  ],
+  "test_assets": [
+    {
+      "file": "input/frame_0000_y.bin",
+      "source": "C:\\t6dup09\\main\\data\\input\\frame_0000_y.bin",
+      "sha256": "3c4dc558d27d85b01271b7821385fb711caf36aedd669f78247b818c0fdfa97e"
+    },
+    {
+      "file": "golden/frame_0000_y.bin",
+      "source": "C:\\t6dup09\\main\\data\\golden\\frame_0000_y.bin",
+      "sha256": "74452328b43d0834d36dfdb74359ec831b6d0f5e1e92a864ba000fafa8e8b551"
+    },
+    {
+      "file": "input/frame_0001_y.bin",
+      "source": "C:\\t6dup09\\main\\data\\input\\frame_0001_y.bin",
+      "sha256": "a17a236a9f4c1ad6dccd4e285174fd0fa3e41d29dd337781f3ff3ecc5085e723"
+    },
+    {
+      "file": "golden/frame_0001_y.bin",
+      "source": "C:\\t6dup09\\main\\data\\golden\\frame_0001_y.bin",
+      "sha256": "76b09e9683d638b8decf5b6c028b50852a387f274814a34a431f1bb0f6e59337"
+    }
+  ],
+  "copied_frozen_frame_ids": [
+    0,
+    1
+  ],
+  "all_manifest_frames_included": false,
+  "changed_functional_files": [
+    "streaming/streaming_client.py",
+    "streaming/timing_diagnostics.py"
+  ],
+  "unchanged_release_identities": {
+    "PACKAGE_MANIFEST.json": "4870f3ea9aca185fcdeebb9bf0074a715559a3b488dfad1152d3fbc4e1393de8",
+    "rtl/evf2_result_window.sv": "86932586c1f71f0e0713643a8b58bf42a2f6f62e25acfbfb43ed95ec7118c8cc",
+    "image/COMM_window128_150_lab_candidate.bit": "81377cedf56706a2de904344a8684bdaffcd1e46f3ffa8e65da6a5e1ff584c0e"
+  },
+  "step01_candidate_sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901",
+  "board_io": false,
+  "RTL_changed": false,
+  "BIT_generated": false,
+  "nonblocking_receive_loop_implemented": false
+}

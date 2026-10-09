@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_FOR_PERFORMANCE_COMPARISON",
+  "reason": "Legacy Peer.recvfrom immediately retried missing proofs whenever its queue emptied. Eager prefetch empties the peer queue before the client processes its buffered proofs, generating artificial normal-path duplicates.",
+  "preserved_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\early_prefetch_fixture",
+  "candidate_source_unchanged": true,
+  "normal_path_expected_zero_output_duplicates": true,
+  "remedy": "Readiness adapter publishes retries only after an explicit 2ms synthetic idle timer."
+}

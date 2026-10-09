@@ -1,0 +1,43 @@
+{
+  "status": "ISOLATED_RETRY_EXPIRY_CANDIDATE_NOT_RUNTIME_RELEASE",
+  "baseline_source": "C:\\t6dup09\\main\\rtl\\evf2_result_window.sv",
+  "baseline_sha256": "86932586c1f71f0e0713643a8b58bf42a2f6f62e25acfbfb43ed95ec7118c8cc",
+  "candidate_sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901",
+  "changes": [
+    "retry scan end consumes old queued request OR same-cycle expiry"
+  ],
+  "frozen_dependencies": [
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\evf2_control_parser.sv",
+      "sha256": "47bf782bcfb6de34bdb6029f56eeb9a757d624f2f556aae3411a4198ad97453e"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\evf2_response_serializer.sv",
+      "sha256": "f90643604527e42bd684f226dc5ba118b3ea54442147bc3ad1df28dd340a9bdb"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\pingpong_buffer.v",
+      "sha256": "0dda582261d7ac0c23a98988ff22e1cf3cc27c79297504209b57cfd686dda18b"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\stripe_buffer.v",
+      "sha256": "bc2792b5238507bdc42d3f4f5fcc8d8adda6dca97015d38c37308d34d627d553"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\proof\\tb_ack_reuse.sv",
+      "sha256": "70938d376abead2b8da568286bb5867aad03bd7b0970224794b94772051e354f"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\proof\\window_counter_guard\\tb_window.sv",
+      "sha256": "521205ca75c0277eb5adf7588aa204c5df1310f6b78ca11a1209965827953e4a"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\data\\ETHERNET_SEQUENCE_MANIFEST.json",
+      "sha256": "950e3b928973dfeffa2b7c4e3d8090e19d72c3c8c4e1fabc6569d4031330da5a"
+    }
+  ],
+  "board_tested": false,
+  "BIT_generated": false,
+  "paired_main_manifest_sha256": "4870f3ea9aca185fcdeebb9bf0074a715559a3b488dfad1152d3fbc4e1393de8",
+  "live_bit_sha256": "81377cedf56706a2de904344a8684bdaffcd1e46f3ffa8e65da6a5e1ff584c0e"
+}

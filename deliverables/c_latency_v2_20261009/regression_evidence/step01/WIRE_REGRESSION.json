@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "FULL_1080P_PRELOADED_GOLDEN_WINDOW_PARSER_SERIALIZER_NOT_SR_OR_BOARD",
+  "sources": [
+    {
+      "source": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\RTL_STEP01_RETRY_20261009\\rtl\\evf2_result_window.sv",
+      "sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\evf2_control_parser.sv",
+      "sha256": "47bf782bcfb6de34bdb6029f56eeb9a757d624f2f556aae3411a4198ad97453e"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\evf2_response_serializer.sv",
+      "sha256": "f90643604527e42bd684f226dc5ba118b3ea54442147bc3ad1df28dd340a9bdb"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\pingpong_buffer.v",
+      "sha256": "0dda582261d7ac0c23a98988ff22e1cf3cc27c79297504209b57cfd686dda18b"
+    },
+    {
+      "source": "C:\\t6dup09\\main\\rtl\\stripe_buffer.v",
+      "sha256": "bc2792b5238507bdc42d3f4f5fcc8d8adda6dca97015d38c37308d34d627d553"
+    }
+  ],
+  "run_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\RTL_STEP01_RETRY_20261009\\runs\\full_wire_20261009T162107",
+  "commands": [
+    {
+      "argv": [
+        "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xvlog.bat",
+        "-sv",
+        "evf2_result_window.sv",
+        "evf2_control_parser.sv",
+        "evf2_response_serializer.sv",
+        "pingpong_buffer.v",
+        "stripe_buffer.v",
+        "tb_window.sv"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9267334999999548
+    },
+    {
+      "argv": [
+        "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xelab.bat",
+        "--debug",
+        "off",
+        "--mt",
+        "off",
+        "tb_window",
+        "-s",
+        "snapshot"
+      ],
+      "exit_code": 0,
+      "seconds": 1.5527784999999312
+    },
+    {
+      "argv": [
+        "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xsim.bat",
+        "snapshot",
+        "--tclbatch",
+        "run.tcl"
+      ],
+      "exit_code": 0,
+      "seconds": 26.169961400000375
+    }
+  ],
+  "board_tested": false,
+  "BIT_generated": false,
+  "frames": 2,
+  "unique_packets": 4050,
+  "duplicate_packets": 0,
+  "golden_bytes": 4147200,
+  "golden_mismatches": 0,
+  "final_statuses": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "wire_sha256": "89a4815f45a81ca0efe6cdd6168865db333982bb333b173cef24b32730a53af2",
+  "sources_unchanged": true
+}

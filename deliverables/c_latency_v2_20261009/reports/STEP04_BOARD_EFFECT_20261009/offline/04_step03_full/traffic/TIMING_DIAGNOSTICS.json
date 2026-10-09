@@ -1,0 +1,514 @@
+{
+  "scope": "LIVE_STREAMING_CLIENT_CALL_BOUNDARIES_NOT_NIC_OR_WIRE_TIMESTAMPS",
+  "clock": "time.perf_counter_ns / QPC on Windows",
+  "thread_cpu_clock": "time.thread_time_ns; current calling thread only",
+  "slow_event_threshold_ns": 2000000,
+  "slow_event_limit": 64,
+  "counters": {
+    "completed_frames": 2,
+    "io_recvfrom_attempts": 5143,
+    "io_rx_captured": 5072,
+    "io_rx_would_block": 71,
+    "io_sendto_attempts": 1150,
+    "io_setblocking_calls": 1,
+    "io_tx_completed": 1150,
+    "io_tx_submitted": 1150,
+    "proof_ack_datagrams": 128,
+    "proof_ack_entries": 4050,
+    "sendto_datagrams": 1150
+  },
+  "stages": {
+    "decode_header_payload_crc": {
+      "count": 5072,
+      "wall_total_ns": 9118000,
+      "wall_mean_ns": 1797.7129337539432,
+      "wall_p50_upper_bound_ns": 2048,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 46200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 4691
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 355
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 18
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 1
+        }
+      ]
+    },
+    "frame_transfer": {
+      "count": 2,
+      "wall_total_ns": 117254400,
+      "wall_mean_ns": 58627200.0,
+      "wall_p50_upper_bound_ns": 67108864,
+      "wall_p95_upper_bound_ns": 67108864,
+      "wall_max_ns": 58653800,
+      "thread_cpu_total_ns": 109375000,
+      "thread_cpu_mean_ns": 54687500.0,
+      "thread_cpu_max_ns": 62500000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 67108864,
+          "count": 2
+        }
+      ]
+    },
+    "journal_append": {
+      "count": 6222,
+      "wall_total_ns": 7616000,
+      "wall_mean_ns": 1224.0437158469945,
+      "wall_p50_upper_bound_ns": 1024,
+      "wall_p95_upper_bound_ns": 2048,
+      "wall_max_ns": 439600,
+      "thread_cpu_total_ns": 31250000,
+      "thread_cpu_mean_ns": 5022.500803600128,
+      "thread_cpu_max_ns": 15625000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 512,
+          "count": 248
+        },
+        {
+          "upper_bound_ns": 1024,
+          "count": 4665
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 1224
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 46
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 18
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 5
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        }
+      ]
+    },
+    "journal_checkpoint": {
+      "count": 3,
+      "wall_total_ns": 3051100,
+      "wall_mean_ns": 1017033.3333333334,
+      "wall_p50_upper_bound_ns": 262144,
+      "wall_p95_upper_bound_ns": 4194304,
+      "wall_max_ns": 2555000,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 4194304,
+          "count": 1
+        }
+      ]
+    },
+    "journal_file_write": {
+      "count": 13,
+      "wall_total_ns": 1955600,
+      "wall_mean_ns": 150430.76923076922,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 524288,
+      "wall_max_ns": 431000,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 1024,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        }
+      ]
+    },
+    "journal_flush_block": {
+      "count": 13,
+      "wall_total_ns": 2020700,
+      "wall_mean_ns": 155438.46153846153,
+      "wall_p50_upper_bound_ns": 65536,
+      "wall_p95_upper_bound_ns": 524288,
+      "wall_max_ns": 436300,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 1
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        }
+      ]
+    },
+    "output_receiver_validate_store_deduplicate": {
+      "count": 4050,
+      "wall_total_ns": 9152000,
+      "wall_mean_ns": 2259.753086419753,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 4096,
+      "wall_max_ns": 30700,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 2048,
+          "count": 1942
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 2032
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 63
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 10
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 3
+        }
+      ]
+    },
+    "proof_batch_take": {
+      "count": 128,
+      "wall_total_ns": 705300,
+      "wall_mean_ns": 5510.15625,
+      "wall_p50_upper_bound_ns": 8192,
+      "wall_p95_upper_bound_ns": 16384,
+      "wall_max_ns": 20800,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 4096,
+          "count": 2
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 113
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 12
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 1
+        }
+      ]
+    },
+    "proof_packet_build": {
+      "count": 128,
+      "wall_total_ns": 429000,
+      "wall_mean_ns": 3351.5625,
+      "wall_p50_upper_bound_ns": 4096,
+      "wall_p95_upper_bound_ns": 8192,
+      "wall_max_ns": 9200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 4096,
+          "count": 115
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 12
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 1
+        }
+      ]
+    },
+    "receive_service_interval": {
+      "count": 5071,
+      "wall_total_ns": 77214700,
+      "wall_mean_ns": 15226.72056793532,
+      "wall_p50_upper_bound_ns": 8192,
+      "wall_p95_upper_bound_ns": 32768,
+      "wall_max_ns": 2117200,
+      "thread_cpu_total_ns": 0,
+      "thread_cpu_mean_ns": 0.0,
+      "thread_cpu_max_ns": 0,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 8192,
+          "count": 3475
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 451
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 973
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 30
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 119
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 14
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 2097152,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 4194304,
+          "count": 1
+        }
+      ]
+    },
+    "scheduled_receive": {
+      "count": 5072,
+      "wall_total_ns": 41180500,
+      "wall_mean_ns": 8119.183753943218,
+      "wall_p50_upper_bound_ns": 1024,
+      "wall_p95_upper_bound_ns": 2048,
+      "wall_max_ns": 587000,
+      "thread_cpu_total_ns": 62500000,
+      "thread_cpu_mean_ns": 12322.555205047318,
+      "thread_cpu_max_ns": 15625000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 1024,
+          "count": 4508
+        },
+        {
+          "upper_bound_ns": 2048,
+          "count": 321
+        },
+        {
+          "upper_bound_ns": 4096,
+          "count": 12
+        },
+        {
+          "upper_bound_ns": 8192,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 16384,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 57
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 8
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 151
+        },
+        {
+          "upper_bound_ns": 524288,
+          "count": 3
+        },
+        {
+          "upper_bound_ns": 1048576,
+          "count": 1
+        }
+      ]
+    },
+    "scheduled_send": {
+      "count": 1150,
+      "wall_total_ns": 30011600,
+      "wall_mean_ns": 26097.043478260868,
+      "wall_p50_upper_bound_ns": 16384,
+      "wall_p95_upper_bound_ns": 131072,
+      "wall_max_ns": 983800,
+      "thread_cpu_total_ns": 31250000,
+      "thread_cpu_mean_ns": 27173.91304347826,
+      "thread_cpu_max_ns": 15625000,
+      "log2_histogram": [
+        {
+          "upper_bound_ns": 16384,
+          "count": 940
+        },
+        {
+          "upper_bound_ns": 32768,
+          "count": 71
+        },
+        {
+          "upper_bound_ns": 65536,
+          "count": 11
+        },
+        {
+          "upper_bound_ns": 131072,
+          "count": 122
+        },
+        {
+          "upper_bound_ns": 262144,
+          "count": 4
+        },
+        {
+          "upper_bound_ns": 1048576,
+          "count": 2
+        }
+      ]
+    }
+  },
+  "slowest_events": [
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 58653800,
+      "cpu_ns": 46875000,
+      "at_perf_counter_ns": 14670998543900,
+      "thread_name": "MainThread",
+      "thread_ident": 33780,
+      "detail": {
+        "frame": 0,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "frame_transfer",
+      "wall_ns": 58600600,
+      "cpu_ns": 62500000,
+      "at_perf_counter_ns": 14671058201400,
+      "thread_name": "MainThread",
+      "thread_ident": 33780,
+      "detail": {
+        "frame": 1,
+        "unique_output_chunks": 2025,
+        "duplicate_output_packets": 0
+      }
+    },
+    {
+      "stage": "journal_checkpoint",
+      "wall_ns": 2555000,
+      "cpu_ns": 0,
+      "at_perf_counter_ns": 14671061630400,
+      "thread_name": "MainThread",
+      "thread_ident": 33780,
+      "detail": {
+        "durable": true
+      }
+    },
+    {
+      "stage": "receive_service_interval",
+      "wall_ns": 2117200,
+      "cpu_ns": null,
+      "at_perf_counter_ns": 14671058160200,
+      "thread_name": "MainThread",
+      "thread_ident": 33780
+    }
+  ],
+  "metadata": {
+    "status": "FINALIZED_CAPTURE",
+    "io_mode": "nonblocking",
+    "max_rx_buffer": 29,
+    "max_pending_tx": 1,
+    "receive_batch_packets": 32,
+    "receive_batch_budget_ns": 200000,
+    "tx_journal_scope": "BEFORE_FIRST_SEND_ATTEMPT_NOT_WIRE_COMPLETION",
+    "rx_journal_scope": "RECVFROM_RETURN_BEFORE_BUFFERING_AND_VALIDATION",
+    "session_sha256": "be45cb2605bf36bebde684841a28f0fd43c69850a3dce5fedba69928ee3a8991",
+    "output_window": 128,
+    "ack_batch": 32,
+    "ack_delay_seconds": 0.001,
+    "raw_journal_records": 6222,
+    "raw_journal_record_bytes": 5732842
+  },
+  "hardware_timestamp_claim": false
+}

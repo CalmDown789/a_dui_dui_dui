@@ -1,0 +1,866 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:52:02 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_timing -from [all_registers] -to [all_registers] -delay_type max -max_paths 10 -file internal_setup_route.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.077ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[23]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.459ns  (logic 2.695ns (41.727%)  route 3.764ns (58.273%))
+  Logic Levels:           16  (CARRY4=11 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.051ns = ( 5.615 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.551ns
+    Clock Pessimism Removal (CPR):    0.336ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.628    -0.551    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X37Y87         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y87         FDRE (Prop_fdre_C_Q)         0.348    -0.203 r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/Q
+                         net (fo=1, routed)           0.930     0.727    u_video/u_pipeline/u_application/u_v1/u_result/done_session_q__0[4]
+    SLICE_X35Y87         LUT6 (Prop_lut6_I5_O)        0.242     0.969 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147/O
+                         net (fo=1, routed)           0.000     0.969    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147_n_0
+    SLICE_X35Y87         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     1.426 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140/CO[3]
+                         net (fo=1, routed)           0.000     1.426    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140_n_0
+    SLICE_X35Y88         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.524 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135/CO[3]
+                         net (fo=1, routed)           0.000     1.524    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135_n_0
+    SLICE_X35Y89         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.622 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130/CO[3]
+                         net (fo=1, routed)           0.000     1.622    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130_n_0
+    SLICE_X35Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.720 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125/CO[3]
+                         net (fo=1, routed)           0.000     1.720    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125_n_0
+    SLICE_X35Y91         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.818 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120/CO[3]
+                         net (fo=1, routed)           0.000     1.818    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120_n_0
+    SLICE_X35Y92         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.916 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115/CO[3]
+                         net (fo=1, routed)           0.000     1.916    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115_n_0
+    SLICE_X35Y93         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.014 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109/CO[3]
+                         net (fo=1, routed)           0.000     2.014    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109_n_0
+    SLICE_X35Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.112 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103/CO[3]
+                         net (fo=1, routed)           0.000     2.112    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103_n_0
+    SLICE_X35Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.210 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76/CO[3]
+                         net (fo=1, routed)           0.000     2.210    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76_n_0
+    SLICE_X35Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.308 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51/CO[3]
+                         net (fo=1, routed)           0.000     2.308    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51_n_0
+    SLICE_X35Y97         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.190     2.498 f  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_27/CO[2]
+                         net (fo=1, routed)           0.375     2.873    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q7
+    SLICE_X34Y97         LUT6 (Prop_lut6_I4_O)        0.261     3.134 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8/O
+                         net (fo=1, routed)           0.903     4.037    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8_n_0
+    SLICE_X10Y96         LUT6 (Prop_lut6_I3_O)        0.105     4.142 f  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0/O
+                         net (fo=7, routed)           0.374     4.517    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0_n_0
+    SLICE_X10Y95         LUT2 (Prop_lut2_I1_O)        0.105     4.622 r  u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6/O
+                         net (fo=98, routed)          1.181     5.802    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6_n_0
+    SLICE_X6Y107         LUT4 (Prop_lut4_I3_O)        0.105     5.907 r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[23]_i_1__0/O
+                         net (fo=1, routed)           0.000     5.907    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[23]_i_1__0_n_0
+    SLICE_X6Y107         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.458     5.615    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X6Y107         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[23]/C
+                         clock pessimism              0.336     5.951    
+                         clock uncertainty           -0.192     5.759    
+    SLICE_X6Y107         FDRE (Setup_fdre_C_D)        0.072     5.831    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[23]
+  -------------------------------------------------------------------
+                         required time                          5.831    
+                         arrival time                          -5.907    
+  -------------------------------------------------------------------
+                         slack                                 -0.077    
+
+Slack (MET) :             0.004ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.339ns  (logic 2.695ns (42.517%)  route 3.644ns (57.483%))
+  Logic Levels:           16  (CARRY4=11 LUT2=1 LUT6=4)
+  Clock Path Skew:        -0.161ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.048ns = ( 5.618 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.551ns
+    Clock Pessimism Removal (CPR):    0.336ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.628    -0.551    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X37Y87         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y87         FDRE (Prop_fdre_C_Q)         0.348    -0.203 r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/Q
+                         net (fo=1, routed)           0.930     0.727    u_video/u_pipeline/u_application/u_v1/u_result/done_session_q__0[4]
+    SLICE_X35Y87         LUT6 (Prop_lut6_I5_O)        0.242     0.969 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147/O
+                         net (fo=1, routed)           0.000     0.969    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147_n_0
+    SLICE_X35Y87         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     1.426 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140/CO[3]
+                         net (fo=1, routed)           0.000     1.426    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140_n_0
+    SLICE_X35Y88         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.524 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135/CO[3]
+                         net (fo=1, routed)           0.000     1.524    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135_n_0
+    SLICE_X35Y89         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.622 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130/CO[3]
+                         net (fo=1, routed)           0.000     1.622    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130_n_0
+    SLICE_X35Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.720 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125/CO[3]
+                         net (fo=1, routed)           0.000     1.720    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125_n_0
+    SLICE_X35Y91         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.818 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120/CO[3]
+                         net (fo=1, routed)           0.000     1.818    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120_n_0
+    SLICE_X35Y92         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.916 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115/CO[3]
+                         net (fo=1, routed)           0.000     1.916    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115_n_0
+    SLICE_X35Y93         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.014 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109/CO[3]
+                         net (fo=1, routed)           0.000     2.014    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109_n_0
+    SLICE_X35Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.112 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103/CO[3]
+                         net (fo=1, routed)           0.000     2.112    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103_n_0
+    SLICE_X35Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.210 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76/CO[3]
+                         net (fo=1, routed)           0.000     2.210    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76_n_0
+    SLICE_X35Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.308 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51/CO[3]
+                         net (fo=1, routed)           0.000     2.308    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51_n_0
+    SLICE_X35Y97         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.190     2.498 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_27/CO[2]
+                         net (fo=1, routed)           0.375     2.873    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q7
+    SLICE_X34Y97         LUT6 (Prop_lut6_I4_O)        0.261     3.134 f  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8/O
+                         net (fo=1, routed)           0.903     4.037    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8_n_0
+    SLICE_X10Y96         LUT6 (Prop_lut6_I3_O)        0.105     4.142 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0/O
+                         net (fo=7, routed)           0.374     4.517    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0_n_0
+    SLICE_X10Y95         LUT2 (Prop_lut2_I1_O)        0.105     4.622 f  u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6/O
+                         net (fo=98, routed)          1.061     5.682    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6_n_0
+    SLICE_X3Y100         LUT6 (Prop_lut6_I3_O)        0.105     5.787 r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[16]_i_1__0/O
+                         net (fo=1, routed)           0.000     5.787    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[16]_i_1__0_n_0
+    SLICE_X3Y100         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.461     5.618    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X3Y100         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[16]/C
+                         clock pessimism              0.336     5.954    
+                         clock uncertainty           -0.192     5.762    
+    SLICE_X3Y100         FDRE (Setup_fdre_C_D)        0.030     5.792    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[16]
+  -------------------------------------------------------------------
+                         required time                          5.792    
+                         arrival time                          -5.787    
+  -------------------------------------------------------------------
+                         slack                                  0.004    
+
+Slack (MET) :             0.006ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_v1/u_input/header_q_reg[68]/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_v1/u_input/session_q_reg[8]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.366ns  (logic 2.214ns (34.777%)  route 4.152ns (65.223%))
+  Logic Levels:           12  (CARRY4=6 LUT3=3 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.070ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.006ns = ( 5.661 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.533ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.646    -0.533    u_video/u_pipeline/u_application/u_v1/u_input/cc
+    SLICE_X10Y57         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_input/header_q_reg[68]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X10Y57         FDRE (Prop_fdre_C_Q)         0.433    -0.100 f  u_video/u_pipeline/u_application/u_v1/u_input/header_q_reg[68]/Q
+                         net (fo=1, routed)           0.538     0.437    u_video/u_pipeline/u_application/u_v1/u_input/header_q_reg_n_0_[68]
+    SLICE_X9Y58          LUT3 (Prop_lut3_I0_O)        0.105     0.542 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_45/O
+                         net (fo=1, routed)           0.000     0.542    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_45_n_0
+    SLICE_X9Y58          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     0.999 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_38/CO[3]
+                         net (fo=1, routed)           0.000     0.999    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_38_n_0
+    SLICE_X9Y59          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.097 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_33/CO[3]
+                         net (fo=1, routed)           0.000     1.097    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_33_n_0
+    SLICE_X9Y60          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.195 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_28/CO[3]
+                         net (fo=1, routed)           0.000     1.195    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_28_n_0
+    SLICE_X9Y61          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.293 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_23/CO[3]
+                         net (fo=1, routed)           0.000     1.293    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_23_n_0
+    SLICE_X9Y62          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.391 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_20/CO[3]
+                         net (fo=1, routed)           0.000     1.391    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_20_n_0
+    SLICE_X9Y63          CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.132     1.523 f  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_17/CO[1]
+                         net (fo=1, routed)           0.502     2.026    u_video/u_pipeline/u_application/u_v1/u_input/pipe_state_q224_in
+    SLICE_X14Y65         LUT6 (Prop_lut6_I0_O)        0.275     2.301 f  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_12/O
+                         net (fo=1, routed)           0.380     2.681    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_12_n_0
+    SLICE_X19Y70         LUT6 (Prop_lut6_I4_O)        0.105     2.786 r  u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_5/O
+                         net (fo=5, routed)           0.380     3.165    u_video/u_pipeline/u_application/u_v1/u_input/i___527_i_5_n_0
+    SLICE_X19Y73         LUT3 (Prop_lut3_I2_O)        0.105     3.270 f  u_video/u_pipeline/u_application/u_v1/u_input/i___7_i_1/O
+                         net (fo=15, routed)          1.116     4.387    u_video/u_pipeline/u_application/u_v1/u_input/i___7_i_1_n_0
+    SLICE_X41Y76         LUT5 (Prop_lut5_I3_O)        0.105     4.492 f  u_video/u_pipeline/u_application/u_v1/u_input/i___523/O
+                         net (fo=128, routed)         0.786     5.278    u_video/u_pipeline/u_application/u_v1/u_input/i___523_n_0
+    SLICE_X42Y70         LUT3 (Prop_lut3_I2_O)        0.105     5.383 r  u_video/u_pipeline/u_application/u_v1/u_input/session_q[8]_i_1/O
+                         net (fo=1, routed)           0.450     5.833    u_video/u_pipeline/u_application/u_v1/u_input/session_q[8]_i_1_n_0
+    SLICE_X41Y70         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_input/session_q_reg[8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.503     5.661    u_video/u_pipeline/u_application/u_v1/u_input/cc
+    SLICE_X41Y70         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_input/session_q_reg[8]/C
+                         clock pessimism              0.403     6.063    
+                         clock uncertainty           -0.192     5.871    
+    SLICE_X41Y70         FDRE (Setup_fdre_C_D)       -0.032     5.839    u_video/u_pipeline/u_application/u_v1/u_input/session_q_reg[8]
+  -------------------------------------------------------------------
+                         required time                          5.839    
+                         arrival time                          -5.833    
+  -------------------------------------------------------------------
+                         slack                                  0.006    
+
+Slack (MET) :             0.017ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_v1/u_serialize/payload_index_q_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_v1/u_result/offset_q_reg[14]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.353ns  (logic 1.663ns (26.175%)  route 4.690ns (73.825%))
+  Logic Levels:           7  (CARRY4=2 LUT2=1 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.092ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.051ns = ( 5.615 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.623ns
+    Clock Pessimism Removal (CPR):    0.336ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.556    -0.623    u_video/u_pipeline/u_application/u_v1/u_serialize/cc
+    SLICE_X53Y98         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_serialize/payload_index_q_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y98         FDRE (Prop_fdre_C_Q)         0.379    -0.244 r  u_video/u_pipeline/u_application/u_v1/u_serialize/payload_index_q_reg[5]/Q
+                         net (fo=2, routed)           0.791     0.547    u_video/u_pipeline/u_application/u_v1/u_serialize/payload_index_q_reg_n_0_[5]
+    SLICE_X53Y100        LUT6 (Prop_lut6_I5_O)        0.105     0.652 r  u_video/u_pipeline/u_application/u_v1/u_serialize/done_valid_q_i_15/O
+                         net (fo=1, routed)           0.000     0.652    u_video/u_pipeline/u_application/u_v1/u_serialize/done_valid_q_i_15_n_0
+    SLICE_X53Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     1.109 r  u_video/u_pipeline/u_application/u_v1/u_serialize/done_valid_q_reg_i_7/CO[3]
+                         net (fo=1, routed)           0.000     1.109    u_video/u_pipeline/u_application/u_v1/u_serialize/done_valid_q_reg_i_7_n_0
+    SLICE_X53Y101        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.132     1.241 r  u_video/u_pipeline/u_application/u_v1/u_serialize/done_valid_q_reg_i_2/CO[1]
+                         net (fo=11, routed)          0.553     1.794    u_video/u_pipeline/u_application/u_v1/u_serialize/state_q0
+    SLICE_X45Y100        LUT6 (Prop_lut6_I5_O)        0.275     2.069 r  u_video/u_pipeline/u_application/u_v1/u_serialize/last_ack_sequence_q[31]_i_3/O
+                         net (fo=4, routed)           0.928     2.997    u_video/u_pipeline/u_application/u_v1/u_result/desc_ready
+    SLICE_X23Y99         LUT6 (Prop_lut6_I2_O)        0.105     3.102 r  u_video/u_pipeline/u_application/u_v1/u_result/last_ack_sequence_q[31]_i_1/O
+                         net (fo=131, routed)         1.014     4.117    u_video/u_pipeline/u_application/u_v1/u_result/parser_q_reg[0]_2
+    SLICE_X8Y103         LUT5 (Prop_lut5_I0_O)        0.105     4.222 r  u_video/u_pipeline/u_application/u_v1/u_result/fill_q[15]_i_3/O
+                         net (fo=131, routed)         0.886     5.108    u_video/u_pipeline/u_application/u_v1/u_result/parser_q_reg[0]_0
+    SLICE_X6Y106         LUT2 (Prop_lut2_I1_O)        0.105     5.213 r  u_video/u_pipeline/u_application/u_v1/u_result/offset_q[14]_i_1/O
+                         net (fo=1, routed)           0.517     5.730    u_video/u_pipeline/u_application/u_v1/u_result/offset_q[14]_i_1_n_0
+    SLICE_X6Y104         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/offset_q_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.458     5.615    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X6Y104         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/offset_q_reg[14]/C
+                         clock pessimism              0.336     5.951    
+                         clock uncertainty           -0.192     5.759    
+    SLICE_X6Y104         FDRE (Setup_fdre_C_D)       -0.012     5.747    u_video/u_pipeline/u_application/u_v1/u_result/offset_q_reg[14]
+  -------------------------------------------------------------------
+                         required time                          5.747    
+                         arrival time                          -5.730    
+  -------------------------------------------------------------------
+                         slack                                  0.017    
+
+Slack (MET) :             0.021ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_window/acked_q_reg[71]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.485ns  (logic 1.616ns (24.919%)  route 4.869ns (75.081%))
+  Logic Levels:           8  (LUT4=1 LUT5=1 LUT6=5 MUXF7=1)
+  Clock Path Skew:        -0.042ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.060ns = ( 5.607 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.615ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.564    -0.615    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X106Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X106Y90        FDRE (Prop_fdre_C_Q)         0.379    -0.236 r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/Q
+                         net (fo=8, routed)           0.967     0.730    u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_n_0_repN
+    SLICE_X110Y97        LUT6 (Prop_lut6_I4_O)        0.105     0.835 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50/O
+                         net (fo=1, routed)           0.753     1.588    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50_n_0
+    SLICE_X115Y93        LUT6 (Prop_lut6_I2_O)        0.105     1.693 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17/O
+                         net (fo=1, routed)           0.656     2.349    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17_n_0
+    SLICE_X119Y93        LUT6 (Prop_lut6_I2_O)        0.105     2.454 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7/O
+                         net (fo=1, routed)           0.000     2.454    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7_n_0
+    SLICE_X119Y93        MUXF7 (Prop_muxf7_I1_O)      0.182     2.636 r  u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3/O
+                         net (fo=1, routed)           0.489     3.124    u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3_n_0
+    SLICE_X116Y93        LUT6 (Prop_lut6_I1_O)        0.252     3.376 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_1/O
+                         net (fo=51, routed)          0.629     4.005    u_video/u_pipeline/u_application/u_window/p_0_in41_out
+    SLICE_X114Y90        LUT4 (Prop_lut4_I1_O)        0.105     4.110 r  u_video/u_pipeline/u_application/u_window/sent_q[79]_i_3/O
+                         net (fo=32, routed)          0.808     4.918    u_video/u_pipeline/u_application/u_window/sent_q[79]_i_3_n_0
+    SLICE_X111Y87        LUT5 (Prop_lut5_I4_O)        0.108     5.026 f  u_video/u_pipeline/u_application/u_window/acked_q[71]_i_3/O
+                         net (fo=1, routed)           0.569     5.595    u_video/u_pipeline/u_application/u_window/acked_q[71]_i_3_n_0
+    SLICE_X108Y90        LUT6 (Prop_lut6_I3_O)        0.275     5.870 r  u_video/u_pipeline/u_application/u_window/acked_q[71]_i_1/O
+                         net (fo=1, routed)           0.000     5.870    u_video/u_pipeline/u_application/u_window/acked_q[71]_i_1_n_0
+    SLICE_X108Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/acked_q_reg[71]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.449     5.607    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X108Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/acked_q_reg[71]/C
+                         clock pessimism              0.403     6.009    
+                         clock uncertainty           -0.192     5.817    
+    SLICE_X108Y90        FDRE (Setup_fdre_C_D)        0.074     5.891    u_video/u_pipeline/u_application/u_window/acked_q_reg[71]
+  -------------------------------------------------------------------
+                         required time                          5.891    
+                         arrival time                          -5.870    
+  -------------------------------------------------------------------
+                         slack                                  0.021    
+
+Slack (MET) :             0.022ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[28]/D
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        6.367ns  (logic 2.695ns (42.327%)  route 3.672ns (57.673%))
+  Logic Levels:           16  (CARRY4=11 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.161ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.048ns = ( 5.618 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.551ns
+    Clock Pessimism Removal (CPR):    0.336ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.628    -0.551    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X37Y87         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y87         FDRE (Prop_fdre_C_Q)         0.348    -0.203 r  u_video/u_pipeline/u_application/u_v1/u_result/done_session_q_reg[4]/Q
+                         net (fo=1, routed)           0.930     0.727    u_video/u_pipeline/u_application/u_v1/u_result/done_session_q__0[4]
+    SLICE_X35Y87         LUT6 (Prop_lut6_I5_O)        0.242     0.969 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147/O
+                         net (fo=1, routed)           0.000     0.969    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_147_n_0
+    SLICE_X35Y87         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     1.426 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140/CO[3]
+                         net (fo=1, routed)           0.000     1.426    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_140_n_0
+    SLICE_X35Y88         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.524 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135/CO[3]
+                         net (fo=1, routed)           0.000     1.524    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_135_n_0
+    SLICE_X35Y89         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.622 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130/CO[3]
+                         net (fo=1, routed)           0.000     1.622    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_130_n_0
+    SLICE_X35Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.720 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125/CO[3]
+                         net (fo=1, routed)           0.000     1.720    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_125_n_0
+    SLICE_X35Y91         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.818 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120/CO[3]
+                         net (fo=1, routed)           0.000     1.818    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_120_n_0
+    SLICE_X35Y92         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     1.916 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115/CO[3]
+                         net (fo=1, routed)           0.000     1.916    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_115_n_0
+    SLICE_X35Y93         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.014 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109/CO[3]
+                         net (fo=1, routed)           0.000     2.014    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_109_n_0
+    SLICE_X35Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.112 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103/CO[3]
+                         net (fo=1, routed)           0.000     2.112    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_103_n_0
+    SLICE_X35Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.210 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76/CO[3]
+                         net (fo=1, routed)           0.000     2.210    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_76_n_0
+    SLICE_X35Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     2.308 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51/CO[3]
+                         net (fo=1, routed)           0.000     2.308    u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_51_n_0
+    SLICE_X35Y97         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.190     2.498 f  u_video/u_pipeline/u_application/u_v1/u_result/response_status_reg[4]_i_27/CO[2]
+                         net (fo=1, routed)           0.375     2.873    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q7
+    SLICE_X34Y97         LUT6 (Prop_lut6_I4_O)        0.261     3.134 r  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8/O
+                         net (fo=1, routed)           0.903     4.037    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_8_n_0
+    SLICE_X10Y96         LUT6 (Prop_lut6_I3_O)        0.105     4.142 f  u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0/O
+                         net (fo=7, routed)           0.374     4.517    u_video/u_pipeline/u_application/u_v1/u_result/response_status[4]_i_2__0_n_0
+    SLICE_X10Y95         LUT2 (Prop_lut2_I1_O)        0.105     4.622 r  u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6/O
+                         net (fo=98, routed)          1.089     5.711    u_video/u_pipeline/u_application/u_v1/u_result/reply_action_q[1]_i_6_n_0
+    SLICE_X2Y104         LUT4 (Prop_lut4_I3_O)        0.105     5.816 r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[28]_i_1__0/O
+                         net (fo=1, routed)           0.000     5.816    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset[28]_i_1__0_n_0
+    SLICE_X2Y104         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[28]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.461     5.618    u_video/u_pipeline/u_application/u_v1/u_result/cc
+    SLICE_X2Y104         FDRE                                         r  u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[28]/C
+                         clock pessimism              0.336     5.954    
+                         clock uncertainty           -0.192     5.762    
+    SLICE_X2Y104         FDRE (Setup_fdre_C_D)        0.076     5.838    u_video/u_pipeline/u_application/u_v1/u_result/response_next_offset_reg[28]
+  -------------------------------------------------------------------
+                         required time                          5.838    
+                         arrival time                          -5.816    
+  -------------------------------------------------------------------
+                         slack                                  0.022    
+
+Slack (MET) :             0.022ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_1/R
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        5.872ns  (logic 1.234ns (21.016%)  route 4.638ns (78.984%))
+  Logic Levels:           6  (LUT3=1 LUT6=4 MUXF7=1)
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.997ns = ( 5.670 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.615ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.564    -0.615    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X106Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X106Y90        FDRE (Prop_fdre_C_Q)         0.379    -0.236 r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/Q
+                         net (fo=8, routed)           0.967     0.730    u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_n_0_repN
+    SLICE_X110Y97        LUT6 (Prop_lut6_I4_O)        0.105     0.835 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50/O
+                         net (fo=1, routed)           0.753     1.588    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50_n_0
+    SLICE_X115Y93        LUT6 (Prop_lut6_I2_O)        0.105     1.693 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17/O
+                         net (fo=1, routed)           0.656     2.349    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17_n_0
+    SLICE_X119Y93        LUT6 (Prop_lut6_I2_O)        0.105     2.454 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7/O
+                         net (fo=1, routed)           0.000     2.454    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7_n_0
+    SLICE_X119Y93        MUXF7 (Prop_muxf7_I1_O)      0.182     2.636 f  u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3/O
+                         net (fo=1, routed)           0.489     3.124    u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3_n_0
+    SLICE_X116Y93        LUT6 (Prop_lut6_I1_O)        0.252     3.376 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_1/O
+                         net (fo=51, routed)          1.097     4.474    u_video/u_pipeline/u_application/u_window/p_0_in41_out
+    SLICE_X140Y90        LUT3 (Prop_lut3_I2_O)        0.106     4.580 r  u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0/O
+                         net (fo=47, routed)          0.677     5.256    u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0_n_0
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_1/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.512     5.670    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_1/C
+                         clock pessimism              0.403     6.072    
+                         clock uncertainty           -0.192     5.880    
+    SLICE_X140Y93        FDRE (Setup_fdre_C_R)       -0.601     5.279    u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_1
+  -------------------------------------------------------------------
+                         required time                          5.279    
+                         arrival time                          -5.256    
+  -------------------------------------------------------------------
+                         slack                                  0.022    
+
+Slack (MET) :             0.022ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_3/R
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        5.872ns  (logic 1.234ns (21.016%)  route 4.638ns (78.984%))
+  Logic Levels:           6  (LUT3=1 LUT6=4 MUXF7=1)
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.997ns = ( 5.670 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.615ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.564    -0.615    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X106Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X106Y90        FDRE (Prop_fdre_C_Q)         0.379    -0.236 r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/Q
+                         net (fo=8, routed)           0.967     0.730    u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_n_0_repN
+    SLICE_X110Y97        LUT6 (Prop_lut6_I4_O)        0.105     0.835 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50/O
+                         net (fo=1, routed)           0.753     1.588    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50_n_0
+    SLICE_X115Y93        LUT6 (Prop_lut6_I2_O)        0.105     1.693 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17/O
+                         net (fo=1, routed)           0.656     2.349    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17_n_0
+    SLICE_X119Y93        LUT6 (Prop_lut6_I2_O)        0.105     2.454 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7/O
+                         net (fo=1, routed)           0.000     2.454    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7_n_0
+    SLICE_X119Y93        MUXF7 (Prop_muxf7_I1_O)      0.182     2.636 f  u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3/O
+                         net (fo=1, routed)           0.489     3.124    u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3_n_0
+    SLICE_X116Y93        LUT6 (Prop_lut6_I1_O)        0.252     3.376 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_1/O
+                         net (fo=51, routed)          1.097     4.474    u_video/u_pipeline/u_application/u_window/p_0_in41_out
+    SLICE_X140Y90        LUT3 (Prop_lut3_I2_O)        0.106     4.580 r  u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0/O
+                         net (fo=47, routed)          0.677     5.256    u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0_n_0
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_3/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.512     5.670    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_3/C
+                         clock pessimism              0.403     6.072    
+                         clock uncertainty           -0.192     5.880    
+    SLICE_X140Y93        FDRE (Setup_fdre_C_R)       -0.601     5.279    u_video/u_pipeline/u_application/u_window/fill_q_reg[2]_replica_3
+  -------------------------------------------------------------------
+                         required time                          5.279    
+                         arrival time                          -5.256    
+  -------------------------------------------------------------------
+                         slack                                  0.022    
+
+Slack (MET) :             0.022ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_1/R
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        5.872ns  (logic 1.234ns (21.016%)  route 4.638ns (78.984%))
+  Logic Levels:           6  (LUT3=1 LUT6=4 MUXF7=1)
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.997ns = ( 5.670 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.615ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.564    -0.615    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X106Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X106Y90        FDRE (Prop_fdre_C_Q)         0.379    -0.236 r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/Q
+                         net (fo=8, routed)           0.967     0.730    u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_n_0_repN
+    SLICE_X110Y97        LUT6 (Prop_lut6_I4_O)        0.105     0.835 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50/O
+                         net (fo=1, routed)           0.753     1.588    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50_n_0
+    SLICE_X115Y93        LUT6 (Prop_lut6_I2_O)        0.105     1.693 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17/O
+                         net (fo=1, routed)           0.656     2.349    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17_n_0
+    SLICE_X119Y93        LUT6 (Prop_lut6_I2_O)        0.105     2.454 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7/O
+                         net (fo=1, routed)           0.000     2.454    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7_n_0
+    SLICE_X119Y93        MUXF7 (Prop_muxf7_I1_O)      0.182     2.636 f  u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3/O
+                         net (fo=1, routed)           0.489     3.124    u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3_n_0
+    SLICE_X116Y93        LUT6 (Prop_lut6_I1_O)        0.252     3.376 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_1/O
+                         net (fo=51, routed)          1.097     4.474    u_video/u_pipeline/u_application/u_window/p_0_in41_out
+    SLICE_X140Y90        LUT3 (Prop_lut3_I2_O)        0.106     4.580 r  u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0/O
+                         net (fo=47, routed)          0.677     5.256    u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0_n_0
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_1/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.512     5.670    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_1/C
+                         clock pessimism              0.403     6.072    
+                         clock uncertainty           -0.192     5.880    
+    SLICE_X140Y93        FDRE (Setup_fdre_C_R)       -0.601     5.279    u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_1
+  -------------------------------------------------------------------
+                         required time                          5.279    
+                         arrival time                          -5.256    
+  -------------------------------------------------------------------
+                         slack                                  0.022    
+
+Slack (MET) :             0.022ns  (required time - arrival time)
+  Source:                 u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_3/R
+                            (rising edge-triggered cell FDRE clocked by core_raw  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             core_raw
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (core_raw rise@6.667ns - core_raw rise@0.000ns)
+  Data Path Delay:        5.872ns  (logic 1.234ns (21.016%)  route 4.638ns (78.984%))
+  Logic Levels:           6  (LUT3=1 LUT6=4 MUXF7=1)
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.997ns = ( 5.670 - 6.667 ) 
+    Source Clock Delay      (SCD):    -0.615ns
+    Clock Pessimism Removal (CPR):    0.403ns
+  Clock Uncertainty:      0.192ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.171ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_raw rise edge)
+                                                      0.000     0.000 r  
+    W19                                               0.000     0.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     1.440 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     2.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.325    -3.819 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.559    -2.260    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081    -2.179 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.564    -0.615    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X106Y90        FDRE                                         r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X106Y90        FDRE (Prop_fdre_C_Q)         0.379    -0.236 r  u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_replica/Q
+                         net (fo=8, routed)           0.967     0.730    u_video/u_pipeline/u_application/u_window/next_q_reg[0]_rep__0_n_0_repN
+    SLICE_X110Y97        LUT6 (Prop_lut6_I4_O)        0.105     0.835 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50/O
+                         net (fo=1, routed)           0.753     1.588    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_50_n_0
+    SLICE_X115Y93        LUT6 (Prop_lut6_I2_O)        0.105     1.693 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17/O
+                         net (fo=1, routed)           0.656     2.349    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_17_n_0
+    SLICE_X119Y93        LUT6 (Prop_lut6_I2_O)        0.105     2.454 f  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7/O
+                         net (fo=1, routed)           0.000     2.454    u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_7_n_0
+    SLICE_X119Y93        MUXF7 (Prop_muxf7_I1_O)      0.182     2.636 f  u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3/O
+                         net (fo=1, routed)           0.489     3.124    u_video/u_pipeline/u_application/u_window/fill_bank_q_reg[6]_i_3_n_0
+    SLICE_X116Y93        LUT6 (Prop_lut6_I1_O)        0.252     3.376 r  u_video/u_pipeline/u_application/u_window/fill_bank_q[6]_i_1/O
+                         net (fo=51, routed)          1.097     4.474    u_video/u_pipeline/u_application/u_window/p_0_in41_out
+    SLICE_X140Y90        LUT3 (Prop_lut3_I2_O)        0.106     4.580 r  u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0/O
+                         net (fo=47, routed)          0.677     5.256    u_video/u_pipeline/u_application/u_window/fill_q[0]_i_1__0_n_0
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_3/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_raw rise edge)
+                                                      6.667     6.667 r  
+    W19                                               0.000     6.667 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.667    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     8.041 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     9.044    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.451     2.593 r  u_clocks/u_sys_mmcm/CLKOUT0
+                         net (fo=1, routed)           1.488     4.081    u_clocks/core_raw
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     4.158 r  u_clocks/u_core_clock/O
+                         net (fo=85970, routed)       1.512     5.670    u_video/u_pipeline/u_application/u_window/cc
+    SLICE_X140Y93        FDRE                                         r  u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_3/C
+                         clock pessimism              0.403     6.072    
+                         clock uncertainty           -0.192     5.880    
+    SLICE_X140Y93        FDRE (Setup_fdre_C_R)       -0.601     5.279    u_video/u_pipeline/u_application/u_window/fill_q_reg[3]_replica_3
+  -------------------------------------------------------------------
+                         required time                          5.279    
+                         arrival time                          -5.256    
+  -------------------------------------------------------------------
+                         slack                                  0.022    
+
+
+
+

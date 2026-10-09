@@ -1,0 +1,289 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 21:05:04 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_timing -fall_to rgmii_txctl -delay_type min -max_paths 4 -nworst 4 -path_type full_clock_expanded -file tx_rgmii_txd_3_min_fall.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.088ns  (arrival time - required time)
+  Source:                 u_io/u_tx/g_iob[3].u_ff/C
+                            (rising edge-triggered cell FDCE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            rgmii_txd[3]
+                            (output port clocked by rgmii_tx_forward  {rise@2.000ns fall@6.000ns period=8.000ns})
+  Path Group:             rgmii_tx_forward
+  Path Type:              Min at Slow Process Corner
+  Requirement:            -2.000ns  (rgmii_tx_forward fall@6.000ns - serialize_raw rise@8.000ns)
+  Data Path Delay:        3.169ns  (logic 3.168ns (99.968%)  route 0.001ns (0.032%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           -1.740ns
+  Clock Path Skew:        3.255ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.618ns = ( 8.618 - 6.000 ) 
+    Source Clock Delay      (SCD):    -1.079ns = ( 6.921 - 8.000 ) 
+    Clock Pessimism Removal (CPR):    0.442ns
+  Clock Uncertainty:      0.085ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.156ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      8.000     8.000 r  
+    W19                                               0.000     8.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     8.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     9.374 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004    10.378    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.451     3.926 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           1.488     5.414    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     5.491 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          1.430     6.921    u_io/u_tx/CLK
+    OLOGIC_X0Y125        FDCE                                         r  u_io/u_tx/g_iob[3].u_ff/C
+  -------------------------------------------------------------------    -------------------
+    OLOGIC_X0Y125        FDCE (Prop_fdce_C_Q)         0.397     7.318 f  u_io/u_tx/g_iob[3].u_ff/Q
+                         net (fo=1, routed)           0.001     7.319    rgmii_txd_OBUF[3]
+    W20                  OBUF (Prop_obuf_I_O)         2.771    10.090 f  rgmii_txd_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    10.090    rgmii_txd[3]
+    W20                                                               f  rgmii_txd[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock rgmii_tx_forward fall edge)
+                                                      6.000     6.000 f  
+    W19                                               0.000     6.000 f  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     7.440 f  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     8.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.325     2.181 f  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           1.559     3.740    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     3.821 f  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          1.574     5.394    u_io/u_tx/CLK
+    OLOGIC_X0Y130        ODDR (Prop_oddr_C_Q)         0.418     5.812 f  u_io/u_tx/u_forward/Q
+                         net (fo=1, routed)           0.001     5.813    rgmii_txc_OBUF
+    AB21                 OBUF (Prop_obuf_I_O)         2.805     8.618 f  rgmii_txc_OBUF_inst/O
+                         net (fo=0)                   0.000     8.618    rgmii_txc
+    AB21                                                              f  rgmii_txc (OUT)
+                         clock pessimism             -0.442     8.177    
+                         clock uncertainty            0.085     8.262    
+                         output delay                 1.740    10.002    
+  -------------------------------------------------------------------
+                         required time                        -10.002    
+                         arrival time                          10.090    
+  -------------------------------------------------------------------
+                         slack                                  0.088    
+
+Slack (MET) :             0.088ns  (arrival time - required time)
+  Source:                 u_io/u_tx/g_iob[3].u_ff/C
+                            (rising edge-triggered cell FDCE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            rgmii_txd[3]
+                            (output port clocked by rgmii_tx_forward  {rise@2.000ns fall@6.000ns period=8.000ns})
+  Path Group:             rgmii_tx_forward
+  Path Type:              Min at Slow Process Corner
+  Requirement:            -2.000ns  (rgmii_tx_forward rise@2.000ns - serialize_raw rise@4.000ns)
+  Data Path Delay:        3.169ns  (logic 3.168ns (99.968%)  route 0.001ns (0.032%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           -1.740ns
+  Clock Path Skew:        3.255ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.618ns = ( 4.618 - 2.000 ) 
+    Source Clock Delay      (SCD):    -1.079ns = ( 2.921 - 4.000 ) 
+    Clock Pessimism Removal (CPR):    0.442ns
+  Clock Uncertainty:      0.085ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.156ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      4.000     4.000 r  
+    W19                                               0.000     4.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     4.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.374     5.374 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.004     6.378    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.451    -0.074 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           1.488     1.414    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     1.491 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          1.430     2.921    u_io/u_tx/CLK
+    OLOGIC_X0Y125        FDCE                                         r  u_io/u_tx/g_iob[3].u_ff/C
+  -------------------------------------------------------------------    -------------------
+    OLOGIC_X0Y125        FDCE (Prop_fdce_C_Q)         0.397     3.318 f  u_io/u_tx/g_iob[3].u_ff/Q
+                         net (fo=1, routed)           0.001     3.319    rgmii_txd_OBUF[3]
+    W20                  OBUF (Prop_obuf_I_O)         2.771     6.090 f  rgmii_txd_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     6.090    rgmii_txd[3]
+    W20                                                               f  rgmii_txd[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock rgmii_tx_forward rise edge)
+                                                      2.000     2.000 f  
+    W19                                               0.000     2.000 f  sys_clk50 (IN)
+                         net (fo=0)                   0.000     2.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         1.440     3.440 f  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           1.065     4.505    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.325    -1.819 f  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           1.559    -0.260    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -0.179 f  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          1.574     1.394    u_io/u_tx/CLK
+    OLOGIC_X0Y130        ODDR (Prop_oddr_C_Q)         0.418     1.812 r  u_io/u_tx/u_forward/Q
+                         net (fo=1, routed)           0.001     1.813    rgmii_txc_OBUF
+    AB21                 OBUF (Prop_obuf_I_O)         2.805     4.618 r  rgmii_txc_OBUF_inst/O
+                         net (fo=0)                   0.000     4.618    rgmii_txc
+    AB21                                                              r  rgmii_txc (OUT)
+                         clock pessimism             -0.442     4.177    
+                         clock uncertainty            0.085     4.262    
+                         output delay                 1.740     6.002    
+  -------------------------------------------------------------------
+                         required time                         -6.002    
+                         arrival time                           6.090    
+  -------------------------------------------------------------------
+                         slack                                  0.088    
+
+Slack (MET) :             0.114ns  (arrival time - required time)
+  Source:                 u_io/u_tx/g_iob[3].u_ff/C
+                            (rising edge-triggered cell FDCE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            rgmii_txd[3]
+                            (output port clocked by rgmii_tx_forward  {rise@2.000ns fall@6.000ns period=8.000ns})
+  Path Group:             rgmii_tx_forward
+  Path Type:              Min at Fast Process Corner
+  Requirement:            -2.000ns  (rgmii_tx_forward fall@6.000ns - serialize_raw rise@8.000ns)
+  Data Path Delay:        1.563ns  (logic 1.562ns (99.936%)  route 0.001ns (0.064%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           -1.740ns
+  Clock Path Skew:        1.623ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.736ns = ( 6.736 - 6.000 ) 
+    Source Clock Delay      (SCD):    -0.634ns = ( 7.366 - 8.000 ) 
+    Clock Pessimism Removal (CPR):    -0.253ns
+  Clock Uncertainty:      0.085ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.156ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      8.000     8.000 r  
+    W19                                               0.000     8.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     8.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     8.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     8.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560     6.157 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545     6.701    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     6.727 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.639     7.366    u_io/u_tx/CLK
+    OLOGIC_X0Y125        FDCE                                         r  u_io/u_tx/g_iob[3].u_ff/C
+  -------------------------------------------------------------------    -------------------
+    OLOGIC_X0Y125        FDCE (Prop_fdce_C_Q)         0.177     7.543 f  u_io/u_tx/g_iob[3].u_ff/Q
+                         net (fo=1, routed)           0.001     7.544    rgmii_txd_OBUF[3]
+    W20                  OBUF (Prop_obuf_I_O)         1.385     8.929 f  rgmii_txd_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     8.929    rgmii_txd[3]
+    W20                                                               f  rgmii_txd[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock rgmii_tx_forward fall edge)
+                                                      6.000     6.000 f  
+    W19                                               0.000     6.000 f  sys_clk50 (IN)
+                         net (fo=0)                   0.000     6.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     6.465 f  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     6.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355     3.590 f  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595     4.185    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     4.214 f  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.915     5.128    u_io/u_tx/CLK
+    OLOGIC_X0Y130        ODDR (Prop_oddr_C_Q)         0.204     5.332 f  u_io/u_tx/u_forward/Q
+                         net (fo=1, routed)           0.001     5.333    rgmii_txc_OBUF
+    AB21                 OBUF (Prop_obuf_I_O)         1.403     6.736 f  rgmii_txc_OBUF_inst/O
+                         net (fo=0)                   0.000     6.736    rgmii_txc
+    AB21                                                              f  rgmii_txc (OUT)
+                         clock pessimism              0.253     6.989    
+                         clock uncertainty            0.085     7.075    
+                         output delay                 1.740     8.815    
+  -------------------------------------------------------------------
+                         required time                         -8.815    
+                         arrival time                           8.929    
+  -------------------------------------------------------------------
+                         slack                                  0.114    
+
+Slack (MET) :             0.114ns  (arrival time - required time)
+  Source:                 u_io/u_tx/g_iob[3].u_ff/C
+                            (rising edge-triggered cell FDCE clocked by serialize_raw  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            rgmii_txd[3]
+                            (output port clocked by rgmii_tx_forward  {rise@2.000ns fall@6.000ns period=8.000ns})
+  Path Group:             rgmii_tx_forward
+  Path Type:              Min at Fast Process Corner
+  Requirement:            -2.000ns  (rgmii_tx_forward rise@2.000ns - serialize_raw rise@4.000ns)
+  Data Path Delay:        1.563ns  (logic 1.562ns (99.936%)  route 0.001ns (0.064%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           -1.740ns
+  Clock Path Skew:        1.623ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.736ns = ( 2.736 - 2.000 ) 
+    Source Clock Delay      (SCD):    -0.634ns = ( 3.366 - 4.000 ) 
+    Clock Pessimism Removal (CPR):    -0.253ns
+  Clock Uncertainty:      0.085ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.156ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock serialize_raw rise edge)
+                                                      4.000     4.000 r  
+    W19                                               0.000     4.000 r  sys_clk50 (IN)
+                         net (fo=0)                   0.000     4.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.277     4.277 r  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.440     4.717    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -2.560     2.157 r  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.545     2.701    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     2.727 r  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.639     3.366    u_io/u_tx/CLK
+    OLOGIC_X0Y125        FDCE                                         r  u_io/u_tx/g_iob[3].u_ff/C
+  -------------------------------------------------------------------    -------------------
+    OLOGIC_X0Y125        FDCE (Prop_fdce_C_Q)         0.177     3.543 f  u_io/u_tx/g_iob[3].u_ff/Q
+                         net (fo=1, routed)           0.001     3.544    rgmii_txd_OBUF[3]
+    W20                  OBUF (Prop_obuf_I_O)         1.385     4.929 f  rgmii_txd_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     4.929    rgmii_txd[3]
+    W20                                                               f  rgmii_txd[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock rgmii_tx_forward rise edge)
+                                                      2.000     2.000 f  
+    W19                                               0.000     2.000 f  sys_clk50 (IN)
+                         net (fo=0)                   0.000     2.000    u_clocks/sys_clk50
+    W19                  IBUF (Prop_ibuf_I_O)         0.465     2.465 f  u_clocks/u_sys_input/O
+                         net (fo=2, routed)           0.480     2.945    u_clocks/sys_in
+    MMCME2_ADV_X0Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -3.355    -0.410 f  u_clocks/u_sys_mmcm/CLKOUT3
+                         net (fo=1, routed)           0.595     0.185    u_clocks/serialize_raw
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     0.214 f  u_clocks/u_serialize_clock/O
+                         net (fo=14, routed)          0.915     1.128    u_io/u_tx/CLK
+    OLOGIC_X0Y130        ODDR (Prop_oddr_C_Q)         0.204     1.332 r  u_io/u_tx/u_forward/Q
+                         net (fo=1, routed)           0.001     1.333    rgmii_txc_OBUF
+    AB21                 OBUF (Prop_obuf_I_O)         1.403     2.736 r  rgmii_txc_OBUF_inst/O
+                         net (fo=0)                   0.000     2.736    rgmii_txc
+    AB21                                                              r  rgmii_txc (OUT)
+                         clock pessimism              0.253     2.989    
+                         clock uncertainty            0.085     3.075    
+                         output delay                 1.740     4.815    
+  -------------------------------------------------------------------
+                         required time                         -4.815    
+                         arrival time                           4.929    
+  -------------------------------------------------------------------
+                         slack                                  0.114    
+
+
+
+

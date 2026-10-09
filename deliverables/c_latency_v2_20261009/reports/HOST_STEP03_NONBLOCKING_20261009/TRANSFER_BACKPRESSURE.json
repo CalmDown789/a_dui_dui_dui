@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "begin_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\backpressure_runs\\1791539155413933300\\begin_once",
+      "network_retries": 0
+    },
+    {
+      "case": "input_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\backpressure_runs\\1791539155413933300\\input_once",
+      "network_retries": 0
+    },
+    {
+      "case": "proof_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\backpressure_runs\\1791539155413933300\\proof_once",
+      "network_retries": 0
+    },
+    {
+      "case": "final_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\backpressure_runs\\1791539155413933300\\final_once",
+      "network_retries": 0
+    },
+    {
+      "case": "final_stalled",
+      "status": "PASS",
+      "transfer_success": false,
+      "releases": 0,
+      "error": "TransportSendDeadlineError('nonblocking send deadline')",
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\backpressure_runs\\1791539155413933300\\final_stalled",
+      "network_retries": 0
+    }
+  ],
+  "scope": "MEMORY_PEER_LOCAL_TX_STALL_NOT_OS_OR_BOARD",
+  "socket_created": false,
+  "source_sha256": {
+    "check_transfer_backpressure.py": "92a5e83ca20c96fa0fafbf56b02e982bf29bfe12541bfe4b92411d757bcb3017",
+    "streaming_client.py": "de500251525df945b1186d70590a266ac18dc883d831056b588ef826a5fc002f",
+    "nonblocking_io.py": "de9064ec504179d6449c8a77cc412d0c1ed7b3be389ab900f67560db9f1b5e3e",
+    "transport_fixture.py": "2bfbb83857ebf6a8c80aa6fe547bc3191d90f56ae86b5e0675984b0867fb42dd",
+    "host_regression_adapted.py": "4fc0dc38b89bbb8d3a51efdb69843ff97b8953b34615fdd0b93114214e5dbc31"
+  }
+}

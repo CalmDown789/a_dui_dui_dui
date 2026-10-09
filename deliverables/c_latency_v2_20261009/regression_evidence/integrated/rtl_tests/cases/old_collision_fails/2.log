@@ -1,0 +1,47 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: E:/AMDTools2025/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --debug typical --mt off tb_duplicate_suppression -s snapshot 
+Turned off multi-threading.
+ERROR: [XSIM 43-3294] Signal EXCEPTION_ACCESS_VIOLATION received.
+Printing stacktrace...
+
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'desc_status' remains unconnected for this instance [C:/t6int09/validation/rtl_tests/cases/old_collision_fails/tb_duplicate_suppression.sv:13]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.evf2_result_window(OUTPUT_BYTES=...
+Compiling module work.tb_duplicate_suppression
+[0] (KiUserExceptionDispatcher+0x2e) [0x7fff89fe4e3e]
+[1]  [0x7ffe33e02769]
+[2]  [0x7ffe3405cd52]
+[3]  [0xa10]
+[4]  [0x2e]
+[5]  [0x7ffe33e418c8]
+[6] (gapfnScSendMessage+0x14a70) [0x7fff89828ca0]
+[7]  [0x7ffe33e4a670]
+[8]  [0x7fff89e7009a]
+[9]  [0x5]
+[10]  [0x87]
+
+Done
+ERROR: [XSIM 43-3294] Signal EXCEPTION_ACCESS_VIOLATION received.
+Printing stacktrace...
+
+[0]  [0x7fff89fe4e3e]
+[1]  [0x7ffe33e02769]
+[2]  [0x7ffe3405cd52]
+[3]  [0xa48]
+[4]  [0x2f]
+[5]  [0x7ffe33e418f0]
+[6]  [0x7ffe33e492c0]
+[7]  [0x7ffe33e4a710]
+[8]  [0x7ffe33e0ef7f]
+[9]  [0x5]
+[10]  [0x87]
+
+Done
+Built simulation snapshot snapshot

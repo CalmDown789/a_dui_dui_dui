@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "ready_rx_no_select_or_settimeout",
+      "status": "PASS",
+      "max_rx": 4
+    },
+    {
+      "case": "batch_time_budget_cooperative",
+      "status": "PASS",
+      "max_batch": 2,
+      "read_syscall_model_ns": 50000
+    },
+    {
+      "case": "would_block_waits_for_readable",
+      "status": "PASS"
+    },
+    {
+      "case": "absolute_receive_timeout_not_transport_poison",
+      "status": "PASS"
+    },
+    {
+      "case": "early_readiness_return_not_response_loss",
+      "status": "PASS"
+    },
+    {
+      "case": "tx_would_block_bounded_rx_fifo_and_single_journal_tx",
+      "status": "PASS",
+      "send_calls": 2
+    },
+    {
+      "case": "tx_stall_fatal_not_network_retry",
+      "status": "PASS"
+    },
+    {
+      "case": "partial_send",
+      "status": "PASS"
+    },
+    {
+      "case": "hard_socket_error",
+      "status": "PASS"
+    },
+    {
+      "case": "journal_failure_prevents_send",
+      "status": "PASS"
+    },
+    {
+      "case": "rx_journal_failure_prevents_validation",
+      "status": "PASS"
+    },
+    {
+      "case": "spurious_readiness_bounded_no_busy_loop",
+      "status": "PASS"
+    },
+    {
+      "case": "spurious_writable_bounded_no_busy_loop",
+      "status": "PASS"
+    },
+    {
+      "case": "frame_deadline_checked_before_buffered_packet",
+      "status": "PASS"
+    },
+    {
+      "case": "occupied_tx_slot_rejects_reentrant_submission",
+      "status": "PASS"
+    },
+    {
+      "case": "proof_timer_serviced_during_rx_flood",
+      "status": "PASS",
+      "model_ack_delay_ns": 1000000
+    },
+    {
+      "case": "absolute_input_retry_under_unrelated_flood",
+      "status": "PASS",
+      "model_elapsed_ns": 2000000
+    },
+    {
+      "case": "absolute_negotiation_deadline_no_begin_on_failure",
+      "status": "PASS",
+      "model_elapsed_ns": 3050000
+    },
+    {
+      "case": "early_ack_wakeup_not_flush_or_retry",
+      "status": "PASS"
+    },
+    {
+      "case": "stale_cross_frame_timer_cleared_before_wait",
+      "status": "PASS"
+    },
+    {
+      "case": "buffered_reply_cannot_complete_unsent_control",
+      "status": "PASS"
+    }
+  ],
+  "scope": "DETERMINISTIC_MODEL_CLOCK_INJECTED_TRANSPORT_NOT_OS_OR_BOARD_TIMING",
+  "board_io": false,
+  "socket_created": false,
+  "batch_packets_default": 32,
+  "batch_budget_ns_default": 200000,
+  "max_pending_tx": 1,
+  "run_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP03_NONBLOCKING_20261009\\validation\\scheduler_runs\\1791538897986799500",
+  "source_sha256": {
+    "check_nonblocking.py": "f7feef32de7b40c953836f9cc4968b35ead0602626357cb33cdb70e780bfba81",
+    "streaming_client.py": "de500251525df945b1186d70590a266ac18dc883d831056b588ef826a5fc002f",
+    "nonblocking_io.py": "de9064ec504179d6449c8a77cc412d0c1ed7b3be389ab900f67560db9f1b5e3e"
+  }
+}

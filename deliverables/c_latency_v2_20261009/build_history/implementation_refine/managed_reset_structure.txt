@@ -1,0 +1,4 @@
+u_clocks/bad_sync_reg REF=FDPE ASYNC_REG=TRUE CE=VCC PRE=u_clocks/bad_sync[1]_i_1/O D0=u_clocks/GND/G D1=u_clocks/bad_sync_reg[0]/Q CLOCK=u_clocks/u_core_clock/O
+u_io/u_tx/release_sync_reg REF=FDPE ASYNC_REG=TRUE CE=VCC PRE=u_clocks/startup_reset_reg/Q D0=u_io/u_tx/GND/G D1=u_io/u_tx/release_sync_reg[0]/Q CLOCK=u_clocks/u_serialize_clock/O
+u_clocks/reference_bad_reg REF=FDPE ASYNC_REG=TRUE CE=VCC PRE=u_clocks/reference_bad[1]_i_1/O D0=u_clocks/GND/G D1=u_clocks/reference_bad_reg[0]/Q CLOCK=u_clocks/u_ref_clock/O
+RDY ASYNC_REG=TRUE CE=VCC D0=u_clocks/u_delay_control/RDY D1=u_clocks/delay_ready_sync_reg[0]/Q

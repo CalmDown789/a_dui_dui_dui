@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "NO_SOCKET_OUTPUT_RECEIVER_WINDOW_TIMER_AND_INPUT_NOT_READY_EDGE_CHECKS",
+  "checks": {
+    "window_128_upper_boundary_and_retired_proofs": true,
+    "byte_changed_duplicate_rejected": true,
+    "completed_output_commit": true,
+    "input_before_begin_returns_not_ready_24": true,
+    "early_ack_timer_wait_does_not_retry_or_flush": true,
+    "stale_cross_frame_timer_clears_then_waits": true
+  },
+  "source_sha256": {
+    "streaming_client.py": "64ec6ef03d82c55de7206952d6cd841b44c0c760246ce5113092582fea26952c",
+    "stream_receiver.py": "01ad242bafe965592663f6462fb31cb479c17c53fea9015ff1090bdd9727a23e",
+    "timing_diagnostics.py": "020355f18b4ed2bb62630e69c5e7f4938309fc140b64fd1297a273a93aed92b6",
+    "video_protocol.py": "2302658b57a6b79f6c9ec0546edf983d01b73ada9bcd37d1e2418f412080c326"
+  }
+}

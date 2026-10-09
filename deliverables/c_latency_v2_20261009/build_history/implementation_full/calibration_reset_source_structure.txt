@@ -1,0 +1,10 @@
+SOURCE=u_clocks/delay_control_reset_reg REF=FDPE INIT=1'b1 C=u_clocks/u_ref_clock/O PRE=u_clocks/reference_bad_reg[1]/Q
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_control_reset_reg/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_ready_sync_reg[1]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/calibration_was_ready_reg/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[5]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[4]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[2]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[0]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[1]/C
+REF_DOMAIN_D_CE_SOURCE=u_clocks/delay_reset_count_reg[3]/C

@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "timing_mode": "sampled",
+  "cases": [
+    {
+      "case": "begin_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\backpressure_runs\\1791544396998721900\\begin_once",
+      "network_retries": 0
+    },
+    {
+      "case": "input_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\backpressure_runs\\1791544396998721900\\input_once",
+      "network_retries": 0
+    },
+    {
+      "case": "proof_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\backpressure_runs\\1791544396998721900\\proof_once",
+      "network_retries": 0
+    },
+    {
+      "case": "final_once",
+      "status": "PASS",
+      "transfer_success": true,
+      "releases": 2,
+      "error": null,
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\backpressure_runs\\1791544396998721900\\final_once",
+      "network_retries": 0
+    },
+    {
+      "case": "final_stalled",
+      "status": "PASS",
+      "transfer_success": false,
+      "releases": 0,
+      "error": "TransportSendDeadlineError('nonblocking send deadline')",
+      "write_stall_attempts": 1,
+      "max_rx_buffer": 6,
+      "raw_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\backpressure_runs\\1791544396998721900\\final_stalled",
+      "network_retries": 0
+    }
+  ],
+  "scope": "MEMORY_PEER_LOCAL_TX_STALL_NOT_OS_OR_BOARD",
+  "socket_created": false,
+  "source_sha256": {
+    "check_transfer_backpressure.py": "bb23e93e66ddeb323e4d1680757bf1c842f433eed6bfc222f110d97822dacaed",
+    "streaming_client.py": "64ec6ef03d82c55de7206952d6cd841b44c0c760246ce5113092582fea26952c",
+    "nonblocking_io.py": "b6d3010ec9e2cedfe834ec9113dad4d1be17318d1a3199e77f81293e8aed653b",
+    "transport_fixture.py": "15504c215355abf19f16a0eccb6269dc75edc6ff0281a77935bb9f64629d1247",
+    "host_regression_adapted.py": "f45331de99c18dbd6e3db3e78507faf4e866b9d92d74d78ee5658f9ce05e0f2f",
+    "timing_diagnostics.py": "020355f18b4ed2bb62630e69c5e7f4938309fc140b64fd1297a273a93aed92b6",
+    "binary_journal.py": "dee4425087b010cca83bb81a0f465717d2d94adcf7bf6dddd2b98954e9947fae"
+  }
+}

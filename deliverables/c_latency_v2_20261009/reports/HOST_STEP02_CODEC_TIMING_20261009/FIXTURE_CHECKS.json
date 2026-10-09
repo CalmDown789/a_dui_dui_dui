@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "model": "original",
+      "initial_packets": 128,
+      "ack_entries": 32,
+      "packets_added_after_ack": 128,
+      "remaining_queue": 224,
+      "duplicate_queued_sequences": 96
+    },
+    {
+      "model": "corrected",
+      "initial_packets": 128,
+      "ack_entries": 32,
+      "packets_added_after_ack": 32,
+      "remaining_queue": 128,
+      "duplicate_queued_sequences": 0
+    }
+  ],
+  "corrected_atomic_invalid_batch": true,
+  "corrected_rejects_unsent_or_wrong_source": true,
+  "corrected_retry_only_pending": true,
+  "corrected_retired_proof_does_not_send_or_retire_new_packet": true,
+  "scope": "SYNTHETIC_FIXTURE_ONLY_NOT_RTL_OR_NETWORK_TIMING",
+  "board_io": false
+}

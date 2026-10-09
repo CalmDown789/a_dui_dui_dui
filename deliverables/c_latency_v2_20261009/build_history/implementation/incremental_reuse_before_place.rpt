@@ -1,0 +1,176 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:18:58 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_incremental_reuse -file incremental_reuse_before_place.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : xc7a200t
+| Design State : Unknown
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Incremental Implementation Information
+
+Table of Contents
+-----------------
+1. Incremental Flow Summary
+2. Reuse Summary
+3. Reference Checkpoint Information
+4. Comparison with Reference Run
+5. Optimization Comparison With Reference Run
+5.1 iphys_opt_replay Optimizations
+5.2 QoR Suggestion Optimizations
+6. Command Comparison with Reference Run
+6.1 Reference:
+6.2 Incremental:
+7. Non Reuse Information
+
+1. Incremental Flow Summary
+---------------------------
+
++-----------------------+---------------+
+|    Flow Information   |     Value     |
++-----------------------+---------------+
+| Synthesis Flow        |       Default |
+| Auto Incremental      |            No |
+| Incremental Directive | TimingClosure |
+| Target WNS            |           0.0 |
+| QoR Suggestions       |             0 |
++-----------------------+---------------+
+
+
+2. Reuse Summary
+----------------
+
++-------+----------------------+----------------------------+--------------------+--------+
+|  Type | Matched % (of Total) | Current Reuse % (of Total) | Fixed % (of Total) |  Total |
++-------+----------------------+----------------------------+--------------------+--------+
+| Cells |                95.60 |                      95.21 |               0.03 | 142076 |
+| Nets  |                84.64 |                      80.41 |               0.00 | 113850 |
+| Pins  |                    - |                      83.77 |                  - | 545307 |
+| Ports |               100.00 |                     100.00 |             100.00 |     26 |
++-------+----------------------+----------------------------+--------------------+--------+
+
+
+3. Reference Checkpoint Information
+-----------------------------------
+
++----------------+----------------------------------------------------------+
+| DCP Location:  | C:/t6int09/main/implementation/incremental_reference.dcp |
++----------------+----------------------------------------------------------+
+
+
++--------------------------------+----------------------------+
+|         DCP Information        |            Value           |
++--------------------------------+----------------------------+
+| Vivado Version                 |                     2025.2 |
+| DCP State                      |                 POST_ROUTE |
+| Recorded WNS                   |                      0.009 |
+| Recorded WHS                   |                      0.050 |
+| Reference Speed File Version   | PRODUCTION 1.23 2018-06-13 |
+| Incremental Speed File Version | PRODUCTION 1.23 2018-06-13 |
++--------------------------------+----------------------------+
+* Recorded WNS/WHS timing numbers are estimated timing numbers. They may vary slightly from sign-off timing numbers.
+
+
+4. Comparison with Reference Run
+--------------------------------
+
++-----------------+---------------------------+---------------------------+---------------------------+
+|                 |          WNS(ns)          |  Runtime(elapsed)(hh:mm)  |    Runtime(cpu)(hh:mm)    |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|      Stage      |  Reference  | Incremental |  Reference  | Incremental |  Reference  | Incremental |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+| synth_design    |             |             |       00:03 |       00:05 |       00:03 |       00:05 |
+| opt_design      |             |             |     < 1 min |     < 1 min |       00:01 |       00:01 |
+| read_checkpoint |             |             |             |       00:16 |             |       00:19 |
+| place_design    |      -0.598 |             |       00:06 |             |       00:24 |             |
+| phys_opt_design |      -0.202 |             |       00:05 |             |       00:36 |             |
+| route_design    |      -0.245 |             |       00:05 |             |       00:15 |             |
+| phys_opt_design |       0.001 |             |       00:03 |             |       00:09 |             |
+| route_design    |      -0.067 |             |       00:02 |             |       00:12 |             |
+| phys_opt_design |      -0.067 |             |     < 1 min |             |       00:01 |             |
+| route_design    |      -0.067 |             |       00:07 |             |       00:31 |             |
+| route_design    |       0.009 |             |       00:02 |             |       00:13 |             |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+5. Optimization Comparison With Reference Run
+---------------------------------------------
+
+5.1 iphys_opt_replay Optimizations
+----------------------------------
+
++-------------------------+--------+------------+
+| iphys_opt_design replay | Reused | Not Reused |
++-------------------------+--------+------------+
+| hold_fix                |     14 |          0 |
+| restruct_opt            |      0 |          1 |
+| critical_cell_opt       |     25 |          3 |
+| fanout_opt              |     25 |          1 |
+| dsp_register_opt        |     10 |          0 |
++-------------------------+--------+------------+
+
+
+5.2 QoR Suggestion Optimizations
+--------------------------------
+
++-------------------------------------+-------+
+|           QoR Suggestions           | Value |
++-------------------------------------+-------+
+| QoR Suggestions (Recommended)       |     0 |
+|   Suggestions Included In Reference |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+|   New Suggestions (INCR_FRIENDLY=1) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| QoR Suggestions (Not Recommended)   |     0 |
+|   New Suggestions (INCR_FRIENDLY=0) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| Disabled New Suggestions            |     0 |
++-------------------------------------+-------+
+
+
+6. Command Comparison with Reference Run
+----------------------------------------
+
+6.1 Reference:
+--------------
+synth_design-define default::[not_specified] -verilog_define default::[not_specified]C_USE_B_REAL -vhdl_define default::[not_specified] -top  ethernet_rgmii_managed_video -part  xc7a200tfbg484-2 
+opt_design
+place_design
+phys_opt_design -directive AggressiveExplore
+route_design
+phys_opt_design -directive AggressiveExplore
+route_design
+phys_opt_design -directive AggressiveExplore
+route_design -directive Explore
+route_design -preserve -timing_summary
+
+6.2 Incremental:
+----------------
+synth_design-define default::[not_specified] -verilog_define default::[not_specified]C_USE_B_REAL -vhdl_define default::[not_specified] -top  ethernet_rgmii_managed_video -part  xc7a200tfbg484-2 
+opt_design
+read_checkpoint -directive TimingClosure  -incremental C:/t6int09/main/implementation/incremental_reference.dcp
+
+7. Non Reuse Information
+------------------------
+
++------------------------------------------------------+-------+
+|                         Type                         |   %   |
++------------------------------------------------------+-------+
+| Non-Reused Cells                                     |  4.78 |
+|   New                                                |  3.93 |
+|   Discarded illegal placement due to netlist changes |  0.82 |
+|   Discarded to improve timing                        |  0.03 |
+| Partially reused nets                                |  2.03 |
+| Non-Reused nets                                      | 17.55 |
+| Non-Reused Ports                                     |  0.00 |
++------------------------------------------------------+-------+
+
+

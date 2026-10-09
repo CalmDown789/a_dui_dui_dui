@@ -1,0 +1,41 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:01:49 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_clock_interaction -file clock_interaction_synth.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Interaction Report
+
+Clock Interaction Table
+-----------------------
+
+                                    WNS                             TNS Failing  TNS Total    WNS Path         Clock-Pair           Inter-Clock              
+From Clock        To Clock          Clock Edges   WNS(ns)  TNS(ns)    Endpoints    Endpoints  Requirement(ns)  Classification       Constraints              
+----------------  ----------------  -----------  --------  -------  -----------  -----------  ---------------  -------------------  -----------------------  
+core_raw          core_raw          rise - rise     -1.14  -168.66          479       274592             6.67  Clean                Timed                    
+core_raw          rx_raw            rise - rise      5.86     0.00            0           40             6.67  Ignored              Max Delay Datapath Only  
+core_raw          serialize_raw                                               0            2                   Ignored              False Path               
+core_raw          tx_raw            rise - rise      5.26     0.00            0          152             6.67  Ignored              Max Delay Datapath Only  
+phy_rx125         phy_rx125         fall - rise      0.13     0.00            0            5             3.96  Clean                Timed                    
+phy_rx125         rx_raw            rise - rise     -0.68   -11.23           24           34             7.20  Clean                Timed                    
+ref_raw           core_raw                                                    0            2                   Ignored              False Path               
+ref_raw           ref_raw           rise - rise      2.36     0.00            0           23             5.00  Clean                Timed                    
+rx_raw            core_raw          rise - rise      5.79     0.00            0          152             7.20  Ignored              Max Delay Datapath Only  
+rx_raw            phy_rx125         rise - fall      4.07     0.00            0            5             3.24  Clean                Timed                    
+rx_raw            rx_raw            rise - rise      0.99     0.00            0         6004             7.20  Clean                Timed                    
+serialize_raw     rgmii_tx_forward  rise - rise      0.05     0.00            0            5             2.00  Clean                Timed                    
+serialize_raw     serialize_raw     rise - rise      1.20     0.00            0           26             4.00  Clean                Timed                    
+sys50             core_raw                                                    0            2                   Ignored              False Path               
+sys50             mdc_out           rise - rise   4989.26     0.00            0            1          5000.00  Clean                Timed                    
+sys50             sys50             rise - rise     15.56     0.00            0         1488            20.00  Clean                Timed                    
+tx_raw            core_raw          rise - rise      7.19     0.00            0           38             8.00  Ignored              Max Delay Datapath Only  
+tx_raw            serialize_raw     rise - rise      1.46     0.00            0           10             4.00  Clean                Timed                    
+tx_raw            tx_raw            rise - rise      1.91     0.00            0         2619             8.00  Clean                Timed                    
+
+

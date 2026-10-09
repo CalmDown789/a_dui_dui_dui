@@ -1,0 +1,302 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct  9 20:52:20 2026
+| Host         : WIN-FJ9PMA04HBP running 64-bit major release  (build 9200)
+| Command      : report_timing -to [get_pins -of_objects [get_cells -hier -filter {REF_NAME == IDDR}] -filter {REF_PIN_NAME == R}] -delay_type min -max_paths 10 -file iddr_removal.rpt
+| Design       : ethernet_rgmii_managed_video
+| Device       : 7a200t-fbg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.506ns  (arrival time - required time)
+  Source:                 rr_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by rx_raw  {rise@0.000ns fall@3.600ns period=7.200ns})
+  Destination:            u_io/g_rx[1].u_iddr/R
+                            (removal check against rising-edge clock phy_rx125  {rise@0.000ns fall@3.240ns period=7.200ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Slow Process Corner)
+  Requirement:            0.000ns  (phy_rx125 rise@0.000ns - rx_raw rise@0.000ns)
+  Data Path Delay:        5.336ns  (logic 0.304ns (5.697%)  route 5.032ns (94.303%))
+  Logic Levels:           0  
+  Clock Path Skew:        4.931ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.352ns
+    Source Clock Delay      (SCD):    -1.646ns
+    Clock Pessimism Removal (CPR):    0.066ns
+  Clock Uncertainty:      0.255ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.108ns
+    Phase Error              (PE):    0.090ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock rx_raw rise edge)     0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.387     1.387 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           1.019     2.405    u_clocks/rx_in
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -6.905    -4.500 r  u_clocks/u_rx_pll/CLKOUT0
+                         net (fo=1, routed)           1.484    -3.015    u_clocks/rx_raw
+    BUFGCTRL_X0Y4        BUFG (Prop_bufg_I_O)         0.077    -2.938 r  u_clocks/u_rx_clock/O
+                         net (fo=2038, routed)        1.293    -1.646    rc
+    SLICE_X43Y119        FDPE                                         r  rr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y119        FDPE (Prop_fdpe_C_Q)         0.304    -1.342 f  rr_reg[1]/Q
+                         net (fo=12, routed)          5.032     3.690    u_io/g_rx[0].u_iddr_0[0]
+    ILOGIC_X0Y100        IDDR                                         f  u_io/g_rx[1].u_iddr/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock phy_rx125 rise edge)
+                                                      0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           0.364     1.817    u_clocks/rx_in
+    BUFIO_X0Y9           BUFIO (Prop_bufio_I_O)       1.256     3.073 r  u_clocks/g_rx_phy_centered_io.u_rx_io_clock/O
+                         net (fo=5, routed)           0.279     3.352    u_io/ric
+    ILOGIC_X0Y100        IDDR                                         r  u_io/g_rx[1].u_iddr/C
+                         clock pessimism             -0.066     3.286    
+                         clock uncertainty            0.255     3.540    
+    ILOGIC_X0Y100        IDDR (Remov_iddr_C_R)       -0.356     3.184    u_io/g_rx[1].u_iddr
+  -------------------------------------------------------------------
+                         required time                         -3.184    
+                         arrival time                           3.690    
+  -------------------------------------------------------------------
+                         slack                                  0.506    
+
+Slack (MET) :             0.848ns  (arrival time - required time)
+  Source:                 rr_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by rx_raw  {rise@0.000ns fall@3.600ns period=7.200ns})
+  Destination:            u_io/g_rx[2].u_iddr/R
+                            (removal check against rising-edge clock phy_rx125  {rise@0.000ns fall@3.240ns period=7.200ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Slow Process Corner)
+  Requirement:            0.000ns  (phy_rx125 rise@0.000ns - rx_raw rise@0.000ns)
+  Data Path Delay:        5.668ns  (logic 0.304ns (5.364%)  route 5.364ns (94.636%))
+  Logic Levels:           0  
+  Clock Path Skew:        4.921ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.342ns
+    Source Clock Delay      (SCD):    -1.646ns
+    Clock Pessimism Removal (CPR):    0.066ns
+  Clock Uncertainty:      0.255ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.108ns
+    Phase Error              (PE):    0.090ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock rx_raw rise edge)     0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.387     1.387 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           1.019     2.405    u_clocks/rx_in
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -6.905    -4.500 r  u_clocks/u_rx_pll/CLKOUT0
+                         net (fo=1, routed)           1.484    -3.015    u_clocks/rx_raw
+    BUFGCTRL_X0Y4        BUFG (Prop_bufg_I_O)         0.077    -2.938 r  u_clocks/u_rx_clock/O
+                         net (fo=2038, routed)        1.293    -1.646    rc
+    SLICE_X43Y119        FDPE                                         r  rr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y119        FDPE (Prop_fdpe_C_Q)         0.304    -1.342 f  rr_reg[1]/Q
+                         net (fo=12, routed)          5.364     4.022    u_io/g_rx[0].u_iddr_0[0]
+    ILOGIC_X0Y116        IDDR                                         f  u_io/g_rx[2].u_iddr/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock phy_rx125 rise edge)
+                                                      0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           0.364     1.817    u_clocks/rx_in
+    BUFIO_X0Y9           BUFIO (Prop_bufio_I_O)       1.256     3.073 r  u_clocks/g_rx_phy_centered_io.u_rx_io_clock/O
+                         net (fo=5, routed)           0.269     3.342    u_io/ric
+    ILOGIC_X0Y116        IDDR                                         r  u_io/g_rx[2].u_iddr/C
+                         clock pessimism             -0.066     3.276    
+                         clock uncertainty            0.255     3.530    
+    ILOGIC_X0Y116        IDDR (Remov_iddr_C_R)       -0.356     3.174    u_io/g_rx[2].u_iddr
+  -------------------------------------------------------------------
+                         required time                         -3.174    
+                         arrival time                           4.022    
+  -------------------------------------------------------------------
+                         slack                                  0.848    
+
+Slack (MET) :             0.947ns  (arrival time - required time)
+  Source:                 rr_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by rx_raw  {rise@0.000ns fall@3.600ns period=7.200ns})
+  Destination:            u_io/g_rx[0].u_iddr/R
+                            (removal check against rising-edge clock phy_rx125  {rise@0.000ns fall@3.240ns period=7.200ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Slow Process Corner)
+  Requirement:            0.000ns  (phy_rx125 rise@0.000ns - rx_raw rise@0.000ns)
+  Data Path Delay:        5.777ns  (logic 0.304ns (5.263%)  route 5.473ns (94.737%))
+  Logic Levels:           0  
+  Clock Path Skew:        4.931ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.352ns
+    Source Clock Delay      (SCD):    -1.646ns
+    Clock Pessimism Removal (CPR):    0.066ns
+  Clock Uncertainty:      0.255ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.108ns
+    Phase Error              (PE):    0.090ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock rx_raw rise edge)     0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.387     1.387 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           1.019     2.405    u_clocks/rx_in
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -6.905    -4.500 r  u_clocks/u_rx_pll/CLKOUT0
+                         net (fo=1, routed)           1.484    -3.015    u_clocks/rx_raw
+    BUFGCTRL_X0Y4        BUFG (Prop_bufg_I_O)         0.077    -2.938 r  u_clocks/u_rx_clock/O
+                         net (fo=2038, routed)        1.293    -1.646    rc
+    SLICE_X43Y119        FDPE                                         r  rr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y119        FDPE (Prop_fdpe_C_Q)         0.304    -1.342 f  rr_reg[1]/Q
+                         net (fo=12, routed)          5.473     4.131    u_io/g_rx[0].u_iddr_0[0]
+    ILOGIC_X0Y149        IDDR                                         f  u_io/g_rx[0].u_iddr/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock phy_rx125 rise edge)
+                                                      0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           0.364     1.817    u_clocks/rx_in
+    BUFIO_X0Y9           BUFIO (Prop_bufio_I_O)       1.256     3.073 r  u_clocks/g_rx_phy_centered_io.u_rx_io_clock/O
+                         net (fo=5, routed)           0.279     3.352    u_io/ric
+    ILOGIC_X0Y149        IDDR                                         r  u_io/g_rx[0].u_iddr/C
+                         clock pessimism             -0.066     3.286    
+                         clock uncertainty            0.255     3.540    
+    ILOGIC_X0Y149        IDDR (Remov_iddr_C_R)       -0.356     3.184    u_io/g_rx[0].u_iddr
+  -------------------------------------------------------------------
+                         required time                         -3.184    
+                         arrival time                           4.131    
+  -------------------------------------------------------------------
+                         slack                                  0.947    
+
+Slack (MET) :             0.969ns  (arrival time - required time)
+  Source:                 rr_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by rx_raw  {rise@0.000ns fall@3.600ns period=7.200ns})
+  Destination:            u_io/g_rx[3].u_iddr/R
+                            (removal check against rising-edge clock phy_rx125  {rise@0.000ns fall@3.240ns period=7.200ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Slow Process Corner)
+  Requirement:            0.000ns  (phy_rx125 rise@0.000ns - rx_raw rise@0.000ns)
+  Data Path Delay:        5.789ns  (logic 0.304ns (5.251%)  route 5.485ns (94.749%))
+  Logic Levels:           0  
+  Clock Path Skew:        4.921ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.342ns
+    Source Clock Delay      (SCD):    -1.646ns
+    Clock Pessimism Removal (CPR):    0.066ns
+  Clock Uncertainty:      0.255ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.108ns
+    Phase Error              (PE):    0.090ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock rx_raw rise edge)     0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.387     1.387 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           1.019     2.405    u_clocks/rx_in
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -6.905    -4.500 r  u_clocks/u_rx_pll/CLKOUT0
+                         net (fo=1, routed)           1.484    -3.015    u_clocks/rx_raw
+    BUFGCTRL_X0Y4        BUFG (Prop_bufg_I_O)         0.077    -2.938 r  u_clocks/u_rx_clock/O
+                         net (fo=2038, routed)        1.293    -1.646    rc
+    SLICE_X43Y119        FDPE                                         r  rr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y119        FDPE (Prop_fdpe_C_Q)         0.304    -1.342 f  rr_reg[1]/Q
+                         net (fo=12, routed)          5.485     4.144    u_io/g_rx[0].u_iddr_0[0]
+    ILOGIC_X0Y115        IDDR                                         f  u_io/g_rx[3].u_iddr/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock phy_rx125 rise edge)
+                                                      0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           0.364     1.817    u_clocks/rx_in
+    BUFIO_X0Y9           BUFIO (Prop_bufio_I_O)       1.256     3.073 r  u_clocks/g_rx_phy_centered_io.u_rx_io_clock/O
+                         net (fo=5, routed)           0.269     3.342    u_io/ric
+    ILOGIC_X0Y115        IDDR                                         r  u_io/g_rx[3].u_iddr/C
+                         clock pessimism             -0.066     3.276    
+                         clock uncertainty            0.255     3.530    
+    ILOGIC_X0Y115        IDDR (Remov_iddr_C_R)       -0.356     3.174    u_io/g_rx[3].u_iddr
+  -------------------------------------------------------------------
+                         required time                         -3.174    
+                         arrival time                           4.144    
+  -------------------------------------------------------------------
+                         slack                                  0.969    
+
+Slack (MET) :             1.216ns  (arrival time - required time)
+  Source:                 rr_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by rx_raw  {rise@0.000ns fall@3.600ns period=7.200ns})
+  Destination:            u_io/g_rx[4].u_iddr/R
+                            (removal check against rising-edge clock phy_rx125  {rise@0.000ns fall@3.240ns period=7.200ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Slow Process Corner)
+  Requirement:            0.000ns  (phy_rx125 rise@0.000ns - rx_raw rise@0.000ns)
+  Data Path Delay:        6.042ns  (logic 0.304ns (5.032%)  route 5.738ns (94.968%))
+  Logic Levels:           0  
+  Clock Path Skew:        4.926ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.347ns
+    Source Clock Delay      (SCD):    -1.646ns
+    Clock Pessimism Removal (CPR):    0.066ns
+  Clock Uncertainty:      0.255ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.108ns
+    Phase Error              (PE):    0.090ns
+    User Uncertainty         (UU):    0.100ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock rx_raw rise edge)     0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.387     1.387 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           1.019     2.405    u_clocks/rx_in
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -6.905    -4.500 r  u_clocks/u_rx_pll/CLKOUT0
+                         net (fo=1, routed)           1.484    -3.015    u_clocks/rx_raw
+    BUFGCTRL_X0Y4        BUFG (Prop_bufg_I_O)         0.077    -2.938 r  u_clocks/u_rx_clock/O
+                         net (fo=2038, routed)        1.293    -1.646    rc
+    SLICE_X43Y119        FDPE                                         r  rr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y119        FDPE (Prop_fdpe_C_Q)         0.304    -1.342 f  rr_reg[1]/Q
+                         net (fo=12, routed)          5.738     4.396    u_io/g_rx[0].u_iddr_0[0]
+    ILOGIC_X0Y137        IDDR                                         f  u_io/g_rx[4].u_iddr/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock phy_rx125 rise edge)
+                                                      0.000     0.000 r  
+    Y18                                               0.000     0.000 r  rgmii_rxc (IN)
+                         net (fo=0)                   0.000     0.000    u_clocks/rgmii_rxc
+    Y18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  u_clocks/u_rx_input/O
+                         net (fo=2, routed)           0.364     1.817    u_clocks/rx_in
+    BUFIO_X0Y9           BUFIO (Prop_bufio_I_O)       1.256     3.073 r  u_clocks/g_rx_phy_centered_io.u_rx_io_clock/O
+                         net (fo=5, routed)           0.274     3.347    u_io/ric
+    ILOGIC_X0Y137        IDDR                                         r  u_io/g_rx[4].u_iddr/C
+                         clock pessimism             -0.066     3.281    
+                         clock uncertainty            0.255     3.535    
+    ILOGIC_X0Y137        IDDR (Remov_iddr_C_R)       -0.356     3.179    u_io/g_rx[4].u_iddr
+  -------------------------------------------------------------------
+                         required time                         -3.179    
+                         arrival time                           4.396    
+  -------------------------------------------------------------------
+                         slack                                  1.216    
+
+
+
+

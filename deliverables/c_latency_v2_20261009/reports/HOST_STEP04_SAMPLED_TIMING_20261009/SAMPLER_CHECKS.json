@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "clock_and_detail_gating_full",
+      "status": "PASS",
+      "observed_calls": 64,
+      "measured_calls": 64,
+      "diagnostic_wall_clock_calls": 128,
+      "diagnostic_cpu_clock_calls": 128,
+      "detail_builds": 64
+    },
+    {
+      "case": "clock_and_detail_gating_sampled",
+      "status": "PASS",
+      "observed_calls": 64,
+      "measured_calls": 4,
+      "diagnostic_wall_clock_calls": 8,
+      "diagnostic_cpu_clock_calls": 8,
+      "detail_builds": 4
+    },
+    {
+      "case": "independent_stage_sampling_1",
+      "status": "PASS",
+      "samples_per_stage": 123,
+      "checkpoints": 123
+    },
+    {
+      "case": "independent_stage_sampling_2",
+      "status": "PASS",
+      "samples_per_stage": 62,
+      "checkpoints": 123
+    },
+    {
+      "case": "independent_stage_sampling_16",
+      "status": "PASS",
+      "samples_per_stage": 8,
+      "checkpoints": 123
+    },
+    {
+      "case": "independent_stage_sampling_1024",
+      "status": "PASS",
+      "samples_per_stage": 1,
+      "checkpoints": 123
+    },
+    {
+      "case": "invalid_config_topk_zero_histogram",
+      "status": "PASS"
+    },
+    {
+      "case": "frame_totals_not_sampled_or_scaled",
+      "status": "PASS"
+    },
+    {
+      "case": "full_raw_journal_byte_identical_under_sampling",
+      "status": "PASS",
+      "details": {
+        "full": {
+          "raw_sha256": "cac5f50ad6ec00028f0c72dd597d26c0eefda35eae8ff5af25c8f2b77e949637",
+          "records": 200,
+          "append_timing_samples": 200,
+          "file_write_timing_samples": 200,
+          "max_buffer": 1107
+        },
+        "sampled": {
+          "raw_sha256": "cac5f50ad6ec00028f0c72dd597d26c0eefda35eae8ff5af25c8f2b77e949637",
+          "records": 200,
+          "append_timing_samples": 13,
+          "file_write_timing_samples": 200,
+          "max_buffer": 1107
+        }
+      }
+    },
+    {
+      "case": "unsampled_write_failure_still_poisoned_and_withholds_success",
+      "status": "PASS"
+    }
+  ],
+  "run_directory": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\HOST_STEP04_SAMPLED_TIMING_20261009\\validation\\sampler_runs\\1791544571195389500",
+  "scope": "LOCAL_SAMPLER_AND_JOURNAL_NO_BOARD_OR_NETWORK",
+  "source_sha256": {
+    "check_sampler.py": "249284a49b12957493619a04e1456626ac8ba564b1d78cdda057b67ec0171db1",
+    "timing_diagnostics.py": "020355f18b4ed2bb62630e69c5e7f4938309fc140b64fd1297a273a93aed92b6",
+    "binary_journal.py": "dee4425087b010cca83bb81a0f465717d2d94adcf7bf6dddd2b98954e9947fae"
+  }
+}

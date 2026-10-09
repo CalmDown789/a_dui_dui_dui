@@ -1,0 +1,159 @@
+{
+  "status": "PASS_INTEGRATED_DIRECTED_RTL_REGRESSION",
+  "scope": "DIRECT_RETAINED_WINDOW_SYNTHETIC_DATA_NOT_FULL_CNN_PHY",
+  "cases": [
+    {
+      "name": "old_collision_fails",
+      "status": "EXPECTED_RTL_FAILURE_REPRODUCED",
+      "expected_failure": true,
+      "run_directory": "C:\\t6int09\\validation\\rtl_tests_debug_off\\cases\\old_collision_fails",
+      "dut_sha256": "86932586c1f71f0e0713643a8b58bf42a2f6f62e25acfbfb43ed95ec7118c8cc",
+      "tb_sha256": "c45a68c83d05fc226124d0c58bd689648e059a15002bb3e17e372c58b12496e1",
+      "commands": [
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xvlog.bat",
+            "-sv",
+            "evf2_result_window.sv",
+            "tb_duplicate_suppression.sv"
+          ],
+          "exit_code": 0,
+          "seconds": 0.9532177999990381
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xelab.bat",
+            "--debug",
+            "off",
+            "--mt",
+            "off",
+            "tb_duplicate_suppression",
+            "-s",
+            "snapshot"
+          ],
+          "exit_code": 0,
+          "seconds": 1.535872800001016
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xsim.bat",
+            "snapshot",
+            "--tclbatch",
+            "run.tcl"
+          ],
+          "exit_code": 0,
+          "seconds": 15.926519599999665
+        }
+      ],
+      "evidence": [
+        "EXPIRY_COLLISION cycle=3000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "EXPIRY_COLLISION cycle=6000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "EXPIRY_COLLISION cycle=9000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "EXPIRY_COLLISION cycle=12000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "EXPIRY_COLLISION cycle=15000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "EXPIRY_COLLISION cycle=18000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "Fatal: FIXTURE_TIMEOUT base=1 next=3 retry_requested=0 retry_pass=0 retries=0"
+      ]
+    },
+    {
+      "name": "integrated_collision_recovers",
+      "status": "PASS",
+      "expected_failure": false,
+      "run_directory": "C:\\t6int09\\validation\\rtl_tests_debug_off\\cases\\integrated_collision_recovers",
+      "dut_sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901",
+      "tb_sha256": "c45a68c83d05fc226124d0c58bd689648e059a15002bb3e17e372c58b12496e1",
+      "commands": [
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xvlog.bat",
+            "-sv",
+            "evf2_result_window.sv",
+            "tb_duplicate_suppression.sv"
+          ],
+          "exit_code": 0,
+          "seconds": 0.8682045000005019
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xelab.bat",
+            "--debug",
+            "off",
+            "--mt",
+            "off",
+            "tb_duplicate_suppression",
+            "-s",
+            "snapshot"
+          ],
+          "exit_code": 0,
+          "seconds": 1.3957146000011562
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xsim.bat",
+            "snapshot",
+            "--tclbatch",
+            "run.tcl"
+          ],
+          "exit_code": 0,
+          "seconds": 9.640517800000453
+        }
+      ],
+      "evidence": [
+        "EXPIRY_COLLISION cycle=3000011 base=1 next=3 retry_requested=0 retry_pass=0",
+        "DUPLICATE_SUPPRESSION_PASS baseline=0 lost_proof=1 wrap=0 duplicates=4 min_retry_spacing_cycles=5769366 RTO=3000000 frames=2"
+      ]
+    },
+    {
+      "name": "integrated_slot_ownership",
+      "status": "PASS",
+      "expected_failure": false,
+      "run_directory": "C:\\t6int09\\validation\\rtl_tests_debug_off\\cases\\integrated_slot_ownership",
+      "dut_sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901",
+      "tb_sha256": "5d091d922f7712e6e484f2daa277daf161a0d5d9831df6e59ae9206ce41dc590",
+      "commands": [
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xvlog.bat",
+            "-sv",
+            "evf2_result_window.sv",
+            "tb_ack_reuse.sv"
+          ],
+          "exit_code": 0,
+          "seconds": 0.9804187999998248
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xelab.bat",
+            "--debug",
+            "off",
+            "--mt",
+            "off",
+            "tb_ack_reuse",
+            "-s",
+            "snapshot"
+          ],
+          "exit_code": 0,
+          "seconds": 1.5133610000011686
+        },
+        {
+          "argv": [
+            "E:\\AMDTools2025\\2025.2\\Vivado\\bin\\xsim.bat",
+            "snapshot",
+            "--tclbatch",
+            "run.tcl"
+          ],
+          "exit_code": 0,
+          "seconds": 2.7932261999994807
+        }
+      ],
+      "evidence": [
+        "ACK_REUSE_PASS old_repeat_cannot_ack_new_packet cycles=3189"
+      ]
+    }
+  ],
+  "board_tested": false,
+  "BIT_generated": false,
+  "helper_original_sha256": "d92d420001d500693838f1de0ba020f82a5e492e339ff7e64326da736a21fe98",
+  "simulator_debug_mode": "off",
+  "prior_tool_crash_preserved": "C:\\t6int09\\validation\\rtl_tests"
+}
