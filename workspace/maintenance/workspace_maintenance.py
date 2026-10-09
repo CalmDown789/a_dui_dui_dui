@@ -90,10 +90,27 @@ def prepare():
         sizes = [(x, x.stat().st_size) for x in p.rglob('*') if x.is_file()]
         directories.append({'path': str(p.resolve()), 'bytes': sum(s for _, s in sizes),
                             'files': len(sizes), 'reason': 'installed_dependency_download' if p.name.endswith('_tmp') else 'generated_simulation_cache'})
+    diagnostic_archive = BACKUP / 'cache_diagnostics.zip'
+    diagnostic_entries = []
+    with zipfile.ZipFile(diagnostic_archive, 'x', compression=zipfile.ZIP_DEFLATED) as z:
+        for d in directories:
+            if d['reason'] != 'generated_simulation_cache':
+                continue
+            for p in Path(d['path']).rglob('*'):
+                if p.is_file() and p.suffix.lower() in {'.log', '.jou', '.rpt', '.txt', '.json', '.tcl'}:
+                    rel = p.relative_to(ROOT).as_posix()
+                    z.write(p, rel)
+                    diagnostic_entries.append({'path': rel, 'bytes': p.stat().st_size, 'sha256': digest(p)})
+    with zipfile.ZipFile(diagnostic_archive) as z:
+        assert z.testzip() is None
+        for row in diagnostic_entries:
+            assert hashlib.sha256(z.read(row['path'])).hexdigest() == row['sha256']
     rows = [{'path': str(p.resolve()), 'bytes': p.stat().st_size, 'sha256': digest(p),
              'reason': 'verified_external_archive'} for p in sorted(files, key=str)]
     plan = {'workspace': str(ROOT), 'backup': str(archive), 'backup_sha256': digest(archive),
             'backup_entries': entries, 'files': rows, 'directories': directories,
+            'diagnostic_backup': {'path': str(diagnostic_archive), 'sha256': digest(diagnostic_archive),
+                                  'entries': diagnostic_entries},
             'delete_file_count': len(rows) + sum(d['files'] for d in directories),
             'delete_bytes': sum(r['bytes'] for r in rows) + sum(d['bytes'] for d in directories)}
     write_json(PLAN, plan)
@@ -106,6 +123,7 @@ def prepare():
 def verify():
     plan = json.loads(PLAN.read_text(encoding='utf-8'))
     assert digest(Path(plan['backup'])) == plan['backup_sha256']
+    assert digest(Path(plan['diagnostic_backup']['path'])) == plan['diagnostic_backup']['sha256']
     remaining = [r['path'] for r in plan['files'] + plan['directories'] if Path(r['path']).exists()]
     assert not remaining, remaining
     print(json.dumps({'status': 'PASS_CLEANUP_AND_BACKUP', 'files_removed': plan['delete_file_count'],
