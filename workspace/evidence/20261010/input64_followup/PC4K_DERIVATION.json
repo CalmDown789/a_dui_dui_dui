@@ -1,0 +1,41 @@
+{
+  "scope": "C_DERIVED_CURRENT_BIT_BINDING_NO_BOARD_RESULT_YET",
+  "source": "C:\\Users\\Administrator\\WorkBuddy\\srtp\\output\\C_TO_B_LATENCY_HANDOFF_V2_20261009\\reference\\legacy_pc4k_source",
+  "original_source_sha256": {
+    "live4k.py": "2b1fea0325e6660068d484c1b9e5aee2129168b532bbbe47a44af75f9ff2eea7",
+    "engine.py": "b291f56b6d909680e3f5dad6c2a25a87233568f6de13c91ce39b70714ce1b483",
+    "audit_live4k.py": "8e96c6556f38d66fa572033c7980bae2a4d0897766b880f06843042e81068dcc",
+    "run_live4k.ps1": "a1af21111646402de9ac7580cb0a61268cfee6d7a51908a00b368ec26771896c",
+    "pc4k/pipeline.py": "e2ec47aafb02e7def4c4bb87359d860b2df47399aa225e6405ef0e76e9b13e9a",
+    "pc4k/reference.py": "df313ac6c0464e50c150952e75e8a5fb954e009f0eb39095d5529af2f60a649a"
+  },
+  "host_profile": {
+    "input_window": 64,
+    "input_receive_batch_packets": 1,
+    "output_window": 128,
+    "io_mode": "nonblocking",
+    "receive_batch_packets": 32,
+    "timing_mode": "sampled",
+    "timing_sample_every": 16
+  },
+  "expected_files": [
+    "live4k.py",
+    "engine.py",
+    "audit_live4k.py",
+    "run_live4k.ps1",
+    "pc4k/pipeline.py",
+    "pc4k/reference.py",
+    "README.md",
+    "check_current.py",
+    "fixtures/peer.py",
+    "fixtures/injected_sender.py",
+    "fixtures/transport_fixture.py",
+    "proof/CURRENT_CHECK.json"
+  ],
+  "unchanged_algorithm_files": [
+    "engine.py",
+    "pc4k/pipeline.py",
+    "pc4k/reference.py"
+  ],
+  "original_packages_modified": false
+}

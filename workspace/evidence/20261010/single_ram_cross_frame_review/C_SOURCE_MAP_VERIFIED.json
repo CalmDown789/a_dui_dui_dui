@@ -1,0 +1,186 @@
+{
+  "status": "PASS_C_SOURCE_IDENTITY_AND_CITED_LINES",
+  "scope": "C_INDEPENDENT_READ_ONLY_DESIGN_SOURCE_REVIEW_NO_RTL_IMPLEMENTATION",
+  "received_document_sha256": "93acaf842af1847b27ea3548f32f118959a6ae9ce1d0e247ee7197fc5d13991a",
+  "received_zip_sha256": "cd7f62ef39c685a42571a017ac0b72db64afbc4cf33f9cbd54b035e9b3ce7a7e",
+  "contained_document_byte_identical_to_standalone": true,
+  "contained_sidecar_matches": true,
+  "frozen_delivery_manifest_sha256": "a69596d46889df4ff9fb6424166725a4144705a15c749045b18c9ffca76af4b1",
+  "frozen_BIT_sha256": "cefe3ba044bb208a08969714f48144870f5c00efc6879edb063ac1f358ef1ea5",
+  "frozen_DCP_sha256": "47e5a1ece0b669fa45597ab3ae4b7ca826fc1857cd8c3d43d4a7d009a84b68da",
+  "B_current_streaming_selection_sha256": "3d0eb5784f12c32f32ec42dbbfa463d507266188edfd8beff49eaeb7685be2e9",
+  "B_current_package_manifest_sha256": "df417110814124283d812b9434bfb853fdd779af71db0f0e53dc6650e6bc9931",
+  "source_file_count": 12,
+  "sources": {
+    "rtl/input_stream.v": {
+      "sha256": "15cb1062caa76ebad5826f1b4b0eaf1aecd0763fcc81c326803846372215d3b8",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "79": "wire in_fire  = in_valid & in_ready;",
+        "80": "wire req_fire = run_q & ~req_exhausted_q & (~resp_valid_q | in_ready);",
+        "118": "req_addr_q <= req_addr_q + 1'b1;",
+        "119": "if (req_addr_q == (TOT_PIX - 1)) req_exhausted_q <= 1'b1;",
+        "131": "if (in_fire && (req_addr_q == TOT_PIX)) begin"
+      }
+    },
+    "rtl/input_rom.v": {
+      "sha256": "91b95947be4e8d5d16014c9456f126a65b71d11f178e74dda159559a2f1d44db",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "58": "if (wr_en) mem[wr_addr] <= wr_data;",
+        "59": "if (en)",
+        "60": "dout <= mem[addr];"
+      }
+    },
+    "rtl/c_ethernet_core.v": {
+      "sha256": "514f09d30207bc8374e3847033c8b86b0ee7c803a296d7d7a0f2e050fb7b593c",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "129": "wire          c2b_push = src_valid && src_ready;",
+        "130": "wire          c2b_pop  = in_valid && in_ready;",
+        "143": "if (c2b_push) begin",
+        "149": "if (c2b_pop)"
+      }
+    },
+    "rtl/fsrcnn_network_core.sv": {
+      "sha256": "10f96d8d4a74959b93145def6e8fa1bf1a9c02a18b65c464b7eba5262fc01e34",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "47": "wire start_accept=start&&!busy;",
+        "52": "fsrcnn_stream_layer #(.IMG_W(IMG_W),.IMG_H(IMG_H),.K(5),.CIN(1),.COUT(16),",
+        "54": ".clk(clk_200),.rst(rst),.start(start_accept),.in_valid(in_valid),.in_ready(in_ready),.in_pixel(in_data),"
+      }
+    },
+    "rtl/same_pad_raster.sv": {
+      "sha256": "6c699400d3f8779797bba2813e70ca5abcd6e4bb48a978b1487ef8f0a357f784",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "31": "wire interior = (x >= PAD) && (x < PAD+IMG_W) &&",
+        "33": "wire fire = out_valid && out_ready;",
+        "35": "assign in_ready = busy && interior && out_ready;",
+        "37": "assign out_data = interior ? in_data : {DATA_W{1'b0}};"
+      }
+    },
+    "rtl/window_stream_frontend.sv": {
+      "sha256": "94778afc21a3ea1ef1b5bb5adb33435b13745bf23fc4eef909cd6d1402c84660",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "34": "wire pad_fire=pad_valid&&pad_ready;",
+        "45": "assign pad_ready=(occupancy+pending1+pending2 < FIFO_DEPTH);",
+        "56": "window_kminus1_bram #(.DATA_W(DATA_W),.IMG_W(PAD_W),.K(K)) win (",
+        "57": ".clk(clk),.rst(local_rst),.pixel_in(pad_data),.pixel_valid(pad_fire),"
+      }
+    },
+    "rtl/window_kminus1_bram.sv": {
+      "sha256": "cf66969817e2ee2bb170fa3e3bc9f6a53d5d19b5282b3d5bf4c196fe000a34ee",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "1": "`timescale 1ns / 1ps"
+      }
+    },
+    "rtl/ethernet_frame_rx.sv": {
+      "sha256": "2dc607cecb9f551f3932299d920bcd36ce8fe84817338cf02b34d6ba79358267",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "63": "// Capture and application dispatch have separate registers and RAM banks.",
+        "85": "wire release_bank = (pipe_state_q == REPLY && response_ready) ||",
+        "93": "assign s_ready = rst_n && (capture_active_q || !(&owned_q));",
+        "95": "assign frame_wr_en = rst_n && pipe_state_q == RAM_WRITE && frame_state_q == RECEIVING;",
+        "96": "assign frame_wr_addr = apply_offset_q[18:0] + apply_index_q;",
+        "98": "assign frame_locked = frame_state_q == RUNNING;",
+        "255": "if (frame_release && frame_state_q==RUNNING) begin",
+        "317": "else if (frame_state_q==RUNNING) reject(BUSY);",
+        "335": "else begin apply_index_q<=0; apply_offset_q<=progress_q; pipe_state_q<=RAM_READ; end",
+        "339": "else begin frame_state_q<=RUNNING; core_start<=1; start_count<=start_count+1; respond(STARTED,progress_q); end",
+        "343": "RAM_WRITE: begin",
+        "350": "respond(ACK,progress_q+h_length);"
+      }
+    },
+    "rtl/evf2_result_window.sv": {
+      "sha256": "a4bc4b7c3f0a843803ab5df2a3e80f7c592286282394f160a9d48bbbfbc1f901",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "135": "if(frame_start)begin",
+        "136": "if(!active&&negotiated&&frame_session==session_q&&!desc_valid&&!control_reply_q)begin",
+        "143": "if(desc_valid&&desc_ready)begin",
+        "149": "active<=0;frame_release<=1;release_count<=release_count+1;",
+        "237": "if(done_valid_q&&control_session==done_session_q&&control_frame==done_frame_q&&",
+        "238": "control_crc==done_crc_q&&control_metadata==done_peer_q)reply_status_q<=4;",
+        "239": "else if(!active||!identity_ok)begin reply_status_q<=16;rejected_count<=rejected_count+1;end",
+        "240": "else if(base_q!=PACKETS||next_q!=PACKETS||!done_seen_q)begin reply_status_q<=24;rejected_count<=rejected_count+1;end",
+        "241": "else if(control_crc!=~rolling_crc_q)begin reply_status_q<=21;rejected_count<=rejected_count+1;end",
+        "242": "else begin reply_status_q<=4;reply_release_q<=1;end"
+      }
+    },
+    "rtl/ethernet_video_application.sv": {
+      "sha256": "3503affc1d132cbac51fbaf6eba9c9974a06149236001814094ffaacc7fa4636",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "31": "assign s_ready=legacy_ready&&control_input_ready;",
+        "54": ".clk(clk),.rst_n(rst_n),.s_valid(s_valid&&control_input_ready),.s_ready(legacy_ready),",
+        "66": ".clk(clk),.rst_n(rst_n),.s_valid(s_valid&&legacy_ready),.s_ready(control_input_ready),",
+        "73": ".clk(clk),.rst_n(rst_n),.frame_start(core_start_i&&window_negotiated),.frame_session(input_session),",
+        "74": ".frame_id(input_frame),.core_done(core_done),.rd_req(window_req),",
+        "120": "assign input_session=isid;assign input_frame=ifid;",
+        "126": "assign s_ready=ir_ready&&or_ready;",
+        "132": "ethernet_frame_rx #(.FRAME_BYTES(INPUT_BYTES),.OUTPUT_CONTROLLER_PRESENT(1),",
+        "139": ".core_start(core_start),.frame_release(release_frame||external_release),.frame_locked(frame_locked),.frame_state(frame_state),"
+      }
+    },
+    "rtl/c_ctrl.v": {
+      "sha256": "b1646302ed1c888642519f9fa4145337a52cd78d79f3a8ac774e980c886ba2cc",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "81": "S_IDLE: begin",
+        "85": "if (start) begin",
+        "93": "S_RUN: begin",
+        "114": "S_DONE: begin",
+        "118": "st        <= S_IDLE;"
+      }
+    },
+    "rtl/b_core_if.v": {
+      "sha256": "6cf3ff1e6c33fbc1356be78b4ba30490acaf89a1fdb20cc3f76f23f127802520",
+      "delivery_manifest_sha256_match": true,
+      "current_B_intake_RTL_byte_identical": true,
+      "cited_lines": {
+        "75": "input  wire              in_valid,",
+        "76": "output wire              in_ready,",
+        "81": "input  wire              out_ready,"
+      }
+    }
+  },
+  "current_B_host": {
+    "path": "C:\\cwin26_20261010_e1\\main\\streaming\\streaming_client.py",
+    "sha256": "8cfbeb206cb315ab2c7f005eaaa94532b9117676ddb5a5d16edf260589ab0d73",
+    "B_package_manifest_sha256_match": true,
+    "frozen_V2_host_sha256": "64ec6ef03d82c55de7206952d6cd841b44c0c760246ce5113092582fea26952c",
+    "cited_lines": {
+      "286": "def transfer(self,pixels,golden,frame,on_frame=None):",
+      "296": "self.exchange(Packet(2,self.session,frame,frame_bytes=len(pixels),frame_crc=crc),{1},progress=0)",
+      "297": "self.input_packets(pixels,frame,crc);sent=time.perf_counter_ns()",
+      "298": "self.receiver=OutputReceiver(len(golden),self.session,frame,self.ow,self.peer)",
+      "300": "self.exchange(Packet(4,self.session,frame,(len(pixels)+1023)//1024,len(pixels),len(pixels),crc),{2},progress=len(pixels))",
+      "302": "while not self.receiver.complete:",
+      "308": "self.output_acks();actual=self.receiver.commit()",
+      "315": "self.journal.checkpoint()",
+      "316": "final=Packet(9,self.session,frame,(len(actual)+1023)//1024,len(actual),len(actual),self.receiver.declared_crc)",
+      "317": "while self.exchange(final,{4,24},version=2,progress=len(actual)).status==24:"
+    }
+  },
+  "missing_from_received_zip": [
+    "SOURCE_MAP.json",
+    "check_ring_invariant.py",
+    "RING_INVARIANT_MODEL.json"
+  ]
+}

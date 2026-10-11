@@ -1,0 +1,337 @@
+{
+  "status": "PASS_ADDRESS_SET_AND_BOUNDARY_MODEL",
+  "scope": "BYTE_ADDRESS_GEOMETRY_ONLY_NOT_RTL_PROTOCOL_CDC_CNN_TIMING_OR_BOARD",
+  "actual": {
+    "frame_bytes_N": 518400,
+    "physical_bytes_M": 524288,
+    "slack_bytes_D": 5888,
+    "address_bits": 19,
+    "counter_bits_for_C_plus_D": 20,
+    "packet_bytes": 1024,
+    "last_packet_bytes": 256,
+    "initial_full_packets_without_consumption": 5,
+    "minimum_consumed_for_next_full_packet": 256,
+    "minimum_consumed_for_last_packet": 512512
+  },
+  "exhaustive_small_geometry": {
+    "N_range_inclusive": [
+      2,
+      12
+    ],
+    "D_range_inclusive": [
+      1,
+      6
+    ],
+    "safe_states": 50159,
+    "unsafe_states": 11683,
+    "first_overgrant_one_byte_counterexamples": 3053,
+    "safe_iff_W_le_min_N_C_plus_D": true
+  },
+  "actual_boundary_cases": [
+    {
+      "base": 0,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 0,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 0,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 0,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 0,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 0,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 0,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 0,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 0,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 0,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 1,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 1,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 1,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 1,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 1,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 1,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 1,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 1,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 1,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 1,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 524287,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 524287,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 524287,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 524287,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 524287,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 524287,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 524287,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 524287,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 524287,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 524287,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 523776,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 523776,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 523776,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 523776,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 523776,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 523776,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 523776,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 523776,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 523776,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 523776,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 5888,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 5888,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 5888,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 5888,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 5888,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 5888,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 5888,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 5888,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 5888,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 5888,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 12345,
+      "consumed": 0,
+      "safe_write_limit": 5888
+    },
+    {
+      "base": 12345,
+      "consumed": 1,
+      "safe_write_limit": 5889
+    },
+    {
+      "base": 12345,
+      "consumed": 255,
+      "safe_write_limit": 6143
+    },
+    {
+      "base": 12345,
+      "consumed": 256,
+      "safe_write_limit": 6144
+    },
+    {
+      "base": 12345,
+      "consumed": 5887,
+      "safe_write_limit": 11775
+    },
+    {
+      "base": 12345,
+      "consumed": 5888,
+      "safe_write_limit": 11776
+    },
+    {
+      "base": 12345,
+      "consumed": 512511,
+      "safe_write_limit": 518399
+    },
+    {
+      "base": 12345,
+      "consumed": 512512,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 12345,
+      "consumed": 518399,
+      "safe_write_limit": 518400
+    },
+    {
+      "base": 12345,
+      "consumed": 518400,
+      "safe_write_limit": 518400
+    }
+  ],
+  "proof": "After rotating the physical ring by baseF, the old frame occupies [0,N); its still needed suffix is [C,N). The next frame begins at N and first fills the D-byte gap [N,M). Any following W-D writes wrap to old prefix [0,W-D). This is disjoint from [C,N) exactly when W-D<=C, with 0<=W<=N.",
+  "limitations": [
+    "No cycle-accurate RAM collision or reserved in-flight packet behavior is modeled.",
+    "The B-authored check_ring_invariant.py and RING_INVARIANT_MODEL.json were absent from the received ZIP."
+  ]
+}

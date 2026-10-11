@@ -1,0 +1,200 @@
+{
+  "status": "PASS_LIGHT_GC_TRACE_AND_RAW_AUDIT",
+  "scope": "C_LIGHT_GC_ONLY_PERTURBED_DIAGNOSTIC_NOT_ORIGINAL_AB",
+  "input_window": 64,
+  "identity": {
+    "candidate_BIT_sha256": "cefe3ba044bb208a08969714f48144870f5c00efc6879edb063ac1f358ef1ea5",
+    "streaming_selection_sha256": "3d0eb5784f12c32f32ec42dbbfa463d507266188edfd8beff49eaeb7685be2e9"
+  },
+  "capture_report_sha256": "627e733448cdb8230e257cbdea9c384ad41462030e1520a101e44916226bf374",
+  "main_gate_result_sha256": "2b9177813f741be411fa460b62776adaeed93f647c1efd7e7970331ca9cbf550",
+  "wrapper_sha256": "573be58c99509e55b1017415e020bc211b3162f405274827e7ddd78ae64924ce",
+  "trace_sha256": "be6c363e47b5d64b20443258d1876e51c04041e9ffe1557b91722c909eaab4d3",
+  "raw_audit_sha256": "605d59e2d536adb35d7611c9337f8355951a6d8323ca3a3fa47dc660c073b10c",
+  "raw_journal_sha256": "5d2a635fe1e82895540675327f965eb87e379ad6a570ba5f16bcc063dea5cccf",
+  "frame_count": 16,
+  "Golden_bytes": 33177600,
+  "Golden_mismatches": 0,
+  "duplicate_invalid_wrong_source_counts": [
+    0,
+    0,
+    0
+  ],
+  "GC_interval_count": 1,
+  "GC_interval_summary_ms": {
+    "n": 1,
+    "median_ms": 0.1326,
+    "p95_ms": 0.1326,
+    "max_ms": 0.1326
+  },
+  "GC_intervals": [
+    {
+      "generation": 0,
+      "begin_ns": 51705384494900,
+      "end_ns": 51705384627500,
+      "wall_ms": 0.1326,
+      "collected": 240,
+      "uncollectable": 0
+    }
+  ],
+  "last_output_RX_to_FINAL_TX_summary": {
+    "n": 16,
+    "median_ms": 1.6844999999999999,
+    "p95_ms": 2.7602,
+    "max_ms": 2.7602
+  },
+  "longest_gap_frame": 1,
+  "longest_gap_gc_overlaps": [],
+  "frames": [
+    {
+      "frame": 0,
+      "last_output_RX_ns": 51705228500400,
+      "first_FINAL_TX_ns": 51705230033000,
+      "last_output_RX_to_FINAL_TX_ms": 1.5326,
+      "report_release_ms": 1.8083,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 1,
+      "last_output_RX_ns": 51705278953700,
+      "first_FINAL_TX_ns": 51705281713900,
+      "last_output_RX_to_FINAL_TX_ms": 2.7602,
+      "report_release_ms": 2.6552,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 2,
+      "last_output_RX_ns": 51705328384900,
+      "first_FINAL_TX_ns": 51705329843800,
+      "last_output_RX_to_FINAL_TX_ms": 1.4589,
+      "report_release_ms": 1.6429,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 3,
+      "last_output_RX_ns": 51705377644000,
+      "first_FINAL_TX_ns": 51705379915500,
+      "last_output_RX_to_FINAL_TX_ms": 2.2715,
+      "report_release_ms": 2.3929,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 4,
+      "last_output_RX_ns": 51705430748500,
+      "first_FINAL_TX_ns": 51705432320000,
+      "last_output_RX_to_FINAL_TX_ms": 1.5715,
+      "report_release_ms": 1.6444,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 5,
+      "last_output_RX_ns": 51705480105100,
+      "first_FINAL_TX_ns": 51705481796900,
+      "last_output_RX_to_FINAL_TX_ms": 1.6918,
+      "report_release_ms": 1.7073,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 6,
+      "last_output_RX_ns": 51705530215400,
+      "first_FINAL_TX_ns": 51705531804700,
+      "last_output_RX_to_FINAL_TX_ms": 1.5893,
+      "report_release_ms": 1.6293,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 7,
+      "last_output_RX_ns": 51705577064900,
+      "first_FINAL_TX_ns": 51705578797200,
+      "last_output_RX_to_FINAL_TX_ms": 1.7323,
+      "report_release_ms": 1.6704,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 8,
+      "last_output_RX_ns": 51705628157600,
+      "first_FINAL_TX_ns": 51705629770300,
+      "last_output_RX_to_FINAL_TX_ms": 1.6127,
+      "report_release_ms": 1.6361,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 9,
+      "last_output_RX_ns": 51705679271100,
+      "first_FINAL_TX_ns": 51705680794000,
+      "last_output_RX_to_FINAL_TX_ms": 1.5229,
+      "report_release_ms": 1.6306,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 10,
+      "last_output_RX_ns": 51705729918500,
+      "first_FINAL_TX_ns": 51705731740400,
+      "last_output_RX_to_FINAL_TX_ms": 1.8219,
+      "report_release_ms": 1.7402,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 11,
+      "last_output_RX_ns": 51705780686500,
+      "first_FINAL_TX_ns": 51705782216400,
+      "last_output_RX_to_FINAL_TX_ms": 1.5299,
+      "report_release_ms": 1.7192,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 12,
+      "last_output_RX_ns": 51705830139800,
+      "first_FINAL_TX_ns": 51705831817000,
+      "last_output_RX_to_FINAL_TX_ms": 1.6772,
+      "report_release_ms": 1.8038,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 13,
+      "last_output_RX_ns": 51705879612500,
+      "first_FINAL_TX_ns": 51705881432700,
+      "last_output_RX_to_FINAL_TX_ms": 1.8202,
+      "report_release_ms": 1.7975,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 14,
+      "last_output_RX_ns": 51705930587800,
+      "first_FINAL_TX_ns": 51705932352500,
+      "last_output_RX_to_FINAL_TX_ms": 1.7647,
+      "report_release_ms": 1.6819,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    },
+    {
+      "frame": 15,
+      "last_output_RX_ns": 51705984345200,
+      "first_FINAL_TX_ns": 51705986343800,
+      "last_output_RX_to_FINAL_TX_ms": 1.9986,
+      "report_release_ms": 1.7084,
+      "gc_overlapping_gap": [],
+      "gc_wholly_inside_gap": []
+    }
+  ],
+  "limitations": [
+    "This diagnostic attaches only a GC callback; timing is still perturbed and is not the balanced performance measurement.",
+    "A GC interval overlapping a frame gap supports temporal coincidence only, not causation.",
+    "The earlier 12.3267 ms long-tail observation remains a separate original-sample result.",
+    "No NIC, USB, physical display, or whole-system 4K30 conclusion follows from this trace."
+  ]
+}

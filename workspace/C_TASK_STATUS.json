@@ -1,0 +1,190 @@
+{
+  "updated_date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "scope": "C_mainline_status_update_no_new_hardware_or_vivado",
+  "baseline": {
+    "date": "2026-10-09",
+    "bit_sha256": "cefe3ba044bb208a08969714f48144870f5c00efc6879edb063ac1f358ef1ea5",
+    "dcp_sha256": "47e5a1ece0b669fa45597ab3ae4b7ca826fc1857cd8c3d43d4a7d009a84b68da",
+    "core_mhz": 150
+  },
+  "cross_frame": {
+    "status": "WAITING_FORMAL_SCHEME",
+    "user_clarification": "跨帧方案还没有出来",
+    "historical_draft_review_exists": true,
+    "historical_C_candidate_stopped": true,
+    "formal_scheme_delivered": false,
+    "new_bit_or_board_acceptance": false
+  },
+  "milestones": {
+    "M1": "PARTIAL_PROTOCOL_COUNTERS_AND_SIGNOFF_REMAIN",
+    "M2": "PARTIAL_WAITING_FORMAL_CROSS_FRAME_SCHEME",
+    "M3": "4K30_NOT_MET",
+    "M4": "FINAL_RELIABILITY_AND_COMPARISON_PENDING",
+    "M5": "FINAL_DELIVERY_PENDING"
+  },
+  "metrics": {
+    "input64_balanced_natural16_protocol_fps": 21.224,
+    "input64_long_natural16_protocol_fps": 20.479,
+    "long_natural16_frames": 512,
+    "long_natural2_frames": 64,
+    "complete_runs": 32,
+    "host_failures_preserved": 2,
+    "user_interruptions_preserved": 1,
+    "pc4k_slots_completed": 150,
+    "pc4k_measurement_seconds": 7.304,
+    "pc4k_actual_generated_and_submitted_fps": 20.536,
+    "whole_system_4k30_accepted": false,
+    "physical_io": "UNVERIFIED",
+    "panel_refresh": "NOT_MEASURED"
+  },
+  "execution_tasks": [
+    {
+      "id": "C00",
+      "task": "来源与版本冻结",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "V2及运行候选身份可追溯；正式来源/签收继续补齐"
+    },
+    {
+      "id": "C01",
+      "task": "分段计时",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "四窗口/长期/PC4K已有测量；部分板端细分计数未闭合"
+    },
+    {
+      "id": "C02",
+      "task": "接口及验收合同",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "跨帧0.1.0-draft已评审；正式方案、合同冻结和签收待完成"
+    },
+    {
+      "id": "C03",
+      "task": "隔离测试与瓶颈决策",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "四窗口平衡实板对照完成；部分ACK应用/拒绝可观察性仍缺"
+    },
+    {
+      "id": "C04",
+      "task": "主机与协议窗口优化",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "V2已板测，input64候选约20–21fps；主机停滞/长尾未全部定因"
+    },
+    {
+      "id": "C05",
+      "task": "有限缓冲及跨帧调度",
+      "status": "WAITING_FORMAL_SCHEME",
+      "evidence_and_remaining": "跨帧方案尚未正式交付；已有草案和停止实验不作完成验收"
+    },
+    {
+      "id": "C06",
+      "task": "新版本完整板级实现",
+      "status": "PARTIAL_WAITING_NEW_IMPLEMENTATION",
+      "evidence_and_remaining": "V2数字实现通过；跨帧无新BIT/route/板测，物理I/O未验证"
+    },
+    {
+      "id": "C07",
+      "task": "4K后处理及性能预算",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "当前BIT 150槽4K参考零差；A正式对拍及独立100帧预算待闭合"
+    },
+    {
+      "id": "C08",
+      "task": "在线管线及播放器",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "150槽预览提交完成；完整UI/有界队列/退出恢复验收待闭合"
+    },
+    {
+      "id": "C09",
+      "task": "以太网功能验收",
+      "status": "PARTIAL_BASELINE_FUNCTION_PASS",
+      "evidence_and_remaining": "当前BIT 512 Natural16+64 Natural2零差；最终跨帧版待新验收"
+    },
+    {
+      "id": "C10",
+      "task": "持续整机4K30",
+      "status": "NOT_MET",
+      "evidence_and_remaining": "150/150完成用时约7.304秒、20.536fps；30fps及正式稳态未通过"
+    },
+    {
+      "id": "C11",
+      "task": "异常恢复及长稳态",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "32完整Run含失败/中断历史；最终异常矩阵与正式稳态待完成"
+    },
+    {
+      "id": "C12",
+      "task": "公平比较及A/B复核",
+      "status": "WAITING_DEP",
+      "evidence_and_remaining": "待同版比较、A/B正式复核和相关签收"
+    },
+    {
+      "id": "C13",
+      "task": "提交冻结及现场交付",
+      "status": "NOT_STARTED_FINAL",
+      "evidence_and_remaining": "最终演示机/备机/彩排/提交版未验收"
+    },
+    {
+      "id": "C14",
+      "task": "8K与扩展",
+      "status": "WAITING_DEP",
+      "evidence_and_remaining": "主线完成后评估，不抢占当前主线"
+    }
+  ],
+  "original_assignment": [
+    {
+      "id": "C01",
+      "task": "现场配置",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "当前实验身份已绑定；最终演示配置未冻结"
+    },
+    {
+      "id": "C02",
+      "task": "网口计时",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "分段及窗口对照已有；板端细分计数仍缺"
+    },
+    {
+      "id": "C03",
+      "task": "通信与调度",
+      "status": "WAITING_FORMAL_CROSS_FRAME_SCHEME",
+      "evidence_and_remaining": "已测约20–21fps；跨帧正式方案尚未交付"
+    },
+    {
+      "id": "C04",
+      "task": "板级实现",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "V2数字实现通过；跨帧无新BIT，物理I/O未验证"
+    },
+    {
+      "id": "C05",
+      "task": "主机与播放器",
+      "status": "PARTIAL",
+      "evidence_and_remaining": "当前BIT 150槽4K零差及预览提交；完整接入/UI/恢复待验收"
+    },
+    {
+      "id": "C06",
+      "task": "实板功能验收",
+      "status": "PARTIAL_BASELINE_FUNCTION_PASS",
+      "evidence_and_remaining": "512 Natural16+64 Natural2零差；最终版及异常矩阵待验收"
+    },
+    {
+      "id": "C07",
+      "task": "整机性能",
+      "status": "NOT_MET",
+      "evidence_and_remaining": "约20.536fps；持续4K30未达标，面板刷新未测"
+    },
+    {
+      "id": "C08",
+      "task": "现场与交付",
+      "status": "NOT_STARTED_FINAL",
+      "evidence_and_remaining": "材料归档可复用；最终电脑/备机/彩排/交付未完成"
+    }
+  ],
+  "next": [
+    "等待正式跨帧方案并确认实施合同",
+    "B完成真实CNN/网络Golden及完整顶层150MHz实现后交C复核",
+    "C收到新BIT后独立板测和PC4K对照",
+    "独立准备A对拍/后处理预算及播放器恢复验收",
+    "达标后持续4K30、可靠性、公平比较及最终现场交付"
+  ]
+}
