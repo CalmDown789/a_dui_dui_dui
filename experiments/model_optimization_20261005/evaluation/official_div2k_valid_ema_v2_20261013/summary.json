@@ -1,0 +1,42 @@
+{
+  "schema": "member-a-official-div2k-validation-eval-v1",
+  "status": "ONE_TIME_INDEPENDENT_SOFTWARE_EVALUATION_NOT_BOARD_ACCEPTANCE",
+  "dataset_source": "Official DIV2K validation HR, IDs 0801-0900; not used for training or checkpoint selection.",
+  "dataset_archive_sha256": "20dd31fd84d777bc1cf5d6b7654a3f569c0aec74458ae094122ad1d0489900fc",
+  "image_collection_sha256": "8e0f004c159c83818e431e347bacd6882782d90786b625baee31102da6d4a27a",
+  "downsampling": "Y channel from official validation HR; even crop; Pillow bicubic x2, matching the Member A training/evaluation preprocessing. This is not the official MATLAB LR track.",
+  "metrics": "Per-image Y PSNR/SSIM, border=2; report arithmetic mean over 100 images.",
+  "frozen_checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+  "frozen_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+  "candidate_checkpoint_sha256": "10867199deba770b8903e268bb4aa6775f0ad2036bab695790b6593cc01eeb6a",
+  "candidate_quant_params_sha256": "12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809",
+  "groups": {
+    "DIV2K_official_valid_100": {
+      "samples": 100,
+      "bicubic_psnr_db": 31.332134400155933,
+      "bicubic_ssim": 0.8994494716292489,
+      "frozen_fp32_psnr_db": 32.4993283551991,
+      "frozen_fp32_ssim": 0.9185082186390169,
+      "frozen_integer_psnr_db": 32.404316874578996,
+      "frozen_integer_ssim": 0.9140168343497551,
+      "candidate_fp32_psnr_db": 32.45401083347417,
+      "candidate_fp32_ssim": 0.9176320146523014,
+      "candidate_qdq_psnr_db": 32.47045980465699,
+      "candidate_qdq_ssim": 0.9174898849177255,
+      "candidate_integer_psnr_db": 32.47071179989994,
+      "candidate_integer_ssim": 0.9174986960947986,
+      "candidate_integer_delta_vs_frozen_db": 0.0663949253209513,
+      "candidate_integer_delta_bootstrap_95pct_ci_db": [
+        0.04446707161365319,
+        0.09869516019553308
+      ]
+    }
+  },
+  "scope_limits": [
+    "A one-time independent image-quality check; no hyperparameters or checkpoint will be selected based on these scores.",
+    "Pillow bicubic degradation differs from the official MATLAB-bicubic LR track and is stated explicitly.",
+    "Software reference only; not RTL, FPGA timing, or board-image evidence.",
+    "DIV2K is made available for academic research only; do not redistribute source images or derived model artifacts without confirming applicable rights."
+  ],
+  "per_image_csv": "per_image_metrics.csv"
+}

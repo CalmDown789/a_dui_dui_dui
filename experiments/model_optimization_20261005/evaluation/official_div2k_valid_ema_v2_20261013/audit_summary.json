@@ -1,0 +1,69 @@
+{
+  "schema": "member-a-official-div2k-result-audit-v1",
+  "status": "PASS_SOURCE_IDENTITY_AND_PER_IMAGE_SUMMARY_REPRODUCED",
+  "source_summary_status": "ONE_TIME_INDEPENDENT_SOFTWARE_EVALUATION_NOT_BOARD_ACCEPTANCE",
+  "source_csv_sha256": "29dd6139d9e1023e0a48cfd220668dd7324b657f6f13aa9c53876cf71761b979",
+  "source_summary_sha256": "5fda98c0b4063dcedc8204dc733bee4a7ace568d5a07e3a26ef6e57258e33b3e",
+  "identity": {
+    "dataset_archive_sha256": "20dd31fd84d777bc1cf5d6b7654a3f569c0aec74458ae094122ad1d0489900fc",
+    "image_collection_sha256": "8e0f004c159c83818e431e347bacd6882782d90786b625baee31102da6d4a27a",
+    "evaluation_scope": "Official DIV2K validation HR, IDs 0801-0900; not used for training or checkpoint selection.",
+    "downsampling": "Y channel from official validation HR; even crop; Pillow bicubic x2, matching the Member A training/evaluation preprocessing. This is not the official MATLAB LR track.",
+    "metric_protocol": "Per-image Y PSNR/SSIM, border=2; report arithmetic mean over 100 images.",
+    "model_and_data_hashes": {
+      "frozen_checkpoint_sha256": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+      "frozen_quant_params_sha256": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+      "candidate_checkpoint_sha256": "10867199deba770b8903e268bb4aa6775f0ad2036bab695790b6593cc01eeb6a",
+      "candidate_quant_params_sha256": "12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809"
+    },
+    "source_summary_matches_current_assets": true
+  },
+  "recomputed_metrics": {
+    "samples": 100,
+    "candidate_integer_mean_psnr_db": 32.47071179989994,
+    "frozen_integer_mean_psnr_db": 32.404316874578996,
+    "candidate_integer_mean_ssim": 0.9174986960947986,
+    "frozen_integer_mean_ssim": 0.9140168343497551,
+    "paired_delta_psnr_db": {
+      "mean": 0.0663949253209513,
+      "median": 0.03158785651147156,
+      "minimum": 0.004759247922084597,
+      "maximum": 1.3161375996727998,
+      "bootstrap_95pct_ci": [
+        0.04446707161365319,
+        0.09869516019553308
+      ],
+      "bootstrap_seed": 20261007,
+      "bootstrap_replicates": 20000
+    },
+    "paired_delta_ssim": {
+      "mean": 0.0034818617450437894,
+      "median": 0.0018325883823249733,
+      "minimum": 0.0002497141520334534,
+      "maximum": 0.06568428867495879,
+      "bootstrap_95pct_ci_exploratory": [
+        0.0022661667711844588,
+        0.005215083776100886
+      ],
+      "bootstrap_seed": 20261008,
+      "bootstrap_replicates": 20000
+    },
+    "per_image_direction_counts": {
+      "psnr_improved": 100,
+      "psnr_regressed": 0,
+      "psnr_equal_within_1e-12_db": 0,
+      "ssim_improved": 100,
+      "ssim_regressed": 0,
+      "ssim_equal_within_1e-12": 0
+    },
+    "best_psnr_image": "0844",
+    "worst_psnr_image": "0895",
+    "median_delta_image": "0831"
+  },
+  "interpretation": [
+    "Paired software integer-reference result on DIV2K validation HR IDs 0801-0900 only.",
+    "The bootstrap resamples images, not video sequences; the confidence interval is conditional on this image set and preprocessing.",
+    "Pillow bicubic x2 degradation is not the official MATLAB-bicubic LR track.",
+    "This audit is not subjective image-quality acceptance, RTL/FPGA evidence, or board-image evidence."
+  ]
+}

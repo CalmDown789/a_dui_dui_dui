@@ -1,0 +1,50 @@
+{
+  "selections": [
+    {
+      "image_id": "0821",
+      "selection_reason": "high-gain textured sample",
+      "candidate_integer_delta_psnr_db": 0.2426475654423328,
+      "candidate_integer_delta_ssim": 0.008086475742063004,
+      "crop_xy": [
+        210,
+        878
+      ],
+      "crop_wh": [
+        192,
+        192
+      ],
+      "crop_selection": "highest local 192x192 HR gradient energy, to keep the comparison focused on visible structure"
+    },
+    {
+      "image_id": "0895",
+      "selection_reason": "lowest-gain sample",
+      "candidate_integer_delta_psnr_db": 0.004759247922084597,
+      "candidate_integer_delta_ssim": 0.0005939096766909291,
+      "crop_xy": [
+        1845,
+        1011
+      ],
+      "crop_wh": [
+        192,
+        192
+      ],
+      "crop_selection": "highest local 192x192 HR gradient energy, to keep the comparison focused on visible structure"
+    },
+    {
+      "image_id": "0831",
+      "selection_reason": "median PSNR delta",
+      "candidate_integer_delta_psnr_db": 0.03152367679127366,
+      "candidate_integer_delta_ssim": 0.0013925918018310446,
+      "crop_xy": [
+        425,
+        720
+      ],
+      "crop_wh": [
+        192,
+        192
+      ],
+      "crop_selection": "highest local 192x192 HR gradient energy, to keep the comparison focused on visible structure"
+    }
+  ],
+  "copyright_scope": "local ignored review artifact; do not redistribute DIV2K-derived image crops without confirming rights"
+}
