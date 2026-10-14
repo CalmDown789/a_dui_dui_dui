@@ -1,0 +1,42 @@
+{
+  "schema": "member-a-ema-v2-natural8-quality-and-board-input-review-v1",
+  "status": "PC_SOFTWARE_CANDIDATE_NOT_RELEASED",
+  "identity": {
+    "video": "785b09a585be55f81326a3fcef2cdeeb7ebbc33932b6305fd84209928df67f28",
+    "r0_checkpoint": "bb2ee7a2766185bb24e6fc16119db0ad7a69c8f1c4293a1ed0ceae0a142997c5",
+    "r0_quant": "f2a9f20ca6d51f4f2902e6e1b5e6bdb7632f62981930101b0aaeb0994351b77a",
+    "candidate_checkpoint": "10867199deba770b8903e268bb4aa6775f0ad2036bab695790b6593cc01eeb6a",
+    "candidate_quant": "12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809"
+  },
+  "frozen_board_input_manifest_sha256": "6a237f8ed5628d456188c0a711bc05aa7d373c33819e429b4459bab3852772ad",
+  "previous_bbb_development_csv_sha256": "eb91e9c39e6580cde6cd451004b32ce4610d1e29bc4e2b2098edd33acb04afda",
+  "quality": {
+    "protocol": "Same BBB source indices 1440..1524 step 12; RGB decode to YCbCr Y, Pillow bicubic 640x360 LR, 1280x720 HR; exact integer R0 and EMA v2; Y PSNR/SSIM shave 2",
+    "samples": 8,
+    "mean_r0_psnr_db": 46.36580108311546,
+    "mean_ema_psnr_db": 48.13191228292575,
+    "mean_psnr_gain_db": 1.7661111998102896,
+    "mean_r0_ssim": 0.9886165926374196,
+    "mean_ema_ssim": 0.9940863359472352,
+    "mean_ssim_gain": 0.005469743309815589,
+    "positive_psnr_frames": 8,
+    "scope": "Previously observed development animation frames; not independent final test, camera video, 1080p board-output ground truth, or subjective quality judgment"
+  },
+  "board_input_comparison": {
+    "protocol": "Same frozen 960x540 input bytes; R0 frozen software Golden versus EMA v2 exact integer output at 1920x1080",
+    "samples": 8,
+    "mean_abs_delta_u8": 0.4474678698881173,
+    "scope": "Inter-model difference only; no 1080p ground truth, PSNR/SSIM quality claim, hardware output, or FPS claim"
+  },
+  "candidate_natural8_package": {
+    "name": "A_EMA_V2_NATURAL8_GOLDEN_20261014.zip",
+    "bytes": 8134668,
+    "sha256": "1b8266493fec4c0df85da053ed5612d884a2c68f9ad6794017f1a2e8915209b7"
+  },
+  "per_frame_csv": "per_frame.csv",
+  "contact_sheets": [
+    "quality_crops.png",
+    "board_crops.png"
+  ],
+  "attribution": "Big Buck Bunny (2008), (c) Blender Foundation / www.bigbuckbunny.org, CC BY 3.0"
+}

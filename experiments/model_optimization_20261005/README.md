@@ -56,6 +56,8 @@ The evaluation constructs its x2 low-resolution input from official validation H
 
 The final selected checkpoint is `qat_ema_refine_20261006/candidate_ema_qat_fp32.pth` (SHA-256 `10867199deba770b8903e268bb4aa6775f0ad2036bab695790b6593cc01eeb6a`). Its exported candidate quantization parameters have SHA-256 `12e6e26ea9770c7bf57ab3cc048328d845f2a6cbb6764441df0d7c74e50c2809`. The full-size candidate integer output is 2,073,600 bytes, SHA-256 `d1d9a6fb09d3fe84a6538df2a68107a216d79586ae3c296fa5d8706c616dbef1`. `verify_candidate_delivery.py --recompute-full` passed for the packaged layer vectors and recomputed full-frame hashes. The delivery remains marked `EXPERIMENTAL_NOT_RELEASED`.
 
+The [2026-10-14 video comparison and B/C handoff](../../docs/MEMBER_A_EMA_V2_HANDOFF_AND_VIDEO_REVIEW_20261014.md) adds an exact-integer R0/EMA v2 comparison on eight Big Buck Bunny development frames and a separate eight-frame 960x540 input/1920x1080 candidate Golden ZIP. The latter uses exactly the inputs from the frozen R0 board test; it is PC reference data for future candidate board validation, not a candidate board result.
+
 ## Acceptance boundary
 
 This is PC software evidence only. The frozen A artifacts were not replaced, and no B/C RTL or files were changed. The isolated experimental candidate package is under:
