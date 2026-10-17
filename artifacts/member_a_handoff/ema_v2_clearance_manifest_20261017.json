@@ -1,6 +1,8 @@
 {
-  "schema": "member-a-ema-v2-candidate-clearance-v1",
+  "schema": "member-a-ema-v2-candidate-clearance-v2",
   "date": "2026-10-17",
+  "identity_correction_date": "2026-10-18",
+  "identity_correction_note": "Commit f82bbc7 normalized six generated evaluation text files to LF. The corrected branch preserves their source bytes and repairs one stale README hash in SHA256SUMS; model parameters and metric values are unchanged.",
   "status": "A_ASSETS_VERIFIED_CANDIDATE_ONLY_NOT_R0_REPLACEMENT",
   "branch": "codex/member-a-r0qat456-bundle-20261007",
   "source_commit": "cb0ad8549967c5306cc25f88023658918d0fe03d",
@@ -46,9 +48,29 @@
       "sha256": "093f8eace7b20b71244de5a2c13f38b197e7d67db004b85b43dbf002522aacad"
     },
     {
+      "path": "experiments/model_optimization_20261005/evaluation/official_div2k_valid_ema_v2_20261013/visual_selection.json",
+      "bytes": 1515,
+      "sha256": "a95035491b14799d88c9f3f458e7ad9ca1f75d4bb6a7b18de4efdbf042447e77"
+    },
+    {
+      "path": "experiments/model_optimization_20261005/evaluation/official_div2k_valid_ema_v2_20261013/README.md",
+      "bytes": 3969,
+      "sha256": "290906e58fe4f76322b9c81ca35f91d0e7195823d34c56d6bcd77c36d980da2b"
+    },
+    {
+      "path": "experiments/model_optimization_20261005/evaluation/official_div2k_valid_ema_v2_20261013/SHA256SUMS.txt",
+      "bytes": 416,
+      "sha256": "4f4fbdd9ebd9b65eb1702df23d159eb24931f4a81110868f712517150cb50821"
+    },
+    {
       "path": "experiments/model_optimization_20261005/evaluation/bbb_ema_v2_20261014/per_frame.csv",
       "bytes": 3271,
       "sha256": "d12eb83e3417f11b341ede346094c63951b2857db279d36d013a6cf2f744a392"
+    },
+    {
+      "path": "experiments/model_optimization_20261005/evaluation/bbb_ema_v2_20261014/summary.json",
+      "bytes": 2268,
+      "sha256": "46af5a704af6cbcec90edcb630419e78988859b76ce7b9010edb950864d73f66"
     },
     {
       "path": "src/member_a/pc_postprocess_4k.py",

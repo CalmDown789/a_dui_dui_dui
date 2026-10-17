@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import subprocess
 import sys
 from zipfile import ZipFile
 
@@ -84,6 +85,36 @@ def check_quality(manifest: dict) -> None:
     print(f"PASS DIV2K 100-image summary identity: paired mean {difference:+.4f} dB")
 
 
+def check_quality_hash_list() -> None:
+    directory = QUALITY_SUMMARY.parent
+    for line in (directory / "SHA256SUMS.txt").read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        expected, relative = line.split(maxsplit=1)
+        if sha256_file(directory / relative) != expected:
+            raise ValueError(f"Published DIV2K SHA256SUMS mismatch: {relative}")
+    print("PASS DIV2K published SHA256SUMS")
+
+
+def check_git_tree(manifest: dict) -> None:
+    probe = subprocess.run(
+        ["git", "rev-parse", "--show-toplevel"], cwd=ROOT, capture_output=True, text=True, check=False
+    )
+    if probe.returncode != 0:
+        print("SKIP Git tree check: no Git checkout")
+        return
+    for item in manifest["files"]:
+        relative = item["path"]
+        result = subprocess.run(
+            ["git", "show", f"HEAD:{relative}"], cwd=ROOT, capture_output=True, check=False
+        )
+        if result.returncode != 0:
+            raise ValueError(f"Missing from HEAD: {relative}")
+        if len(result.stdout) != item["bytes"] or hashlib.sha256(result.stdout).hexdigest() != item["sha256"]:
+            raise ValueError(f"Git HEAD blob differs from release manifest: {relative}")
+    print(f"PASS Git HEAD blobs: {len(manifest['files'])} pinned files")
+
+
 def check_received_archives() -> None:
     b_path = ROOT / "artifacts/member_a_handoff/received/B_A_EMA_V2_REPRO_20261013_v2.zip"
     with ZipFile(b_path) as archive:
@@ -120,7 +151,9 @@ def main() -> int:
     check_candidate_bundle(manifest)
     check_natural8()
     check_quality(manifest)
+    check_quality_hash_list()
     check_received_archives()
+    check_git_tree(manifest)
     print("PASS A-side candidate handoff identity only; R0 remains frozen")
     return 0
 
